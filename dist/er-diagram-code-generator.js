@@ -1,12 +1,12 @@
 /*!
- * DSL Test v1.0.5
- * https://github.com/nestorrente/dsl-test
+ * Entity-Relationship Diagram Code Generator v1.0.5
+ * https://github.com/nestorrente/er-diagram-code-generator
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-01-26T17:44:38.647Z
+ * Build date: 2021-01-26T18:27:33.852Z
  */
-var DslTest =
+var EntityRelationshipDiagramCodeGenerator =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -743,4 +743,4 @@ console.log(modelCodeGenerator.generateCode(model));
 /***/ })
 
 /******/ })["default"];
-//# sourceMappingURL=dsl-test.js.map
+//# sourceMappingURL=er-diagram-code-generator.js.map

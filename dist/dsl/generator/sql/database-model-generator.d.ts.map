@@ -1,1 +1,0 @@
-{"version":3,"file":"database-model-generator.d.ts","sourceRoot":"","sources":["../../../../src/dsl/generator/sql/database-model-generator.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,uBAAuB,EAAC,MAAM,8BAA8B,CAAC;AAUrE,OAAO,EAAC,aAAa,EAAmE,MAAM,wBAAwB,CAAC;AAEvH,MAAM,CAAC,OAAO,OAAO,sBAAsB;IAEnC,qBAAqB,CAAC,KAAK,EAAE,uBAAuB,GAAG,aAAa;CAkB3E"}

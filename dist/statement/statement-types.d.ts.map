@@ -1,1 +1,0 @@
-{"version":3,"file":"statement-types.d.ts","sourceRoot":"","sources":["../../src/statement/statement-types.ts"],"names":[],"mappings":"AAKA,oBAAY,aAAa;IACrB,WAAW,eAAc;IACzB,eAAe,mBAAmB;IAClC,YAAY,iBAAiB;CAChC;AAMD,eAAO,MAAM,sBAAsB,QAA6C,CAAA;AAYhF,eAAO,MAAM,0BAA0B,QAAsD,CAAA;AAU7F,eAAO,MAAM,uBAAuB,QAAiL,CAAC"}
