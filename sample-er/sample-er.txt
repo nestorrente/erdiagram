@@ -1,0 +1,11 @@
+Employee
+    name text(100)
+    salary int
+
+Company
+    name text(50)
+    fundationDate date
+
+Employee *<-> Company
+
+Employee -> Employee boss

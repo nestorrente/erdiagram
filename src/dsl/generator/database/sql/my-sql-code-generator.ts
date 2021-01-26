@@ -92,12 +92,12 @@ export default class MySqlCodeGenerator implements ModelCodeGenerator {
 		const lineParts: string[] = [];
 		lineParts.push(name);
 
-		const mappedType = mapPropertyTypeToSqlType(type);
+		const mysqlType = mapPropertyTypeToSqlType(type);
 
 		if (length) {
-			lineParts.push(`${type}(${length})`);
+			lineParts.push(`${mysqlType}(${length})`);
 		} else {
-			lineParts.push(type);
+			lineParts.push(mysqlType);
 		}
 
 		if (notNull) {

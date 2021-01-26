@@ -38,12 +38,13 @@ const commonConfig = {
 
 const standaloneConfig = {
     ...commonConfig,
+    target: 'node',
     output: {
         ...commonConfig.output,
         filename: 'er-diagram-code-generator.js',
-        library: 'EntityRelationshipDiagramCodeGenerator',
-        libraryTarget: 'var',
-        libraryExport: 'default'
+        // library: 'EntityRelationshipDiagramCodeGenerator',
+        // libraryTarget: 'var',
+        // libraryExport: 'default'
     }
 };
 

@@ -1,6 +1,9 @@
+import yargs from 'yargs';
+import fs from 'fs';
 import {EntityRelationshipModel, parseEntityRelationshipModel} from './dsl/parser/er-model-parser';
 import {ModelCodeGenerator} from './dsl/generator/types';
 import MySqlCodeGenerator from './dsl/generator/database/sql/my-sql-code-generator';
+import JavaCodeGenerator from './dsl/generator/oop/java/java-code-generator';
 
 // [
 // 	'User follower *<->* User followed (a)',
@@ -46,37 +49,89 @@ import MySqlCodeGenerator from './dsl/generator/database/sql/my-sql-code-generat
 //
 // `);
 
-const model: EntityRelationshipModel = parseEntityRelationshipModel(`
+// const model: EntityRelationshipModel = parseEntityRelationshipModel(`
+//
+// User
+// 	username text(50)
+// 	name text(50)
+// 	birthday? date
+// 	active bool
+//
+// Country
+// 	code text(5)
+// 	name text(100)
+//
+// User *-> Country
+//
+// User ->? Country alternativeCountry
+//
+// Permission
+// 	code text(30)
+// 	description text(200)
+//
+// User *<->* Permission
+//
+// `);
 
-User
-	username text(50)
-	name text(50)
-	birthday? date
-	active bool
+const args = yargs
+		.option('format', {
+			alias: 'f',
+			type: 'string',
+			description: 'Output format (mysql/java)'
+		})
+		.option('output', {
+			alias: 'o',
+			type: 'string',
+			description: 'Output file path (console if not specified)'
+		})
+		.help()
+		.alias('help', 'h')
+		.version()
+		.alias('version', 'v')
+		.argv
 
-Country
-	code text(5)
-	name text(100)
+const config = {
+	inputFile: args._[0],
+	format: (args.format ?? 'mysql').toLowerCase(),
+	outputFile: args.output
+};
 
-User *-> Country
+const modelCodeGenerator = ((): ModelCodeGenerator => {
+	switch(config.format) {
+		case 'mysql':
+			return new MySqlCodeGenerator();
+		case 'java':
+			return new JavaCodeGenerator();
+		default:
+			throw new Error(`Unknown format: ${config.format}`);
+	}
+})();
 
-User ->? Country alternativeCountry
+type OutputCallback = (text: string) => void;
 
-Permission
-	- permissionTableMeta: el valor de la meta
-	code text(30)
-		- codeColumnMeta1: 1
-		- codeColumnMeta2: false
-	description text(200)
+const outputCallback = ((): OutputCallback => {
 
-User *<->* Permission
+	const {outputFile} = config;
 
-`);
+	if(outputFile) {
+		return text => fs.writeFileSync(outputFile, text + '\n');
+	} else {
+		return text => console.log(text);
+	}
 
-const modelCodeGenerator: ModelCodeGenerator = new MySqlCodeGenerator();
+})();
+
+// const modelCodeGenerator: ModelCodeGenerator = new MySqlCodeGenerator();
 // const modelCodeGenerator: ModelCodeGenerator = new JavaCodeGenerator();
 
+const inputCode = fs.readFileSync(config.inputFile).toString();
+
+const model = parseEntityRelationshipModel(inputCode);
+const outputCode = modelCodeGenerator.generateCode(model);
+
+outputCallback(outputCode);
+
 // console.log(JSON.stringify(model, null, 4));
-console.log(modelCodeGenerator.generateCode(model));
+// console.log(modelCodeGenerator.generateCode(model));
 // console.log(JSON.stringify(databaseModelGenerator.generateDatabaseModel(model), null, 4));
 // console.log(JSON.stringify(classModelGenerator.generateClassModel(model), null, 4));

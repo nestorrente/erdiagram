@@ -1,3 +1,4 @@
+import pluralize from 'pluralize';
 import {EntityRelationshipModel} from '../../../parser/er-model-parser';
 import {
 	Cardinality,
@@ -56,7 +57,9 @@ function generateEntityTable(entity: EntityDescriptor, model: EntityRelationship
 
 		if (leftMember.entity === entity.name && [Direction.RIGHT, Direction.BOTH].includes(direction)) {
 			fields.push(mapRelationshipMemberToField(rightMember));
-		} else if (rightMember.entity === entity.name && [Direction.LEFT, Direction.BOTH].includes(direction)) {
+		}
+
+		if (rightMember.entity === entity.name && [Direction.LEFT, Direction.BOTH].includes(direction)) {
 			fields.push(mapRelationshipMemberToField(leftMember));
 		}
 
@@ -79,12 +82,17 @@ function createIdField(): FieldDescriptor {
 }
 
 function mapRelationshipMemberToField(toMember: RelationshipMember): FieldDescriptor {
+
+	const list = toMember.cardinality === Cardinality.MANY;
+	const name = list ? pluralize(toMember.entityAlias) : toMember.entityAlias;
+
 	return {
-		name: toMember.entityAlias,
+		name,
 		nullable: toMember.optional,
 		entityType: toMember.entity,
-		list: toMember.cardinality === Cardinality.MANY
+		list
 	};
+
 }
 
 function mapPropertyToField(property: EntityPropertyDescriptor): FieldDescriptor {
