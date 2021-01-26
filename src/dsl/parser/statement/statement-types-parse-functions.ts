@@ -1,0 +1,171 @@
+import {capitalize, uncapitalize} from '../../util/string-utils';
+import {
+	ENTITY_NAME_LINE_REGEX,
+	ENTITY_PROPERTY_LINE_REGEX,
+	METADATA_LINE_REGEX,
+	RELATIONSHIP_LINE_REGEX
+} from './statement-types-regexes';
+
+export enum Cardinality {
+	MANY = 'many',
+	ONE = 'one'
+}
+
+export enum Direction {
+	LEFT = 'left',
+	RIGHT = 'right',
+	BOTH = 'both'
+}
+
+export interface BaseDescriptor {
+	metadata: Metadata[];
+}
+
+export interface RelationshipDescriptor extends BaseDescriptor {
+	leftMember: RelationshipMember;
+	rightMember: RelationshipMember;
+	direction: Direction;
+	relationShipName: string;
+}
+
+export interface RelationshipMember {
+	entity: string;
+	entityAlias: string;
+	cardinality: Cardinality;
+	optional: boolean;
+}
+
+export interface EntityDescriptor extends BaseDescriptor {
+	name: string;
+	properties: EntityPropertyDescriptor[];
+}
+
+export interface EntityPropertyDescriptor extends BaseDescriptor {
+	name: string;
+	optional: boolean;
+	type: EntityPropertyType;
+	length?: number;
+}
+
+export enum EntityPropertyType {
+	TEXT = 'text',
+	LONG = 'long',
+	INT = 'int',
+	DECIMAL = 'decimal',
+	BOOLEAN = 'bool',
+	DATE = 'date',
+	TIME = 'time',
+	DATETIME = 'datetime'
+}
+
+export interface Metadata {
+	key: string;
+	value: string;
+}
+
+export function parseEntityNameStatement(line: string): string {
+
+	const result = ENTITY_NAME_LINE_REGEX.exec(line);
+
+	if (result == null) {
+		throw new Error('Syntax error');
+	}
+
+	const [entityName] = result;
+
+	return entityName;
+
+}
+
+export function parseEntityPropertyStatement(line: string): EntityPropertyDescriptor {
+
+	const result = ENTITY_PROPERTY_LINE_REGEX.exec(line);
+
+	if (result == null) {
+		throw new Error('Syntax error');
+	}
+
+	const [
+		fullMatch,
+		name,
+		optionalModifier,
+		type,
+		length
+	] = result;
+
+	const mappedType = type.toLowerCase() as EntityPropertyType;
+
+	if (!Object.values(EntityPropertyType).includes(mappedType)) {
+		throw new Error('Unknown type: ' + type);
+	}
+
+	return {
+		name,
+		optional: optionalModifier === '?',
+		type: mappedType,
+		length: length ? parseInt(length, 10) : undefined,
+		metadata: []
+	};
+
+}
+
+export function parseRelationshipStatement(line: string): RelationshipDescriptor {
+
+	const result = RELATIONSHIP_LINE_REGEX.exec(line);
+
+	if (result == null) {
+		throw new Error('Syntax error');
+	}
+
+	const [
+		fullMatch,
+		leftEntity,
+		leftEntityAlias = uncapitalize(leftEntity),
+		leftCardinality,
+		direction,
+		rightCardinality,
+		rightEntity,
+		rightEntityAlias = uncapitalize(rightEntity),
+		relationShipName = `${leftEntity}${capitalize(rightEntity)}`
+	] = result;
+
+	return {
+		leftMember: {
+			entity: leftEntity,
+			entityAlias: leftEntityAlias,
+			cardinality: leftCardinality === '*' ? Cardinality.MANY : Cardinality.ONE,
+			optional: leftCardinality === '?'
+		},
+		rightMember: {
+			entity: rightEntity,
+			entityAlias: rightEntityAlias,
+			cardinality: rightCardinality === '*' ? Cardinality.MANY : Cardinality.ONE,
+			optional: rightCardinality === '?'
+		},
+		direction: direction === '->' ? Direction.RIGHT : (direction === '<-' ? Direction.LEFT : Direction.BOTH),
+		relationShipName,
+		metadata: []
+	};
+
+}
+
+export function parseMetadataStatement(line: string): Metadata {
+
+	const result = METADATA_LINE_REGEX.exec(line);
+
+	if (result == null) {
+		throw new Error('Syntax error');
+	}
+
+	const [
+		fullMatch,
+		key,
+		value
+	] = result;
+
+	return {
+		key,
+		value
+	};
+
+}

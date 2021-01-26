@@ -1,0 +1,31 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"module": "ES6",
+		"declaration": true,
+		"outDir": "./dist",
+		"strict": true,
+		"moduleResolution": "node",
+		"experimentalDecorators": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"sourceMap": true,
+		"declarationMap": true,
+		"baseUrl": ".",
+		"types": [
+			"node",
+			"jest"
+		],
+		"lib": [
+			"esnext"
+		]
+	},
+	"include": [
+		"src"
+	],
+	"exclude": [
+		"node_modules",
+		"node_modules/**",
+		"src/test/**"
+	]
+}
