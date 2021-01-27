@@ -1,0 +1,14 @@
+Employee
+    name text(100)
+    salary int
+
+Company
+    name text(50)
+    fundationDate date
+    # "?" indicates this is an optional field
+    moneyAmount? decimal
+
+Employee *<-> Company
+
+## "?" indicates this is an optional reference
+#Employee ->? Employee boss

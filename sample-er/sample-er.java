@@ -4,7 +4,6 @@ public class Employee {
     private String name;
     private Integer salary;
     private Company company;
-    private Employee boss;
 
     public Long getId() {
         return id;
@@ -38,14 +37,6 @@ public class Employee {
         this.company = company;
     }
 
-    public Employee getBoss() {
-        return boss;
-    }
-
-    public Employee setBoss(Employee boss) {
-        this.boss = boss;
-    }
-
 }
 
 public class Company {
@@ -53,6 +44,8 @@ public class Company {
     private Long id;
     private String name;
     private LocalDate fundationDate;
+    @Nullable
+    private BigDecimal moneyAmount;
     private List<Employee> employees;
 
     public Long getId() {
@@ -77,6 +70,14 @@ public class Company {
 
     public LocalDate setFundationDate(LocalDate fundationDate) {
         this.fundationDate = fundationDate;
+    }
+
+    public BigDecimal getMoneyAmount() {
+        return moneyAmount;
+    }
+
+    public BigDecimal setMoneyAmount(BigDecimal moneyAmount) {
+        this.moneyAmount = moneyAmount;
     }
 
     public List<Employee> getEmployees() {
