@@ -1,0 +1,27 @@
+- Soportar distintos dialectos de SQL.
+	- Ver si compensa crear algo estilo SQLDialect, o simplemente hacer que sean nuevas implementaciones de SqlCodeGenerator.
+
+- Soportar distintas estrategias de nombrado.
+	- En el .erd siempre será CamelCase, pero se tiene que poder escoger el case de salida (al menos en SQL).
+		- Aplica por separado para los nombres de las tablas y los de las columnas.
+		- No aplica en Java, porque hay una convención.
+		- Esta conversión se aplicaría en el DatabaseModel, de modo que cada
+		  SqlCodeGenerator solo tenga que hacer caso de lo que diga el modelo.
+			- UPPER_UNDERSCORE_CASE
+			- lower_underscore_case
+			- UpperCamelCase
+			- lowerCamelCase
+
+- Solventar el tema del orden en las FK de SQL.
+	- La forma sencilla (y única válida en todos los casos) es hacerlo con un:
+		- ALTER TABLE ... ADD CONSTRAINT ...
+	  después de haber creado todas las tablas.
+
+- Permitir modificar los bindings de los tipos, e incluso añadir tus propios tipos.
+
+- En Java, los bindings de los tipos deberían diferenciar entre clase y paquete?
+	- Tiene la ventaja de poder añadir los imports con total seguridad.
+	- No obstante, esto se podría hacer también en base a convenciones.
+		- Empieza por mayúsculas: clase.
+		- Empieza por minúsculas: paquete.
+
