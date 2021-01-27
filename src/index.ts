@@ -4,7 +4,8 @@ import {parseEntityRelationshipModel} from './dsl/parser/er-model-parser';
 import EntityRelationshipModelToCodeConverter from './dsl/generator/entity-relationship-to-code-converter';
 import MySqlCodeGenerator from 'src/dsl/generator/database/sql/mysql/my-sql-code-generator';
 import JavaCodeGenerator from './dsl/generator/oop/java/java-code-generator';
-import {StandardIdNamingStrategies} from '@/dsl/generator/common/id-naming-strategy'; // [
+import {StandardIdNamingStrategies} from '@/dsl/generator/common/id-naming-strategy';
+import StandardCaseFormats from '@/dsl/generator/common/case-format/StandardCaseFormats'; // [
 
 // [
 // 	'User follower *<->* User followed (a)',
@@ -133,6 +134,14 @@ const model = parseEntityRelationshipModel(inputCode);
 const outputCode = modelCodeGenerator.generateCode(model);
 
 outputCallback(outputCode);
+
+console.log(StandardCaseFormats.LOWER_CAMEL.splitWords('thisIsItSQLException'))
+console.log(StandardCaseFormats.UPPER_CAMEL.splitWords('ThisIsItSQLException'))
+console.log(StandardCaseFormats.LOWER_UNDERSCORE.splitWords('this_is_it_sql_exception'))
+console.log(StandardCaseFormats.UPPER_UNDERSCORE.splitWords('THIS_IS_IT_SQL_EXCEPTION'))
+console.log(StandardCaseFormats.CAPITALIZED_UNDERSCORE.splitWords('This_Is_It_Sql_Exception'))
+
+Object.values(StandardCaseFormats).forEach(caseFormat => console.log(caseFormat.joinWords(['thiS', 'is', 'It', 'sql', 'EXCEPTION'])))
 
 // console.log(JSON.stringify(model, null, 4));
 // console.log(modelCodeGenerator.generateCode(model));

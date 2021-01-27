@@ -1,0 +1,1 @@
+{"version":3,"file":"UpperCamelCaseFormat.d.ts","sourceRoot":"","sources":["../../../../../src/dsl/generator/common/case-format/UpperCamelCaseFormat.ts"],"names":[],"mappings":"AAAA,OAAO,uBAAuB,MAAM,4DAA4D,CAAC;AAGjG,MAAM,CAAC,OAAO,OAAO,oBAAqB,SAAQ,uBAAuB;IAEjE,SAAS,CAAC,KAAK,EAAE,MAAM,EAAE,GAAG,MAAM;CAOzC"}

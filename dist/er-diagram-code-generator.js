@@ -4,7 +4,7 @@
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-01-27T22:09:06.878Z
+ * Build date: 2021-01-27T22:59:09.529Z
  */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -8111,21 +8111,317 @@ exports.Parser = Parser
 
 /***/ }),
 
-/***/ "./src/dsl/generator/common/strategy/id-naming-strategies.ts":
-/*!*******************************************************************!*\
-  !*** ./src/dsl/generator/common/strategy/id-naming-strategies.ts ***!
-  \*******************************************************************/
-/*! exports provided: IdNamingStrategies */
+/***/ "./src/dsl/generator/common/case-format/AbstractCamelCaseFormat.ts":
+/*!*************************************************************************!*\
+  !*** ./src/dsl/generator/common/case-format/AbstractCamelCaseFormat.ts ***!
+  \*************************************************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IdNamingStrategies", function() { return IdNamingStrategies; });
+var CAMEL_CASE_WORD_BOUNDARIES_REGEX = /((?<=[^A-Z])(?=[A-Z])|(?=[A-Z][a-z]))/;
+var AbstractCamelCaseFormat = /** @class */ (function () {
+    function AbstractCamelCaseFormat() {
+    }
+    AbstractCamelCaseFormat.prototype.splitWords = function (text) {
+        return text.split(CAMEL_CASE_WORD_BOUNDARIES_REGEX)
+            .filter(function (chunk) { return chunk.length > 0; });
+    };
+    return AbstractCamelCaseFormat;
+}());
+/* harmony default export */ __webpack_exports__["default"] = (AbstractCamelCaseFormat);
+
+
+/***/ }),
+
+/***/ "./src/dsl/generator/common/case-format/AbstractUnderscoreCaseFormat.ts":
+/*!******************************************************************************!*\
+  !*** ./src/dsl/generator/common/case-format/AbstractUnderscoreCaseFormat.ts ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var AbstractUnderscoreCaseFormat = /** @class */ (function () {
+    function AbstractUnderscoreCaseFormat() {
+    }
+    AbstractUnderscoreCaseFormat.prototype.splitWords = function (text) {
+        return text.split('_');
+    };
+    return AbstractUnderscoreCaseFormat;
+}());
+/* harmony default export */ __webpack_exports__["default"] = (AbstractUnderscoreCaseFormat);
+
+
+/***/ }),
+
+/***/ "./src/dsl/generator/common/case-format/CapitalizedUnderscoreCaseFormat.ts":
+/*!*********************************************************************************!*\
+  !*** ./src/dsl/generator/common/case-format/CapitalizedUnderscoreCaseFormat.ts ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _dsl_generator_common_case_format_AbstractUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/dsl/generator/common/case-format/AbstractUnderscoreCaseFormat */ "./src/dsl/generator/common/case-format/AbstractUnderscoreCaseFormat.ts");
+/* harmony import */ var _dsl_util_string_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/dsl/util/string-utils */ "./src/dsl/util/string-utils.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+var CapitalizedUnderscoreCaseFormat = /** @class */ (function (_super) {
+    __extends(CapitalizedUnderscoreCaseFormat, _super);
+    function CapitalizedUnderscoreCaseFormat() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    CapitalizedUnderscoreCaseFormat.prototype.joinWords = function (words) {
+        return words
+            .map(function (word) { return word.toLowerCase(); })
+            .map(_dsl_util_string_utils__WEBPACK_IMPORTED_MODULE_1__["capitalize"])
+            .join('_');
+    };
+    return CapitalizedUnderscoreCaseFormat;
+}(_dsl_generator_common_case_format_AbstractUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (CapitalizedUnderscoreCaseFormat);
+
+
+/***/ }),
+
+/***/ "./src/dsl/generator/common/case-format/LowerCamelCaseFormat.ts":
+/*!**********************************************************************!*\
+  !*** ./src/dsl/generator/common/case-format/LowerCamelCaseFormat.ts ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _dsl_generator_common_case_format_AbstractCamelCaseFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/dsl/generator/common/case-format/AbstractCamelCaseFormat */ "./src/dsl/generator/common/case-format/AbstractCamelCaseFormat.ts");
+/* harmony import */ var _dsl_util_string_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/dsl/util/string-utils */ "./src/dsl/util/string-utils.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+var LowerCamelCaseFormat = /** @class */ (function (_super) {
+    __extends(LowerCamelCaseFormat, _super);
+    function LowerCamelCaseFormat() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    LowerCamelCaseFormat.prototype.joinWords = function (words) {
+        if (words.length === 0) {
+            return '';
+        }
+        var firstWord = words[0], otherWords = words.slice(1);
+        var lowerCaseFirstWord = firstWord.toLowerCase();
+        var capitalizedOtherWords = otherWords
+            .map(function (word) { return word.toLowerCase(); })
+            .map(_dsl_util_string_utils__WEBPACK_IMPORTED_MODULE_1__["capitalize"]);
+        return lowerCaseFirstWord + capitalizedOtherWords.join('');
+    };
+    return LowerCamelCaseFormat;
+}(_dsl_generator_common_case_format_AbstractCamelCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (LowerCamelCaseFormat);
+
+
+/***/ }),
+
+/***/ "./src/dsl/generator/common/case-format/LowerUnderscoreCaseFormat.ts":
+/*!***************************************************************************!*\
+  !*** ./src/dsl/generator/common/case-format/LowerUnderscoreCaseFormat.ts ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _dsl_generator_common_case_format_AbstractUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/dsl/generator/common/case-format/AbstractUnderscoreCaseFormat */ "./src/dsl/generator/common/case-format/AbstractUnderscoreCaseFormat.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+var LowerUnderscoreCaseFormat = /** @class */ (function (_super) {
+    __extends(LowerUnderscoreCaseFormat, _super);
+    function LowerUnderscoreCaseFormat() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    LowerUnderscoreCaseFormat.prototype.joinWords = function (words) {
+        return words
+            .map(function (word) { return word.toLowerCase(); })
+            .join('_');
+    };
+    return LowerUnderscoreCaseFormat;
+}(_dsl_generator_common_case_format_AbstractUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (LowerUnderscoreCaseFormat);
+
+
+/***/ }),
+
+/***/ "./src/dsl/generator/common/case-format/StandardCaseFormats.ts":
+/*!*********************************************************************!*\
+  !*** ./src/dsl/generator/common/case-format/StandardCaseFormats.ts ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _dsl_generator_common_case_format_LowerCamelCaseFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/dsl/generator/common/case-format/LowerCamelCaseFormat */ "./src/dsl/generator/common/case-format/LowerCamelCaseFormat.ts");
+/* harmony import */ var _dsl_generator_common_case_format_UpperCamelCaseFormat__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/dsl/generator/common/case-format/UpperCamelCaseFormat */ "./src/dsl/generator/common/case-format/UpperCamelCaseFormat.ts");
+/* harmony import */ var _dsl_generator_common_case_format_LowerUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/dsl/generator/common/case-format/LowerUnderscoreCaseFormat */ "./src/dsl/generator/common/case-format/LowerUnderscoreCaseFormat.ts");
+/* harmony import */ var _dsl_generator_common_case_format_CapitalizedUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/dsl/generator/common/case-format/CapitalizedUnderscoreCaseFormat */ "./src/dsl/generator/common/case-format/CapitalizedUnderscoreCaseFormat.ts");
+/* harmony import */ var _dsl_generator_common_case_format_UpperUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/dsl/generator/common/case-format/UpperUnderscoreCaseFormat */ "./src/dsl/generator/common/case-format/UpperUnderscoreCaseFormat.ts");
+
+
+
+
+
+var StandardCaseFormats = {
+    LOWER_CAMEL: new _dsl_generator_common_case_format_LowerCamelCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"](),
+    UPPER_CAMEL: new _dsl_generator_common_case_format_UpperCamelCaseFormat__WEBPACK_IMPORTED_MODULE_1__["default"](),
+    LOWER_UNDERSCORE: new _dsl_generator_common_case_format_LowerUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_2__["default"](),
+    CAPITALIZED_UNDERSCORE: new _dsl_generator_common_case_format_CapitalizedUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_3__["default"](),
+    UPPER_UNDERSCORE: new _dsl_generator_common_case_format_UpperUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_4__["default"](),
+};
+/* harmony default export */ __webpack_exports__["default"] = (StandardCaseFormats);
+
+
+/***/ }),
+
+/***/ "./src/dsl/generator/common/case-format/UpperCamelCaseFormat.ts":
+/*!**********************************************************************!*\
+  !*** ./src/dsl/generator/common/case-format/UpperCamelCaseFormat.ts ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _dsl_generator_common_case_format_AbstractCamelCaseFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/dsl/generator/common/case-format/AbstractCamelCaseFormat */ "./src/dsl/generator/common/case-format/AbstractCamelCaseFormat.ts");
+/* harmony import */ var _dsl_util_string_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/dsl/util/string-utils */ "./src/dsl/util/string-utils.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+var UpperCamelCaseFormat = /** @class */ (function (_super) {
+    __extends(UpperCamelCaseFormat, _super);
+    function UpperCamelCaseFormat() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    UpperCamelCaseFormat.prototype.joinWords = function (words) {
+        return words
+            .map(function (word) { return word.toLowerCase(); })
+            .map(_dsl_util_string_utils__WEBPACK_IMPORTED_MODULE_1__["capitalize"])
+            .join('');
+    };
+    return UpperCamelCaseFormat;
+}(_dsl_generator_common_case_format_AbstractCamelCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (UpperCamelCaseFormat);
+
+
+/***/ }),
+
+/***/ "./src/dsl/generator/common/case-format/UpperUnderscoreCaseFormat.ts":
+/*!***************************************************************************!*\
+  !*** ./src/dsl/generator/common/case-format/UpperUnderscoreCaseFormat.ts ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _dsl_generator_common_case_format_AbstractUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/dsl/generator/common/case-format/AbstractUnderscoreCaseFormat */ "./src/dsl/generator/common/case-format/AbstractUnderscoreCaseFormat.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+var UpperUnderscoreCaseFormat = /** @class */ (function (_super) {
+    __extends(UpperUnderscoreCaseFormat, _super);
+    function UpperUnderscoreCaseFormat() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    UpperUnderscoreCaseFormat.prototype.joinWords = function (words) {
+        return words
+            .map(function (word) { return word.toUpperCase(); })
+            .join('_');
+    };
+    return UpperUnderscoreCaseFormat;
+}(_dsl_generator_common_case_format_AbstractUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (UpperUnderscoreCaseFormat);
+
+
+/***/ }),
+
+/***/ "./src/dsl/generator/common/id-naming-strategy.ts":
+/*!********************************************************!*\
+  !*** ./src/dsl/generator/common/id-naming-strategy.ts ***!
+  \********************************************************/
+/*! exports provided: StandardIdNamingStrategies */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StandardIdNamingStrategies", function() { return StandardIdNamingStrategies; });
 /* harmony import */ var _dsl_util_string_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/dsl/util/string-utils */ "./src/dsl/util/string-utils.ts");
 
 var defaultIdNamingStrategy = function () { return 'id'; };
 var entityNamePrefixIdNamingStrategy = function (entityName) { return Object(_dsl_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["uncapitalize"])(entityName) + "Id"; };
-var IdNamingStrategies = {
+var StandardIdNamingStrategies = {
     DEFAULT: defaultIdNamingStrategy,
     ENTITY_NAME_PREFIX: entityNamePrefixIdNamingStrategy
 };
@@ -8376,7 +8672,7 @@ function indentLines(lines) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultMySqlCodeGeneratorConfig", function() { return defaultMySqlCodeGeneratorConfig; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mergeWithDefaultConfig", function() { return mergeWithDefaultConfig; });
-/* harmony import */ var _dsl_generator_common_strategy_id_naming_strategies__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/dsl/generator/common/strategy/id-naming-strategies */ "./src/dsl/generator/common/strategy/id-naming-strategies.ts");
+/* harmony import */ var _dsl_generator_common_id_naming_strategy__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/dsl/generator/common/id-naming-strategy */ "./src/dsl/generator/common/id-naming-strategy.ts");
 /* harmony import */ var _dsl_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/dsl/parser/statement/statement-types-parse-functions */ "./src/dsl/parser/statement/statement-types-parse-functions.ts");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -8393,7 +8689,7 @@ var _a;
 
 
 var defaultMySqlCodeGeneratorConfig = {
-    idNamingStrategy: _dsl_generator_common_strategy_id_naming_strategies__WEBPACK_IMPORTED_MODULE_0__["IdNamingStrategies"].DEFAULT,
+    idNamingStrategy: _dsl_generator_common_id_naming_strategy__WEBPACK_IMPORTED_MODULE_0__["StandardIdNamingStrategies"].DEFAULT,
     typesMap: (_a = {},
         _a[_dsl_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_1__["EntityPropertyType"].TEXT] = 'VARCHAR',
         _a[_dsl_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_1__["EntityPropertyType"].LONG] = 'BIGINT',
@@ -8987,8 +9283,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dsl_parser_er_model_parser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dsl/parser/er-model-parser */ "./src/dsl/parser/er-model-parser.ts");
 /* harmony import */ var src_dsl_generator_database_sql_mysql_my_sql_code_generator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/dsl/generator/database/sql/mysql/my-sql-code-generator */ "./src/dsl/generator/database/sql/mysql/my-sql-code-generator.ts");
 /* harmony import */ var _dsl_generator_oop_java_java_code_generator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dsl/generator/oop/java/java-code-generator */ "./src/dsl/generator/oop/java/java-code-generator.ts");
-/* harmony import */ var _dsl_generator_common_strategy_id_naming_strategies__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/dsl/generator/common/strategy/id-naming-strategies */ "./src/dsl/generator/common/strategy/id-naming-strategies.ts");
+/* harmony import */ var _dsl_generator_common_id_naming_strategy__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/dsl/generator/common/id-naming-strategy */ "./src/dsl/generator/common/id-naming-strategy.ts");
+/* harmony import */ var _dsl_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/dsl/generator/common/case-format/StandardCaseFormats */ "./src/dsl/generator/common/case-format/StandardCaseFormats.ts");
 var _a;
+
 
 
 
@@ -9085,7 +9383,7 @@ var modelCodeGenerator = (function () {
     switch (config.format) {
         case 'mysql':
             return new src_dsl_generator_database_sql_mysql_my_sql_code_generator__WEBPACK_IMPORTED_MODULE_3__["default"]({
-                idNamingStrategy: _dsl_generator_common_strategy_id_naming_strategies__WEBPACK_IMPORTED_MODULE_5__["IdNamingStrategies"].ENTITY_NAME_PREFIX
+                idNamingStrategy: _dsl_generator_common_id_naming_strategy__WEBPACK_IMPORTED_MODULE_5__["StandardIdNamingStrategies"].ENTITY_NAME_PREFIX
             });
         case 'java':
             return new _dsl_generator_oop_java_java_code_generator__WEBPACK_IMPORTED_MODULE_4__["default"]();
@@ -9108,6 +9406,12 @@ var inputCode = fs__WEBPACK_IMPORTED_MODULE_1___default.a.readFileSync(config.in
 var model = Object(_dsl_parser_er_model_parser__WEBPACK_IMPORTED_MODULE_2__["parseEntityRelationshipModel"])(inputCode);
 var outputCode = modelCodeGenerator.generateCode(model);
 outputCallback(outputCode);
+console.log(_dsl_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_6__["default"].LOWER_CAMEL.splitWords('thisIsItSQLException'));
+console.log(_dsl_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_6__["default"].UPPER_CAMEL.splitWords('ThisIsItSQLException'));
+console.log(_dsl_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_6__["default"].LOWER_UNDERSCORE.splitWords('this_is_it_sql_exception'));
+console.log(_dsl_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_6__["default"].UPPER_UNDERSCORE.splitWords('THIS_IS_IT_SQL_EXCEPTION'));
+console.log(_dsl_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_6__["default"].CAPITALIZED_UNDERSCORE.splitWords('This_Is_It_Sql_Exception'));
+Object.values(_dsl_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_6__["default"]).forEach(function (caseFormat) { return console.log(caseFormat.joinWords(['thiS', 'is', 'It', 'sql', 'EXCEPTION'])); });
 // console.log(JSON.stringify(model, null, 4));
 // console.log(modelCodeGenerator.generateCode(model));
 // console.log(JSON.stringify(databaseModelGenerator.generateDatabaseModel(model), null, 4));

@@ -1,4 +1,4 @@
-import {IdNamingStrategy} from '@/dsl/generator/common/id-naming-strategy';
+import IdNamingStrategy from '@/dsl/generator/common/id-naming-strategy';
 
 export default interface MySqlCodeGeneratorConfig {
 	idNamingStrategy: IdNamingStrategy;
