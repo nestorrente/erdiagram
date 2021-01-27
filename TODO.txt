@@ -18,10 +18,12 @@
 	  después de haber creado todas las tablas.
 
 - Permitir modificar los bindings de los tipos, e incluso añadir tus propios tipos.
+	- Permitir indicar cuál es el tipo a utilizar en los IDs.
+
+- Permitir indicar diferentes estrategias para el nombrado de los campos ID.
 
 - En Java, los bindings de los tipos deberían diferenciar entre clase y paquete?
 	- Tiene la ventaja de poder añadir los imports con total seguridad.
 	- No obstante, esto se podría hacer también en base a convenciones.
 		- Empieza por mayúsculas: clase.
 		- Empieza por minúsculas: paquete.
-

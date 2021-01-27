@@ -1,4 +1,4 @@
-import {ModelCodeGenerator} from '../../types';
+import EntityRelationshipModelToCodeConverter from 'src/dsl/generator/entity-relationship-to-code-converter';
 import {EntityRelationshipModel} from '../../../parser/er-model-parser';
 import {EntityPropertyType} from '../../../parser/statement/statement-types-parse-functions';
 import {capitalize} from '../../../util/string-utils';
@@ -8,13 +8,7 @@ import {ClassDescriptor, FieldDescriptor} from '../class-model/class-model-types
 const INDENT: string = '    ';
 const BLANK_LINE: string = '';
 
-interface JavaFieldDescriptor {
-	name: string;
-	nullable: boolean;
-	type: string;
-}
-
-export default class JavaCodeGenerator implements ModelCodeGenerator {
+export default class JavaCodeGenerator implements EntityRelationshipModelToCodeConverter {
 
 	public generateCode(entityRelationshipModel: EntityRelationshipModel): string {
 

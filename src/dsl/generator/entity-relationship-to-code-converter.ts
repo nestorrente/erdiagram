@@ -1,6 +1,6 @@
 import {EntityRelationshipModel} from '../parser/er-model-parser';
 
-export interface ModelCodeGenerator {
+export default interface EntityRelationshipModelToCodeConverter {
 
 	generateCode(model: EntityRelationshipModel): string;
 

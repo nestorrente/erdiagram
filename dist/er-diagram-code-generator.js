@@ -1,10 +1,10 @@
 /*!
- * Entity-Relationship Diagram Code Generator v1.0.5
+ * Entity-Relationship Diagram Code Generator v0.1.0
  * https://github.com/nestorrente/er-diagram-code-generator
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-01-27T09:55:25.066Z
+ * Build date: 2021-01-27T22:09:06.878Z
  */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -8111,6 +8111,28 @@ exports.Parser = Parser
 
 /***/ }),
 
+/***/ "./src/dsl/generator/common/strategy/id-naming-strategies.ts":
+/*!*******************************************************************!*\
+  !*** ./src/dsl/generator/common/strategy/id-naming-strategies.ts ***!
+  \*******************************************************************/
+/*! exports provided: IdNamingStrategies */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IdNamingStrategies", function() { return IdNamingStrategies; });
+/* harmony import */ var _dsl_util_string_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/dsl/util/string-utils */ "./src/dsl/util/string-utils.ts");
+
+var defaultIdNamingStrategy = function () { return 'id'; };
+var entityNamePrefixIdNamingStrategy = function (entityName) { return Object(_dsl_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["uncapitalize"])(entityName) + "Id"; };
+var IdNamingStrategies = {
+    DEFAULT: defaultIdNamingStrategy,
+    ENTITY_NAME_PREFIX: entityNamePrefixIdNamingStrategy
+};
+
+
+/***/ }),
+
 /***/ "./src/dsl/generator/database/database-model/database-model-generator.ts":
 /*!*******************************************************************************!*\
   !*** ./src/dsl/generator/database/database-model/database-model-generator.ts ***!
@@ -8221,17 +8243,18 @@ function isManyToManyRelationship(relationship) {
 
 /***/ }),
 
-/***/ "./src/dsl/generator/database/sql/my-sql-code-generator.ts":
-/*!*****************************************************************!*\
-  !*** ./src/dsl/generator/database/sql/my-sql-code-generator.ts ***!
-  \*****************************************************************/
+/***/ "./src/dsl/generator/database/sql/mysql/my-sql-code-generator.ts":
+/*!***********************************************************************!*\
+  !*** ./src/dsl/generator/database/sql/mysql/my-sql-code-generator.ts ***!
+  \***********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../parser/statement/statement-types-parse-functions */ "./src/dsl/parser/statement/statement-types-parse-functions.ts");
-/* harmony import */ var _database_model_database_model_generator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../database-model/database-model-generator */ "./src/dsl/generator/database/database-model/database-model-generator.ts");
+/* harmony import */ var _dsl_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/dsl/parser/statement/statement-types-parse-functions */ "./src/dsl/parser/statement/statement-types-parse-functions.ts");
+/* harmony import */ var _dsl_generator_database_database_model_database_model_generator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/dsl/generator/database/database-model/database-model-generator */ "./src/dsl/generator/database/database-model/database-model-generator.ts");
+/* harmony import */ var _dsl_generator_database_sql_mysql_mysql_code_generator_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/dsl/generator/database/sql/mysql/mysql-code-generator-config */ "./src/dsl/generator/database/sql/mysql/mysql-code-generator-config.ts");
 var __spreadArrays = (undefined && undefined.__spreadArrays) || function () {
     for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
     for (var r = Array(s), k = 0, i = 0; i < il; i++)
@@ -8241,19 +8264,21 @@ var __spreadArrays = (undefined && undefined.__spreadArrays) || function () {
 };
 
 
+
 var INDENT = '    ';
 var MySqlCodeGenerator = /** @class */ (function () {
-    function MySqlCodeGenerator() {
+    function MySqlCodeGenerator(config) {
+        this.config = Object(_dsl_generator_database_sql_mysql_mysql_code_generator_config__WEBPACK_IMPORTED_MODULE_2__["mergeWithDefaultConfig"])(config);
     }
     MySqlCodeGenerator.prototype.generateCode = function (entityRelationshipModel) {
         var _this = this;
-        var databaseModel = _database_model_database_model_generator__WEBPACK_IMPORTED_MODULE_1__["default"].generateDatabaseModel(entityRelationshipModel);
+        var databaseModel = _dsl_generator_database_database_model_database_model_generator__WEBPACK_IMPORTED_MODULE_1__["default"].generateDatabaseModel(entityRelationshipModel);
         return databaseModel.tables
             .map(function (table) { return _this.generateTable(table, databaseModel); })
             .join('\n\n');
     };
     MySqlCodeGenerator.prototype.generateTable = function (table, model) {
-        var tableId = getTableId(table.name);
+        var tableId = this.getTableId(table.name);
         var columnLines = [
             this.createIdColumn(tableId)
         ];
@@ -8283,7 +8308,7 @@ var MySqlCodeGenerator = /** @class */ (function () {
     MySqlCodeGenerator.prototype.createIdColumn = function (tableId) {
         var columnCode = this.createColumn({
             name: tableId,
-            type: _parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG,
+            type: _dsl_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG,
             notNull: true
         });
         return columnCode + ' AUTO_INCREMENT';
@@ -8292,7 +8317,7 @@ var MySqlCodeGenerator = /** @class */ (function () {
         var name = column.name, notNull = column.notNull, type = column.type, length = column.length;
         var lineParts = [];
         lineParts.push(name);
-        var mysqlType = mapPropertyTypeToSqlType(type);
+        var mysqlType = this.mapPropertyTypeToSqlType(type);
         if (length) {
             lineParts.push(mysqlType + "(" + length + ")");
         }
@@ -8307,7 +8332,7 @@ var MySqlCodeGenerator = /** @class */ (function () {
     MySqlCodeGenerator.prototype.createForeignColumn = function (sourceTableName, reference, model) {
         var column = {
             name: reference.columnName,
-            type: _parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG,
+            type: _dsl_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG,
             notNull: reference.notNull
         };
         return {
@@ -8317,7 +8342,18 @@ var MySqlCodeGenerator = /** @class */ (function () {
     };
     MySqlCodeGenerator.prototype.createForeignKey = function (sourceTableName, reference) {
         return "CONSTRAINT " + sourceTableName + "_" + reference.alias + "_fk FOREIGN KEY (" + reference.columnName + ")"
-            + (" REFERENCES " + reference.targetTableName + " (" + getTableId(reference.targetTableName) + ")");
+            + (" REFERENCES " + reference.targetTableName + " (" + this.getTableId(reference.targetTableName) + ")");
+    };
+    MySqlCodeGenerator.prototype.getTableId = function (entityName) {
+        var idNamingStrategy = this.config.idNamingStrategy;
+        return idNamingStrategy(entityName);
+    };
+    MySqlCodeGenerator.prototype.mapPropertyTypeToSqlType = function (type) {
+        var typesMap = this.config.typesMap;
+        if (!typesMap.hasOwnProperty(type)) {
+            throw new Error('Unsupported type: ' + type);
+        }
+        return typesMap[type];
     };
     return MySqlCodeGenerator;
 }());
@@ -8325,26 +8361,52 @@ var MySqlCodeGenerator = /** @class */ (function () {
 function indentLines(lines) {
     return lines.map(function (e) { return INDENT + e; });
 }
-function getTableId(entityName) {
-    // return uncapitalize(entityName) + 'Id';
-    return 'id';
-}
-function mapPropertyTypeToSqlType(type) {
-    var _a;
-    var typesMap = (_a = {},
-        _a[_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT] = 'VARCHAR',
-        _a[_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG] = 'BIGINT',
-        _a[_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT] = 'INT',
-        _a[_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL] = 'DECIMAL',
-        _a[_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN] = 'BOOLEAN',
-        _a[_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE] = 'DATE',
-        _a[_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME] = 'TIME',
-        _a[_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME] = 'TIMESTAMP',
-        _a);
-    if (!typesMap.hasOwnProperty(type)) {
-        throw new Error('Unsupported type: ' + type);
-    }
-    return typesMap[type];
+
+
+/***/ }),
+
+/***/ "./src/dsl/generator/database/sql/mysql/mysql-code-generator-config.ts":
+/*!*****************************************************************************!*\
+  !*** ./src/dsl/generator/database/sql/mysql/mysql-code-generator-config.ts ***!
+  \*****************************************************************************/
+/*! exports provided: defaultMySqlCodeGeneratorConfig, mergeWithDefaultConfig */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultMySqlCodeGeneratorConfig", function() { return defaultMySqlCodeGeneratorConfig; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mergeWithDefaultConfig", function() { return mergeWithDefaultConfig; });
+/* harmony import */ var _dsl_generator_common_strategy_id_naming_strategies__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/dsl/generator/common/strategy/id-naming-strategies */ "./src/dsl/generator/common/strategy/id-naming-strategies.ts");
+/* harmony import */ var _dsl_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/dsl/parser/statement/statement-types-parse-functions */ "./src/dsl/parser/statement/statement-types-parse-functions.ts");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var _a;
+
+
+var defaultMySqlCodeGeneratorConfig = {
+    idNamingStrategy: _dsl_generator_common_strategy_id_naming_strategies__WEBPACK_IMPORTED_MODULE_0__["IdNamingStrategies"].DEFAULT,
+    typesMap: (_a = {},
+        _a[_dsl_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_1__["EntityPropertyType"].TEXT] = 'VARCHAR',
+        _a[_dsl_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_1__["EntityPropertyType"].LONG] = 'BIGINT',
+        _a[_dsl_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_1__["EntityPropertyType"].INT] = 'INT',
+        _a[_dsl_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_1__["EntityPropertyType"].DECIMAL] = 'DECIMAL',
+        _a[_dsl_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_1__["EntityPropertyType"].BOOLEAN] = 'BOOLEAN',
+        _a[_dsl_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_1__["EntityPropertyType"].DATE] = 'DATE',
+        _a[_dsl_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_1__["EntityPropertyType"].TIME] = 'TIME',
+        _a[_dsl_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_1__["EntityPropertyType"].DATETIME] = 'TIMESTAMP',
+        _a)
+};
+function mergeWithDefaultConfig(config) {
+    return __assign(__assign(__assign({}, defaultMySqlCodeGeneratorConfig), config), { typesMap: __assign(__assign({}, defaultMySqlCodeGeneratorConfig.typesMap), config === null || config === void 0 ? void 0 : config.typesMap) });
 }
 
 
@@ -8923,14 +8985,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fs */ "fs");
 /* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _dsl_parser_er_model_parser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dsl/parser/er-model-parser */ "./src/dsl/parser/er-model-parser.ts");
-/* harmony import */ var _dsl_generator_database_sql_my_sql_code_generator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dsl/generator/database/sql/my-sql-code-generator */ "./src/dsl/generator/database/sql/my-sql-code-generator.ts");
+/* harmony import */ var src_dsl_generator_database_sql_mysql_my_sql_code_generator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/dsl/generator/database/sql/mysql/my-sql-code-generator */ "./src/dsl/generator/database/sql/mysql/my-sql-code-generator.ts");
 /* harmony import */ var _dsl_generator_oop_java_java_code_generator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dsl/generator/oop/java/java-code-generator */ "./src/dsl/generator/oop/java/java-code-generator.ts");
+/* harmony import */ var _dsl_generator_common_strategy_id_naming_strategies__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/dsl/generator/common/strategy/id-naming-strategies */ "./src/dsl/generator/common/strategy/id-naming-strategies.ts");
 var _a;
 
 
 
 
 
+ // [
 // [
 // 	'User follower *<->* User followed (a)',
 // 	'User->Shift',
@@ -9020,7 +9084,9 @@ var config = {
 var modelCodeGenerator = (function () {
     switch (config.format) {
         case 'mysql':
-            return new _dsl_generator_database_sql_my_sql_code_generator__WEBPACK_IMPORTED_MODULE_3__["default"]();
+            return new src_dsl_generator_database_sql_mysql_my_sql_code_generator__WEBPACK_IMPORTED_MODULE_3__["default"]({
+                idNamingStrategy: _dsl_generator_common_strategy_id_naming_strategies__WEBPACK_IMPORTED_MODULE_5__["IdNamingStrategies"].ENTITY_NAME_PREFIX
+            });
         case 'java':
             return new _dsl_generator_oop_java_java_code_generator__WEBPACK_IMPORTED_MODULE_4__["default"]();
         default:

@@ -1,17 +1,24 @@
-import {ModelCodeGenerator} from '../../types';
-import {EntityRelationshipModel} from '../../../parser/er-model-parser';
-import {EntityPropertyType} from '../../../parser/statement/statement-types-parse-functions';
-import databaseModelGenerator from '../database-model/database-model-generator';
+import EntityRelationshipModelToCodeConverter from '@/dsl/generator/entity-relationship-to-code-converter';
+import {EntityRelationshipModel} from '@/dsl/parser/er-model-parser';
+import {EntityPropertyType} from '@/dsl/parser/statement/statement-types-parse-functions';
+import databaseModelGenerator from '@/dsl/generator/database/database-model/database-model-generator';
 import {
 	DatabaseModel,
 	TableColumnDescriptor,
 	TableDescriptor,
 	TableReferenceDescriptor
-} from '../database-model/database-model-types';
+} from '@/dsl/generator/database/database-model/database-model-types';
+import MySqlCodeGeneratorConfig, {mergeWithDefaultConfig} from '@/dsl/generator/database/sql/mysql/mysql-code-generator-config';
 
 const INDENT: string = '    ';
 
-export default class MySqlCodeGenerator implements ModelCodeGenerator {
+export default class MySqlCodeGenerator implements EntityRelationshipModelToCodeConverter {
+
+	private readonly config: MySqlCodeGeneratorConfig;
+
+	constructor(config?: Partial<MySqlCodeGeneratorConfig>) {
+		this.config = mergeWithDefaultConfig(config);
+	}
 
 	public generateCode(entityRelationshipModel: EntityRelationshipModel): string {
 
@@ -25,7 +32,7 @@ export default class MySqlCodeGenerator implements ModelCodeGenerator {
 
 	private generateTable(table: TableDescriptor, model: DatabaseModel): string {
 
-		const tableId = getTableId(table.name);
+		const tableId = this.getTableId(table.name);
 
 		const columnLines: string[] = [
 			this.createIdColumn(tableId)
@@ -92,7 +99,7 @@ export default class MySqlCodeGenerator implements ModelCodeGenerator {
 		const lineParts: string[] = [];
 		lineParts.push(name);
 
-		const mysqlType = mapPropertyTypeToSqlType(type);
+		const mysqlType = this.mapPropertyTypeToSqlType(type);
 
 		if (length) {
 			lineParts.push(`${mysqlType}(${length})`);
@@ -125,37 +132,28 @@ export default class MySqlCodeGenerator implements ModelCodeGenerator {
 
 	private createForeignKey(sourceTableName: string, reference: TableReferenceDescriptor) {
 		return `CONSTRAINT ${sourceTableName}_${reference.alias}_fk FOREIGN KEY (${reference.columnName})`
-				+ ` REFERENCES ${reference.targetTableName} (${getTableId(reference.targetTableName)})`;
+				+ ` REFERENCES ${reference.targetTableName} (${this.getTableId(reference.targetTableName)})`;
+	}
+
+	private getTableId(entityName: string) {
+		const {idNamingStrategy} = this.config;
+		return idNamingStrategy(entityName);
+	}
+
+	private mapPropertyTypeToSqlType(type: EntityPropertyType): string {
+
+		const {typesMap} = this.config;
+
+		if (!typesMap.hasOwnProperty(type)) {
+			throw new Error('Unsupported type: ' + type);
+		}
+
+		return typesMap[type];
+
 	}
 
 }
 
 function indentLines(lines: string[]) {
 	return lines.map(e => INDENT + e);
-}
-
-function getTableId(entityName: string) {
-	// return uncapitalize(entityName) + 'Id';
-	return 'id';
-}
-
-function mapPropertyTypeToSqlType(type: EntityPropertyType): string {
-
-	const typesMap: Record<string, string> = {
-		[EntityPropertyType.TEXT]: 'VARCHAR',
-		[EntityPropertyType.LONG]: 'BIGINT',
-		[EntityPropertyType.INT]: 'INT',
-		[EntityPropertyType.DECIMAL]: 'DECIMAL',
-		[EntityPropertyType.BOOLEAN]: 'BOOLEAN',
-		[EntityPropertyType.DATE]: 'DATE',
-		[EntityPropertyType.TIME]: 'TIME',
-		[EntityPropertyType.DATETIME]: 'TIMESTAMP'
-	};
-
-	if (!typesMap.hasOwnProperty(type)) {
-		throw new Error('Unsupported type: ' + type);
-	}
-
-	return typesMap[type];
-
 }

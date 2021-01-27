@@ -1,0 +1,1 @@
+{"version":3,"file":"sql-code-generator-config.d.ts","sourceRoot":"","sources":["../../../../../src/dsl/generator/database/sql/sql-code-generator-config.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,gBAAgB,EAAC,MAAM,sDAAsD,CAAC;AAEtF,MAAM,CAAC,OAAO,WAAW,wBAAwB;IAChD,gBAAgB,EAAE,gBAAgB,CAAC;IACnC,QAAQ,EAAE,MAAM,CAAC,MAAM,EAAE,MAAM,CAAC,CAAC;CACjC"}

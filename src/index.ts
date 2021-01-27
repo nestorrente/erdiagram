@@ -1,9 +1,10 @@
 import yargs from 'yargs';
 import fs from 'fs';
-import {EntityRelationshipModel, parseEntityRelationshipModel} from './dsl/parser/er-model-parser';
-import {ModelCodeGenerator} from './dsl/generator/types';
-import MySqlCodeGenerator from './dsl/generator/database/sql/my-sql-code-generator';
+import {parseEntityRelationshipModel} from './dsl/parser/er-model-parser';
+import EntityRelationshipModelToCodeConverter from './dsl/generator/entity-relationship-to-code-converter';
+import MySqlCodeGenerator from 'src/dsl/generator/database/sql/mysql/my-sql-code-generator';
 import JavaCodeGenerator from './dsl/generator/oop/java/java-code-generator';
+import {StandardIdNamingStrategies} from '@/dsl/generator/common/id-naming-strategy'; // [
 
 // [
 // 	'User follower *<->* User followed (a)',
@@ -88,7 +89,7 @@ const args = yargs
 		.alias('help', 'h')
 		.version()
 		.alias('version', 'v')
-		.argv
+		.argv;
 
 const config = {
 	inputFile: args._[0],
@@ -96,10 +97,12 @@ const config = {
 	outputFile: args.output
 };
 
-const modelCodeGenerator = ((): ModelCodeGenerator => {
-	switch(config.format) {
+const modelCodeGenerator = ((): EntityRelationshipModelToCodeConverter => {
+	switch (config.format) {
 		case 'mysql':
-			return new MySqlCodeGenerator();
+			return new MySqlCodeGenerator({
+				idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX
+			});
 		case 'java':
 			return new JavaCodeGenerator();
 		default:
@@ -113,7 +116,7 @@ const outputCallback = ((): OutputCallback => {
 
 	const {outputFile} = config;
 
-	if(outputFile) {
+	if (outputFile) {
 		return text => fs.writeFileSync(outputFile, text + '\n');
 	} else {
 		return text => console.log(text);
