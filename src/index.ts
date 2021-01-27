@@ -135,14 +135,6 @@ const outputCode = modelCodeGenerator.generateCode(model);
 
 outputCallback(outputCode);
 
-console.log(StandardCaseFormats.LOWER_CAMEL.splitWords('thisIsItSQLException'))
-console.log(StandardCaseFormats.UPPER_CAMEL.splitWords('ThisIsItSQLException'))
-console.log(StandardCaseFormats.LOWER_UNDERSCORE.splitWords('this_is_it_sql_exception'))
-console.log(StandardCaseFormats.UPPER_UNDERSCORE.splitWords('THIS_IS_IT_SQL_EXCEPTION'))
-console.log(StandardCaseFormats.CAPITALIZED_UNDERSCORE.splitWords('This_Is_It_Sql_Exception'))
-
-Object.values(StandardCaseFormats).forEach(caseFormat => console.log(caseFormat.joinWords(['thiS', 'is', 'It', 'sql', 'EXCEPTION'])))
-
 // console.log(JSON.stringify(model, null, 4));
 // console.log(modelCodeGenerator.generateCode(model));
 // console.log(JSON.stringify(databaseModelGenerator.generateDatabaseModel(model), null, 4));
