@@ -28,10 +28,3 @@ const DIRECTION_AND_CARDINALITY_REGEX = joinRegExps(RELATIONSHIP_MODIFIERS_REGEX
 const ENTITY_AND_ALIAS_REGEX = new RegExp(`(${IDENTIFIER_REGEX.source})(?:\\s+(${IDENTIFIER_REGEX.source}))?`);
 
 export const RELATIONSHIP_LINE_REGEX = new RegExp(`^${ENTITY_AND_ALIAS_REGEX.source}\\s*?${DIRECTION_AND_CARDINALITY_REGEX.source}\\s*?${ENTITY_AND_ALIAS_REGEX.source}(?:\\s+\\((${IDENTIFIER_REGEX.source})\\))?$`);
-
-// Metadata
-
-const METADATA_VALUE_REGEX = new RegExp(`(.*)`);
-const METADATA_ENTRY_REGEX = new RegExp(`-\\s*(${IDENTIFIER_REGEX.source})\\s*:\\s*${METADATA_VALUE_REGEX.source}\\s*`);
-
-export const METADATA_LINE_REGEX = new RegExp(`^\\s*${METADATA_ENTRY_REGEX.source}$`);

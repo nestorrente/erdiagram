@@ -2,7 +2,6 @@ export declare enum StatementType {
     ENTITY_NAME = "entityName",
     ENTITY_PROPERTY = "entityProperty",
     RELATIONSHIP = "relationship",
-    METADATA = "metadata",
     COMMENT = "comment",
     BLANK_LINE = "blankLine",
     UNKNOWN = "unknown"

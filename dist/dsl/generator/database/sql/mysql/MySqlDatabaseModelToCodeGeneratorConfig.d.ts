@@ -1,0 +1,6 @@
+import DatabaseModelToCodeConverterConfig from '@/dsl/generator/database/sql/DatabaseModelToCodeConverterConfig';
+export default interface MySqlDatabaseModelToCodeGeneratorConfig extends DatabaseModelToCodeConverterConfig {
+}
+export declare const defaultMySqlDatabaseModelToCodeConverterConfig: MySqlDatabaseModelToCodeGeneratorConfig;
+export declare function mergeWithDefaultConfig(config?: Partial<MySqlDatabaseModelToCodeGeneratorConfig>): MySqlDatabaseModelToCodeGeneratorConfig;
+//# sourceMappingURL=MySqlDatabaseModelToCodeGeneratorConfig.d.ts.map

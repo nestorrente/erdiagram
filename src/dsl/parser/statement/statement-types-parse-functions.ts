@@ -1,10 +1,5 @@
 import {capitalize, uncapitalize} from '../../util/string-utils';
-import {
-	ENTITY_NAME_LINE_REGEX,
-	ENTITY_PROPERTY_LINE_REGEX,
-	METADATA_LINE_REGEX,
-	RELATIONSHIP_LINE_REGEX
-} from './statement-types-regexes';
+import {ENTITY_NAME_LINE_REGEX, ENTITY_PROPERTY_LINE_REGEX, RELATIONSHIP_LINE_REGEX} from './statement-types-regexes';
 
 export enum Cardinality {
 	MANY = 'many',
@@ -17,11 +12,7 @@ export enum Direction {
 	BOTH = 'both'
 }
 
-export interface BaseDescriptor {
-	metadata: Metadata[];
-}
-
-export interface RelationshipDescriptor extends BaseDescriptor {
+export interface RelationshipDescriptor {
 	leftMember: RelationshipMember;
 	rightMember: RelationshipMember;
 	direction: Direction;
@@ -36,12 +27,12 @@ export interface RelationshipMember {
 	unique: boolean;
 }
 
-export interface EntityDescriptor extends BaseDescriptor {
+export interface EntityDescriptor {
 	name: string;
 	properties: EntityPropertyDescriptor[];
 }
 
-export interface EntityPropertyDescriptor extends BaseDescriptor {
+export interface EntityPropertyDescriptor {
 	name: string;
 	optional: boolean;
 	autoincremental: boolean;
@@ -60,11 +51,6 @@ export enum EntityPropertyType {
 	DATE = 'date',
 	TIME = 'time',
 	DATETIME = 'datetime'
-}
-
-export interface Metadata {
-	key: string;
-	value: string;
 }
 
 export function parseEntityNameStatement(line: string): string {
@@ -109,8 +95,7 @@ export function parseEntityPropertyStatement(line: string): EntityPropertyDescri
 		autoincremental: modifiers.includes('+'),
 		unique: modifiers.includes('!'),
 		type: mappedType,
-		length: length ? parseInt(length, 10) : undefined,
-		metadata: []
+		length: length ? parseInt(length, 10) : undefined
 	};
 
 }
@@ -153,29 +138,7 @@ export function parseRelationshipStatement(line: string): RelationshipDescriptor
 			unique: rightModifiers.includes('!')
 		},
 		direction: direction === '->' ? Direction.RIGHT : (direction === '<-' ? Direction.LEFT : Direction.BOTH),
-		relationShipName,
-		metadata: []
-	};
-
-}
-
-export function parseMetadataStatement(line: string): Metadata {
-
-	const result = METADATA_LINE_REGEX.exec(line);
-
-	if (result == null) {
-		throw new Error('Syntax error');
-	}
-
-	const [
-		fullMatch,
-		key,
-		value
-	] = result;
-
-	return {
-		key,
-		value
+		relationShipName
 	};
 
 }

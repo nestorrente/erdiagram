@@ -4,7 +4,7 @@
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-01-28T21:10:14.950Z
+ * Build date: 2021-01-28T21:37:15.207Z
  */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -9100,7 +9100,6 @@ function parseEntityRelationshipModel(code) {
     var lines = code.split('\n');
     var entities = [];
     var relationships = [];
-    var lastDescriptorRead = null;
     var parsingEntity = false;
     lines.forEach(function (line) {
         var statementType = Object(_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["guessStatementType"])(line);
@@ -9108,11 +9107,9 @@ function parseEntityRelationshipModel(code) {
             case _statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].ENTITY_NAME:
                 var entityDescriptor = {
                     name: Object(_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["parseEntityNameStatement"])(line),
-                    properties: [],
-                    metadata: []
+                    properties: []
                 };
                 entities.push(entityDescriptor);
-                lastDescriptorRead = entityDescriptor;
                 parsingEntity = true;
                 break;
             case _statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].ENTITY_PROPERTY:
@@ -9122,20 +9119,11 @@ function parseEntityRelationshipModel(code) {
                 var lastEntity = entities[entities.length - 1];
                 var entityPropertyDescriptor = Object(_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["parseEntityPropertyStatement"])(line);
                 lastEntity.properties.push(entityPropertyDescriptor);
-                lastDescriptorRead = entityPropertyDescriptor;
                 break;
             case _statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].RELATIONSHIP:
                 var relationshipDescriptor = Object(_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["parseRelationshipStatement"])(line);
                 relationships.push(relationshipDescriptor);
-                lastDescriptorRead = relationshipDescriptor;
                 parsingEntity = false;
-                break;
-            case _statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].METADATA:
-                if (lastDescriptorRead == null) {
-                    throw new Error('Unexpected metadata statement');
-                }
-                var metadata = Object(_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["parseMetadataStatement"])(line);
-                lastDescriptorRead.metadata.push(metadata);
                 break;
             case _statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].BLANK_LINE:
             case _statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].COMMENT:
@@ -9184,7 +9172,6 @@ var StatementType;
     StatementType["ENTITY_NAME"] = "entityName";
     StatementType["ENTITY_PROPERTY"] = "entityProperty";
     StatementType["RELATIONSHIP"] = "relationship";
-    StatementType["METADATA"] = "metadata";
     StatementType["COMMENT"] = "comment";
     StatementType["BLANK_LINE"] = "blankLine";
     StatementType["UNKNOWN"] = "unknown";
@@ -9198,9 +9185,6 @@ function guessStatementType(line) {
     }
     else if (_statement_types_regexes__WEBPACK_IMPORTED_MODULE_0__["RELATIONSHIP_LINE_REGEX"].test(line)) {
         return StatementType.RELATIONSHIP;
-    }
-    else if (_statement_types_regexes__WEBPACK_IMPORTED_MODULE_0__["METADATA_LINE_REGEX"].test(line)) {
-        return StatementType.METADATA;
     }
     else if (isBlankLine(line)) {
         return StatementType.BLANK_LINE;
@@ -9226,7 +9210,7 @@ function isCommentLine(line) {
 /*!*********************************************************************!*\
   !*** ./src/dsl/parser/statement/statement-types-parse-functions.ts ***!
   \*********************************************************************/
-/*! exports provided: Cardinality, Direction, EntityPropertyType, parseEntityNameStatement, parseEntityPropertyStatement, parseRelationshipStatement, parseMetadataStatement */
+/*! exports provided: Cardinality, Direction, EntityPropertyType, parseEntityNameStatement, parseEntityPropertyStatement, parseRelationshipStatement */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9237,7 +9221,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseEntityNameStatement", function() { return parseEntityNameStatement; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseEntityPropertyStatement", function() { return parseEntityPropertyStatement; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseRelationshipStatement", function() { return parseRelationshipStatement; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseMetadataStatement", function() { return parseMetadataStatement; });
 /* harmony import */ var _util_string_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../util/string-utils */ "./src/dsl/util/string-utils.ts");
 /* harmony import */ var _statement_types_regexes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./statement-types-regexes */ "./src/dsl/parser/statement/statement-types-regexes.ts");
 
@@ -9289,8 +9272,7 @@ function parseEntityPropertyStatement(line) {
         autoincremental: modifiers.includes('+'),
         unique: modifiers.includes('!'),
         type: mappedType,
-        length: length ? parseInt(length, 10) : undefined,
-        metadata: []
+        length: length ? parseInt(length, 10) : undefined
     };
 }
 function parseRelationshipStatement(line) {
@@ -9315,19 +9297,7 @@ function parseRelationshipStatement(line) {
             unique: rightModifiers.includes('!')
         },
         direction: direction === '->' ? Direction.RIGHT : (direction === '<-' ? Direction.LEFT : Direction.BOTH),
-        relationShipName: relationShipName,
-        metadata: []
-    };
-}
-function parseMetadataStatement(line) {
-    var result = _statement_types_regexes__WEBPACK_IMPORTED_MODULE_1__["METADATA_LINE_REGEX"].exec(line);
-    if (result == null) {
-        throw new Error('Syntax error');
-    }
-    var fullMatch = result[0], key = result[1], value = result[2];
-    return {
-        key: key,
-        value: value
+        relationShipName: relationShipName
     };
 }
 
@@ -9338,7 +9308,7 @@ function parseMetadataStatement(line) {
 /*!*************************************************************!*\
   !*** ./src/dsl/parser/statement/statement-types-regexes.ts ***!
   \*************************************************************/
-/*! exports provided: ENTITY_NAME_LINE_REGEX, ENTITY_PROPERTY_LINE_REGEX, RELATIONSHIP_LINE_REGEX, METADATA_LINE_REGEX */
+/*! exports provided: ENTITY_NAME_LINE_REGEX, ENTITY_PROPERTY_LINE_REGEX, RELATIONSHIP_LINE_REGEX */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9346,7 +9316,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ENTITY_NAME_LINE_REGEX", function() { return ENTITY_NAME_LINE_REGEX; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ENTITY_PROPERTY_LINE_REGEX", function() { return ENTITY_PROPERTY_LINE_REGEX; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RELATIONSHIP_LINE_REGEX", function() { return RELATIONSHIP_LINE_REGEX; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "METADATA_LINE_REGEX", function() { return METADATA_LINE_REGEX; });
 /* harmony import */ var _util_regex_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../util/regex-utils */ "./src/dsl/util/regex-utils.ts");
 
 var IDENTIFIER_REGEX = /[a-zA-Z_][a-zA-Z_0-9]*/;
@@ -9366,10 +9335,6 @@ var RELATIONSHIP_MODIFIERS_REGEX = new RegExp("([?!]*)");
 var DIRECTION_AND_CARDINALITY_REGEX = Object(_util_regex_utils__WEBPACK_IMPORTED_MODULE_0__["joinRegExps"])(RELATIONSHIP_MODIFIERS_REGEX, RELATIONSHIP_CARDINALITY_REGEX, RELATIONSHIP_DIRECTION_REGEX, RELATIONSHIP_CARDINALITY_REGEX, RELATIONSHIP_MODIFIERS_REGEX);
 var ENTITY_AND_ALIAS_REGEX = new RegExp("(" + IDENTIFIER_REGEX.source + ")(?:\\s+(" + IDENTIFIER_REGEX.source + "))?");
 var RELATIONSHIP_LINE_REGEX = new RegExp("^" + ENTITY_AND_ALIAS_REGEX.source + "\\s*?" + DIRECTION_AND_CARDINALITY_REGEX.source + "\\s*?" + ENTITY_AND_ALIAS_REGEX.source + "(?:\\s+\\((" + IDENTIFIER_REGEX.source + ")\\))?$");
-// Metadata
-var METADATA_VALUE_REGEX = new RegExp("(.*)");
-var METADATA_ENTRY_REGEX = new RegExp("-\\s*(" + IDENTIFIER_REGEX.source + ")\\s*:\\s*" + METADATA_VALUE_REGEX.source + "\\s*");
-var METADATA_LINE_REGEX = new RegExp("^\\s*" + METADATA_ENTRY_REGEX.source + "$");
 
 
 /***/ }),

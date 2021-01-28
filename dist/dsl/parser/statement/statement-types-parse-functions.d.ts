@@ -7,10 +7,7 @@ export declare enum Direction {
     RIGHT = "right",
     BOTH = "both"
 }
-export interface BaseDescriptor {
-    metadata: Metadata[];
-}
-export interface RelationshipDescriptor extends BaseDescriptor {
+export interface RelationshipDescriptor {
     leftMember: RelationshipMember;
     rightMember: RelationshipMember;
     direction: Direction;
@@ -23,11 +20,11 @@ export interface RelationshipMember {
     optional: boolean;
     unique: boolean;
 }
-export interface EntityDescriptor extends BaseDescriptor {
+export interface EntityDescriptor {
     name: string;
     properties: EntityPropertyDescriptor[];
 }
-export interface EntityPropertyDescriptor extends BaseDescriptor {
+export interface EntityPropertyDescriptor {
     name: string;
     optional: boolean;
     autoincremental: boolean;
@@ -46,12 +43,7 @@ export declare enum EntityPropertyType {
     TIME = "time",
     DATETIME = "datetime"
 }
-export interface Metadata {
-    key: string;
-    value: string;
-}
 export declare function parseEntityNameStatement(line: string): string;
 export declare function parseEntityPropertyStatement(line: string): EntityPropertyDescriptor;
 export declare function parseRelationshipStatement(line: string): RelationshipDescriptor;
-export declare function parseMetadataStatement(line: string): Metadata;
 //# sourceMappingURL=statement-types-parse-functions.d.ts.map

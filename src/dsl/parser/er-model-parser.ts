@@ -1,9 +1,7 @@
 import {
-	BaseDescriptor,
 	EntityDescriptor,
 	parseEntityNameStatement,
 	parseEntityPropertyStatement,
-	parseMetadataStatement,
 	parseRelationshipStatement,
 	RelationshipDescriptor
 } from './statement/statement-types-parse-functions';
@@ -21,7 +19,6 @@ export function parseEntityRelationshipModel(code: string): EntityRelationshipMo
 	const entities: EntityDescriptor[] = [];
 	const relationships: RelationshipDescriptor[] = [];
 
-	let lastDescriptorRead: BaseDescriptor | null = null;
 	let parsingEntity = false;
 
 	lines.forEach(line => {
@@ -32,11 +29,9 @@ export function parseEntityRelationshipModel(code: string): EntityRelationshipMo
 			case StatementType.ENTITY_NAME:
 				const entityDescriptor = {
 					name: parseEntityNameStatement(line),
-					properties: [],
-					metadata: []
+					properties: []
 				};
 				entities.push(entityDescriptor);
-				lastDescriptorRead = entityDescriptor;
 				parsingEntity = true;
 				break;
 			case StatementType.ENTITY_PROPERTY:
@@ -46,20 +41,11 @@ export function parseEntityRelationshipModel(code: string): EntityRelationshipMo
 				const lastEntity = entities[entities.length - 1];
 				const entityPropertyDescriptor = parseEntityPropertyStatement(line);
 				lastEntity.properties.push(entityPropertyDescriptor);
-				lastDescriptorRead = entityPropertyDescriptor;
 				break;
 			case StatementType.RELATIONSHIP:
 				const relationshipDescriptor = parseRelationshipStatement(line);
 				relationships.push(relationshipDescriptor);
-				lastDescriptorRead = relationshipDescriptor;
 				parsingEntity = false;
-				break;
-			case StatementType.METADATA:
-				if (lastDescriptorRead == null) {
-					throw new Error('Unexpected metadata statement');
-				}
-				const metadata = parseMetadataStatement(line);
-				lastDescriptorRead.metadata.push(metadata);
 				break;
 			case StatementType.BLANK_LINE:
 			case StatementType.COMMENT:
