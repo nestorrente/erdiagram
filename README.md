@@ -9,14 +9,14 @@
 
 # This statement represents the name of an entity.
 User
-	# These statements represent the properties of the User entity.
-	username text(30)
-	name text(50)
-	# Properties are required (non-null) by default.
-	# The question mark (?) modifier indicates this is an optional property.
-	lastName? text(100)
-	# There are some types that doesn't require length to be specified
-	active bool
+    # These statements represent the properties of the User entity.
+    username text(30)
+    name text(50)
+    # Properties are required (non-null) by default.
+    # The question mark (?) modifier indicates this is an optional property.
+    lastName? text(100)
+    # There are some types that doesn't require length to be specified
+    active bool
 
 # Supported types so far are:
 # - text(length)
@@ -35,13 +35,13 @@ User
 
 # This is another entity
 Country
-	# The exclamation mark (!) modifier indicates this property has an "unique restriction".
-	# This means that every country must have its own unique code.
-	code! text(10)
-	name text(100)
-	# Even when each country will have an autoincremental ID property,
-	# you can define other autoincremental properties using the plus (+) modifier.
-	autoincrementalProperty+ int
+    # The exclamation mark (!) modifier indicates this property has an "unique restriction".
+    # This means that every country must have its own unique code.
+    code! text(10)
+    name text(100)
+    # Even when each country will have an autoincremental ID property,
+    # you can define other autoincremental properties using the plus (+) modifier.
+    autoincrementalProperty+ int
 
 # This statement represents a Many-To-One relationship:
 User *<->1 Country
