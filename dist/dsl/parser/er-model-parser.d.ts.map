@@ -1,1 +1,0 @@
-{"version":3,"file":"er-model-parser.d.ts","sourceRoot":"","sources":["../../../src/dsl/parser/er-model-parser.ts"],"names":[],"mappings":"AAAA,OAAO,EACN,gBAAgB,EAIhB,sBAAsB,EACtB,MAAM,6CAA6C,CAAC;AAGrD,MAAM,WAAW,uBAAuB;IACvC,QAAQ,EAAE,gBAAgB,EAAE,CAAC;IAC7B,aAAa,EAAE,sBAAsB,EAAE,CAAC;CACxC;AAED,wBAAgB,4BAA4B,CAAC,IAAI,EAAE,MAAM,GAAG,uBAAuB,CAkDlF"}

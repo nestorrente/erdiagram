@@ -1,1 +1,0 @@
-{"version":3,"file":"AbstractCamelCaseFormat.d.ts","sourceRoot":"","sources":["../../../../../src/dsl/generator/common/case-format/AbstractCamelCaseFormat.ts"],"names":[],"mappings":"AAAA,OAAO,UAAU,MAAM,+CAA+C,CAAC;AAIvE,MAAM,CAAC,OAAO,CAAC,QAAQ,OAAO,uBAAwB,YAAW,UAAU;IAE1E,QAAQ,CAAC,SAAS,CAAC,KAAK,EAAE,MAAM,EAAE,GAAG,MAAM;IAEpC,UAAU,CAAC,IAAI,EAAE,MAAM,GAAG,MAAM,EAAE;CAKzC"}

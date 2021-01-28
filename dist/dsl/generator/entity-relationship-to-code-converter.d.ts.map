@@ -1,1 +1,0 @@
-{"version":3,"file":"entity-relationship-to-code-converter.d.ts","sourceRoot":"","sources":["../../../src/dsl/generator/entity-relationship-to-code-converter.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,uBAAuB,EAAC,MAAM,2BAA2B,CAAC;AAElE,MAAM,CAAC,OAAO,WAAW,sCAAsC;IAE9D,YAAY,CAAC,KAAK,EAAE,uBAAuB,GAAG,MAAM,CAAC;CAErD"}

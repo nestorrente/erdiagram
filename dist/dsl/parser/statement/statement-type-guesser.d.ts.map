@@ -1,1 +1,0 @@
-{"version":3,"file":"statement-type-guesser.d.ts","sourceRoot":"","sources":["../../../../src/dsl/parser/statement/statement-type-guesser.ts"],"names":[],"mappings":"AAEA,oBAAY,aAAa;IACxB,WAAW,eAAe;IAC1B,eAAe,mBAAmB;IAClC,YAAY,iBAAiB;IAC7B,OAAO,YAAY;IACnB,UAAU,cAAc;IACxB,OAAO,YAAY;CACnB;AAED,wBAAgB,kBAAkB,CAAC,IAAI,EAAE,MAAM,GAAG,aAAa,CAc9D"}

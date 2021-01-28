@@ -1,1 +1,0 @@
-{"version":3,"file":"DatabaseModelToCodeConverter.d.ts","sourceRoot":"","sources":["../../../../../src/dsl/generator/database/sql/DatabaseModelToCodeConverter.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,aAAa,EAAC,MAAM,8DAA8D,CAAC;AAE3F,MAAM,CAAC,OAAO,WAAW,4BAA4B;IACpD,YAAY,CAAC,aAAa,EAAE,aAAa,GAAG,MAAM,CAAC;CACnD"}
