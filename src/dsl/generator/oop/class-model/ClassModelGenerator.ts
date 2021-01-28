@@ -1,5 +1,5 @@
 import pluralize from 'pluralize';
-import {EntityRelationshipModel} from '../../../parser/er-model-parser';
+import {EntityRelationshipModel} from '@/dsl/parser/er-model-parser';
 import {
 	Cardinality,
 	Direction,
@@ -7,8 +7,8 @@ import {
 	EntityPropertyDescriptor,
 	EntityPropertyType,
 	RelationshipMember
-} from '../../../parser/statement/statement-types-parse-functions';
-import {capitalize} from '../../../util/string-utils';
+} from '@/dsl/parser/statement/statement-types-parse-functions';
+import {capitalize} from '@/dsl/util/string-utils';
 import {ClassDescriptor, ClassModel, FieldDescriptor} from './class-model-types';
 
 export interface ClassModelGenerator {

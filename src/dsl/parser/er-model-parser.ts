@@ -66,7 +66,7 @@ export function parseEntityRelationshipModel(code: string): EntityRelationshipMo
 				// Ignore
 				break;
 			default:
-				throw new Error('Unknown statement type: ' + statementType);
+				throw new Error(`Unknown statement type (${statementType}) for line: ${line}`);
 		}
 
 	});

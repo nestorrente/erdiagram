@@ -1,14 +1,9 @@
-Employee
-    name text(100)
-    salary int
-
-Company
+Person
     name text(50)
-    fundationDate date
-    # "?" indicates this is an optional field
-    moneyAmount? decimal
 
-Employee *<-> Company
+City
+    code! text(10)
+    name text(100)
 
-## "?" indicates this is an optional reference
-#Employee ->? Employee boss
+Person *->! City
+Person *-> City alternativeCity

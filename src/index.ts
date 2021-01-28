@@ -2,10 +2,11 @@ import yargs from 'yargs';
 import fs from 'fs';
 import {parseEntityRelationshipModel} from './dsl/parser/er-model-parser';
 import EntityRelationshipModelToCodeConverter from './dsl/generator/entity-relationship-to-code-converter';
-import MySqlCodeGenerator from 'src/dsl/generator/database/sql/mysql/my-sql-code-generator';
+import MySqlDatabaseModelToCodeConverter from '@/dsl/generator/database/sql/mysql/MySqlDatabaseModelToCodeConverter';
 import JavaCodeGenerator from './dsl/generator/oop/java/java-code-generator';
 import {StandardIdNamingStrategies} from '@/dsl/generator/common/id-naming-strategy';
-import StandardCaseFormats from '@/dsl/generator/common/case-format/StandardCaseFormats'; // [
+import EntityRelationshipModelToSqlCodeConverter
+	from '@/dsl/generator/database/sql/EntityRelationshipModelToSqlCodeConverter';
 
 // [
 // 	'User follower *<->* User followed (a)',
@@ -101,9 +102,11 @@ const config = {
 const modelCodeGenerator = ((): EntityRelationshipModelToCodeConverter => {
 	switch (config.format) {
 		case 'mysql':
-			return new MySqlCodeGenerator({
-				idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX
-			});
+			return new EntityRelationshipModelToSqlCodeConverter(
+					new MySqlDatabaseModelToCodeConverter({
+						idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX
+					})
+			);
 		case 'java':
 			return new JavaCodeGenerator();
 		default:

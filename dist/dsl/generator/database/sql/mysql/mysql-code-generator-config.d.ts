@@ -1,7 +1,5 @@
-import IdNamingStrategy from '@/dsl/generator/common/id-naming-strategy';
-export default interface MySqlCodeGeneratorConfig {
-    idNamingStrategy: IdNamingStrategy;
-    typesMap: Record<string, string>;
+import SqlCodeGeneratorConfig from '@/dsl/generator/database/sql/sql-code-generator-config';
+export default interface MySqlCodeGeneratorConfig extends SqlCodeGeneratorConfig {
 }
 export declare const defaultMySqlCodeGeneratorConfig: MySqlCodeGeneratorConfig;
 export declare function mergeWithDefaultConfig(config?: Partial<MySqlCodeGeneratorConfig>): MySqlCodeGeneratorConfig;

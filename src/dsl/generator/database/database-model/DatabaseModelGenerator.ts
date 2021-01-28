@@ -1,20 +1,27 @@
-import {EntityRelationshipModel} from '../../../parser/er-model-parser';
+import {EntityRelationshipModel} from '@/dsl/parser/er-model-parser';
 import {
 	Cardinality,
 	EntityDescriptor,
 	EntityPropertyDescriptor,
-	EntityPropertyType,
 	RelationshipDescriptor,
 	RelationshipMember
-} from '../../../parser/statement/statement-types-parse-functions';
-import {capitalize} from '../../../util/string-utils';
-import {DatabaseModel, TableColumnDescriptor, TableDescriptor, TableReferenceDescriptor} from './database-model-types';
+} from '@/dsl/parser/statement/statement-types-parse-functions';
+import {capitalize} from '@/dsl/util/string-utils';
+import {
+	DatabaseModel,
+	TableColumnDescriptor,
+	TableDescriptor,
+	TableReferenceDescriptor
+} from '@/dsl/generator/database/database-model/database-model-types';
+import DatabaseModelGeneratorConfig, {mergeWithDefaultConfig} from '@/dsl/generator/database/database-model/DatabaseModelGeneratorConfig';
 
-export interface DatabaseModelGenerator {
-	generateDatabaseModel(model: EntityRelationshipModel): DatabaseModel;
-}
+export class DatabaseModelGenerator {
 
-const databaseModelGenerator: DatabaseModelGenerator = {
+	private readonly config: DatabaseModelGeneratorConfig;
+
+	constructor(config?: Partial<DatabaseModelGeneratorConfig>) {
+		this.config = mergeWithDefaultConfig(config);
+	}
 
 	generateDatabaseModel(model: EntityRelationshipModel): DatabaseModel {
 
@@ -35,16 +42,17 @@ const databaseModelGenerator: DatabaseModelGenerator = {
 
 	}
 
-};
+}
 
+const databaseModelGenerator = new DatabaseModelGenerator();
 export default databaseModelGenerator;
 
 function generateEntityTable(entity: EntityDescriptor, model: EntityRelationshipModel): TableDescriptor {
 
 	const name = capitalize(entity.name);
-	const id = getTableIdColumnName(name);
 
 	const columns: TableColumnDescriptor[] = [];
+
 	const references: TableReferenceDescriptor[] = [];
 
 	for (const property of entity.properties) {
@@ -65,7 +73,6 @@ function generateEntityTable(entity: EntityDescriptor, model: EntityRelationship
 
 	return {
 		name,
-		id,
 		columns,
 		references
 	};
@@ -75,11 +82,9 @@ function generateEntityTable(entity: EntityDescriptor, model: EntityRelationship
 function generateRelationshipTable(relationship: RelationshipDescriptor): TableDescriptor {
 
 	const name = capitalize(relationship.relationShipName);
-	const id = getTableIdColumnName(name);
 
 	return {
 		name,
-		id,
 		columns: [],
 		references: [
 			createTableReference(relationship.leftMember),
@@ -90,26 +95,21 @@ function generateRelationshipTable(relationship: RelationshipDescriptor): TableD
 }
 
 function createTableReference(toMember: RelationshipMember): TableReferenceDescriptor {
-	return {
-		alias: toMember.entityAlias,
-		columnName: `${toMember.entityAlias}Id`,
-		targetTableName: toMember.entity,
-		notNull: !toMember.optional
-	};
-}
 
-function mapRelationshipMemberToColumn(toMember: RelationshipMember): TableColumnDescriptor {
-	return {
-		name: toMember.entityAlias,
-		notNull: !toMember.optional,
-		type: EntityPropertyType.LONG
-	};
-}
+	const {
+		entityAlias,
+		entity,
+		optional,
+		unique
+	} = toMember;
 
-function getTableIdColumnName(tableName: string) {
-	// TODO definir diferentes estrategias
-	// return uncapitalize(tableName) + 'Id';
-	return 'id';
+	return {
+		columnName: `${entityAlias}Id`,
+		targetTableName: entity,
+		notNull: !optional,
+		unique
+	};
+
 }
 
 function mapPropertyToColumn(property: EntityPropertyDescriptor): TableColumnDescriptor {
@@ -117,6 +117,8 @@ function mapPropertyToColumn(property: EntityPropertyDescriptor): TableColumnDes
 	const {
 		name,
 		optional,
+		autoincremental,
+		unique,
 		type,
 		length
 	} = property;
@@ -124,6 +126,8 @@ function mapPropertyToColumn(property: EntityPropertyDescriptor): TableColumnDes
 	return {
 		name,
 		notNull: !optional,
+		autoincremental,
+		unique,
 		type,
 		length
 	};

@@ -27,3 +27,5 @@
 	- No obstante, esto se podría hacer también en base a convenciones.
 		- Empieza por mayúsculas: clase.
 		- Empieza por minúsculas: paquete.
+
+- En Java, permitir escoger si utilizar clases o primitivos para tipos como Long/long y así.

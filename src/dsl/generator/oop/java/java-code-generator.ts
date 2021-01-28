@@ -2,7 +2,7 @@ import EntityRelationshipModelToCodeConverter from 'src/dsl/generator/entity-rel
 import {EntityRelationshipModel} from '../../../parser/er-model-parser';
 import {EntityPropertyType} from '../../../parser/statement/statement-types-parse-functions';
 import {capitalize} from '../../../util/string-utils';
-import classModelGenerator from '../class-model/class-model-generator';
+import classModelGenerator from '../class-model/ClassModelGenerator';
 import {ClassDescriptor, FieldDescriptor} from '../class-model/class-model-types';
 
 const INDENT: string = '    ';
@@ -140,6 +140,7 @@ function mapSingleTypeToJavaType(field: FieldDescriptor): string {
 		[EntityPropertyType.TEXT]: 'String',
 		[EntityPropertyType.LONG]: 'Long',
 		[EntityPropertyType.INT]: 'Integer',
+		[EntityPropertyType.SHORT]: 'Short',
 		[EntityPropertyType.DECIMAL]: 'BigDecimal',
 		[EntityPropertyType.BOOLEAN]: 'Boolean',
 		[EntityPropertyType.DATE]: 'LocalDate',

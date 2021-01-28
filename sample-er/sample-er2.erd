@@ -1,0 +1,22 @@
+Employee
+    name text(100)
+    salary int
+    # TODO pensar si vale la pena permitir columnas autoincrementales que no sean IDs
+    subsequentNumber+ int
+
+Company
+    name text(50)
+    fundationDate date
+    # "?" indicates this is an optional field
+    moneyAmount? decimal
+
+Employee *<-> Company
+
+## "?" indicates this is an optional reference
+#Employee ->? Employee boss
+
+Country
+    code! text(5)
+    name text(100)
+
+Company ->1!? Country

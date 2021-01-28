@@ -33,6 +33,7 @@ export interface RelationshipMember {
 	entityAlias: string;
 	cardinality: Cardinality;
 	optional: boolean;
+	unique: boolean;
 }
 
 export interface EntityDescriptor extends BaseDescriptor {
@@ -43,6 +44,8 @@ export interface EntityDescriptor extends BaseDescriptor {
 export interface EntityPropertyDescriptor extends BaseDescriptor {
 	name: string;
 	optional: boolean;
+	autoincremental: boolean;
+	unique: boolean;
 	type: EntityPropertyType;
 	length?: number;
 }
@@ -51,6 +54,7 @@ export enum EntityPropertyType {
 	TEXT = 'text',
 	LONG = 'long',
 	INT = 'int',
+	SHORT = 'short',
 	DECIMAL = 'decimal',
 	BOOLEAN = 'bool',
 	DATE = 'date',
@@ -88,7 +92,7 @@ export function parseEntityPropertyStatement(line: string): EntityPropertyDescri
 	const [
 		fullMatch,
 		name,
-		optionalModifier,
+		modifiers,
 		type,
 		length
 	] = result;
@@ -101,7 +105,9 @@ export function parseEntityPropertyStatement(line: string): EntityPropertyDescri
 
 	return {
 		name,
-		optional: optionalModifier === '?',
+		optional: modifiers.includes('?'),
+		autoincremental: modifiers.includes('+'),
+		unique: modifiers.includes('!'),
 		type: mappedType,
 		length: length ? parseInt(length, 10) : undefined,
 		metadata: []
@@ -121,9 +127,11 @@ export function parseRelationshipStatement(line: string): RelationshipDescriptor
 		fullMatch,
 		leftEntity,
 		leftEntityAlias = uncapitalize(leftEntity),
+		leftModifiers,
 		leftCardinality,
 		direction,
 		rightCardinality,
+		rightModifiers,
 		rightEntity,
 		rightEntityAlias = uncapitalize(rightEntity),
 		relationShipName = `${leftEntity}${capitalize(rightEntity)}`
@@ -134,13 +142,15 @@ export function parseRelationshipStatement(line: string): RelationshipDescriptor
 			entity: leftEntity,
 			entityAlias: leftEntityAlias,
 			cardinality: leftCardinality === '*' ? Cardinality.MANY : Cardinality.ONE,
-			optional: leftCardinality === '?'
+			optional: leftModifiers.includes('?'),
+			unique: leftModifiers.includes('!')
 		},
 		rightMember: {
 			entity: rightEntity,
 			entityAlias: rightEntityAlias,
 			cardinality: rightCardinality === '*' ? Cardinality.MANY : Cardinality.ONE,
-			optional: rightCardinality === '?'
+			optional: rightModifiers.includes('?'),
+			unique: rightModifiers.includes('!')
 		},
 		direction: direction === '->' ? Direction.RIGHT : (direction === '<-' ? Direction.LEFT : Direction.BOTH),
 		relationShipName,

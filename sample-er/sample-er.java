@@ -1,9 +1,9 @@
-public class Employee {
+public class Person {
 
     private Long id;
     private String name;
-    private Integer salary;
-    private Company company;
+    private City city;
+    private City alternativeCity;
 
     public Long getId() {
         return id;
@@ -21,32 +21,29 @@ public class Employee {
         this.name = name;
     }
 
-    public Integer getSalary() {
-        return salary;
+    public City getCity() {
+        return city;
     }
 
-    public Integer setSalary(Integer salary) {
-        this.salary = salary;
+    public City setCity(City city) {
+        this.city = city;
     }
 
-    public Company getCompany() {
-        return company;
+    public City getAlternativeCity() {
+        return alternativeCity;
     }
 
-    public Company setCompany(Company company) {
-        this.company = company;
+    public City setAlternativeCity(City alternativeCity) {
+        this.alternativeCity = alternativeCity;
     }
 
 }
 
-public class Company {
+public class City {
 
     private Long id;
+    private String code;
     private String name;
-    private LocalDate fundationDate;
-    @Nullable
-    private BigDecimal moneyAmount;
-    private List<Employee> employees;
 
     public Long getId() {
         return id;
@@ -56,36 +53,20 @@ public class Company {
         this.id = id;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public String setCode(String code) {
+        this.code = code;
+    }
+
     public String getName() {
         return name;
     }
 
     public String setName(String name) {
         this.name = name;
-    }
-
-    public LocalDate getFundationDate() {
-        return fundationDate;
-    }
-
-    public LocalDate setFundationDate(LocalDate fundationDate) {
-        this.fundationDate = fundationDate;
-    }
-
-    public BigDecimal getMoneyAmount() {
-        return moneyAmount;
-    }
-
-    public BigDecimal setMoneyAmount(BigDecimal moneyAmount) {
-        this.moneyAmount = moneyAmount;
-    }
-
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-    public List<Employee> setEmployees(List<Employee> employees) {
-        this.employees = employees;
     }
 
 }

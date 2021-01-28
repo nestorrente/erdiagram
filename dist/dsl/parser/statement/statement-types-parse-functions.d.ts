@@ -21,6 +21,7 @@ export interface RelationshipMember {
     entityAlias: string;
     cardinality: Cardinality;
     optional: boolean;
+    unique: boolean;
 }
 export interface EntityDescriptor extends BaseDescriptor {
     name: string;
@@ -29,6 +30,8 @@ export interface EntityDescriptor extends BaseDescriptor {
 export interface EntityPropertyDescriptor extends BaseDescriptor {
     name: string;
     optional: boolean;
+    autoincremental: boolean;
+    unique: boolean;
     type: EntityPropertyType;
     length?: number;
 }
@@ -36,6 +39,7 @@ export declare enum EntityPropertyType {
     TEXT = "text",
     LONG = "long",
     INT = "int",
+    SHORT = "short",
     DECIMAL = "decimal",
     BOOLEAN = "bool",
     DATE = "date",
