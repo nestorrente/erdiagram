@@ -13,46 +13,46 @@ Build date: ${new Date().toISOString()}
 `.trim();
 
 const commonConfig = {
-	entry: './src/index.ts',
-	devtool: 'source-map',
-	mode: 'development',
-	module: {
-		rules: [
-			{
-				test: /\.tsx?$/,
-				use: 'ts-loader',
-				exclude: /node_modules/,
-			},
-		],
-	},
-	resolve: {
-		extensions: ['.tsx', '.ts', '.js'],
-		plugins: [
-			new TsconfigPathsPlugin()
-		],
-	},
-	plugins: [
-		new webpack.BannerPlugin({
-			banner: BUNDLE_HEADER
-		})
-	],
-	output: {
-		path: path.resolve(__dirname, 'dist'),
-	}
+    entry: './src/main/index.ts',
+    devtool: 'source-map',
+    mode: 'development',
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+        ],
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
+        plugins: [
+            new TsconfigPathsPlugin()
+        ],
+    },
+    plugins: [
+        new webpack.BannerPlugin({
+                                     banner: BUNDLE_HEADER
+                                 })
+    ],
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+    }
 };
 
 const standaloneConfig = {
-	...commonConfig,
-	target: 'node',
-	output: {
-		...commonConfig.output,
-		filename: 'er-diagram-code-generator.js',
-		// library: 'EntityRelationshipDiagramCodeGenerator',
-		// libraryTarget: 'var',
-		// libraryExport: 'default'
-	}
+    ...commonConfig,
+    target: 'node',
+    output: {
+        ...commonConfig.output,
+        filename: 'er-diagram-code-generator.js',
+        // library: 'EntityRelationshipDiagramCodeGenerator',
+        // libraryTarget: 'var',
+        // libraryExport: 'default'
+    }
 };
 
 module.exports = [
-	standaloneConfig
+    standaloneConfig
 ];

@@ -8,7 +8,7 @@ export default abstract class AbstractCamelCaseFormat implements CaseFormat {
 
 	public splitWords(text: string): string[] {
 		return text.split(CAMEL_CASE_WORD_BOUNDARIES_REGEX)
-				.filter(chunk => chunk.length > 0)
+				.filter(chunk => chunk.length > 0);
 	}
 
 }

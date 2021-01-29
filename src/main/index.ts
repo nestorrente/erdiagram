@@ -4,7 +4,6 @@ import {parseEntityRelationshipModel} from './dsl/parser/er-model-parser';
 import EntityRelationshipModelToCodeConverter from './dsl/generator/entity-relationship-to-code-converter';
 import MySqlDatabaseModelToCodeConverter from '@/dsl/generator/database/sql/mysql/MySqlDatabaseModelToCodeConverter';
 import JavaCodeGenerator from './dsl/generator/oop/java/java-code-generator';
-import {StandardIdNamingStrategies} from '@/dsl/generator/common/id-naming-strategy';
 import EntityRelationshipModelToSqlCodeConverter
 	from '@/dsl/generator/database/sql/EntityRelationshipModelToSqlCodeConverter';
 
@@ -104,7 +103,7 @@ const modelCodeGenerator = ((): EntityRelationshipModelToCodeConverter => {
 		case 'mysql':
 			return new EntityRelationshipModelToSqlCodeConverter(
 					new MySqlDatabaseModelToCodeConverter({
-						idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX
+						// idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX
 					})
 			);
 		case 'java':

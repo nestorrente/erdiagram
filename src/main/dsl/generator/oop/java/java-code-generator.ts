@@ -1,4 +1,4 @@
-import EntityRelationshipModelToCodeConverter from 'src/dsl/generator/entity-relationship-to-code-converter';
+import EntityRelationshipModelToCodeConverter from '@/dsl/generator/entity-relationship-to-code-converter';
 import {EntityRelationshipModel} from '../../../parser/er-model-parser';
 import {EntityPropertyType} from '../../../parser/statement/statement-types-parse-functions';
 import {capitalize} from '../../../util/string-utils';
