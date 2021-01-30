@@ -12,7 +12,17 @@
     "lint": "tslint -p tsconfig.json"
   },
   "keywords": [
-    "dsl"
+    "erdiagram",
+    "erd",
+    "entity",
+    "relationship",
+    "entity-relationship",
+    "sql",
+    "mysql",
+    "java",
+    "code",
+    "generation",
+    "generator"
   ],
   "author": "",
   "license": "MIT",

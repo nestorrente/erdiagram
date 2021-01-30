@@ -1,11 +1,12 @@
 import yargs from 'yargs';
 import fs from 'fs';
-import {parseEntityRelationshipModel} from './dsl/parser/er-model-parser';
-import EntityRelationshipModelToCodeConverter from './dsl/generator/entity-relationship-to-code-converter';
-import MySqlDatabaseModelToCodeConverter from '@/dsl/generator/database/sql/mysql/MySqlDatabaseModelToCodeConverter';
-import JavaCodeGenerator from './dsl/generator/oop/java/java-code-generator';
+import {parseEntityRelationshipModel} from './erdiagram/parser/er-model-parser';
+import EntityRelationshipModelToCodeConverter from './erdiagram/generator/entity-relationship-to-code-converter';
+import MySqlDatabaseModelToCodeConverter
+	from '@/erdiagram/generator/database/code-converter/mysql/MySqlDatabaseModelToCodeConverter';
+import JavaCodeGenerator from './erdiagram/generator/oop/java/java-code-generator';
 import EntityRelationshipModelToSqlCodeConverter
-	from '@/dsl/generator/database/sql/EntityRelationshipModelToSqlCodeConverter';
+	from '@/erdiagram/generator/database/code-converter/EntityRelationshipModelToSqlCodeConverter';
 
 // [
 // 	'User follower *<->* User followed (a)',
