@@ -4,10 +4,11 @@ import {parseEntityRelationshipModel} from '@/erdiagram/parser/er-model-parser';
 import EntityRelationshipModelToCodeConverter from '@/erdiagram/generator/entity-relationship-to-code-converter';
 import MySqlDatabaseModelToCodeConverter
 	from '@/erdiagram/generator/database/code-converter/mysql/MySqlDatabaseModelToCodeConverter';
-import JavaEntityRelationshipModelToCodeConverter
-	from '@/erdiagram/generator/oop/code-converter/java/JavaEntityRelationshipModelToCodeConverter';
+import JavaClassModelToCodeConverter from '@/erdiagram/generator/oop/code-converter/java/JavaClassModelToCodeConverter';
 import EntityRelationshipModelToDatabaseCodeConverter
 	from '@/erdiagram/generator/database/code-converter/EntityRelationshipModelToDatabaseCodeConverter';
+import EntityRelationshipModelToClassCodeConverter
+	from '@/erdiagram/generator/oop/code-converter/EntityRelationshipModelToClassCodeConverter';
 
 const args = yargs
 		.option('format', {
@@ -37,11 +38,17 @@ const modelCodeGenerator = ((): EntityRelationshipModelToCodeConverter => {
 		case 'mysql':
 			return new EntityRelationshipModelToDatabaseCodeConverter(
 					new MySqlDatabaseModelToCodeConverter({
-						// idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX
+						// idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX,
+						// tableNameCaseFormat: StandardCaseFormats.UPPER_UNDERSCORE,
+						// columnNameCaseFormat: StandardCaseFormats.LOWER_UNDERSCORE,
 					})
 			);
 		case 'java':
-			return new JavaEntityRelationshipModelToCodeConverter('thepackage');
+			return new EntityRelationshipModelToClassCodeConverter(
+					new JavaClassModelToCodeConverter({
+						generatedClassesPackage: 'com.example.erdiagram',
+					})
+			);
 		default:
 			throw new Error(`Unknown format: ${config.format}`);
 	}

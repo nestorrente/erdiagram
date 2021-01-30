@@ -1,3 +1,4 @@
+import pluralize from 'pluralize';
 import {EntityRelationshipModel} from '@/erdiagram/parser/er-model-parser';
 import {
 	Cardinality,
@@ -28,12 +29,12 @@ export class DatabaseModelGenerator {
 		const tables: TableDescriptor[] = [];
 
 		model.entities
-				.map(entity => generateEntityTable(entity, model))
+				.map(entity => generateEntityTable(entity, model, this.config))
 				.forEach(sentence => tables.push(sentence));
 
 		model.relationships
 				.filter(isManyToManyRelationship)
-				.map(relationship => generateRelationshipTable(relationship))
+				.map(relationship => generateRelationshipTable(relationship, this.config))
 				.forEach(sentence => tables.push(sentence));
 
 		return {
@@ -44,12 +45,15 @@ export class DatabaseModelGenerator {
 
 }
 
-const databaseModelGenerator = new DatabaseModelGenerator();
+// FIXME buscar la forma de poder pasarle las opciones de configuración
+const databaseModelGenerator = new DatabaseModelGenerator({
+	// pluralizeTableNames: true
+});
 export default databaseModelGenerator;
 
-function generateEntityTable(entity: EntityDescriptor, model: EntityRelationshipModel): TableDescriptor {
+function generateEntityTable(entity: EntityDescriptor, model: EntityRelationshipModel, config: DatabaseModelGeneratorConfig): TableDescriptor {
 
-	const name = capitalizeWord(entity.name);
+	const name = pluralizeEntityNameIfApplies(capitalizeWord(entity.name), config);
 
 	const columns: TableColumnDescriptor[] = [];
 
@@ -62,11 +66,11 @@ function generateEntityTable(entity: EntityDescriptor, model: EntityRelationship
 	for (const relationship of model.relationships) {
 		if (relationship.rightMember.cardinality === Cardinality.ONE) {
 			if (relationship.leftMember.entity === entity.name) {
-				references.push(createTableReference(relationship.rightMember));
+				references.push(createTableReference(relationship.rightMember, config));
 			}
 		} else if (relationship.leftMember.cardinality === Cardinality.ONE) {
 			if (relationship.rightMember.entity === entity.name) {
-				references.push(createTableReference(relationship.leftMember));
+				references.push(createTableReference(relationship.leftMember, config));
 			}
 		}
 	}
@@ -79,22 +83,39 @@ function generateEntityTable(entity: EntityDescriptor, model: EntityRelationship
 
 }
 
-function generateRelationshipTable(relationship: RelationshipDescriptor): TableDescriptor {
+function generateRelationshipTable(relationship: RelationshipDescriptor, config: DatabaseModelGeneratorConfig): TableDescriptor {
 
-	const name = capitalizeWord(relationship.relationShipName);
+	const name = getRelationshipTableName(relationship, config);
 
 	return {
 		name,
 		columns: [],
 		references: [
-			createTableReference(relationship.leftMember),
-			createTableReference(relationship.rightMember)
+			createTableReference(relationship.leftMember, config),
+			createTableReference(relationship.rightMember, config)
 		]
 	};
 
 }
 
-function createTableReference(toMember: RelationshipMember): TableReferenceDescriptor {
+function getRelationshipTableName(relationship: RelationshipDescriptor, config: DatabaseModelGeneratorConfig): string {
+
+	const {
+		relationShipName,
+		leftMember,
+		rightMember
+	} = relationship;
+
+	if (relationShipName) {
+		return capitalizeWord(relationShipName);
+	}
+
+	return pluralizeEntityNameIfApplies(capitalizeWord(leftMember.entity), config)
+			+ pluralizeEntityNameIfApplies(capitalizeWord(rightMember.entity), config);
+
+}
+
+function createTableReference(toMember: RelationshipMember, config: DatabaseModelGeneratorConfig): TableReferenceDescriptor {
 
 	const {
 		entityAlias,
@@ -105,11 +126,19 @@ function createTableReference(toMember: RelationshipMember): TableReferenceDescr
 
 	return {
 		columnName: `${entityAlias}Id`,
-		targetTableName: entity,
+		targetTableName: pluralizeEntityNameIfApplies(entity, config),
 		notNull: !optional,
 		unique
 	};
 
+}
+
+function pluralizeEntityNameIfApplies(entityName: string, config: DatabaseModelGeneratorConfig): string {
+	if (config.pluralizeTableNames) {
+		return pluralize(entityName);
+	} else {
+		return entityName;
+	}
 }
 
 function mapPropertyToColumn(property: EntityPropertyDescriptor): TableColumnDescriptor {

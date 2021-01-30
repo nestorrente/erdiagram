@@ -1,5 +1,5 @@
-import {DatabaseModel} from '@/erdiagram/generator/database/database-model/database-model-types';
+import {ClassModel} from '@/erdiagram/generator/oop/class-model/class-model-types';
 
-export default interface DatabaseModelToCodeConverter {
-	generateCode(databaseModel: DatabaseModel): string;
+export default interface ClassModelToCodeConverter {
+	generateCode(classModel: ClassModel): string;
 }

@@ -61,6 +61,10 @@ User *<-> Country
 # Many-To-Many
 User *<->* Country
 
+# You can also give a name to this relationship, which may be used by different types of generators.
+# For example, SQL generators may use it for naming the tables representing a Many-To-Many relationship.
+User *<->* Country (UserLivingInCountry)
+
 # Also, if you don't want to define bidirectional relationships,
 # you can use right (->) or left (<-) arrows:
 User *-> Country

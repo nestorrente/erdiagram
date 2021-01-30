@@ -2,13 +2,15 @@ import {EntityPropertyType} from '@/erdiagram/parser/statement/statement-types-p
 import {TableColumnDescriptor} from '@/erdiagram/generator/database/database-model/database-model-types';
 import RegularColumnCode from '@/erdiagram/generator/database/code-converter/mysql/column/types/RegularColumnCode';
 import MySqlTypeResolver from '@/erdiagram/generator/database/code-converter/mysql/type/MySqlTypeResolver';
+import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
 
 export default class MySqlColumnCodeGenerator {
 
-	private readonly typeResolver: MySqlTypeResolver;
+	constructor(
+			private readonly typeResolver: MySqlTypeResolver,
+			private readonly columnNameCaseConverter: CaseConverter
+	) {
 
-	constructor(typeResolver: MySqlTypeResolver) {
-		this.typeResolver = typeResolver;
 	}
 
 	public generateColumnCode(tableName: string, column: TableColumnDescriptor): RegularColumnCode {
@@ -21,12 +23,13 @@ export default class MySqlColumnCodeGenerator {
 	private generateColumnDeclarationLine(column: TableColumnDescriptor) {
 
 		const {
-			name,
 			notNull,
 			autoincremental,
 			type,
 			length
 		} = column;
+
+		const name = this.columnNameCaseConverter.convertCase(column.name);
 
 		const lineParts: string[] = [
 			`\`${name}\``,

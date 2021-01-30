@@ -1,4 +1,4 @@
-import {capitalizeWord, uncapitalizeWord} from '@/erdiagram/util/string-utils';
+import {uncapitalizeWord} from '@/erdiagram/util/string-utils';
 import {
 	ENTITY_NAME_LINE_REGEX,
 	ENTITY_PROPERTY_LINE_REGEX,
@@ -20,7 +20,7 @@ export interface RelationshipDescriptor {
 	leftMember: RelationshipMember;
 	rightMember: RelationshipMember;
 	direction: Direction;
-	relationShipName: string;
+	relationShipName?: string;
 }
 
 export interface RelationshipMember {
@@ -123,7 +123,7 @@ export function parseRelationshipStatement(line: string): RelationshipDescriptor
 		rightModifiers,
 		rightEntity,
 		rightEntityAlias = uncapitalizeWord(rightEntity),
-		relationShipName = `${leftEntity}${capitalizeWord(rightEntity)}`
+		relationShipName
 	] = result;
 
 	return {

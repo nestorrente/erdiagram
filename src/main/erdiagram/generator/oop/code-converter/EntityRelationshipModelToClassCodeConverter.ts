@@ -1,19 +1,19 @@
 import {EntityRelationshipModel} from '@/erdiagram/parser/er-model-parser';
-import databaseModelGenerator from '@/erdiagram/generator/database/database-model/DatabaseModelGenerator';
-import DatabaseModelToCodeConverter from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverter';
 import EntityRelationshipModelToCodeConverter from '@/erdiagram/generator/entity-relationship-to-code-converter';
+import ClassModelToCodeConverter from '@/erdiagram/generator/oop/code-converter/ClassModelToCodeConverter';
+import classModelGenerator from '@/erdiagram/generator/oop/class-model/ClassModelGenerator';
 
-export default class EntityRelationshipModelToDatabaseCodeConverter implements EntityRelationshipModelToCodeConverter {
+export default class EntityRelationshipModelToClassCodeConverter implements EntityRelationshipModelToCodeConverter {
 
-	private readonly databaseModelToCodeConverter: DatabaseModelToCodeConverter;
+	private readonly classModelToCodeConverter: ClassModelToCodeConverter;
 
-	constructor(databaseModelToCodeConverter: DatabaseModelToCodeConverter) {
-		this.databaseModelToCodeConverter = databaseModelToCodeConverter;
+	constructor(classModelToCodeConverter: ClassModelToCodeConverter) {
+		this.classModelToCodeConverter = classModelToCodeConverter;
 	}
 
 	public generateCode(entityRelationshipModel: EntityRelationshipModel): string {
-		const databaseModel = databaseModelGenerator.generateDatabaseModel(entityRelationshipModel);
-		return this.databaseModelToCodeConverter.generateCode(databaseModel);
+		const classModel = classModelGenerator.generateClassModel(entityRelationshipModel);
+		return this.classModelToCodeConverter.generateCode(classModel);
 	}
 
 }

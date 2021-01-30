@@ -8,17 +8,19 @@ import ForeignKeyColumnCode
 import MySqlColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/mysql/column/MySqlColumnCodeGenerator';
 import IdNamingStrategy from '@/erdiagram/generator/common/id-naming-strategy/IdNamingStrategy';
+import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
 
 const INDENT: string = '    ';
 
 export default class MySqlForeignColumnCodeGenerator {
 
-	private readonly columnCodeGenerator: MySqlColumnCodeGenerator;
-	private readonly idNamingStrategy: IdNamingStrategy;
+	constructor(
+			private readonly idNamingStrategy: IdNamingStrategy,
+			private readonly columnCodeGenerator: MySqlColumnCodeGenerator,
+			private readonly tableNameCaseConverter: CaseConverter,
+			private readonly columnNameCaseConverter: CaseConverter
+	) {
 
-	constructor(idNamingStrategy: IdNamingStrategy, columnCodeGenerator: MySqlColumnCodeGenerator) {
-		this.idNamingStrategy = idNamingStrategy;
-		this.columnCodeGenerator = columnCodeGenerator;
 	}
 
 	public generateForeignColumnCode(tableName: string, reference: TableReferenceDescriptor): ForeignKeyColumnCode {
@@ -57,8 +59,15 @@ export default class MySqlForeignColumnCodeGenerator {
 	}
 
 	private createForeignKeyConstraint(tableName: string, reference: TableReferenceDescriptor) {
-		return `CONSTRAINT \`${tableName}_${reference.columnName}_fk\` FOREIGN KEY (\`${reference.columnName}\`)`
-				+ ` REFERENCES \`${reference.targetTableName}\` (\`${this.getTableId(reference.targetTableName)}\`)`;
+
+		const columnName = this.columnNameCaseConverter.convertCase(reference.columnName);
+
+		const targetTableName = this.tableNameCaseConverter.convertCase(reference.targetTableName);
+		const targetColumnName = this.columnNameCaseConverter.convertCase(this.getTableId(targetTableName));
+
+		return `CONSTRAINT \`${tableName}_${columnName}_fk\` FOREIGN KEY (\`${columnName}\`)`
+				+ ` REFERENCES \`${targetTableName}\` (\`${targetColumnName}\`)`;
+
 	}
 
 	private getTableId(tableName: string) {

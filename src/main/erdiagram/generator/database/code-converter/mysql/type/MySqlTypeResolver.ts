@@ -2,9 +2,9 @@ import {EntityPropertyType} from '@/erdiagram/parser/statement/statement-types-p
 
 export default class MySqlTypeResolver {
 
-	private readonly typesMap: Record<string, string>;
+	private readonly typesMap: Record<EntityPropertyType, string>;
 
-	constructor(typesMap: Record<string, string>) {
+	constructor(typesMap: Record<EntityPropertyType, string>) {
 		this.typesMap = typesMap;
 	}
 

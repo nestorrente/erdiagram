@@ -11,6 +11,7 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "declarationMap": true,
+    "downlevelIteration": true,
     "baseUrl": ".",
     "paths": {
       "@/*": [

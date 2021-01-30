@@ -1,3 +1,13 @@
+/* ========================= User class ========================= */
+
+package com.example.erdiagram;
+
+import com.example.erdiagram.Country;
+import com.example.erdiagram.Permission;
+import com.example.erdiagram.User;
+import java.util.List;
+import java.util.time.LocalDate;
+
 public class User {
 
     private Long id;
@@ -95,6 +105,10 @@ public class User {
 
 }
 
+/* ========================= Country class ========================= */
+
+package com.example.erdiagram;
+
 public class Country {
 
     private Long id;
@@ -126,6 +140,13 @@ public class Country {
     }
 
 }
+
+/* ========================= Permission class ========================= */
+
+package com.example.erdiagram;
+
+import com.example.erdiagram.User;
+import java.util.List;
 
 public class Permission {
 

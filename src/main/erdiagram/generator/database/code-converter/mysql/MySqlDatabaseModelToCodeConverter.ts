@@ -23,32 +23,42 @@ export default class MySqlDatabaseModelToCodeConverter implements DatabaseModelT
 
 	private readonly config: MySqlDatabaseModelToCodeConverterConfig;
 
+	private readonly tableNameCaseConverter: CaseConverter;
+
 	private readonly columnCodeGenerator: MySqlColumnCodeGenerator;
 	private readonly idColumnCodeGenerator: MySqlIdColumnCodeGenerator;
 	private readonly foreignColumnCodeGenerator: MySqlForeignColumnCodeGenerator;
-
-	private readonly tableNameCaseConverter: CaseConverter;
 
 	constructor(config?: Partial<MySqlDatabaseModelToCodeConverterConfig>) {
 
 		this.config = mergeWithDefaultConfig(config);
 
-		const typeResolver = new MySqlTypeResolver(this.config.typesMap);
-		this.columnCodeGenerator = new MySqlColumnCodeGenerator(typeResolver);
+		this.tableNameCaseConverter = new CaseConverter(
+				StandardCaseFormats.LOWER_CAMEL,
+				this.config.tableNameCaseFormat
+		);
+
+		const columnNameCaseConverter = new CaseConverter(
+				StandardCaseFormats.LOWER_CAMEL,
+				this.config.columnNameCaseFormat
+		);
+
+		this.columnCodeGenerator = new MySqlColumnCodeGenerator(
+				new MySqlTypeResolver(this.config.typesMap),
+				columnNameCaseConverter
+		);
 
 		this.idColumnCodeGenerator = new MySqlIdColumnCodeGenerator(
 				this.config.idNamingStrategy,
-				this.columnCodeGenerator
+				this.columnCodeGenerator,
+				this.config.idColumnType
 		);
 
 		this.foreignColumnCodeGenerator = new MySqlForeignColumnCodeGenerator(
 				this.config.idNamingStrategy,
-				this.columnCodeGenerator
-		);
-
-		this.tableNameCaseConverter = new CaseConverter(
-				StandardCaseFormats.LOWER_CAMEL,
-				this.config.tableNameCaseFormat
+				this.columnCodeGenerator,
+				this.tableNameCaseConverter,
+				columnNameCaseConverter
 		);
 
 	}

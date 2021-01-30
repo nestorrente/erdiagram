@@ -9,12 +9,12 @@ const INDENT: string = '    ';
 
 export default class MySqlIdColumnCodeGenerator {
 
-	private readonly columnCodeGenerator: MySqlColumnCodeGenerator;
-	private readonly idNamingStrategy: IdNamingStrategy;
+	constructor(
+			private readonly idNamingStrategy: IdNamingStrategy,
+			private readonly columnCodeGenerator: MySqlColumnCodeGenerator,
+			private readonly idColumnType: EntityPropertyType
+	) {
 
-	constructor(idNamingStrategy: IdNamingStrategy, columnCodeGenerator: MySqlColumnCodeGenerator) {
-		this.idNamingStrategy = idNamingStrategy;
-		this.columnCodeGenerator = columnCodeGenerator;
 	}
 
 	public generateIdColumnCode(tableName: string): IdColumnCode {
@@ -37,7 +37,7 @@ export default class MySqlIdColumnCodeGenerator {
 	private createIdColumnDescriptor(tableName: string): TableColumnDescriptor {
 		return {
 			name: this.getTableId(tableName),
-			type: EntityPropertyType.LONG,
+			type: this.idColumnType,
 			notNull: true,
 			autoincremental: true,
 			// As primary keys are unique by default, we don't
