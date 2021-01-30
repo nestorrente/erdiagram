@@ -64,7 +64,7 @@ describe('Parse entity property statement', () => {
 			unique: false
 		};
 
-		expect(result).toEqual(expected);
+		expect(result).toStrictEqual(expected);
 
 	});
 
@@ -81,7 +81,7 @@ describe('Parse entity property statement', () => {
 			unique: false
 		};
 
-		expect(result).toEqual(expected);
+		expect(result).toStrictEqual(expected);
 
 	});
 
@@ -98,7 +98,7 @@ describe('Parse entity property statement', () => {
 			unique: false
 		};
 
-		expect(result).toEqual(expected);
+		expect(result).toStrictEqual(expected);
 
 	});
 
@@ -115,7 +115,7 @@ describe('Parse entity property statement', () => {
 			unique: false
 		};
 
-		expect(result).toEqual(expected);
+		expect(result).toStrictEqual(expected);
 
 	});
 
@@ -132,7 +132,7 @@ describe('Parse entity property statement', () => {
 			unique: true
 		};
 
-		expect(result).toEqual(expected);
+		expect(result).toStrictEqual(expected);
 
 	});
 
@@ -149,7 +149,7 @@ describe('Parse entity property statement', () => {
 			unique: true
 		};
 
-		expect(result).toEqual(expected);
+		expect(result).toStrictEqual(expected);
 
 	});
 
@@ -200,7 +200,7 @@ describe('Parse relationship statement', () => {
 			}
 		};
 
-		expect(result).toEqual(expected);
+		expect(result).toStrictEqual(expected);
 
 	});
 
@@ -227,7 +227,7 @@ describe('Parse relationship statement', () => {
 			}
 		};
 
-		expect(result).toEqual(expected);
+		expect(result).toStrictEqual(expected);
 
 	});
 
@@ -254,7 +254,7 @@ describe('Parse relationship statement', () => {
 			}
 		};
 
-		expect(result).toEqual(expected);
+		expect(result).toStrictEqual(expected);
 
 	});
 
@@ -281,7 +281,7 @@ describe('Parse relationship statement', () => {
 			}
 		};
 
-		expect(result).toEqual(expected);
+		expect(result).toStrictEqual(expected);
 
 	});
 
@@ -308,7 +308,7 @@ describe('Parse relationship statement', () => {
 			}
 		};
 
-		expect(result).toEqual(expected);
+		expect(result).toStrictEqual(expected);
 
 	});
 
@@ -335,7 +335,7 @@ describe('Parse relationship statement', () => {
 			}
 		};
 
-		expect(result).toEqual(expected);
+		expect(result).toStrictEqual(expected);
 
 	});
 
@@ -362,7 +362,7 @@ describe('Parse relationship statement', () => {
 			}
 		};
 
-		expect(result).toEqual(expected);
+		expect(result).toStrictEqual(expected);
 
 	});
 
@@ -389,7 +389,7 @@ describe('Parse relationship statement', () => {
 			}
 		};
 
-		expect(result).toEqual(expected);
+		expect(result).toStrictEqual(expected);
 
 	});
 

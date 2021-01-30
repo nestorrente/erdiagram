@@ -1,14 +1,14 @@
 import EntityRelationshipModelToCodeConverter from '@/erdiagram/generator/entity-relationship-to-code-converter';
 import {EntityRelationshipModel} from '@/erdiagram/parser/er-model-parser';
 import {EntityPropertyType} from '@/erdiagram/parser/statement/statement-types-parse-functions';
-import {capitalize} from '@/erdiagram/util/string-utils';
+import {capitalizeWord} from '@/erdiagram/util/string-utils';
 import classModelGenerator from '@/erdiagram/generator/oop/class-model/ClassModelGenerator';
 import {ClassDescriptor, FieldDescriptor} from '@/erdiagram/generator/oop/class-model/class-model-types';
+import {indentLine, indentLines} from '@/erdiagram/util/indent-utils';
 
-const INDENT: string = '    ';
 const BLANK_LINE: string = '';
 
-export default class JavaCodeGenerator implements EntityRelationshipModelToCodeConverter {
+export default class JavaEntityRelationshipModelToCodeConverter implements EntityRelationshipModelToCodeConverter {
 
 	public generateCode(entityRelationshipModel: EntityRelationshipModel): string {
 
@@ -22,7 +22,7 @@ export default class JavaCodeGenerator implements EntityRelationshipModelToCodeC
 
 	private generateClass(classDescriptor: ClassDescriptor): string {
 
-		const className = capitalize(classDescriptor.name);
+		const className = capitalizeWord(classDescriptor.name);
 
 		const fieldsLines: string[] = [];
 		const methodsLines: string[] = [];
@@ -58,7 +58,7 @@ export default class JavaCodeGenerator implements EntityRelationshipModelToCodeC
 	private createField(field: FieldDescriptor) {
 
 		const fieldName = field.name;
-		const capitalizedFieldName = capitalize(fieldName);
+		const capitalizedFieldName = capitalizeWord(fieldName);
 
 		const fieldLines = [];
 
@@ -74,13 +74,13 @@ export default class JavaCodeGenerator implements EntityRelationshipModelToCodeC
 
 		const getterLines: string[] = [
 			`public ${javaType} get${capitalizedFieldName}() {`,
-			`${INDENT}return ${fieldName};`,
+			indentLine(`return ${fieldName};`),
 			'}',
 		];
 
 		const setterLines: string[] = [
 			`public ${javaType} set${capitalizedFieldName}(${javaType} ${fieldName}) {`,
-			`${INDENT}this.${fieldName} = ${fieldName};`,
+			indentLine(`this.${fieldName} = ${fieldName};`),
 			'}',
 		];
 
@@ -92,15 +92,6 @@ export default class JavaCodeGenerator implements EntityRelationshipModelToCodeC
 
 	}
 
-}
-
-function indentLines(lines: string[]) {
-	return lines.map(e => {
-		if (e.trim().length === 0) {
-			return e;
-		}
-		return INDENT + e;
-	});
 }
 
 function mapFieldTypeToJavaType(field: FieldDescriptor): string {

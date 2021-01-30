@@ -4,8 +4,8 @@ import {
 	parseEntityPropertyStatement,
 	parseRelationshipStatement,
 	RelationshipDescriptor
-} from './statement/statement-types-parse-functions';
-import {guessStatementType, StatementType} from './statement/statement-type-guesser';
+} from '@/erdiagram/parser/statement/statement-types-parse-functions';
+import {guessStatementType, StatementType} from '@/erdiagram/parser/statement/statement-type-guesser';
 
 export interface EntityRelationshipModel {
 	entities: EntityDescriptor[];
@@ -27,11 +27,10 @@ export function parseEntityRelationshipModel(code: string): EntityRelationshipMo
 
 		switch (statementType) {
 			case StatementType.ENTITY_NAME:
-				const entityDescriptor = {
+				entities.push({
 					name: parseEntityNameStatement(line),
 					properties: []
-				};
-				entities.push(entityDescriptor);
+				});
 				parsingEntity = true;
 				break;
 			case StatementType.ENTITY_PROPERTY:

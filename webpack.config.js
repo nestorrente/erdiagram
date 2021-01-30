@@ -50,6 +50,11 @@ const standaloneConfig = {
         // library: 'EntityRelationshipDiagramCodeGenerator',
         // libraryTarget: 'var',
         // libraryExport: 'default'
+    },
+    stats: {
+        warningsFilter: [
+            './node_modules/yargs/index.js'
+        ]
     }
 };
 

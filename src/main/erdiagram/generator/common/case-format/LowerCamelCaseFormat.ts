@@ -1,5 +1,5 @@
 import AbstractCamelCaseFormat from '@/erdiagram/generator/common/case-format/AbstractCamelCaseFormat';
-import {capitalize} from '@/erdiagram/util/string-utils';
+import {capitalizeWord} from '@/erdiagram/util/string-utils';
 
 export default class LowerCamelCaseFormat extends AbstractCamelCaseFormat {
 
@@ -15,7 +15,7 @@ export default class LowerCamelCaseFormat extends AbstractCamelCaseFormat {
 
 		const capitalizedOtherWords = otherWords
 				.map(word => word.toLowerCase())
-				.map(capitalize);
+				.map(capitalizeWord);
 
 		return lowerCaseFirstWord + capitalizedOtherWords.join('');
 

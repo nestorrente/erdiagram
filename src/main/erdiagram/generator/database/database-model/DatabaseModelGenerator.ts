@@ -6,7 +6,7 @@ import {
 	RelationshipDescriptor,
 	RelationshipMember
 } from '@/erdiagram/parser/statement/statement-types-parse-functions';
-import {capitalize} from '@/erdiagram/util/string-utils';
+import {capitalizeWord} from '@/erdiagram/util/string-utils';
 import {
 	DatabaseModel,
 	TableColumnDescriptor,
@@ -49,7 +49,7 @@ export default databaseModelGenerator;
 
 function generateEntityTable(entity: EntityDescriptor, model: EntityRelationshipModel): TableDescriptor {
 
-	const name = capitalize(entity.name);
+	const name = capitalizeWord(entity.name);
 
 	const columns: TableColumnDescriptor[] = [];
 
@@ -81,7 +81,7 @@ function generateEntityTable(entity: EntityDescriptor, model: EntityRelationship
 
 function generateRelationshipTable(relationship: RelationshipDescriptor): TableDescriptor {
 
-	const name = capitalize(relationship.relationShipName);
+	const name = capitalizeWord(relationship.relationShipName);
 
 	return {
 		name,

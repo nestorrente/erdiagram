@@ -8,8 +8,8 @@ import {
 	EntityPropertyType,
 	RelationshipMember
 } from '@/erdiagram/parser/statement/statement-types-parse-functions';
-import {capitalize} from '@/erdiagram/util/string-utils';
-import {ClassDescriptor, ClassModel, FieldDescriptor} from './class-model-types';
+import {capitalizeWord} from '@/erdiagram/util/string-utils';
+import {ClassDescriptor, ClassModel, FieldDescriptor} from '@/erdiagram/generator/oop/class-model/class-model-types';
 
 export interface ClassModelGenerator {
 	generateClassModel(model: EntityRelationshipModel): ClassModel;
@@ -37,7 +37,7 @@ export default classModelGenerator;
 
 function generateEntityTable(entity: EntityDescriptor, model: EntityRelationshipModel): ClassDescriptor {
 
-	const name = capitalize(entity.name);
+	const name = capitalizeWord(entity.name);
 
 	const fields: FieldDescriptor[] = [
 		createIdField()

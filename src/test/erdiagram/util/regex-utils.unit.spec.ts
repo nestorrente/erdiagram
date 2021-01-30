@@ -1,4 +1,4 @@
-import {escapeRegExpSpecialChars, joinRegExps} from '../../../main/erdiagram/util/regex-utils';
+import {escapeRegExpSpecialChars, joinRegExps} from '@/erdiagram/util/regex-utils';
 
 describe('Escape special characters', () => {
 

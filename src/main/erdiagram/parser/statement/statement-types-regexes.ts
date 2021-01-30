@@ -1,4 +1,4 @@
-import {joinRegExps} from '../../util/regex-utils';
+import {joinRegExps} from '@/erdiagram/util/regex-utils';
 
 const IDENTIFIER_REGEX = /[a-zA-Z_][a-zA-Z_0-9]*/;
 

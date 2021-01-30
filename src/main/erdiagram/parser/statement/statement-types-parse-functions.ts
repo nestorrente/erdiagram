@@ -1,5 +1,9 @@
-import {capitalize, uncapitalize} from '../../util/string-utils';
-import {ENTITY_NAME_LINE_REGEX, ENTITY_PROPERTY_LINE_REGEX, RELATIONSHIP_LINE_REGEX} from './statement-types-regexes';
+import {capitalizeWord, uncapitalizeWord} from '@/erdiagram/util/string-utils';
+import {
+	ENTITY_NAME_LINE_REGEX,
+	ENTITY_PROPERTY_LINE_REGEX,
+	RELATIONSHIP_LINE_REGEX
+} from '@/erdiagram/parser/statement/statement-types-regexes';
 
 export enum Cardinality {
 	MANY = 'many',
@@ -111,15 +115,15 @@ export function parseRelationshipStatement(line: string): RelationshipDescriptor
 	const [
 		fullMatch,
 		leftEntity,
-		leftEntityAlias = uncapitalize(leftEntity),
+		leftEntityAlias = uncapitalizeWord(leftEntity),
 		leftModifiers,
 		leftCardinality,
 		direction,
 		rightCardinality,
 		rightModifiers,
 		rightEntity,
-		rightEntityAlias = uncapitalize(rightEntity),
-		relationShipName = `${leftEntity}${capitalize(rightEntity)}`
+		rightEntityAlias = uncapitalizeWord(rightEntity),
+		relationShipName = `${leftEntity}${capitalizeWord(rightEntity)}`
 	] = result;
 
 	return {

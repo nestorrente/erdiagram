@@ -1,4 +1,8 @@
-import {ENTITY_NAME_LINE_REGEX, ENTITY_PROPERTY_LINE_REGEX, RELATIONSHIP_LINE_REGEX} from './statement-types-regexes';
+import {
+	ENTITY_NAME_LINE_REGEX,
+	ENTITY_PROPERTY_LINE_REGEX,
+	RELATIONSHIP_LINE_REGEX
+} from '@/erdiagram/parser/statement/statement-types-regexes';
 
 export enum StatementType {
 	ENTITY_NAME = 'entityName',

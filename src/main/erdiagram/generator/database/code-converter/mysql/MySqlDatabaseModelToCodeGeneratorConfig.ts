@@ -22,7 +22,7 @@ export const defaultMySqlDatabaseModelToCodeConverterConfig: MySqlDatabaseModelT
 		[EntityPropertyType.TIME]: 'TIME',
 		[EntityPropertyType.DATETIME]: 'TIMESTAMP'
 	},
-	tableCaseFormat: StandardCaseFormats.UPPER_CAMEL,
+	tableNameCaseFormat: StandardCaseFormats.UPPER_CAMEL,
 	columnCaseFormat: StandardCaseFormats.LOWER_CAMEL,
 	// constraintCaseFormat: StandardCaseFormats.JOINING_UNDERSCORE,
 };

@@ -6,7 +6,7 @@ export default interface DatabaseModelToCodeConverterConfig {
 	idColumnType: EntityPropertyType;
 	idNamingStrategy: IdNamingStrategy;
 	typesMap: Record<string, string>;
-	tableCaseFormat: CaseFormat;
+	tableNameCaseFormat: CaseFormat;
 	columnCaseFormat: CaseFormat;
 	// FIXME quizás para las constraint, más que un CaseFormat, tenga sentido un strategy de cómo generar su nombre
 	// constraintCaseFormat: CaseFormat;

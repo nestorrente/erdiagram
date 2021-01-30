@@ -1,4 +1,4 @@
-import {EntityPropertyType} from '../../../parser/statement/statement-types-parse-functions';
+import {EntityPropertyType} from '@/erdiagram/parser/statement/statement-types-parse-functions';
 
 export interface ClassModel {
 	classes: ClassDescriptor[];
