@@ -3,12 +3,18 @@ import {EntityRelationshipModel} from '@/erdiagram/parser/er-model-parser';
 import {EntityPropertyType} from '@/erdiagram/parser/statement/statement-types-parse-functions';
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
 import classModelGenerator from '@/erdiagram/generator/oop/class-model/ClassModelGenerator';
-import {ClassDescriptor, FieldDescriptor} from '@/erdiagram/generator/oop/class-model/class-model-types';
+import {ClassDescriptor, NonEntityFieldDescriptor} from '@/erdiagram/generator/oop/class-model/class-model-types';
 import {indentLine, indentLines} from '@/erdiagram/util/indent-utils';
 
 const BLANK_LINE: string = '';
 
 export default class JavaEntityRelationshipModelToCodeConverter implements EntityRelationshipModelToCodeConverter {
+
+	constructor(
+			private readonly outputPackage: string
+	) {
+
+	}
 
 	public generateCode(entityRelationshipModel: EntityRelationshipModel): string {
 
@@ -55,12 +61,13 @@ export default class JavaEntityRelationshipModelToCodeConverter implements Entit
 
 	}
 
-	private createField(field: FieldDescriptor) {
+	private createField(field: NonEntityFieldDescriptor) {
 
 		const fieldName = field.name;
 		const capitalizedFieldName = capitalizeWord(fieldName);
 
-		const fieldLines = [];
+		const importLines: string[] = [];
+		const fieldLines: string[] = [];
 
 		// TODO use length for validation annotations?
 
@@ -68,7 +75,7 @@ export default class JavaEntityRelationshipModelToCodeConverter implements Entit
 			fieldLines.push('@Nullable');
 		}
 
-		const javaType = mapFieldTypeToJavaType(field);
+		const javaType = mapFieldTypeToJavaType(field, this.outputPackage);
 
 		fieldLines.push(`private ${javaType} ${fieldName};`);
 
@@ -85,6 +92,7 @@ export default class JavaEntityRelationshipModelToCodeConverter implements Entit
 		];
 
 		return {
+			importLines,
 			fieldLines,
 			getterLines,
 			setterLines
@@ -94,19 +102,25 @@ export default class JavaEntityRelationshipModelToCodeConverter implements Entit
 
 }
 
-function mapFieldTypeToJavaType(field: FieldDescriptor): string {
+function mapFieldTypeToJavaType(field: NonEntityFieldDescriptor, outputPackage: string): JavaType {
 	if (field.list) {
-		return mapListTypeToJavaType(field);
+		return mapListTypeToJavaType(field, outputPackage);
 	} else {
-		return mapSingleTypeToJavaType(field);
+		return mapSingleTypeToJavaType(field, outputPackage);
 	}
 }
 
-function mapListTypeToJavaType(field: FieldDescriptor): string {
-	return `List<${mapSingleTypeToJavaType(field)}>`;
+function mapListTypeToJavaType(field: NonEntityFieldDescriptor, outputPackage: string): JavaParameterizedType {
+	return createJavaParameterizedType(
+			'List',
+			'java.util',
+			[
+				mapSingleTypeToJavaType(field, outputPackage)
+			]
+	);
 }
 
-function mapSingleTypeToJavaType(field: FieldDescriptor): string {
+function mapSingleTypeToJavaType(field: NonEntityFieldDescriptor, outputPackage: string): JavaType {
 
 	const {
 		entityType,
@@ -119,7 +133,7 @@ function mapSingleTypeToJavaType(field: FieldDescriptor): string {
 			throw new Error('Invalid field descriptor: provided both primitive and entity types');
 		}
 
-		return entityType;
+		return createJavaType(entityType, outputPackage);
 
 	}
 
@@ -127,16 +141,16 @@ function mapSingleTypeToJavaType(field: FieldDescriptor): string {
 		throw new Error('Invalid field descriptor: missing type');
 	}
 
-	const typesMap: Record<string, string> = {
-		[EntityPropertyType.TEXT]: 'String',
-		[EntityPropertyType.LONG]: 'Long',
-		[EntityPropertyType.INT]: 'Integer',
-		[EntityPropertyType.SHORT]: 'Short',
-		[EntityPropertyType.DECIMAL]: 'BigDecimal',
-		[EntityPropertyType.BOOLEAN]: 'Boolean',
-		[EntityPropertyType.DATE]: 'LocalDate',
-		[EntityPropertyType.TIME]: 'LocalTime',
-		[EntityPropertyType.DATETIME]: 'LocalDateTime'
+	const typesMap: Record<string, JavaType> = {
+		[EntityPropertyType.TEXT]: createJavaType('String', 'java.lang'),
+		[EntityPropertyType.LONG]: createJavaType('Long', 'java.lang'),
+		[EntityPropertyType.INT]: createJavaType('Integer', 'java.lang'),
+		[EntityPropertyType.SHORT]: createJavaType('Short', 'java.lang'),
+		[EntityPropertyType.DECIMAL]: createJavaType('BigDecimal', 'java.lang'),
+		[EntityPropertyType.BOOLEAN]: createJavaType('Boolean', 'java.lang'),
+		[EntityPropertyType.DATE]: createJavaType('LocalDate', 'java.lang'),
+		[EntityPropertyType.TIME]: createJavaType('LocalTime', 'java.lang'),
+		[EntityPropertyType.DATETIME]: createJavaType('LocalDateTime', 'java.lang')
 	};
 
 	if (!typesMap.hasOwnProperty(primitiveType)) {
@@ -145,4 +159,41 @@ function mapSingleTypeToJavaType(field: FieldDescriptor): string {
 
 	return typesMap[primitiveType];
 
+}
+
+interface JavaType {
+	packageName?: string;
+	name: string;
+	readonly canonicalName: string;
+	format(): string;
+}
+
+interface JavaParameterizedType extends JavaType {
+	parameterTypes: JavaType[];
+}
+
+function createJavaType(name: string, packageName?: string): JavaType {
+	return {
+		packageName,
+		name,
+		get canonicalName() {
+			return `${packageName}.${name}`;
+		},
+		format: () => name
+	};
+}
+
+function createJavaParameterizedType(name: string, packageName: string, parameterTypes: JavaType[]): JavaParameterizedType {
+	return {
+		packageName,
+		name,
+		parameterTypes,
+		get canonicalName() {
+			return `${packageName}.${name}`;
+		},
+		format: () => {
+			const formattedParameterTypes = parameterTypes.map(t => t.format()).join(', ');
+			return `${name}<${formattedParameterTypes}>`;
+		}
+	};
 }

@@ -9,7 +9,11 @@ import {
 	RelationshipMember
 } from '@/erdiagram/parser/statement/statement-types-parse-functions';
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
-import {ClassDescriptor, ClassModel, FieldDescriptor} from '@/erdiagram/generator/oop/class-model/class-model-types';
+import {
+	ClassDescriptor,
+	ClassModel,
+	NonEntityFieldDescriptor
+} from '@/erdiagram/generator/oop/class-model/class-model-types';
 
 export interface ClassModelGenerator {
 	generateClassModel(model: EntityRelationshipModel): ClassModel;
@@ -39,7 +43,7 @@ function generateEntityTable(entity: EntityDescriptor, model: EntityRelationship
 
 	const name = capitalizeWord(entity.name);
 
-	const fields: FieldDescriptor[] = [
+	const fields: NonEntityFieldDescriptor[] = [
 		createIdField()
 	];
 
@@ -72,7 +76,7 @@ function generateEntityTable(entity: EntityDescriptor, model: EntityRelationship
 
 }
 
-function createIdField(): FieldDescriptor {
+function createIdField(): NonEntityFieldDescriptor {
 	return {
 		name: 'id',
 		primitiveType: EntityPropertyType.LONG,
@@ -81,7 +85,7 @@ function createIdField(): FieldDescriptor {
 	};
 }
 
-function mapRelationshipMemberToField(toMember: RelationshipMember): FieldDescriptor {
+function mapRelationshipMemberToField(toMember: RelationshipMember): NonEntityFieldDescriptor {
 
 	const list = toMember.cardinality === Cardinality.MANY;
 	const name = list ? pluralize(toMember.entityAlias) : toMember.entityAlias;
@@ -95,7 +99,7 @@ function mapRelationshipMemberToField(toMember: RelationshipMember): FieldDescri
 
 }
 
-function mapPropertyToField(property: EntityPropertyDescriptor): FieldDescriptor {
+function mapPropertyToField(property: EntityPropertyDescriptor): NonEntityFieldDescriptor {
 
 	const {
 		name,

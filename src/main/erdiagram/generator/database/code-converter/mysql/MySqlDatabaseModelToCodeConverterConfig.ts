@@ -4,11 +4,11 @@ import StandardCaseFormats from '@/erdiagram/generator/common/case-format/Standa
 import DatabaseModelToCodeConverterConfig
 	from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverterConfig';
 
-export default interface MySqlDatabaseModelToCodeGeneratorConfig extends DatabaseModelToCodeConverterConfig {
+export default interface MySqlDatabaseModelToCodeConverterConfig extends DatabaseModelToCodeConverterConfig {
 
 }
 
-export const defaultMySqlDatabaseModelToCodeConverterConfig: MySqlDatabaseModelToCodeGeneratorConfig = {
+export const defaultMySqlDatabaseModelToCodeConverterConfig: MySqlDatabaseModelToCodeConverterConfig = {
 	idColumnType: EntityPropertyType.LONG,
 	idNamingStrategy: StandardIdNamingStrategies.DEFAULT,
 	typesMap: {
@@ -27,7 +27,7 @@ export const defaultMySqlDatabaseModelToCodeConverterConfig: MySqlDatabaseModelT
 	// constraintCaseFormat: StandardCaseFormats.JOINING_UNDERSCORE,
 };
 
-export function mergeWithDefaultConfig(config?: Partial<MySqlDatabaseModelToCodeGeneratorConfig>): MySqlDatabaseModelToCodeGeneratorConfig {
+export function mergeWithDefaultConfig(config?: Partial<MySqlDatabaseModelToCodeConverterConfig>): MySqlDatabaseModelToCodeConverterConfig {
 	return {
 		...defaultMySqlDatabaseModelToCodeConverterConfig,
 		...config,

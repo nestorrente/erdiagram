@@ -6,8 +6,8 @@ import MySqlDatabaseModelToCodeConverter
 	from '@/erdiagram/generator/database/code-converter/mysql/MySqlDatabaseModelToCodeConverter';
 import JavaEntityRelationshipModelToCodeConverter
 	from '@/erdiagram/generator/oop/code-converter/java/JavaEntityRelationshipModelToCodeConverter';
-import EntityRelationshipModelToSqlCodeConverter
-	from '@/erdiagram/generator/database/code-converter/EntityRelationshipModelToSqlCodeConverter';
+import EntityRelationshipModelToDatabaseCodeConverter
+	from '@/erdiagram/generator/database/code-converter/EntityRelationshipModelToDatabaseCodeConverter';
 
 const args = yargs
 		.option('format', {
@@ -35,13 +35,13 @@ const config = {
 const modelCodeGenerator = ((): EntityRelationshipModelToCodeConverter => {
 	switch (config.format) {
 		case 'mysql':
-			return new EntityRelationshipModelToSqlCodeConverter(
+			return new EntityRelationshipModelToDatabaseCodeConverter(
 					new MySqlDatabaseModelToCodeConverter({
 						// idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX
 					})
 			);
 		case 'java':
-			return new JavaEntityRelationshipModelToCodeConverter();
+			return new JavaEntityRelationshipModelToCodeConverter('thepackage');
 		default:
 			throw new Error(`Unknown format: ${config.format}`);
 	}

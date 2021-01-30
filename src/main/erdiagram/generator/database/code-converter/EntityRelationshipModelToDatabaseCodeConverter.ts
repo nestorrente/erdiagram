@@ -3,7 +3,7 @@ import databaseModelGenerator from '@/erdiagram/generator/database/database-mode
 import DatabaseModelToCodeConverter from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverter';
 import EntityRelationshipModelToCodeConverter from '@/erdiagram/generator/entity-relationship-to-code-converter';
 
-export default class EntityRelationshipModelToSqlCodeConverter implements EntityRelationshipModelToCodeConverter {
+export default class EntityRelationshipModelToDatabaseCodeConverter implements EntityRelationshipModelToCodeConverter {
 
 	private readonly databaseModelToCodeConverter: DatabaseModelToCodeConverter;
 

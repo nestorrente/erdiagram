@@ -4,7 +4,7 @@ import {
 	TableDescriptor,
 	TableReferenceDescriptor
 } from '@/erdiagram/generator/database/database-model/database-model-types';
-import MySqlDatabaseModelToCodeGeneratorConfig, {mergeWithDefaultConfig} from '@/erdiagram/generator/database/code-converter/mysql/MySqlDatabaseModelToCodeGeneratorConfig';
+import MySqlDatabaseModelToCodeConverterConfig, {mergeWithDefaultConfig} from '@/erdiagram/generator/database/code-converter/mysql/MySqlDatabaseModelToCodeConverterConfig';
 import DatabaseModelToCodeConverter from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverter';
 import TableCreationStatements
 	from '@/erdiagram/generator/database/code-converter/mysql/column/types/TableCreationStatements';
@@ -21,7 +21,7 @@ import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverte
 
 export default class MySqlDatabaseModelToCodeConverter implements DatabaseModelToCodeConverter {
 
-	private readonly config: MySqlDatabaseModelToCodeGeneratorConfig;
+	private readonly config: MySqlDatabaseModelToCodeConverterConfig;
 
 	private readonly columnCodeGenerator: MySqlColumnCodeGenerator;
 	private readonly idColumnCodeGenerator: MySqlIdColumnCodeGenerator;
@@ -29,7 +29,7 @@ export default class MySqlDatabaseModelToCodeConverter implements DatabaseModelT
 
 	private readonly tableNameCaseConverter: CaseConverter;
 
-	constructor(config?: Partial<MySqlDatabaseModelToCodeGeneratorConfig>) {
+	constructor(config?: Partial<MySqlDatabaseModelToCodeConverterConfig>) {
 
 		this.config = mergeWithDefaultConfig(config);
 
