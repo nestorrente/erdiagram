@@ -188,3 +188,81 @@ public class Permission {
     }
 
 }
+
+/* ========================= Tree class ========================= */
+
+package com.example.erdiagram;
+
+import com.example.erdiagram.TreeNode;
+
+public class Tree {
+
+    private Long id;
+    private TreeNode headNode;
+
+    public Long getId() {
+        return id;
+    }
+
+    public Long setId(Long id) {
+        this.id = id;
+    }
+
+    public TreeNode getHeadNode() {
+        return headNode;
+    }
+
+    public TreeNode setHeadNode(TreeNode headNode) {
+        this.headNode = headNode;
+    }
+
+}
+
+/* ========================= TreeNode class ========================= */
+
+package com.example.erdiagram;
+
+import com.example.erdiagram.TreeNode;
+import java.util.List;
+
+public class TreeNode {
+
+    private Long id;
+    private Integer value;
+    @Nullable
+    private TreeNode parent;
+    private List<TreeNode> children;
+
+    public Long getId() {
+        return id;
+    }
+
+    public Long setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getValue() {
+        return value;
+    }
+
+    public Integer setValue(Integer value) {
+        this.value = value;
+    }
+
+    public TreeNode getParent() {
+        return parent;
+    }
+
+    public TreeNode setParent(TreeNode parent) {
+        this.parent = parent;
+    }
+
+    public List<TreeNode> getChildren() {
+        return children;
+    }
+
+    public List<TreeNode> setChildren(List<TreeNode> children) {
+        this.children = children;
+    }
+
+}

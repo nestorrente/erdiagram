@@ -5,7 +5,7 @@ import {EntityPropertyType} from '@/erdiagram/parser/statement/statement-types-p
 export default interface DatabaseModelToCodeConverterConfig {
 	idColumnType: EntityPropertyType;
 	idNamingStrategy: IdNamingStrategy;
-	typesMap: Record<EntityPropertyType, string>;
+	typesMap: Partial<Record<EntityPropertyType, string>>;
 	tableNameCaseFormat: CaseFormat;
 	columnNameCaseFormat: CaseFormat;
 	// FIXME quizás para las constraint, más que un CaseFormat, tenga sentido un strategy de cómo generar su nombre

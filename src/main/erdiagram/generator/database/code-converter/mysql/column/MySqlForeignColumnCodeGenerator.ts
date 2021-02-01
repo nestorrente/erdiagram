@@ -2,7 +2,7 @@ import {EntityPropertyType} from '@/erdiagram/parser/statement/statement-types-p
 import {
 	TableColumnDescriptor,
 	TableReferenceDescriptor
-} from '@/erdiagram/generator/database/database-model/database-model-types';
+} from '@/erdiagram/generator/database/model/database-model-types';
 import ForeignKeyColumnCode
 	from '@/erdiagram/generator/database/code-converter/mysql/column/types/ForeignKeyColumnCode';
 import MySqlColumnCodeGenerator

@@ -3,7 +3,7 @@ import {
 	TableColumnDescriptor,
 	TableDescriptor,
 	TableReferenceDescriptor
-} from '@/erdiagram/generator/database/database-model/database-model-types';
+} from '@/erdiagram/generator/database/model/database-model-types';
 import MySqlDatabaseModelToCodeConverterConfig, {mergeWithDefaultConfig} from '@/erdiagram/generator/database/code-converter/mysql/MySqlDatabaseModelToCodeConverterConfig';
 import DatabaseModelToCodeConverter from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverter';
 import TableCreationStatements

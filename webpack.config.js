@@ -43,6 +43,7 @@ const commonConfig = {
 
 const standaloneConfig = {
     ...commonConfig,
+    entry: './src/main/index.ts',
     target: 'node',
     output: {
         ...commonConfig.output,

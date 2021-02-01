@@ -5,14 +5,15 @@ import CapitalizedUnderscoreCaseFormat from '@/erdiagram/generator/common/case-f
 import UpperUnderscoreCaseFormat from '@/erdiagram/generator/common/case-format/UpperUnderscoreCaseFormat';
 import CaseInsensitiveUnderscoreCaseFormat
 	from '@/erdiagram/generator/common/case-format/CaseInsensitiveUnderscoreCaseFormat';
+import CaseFormat from '@/erdiagram/generator/common/case-format/CaseFormat';
 
 const StandardCaseFormats = {
-	LOWER_CAMEL: new LowerCamelCaseFormat(),
-	UPPER_CAMEL: new UpperCamelCaseFormat(),
-	LOWER_UNDERSCORE: new LowerUnderscoreCaseFormat(),
-	CAPITALIZED_UNDERSCORE: new CapitalizedUnderscoreCaseFormat(),
-	UPPER_UNDERSCORE: new UpperUnderscoreCaseFormat(),
-	CASE_INSENSITIVE_UNDERSCORE: new CaseInsensitiveUnderscoreCaseFormat(),
+	LOWER_CAMEL: new LowerCamelCaseFormat() as CaseFormat,
+	UPPER_CAMEL: new UpperCamelCaseFormat() as CaseFormat,
+	LOWER_UNDERSCORE: new LowerUnderscoreCaseFormat() as CaseFormat,
+	CAPITALIZED_UNDERSCORE: new CapitalizedUnderscoreCaseFormat() as CaseFormat,
+	UPPER_UNDERSCORE: new UpperUnderscoreCaseFormat() as CaseFormat,
+	CASE_INSENSITIVE_UNDERSCORE: new CaseInsensitiveUnderscoreCaseFormat() as CaseFormat,
 };
 
 export default StandardCaseFormats;

@@ -7,7 +7,7 @@ export default interface JavaClassModelToCodeConverterConfig extends ClassModelT
 	generatedClassesPackage?: string;
 }
 
-export const defaultJavaDatabaseModelToCodeConverterConfig: JavaClassModelToCodeConverterConfig = {
+export const defaultJavaClassModelToCodeConverterConfig: JavaClassModelToCodeConverterConfig = {
 	idFieldType: EntityPropertyType.LONG,
 	idNamingStrategy: StandardIdNamingStrategies.DEFAULT,
 	typesMap: {
@@ -25,10 +25,10 @@ export const defaultJavaDatabaseModelToCodeConverterConfig: JavaClassModelToCode
 
 export function mergeWithDefaultConfig(config?: Partial<JavaClassModelToCodeConverterConfig>): JavaClassModelToCodeConverterConfig {
 	return {
-		...defaultJavaDatabaseModelToCodeConverterConfig,
+		...defaultJavaClassModelToCodeConverterConfig,
 		...config,
 		typesMap: {
-			...defaultJavaDatabaseModelToCodeConverterConfig.typesMap,
+			...defaultJavaClassModelToCodeConverterConfig.typesMap,
 			...config?.typesMap
 		}
 	};

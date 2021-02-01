@@ -1,10 +1,5 @@
-import {EntityPropertyType} from '@/erdiagram/parser/statement/statement-types-parse-functions';
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
-import {
-	ClassDescriptor,
-	ClassModel,
-	NonEntityFieldDescriptor
-} from '@/erdiagram/generator/oop/class-model/class-model-types';
+import {ClassDescriptor, ClassModel, NonEntityFieldDescriptor} from '@/erdiagram/generator/oop/model/class-model-types';
 import {indentLine, indentLines} from '@/erdiagram/util/indent-utils';
 import JavaParameterizedType, {
 	createJavaParameterizedType,
@@ -164,23 +159,11 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 			throw new Error('Invalid field descriptor: missing type');
 		}
 
-		const typesMap: Record<EntityPropertyType, JavaType> = {
-			[EntityPropertyType.TEXT]: createJavaType('String', 'java.lang'),
-			[EntityPropertyType.LONG]: createJavaType('Long', 'java.lang'),
-			[EntityPropertyType.INT]: createJavaType('Integer', 'java.lang'),
-			[EntityPropertyType.SHORT]: createJavaType('Short', 'java.lang'),
-			[EntityPropertyType.DECIMAL]: createJavaType('BigDecimal', 'java.math'),
-			[EntityPropertyType.BOOLEAN]: createJavaType('Boolean', 'java.lang'),
-			[EntityPropertyType.DATE]: createJavaType('LocalDate', 'java.util.time'),
-			[EntityPropertyType.TIME]: createJavaType('LocalTime', 'java.util.time'),
-			[EntityPropertyType.DATETIME]: createJavaType('LocalDateTime', 'java.util.time')
-		};
-
-		if (!typesMap.hasOwnProperty(primitiveType)) {
+		if (!this.config.typesMap.hasOwnProperty(primitiveType)) {
 			throw new Error('Unsupported type: ' + primitiveType);
 		}
 
-		return typesMap[primitiveType];
+		return this.config.typesMap[primitiveType]!;
 
 	}
 

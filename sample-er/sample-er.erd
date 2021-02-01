@@ -19,3 +19,12 @@ Permission
 User *<->* Permission
 
 User follower *<->* User follow (Follows)
+
+Tree
+
+TreeNode
+    value int
+
+TreeNode child *<->? TreeNode parent
+
+Tree -> TreeNode headNode

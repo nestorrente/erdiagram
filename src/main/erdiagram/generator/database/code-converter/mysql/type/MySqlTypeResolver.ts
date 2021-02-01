@@ -2,9 +2,9 @@ import {EntityPropertyType} from '@/erdiagram/parser/statement/statement-types-p
 
 export default class MySqlTypeResolver {
 
-	private readonly typesMap: Record<EntityPropertyType, string>;
+	private readonly typesMap: Partial<Record<EntityPropertyType, string>>;
 
-	constructor(typesMap: Record<EntityPropertyType, string>) {
+	constructor(typesMap: Partial<Record<EntityPropertyType, string>>) {
 		this.typesMap = typesMap;
 	}
 
@@ -14,7 +14,7 @@ export default class MySqlTypeResolver {
 			throw new Error('Unsupported type: ' + type);
 		}
 
-		return this.typesMap[type];
+		return this.typesMap[type]!;
 
 	}
 

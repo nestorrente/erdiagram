@@ -12,7 +12,18 @@ export interface EntityRelationshipModel {
 	relationships: RelationshipDescriptor[];
 }
 
-export function parseEntityRelationshipModel(code: string): EntityRelationshipModel {
+export class EntityRelationshipModelParser {
+
+	public parseModel(code: string): EntityRelationshipModel {
+		return parseEntityRelationshipModel(code);
+	}
+
+}
+
+const entityRelationshipModelParser = new EntityRelationshipModelParser();
+export default entityRelationshipModelParser;
+
+function parseEntityRelationshipModel(code: string): EntityRelationshipModel {
 
 	const lines = code.split('\n');
 

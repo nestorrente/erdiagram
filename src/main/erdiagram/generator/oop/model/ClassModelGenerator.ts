@@ -1,5 +1,5 @@
 import pluralize from 'pluralize';
-import {EntityRelationshipModel} from '@/erdiagram/parser/er-model-parser';
+import {EntityRelationshipModel} from '@/erdiagram/parser/EntityRelationshipModelParser';
 import {
 	Cardinality,
 	Direction,
@@ -9,11 +9,7 @@ import {
 	RelationshipMember
 } from '@/erdiagram/parser/statement/statement-types-parse-functions';
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
-import {
-	ClassDescriptor,
-	ClassModel,
-	NonEntityFieldDescriptor
-} from '@/erdiagram/generator/oop/class-model/class-model-types';
+import {ClassDescriptor, ClassModel, NonEntityFieldDescriptor} from '@/erdiagram/generator/oop/model/class-model-types';
 
 export interface ClassModelGenerator {
 	generateClassModel(model: EntityRelationshipModel): ClassModel;

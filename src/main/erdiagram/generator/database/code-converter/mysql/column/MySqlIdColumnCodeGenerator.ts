@@ -1,5 +1,5 @@
 import {EntityPropertyType} from '@/erdiagram/parser/statement/statement-types-parse-functions';
-import {TableColumnDescriptor} from '@/erdiagram/generator/database/database-model/database-model-types';
+import {TableColumnDescriptor} from '@/erdiagram/generator/database/model/database-model-types';
 import IdColumnCode from '@/erdiagram/generator/database/code-converter/mysql/column/types/IdColumnCode';
 import MySqlColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/mysql/column/MySqlColumnCodeGenerator';

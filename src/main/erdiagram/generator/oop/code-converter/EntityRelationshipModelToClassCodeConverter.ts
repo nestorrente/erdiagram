@@ -1,7 +1,7 @@
-import {EntityRelationshipModel} from '@/erdiagram/parser/er-model-parser';
-import EntityRelationshipModelToCodeConverter from '@/erdiagram/generator/entity-relationship-to-code-converter';
+import {EntityRelationshipModel} from '@/erdiagram/parser/EntityRelationshipModelParser';
+import EntityRelationshipModelToCodeConverter from '@/erdiagram/generator/EntityRelationshipModelToCodeConverter';
 import ClassModelToCodeConverter from '@/erdiagram/generator/oop/code-converter/ClassModelToCodeConverter';
-import classModelGenerator from '@/erdiagram/generator/oop/class-model/ClassModelGenerator';
+import classModelGenerator from '@/erdiagram/generator/oop/model/ClassModelGenerator';
 
 export default class EntityRelationshipModelToClassCodeConverter implements EntityRelationshipModelToCodeConverter {
 

@@ -1,7 +1,7 @@
 import yargs from 'yargs';
 import fs from 'fs';
-import {parseEntityRelationshipModel} from '@/erdiagram/parser/er-model-parser';
-import EntityRelationshipModelToCodeConverter from '@/erdiagram/generator/entity-relationship-to-code-converter';
+import entityRelationshipModelParser from '@/erdiagram/parser/EntityRelationshipModelParser';
+import EntityRelationshipModelToCodeConverter from '@/erdiagram/generator/EntityRelationshipModelToCodeConverter';
 import MySqlDatabaseModelToCodeConverter
 	from '@/erdiagram/generator/database/code-converter/mysql/MySqlDatabaseModelToCodeConverter';
 import JavaClassModelToCodeConverter from '@/erdiagram/generator/oop/code-converter/java/JavaClassModelToCodeConverter';
@@ -47,6 +47,9 @@ const modelCodeGenerator = ((): EntityRelationshipModelToCodeConverter => {
 			return new EntityRelationshipModelToClassCodeConverter(
 					new JavaClassModelToCodeConverter({
 						generatedClassesPackage: 'com.example.erdiagram',
+						typesMap: {
+							// [EntityPropertyType.INT]: createJavaType('int')
+						}
 					})
 			);
 		default:
@@ -70,7 +73,7 @@ const outputCallback = ((): OutputCallback => {
 
 const inputCode = fs.readFileSync(config.inputFile).toString();
 
-const model = parseEntityRelationshipModel(inputCode);
+const model = entityRelationshipModelParser.parseModel(inputCode);
 const outputCode = modelCodeGenerator.generateCode(model);
 
 outputCallback(outputCode);

@@ -4,5 +4,5 @@ import {EntityPropertyType} from '@/erdiagram/parser/statement/statement-types-p
 export default interface ClassModelToCodeConverterConfig<T> {
 	idFieldType: EntityPropertyType;
 	idNamingStrategy: IdNamingStrategy;
-	typesMap: Record<EntityPropertyType, T>;
+	typesMap: Partial<Record<EntityPropertyType, T>>;
 }
