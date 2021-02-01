@@ -23,7 +23,9 @@ export const defaultJavaClassModelToCodeConverterConfig: JavaClassModelToCodeCon
 	}
 };
 
-export function mergeWithDefaultConfig(config?: Partial<JavaClassModelToCodeConverterConfig>): JavaClassModelToCodeConverterConfig {
+export function mergeWithDefaultJavaClassModelToCodeConverterConfig(
+		config?: Partial<JavaClassModelToCodeConverterConfig>
+): JavaClassModelToCodeConverterConfig {
 	return {
 		...defaultJavaClassModelToCodeConverterConfig,
 		...config,

@@ -13,7 +13,6 @@ Build date: ${new Date().toISOString()}
 `.trim();
 
 const commonConfig = {
-    entry: './src/main/index.ts',
     devtool: 'source-map',
     mode: 'development',
     module: {
@@ -26,31 +25,48 @@ const commonConfig = {
         ],
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['.ts', '.js'],
         plugins: [
             new TsconfigPathsPlugin()
         ],
     },
     plugins: [
-        new webpack.BannerPlugin({
-                                     banner: BUNDLE_HEADER
-                                 })
+        new webpack.BannerPlugin({banner: BUNDLE_HEADER})
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
     }
 };
 
-const standaloneConfig = {
+const standaloneLibConfig = {
+    ...commonConfig,
+    entry: './src/main/standalone-lib-entry-point.js',
+    output: {
+        ...commonConfig.output,
+        filename: 'erdiagram.js',
+        library: 'ERDiagram',
+        libraryTarget: 'var',
+        libraryExport: 'default'
+    }
+};
+
+const moduleLibConfig = {
+    ...commonConfig,
+    entry: './src/main/exports.ts',
+    output: {
+        ...commonConfig.output,
+        filename: 'erdiagram.esm.js',
+        libraryTarget: 'umd'
+    }
+};
+
+const cliConfig = {
     ...commonConfig,
     entry: './src/main/index.ts',
     target: 'node',
     output: {
         ...commonConfig.output,
-        filename: 'er-diagram-code-generator.js',
-        // library: 'EntityRelationshipDiagramCodeGenerator',
-        // libraryTarget: 'var',
-        // libraryExport: 'default'
+        filename: 'erdiagram-cli.js'
     },
     stats: {
         warningsFilter: [
@@ -60,5 +76,7 @@ const standaloneConfig = {
 };
 
 module.exports = [
-    standaloneConfig
+    standaloneLibConfig,
+    moduleLibConfig,
+    cliConfig,
 ];

@@ -1,11 +1,9 @@
-import * as common from './common/exports';
-import * as database from './database/exports';
-import * as oop from './oop/exports';
 import EntityRelationshipModelToCodeConverter from '@/erdiagram/generator/EntityRelationshipModelToCodeConverter';
 
+export * from './common/exports';
+export * from './database/exports';
+export * from './oop/exports';
+
 export {
-	common,
-	database,
-	oop,
 	EntityRelationshipModelToCodeConverter
 };

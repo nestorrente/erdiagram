@@ -4,7 +4,7 @@ import {
 	TableDescriptor,
 	TableReferenceDescriptor
 } from '@/erdiagram/generator/database/model/database-model-types';
-import MySqlDatabaseModelToCodeConverterConfig, {mergeWithDefaultConfig} from '@/erdiagram/generator/database/code-converter/mysql/MySqlDatabaseModelToCodeConverterConfig';
+import MySqlDatabaseModelToCodeConverterConfig, {mergeWithDefaultMySqlDatabaseModelToCodeConverterConfig} from '@/erdiagram/generator/database/code-converter/mysql/MySqlDatabaseModelToCodeConverterConfig';
 import DatabaseModelToCodeConverter from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverter';
 import TableCreationStatements
 	from '@/erdiagram/generator/database/code-converter/mysql/column/types/TableCreationStatements';
@@ -31,7 +31,7 @@ export default class MySqlDatabaseModelToCodeConverter implements DatabaseModelT
 
 	constructor(config?: Partial<MySqlDatabaseModelToCodeConverterConfig>) {
 
-		this.config = mergeWithDefaultConfig(config);
+		this.config = mergeWithDefaultMySqlDatabaseModelToCodeConverterConfig(config);
 
 		this.tableNameCaseConverter = new CaseConverter(
 				StandardCaseFormats.LOWER_CAMEL,

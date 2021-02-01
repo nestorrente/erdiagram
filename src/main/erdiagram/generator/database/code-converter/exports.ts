@@ -4,10 +4,9 @@ import DatabaseModelToCodeConverterConfig
 import EntityRelationshipModelToDatabaseCodeConverter
 	from '@/erdiagram/generator/database/code-converter/EntityRelationshipModelToDatabaseCodeConverter';
 
-import * as mysql from './mysql/exports';
+export * from './mysql/exports';
 
 export {
-	mysql,
 	DatabaseModelToCodeConverter,
 	DatabaseModelToCodeConverterConfig,
 	EntityRelationshipModelToDatabaseCodeConverter

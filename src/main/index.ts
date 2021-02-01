@@ -1,14 +1,13 @@
 import yargs from 'yargs';
 import fs from 'fs';
-import entityRelationshipModelParser from '@/erdiagram/parser/EntityRelationshipModelParser';
-import EntityRelationshipModelToCodeConverter from '@/erdiagram/generator/EntityRelationshipModelToCodeConverter';
-import MySqlDatabaseModelToCodeConverter
-	from '@/erdiagram/generator/database/code-converter/mysql/MySqlDatabaseModelToCodeConverter';
-import JavaClassModelToCodeConverter from '@/erdiagram/generator/oop/code-converter/java/JavaClassModelToCodeConverter';
-import EntityRelationshipModelToDatabaseCodeConverter
-	from '@/erdiagram/generator/database/code-converter/EntityRelationshipModelToDatabaseCodeConverter';
-import EntityRelationshipModelToClassCodeConverter
-	from '@/erdiagram/generator/oop/code-converter/EntityRelationshipModelToClassCodeConverter';
+import {
+	entityRelationshipModelParser,
+	EntityRelationshipModelToClassCodeConverter,
+	EntityRelationshipModelToCodeConverter,
+	EntityRelationshipModelToDatabaseCodeConverter,
+	JavaClassModelToCodeConverter,
+	MySqlDatabaseModelToCodeConverter
+} from '@/exports';
 
 const args = yargs
 		.option('format', {

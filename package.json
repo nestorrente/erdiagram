@@ -1,10 +1,10 @@
 {
-  "name": "@nestorrente/er-diagram-code-generator",
+  "name": "@nestorrente/erdiagram",
   "version": "0.1.0",
   "description": "Entity-Relationship Diagram Code Generator",
-  "main": "dist/er-diagram-code-generator.js",
-  "module": "dist/er-diagram-code-generator.esm.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/erdiagram.js",
+  "module": "dist/erdiagram.esm.js",
+  "types": "dist/exports.d.ts",
   "scripts": {
     "test": "jest --config jest.config.js",
     "build": "webpack",

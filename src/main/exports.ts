@@ -1,3 +1,1 @@
-import * as erdiagram from './erdiagram/exports';
-
-export default erdiagram;
+export * from './erdiagram/exports';

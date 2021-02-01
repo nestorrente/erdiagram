@@ -14,14 +14,14 @@ import {
 	TableDescriptor,
 	TableReferenceDescriptor
 } from '@/erdiagram/generator/database/model/database-model-types';
-import DatabaseModelGeneratorConfig, {mergeWithDefaultConfig} from '@/erdiagram/generator/database/model/DatabaseModelGeneratorConfig';
+import DatabaseModelGeneratorConfig, {mergeWithDefaultDatabaseModelGeneratorConfig} from '@/erdiagram/generator/database/model/DatabaseModelGeneratorConfig';
 
 export class DatabaseModelGenerator {
 
 	private readonly config: DatabaseModelGeneratorConfig;
 
 	constructor(config?: Partial<DatabaseModelGeneratorConfig>) {
-		this.config = mergeWithDefaultConfig(config);
+		this.config = mergeWithDefaultDatabaseModelGeneratorConfig(config);
 	}
 
 	generateDatabaseModel(model: EntityRelationshipModel): DatabaseModel {

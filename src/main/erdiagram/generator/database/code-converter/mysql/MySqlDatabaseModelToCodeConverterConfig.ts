@@ -27,7 +27,9 @@ export const defaultMySqlDatabaseModelToCodeConverterConfig: MySqlDatabaseModelT
 	// constraintCaseFormat: StandardCaseFormats.JOINING_UNDERSCORE,
 };
 
-export function mergeWithDefaultConfig(config?: Partial<MySqlDatabaseModelToCodeConverterConfig>): MySqlDatabaseModelToCodeConverterConfig {
+export function mergeWithDefaultMySqlDatabaseModelToCodeConverterConfig(
+		config?: Partial<MySqlDatabaseModelToCodeConverterConfig>
+): MySqlDatabaseModelToCodeConverterConfig {
 	return {
 		...defaultMySqlDatabaseModelToCodeConverterConfig,
 		...config,
