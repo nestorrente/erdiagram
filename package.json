@@ -4,7 +4,7 @@
   "description": "Entity-Relationship Diagram Code Generator",
   "main": "dist/erdiagram.js",
   "module": "dist/erdiagram.esm.js",
-  "types": "dist/exports.d.ts",
+  "types": "dist/module-entry.d.ts",
   "scripts": {
     "test": "jest --config jest.config.js",
     "build": "webpack",

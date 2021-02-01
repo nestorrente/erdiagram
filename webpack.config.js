@@ -38,9 +38,9 @@ const commonConfig = {
     }
 };
 
-const standaloneLibConfig = {
+const standaloneConfig = {
     ...commonConfig,
-    entry: './src/main/standalone-lib-entry-point.js',
+    entry: './src/main/standalone-entry.js',
     output: {
         ...commonConfig.output,
         filename: 'erdiagram.js',
@@ -50,33 +50,18 @@ const standaloneLibConfig = {
     }
 };
 
-const moduleLibConfig = {
+const moduleConfig = {
     ...commonConfig,
-    entry: './src/main/exports.ts',
+    entry: './src/main/module-entry.ts',
     output: {
         ...commonConfig.output,
         filename: 'erdiagram.esm.js',
-        libraryTarget: 'umd'
-    }
-};
-
-const cliConfig = {
-    ...commonConfig,
-    entry: './src/main/index.ts',
-    target: 'node',
-    output: {
-        ...commonConfig.output,
-        filename: 'erdiagram-cli.js'
-    },
-    stats: {
-        warningsFilter: [
-            './node_modules/yargs/index.js'
-        ]
+        libraryTarget: 'umd',
+        globalObject: 'typeof self !== \'undefined\' ? self : this'
     }
 };
 
 module.exports = [
-    standaloneLibConfig,
-    moduleLibConfig,
-    cliConfig,
+    standaloneConfig,
+    moduleConfig
 ];
