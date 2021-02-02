@@ -4,6 +4,7 @@ import EntityRelationshipModelToClassCodeConverter
 	from '@/erdiagram/generator/oop/code-converter/EntityRelationshipModelToClassCodeConverter';
 
 export * from './java/exports';
+export * from './typescript/exports';
 
 export {
 	ClassModelToCodeConverter,

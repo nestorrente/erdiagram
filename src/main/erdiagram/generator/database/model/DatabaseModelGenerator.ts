@@ -1,5 +1,4 @@
 import pluralize from 'pluralize';
-import {EntityRelationshipModel} from '@/erdiagram/parser/EntityRelationshipModelParser';
 import {
 	Cardinality,
 	EntityDescriptor,
@@ -15,6 +14,7 @@ import {
 	TableReferenceDescriptor
 } from '@/erdiagram/generator/database/model/database-model-types';
 import DatabaseModelGeneratorConfig, {mergeWithDefaultDatabaseModelGeneratorConfig} from '@/erdiagram/generator/database/model/DatabaseModelGeneratorConfig';
+import EntityRelationshipModel from '@/erdiagram/parser/EntityRelationshipModel';
 
 export class DatabaseModelGenerator {
 

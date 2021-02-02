@@ -1,7 +1,7 @@
-import {EntityRelationshipModel} from '@/erdiagram/parser/EntityRelationshipModelParser';
 import databaseModelGenerator from '@/erdiagram/generator/database/model/DatabaseModelGenerator';
 import DatabaseModelToCodeConverter from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverter';
 import EntityRelationshipModelToCodeConverter from '@/erdiagram/generator/EntityRelationshipModelToCodeConverter';
+import EntityRelationshipModel from '@/erdiagram/parser/EntityRelationshipModel';
 
 export default class EntityRelationshipModelToDatabaseCodeConverter implements EntityRelationshipModelToCodeConverter {
 

@@ -10,7 +10,7 @@ import {removeDuplicates} from '@/erdiagram/util/array-utils';
 import ClassModelToCodeConverter from '@/erdiagram/generator/oop/code-converter/ClassModelToCodeConverter';
 import JavaClassModelToCodeConverterConfig, {mergeWithDefaultJavaClassModelToCodeConverterConfig} from '@/erdiagram/generator/oop/code-converter/java/JavaClassModelToCodeConverterConfig';
 
-const BLANK_LINE: string = '';
+const EMPTY_STRING: string = '';
 
 export default class JavaClassModelToCodeConverter implements ClassModelToCodeConverter {
 
@@ -45,31 +45,44 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 
 			fieldsTypes.push(fieldType);
 			fieldsLines.push(...fieldLines);
-			methodsLines.push(...getterLines, BLANK_LINE, ...setterLines, BLANK_LINE);
+			methodsLines.push(...getterLines, EMPTY_STRING, ...setterLines, EMPTY_STRING);
 
 		}
 
 		const classOuterLines = [
-			`/* ========================= ${classDescriptor.name} class ========================= */`,
-			BLANK_LINE
+			`/* ========================= ${className} class ========================= */`,
+			EMPTY_STRING
 		];
 
 		if (this.config.generatedClassesPackage) {
-			classOuterLines.push(`package ${this.config.generatedClassesPackage};`, BLANK_LINE);
+			classOuterLines.push(`package ${this.config.generatedClassesPackage};`, EMPTY_STRING);
 		}
 
 		const importLines = createImportStatements(fieldsTypes);
 
+		if (this.config.useSpringNullabilityAnnotations) {
+			// FIXME gestionar estos imports de otra forma
+			// Quizás hacer que createField() devuelva qué tipos utiliza, y no solo el tipo del campo
+			const importNonNullAnnotation = classDescriptor.fields.some(f => !f.nullable);
+			if (importNonNullAnnotation) {
+				importLines.push('import org.springframework.lang.NonNull;');
+			}
+			const importNullableAnnotation = classDescriptor.fields.some(f => f.nullable);
+			if (importNullableAnnotation) {
+				importLines.push('import org.springframework.lang.Nullable;');
+			}
+		}
+
 		if (importLines.length !== 0) {
-			classOuterLines.push(...importLines, BLANK_LINE);
+			classOuterLines.push(...importLines, EMPTY_STRING);
 		}
 
 		classOuterLines.push(`public class ${className} {`);
 
 		const classContentLines: string[] = [
-			BLANK_LINE,
+			EMPTY_STRING,
 			...fieldsLines,
-			BLANK_LINE,
+			EMPTY_STRING,
 			...methodsLines
 		];
 
@@ -90,8 +103,12 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 
 		// TODO use length for validation annotations?
 
-		if (field.nullable) {
-			fieldLines.push('@Nullable');
+		if (this.config.useSpringNullabilityAnnotations) {
+			if (field.nullable) {
+				fieldLines.push('@Nullable');
+			} else {
+				fieldLines.push('@NonNull');
+			}
 		}
 
 		const javaType = this.mapFieldTypeToJavaType(field);

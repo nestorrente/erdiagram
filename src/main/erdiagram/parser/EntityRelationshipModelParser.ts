@@ -6,11 +6,7 @@ import {
 	RelationshipDescriptor
 } from '@/erdiagram/parser/statement/statement-types-parse-functions';
 import {guessStatementType, StatementType} from '@/erdiagram/parser/statement/statement-type-guesser';
-
-export interface EntityRelationshipModel {
-	entities: EntityDescriptor[];
-	relationships: RelationshipDescriptor[];
-}
+import EntityRelationshipModel from '@/erdiagram/parser/EntityRelationshipModel';
 
 export class EntityRelationshipModelParser {
 

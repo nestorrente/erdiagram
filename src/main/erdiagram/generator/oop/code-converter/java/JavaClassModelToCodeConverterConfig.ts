@@ -5,6 +5,7 @@ import JavaType, {createJavaType} from '@/erdiagram/generator/oop/code-converter
 
 export default interface JavaClassModelToCodeConverterConfig extends ClassModelToCodeConverterConfig<JavaType> {
 	generatedClassesPackage?: string;
+	useSpringNullabilityAnnotations: boolean;
 }
 
 export const defaultJavaClassModelToCodeConverterConfig: JavaClassModelToCodeConverterConfig = {
@@ -20,7 +21,8 @@ export const defaultJavaClassModelToCodeConverterConfig: JavaClassModelToCodeCon
 		[EntityPropertyType.DATE]: createJavaType('LocalDate', 'java.util.time'),
 		[EntityPropertyType.TIME]: createJavaType('LocalTime', 'java.util.time'),
 		[EntityPropertyType.DATETIME]: createJavaType('LocalDateTime', 'java.util.time')
-	}
+	},
+	useSpringNullabilityAnnotations: false
 };
 
 export function mergeWithDefaultJavaClassModelToCodeConverterConfig(

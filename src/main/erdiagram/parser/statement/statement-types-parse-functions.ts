@@ -4,7 +4,6 @@ import {
 	ENTITY_PROPERTY_LINE_REGEX,
 	RELATIONSHIP_LINE_REGEX
 } from '@/erdiagram/parser/statement/statement-types-regexes';
-import pluralize from 'pluralize';
 
 export enum Cardinality {
 	MANY = 'many',
@@ -116,43 +115,29 @@ export function parseRelationshipStatement(line: string): RelationshipDescriptor
 	const [
 		fullMatch,
 		leftEntity,
-		providedLeftEntityAlias,
+		leftEntityAlias = leftEntity,
 		leftModifiers,
 		leftCardinalityCharacter,
 		direction,
 		rightCardinalityCharacter,
 		rightModifiers,
 		rightEntity,
-		providedRightEntityAlias,
+		rightEntityAlias = rightEntity,
 		relationShipName
 	] = result;
-
-	const leftCardinality = leftCardinalityCharacter === '*' ? Cardinality.MANY : Cardinality.ONE;
-	const rightCardinality = rightCardinalityCharacter === '*' ? Cardinality.MANY : Cardinality.ONE;
-
-	const leftEntityAlias = providedLeftEntityAlias || (
-			leftCardinality === Cardinality.MANY
-					? pluralize(leftEntity)
-					: leftEntity
-	);
-	const rightEntityAlias = providedRightEntityAlias || (
-			rightCardinality === Cardinality.MANY
-					? pluralize(rightEntity)
-					: rightEntity
-	);
 
 	return {
 		leftMember: {
 			entity: capitalizeWord(leftEntity),
 			entityAlias: uncapitalizeWord(leftEntityAlias),
-			cardinality: leftCardinality,
+			cardinality: leftCardinalityCharacter === '*' ? Cardinality.MANY : Cardinality.ONE,
 			optional: leftModifiers.includes('?'),
 			unique: leftModifiers.includes('!')
 		},
 		rightMember: {
 			entity: capitalizeWord(rightEntity),
 			entityAlias: uncapitalizeWord(rightEntityAlias),
-			cardinality: rightCardinality,
+			cardinality: rightCardinalityCharacter === '*' ? Cardinality.MANY : Cardinality.ONE,
 			optional: rightModifiers.includes('?'),
 			unique: rightModifiers.includes('!')
 		},

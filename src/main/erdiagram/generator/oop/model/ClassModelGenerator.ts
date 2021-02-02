@@ -1,4 +1,4 @@
-import {EntityRelationshipModel} from '@/erdiagram/parser/EntityRelationshipModelParser';
+import pluralize from 'pluralize';
 import {
 	Cardinality,
 	Direction,
@@ -9,6 +9,7 @@ import {
 } from '@/erdiagram/parser/statement/statement-types-parse-functions';
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
 import {ClassDescriptor, ClassModel, NonEntityFieldDescriptor} from '@/erdiagram/generator/oop/model/class-model-types';
+import EntityRelationshipModel from '@/erdiagram/parser/EntityRelationshipModel';
 
 export interface ClassModelGenerator {
 	generateClassModel(model: EntityRelationshipModel): ClassModel;
@@ -83,7 +84,7 @@ function createIdField(): NonEntityFieldDescriptor {
 function mapRelationshipMemberToField(toMember: RelationshipMember): NonEntityFieldDescriptor {
 
 	const list = toMember.cardinality === Cardinality.MANY;
-	const name = toMember.entityAlias;
+	const name = list ? pluralize(toMember.entityAlias) : toMember.entityAlias;
 
 	return {
 		name,

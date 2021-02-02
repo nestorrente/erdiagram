@@ -1,4 +1,4 @@
-import {EntityRelationshipModel} from '@/erdiagram/parser/EntityRelationshipModelParser';
+import EntityRelationshipModel from '@/erdiagram/parser/EntityRelationshipModel';
 
 export default interface EntityRelationshipModelToCodeConverter {
 
