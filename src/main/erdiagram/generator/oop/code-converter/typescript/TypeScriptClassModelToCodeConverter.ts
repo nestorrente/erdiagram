@@ -1,7 +1,7 @@
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
 import {ClassDescriptor, ClassModel, NonEntityFieldDescriptor} from '@/erdiagram/generator/oop/model/class-model-types';
 import {indentLines} from '@/erdiagram/util/indent-utils';
-import TypeScriptParameterizedType, {createTypeScriptParameterizedType} from '@/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptParameterizedType';
+import TypeScriptParameterizedType, {createTypeScriptArrayType} from '@/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptParameterizedType';
 import TypeScriptType, {createTypeScriptType} from '@/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptType';
 import ClassModelToCodeConverter from '@/erdiagram/generator/oop/code-converter/ClassModelToCodeConverter';
 import TypeScriptClassModelToCodeConverterConfig, {mergeWithDefaultTypeScriptClassModelToCodeConverterConfig} from '@/erdiagram/generator/oop/code-converter/typescript/TypeScriptClassModelToCodeConverterConfig';
@@ -60,12 +60,7 @@ export default class TypeScriptClassModelToCodeConverter implements ClassModelTo
 	}
 
 	private mapListTypeToTypeScriptType(field: NonEntityFieldDescriptor): TypeScriptParameterizedType {
-		return createTypeScriptParameterizedType(
-				'List',
-				[
-					this.mapSingleTypeToTypeScriptType(field)
-				]
-		);
+		return createTypeScriptArrayType(this.mapSingleTypeToTypeScriptType(field));
 	}
 
 	private mapSingleTypeToTypeScriptType(field: NonEntityFieldDescriptor): TypeScriptType {

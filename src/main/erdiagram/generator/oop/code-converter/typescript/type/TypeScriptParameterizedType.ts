@@ -15,6 +15,14 @@ export function createTypeScriptParameterizedType(name: string, parameterTypes: 
 	};
 }
 
+export function createTypeScriptArrayType(parameterType: TypeScriptType): TypeScriptParameterizedType {
+	return {
+		name: 'Array',
+		parameterTypes: [parameterType],
+		format: () => `${parameterType.format()}[]`
+	};
+}
+
 export function isParameterizedType(javaType: TypeScriptType): javaType is TypeScriptParameterizedType {
 	return Array.isArray((javaType as TypeScriptParameterizedType).parameterTypes);
 }
