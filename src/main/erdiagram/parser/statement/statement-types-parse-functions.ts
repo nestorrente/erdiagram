@@ -1,9 +1,10 @@
-import {uncapitalizeWord} from '@/erdiagram/util/string-utils';
+import {capitalizeWord, uncapitalizeWord} from '@/erdiagram/util/string-utils';
 import {
 	ENTITY_NAME_LINE_REGEX,
 	ENTITY_PROPERTY_LINE_REGEX,
 	RELATIONSHIP_LINE_REGEX
 } from '@/erdiagram/parser/statement/statement-types-regexes';
+import pluralize from 'pluralize';
 
 export enum Cardinality {
 	MANY = 'many',
@@ -67,7 +68,7 @@ export function parseEntityNameStatement(line: string): string {
 
 	const [entityName] = result;
 
-	return entityName;
+	return capitalizeWord(entityName);
 
 }
 
@@ -94,7 +95,7 @@ export function parseEntityPropertyStatement(line: string): EntityPropertyDescri
 	}
 
 	return {
-		name,
+		name: uncapitalizeWord(name),
 		optional: modifiers.includes('?'),
 		autoincremental: modifiers.includes('+'),
 		unique: modifiers.includes('!'),
@@ -115,29 +116,43 @@ export function parseRelationshipStatement(line: string): RelationshipDescriptor
 	const [
 		fullMatch,
 		leftEntity,
-		leftEntityAlias = uncapitalizeWord(leftEntity),
+		providedLeftEntityAlias,
 		leftModifiers,
-		leftCardinality,
+		leftCardinalityCharacter,
 		direction,
-		rightCardinality,
+		rightCardinalityCharacter,
 		rightModifiers,
 		rightEntity,
-		rightEntityAlias = uncapitalizeWord(rightEntity),
+		providedRightEntityAlias,
 		relationShipName
 	] = result;
 
+	const leftCardinality = leftCardinalityCharacter === '*' ? Cardinality.MANY : Cardinality.ONE;
+	const rightCardinality = rightCardinalityCharacter === '*' ? Cardinality.MANY : Cardinality.ONE;
+
+	const leftEntityAlias = providedLeftEntityAlias || (
+			leftCardinality === Cardinality.MANY
+					? pluralize(leftEntity)
+					: leftEntity
+	);
+	const rightEntityAlias = providedRightEntityAlias || (
+			rightCardinality === Cardinality.MANY
+					? pluralize(rightEntity)
+					: rightEntity
+	);
+
 	return {
 		leftMember: {
-			entity: leftEntity,
-			entityAlias: leftEntityAlias,
-			cardinality: leftCardinality === '*' ? Cardinality.MANY : Cardinality.ONE,
+			entity: capitalizeWord(leftEntity),
+			entityAlias: uncapitalizeWord(leftEntityAlias),
+			cardinality: leftCardinality,
 			optional: leftModifiers.includes('?'),
 			unique: leftModifiers.includes('!')
 		},
 		rightMember: {
-			entity: rightEntity,
-			entityAlias: rightEntityAlias,
-			cardinality: rightCardinality === '*' ? Cardinality.MANY : Cardinality.ONE,
+			entity: capitalizeWord(rightEntity),
+			entityAlias: uncapitalizeWord(rightEntityAlias),
+			cardinality: rightCardinality,
 			optional: rightModifiers.includes('?'),
 			unique: rightModifiers.includes('!')
 		},
