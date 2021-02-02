@@ -1,4 +1,3 @@
-import pluralize from 'pluralize';
 import {EntityRelationshipModel} from '@/erdiagram/parser/EntityRelationshipModelParser';
 import {
 	Cardinality,
@@ -84,7 +83,7 @@ function createIdField(): NonEntityFieldDescriptor {
 function mapRelationshipMemberToField(toMember: RelationshipMember): NonEntityFieldDescriptor {
 
 	const list = toMember.cardinality === Cardinality.MANY;
-	const name = list ? pluralize(toMember.entityAlias) : toMember.entityAlias;
+	const name = toMember.entityAlias;
 
 	return {
 		name,
