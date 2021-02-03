@@ -38,6 +38,7 @@ export default class MySqlIdColumnCodeGenerator {
 		return {
 			name: this.getTableId(tableName),
 			type: this.idColumnType,
+			length: [],
 			notNull: true,
 			autoincremental: true,
 			// As primary keys are unique by default, we don't

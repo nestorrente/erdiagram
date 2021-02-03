@@ -16,7 +16,7 @@ export interface TableColumnDescriptor {
 	autoincremental: boolean;
 	unique: boolean;
 	type: EntityPropertyType;
-	length?: number;
+	length: number[];
 }
 
 export interface TableReferenceDescriptor {

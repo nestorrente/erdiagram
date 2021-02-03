@@ -58,7 +58,7 @@ describe('Parse entity property statement', () => {
 		const expected: EntityPropertyDescriptor = {
 			name: 'active',
 			type: EntityPropertyType.BOOLEAN,
-			length: undefined,
+			length: [],
 			optional: false,
 			autoincremental: false,
 			unique: false
@@ -68,14 +68,31 @@ describe('Parse entity property statement', () => {
 
 	});
 
-	test('Entity property with length', () => {
+	test('Entity property with length (1 param)', () => {
 
 		const result = parseEntityPropertyStatement(' name text(40)');
 
 		const expected: EntityPropertyDescriptor = {
 			name: 'name',
 			type: EntityPropertyType.TEXT,
-			length: 40,
+			length: [40],
+			optional: false,
+			autoincremental: false,
+			unique: false
+		};
+
+		expect(result).toStrictEqual(expected);
+
+	});
+
+	test('Entity property with length (2 param)', () => {
+
+		const result = parseEntityPropertyStatement(' name decimal(10, 2)');
+
+		const expected: EntityPropertyDescriptor = {
+			name: 'name',
+			type: EntityPropertyType.DECIMAL,
+			length: [10, 2],
 			optional: false,
 			autoincremental: false,
 			unique: false
@@ -92,7 +109,7 @@ describe('Parse entity property statement', () => {
 		const expected: EntityPropertyDescriptor = {
 			name: 'num',
 			type: EntityPropertyType.SHORT,
-			length: undefined,
+			length: [],
 			optional: true,
 			autoincremental: false,
 			unique: false
@@ -109,7 +126,7 @@ describe('Parse entity property statement', () => {
 		const expected: EntityPropertyDescriptor = {
 			name: 'num',
 			type: EntityPropertyType.SHORT,
-			length: undefined,
+			length: [],
 			optional: false,
 			autoincremental: true,
 			unique: false
@@ -126,7 +143,7 @@ describe('Parse entity property statement', () => {
 		const expected: EntityPropertyDescriptor = {
 			name: 'num',
 			type: EntityPropertyType.SHORT,
-			length: undefined,
+			length: [],
 			optional: false,
 			autoincremental: false,
 			unique: true
@@ -143,7 +160,7 @@ describe('Parse entity property statement', () => {
 		const expected: EntityPropertyDescriptor = {
 			name: 'num',
 			type: EntityPropertyType.SHORT,
-			length: undefined,
+			length: [],
 			optional: true,
 			autoincremental: true,
 			unique: true
@@ -182,7 +199,7 @@ describe('Parse relationship statement', () => {
 		const result = parseRelationshipStatement('Entity1 *-> Entity2');
 
 		const expected: RelationshipDescriptor = {
-			relationShipName: 'Entity1Entity2',
+			relationShipName: undefined,
 			direction: Direction.RIGHT,
 			leftMember: {
 				entity: 'Entity1',
@@ -209,7 +226,7 @@ describe('Parse relationship statement', () => {
 		const result = parseRelationshipStatement('Entity1 *<-* Entity2');
 
 		const expected: RelationshipDescriptor = {
-			relationShipName: 'Entity1Entity2',
+			relationShipName: undefined,
 			direction: Direction.LEFT,
 			leftMember: {
 				entity: 'Entity1',
@@ -236,7 +253,7 @@ describe('Parse relationship statement', () => {
 		const result = parseRelationshipStatement('Entity1 1<->1 Entity2');
 
 		const expected: RelationshipDescriptor = {
-			relationShipName: 'Entity1Entity2',
+			relationShipName: undefined,
 			direction: Direction.BOTH,
 			leftMember: {
 				entity: 'Entity1',
@@ -263,7 +280,7 @@ describe('Parse relationship statement', () => {
 		const result = parseRelationshipStatement('Entity1 <->? Entity2');
 
 		const expected: RelationshipDescriptor = {
-			relationShipName: 'Entity1Entity2',
+			relationShipName: undefined,
 			direction: Direction.BOTH,
 			leftMember: {
 				entity: 'Entity1',
@@ -290,7 +307,7 @@ describe('Parse relationship statement', () => {
 		const result = parseRelationshipStatement('Entity1 ?<->! Entity2');
 
 		const expected: RelationshipDescriptor = {
-			relationShipName: 'Entity1Entity2',
+			relationShipName: undefined,
 			direction: Direction.BOTH,
 			leftMember: {
 				entity: 'Entity1',
@@ -317,7 +334,7 @@ describe('Parse relationship statement', () => {
 		const result = parseRelationshipStatement('Entity1 e1 *-> Entity2');
 
 		const expected: RelationshipDescriptor = {
-			relationShipName: 'Entity1Entity2',
+			relationShipName: undefined,
 			direction: Direction.RIGHT,
 			leftMember: {
 				entity: 'Entity1',
@@ -344,7 +361,7 @@ describe('Parse relationship statement', () => {
 		const result = parseRelationshipStatement('Entity1 *-> Entity2 e2');
 
 		const expected: RelationshipDescriptor = {
-			relationShipName: 'Entity1Entity2',
+			relationShipName: undefined,
 			direction: Direction.RIGHT,
 			leftMember: {
 				entity: 'Entity1',

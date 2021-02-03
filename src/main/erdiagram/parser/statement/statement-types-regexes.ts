@@ -12,7 +12,7 @@ const PROPERTY_NAME_REGEX = new RegExp(`(${IDENTIFIER_REGEX.source})`);
 const PROPERTY_MODIFIERS_REGEX = new RegExp(`([?!+]*)`);
 
 const PROPERTY_TYPE_NAME_REGEX = new RegExp(`(${IDENTIFIER_REGEX.source})`);
-const PROPERTY_TYPE_LENGTH_REGEX = new RegExp(`(?:\\((\\d*)\\))?`);
+const PROPERTY_TYPE_LENGTH_REGEX = new RegExp(`(?:\\((\\s*\\d+\\s*(?:,\\s*\\d+\\s*)*)\\))?`);
 
 const ENTITY_PROPERTY_REGEX = joinRegExps(PROPERTY_NAME_REGEX, PROPERTY_MODIFIERS_REGEX, /\s+/, PROPERTY_TYPE_NAME_REGEX, PROPERTY_TYPE_LENGTH_REGEX);
 

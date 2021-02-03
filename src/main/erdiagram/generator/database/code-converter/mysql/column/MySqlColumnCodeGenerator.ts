@@ -48,15 +48,22 @@ export default class MySqlColumnCodeGenerator {
 
 	}
 
-	private generateMySqlTypeDeclaration(type: EntityPropertyType, length: number | undefined) {
+	private generateMySqlTypeDeclaration(type: EntityPropertyType, length: number[]) {
 
 		const mysqlType = this.typeResolver.resolveMySqlType(type);
+		const lengthCode = this.generateLengthCode(length);
 
-		if (length) {
-			return `${mysqlType}(${length})`;
+		return mysqlType + lengthCode;
+
+	}
+
+	private generateLengthCode(length: number[]): string {
+
+		if (length.length === 0) {
+			return '';
 		}
 
-		return mysqlType;
+		return `(${length.join(', ')})`;
 
 	}
 

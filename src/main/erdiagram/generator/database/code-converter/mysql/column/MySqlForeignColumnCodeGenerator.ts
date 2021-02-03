@@ -51,6 +51,7 @@ export default class MySqlForeignColumnCodeGenerator {
 		return {
 			name: columnName,
 			type: EntityPropertyType.LONG,
+			length: [],
 			notNull,
 			unique,
 			autoincremental: false

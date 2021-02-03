@@ -42,16 +42,16 @@ export interface EntityPropertyDescriptor {
 	autoincremental: boolean;
 	unique: boolean;
 	type: EntityPropertyType;
-	length?: number;
+	length: number[];
 }
 
 export enum EntityPropertyType {
-	TEXT = 'text',
-	LONG = 'long',
-	INT = 'int',
-	SHORT = 'short',
-	DECIMAL = 'decimal',
 	BOOLEAN = 'bool',
+	SHORT = 'short',
+	INT = 'int',
+	LONG = 'long',
+	DECIMAL = 'decimal',
+	TEXT = 'text',
 	DATE = 'date',
 	TIME = 'time',
 	DATETIME = 'datetime'
@@ -99,8 +99,19 @@ export function parseEntityPropertyStatement(line: string): EntityPropertyDescri
 		autoincremental: modifiers.includes('+'),
 		unique: modifiers.includes('!'),
 		type: mappedType,
-		length: length ? parseInt(length, 10) : undefined
+		length: parsePropertyLength(length)
 	};
+
+}
+
+function parsePropertyLength(length: string): number[] {
+
+	if (!length) {
+		return [];
+	}
+
+	return length.split(',')
+			.map(lengthNumber => parseInt(lengthNumber.trim(), 10));
 
 }
 
