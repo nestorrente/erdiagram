@@ -16,7 +16,7 @@ import {
 import DatabaseModelGeneratorConfig, {mergeWithDefaultDatabaseModelGeneratorConfig} from '@/erdiagram/generator/database/model/DatabaseModelGeneratorConfig';
 import EntityRelationshipModel from '@/erdiagram/parser/EntityRelationshipModel';
 
-export class DatabaseModelGenerator {
+export default class DatabaseModelGenerator {
 
 	private readonly config: DatabaseModelGeneratorConfig;
 
@@ -44,12 +44,6 @@ export class DatabaseModelGenerator {
 	}
 
 }
-
-// FIXME buscar la forma de poder pasarle las opciones de configuración
-const databaseModelGenerator = new DatabaseModelGenerator({
-	// pluralizeTableNames: true
-});
-export default databaseModelGenerator;
 
 function generateEntityTable(entity: EntityDescriptor, model: EntityRelationshipModel, config: DatabaseModelGeneratorConfig): TableDescriptor {
 

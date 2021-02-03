@@ -1,4 +1,4 @@
-import entityRelationshipModelParser from '@/erdiagram/parser/EntityRelationshipModelParser';
+import EntityRelationshipModelParser from '@/erdiagram/parser/EntityRelationshipModelParser';
 import EntityRelationshipModel from '../../../main/erdiagram/parser/EntityRelationshipModel';
 import {
 	Cardinality,
@@ -18,6 +18,8 @@ function createSimpleProperty(name: string, type: EntityPropertyType, length: nu
 		autoincremental: false
 	};
 }
+
+const entityRelationshipModelParser = new EntityRelationshipModelParser();
 
 describe('Entity', () => {
 
@@ -419,6 +421,38 @@ A <->!? E eAlias (RelationshipName)
 						cardinality: Cardinality.ONE,
 						optional: true,
 						unique: true
+					}
+				}
+			]
+		});
+
+	});
+
+	test('Allow unknown entities', () => {
+
+		const model = new EntityRelationshipModelParser({
+			allowUnknownEntities: true
+		}).parseModel('A -> B');
+
+		expect(model).toStrictEqual<EntityRelationshipModel>({
+			entities: [],
+			relationships: [
+				{
+					relationShipName: undefined,
+					direction: Direction.RIGHT,
+					leftMember: {
+						entity: 'A',
+						entityAlias: 'a',
+						cardinality: Cardinality.ONE,
+						optional: false,
+						unique: false
+					},
+					rightMember: {
+						entity: 'B',
+						entityAlias: 'b',
+						cardinality: Cardinality.ONE,
+						optional: false,
+						unique: false
 					}
 				}
 			]
