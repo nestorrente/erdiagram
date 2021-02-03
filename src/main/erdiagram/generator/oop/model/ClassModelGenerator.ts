@@ -11,11 +11,7 @@ import {capitalizeWord} from '@/erdiagram/util/string-utils';
 import {ClassDescriptor, ClassModel, NonEntityFieldDescriptor} from '@/erdiagram/generator/oop/model/class-model-types';
 import EntityRelationshipModel from '@/erdiagram/parser/EntityRelationshipModel';
 
-export interface ClassModelGenerator {
-	generateClassModel(model: EntityRelationshipModel): ClassModel;
-}
-
-const classModelGenerator: ClassModelGenerator = {
+export default class ClassModelGenerator {
 
 	generateClassModel(model: EntityRelationshipModel): ClassModel {
 
@@ -32,8 +28,6 @@ const classModelGenerator: ClassModelGenerator = {
 	}
 
 };
-
-export default classModelGenerator;
 
 function generateEntityTable(entity: EntityDescriptor, model: EntityRelationshipModel): ClassDescriptor {
 

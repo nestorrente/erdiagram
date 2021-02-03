@@ -27,15 +27,22 @@ export const defaultMySqlDatabaseModelToCodeConverterConfig: MySqlDatabaseModelT
 	// constraintCaseFormat: StandardCaseFormats.JOINING_UNDERSCORE,
 };
 
-export function mergeWithDefaultMySqlDatabaseModelToCodeConverterConfig(
-		config?: Partial<MySqlDatabaseModelToCodeConverterConfig>
+export function mergeMySqlDatabaseModelToCodeConverterConfigs(
+		fullConfig: MySqlDatabaseModelToCodeConverterConfig,
+		partialConfig?: Partial<MySqlDatabaseModelToCodeConverterConfig>
 ): MySqlDatabaseModelToCodeConverterConfig {
 	return {
-		...defaultMySqlDatabaseModelToCodeConverterConfig,
-		...config,
+		...fullConfig,
+		...partialConfig,
 		typesMap: {
-			...defaultMySqlDatabaseModelToCodeConverterConfig.typesMap,
-			...config?.typesMap
+			...fullConfig.typesMap,
+			...partialConfig?.typesMap
 		}
 	};
+}
+
+export function mergeWithDefaultMySqlDatabaseModelToCodeConverterConfig(
+		partialConfig?: Partial<MySqlDatabaseModelToCodeConverterConfig>
+): MySqlDatabaseModelToCodeConverterConfig {
+	return mergeMySqlDatabaseModelToCodeConverterConfigs(defaultMySqlDatabaseModelToCodeConverterConfig, partialConfig);
 }

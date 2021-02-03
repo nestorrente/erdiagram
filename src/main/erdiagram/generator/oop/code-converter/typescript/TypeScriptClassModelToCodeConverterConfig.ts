@@ -23,15 +23,22 @@ export const defaultTypeScriptClassModelToCodeConverterConfig: TypeScriptClassMo
 	}
 };
 
+export function mergeTypeScriptClassModelToCodeConverterConfigs(
+		fullConfig: TypeScriptClassModelToCodeConverterConfig,
+		partialConfig?: Partial<TypeScriptClassModelToCodeConverterConfig>
+): TypeScriptClassModelToCodeConverterConfig {
+	return {
+		...fullConfig,
+		...partialConfig,
+		typesMap: {
+			...fullConfig.typesMap,
+			...partialConfig?.typesMap
+		}
+	};
+}
+
 export function mergeWithDefaultTypeScriptClassModelToCodeConverterConfig(
 		config?: Partial<TypeScriptClassModelToCodeConverterConfig>
 ): TypeScriptClassModelToCodeConverterConfig {
-	return {
-		...defaultTypeScriptClassModelToCodeConverterConfig,
-		...config,
-		typesMap: {
-			...defaultTypeScriptClassModelToCodeConverterConfig.typesMap,
-			...config?.typesMap
-		}
-	};
+	return mergeTypeScriptClassModelToCodeConverterConfigs(defaultTypeScriptClassModelToCodeConverterConfig, config);
 }

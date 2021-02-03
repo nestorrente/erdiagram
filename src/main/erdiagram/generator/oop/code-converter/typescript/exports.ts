@@ -5,6 +5,7 @@ import TypeScriptClassModelToCodeConverter
 	from '@/erdiagram/generator/oop/code-converter/typescript/TypeScriptClassModelToCodeConverter';
 import TypeScriptClassModelToCodeConverterConfig, {
 	defaultTypeScriptClassModelToCodeConverterConfig,
+	mergeTypeScriptClassModelToCodeConverterConfigs,
 	mergeWithDefaultTypeScriptClassModelToCodeConverterConfig
 } from '@/erdiagram/generator/oop/code-converter/typescript/TypeScriptClassModelToCodeConverterConfig';
 
@@ -14,5 +15,6 @@ export {
 	TypeScriptClassModelToCodeConverter,
 	TypeScriptClassModelToCodeConverterConfig,
 	defaultTypeScriptClassModelToCodeConverterConfig,
+	mergeTypeScriptClassModelToCodeConverterConfigs,
 	mergeWithDefaultTypeScriptClassModelToCodeConverterConfig
 };

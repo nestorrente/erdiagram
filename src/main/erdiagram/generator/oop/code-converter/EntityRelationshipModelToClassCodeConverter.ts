@@ -1,18 +1,19 @@
 import EntityRelationshipModelToCodeConverter from '@/erdiagram/generator/EntityRelationshipModelToCodeConverter';
 import ClassModelToCodeConverter from '@/erdiagram/generator/oop/code-converter/ClassModelToCodeConverter';
-import classModelGenerator from '@/erdiagram/generator/oop/model/ClassModelGenerator';
 import EntityRelationshipModel from '@/erdiagram/parser/EntityRelationshipModel';
+import ClassModelGenerator from '@/erdiagram/generator/oop/model/ClassModelGenerator';
 
 export default class EntityRelationshipModelToClassCodeConverter implements EntityRelationshipModelToCodeConverter {
 
-	private readonly classModelToCodeConverter: ClassModelToCodeConverter;
+	constructor(
+			private readonly classModelGenerator: ClassModelGenerator,
+			private readonly classModelToCodeConverter: ClassModelToCodeConverter
+	) {
 
-	constructor(classModelToCodeConverter: ClassModelToCodeConverter) {
-		this.classModelToCodeConverter = classModelToCodeConverter;
 	}
 
 	public generateCode(entityRelationshipModel: EntityRelationshipModel): string {
-		const classModel = classModelGenerator.generateClassModel(entityRelationshipModel);
+		const classModel = this.classModelGenerator.generateClassModel(entityRelationshipModel);
 		return this.classModelToCodeConverter.generateCode(classModel);
 	}
 

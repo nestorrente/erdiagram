@@ -6,11 +6,18 @@ export const defaultDatabaseModelGeneratorConfig: DatabaseModelGeneratorConfig =
 	pluralizeTableNames: false
 };
 
+export function mergeDatabaseModelGeneratorConfigs(
+		fullConfig: DatabaseModelGeneratorConfig,
+		partialConfig?: Partial<DatabaseModelGeneratorConfig>
+): DatabaseModelGeneratorConfig {
+	return {
+		...fullConfig,
+		...partialConfig
+	};
+}
+
 export function mergeWithDefaultDatabaseModelGeneratorConfig(
 		config?: Partial<DatabaseModelGeneratorConfig>
 ): DatabaseModelGeneratorConfig {
-	return {
-		...defaultDatabaseModelGeneratorConfig,
-		...config
-	};
+	return mergeDatabaseModelGeneratorConfigs(defaultDatabaseModelGeneratorConfig, config);
 }

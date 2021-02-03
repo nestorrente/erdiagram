@@ -25,15 +25,22 @@ export const defaultJavaClassModelToCodeConverterConfig: JavaClassModelToCodeCon
 	useSpringNullabilityAnnotations: false
 };
 
+export function mergeJavaClassModelToCodeConverterConfigs(
+		fullConfig: JavaClassModelToCodeConverterConfig,
+		partialConfig?: Partial<JavaClassModelToCodeConverterConfig>
+): JavaClassModelToCodeConverterConfig {
+	return {
+		...fullConfig,
+		...partialConfig,
+		typesMap: {
+			...fullConfig.typesMap,
+			...partialConfig?.typesMap
+		}
+	};
+}
+
 export function mergeWithDefaultJavaClassModelToCodeConverterConfig(
 		config?: Partial<JavaClassModelToCodeConverterConfig>
 ): JavaClassModelToCodeConverterConfig {
-	return {
-		...defaultJavaClassModelToCodeConverterConfig,
-		...config,
-		typesMap: {
-			...defaultJavaClassModelToCodeConverterConfig.typesMap,
-			...config?.typesMap
-		}
-	};
+	return mergeJavaClassModelToCodeConverterConfigs(defaultJavaClassModelToCodeConverterConfig, config);
 }

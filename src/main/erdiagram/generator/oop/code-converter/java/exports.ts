@@ -3,6 +3,7 @@ import JavaParameterizedType from '@/erdiagram/generator/oop/code-converter/java
 import JavaClassModelToCodeConverter from '@/erdiagram/generator/oop/code-converter/java/JavaClassModelToCodeConverter';
 import JavaClassModelToCodeConverterConfig, {
 	defaultJavaClassModelToCodeConverterConfig,
+	mergeJavaClassModelToCodeConverterConfigs,
 	mergeWithDefaultJavaClassModelToCodeConverterConfig
 } from '@/erdiagram/generator/oop/code-converter/java/JavaClassModelToCodeConverterConfig';
 
@@ -12,5 +13,6 @@ export {
 	JavaClassModelToCodeConverter,
 	JavaClassModelToCodeConverterConfig,
 	defaultJavaClassModelToCodeConverterConfig,
+	mergeJavaClassModelToCodeConverterConfigs,
 	mergeWithDefaultJavaClassModelToCodeConverterConfig
 };

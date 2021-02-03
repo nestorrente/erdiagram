@@ -6,11 +6,18 @@ export const defaultEntityRelationshipModelParserConfig: EntityRelationshipModel
 	allowUnknownEntities: false
 };
 
-export function mergeWithDefaultEntityRelationshipModelParserConfig(
-		config?: Partial<EntityRelationshipModelParserConfig>
+export function mergeEntityRelationshipModelParserConfigs(
+		fullConfig: EntityRelationshipModelParserConfig,
+		partialConfig?: Partial<EntityRelationshipModelParserConfig>
 ): EntityRelationshipModelParserConfig {
 	return {
 		...defaultEntityRelationshipModelParserConfig,
-		...config
+		...partialConfig
 	};
+}
+
+export function mergeWithDefaultEntityRelationshipModelParserConfig(
+		config?: Partial<EntityRelationshipModelParserConfig>
+): EntityRelationshipModelParserConfig {
+	return mergeEntityRelationshipModelParserConfigs(defaultEntityRelationshipModelParserConfig, config);
 }
