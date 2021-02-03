@@ -11,7 +11,7 @@ export function mergeEntityRelationshipModelParserConfigs(
 		partialConfig?: Partial<EntityRelationshipModelParserConfig>
 ): EntityRelationshipModelParserConfig {
 	return {
-		...defaultEntityRelationshipModelParserConfig,
+		...fullConfig,
 		...partialConfig
 	};
 }
