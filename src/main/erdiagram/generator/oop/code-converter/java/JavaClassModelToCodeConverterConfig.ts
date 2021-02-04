@@ -1,4 +1,3 @@
-import StandardIdNamingStrategies from '@/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies';
 import {EntityPropertyType} from '@/erdiagram/parser/statement/statement-types-parse-functions';
 import ClassModelToCodeConverterConfig from '@/erdiagram/generator/oop/code-converter/ClassModelToCodeConverterConfig';
 import JavaType, {createJavaType} from '@/erdiagram/generator/oop/code-converter/java/type/JavaType';
@@ -9,8 +8,6 @@ export default interface JavaClassModelToCodeConverterConfig extends ClassModelT
 }
 
 export const defaultJavaClassModelToCodeConverterConfig: JavaClassModelToCodeConverterConfig = {
-	idFieldType: EntityPropertyType.LONG,
-	idNamingStrategy: StandardIdNamingStrategies.DEFAULT,
 	typesMap: {
 		[EntityPropertyType.TEXT]: createJavaType('String', 'java.lang'),
 		[EntityPropertyType.LONG]: createJavaType('Long', 'java.lang'),

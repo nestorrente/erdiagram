@@ -1,4 +1,3 @@
-import StandardIdNamingStrategies from '@/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies';
 import {EntityPropertyType} from '@/erdiagram/parser/statement/statement-types-parse-functions';
 import ClassModelToCodeConverterConfig from '@/erdiagram/generator/oop/code-converter/ClassModelToCodeConverterConfig';
 import TypeScriptType, {createTypeScriptType} from '@/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptType';
@@ -8,8 +7,6 @@ export default interface TypeScriptClassModelToCodeConverterConfig extends Class
 }
 
 export const defaultTypeScriptClassModelToCodeConverterConfig: TypeScriptClassModelToCodeConverterConfig = {
-	idFieldType: EntityPropertyType.LONG,
-	idNamingStrategy: StandardIdNamingStrategies.DEFAULT,
 	typesMap: {
 		[EntityPropertyType.TEXT]: createTypeScriptType('string'),
 		[EntityPropertyType.LONG]: createTypeScriptType('number'),

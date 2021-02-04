@@ -1,8 +1,8 @@
-import IdNamingStrategy from '@/erdiagram/generator/common/id-naming-strategy/IdNamingStrategy';
 import {EntityPropertyType} from '@/erdiagram/parser/statement/statement-types-parse-functions';
 
 export default interface ClassModelToCodeConverterConfig<T> {
-	idFieldType: EntityPropertyType;
-	idNamingStrategy: IdNamingStrategy;
+	// FIXME estas configuraciones no se pueden implementar porque es el ClassModelGenerator quien genera el ID
+	// idFieldType: EntityPropertyType;
+	// idNamingStrategy: IdNamingStrategy;
 	typesMap: Partial<Record<EntityPropertyType, T>>;
 }
