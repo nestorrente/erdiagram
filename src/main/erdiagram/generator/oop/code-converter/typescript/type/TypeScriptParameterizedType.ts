@@ -23,6 +23,6 @@ export function createTypeScriptArrayType(parameterType: TypeScriptType): TypeSc
 	};
 }
 
-export function isParameterizedType(javaType: TypeScriptType): javaType is TypeScriptParameterizedType {
+export function isTypeScriptParameterizedType(javaType: TypeScriptType): javaType is TypeScriptParameterizedType {
 	return Array.isArray((javaType as TypeScriptParameterizedType).parameterTypes);
 }

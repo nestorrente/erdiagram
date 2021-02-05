@@ -3,7 +3,7 @@ import {ClassDescriptor, ClassModel, NonEntityFieldDescriptor} from '@/erdiagram
 import {indentLine, indentLines} from '@/erdiagram/util/indent-utils';
 import JavaParameterizedType, {
 	createJavaParameterizedType,
-	isParameterizedType
+	isJavaParameterizedType
 } from '@/erdiagram/generator/oop/code-converter/java/type/JavaParameterizedType';
 import JavaType, {createJavaType} from '@/erdiagram/generator/oop/code-converter/java/type/JavaType';
 import {removeDuplicates} from '@/erdiagram/util/array-utils';
@@ -202,7 +202,7 @@ function unrollTypesRecursively(javaTypes: JavaType[], appendTo: JavaType[] = []
 
 		appendTo.push(javaType);
 
-		if (isParameterizedType(javaType)) {
+		if (isJavaParameterizedType(javaType)) {
 			unrollTypesRecursively(javaType.parameterTypes, appendTo);
 		}
 

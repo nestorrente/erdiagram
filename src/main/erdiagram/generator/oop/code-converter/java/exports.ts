@@ -1,7 +1,7 @@
 import JavaType, {createJavaType} from '@/erdiagram/generator/oop/code-converter/java/type/JavaType';
 import JavaParameterizedType, {
 	createJavaParameterizedType,
-	isParameterizedType
+	isJavaParameterizedType
 } from '@/erdiagram/generator/oop/code-converter/java/type/JavaParameterizedType';
 import JavaClassModelToCodeConverter from '@/erdiagram/generator/oop/code-converter/java/JavaClassModelToCodeConverter';
 import JavaClassModelToCodeConverterConfig, {
@@ -15,7 +15,7 @@ export {
 	createJavaType,
 	JavaParameterizedType,
 	createJavaParameterizedType,
-	isParameterizedType,
+	isJavaParameterizedType,
 	JavaClassModelToCodeConverter,
 	JavaClassModelToCodeConverterConfig,
 	defaultJavaClassModelToCodeConverterConfig,

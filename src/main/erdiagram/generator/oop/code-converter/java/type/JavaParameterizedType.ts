@@ -19,6 +19,6 @@ export function createJavaParameterizedType(name: string, packageName: string, p
 	};
 }
 
-export function isParameterizedType(javaType: JavaType): javaType is JavaParameterizedType {
+export function isJavaParameterizedType(javaType: JavaType): javaType is JavaParameterizedType {
 	return Array.isArray((javaType as JavaParameterizedType).parameterTypes);
 }
