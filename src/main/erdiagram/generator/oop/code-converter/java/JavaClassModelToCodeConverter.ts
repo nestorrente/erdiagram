@@ -58,7 +58,7 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 			classOuterLines.push(`package ${this.config.generatedClassesPackage};`, EMPTY_STRING);
 		}
 
-		const importLines = createImportStatements(fieldsTypes);
+		const importLines = this.createImportStatements(fieldsTypes);
 
 		if (this.config.useSpringNullabilityAnnotations) {
 			// FIXME gestionar estos imports de otra forma
@@ -184,30 +184,36 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 
 	}
 
-}
+	private createImportStatements(javaTypes: JavaType[]): string[] {
 
-function createImportStatements(javaTypes: JavaType[]): string[] {
+		const importStatements = this.unrollTypesRecursively(javaTypes)
+				.filter(javaType => this.isImportRequired(javaType))
+				.map(javaType => `import ${javaType.canonicalName};`);
 
-	const importStatements = unrollTypesRecursively(javaTypes)
-			.filter(javaType => javaType.packageName && javaType.packageName !== 'java.lang')
-			.map(javaType => `import ${javaType.canonicalName};`);
-
-	return removeDuplicates(importStatements).sort();
-
-}
-
-function unrollTypesRecursively(javaTypes: JavaType[], appendTo: JavaType[] = []): JavaType[] {
-
-	for (const javaType of javaTypes) {
-
-		appendTo.push(javaType);
-
-		if (isJavaParameterizedType(javaType)) {
-			unrollTypesRecursively(javaType.parameterTypes, appendTo);
-		}
+		return removeDuplicates(importStatements).sort();
 
 	}
 
-	return appendTo;
+	private unrollTypesRecursively(javaTypes: JavaType[], appendTo: JavaType[] = []): JavaType[] {
+
+		for (const javaType of javaTypes) {
+
+			appendTo.push(javaType);
+
+			if (isJavaParameterizedType(javaType)) {
+				this.unrollTypesRecursively(javaType.parameterTypes, appendTo);
+			}
+
+		}
+
+		return appendTo;
+
+	}
+
+	private isImportRequired(javaType: JavaType): boolean {
+		return !!javaType.packageName
+				&& javaType.packageName !== 'java.lang'
+				&& this.config.generatedClassesPackage !== javaType.packageName;
+	}
 
 }
