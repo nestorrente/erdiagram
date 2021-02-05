@@ -1,4 +1,4 @@
-import {EntityPropertyType} from '@/erdiagram/parser/statement/statement-types-parse-functions';
+import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
 
 export default class MySqlTypeResolver {
 

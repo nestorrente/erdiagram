@@ -1,13 +1,15 @@
 import {
+	parseEntityNameStatement,
+	parseEntityPropertyStatement,
+	parseRelationshipStatement
+} from '@/erdiagram/parser/statement/statement-types-parse-functions';
+import {
 	Cardinality,
 	Direction,
 	EntityPropertyDescriptor,
 	EntityPropertyType,
-	parseEntityNameStatement,
-	parseEntityPropertyStatement,
-	parseRelationshipStatement,
 	RelationshipDescriptor
-} from '@/erdiagram/parser/statement/statement-types-parse-functions';
+} from '@/erdiagram/parser/entity-relationship-model-types';
 
 describe('Parse entity name statement', () => {
 

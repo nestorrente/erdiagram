@@ -1,4 +1,4 @@
-import {EntityPropertyType} from '@/erdiagram/parser/statement/statement-types-parse-functions';
+import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
 import ClassModelToCodeConverterConfig from '@/erdiagram/generator/oop/code-converter/ClassModelToCodeConverterConfig';
 import JavaType, {createJavaType} from '@/erdiagram/generator/oop/code-converter/java/type/JavaType';
 

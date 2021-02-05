@@ -1,11 +1,4 @@
 import pluralize from 'pluralize';
-import {
-	Cardinality,
-	EntityDescriptor,
-	EntityPropertyDescriptor,
-	RelationshipDescriptor,
-	RelationshipMember
-} from '@/erdiagram/parser/statement/statement-types-parse-functions';
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
 import {
 	DatabaseModel,
@@ -14,7 +7,14 @@ import {
 	TableReferenceDescriptor
 } from '@/erdiagram/generator/database/model/database-model-types';
 import DatabaseModelGeneratorConfig, {mergeWithDefaultDatabaseModelGeneratorConfig} from '@/erdiagram/generator/database/model/DatabaseModelGeneratorConfig';
-import EntityRelationshipModel from '@/erdiagram/parser/EntityRelationshipModel';
+import {
+	Cardinality,
+	EntityDescriptor,
+	EntityPropertyDescriptor,
+	EntityRelationshipModel,
+	RelationshipDescriptor,
+	RelationshipMember
+} from '@/erdiagram/parser/entity-relationship-model-types';
 
 export default class DatabaseModelGenerator {
 

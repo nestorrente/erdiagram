@@ -1,5 +1,5 @@
 import StandardIdNamingStrategies from '@/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies';
-import {EntityPropertyType} from '@/erdiagram/parser/statement/statement-types-parse-functions';
+import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
 import StandardCaseFormats from '@/erdiagram/generator/common/case-format/StandardCaseFormats';
 import DatabaseModelToCodeConverterConfig
 	from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverterConfig';

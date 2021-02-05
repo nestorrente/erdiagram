@@ -1,12 +1,12 @@
 import EntityRelationshipModelParser from '@/erdiagram/parser/EntityRelationshipModelParser';
-import EntityRelationshipModel from '../../../main/erdiagram/parser/EntityRelationshipModel';
 import {
 	Cardinality,
 	Direction,
 	EntityPropertyDescriptor,
 	EntityPropertyType,
+	EntityRelationshipModel,
 	RelationshipDescriptor
-} from '../../../main/erdiagram/parser/statement/statement-types-parse-functions';
+} from '../../../main/erdiagram/parser/entity-relationship-model-types';
 
 function createSimpleProperty(name: string, type: EntityPropertyType, length: number[] = []): EntityPropertyDescriptor {
 	return {

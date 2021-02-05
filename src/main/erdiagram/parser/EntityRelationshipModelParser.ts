@@ -1,12 +1,14 @@
 import {
-	EntityDescriptor,
 	parseEntityNameStatement,
 	parseEntityPropertyStatement,
-	parseRelationshipStatement,
-	RelationshipDescriptor
+	parseRelationshipStatement
 } from '@/erdiagram/parser/statement/statement-types-parse-functions';
 import {guessStatementType, StatementType} from '@/erdiagram/parser/statement/statement-type-guesser';
-import EntityRelationshipModel from '@/erdiagram/parser/EntityRelationshipModel';
+import {
+	EntityDescriptor,
+	EntityRelationshipModel,
+	RelationshipDescriptor
+} from '@/erdiagram/parser/entity-relationship-model-types';
 import EntityRelationshipModelParserConfig, {mergeWithDefaultEntityRelationshipModelParserConfig} from '@/erdiagram/parser/EntityRelationshipModelParserConfig';
 
 export default class EntityRelationshipModelParser {
