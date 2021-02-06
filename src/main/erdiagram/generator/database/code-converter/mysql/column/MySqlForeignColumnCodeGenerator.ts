@@ -23,19 +23,19 @@ export default class MySqlForeignColumnCodeGenerator {
 
 	}
 
-	public generateForeignColumnCode(tableName: string, reference: TableReferenceDescriptor): ForeignKeyColumnCode {
+	public generateForeignColumnCode(outputTableName: string, reference: TableReferenceDescriptor): ForeignKeyColumnCode {
 
 		const columnDescriptor = this.createForeignKeyColumnDescriptor(reference);
 
 		const {
 			columnLine,
 			uniqueConstraintLine
-		} = this.columnCodeGenerator.generateColumnCode(tableName, columnDescriptor);
+		} = this.columnCodeGenerator.generateColumnCode(outputTableName, columnDescriptor);
 
 		return {
 			columnLine,
 			uniqueConstraintLine,
-			fkConstraintLine: this.createForeignKeyConstraint(tableName, reference)
+			fkConstraintLine: this.createForeignKeyConstraint(outputTableName, reference)
 		};
 
 	}
@@ -59,21 +59,21 @@ export default class MySqlForeignColumnCodeGenerator {
 
 	}
 
-	private createForeignKeyConstraint(tableName: string, reference: TableReferenceDescriptor) {
+	private createForeignKeyConstraint(outputTableName: string, reference: TableReferenceDescriptor) {
 
-		const columnName = this.columnNameCaseConverter.convertCase(reference.columnName);
+		const outputColumnName = this.columnNameCaseConverter.convertCase(reference.columnName);
 
-		const targetTableName = this.tableNameCaseConverter.convertCase(reference.targetTableName);
-		const targetColumnName = this.columnNameCaseConverter.convertCase(this.getTableId(targetTableName));
+		const outputTargetTableName = this.tableNameCaseConverter.convertCase(reference.targetTableName);
+		const outputTargetColumnName = this.columnNameCaseConverter.convertCase(this.getTableId(reference.targetTableName));
 
-		return `CONSTRAINT \`${tableName}_${columnName}_fk\` FOREIGN KEY (\`${columnName}\`)`
-				+ ` REFERENCES \`${targetTableName}\` (\`${targetColumnName}\`)`;
+		return `CONSTRAINT \`${outputTableName}_${outputColumnName}_fk\` FOREIGN KEY (\`${outputColumnName}\`)`
+				+ ` REFERENCES \`${outputTargetTableName}\` (\`${outputTargetColumnName}\`)`;
 
 	}
 
-	private getTableId(tableName: string) {
+	private getTableId(inputTableName: string) {
 		const {idNamingStrategy} = this;
-		return idNamingStrategy(tableName);
+		return idNamingStrategy(inputTableName);
 	}
 
 }

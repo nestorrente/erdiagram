@@ -6,7 +6,7 @@ import {
 	EntityPropertyType,
 	EntityRelationshipModel,
 	RelationshipDescriptor
-} from '../../../main/erdiagram/parser/entity-relationship-model-types';
+} from '@/erdiagram/parser/entity-relationship-model-types';
 
 function createSimpleProperty(name: string, type: EntityPropertyType, length: number[] = []): EntityPropertyDescriptor {
 	return {

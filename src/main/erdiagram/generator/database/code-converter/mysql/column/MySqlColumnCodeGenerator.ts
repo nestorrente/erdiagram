@@ -13,14 +13,18 @@ export default class MySqlColumnCodeGenerator {
 
 	}
 
-	public generateColumnCode(tableName: string, column: TableColumnDescriptor): RegularColumnCode {
+	public generateColumnCode(outputTableName: string, column: TableColumnDescriptor): RegularColumnCode {
+
+		const outputColumnName = this.columnNameCaseConverter.convertCase(column.name);
+
 		return {
-			columnLine: this.generateColumnDeclarationLine(column),
-			uniqueConstraintLine: column.unique ? this.generateUniqueConstraintLine(tableName, column.name) : undefined
+			columnLine: this.generateColumnDeclarationLine(outputColumnName, column),
+			uniqueConstraintLine: column.unique ? this.generateUniqueConstraintLine(outputTableName, outputColumnName) : undefined
 		};
+
 	}
 
-	private generateColumnDeclarationLine(column: TableColumnDescriptor) {
+	private generateColumnDeclarationLine(outputColumnName: string, column: TableColumnDescriptor) {
 
 		const {
 			notNull,
@@ -29,10 +33,8 @@ export default class MySqlColumnCodeGenerator {
 			length
 		} = column;
 
-		const name = this.columnNameCaseConverter.convertCase(column.name);
-
 		const lineParts: string[] = [
-			`\`${name}\``,
+			`\`${outputColumnName}\``,
 			this.generateMySqlTypeDeclaration(type, length)
 		];
 
@@ -67,8 +69,8 @@ export default class MySqlColumnCodeGenerator {
 
 	}
 
-	private generateUniqueConstraintLine(tableName: string, columnName: string) {
-		return `CONSTRAINT \`${tableName}_${columnName}_unique\` UNIQUE (\`${columnName}\`)`;
+	private generateUniqueConstraintLine(outputTableName: string, outputColumnName: string) {
+		return `CONSTRAINT \`${outputTableName}_${outputColumnName}_unique\` UNIQUE (\`${outputColumnName}\`)`;
 	}
 
 }

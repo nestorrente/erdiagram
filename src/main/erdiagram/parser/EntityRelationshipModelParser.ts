@@ -10,20 +10,25 @@ import {
 	RelationshipDescriptor
 } from '@/erdiagram/parser/entity-relationship-model-types';
 import EntityRelationshipModelParserConfig, {mergeWithDefaultEntityRelationshipModelParserConfig} from '@/erdiagram/parser/EntityRelationshipModelParserConfig';
+import EntityRelationshipModelValidator from '@/erdiagram/parser/validator/EntityRelationshipModelValidator';
 
 export default class EntityRelationshipModelParser {
 
 	private readonly config: EntityRelationshipModelParserConfig;
+	private readonly validator: EntityRelationshipModelValidator;
 
 	constructor(config?: Partial<EntityRelationshipModelParserConfig>) {
 		this.config = mergeWithDefaultEntityRelationshipModelParserConfig(config);
+		this.validator = new EntityRelationshipModelValidator(this.config.allowUnknownEntities);
 	}
 
 	public parseModel(code: string): EntityRelationshipModel {
-		return this.parseEntityRelationshipModel(code);
+		const model = this.parseModelWithoutValidation(code);
+		this.validator.validateModel(model);
+		return model;
 	}
 
-	private parseEntityRelationshipModel(code: string): EntityRelationshipModel {
+	private parseModelWithoutValidation(code: string): EntityRelationshipModel {
 
 		const lines = code.split('\n');
 
@@ -67,33 +72,10 @@ export default class EntityRelationshipModelParser {
 
 		});
 
-		const model: EntityRelationshipModel = {
+		return {
 			entities,
 			relationships
 		};
-
-		this.validateModel(model);
-
-		return model;
-
-	}
-
-	private validateModel(model: EntityRelationshipModel) {
-
-		if (this.config.allowUnknownEntities) {
-			return;
-		}
-
-		const entityNames = model.entities.map(e => e.name);
-
-		model.relationships.forEach(r => {
-			if (!entityNames.includes(r.leftMember.entity)) {
-				throw new Error(`Uknown entity in relationship's left side: ${r.leftMember.entity}`);
-			}
-			if (!entityNames.includes(r.rightMember.entity)) {
-				throw new Error(`Uknown entity in relationship's right side: ${r.rightMember.entity}`);
-			}
-		});
 
 	}
 

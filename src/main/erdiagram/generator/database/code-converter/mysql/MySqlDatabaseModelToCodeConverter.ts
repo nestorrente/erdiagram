@@ -51,6 +51,7 @@ export default class MySqlDatabaseModelToCodeConverter implements DatabaseModelT
 		this.idColumnCodeGenerator = new MySqlIdColumnCodeGenerator(
 				this.config.idNamingStrategy,
 				this.columnCodeGenerator,
+				columnNameCaseConverter,
 				this.config.idColumnType
 		);
 
@@ -93,18 +94,18 @@ export default class MySqlDatabaseModelToCodeConverter implements DatabaseModelT
 		const fkConstraintLines: string[] = [];
 		const otherConstraintLines: string[] = [];
 
-		const tableName = this.tableNameCaseConverter.convertCase(table.name);
+		const outputTableName = this.tableNameCaseConverter.convertCase(table.name);
 
 		const {
 			columnLine: idColumnLine,
 			pkConstraintLine
-		} = this.idColumnCodeGenerator.generateIdColumnCode(tableName);
+		} = this.idColumnCodeGenerator.generateIdColumnCode(table.name, outputTableName);
 
 		columnLines.push(idColumnLine);
 		otherConstraintLines.push(pkConstraintLine);
 
-		this.processColumns(tableName, table.columns, columnLines, otherConstraintLines);
-		this.processReferences(tableName, table.references, columnLines, fkConstraintLines, otherConstraintLines);
+		this.processColumns(outputTableName, table.columns, columnLines, otherConstraintLines);
+		this.processReferences(outputTableName, table.references, columnLines, fkConstraintLines, otherConstraintLines);
 
 		const createTableInnerLines = [
 			...columnLines,
@@ -112,14 +113,14 @@ export default class MySqlDatabaseModelToCodeConverter implements DatabaseModelT
 		];
 
 		const createTableLines = [
-			`CREATE TABLE \`${tableName}\` (`,
+			`CREATE TABLE \`${outputTableName}\` (`,
 			indentLines(createTableInnerLines).join(',\n'),
 			');'
 		];
 
 		const createTableStatement = createTableLines.join('\n');
 		const alterTableStatements = fkConstraintLines.map(fkConstraintLine => {
-			return `ALTER TABLE \`${tableName}\` ADD ${fkConstraintLine};`;
+			return `ALTER TABLE \`${outputTableName}\` ADD ${fkConstraintLine};`;
 		}).join('\n');
 
 		return {
@@ -129,7 +130,7 @@ export default class MySqlDatabaseModelToCodeConverter implements DatabaseModelT
 
 	}
 
-	private processReferences(tableName: string, references: TableReferenceDescriptor[], columnLines: string[], fkConstraintLines: string[], otherConstraintLines: string[]) {
+	private processReferences(outputTableName: string, references: TableReferenceDescriptor[], columnLines: string[], fkConstraintLines: string[], otherConstraintLines: string[]) {
 
 		for (const reference of references) {
 
@@ -137,7 +138,7 @@ export default class MySqlDatabaseModelToCodeConverter implements DatabaseModelT
 				columnLine,
 				uniqueConstraintLine,
 				fkConstraintLine
-			} = this.foreignColumnCodeGenerator.generateForeignColumnCode(tableName, reference);
+			} = this.foreignColumnCodeGenerator.generateForeignColumnCode(outputTableName, reference);
 
 			columnLines.push(columnLine);
 			fkConstraintLines.push(fkConstraintLine);
@@ -150,14 +151,14 @@ export default class MySqlDatabaseModelToCodeConverter implements DatabaseModelT
 
 	}
 
-	private processColumns(tableName: string, columns: TableColumnDescriptor[], columnLines: string[], otherConstraintLines: string[]) {
+	private processColumns(outputTableName: string, columns: TableColumnDescriptor[], columnLines: string[], otherConstraintLines: string[]) {
 
 		for (const column of columns) {
 
 			const {
 				columnLine,
 				uniqueConstraintLine
-			} = this.columnCodeGenerator.generateColumnCode(tableName, column);
+			} = this.columnCodeGenerator.generateColumnCode(outputTableName, column);
 
 			columnLines.push(columnLine);
 

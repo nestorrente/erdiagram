@@ -4,6 +4,7 @@ import IdColumnCode from '@/erdiagram/generator/database/code-converter/mysql/co
 import MySqlColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/mysql/column/MySqlColumnCodeGenerator';
 import IdNamingStrategy from '@/erdiagram/generator/common/id-naming-strategy/IdNamingStrategy';
+import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
 
 const INDENT: string = '    ';
 
@@ -12,20 +13,21 @@ export default class MySqlIdColumnCodeGenerator {
 	constructor(
 			private readonly idNamingStrategy: IdNamingStrategy,
 			private readonly columnCodeGenerator: MySqlColumnCodeGenerator,
+			private readonly columnNameCaseConverter: CaseConverter,
 			private readonly idColumnType: EntityPropertyType
 	) {
 
 	}
 
-	public generateIdColumnCode(tableName: string): IdColumnCode {
+	public generateIdColumnCode(inputTableName: string, outputTableName: string): IdColumnCode {
 
-		const columnDescriptor = this.createIdColumnDescriptor(tableName);
+		const column = this.createIdColumnDescriptor(inputTableName);
 
 		const {
 			columnLine
-		} = this.columnCodeGenerator.generateColumnCode(tableName, columnDescriptor);
+		} = this.columnCodeGenerator.generateColumnCode(outputTableName, column);
 
-		const pkConstraintLine = this.createPrimaryKeyConstraint(tableName);
+		const pkConstraintLine = this.createPrimaryKeyConstraint(outputTableName, column);
 
 		return {
 			columnLine,
@@ -34,9 +36,9 @@ export default class MySqlIdColumnCodeGenerator {
 
 	}
 
-	private createIdColumnDescriptor(tableName: string): TableColumnDescriptor {
+	private createIdColumnDescriptor(tableDescriptorName: string): TableColumnDescriptor {
 		return {
-			name: this.getTableId(tableName),
+			name: this.getTableId(tableDescriptorName),
 			type: this.idColumnType,
 			length: [],
 			notNull: true,
@@ -47,13 +49,14 @@ export default class MySqlIdColumnCodeGenerator {
 		};
 	}
 
-	private createPrimaryKeyConstraint(tableName: string) {
-		return `CONSTRAINT \`${tableName}_pk\` PRIMARY KEY (\`${this.getTableId(tableName)}\`)`;
+	private createPrimaryKeyConstraint(outputTableName: string, column: TableColumnDescriptor) {
+		const columnName = this.columnNameCaseConverter.convertCase(column.name);
+		return `CONSTRAINT \`${outputTableName}_pk\` PRIMARY KEY (\`${columnName}\`)`;
 	}
 
-	private getTableId(tableName: string) {
+	private getTableId(tableDescriptorName: string) {
 		const {idNamingStrategy} = this;
-		return idNamingStrategy(tableName);
+		return idNamingStrategy(tableDescriptorName);
 	}
 
 }
