@@ -8,7 +8,7 @@ export default interface JavaClassModelToCodeConverterConfig extends ClassModelT
 }
 
 export const defaultJavaClassModelToCodeConverterConfig: JavaClassModelToCodeConverterConfig = {
-	typesMap: {
+	typeMappings: {
 		[EntityPropertyType.TEXT]: createJavaType('String', 'java.lang'),
 		[EntityPropertyType.LONG]: createJavaType('Long', 'java.lang'),
 		[EntityPropertyType.INT]: createJavaType('Integer', 'java.lang'),
@@ -29,9 +29,9 @@ export function mergeJavaClassModelToCodeConverterConfigs(
 	return {
 		...fullConfig,
 		...partialConfig,
-		typesMap: {
-			...fullConfig.typesMap,
-			...partialConfig?.typesMap
+		typeMappings: {
+			...fullConfig.typeMappings,
+			...partialConfig?.typeMappings
 		}
 	};
 }

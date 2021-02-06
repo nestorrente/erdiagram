@@ -44,7 +44,7 @@ export default class MySqlDatabaseModelToCodeConverter implements DatabaseModelT
 		);
 
 		this.columnCodeGenerator = new MySqlColumnCodeGenerator(
-				new MySqlTypeResolver(this.config.typesMap),
+				new MySqlTypeResolver(this.config.typeMappings),
 				columnNameCaseConverter
 		);
 

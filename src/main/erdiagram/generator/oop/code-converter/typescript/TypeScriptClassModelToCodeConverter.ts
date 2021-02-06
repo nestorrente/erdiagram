@@ -84,11 +84,11 @@ export default class TypeScriptClassModelToCodeConverter implements ClassModelTo
 			throw new Error('Invalid field descriptor: missing type');
 		}
 
-		if (!this.config.typesMap.hasOwnProperty(primitiveType)) {
+		if (!this.config.typeMappings.hasOwnProperty(primitiveType)) {
 			throw new Error('Unsupported type: ' + primitiveType);
 		}
 
-		return this.config.typesMap[primitiveType]!;
+		return this.config.typeMappings[primitiveType]!;
 
 	}
 

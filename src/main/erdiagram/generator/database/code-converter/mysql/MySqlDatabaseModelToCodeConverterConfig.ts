@@ -11,7 +11,7 @@ export default interface MySqlDatabaseModelToCodeConverterConfig extends Databas
 export const defaultMySqlDatabaseModelToCodeConverterConfig: MySqlDatabaseModelToCodeConverterConfig = {
 	idColumnType: EntityPropertyType.LONG,
 	idNamingStrategy: StandardIdNamingStrategies.DEFAULT,
-	typesMap: {
+	typeMappings: {
 		[EntityPropertyType.TEXT]: 'VARCHAR',
 		[EntityPropertyType.LONG]: 'BIGINT',
 		[EntityPropertyType.INT]: 'INT',
@@ -34,9 +34,9 @@ export function mergeMySqlDatabaseModelToCodeConverterConfigs(
 	return {
 		...fullConfig,
 		...partialConfig,
-		typesMap: {
-			...fullConfig.typesMap,
-			...partialConfig?.typesMap
+		typeMappings: {
+			...fullConfig.typeMappings,
+			...partialConfig?.typeMappings
 		}
 	};
 }

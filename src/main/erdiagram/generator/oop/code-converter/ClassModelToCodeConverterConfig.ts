@@ -4,5 +4,5 @@ export default interface ClassModelToCodeConverterConfig<T> {
 	// FIXME estas configuraciones no se pueden implementar porque es el ClassModelGenerator quien genera el ID
 	// idFieldType: EntityPropertyType;
 	// idNamingStrategy: IdNamingStrategy;
-	typesMap: Partial<Record<EntityPropertyType, T>>;
+	typeMappings: Partial<Record<EntityPropertyType, T>>;
 }

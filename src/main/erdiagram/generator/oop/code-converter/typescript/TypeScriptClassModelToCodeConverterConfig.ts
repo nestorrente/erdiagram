@@ -7,7 +7,7 @@ export default interface TypeScriptClassModelToCodeConverterConfig extends Class
 }
 
 export const defaultTypeScriptClassModelToCodeConverterConfig: TypeScriptClassModelToCodeConverterConfig = {
-	typesMap: {
+	typeMappings: {
 		[EntityPropertyType.TEXT]: createTypeScriptType('string'),
 		[EntityPropertyType.LONG]: createTypeScriptType('number'),
 		[EntityPropertyType.INT]: createTypeScriptType('number'),
@@ -27,9 +27,9 @@ export function mergeTypeScriptClassModelToCodeConverterConfigs(
 	return {
 		...fullConfig,
 		...partialConfig,
-		typesMap: {
-			...fullConfig.typesMap,
-			...partialConfig?.typesMap
+		typeMappings: {
+			...fullConfig.typeMappings,
+			...partialConfig?.typeMappings
 		}
 	};
 }
