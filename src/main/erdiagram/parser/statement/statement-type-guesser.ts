@@ -34,5 +34,5 @@ function isBlankLine(line: string) {
 }
 
 function isCommentLine(line: string) {
-	return line.trim()[0] === '#';
+	return /^\s*#/.test(line);
 }
