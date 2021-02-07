@@ -29,13 +29,11 @@ describe('Parse entity name statement', () => {
 
 	});
 
-	test('Entity line with trailing spaces should fail', () => {
+	test('Entity line with trailing spaces should be trimmed', () => {
 
-		const callback = () => {
-			parseEntityNameStatement('Entity  \t \t\t   ');
-		};
+		const result = parseEntityNameStatement('Entity  \t \t\t   ');
 
-		expect(callback).toThrow(Error);
+		expect(result).toBe('Entity');
 
 	});
 
@@ -182,13 +180,30 @@ describe('Parse entity property statement', () => {
 
 	});
 
-	test('Entity property without leading spaces', () => {
+	test('Entity property without leading spaces should fail', () => {
 
 		const callback = () => {
 			parseEntityPropertyStatement('name text(50)');
 		};
 
 		expect(callback).toThrow(Error);
+
+	});
+
+	test('Entity property with trailing spaces should be trimmed', () => {
+
+		const result = parseEntityPropertyStatement(' name text(50)    ');
+
+		const expected: EntityPropertyDescriptor = {
+			name: 'name',
+			type: EntityPropertyType.TEXT,
+			length: [50],
+			optional: false,
+			autoincremental: false,
+			unique: false
+		};
+
+		expect(result).toStrictEqual(expected);
 
 	});
 
@@ -412,13 +427,40 @@ describe('Parse relationship statement', () => {
 
 	});
 
-	test('Relationship with leading spaces', () => {
+	test('Relationship with leading spaces should fail', () => {
 
 		const callback = () => {
 			parseRelationshipStatement('   Entity1 -> Entity2');
 		};
 
 		expect(callback).toThrow(Error);
+
+	});
+
+	test('Relationship with middle and trailing spaces should be trimmed', () => {
+
+		const result = parseRelationshipStatement('Entity1  \t   *->      \tEntity2   \t  (\tRel  )      \t   ');
+
+		const expected: RelationshipDescriptor = {
+			relationShipName: 'Rel',
+			direction: Direction.RIGHT,
+			leftMember: {
+				entity: 'Entity1',
+				entityAlias: 'entity1',
+				cardinality: Cardinality.MANY,
+				optional: false,
+				unique: false
+			},
+			rightMember: {
+				entity: 'Entity2',
+				entityAlias: 'entity2',
+				cardinality: Cardinality.ONE,
+				optional: false,
+				unique: false
+			}
+		};
+
+		expect(result).toStrictEqual(expected);
 
 	});
 
