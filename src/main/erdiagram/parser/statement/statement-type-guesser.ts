@@ -30,7 +30,7 @@ export function guessStatementType(line: string): StatementType {
 }
 
 function isBlankLine(line: string) {
-	return line.trim().length === 0;
+	return /^\s*$/.test(line);
 }
 
 function isCommentLine(line: string) {
