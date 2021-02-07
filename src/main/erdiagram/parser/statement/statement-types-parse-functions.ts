@@ -20,7 +20,10 @@ export function parseEntityNameStatement(line: string): string {
 		throw new Error('Syntax error');
 	}
 
-	const [entityName] = result;
+	const [
+		fullMatch,
+		entityName
+	] = result;
 
 	return capitalizeWord(entityName);
 
