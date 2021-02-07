@@ -37,6 +37,14 @@ describe('Parse entity name statement', () => {
 
 	});
 
+	test('Trailing comment in entity line should be ignored', () => {
+
+		const result = parseEntityNameStatement('Entity # this is a comment');
+
+		expect(result).toBe('Entity');
+
+	});
+
 	test('Entity line with leading spaces shoud fail', () => {
 
 		const callback = () => {
@@ -51,7 +59,7 @@ describe('Parse entity name statement', () => {
 
 describe('Parse entity property statement', () => {
 
-	test('Entity property without length', () => {
+	test('Entity property line without length', () => {
 
 		const result = parseEntityPropertyStatement(' active bool');
 
@@ -68,7 +76,7 @@ describe('Parse entity property statement', () => {
 
 	});
 
-	test('Entity property with length (1 param)', () => {
+	test('Entity property line with length (1 param)', () => {
 
 		const result = parseEntityPropertyStatement(' name text(40)');
 
@@ -85,7 +93,7 @@ describe('Parse entity property statement', () => {
 
 	});
 
-	test('Entity property with length (2 param)', () => {
+	test('Entity property line with length (2 param)', () => {
 
 		const result = parseEntityPropertyStatement(' name decimal(10, 2)');
 
@@ -102,7 +110,7 @@ describe('Parse entity property statement', () => {
 
 	});
 
-	test('Entity property with optional modifier', () => {
+	test('Entity property line with optional modifier', () => {
 
 		const result = parseEntityPropertyStatement(' num? short');
 
@@ -119,7 +127,7 @@ describe('Parse entity property statement', () => {
 
 	});
 
-	test('Entity property with autoincremental modifier', () => {
+	test('Entity property line with autoincremental modifier', () => {
 
 		const result = parseEntityPropertyStatement(' num+ short');
 
@@ -136,7 +144,7 @@ describe('Parse entity property statement', () => {
 
 	});
 
-	test('Entity property with unique modifier', () => {
+	test('Entity property line with unique modifier', () => {
 
 		const result = parseEntityPropertyStatement(' num! short');
 
@@ -153,7 +161,7 @@ describe('Parse entity property statement', () => {
 
 	});
 
-	test('Entity property with optional, autoincremental and unique modifier', () => {
+	test('Entity property line with optional, autoincremental and unique modifier', () => {
 
 		const result = parseEntityPropertyStatement(' num?+! short');
 
@@ -170,7 +178,7 @@ describe('Parse entity property statement', () => {
 
 	});
 
-	test('Entity property of unknown type', () => {
+	test('Entity property line of unknown type', () => {
 
 		const callback = () => {
 			parseEntityPropertyStatement(' name imaginaryType(50)');
@@ -180,7 +188,7 @@ describe('Parse entity property statement', () => {
 
 	});
 
-	test('Entity property without leading spaces should fail', () => {
+	test('Entity property line without leading spaces should fail', () => {
 
 		const callback = () => {
 			parseEntityPropertyStatement('name text(50)');
@@ -190,9 +198,26 @@ describe('Parse entity property statement', () => {
 
 	});
 
-	test('Entity property with trailing spaces should be trimmed', () => {
+	test('Entity property line with trailing spaces should be trimmed', () => {
 
 		const result = parseEntityPropertyStatement(' name text(50)    ');
+
+		const expected: EntityPropertyDescriptor = {
+			name: 'name',
+			type: EntityPropertyType.TEXT,
+			length: [50],
+			optional: false,
+			autoincremental: false,
+			unique: false
+		};
+
+		expect(result).toStrictEqual(expected);
+
+	});
+
+	test('Trailing comment in entity property line should be ignored', () => {
+
+		const result = parseEntityPropertyStatement(' name text(50) # this is a comment');
 
 		const expected: EntityPropertyDescriptor = {
 			name: 'name',
@@ -440,6 +465,33 @@ describe('Parse relationship statement', () => {
 	test('Relationship with middle and trailing spaces should be trimmed', () => {
 
 		const result = parseRelationshipStatement('Entity1  \t   *->      \tEntity2   \t  (\tRel  )      \t   ');
+
+		const expected: RelationshipDescriptor = {
+			relationShipName: 'Rel',
+			direction: Direction.RIGHT,
+			leftMember: {
+				entity: 'Entity1',
+				entityAlias: 'entity1',
+				cardinality: Cardinality.MANY,
+				optional: false,
+				unique: false
+			},
+			rightMember: {
+				entity: 'Entity2',
+				entityAlias: 'entity2',
+				cardinality: Cardinality.ONE,
+				optional: false,
+				unique: false
+			}
+		};
+
+		expect(result).toStrictEqual(expected);
+
+	});
+
+	test('Trailing comments in relationship line should be ignored', () => {
+
+		const result = parseRelationshipStatement('Entity1  *-> Entity2 (Rel) # this is a comment');
 
 		const expected: RelationshipDescriptor = {
 			relationShipName: 'Rel',
