@@ -334,11 +334,13 @@ B
 C
 D
 E
+F
 
 A <->? B
 A <->! C
 A <->?! D
-A <->!? E eAlias (RelationshipName)
+A *<->*?! E
+A <->!? F fAlias (RelationshipName)
 
 		`);
 
@@ -349,6 +351,7 @@ A <->!? E eAlias (RelationshipName)
 				{name: 'C', properties: []},
 				{name: 'D', properties: []},
 				{name: 'E', properties: []},
+				{name: 'F', properties: []},
 			],
 			relationships: [
 				{
@@ -406,6 +409,24 @@ A <->!? E eAlias (RelationshipName)
 					}
 				},
 				{
+					relationShipName: undefined,
+					direction: Direction.BOTH,
+					leftMember: {
+						entity: 'A',
+						entityAlias: 'a',
+						cardinality: Cardinality.MANY,
+						optional: false,
+						unique: false
+					},
+					rightMember: {
+						entity: 'E',
+						entityAlias: 'e',
+						cardinality: Cardinality.MANY,
+						optional: true,
+						unique: true
+					}
+				},
+				{
 					relationShipName: 'RelationshipName',
 					direction: Direction.BOTH,
 					leftMember: {
@@ -416,8 +437,8 @@ A <->!? E eAlias (RelationshipName)
 						unique: false
 					},
 					rightMember: {
-						entity: 'E',
-						entityAlias: 'eAlias',
+						entity: 'F',
+						entityAlias: 'fAlias',
 						cardinality: Cardinality.ONE,
 						optional: true,
 						unique: true

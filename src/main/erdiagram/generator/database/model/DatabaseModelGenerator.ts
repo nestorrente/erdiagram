@@ -84,9 +84,17 @@ function generateRelationshipTable(relationship: RelationshipDescriptor, config:
 	return {
 		name,
 		columns: [],
+		// We force references to be non-optional in this case, as "one or many" and "zero, one or many" cardinalities
+		// are modelled in the same way in SQL - foreign columns of relationship tables are never nullable.
 		references: [
-			createTableReference(relationship.leftMember, config),
-			createTableReference(relationship.rightMember, config)
+			createTableReference({
+				...relationship.leftMember,
+				optional: false
+			}, config),
+			createTableReference({
+				...relationship.rightMember,
+				optional: false
+			}, config)
 		]
 	};
 

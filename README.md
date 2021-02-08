@@ -89,7 +89,8 @@ As you can see, you can omit the character `1`, as that's the default cardinalit
 
 In the same way that can be done with properties, there are 2 modifiers that can be applied to the sides of the relationship:
 
-* Optional modifier (`?`): when the cardinality is _one_, this modifier can be used in order to indicate that side of the relationship is not mandatory. This doesn't have any effect when the cardinality is _many_, as _many_ is already treated as _none or several_.
+* Optional modifier (`?`): when the cardinality is _one_, this modifier can be used in order to indicate that side of the relationship is not mandatory.
+    * This may not cause any effect in output code when the cardinality is _many_, as "one or many" (`1..*`) and "zero, one or many" (`0..*`) cardinalities are modelled in the same way in most programming languages.
 * Unique modifier (`!`): indicates that each possible instance of that entity must be related to at most one of the instances of the other entity.
 
 #### Relationship's name

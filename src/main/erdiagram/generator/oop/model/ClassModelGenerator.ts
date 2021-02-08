@@ -82,7 +82,9 @@ function mapRelationshipMemberToField(toMember: RelationshipMember): NonEntityFi
 
 	return {
 		name,
-		nullable: toMember.optional,
+		// List fields are never nullable, as both "one or many" and "zero, one or many"
+		// relationships are modelled using a list, which may be empty or not.
+		nullable: list ? toMember.optional : false,
 		entityType: toMember.entity,
 		list
 	};
