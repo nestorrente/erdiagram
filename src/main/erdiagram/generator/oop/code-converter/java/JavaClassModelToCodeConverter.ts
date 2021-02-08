@@ -53,7 +53,7 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 		}
 
 		const classOuterLines = [
-			`/* ========================= ${className} class ========================= */`,
+			`/* ========== ${className} class ========== */`,
 			EMPTY_STRING
 		];
 
