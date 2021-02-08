@@ -1,7 +1,6 @@
-import ClassModelToCodeConverterConfig from '@/erdiagram/generator/oop/code-converter/ClassModelToCodeConverterConfig';
-import ClassModelToCodeConverter from '@/erdiagram/generator/oop/code-converter/ClassModelToCodeConverter';
-import EntityRelationshipModelToClassCodeConverter
-	from '@/erdiagram/generator/oop/code-converter/EntityRelationshipModelToClassCodeConverter';
+import ClassModelToCodeConverterConfig from './ClassModelToCodeConverterConfig';
+import ClassModelToCodeConverter from './ClassModelToCodeConverter';
+import EntityRelationshipModelToClassCodeConverter from './EntityRelationshipModelToClassCodeConverter';
 
 export * from './java/exports';
 export * from './typescript/exports';

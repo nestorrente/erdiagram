@@ -9,8 +9,10 @@ import {
 	EntityRelationshipModel,
 	RelationshipDescriptor
 } from '@/erdiagram/parser/entity-relationship-model-types';
-import EntityRelationshipModelParserConfig, {mergeWithDefaultEntityRelationshipModelParserConfig} from '@/erdiagram/parser/EntityRelationshipModelParserConfig';
+import EntityRelationshipModelParserConfig from '@/erdiagram/parser/config/EntityRelationshipModelParserConfig';
 import EntityRelationshipModelValidator from '@/erdiagram/parser/validator/EntityRelationshipModelValidator';
+import entityRelationshipModelParserConfigManager
+	from '@/erdiagram/parser/config/EntityRelationshipModelParserConfigManager';
 
 export default class EntityRelationshipModelParser {
 
@@ -18,7 +20,7 @@ export default class EntityRelationshipModelParser {
 	private readonly validator: EntityRelationshipModelValidator;
 
 	constructor(config?: Partial<EntityRelationshipModelParserConfig>) {
-		this.config = mergeWithDefaultEntityRelationshipModelParserConfig(config);
+		this.config = entityRelationshipModelParserConfigManager.mergeWithDefaultConfig(config);
 		this.validator = new EntityRelationshipModelValidator(this.config.allowUnknownEntities);
 	}
 

@@ -1,8 +1,6 @@
-import DatabaseModelToCodeConverter from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverter';
-import DatabaseModelToCodeConverterConfig
-	from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverterConfig';
-import EntityRelationshipModelToDatabaseCodeConverter
-	from '@/erdiagram/generator/database/code-converter/EntityRelationshipModelToDatabaseCodeConverter';
+import DatabaseModelToCodeConverter from './DatabaseModelToCodeConverter';
+import DatabaseModelToCodeConverterConfig from './DatabaseModelToCodeConverterConfig';
+import EntityRelationshipModelToDatabaseCodeConverter from './EntityRelationshipModelToDatabaseCodeConverter';
 
 export * from './mysql/exports';
 

@@ -1,5 +1,5 @@
-import StandardIdNamingStrategies from '@/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies';
-import IdNamingStrategy from '@/erdiagram/generator/common/id-naming-strategy/IdNamingStrategy';
+import StandardIdNamingStrategies from './StandardIdNamingStrategies';
+import IdNamingStrategy from './IdNamingStrategy';
 
 export {
 	IdNamingStrategy,

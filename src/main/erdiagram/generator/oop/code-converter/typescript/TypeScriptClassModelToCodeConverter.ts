@@ -4,14 +4,17 @@ import {indentLines} from '@/erdiagram/util/indent-utils';
 import TypeScriptParameterizedType, {createTypeScriptArrayType} from '@/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptParameterizedType';
 import TypeScriptType, {createTypeScriptType} from '@/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptType';
 import ClassModelToCodeConverter from '@/erdiagram/generator/oop/code-converter/ClassModelToCodeConverter';
-import TypeScriptClassModelToCodeConverterConfig, {mergeWithDefaultTypeScriptClassModelToCodeConverterConfig} from '@/erdiagram/generator/oop/code-converter/typescript/TypeScriptClassModelToCodeConverterConfig';
+import TypeScriptClassModelToCodeConverterConfig
+	from '@/erdiagram/generator/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfig';
+import typescriptClassModelToCodeConverterConfigManager
+	from '@/erdiagram/generator/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfigManager';
 
 export default class TypeScriptClassModelToCodeConverter implements ClassModelToCodeConverter {
 
 	private readonly config: TypeScriptClassModelToCodeConverterConfig;
 
 	constructor(config?: Partial<TypeScriptClassModelToCodeConverterConfig>) {
-		this.config = mergeWithDefaultTypeScriptClassModelToCodeConverterConfig(config);
+		this.config = typescriptClassModelToCodeConverterConfigManager.mergeWithDefaultConfig(config);
 	}
 
 	public generateCode(classModel: ClassModel): string {
@@ -43,8 +46,8 @@ export default class TypeScriptClassModelToCodeConverter implements ClassModelTo
 
 		const fieldName = field.name;
 
-		const typeScriptType = this.mapFieldTypeToTypeScriptType(field);
-		const formattedTypeScriptType = typeScriptType.format();
+		const typescriptType = this.mapFieldTypeToTypeScriptType(field);
+		const formattedTypeScriptType = typescriptType.format();
 		const optionalIndicatorChar = field.nullable ? '?' : '';
 
 		return `${fieldName}${optionalIndicatorChar}: ${formattedTypeScriptType};`;

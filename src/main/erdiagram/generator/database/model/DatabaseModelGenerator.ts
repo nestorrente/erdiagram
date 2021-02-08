@@ -6,7 +6,7 @@ import {
 	TableDescriptor,
 	TableReferenceDescriptor
 } from '@/erdiagram/generator/database/model/database-model-types';
-import DatabaseModelGeneratorConfig, {mergeWithDefaultDatabaseModelGeneratorConfig} from '@/erdiagram/generator/database/model/DatabaseModelGeneratorConfig';
+import DatabaseModelGeneratorConfig from '@/erdiagram/generator/database/model/config/DatabaseModelGeneratorConfig';
 import {
 	Cardinality,
 	EntityDescriptor,
@@ -15,13 +15,15 @@ import {
 	RelationshipDescriptor,
 	RelationshipMember
 } from '@/erdiagram/parser/entity-relationship-model-types';
+import databaseModelGeneratorConfigManager
+	from '@/erdiagram/generator/database/model/config/DatabaseModelGeneratorConfigManager';
 
 export default class DatabaseModelGenerator {
 
 	private readonly config: DatabaseModelGeneratorConfig;
 
 	constructor(config?: Partial<DatabaseModelGeneratorConfig>) {
-		this.config = mergeWithDefaultDatabaseModelGeneratorConfig(config);
+		this.config = databaseModelGeneratorConfigManager.mergeWithDefaultConfig(config);
 	}
 
 	generateDatabaseModel(model: EntityRelationshipModel): DatabaseModel {

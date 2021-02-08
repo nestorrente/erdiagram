@@ -4,9 +4,9 @@ export default abstract class AbstractComponentConfigManager<C, P = Partial<C>> 
 
 	abstract getDefaultConfig(): C;
 
-	abstract mergeConfigs(fullConfig: C, partialConfig: P): C;
+	abstract mergeConfigs(fullConfig: C, partialConfig?: P): C;
 
-	mergeWithDefaultConfig(partialConfig: P): C {
+	mergeWithDefaultConfig(partialConfig?: P): C {
 		return this.mergeConfigs(this.getDefaultConfig(), partialConfig);
 	}
 

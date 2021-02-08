@@ -1,6 +1,6 @@
-import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
-import CaseFormat from '@/erdiagram/generator/common/case-format/CaseFormat';
-import StandardCaseFormats from '@/erdiagram/generator/common/case-format/StandardCaseFormats';
+import CaseConverter from './CaseConverter';
+import CaseFormat from './CaseFormat';
+import StandardCaseFormats from './StandardCaseFormats';
 
 export {
 	CaseFormat,

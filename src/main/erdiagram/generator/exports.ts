@@ -1,4 +1,4 @@
-import EntityRelationshipModelToCodeConverter from '@/erdiagram/generator/EntityRelationshipModelToCodeConverter';
+import EntityRelationshipModelToCodeConverter from './EntityRelationshipModelToCodeConverter';
 
 export * from './common/exports';
 export * from './database/exports';

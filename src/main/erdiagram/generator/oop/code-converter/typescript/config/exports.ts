@@ -1,0 +1,8 @@
+import TypeScriptClassModelToCodeConverterConfig from './TypeScriptClassModelToCodeConverterConfig';
+import typescriptClassModelToCodeConverterConfigManager, {TypeScriptClassModelToCodeConverterConfigManager} from './TypeScriptClassModelToCodeConverterConfigManager';
+
+export {
+	TypeScriptClassModelToCodeConverterConfig,
+	TypeScriptClassModelToCodeConverterConfigManager,
+	typescriptClassModelToCodeConverterConfigManager
+};

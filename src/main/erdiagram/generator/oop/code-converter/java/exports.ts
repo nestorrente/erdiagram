@@ -1,14 +1,11 @@
-import JavaType, {createJavaType} from '@/erdiagram/generator/oop/code-converter/java/type/JavaType';
+import JavaType, {createJavaType} from './type/JavaType';
 import JavaParameterizedType, {
 	createJavaParameterizedType,
 	isJavaParameterizedType
-} from '@/erdiagram/generator/oop/code-converter/java/type/JavaParameterizedType';
-import JavaClassModelToCodeConverter from '@/erdiagram/generator/oop/code-converter/java/JavaClassModelToCodeConverter';
-import JavaClassModelToCodeConverterConfig, {
-	defaultJavaClassModelToCodeConverterConfig,
-	mergeJavaClassModelToCodeConverterConfigs,
-	mergeWithDefaultJavaClassModelToCodeConverterConfig
-} from '@/erdiagram/generator/oop/code-converter/java/JavaClassModelToCodeConverterConfig';
+} from './type/JavaParameterizedType';
+import JavaClassModelToCodeConverter from './JavaClassModelToCodeConverter';
+
+export * from './config/exports';
 
 export {
 	JavaType,
@@ -16,9 +13,5 @@ export {
 	JavaParameterizedType,
 	createJavaParameterizedType,
 	isJavaParameterizedType,
-	JavaClassModelToCodeConverter,
-	JavaClassModelToCodeConverterConfig,
-	defaultJavaClassModelToCodeConverterConfig,
-	mergeJavaClassModelToCodeConverterConfigs,
-	mergeWithDefaultJavaClassModelToCodeConverterConfig
+	JavaClassModelToCodeConverter
 };

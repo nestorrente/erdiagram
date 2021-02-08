@@ -21,6 +21,7 @@ export default class ClassModelGenerator {
 				.map(entity => generateEntityTable(entity, model))
 				.forEach(sentence => classes.push(sentence));
 
+		console.log('Test');
 		return {
 			classes
 		};

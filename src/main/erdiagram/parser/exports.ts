@@ -1,16 +1,8 @@
-import EntityRelationshipModelParser from '@/erdiagram/parser/EntityRelationshipModelParser';
-import EntityRelationshipModelParserConfig, {
-	defaultEntityRelationshipModelParserConfig,
-	mergeEntityRelationshipModelParserConfigs,
-	mergeWithDefaultEntityRelationshipModelParserConfig
-} from '@/erdiagram/parser/EntityRelationshipModelParserConfig';
+import EntityRelationshipModelParser from './EntityRelationshipModelParser';
 
-export * from '@/erdiagram/parser/entity-relationship-model-types';
+export * from './config/exports';
+export * from './entity-relationship-model-types';
 
 export {
-	EntityRelationshipModelParser,
-	EntityRelationshipModelParserConfig,
-	defaultEntityRelationshipModelParserConfig,
-	mergeEntityRelationshipModelParserConfigs,
-	mergeWithDefaultEntityRelationshipModelParserConfig
+	EntityRelationshipModelParser
 };

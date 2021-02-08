@@ -1,16 +1,8 @@
-import DatabaseModelGenerator from '@/erdiagram/generator/database/model/DatabaseModelGenerator';
-import DatabaseModelGeneratorConfig, {
-	defaultDatabaseModelGeneratorConfig,
-	mergeDatabaseModelGeneratorConfigs,
-	mergeWithDefaultDatabaseModelGeneratorConfig
-} from '@/erdiagram/generator/database/model/DatabaseModelGeneratorConfig';
+import DatabaseModelGenerator from './DatabaseModelGenerator';
 
 export * from './database-model-types';
+export * from './config/exports';
 
 export {
-	DatabaseModelGenerator,
-	DatabaseModelGeneratorConfig,
-	defaultDatabaseModelGeneratorConfig,
-	mergeDatabaseModelGeneratorConfigs,
-	mergeWithDefaultDatabaseModelGeneratorConfig
+	DatabaseModelGenerator
 };

@@ -8,7 +8,10 @@ import JavaParameterizedType, {
 import JavaType, {createJavaType} from '@/erdiagram/generator/oop/code-converter/java/type/JavaType';
 import {removeDuplicates} from '@/erdiagram/util/array-utils';
 import ClassModelToCodeConverter from '@/erdiagram/generator/oop/code-converter/ClassModelToCodeConverter';
-import JavaClassModelToCodeConverterConfig, {mergeWithDefaultJavaClassModelToCodeConverterConfig} from '@/erdiagram/generator/oop/code-converter/java/JavaClassModelToCodeConverterConfig';
+import JavaClassModelToCodeConverterConfig
+	from '@/erdiagram/generator/oop/code-converter/java/config/JavaClassModelToCodeConverterConfig';
+import javaClassModelToCodeConverterConfigManager
+	from '@/erdiagram/generator/oop/code-converter/java/config/JavaClassModelToCodeConverterConfigManager';
 
 const EMPTY_STRING: string = '';
 
@@ -17,7 +20,7 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 	private readonly config: JavaClassModelToCodeConverterConfig;
 
 	constructor(config?: Partial<JavaClassModelToCodeConverterConfig>) {
-		this.config = mergeWithDefaultJavaClassModelToCodeConverterConfig(config);
+		this.config = javaClassModelToCodeConverterConfigManager.mergeWithDefaultConfig(config);
 	}
 
 	public generateCode(classModel: ClassModel): string {

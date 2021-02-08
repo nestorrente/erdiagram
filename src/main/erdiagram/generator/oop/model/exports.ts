@@ -1,4 +1,4 @@
-import ClassModelGenerator from '@/erdiagram/generator/oop/model/ClassModelGenerator';
+import ClassModelGenerator from './ClassModelGenerator';
 
 export * from './class-model-types';
 

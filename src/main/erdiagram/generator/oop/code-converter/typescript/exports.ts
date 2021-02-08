@@ -1,16 +1,12 @@
-import TypeScriptType, {createTypeScriptType} from '@/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptType';
+import TypeScriptType, {createTypeScriptType} from './type/TypeScriptType';
 import TypeScriptParameterizedType, {
 	createTypeScriptArrayType,
 	createTypeScriptParameterizedType,
 	isTypeScriptParameterizedType
-} from '@/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptParameterizedType';
-import TypeScriptClassModelToCodeConverter
-	from '@/erdiagram/generator/oop/code-converter/typescript/TypeScriptClassModelToCodeConverter';
-import TypeScriptClassModelToCodeConverterConfig, {
-	defaultTypeScriptClassModelToCodeConverterConfig,
-	mergeTypeScriptClassModelToCodeConverterConfigs,
-	mergeWithDefaultTypeScriptClassModelToCodeConverterConfig
-} from '@/erdiagram/generator/oop/code-converter/typescript/TypeScriptClassModelToCodeConverterConfig';
+} from './type/TypeScriptParameterizedType';
+import TypeScriptClassModelToCodeConverter from './TypeScriptClassModelToCodeConverter';
+
+export * from './config/exports';
 
 export {
 	TypeScriptType,
@@ -19,9 +15,5 @@ export {
 	createTypeScriptParameterizedType,
 	createTypeScriptArrayType,
 	isTypeScriptParameterizedType,
-	TypeScriptClassModelToCodeConverter,
-	TypeScriptClassModelToCodeConverterConfig,
-	defaultTypeScriptClassModelToCodeConverterConfig,
-	mergeTypeScriptClassModelToCodeConverterConfigs,
-	mergeWithDefaultTypeScriptClassModelToCodeConverterConfig
+	TypeScriptClassModelToCodeConverter
 };

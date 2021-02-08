@@ -1,15 +1,7 @@
-import MySqlDatabaseModelToCodeConverter
-	from '@/erdiagram/generator/database/code-converter/mysql/MySqlDatabaseModelToCodeConverter';
-import MySqlDatabaseModelToCodeConverterConfig, {
-	defaultMySqlDatabaseModelToCodeConverterConfig,
-	mergeMySqlDatabaseModelToCodeConverterConfigs,
-	mergeWithDefaultMySqlDatabaseModelToCodeConverterConfig
-} from '@/erdiagram/generator/database/code-converter/mysql/MySqlDatabaseModelToCodeConverterConfig';
+import MySqlDatabaseModelToCodeConverter from './MySqlDatabaseModelToCodeConverter';
+
+export * from './config/exports';
 
 export {
-	MySqlDatabaseModelToCodeConverter,
-	MySqlDatabaseModelToCodeConverterConfig,
-	defaultMySqlDatabaseModelToCodeConverterConfig,
-	mergeMySqlDatabaseModelToCodeConverterConfigs,
-	mergeWithDefaultMySqlDatabaseModelToCodeConverterConfig
+	MySqlDatabaseModelToCodeConverter
 };
