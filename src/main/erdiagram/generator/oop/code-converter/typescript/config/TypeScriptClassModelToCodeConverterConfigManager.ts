@@ -22,7 +22,7 @@ export class TypeScriptClassModelToCodeConverterConfigManager extends AbstractCo
 		};
 	}
 
-	mergeConfigs(fullConfig: TypeScriptClassModelToCodeConverterConfig, partialConfig: Partial<TypeScriptClassModelToCodeConverterConfig>): TypeScriptClassModelToCodeConverterConfig {
+	mergeConfigs(fullConfig: TypeScriptClassModelToCodeConverterConfig, partialConfig?: Partial<TypeScriptClassModelToCodeConverterConfig>): TypeScriptClassModelToCodeConverterConfig {
 		return {
 			...fullConfig,
 			...partialConfig,

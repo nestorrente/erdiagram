@@ -10,7 +10,7 @@ export class EntityRelationshipModelParserConfigManager
 		};
 	}
 
-	mergeConfigs(fullConfig: EntityRelationshipModelParserConfig, partialConfig: Partial<EntityRelationshipModelParserConfig>): EntityRelationshipModelParserConfig {
+	mergeConfigs(fullConfig: EntityRelationshipModelParserConfig, partialConfig?: Partial<EntityRelationshipModelParserConfig>): EntityRelationshipModelParserConfig {
 		return {
 			...fullConfig,
 			...partialConfig

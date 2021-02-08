@@ -9,7 +9,7 @@ export class DatabaseModelGeneratorConfigManager extends AbstractComponentConfig
 		};
 	}
 
-	mergeConfigs(fullConfig: DatabaseModelGeneratorConfig, partialConfig: Partial<DatabaseModelGeneratorConfig>): DatabaseModelGeneratorConfig {
+	mergeConfigs(fullConfig: DatabaseModelGeneratorConfig, partialConfig?: Partial<DatabaseModelGeneratorConfig>): DatabaseModelGeneratorConfig {
 		return {
 			...fullConfig,
 			...partialConfig

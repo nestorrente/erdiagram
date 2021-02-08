@@ -23,7 +23,7 @@ export class JavaClassModelToCodeConverterConfigManager extends AbstractComponen
 		};
 	}
 
-	mergeConfigs(fullConfig: JavaClassModelToCodeConverterConfig, partialConfig: Partial<JavaClassModelToCodeConverterConfig>): JavaClassModelToCodeConverterConfig {
+	mergeConfigs(fullConfig: JavaClassModelToCodeConverterConfig, partialConfig?: Partial<JavaClassModelToCodeConverterConfig>): JavaClassModelToCodeConverterConfig {
 		return {
 			...fullConfig,
 			...partialConfig,

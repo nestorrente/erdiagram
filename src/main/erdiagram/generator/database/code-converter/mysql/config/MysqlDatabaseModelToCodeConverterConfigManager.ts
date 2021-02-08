@@ -29,7 +29,7 @@ export class MySqlDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
-	mergeConfigs(fullConfig: MySqlDatabaseModelToCodeConverterConfig, partialConfig: Partial<MySqlDatabaseModelToCodeConverterConfig>): MySqlDatabaseModelToCodeConverterConfig {
+	mergeConfigs(fullConfig: MySqlDatabaseModelToCodeConverterConfig, partialConfig?: Partial<MySqlDatabaseModelToCodeConverterConfig>): MySqlDatabaseModelToCodeConverterConfig {
 		return {
 			...fullConfig,
 			...partialConfig,
