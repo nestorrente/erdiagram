@@ -10,6 +10,10 @@ export default abstract class AbstractComponentConfigManager<C, P = Partial<C>> 
 		return this.mergeConfigs(this.getDefaultConfig(), partialConfig);
 	}
 
+	cloneConfig(fullConfig: C): C {
+		return this.mergeConfigs(fullConfig);
+	}
+
 	// serializeConfig(config: C): string {
 	// 	return JSON.stringify(config);
 	// }
