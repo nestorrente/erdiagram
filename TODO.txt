@@ -35,3 +35,6 @@
 - En Java, añadir los imports de las anotaciones utilizadas (como @Nullable).
 
 - Cambiar la propiedad "pluralizeTableNames" por "pluralTableNames" en DatabaseModelGeneratorConfig.
+
+- Llevar al DatabaseModelGenerator el idNamingStrategy, para poder cubrir el campo "identifierColumnName" de TableDescriptor.
+	- [FIX] De este modo, la pluralización no afectará al ID.
