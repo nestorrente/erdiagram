@@ -25,7 +25,6 @@ export class MySqlDatabaseModelToCodeConverterConfigManager
 			},
 			tableNameCaseFormat: StandardCaseFormats.UPPER_CAMEL,
 			columnNameCaseFormat: StandardCaseFormats.LOWER_CAMEL,
-			// constraintCaseFormat: StandardCaseFormats.JOINING_UNDERSCORE,
 		};
 	}
 

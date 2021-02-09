@@ -3,6 +3,7 @@ import DatabaseModelToCodeConverterConfig from './DatabaseModelToCodeConverterCo
 import EntityRelationshipModelToDatabaseCodeConverter from './EntityRelationshipModelToDatabaseCodeConverter';
 
 export * from './mysql/exports';
+export * from './sqlserver/exports';
 
 export {
 	DatabaseModelToCodeConverter,

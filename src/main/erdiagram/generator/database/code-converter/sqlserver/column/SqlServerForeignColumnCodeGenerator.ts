@@ -4,17 +4,17 @@ import {
 	TableReferenceDescriptor
 } from '@/erdiagram/generator/database/model/database-model-types';
 import ForeignKeyColumnCode
-	from '@/erdiagram/generator/database/code-converter/mysql/column/types/ForeignKeyColumnCode';
-import MySqlColumnCodeGenerator
-	from '@/erdiagram/generator/database/code-converter/mysql/column/MySqlColumnCodeGenerator';
+	from '@/erdiagram/generator/database/code-converter/sqlserver/column/types/ForeignKeyColumnCode';
+import SqlServerColumnCodeGenerator
+	from '@/erdiagram/generator/database/code-converter/sqlserver/column/SqlServerColumnCodeGenerator';
 import IdNamingStrategy from '@/erdiagram/generator/common/id-naming-strategy/IdNamingStrategy';
 import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
 
-export default class MySqlForeignColumnCodeGenerator {
+export default class SqlServerForeignColumnCodeGenerator {
 
 	constructor(
 			private readonly idNamingStrategy: IdNamingStrategy,
-			private readonly columnCodeGenerator: MySqlColumnCodeGenerator,
+			private readonly columnCodeGenerator: SqlServerColumnCodeGenerator,
 			private readonly tableNameCaseConverter: CaseConverter,
 			private readonly columnNameCaseConverter: CaseConverter
 	) {
@@ -64,8 +64,8 @@ export default class MySqlForeignColumnCodeGenerator {
 		const outputTargetTableName = this.tableNameCaseConverter.convertCase(reference.targetTableName);
 		const outputTargetColumnName = this.columnNameCaseConverter.convertCase(this.getTableId(reference.targetTableName));
 
-		return `CONSTRAINT \`${outputTableName}_${outputColumnName}_fk\` FOREIGN KEY (\`${outputColumnName}\`)`
-				+ ` REFERENCES \`${outputTargetTableName}\` (\`${outputTargetColumnName}\`)`;
+		return `CONSTRAINT "${outputTableName}_${outputColumnName}_fk" FOREIGN KEY ("${outputColumnName}")`
+				+ ` REFERENCES "${outputTargetTableName}" ("${outputTargetColumnName}")`;
 
 	}
 

@@ -24,7 +24,7 @@ export default class MySqlColumnCodeGenerator {
 
 	}
 
-	private generateColumnDeclarationLine(outputColumnName: string, column: TableColumnDescriptor) {
+	private generateColumnDeclarationLine(outputColumnName: string, column: TableColumnDescriptor): string {
 
 		const {
 			notNull,
