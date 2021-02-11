@@ -115,7 +115,7 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 		}
 
 		const javaType = this.mapFieldTypeToJavaType(field);
-		const formattedJavaType = javaType.format();
+		const formattedJavaType = javaType.formatSimple();
 
 		fieldLines.push(`private ${formattedJavaType} ${fieldName};`);
 
