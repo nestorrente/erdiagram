@@ -17,7 +17,8 @@ export class TypeScriptClassModelToCodeConverterConfigManager extends AbstractCo
 				[EntityPropertyType.BOOLEAN]: createTypeScriptType('boolean'),
 				[EntityPropertyType.DATE]: createTypeScriptType('Date'),
 				[EntityPropertyType.TIME]: createTypeScriptType('Date'),
-				[EntityPropertyType.DATETIME]: createTypeScriptType('Date')
+				[EntityPropertyType.DATETIME]: createTypeScriptType('Date'),
+				[EntityPropertyType.BLOB]: createTypeScriptType('number[]'),
 			}
 		};
 	}

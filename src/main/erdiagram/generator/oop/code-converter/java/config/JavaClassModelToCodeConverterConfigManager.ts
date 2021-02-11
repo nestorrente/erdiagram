@@ -17,7 +17,8 @@ export class JavaClassModelToCodeConverterConfigManager extends AbstractComponen
 				[EntityPropertyType.BOOLEAN]: createJavaType('Boolean', 'java.lang'),
 				[EntityPropertyType.DATE]: createJavaType('LocalDate', 'java.util.time'),
 				[EntityPropertyType.TIME]: createJavaType('LocalTime', 'java.util.time'),
-				[EntityPropertyType.DATETIME]: createJavaType('LocalDateTime', 'java.util.time')
+				[EntityPropertyType.DATETIME]: createJavaType('LocalDateTime', 'java.util.time'),
+				[EntityPropertyType.BLOB]: createJavaType('byte[]')
 			},
 			useSpringNullabilityAnnotations: false
 		};

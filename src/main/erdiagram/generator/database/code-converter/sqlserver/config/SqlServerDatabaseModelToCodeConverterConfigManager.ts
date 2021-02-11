@@ -19,7 +19,8 @@ export class SqlServerDatabaseModelToCodeConverterConfigManager
 				[EntityPropertyType.BOOLEAN]: 'bit',
 				[EntityPropertyType.DATE]: 'date',
 				[EntityPropertyType.TIME]: 'time',
-				[EntityPropertyType.DATETIME]: 'datetime2'
+				[EntityPropertyType.DATETIME]: 'datetime2',
+				[EntityPropertyType.BLOB]: 'varbinary'
 			},
 			tableNameCaseFormat: StandardCaseFormats.UPPER_CAMEL,
 			columnNameCaseFormat: StandardCaseFormats.UPPER_CAMEL,

@@ -19,7 +19,8 @@ export class MySqlDatabaseModelToCodeConverterConfigManager
 				[EntityPropertyType.BOOLEAN]: 'BOOLEAN',
 				[EntityPropertyType.DATE]: 'DATE',
 				[EntityPropertyType.TIME]: 'TIME',
-				[EntityPropertyType.DATETIME]: 'TIMESTAMP'
+				[EntityPropertyType.DATETIME]: 'TIMESTAMP',
+				[EntityPropertyType.BLOB]: 'BLOB'
 			},
 			tableNameCaseFormat: StandardCaseFormats.UPPER_CAMEL,
 			columnNameCaseFormat: StandardCaseFormats.LOWER_CAMEL,

@@ -52,5 +52,6 @@ export enum EntityPropertyType {
 	TEXT = 'text',
 	DATE = 'date',
 	TIME = 'time',
-	DATETIME = 'datetime'
+	DATETIME = 'datetime',
+	BLOB = 'blob'
 }

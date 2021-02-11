@@ -19,7 +19,8 @@ export class OracleDatabaseModelToCodeConverterConfigManager
 				[EntityPropertyType.BOOLEAN]: 'NUMBER(1, 0)',
 				[EntityPropertyType.DATE]: 'DATE',
 				[EntityPropertyType.TIME]: 'TIMESTAMP',
-				[EntityPropertyType.DATETIME]: 'TIMESTAMP'
+				[EntityPropertyType.DATETIME]: 'TIMESTAMP',
+				[EntityPropertyType.BLOB]: 'BLOB'
 			},
 			tableNameCaseFormat: StandardCaseFormats.UPPER_UNDERSCORE,
 			columnNameCaseFormat: StandardCaseFormats.UPPER_UNDERSCORE,
