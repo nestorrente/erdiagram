@@ -1,0 +1,8 @@
+import OracleDatabaseModelToCodeConverterConfig from './OracleDatabaseModelToCodeConverterConfig';
+import oracleDatabaseModelToCodeConverterConfigManager, {OracleDatabaseModelToCodeConverterConfigManager} from './OracleDatabaseModelToCodeConverterConfigManager';
+
+export {
+	OracleDatabaseModelToCodeConverterConfig,
+	OracleDatabaseModelToCodeConverterConfigManager,
+	oracleDatabaseModelToCodeConverterConfigManager
+};

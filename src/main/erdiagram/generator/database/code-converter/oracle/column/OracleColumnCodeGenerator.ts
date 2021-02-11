@@ -1,34 +1,33 @@
 import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
 import {TableColumnDescriptor} from '@/erdiagram/generator/database/model/database-model-types';
-import RegularColumnCode from '@/erdiagram/generator/database/code-converter/sqlserver/column/types/RegularColumnCode';
-import SqlServerTypeResolver from '@/erdiagram/generator/database/code-converter/sqlserver/type/SqlServerTypeResolver';
+import RegularColumnCode from '@/erdiagram/generator/database/code-converter/oracle/column/types/RegularColumnCode';
+import OracleTypeResolver from '@/erdiagram/generator/database/code-converter/oracle/type/OracleTypeResolver';
 import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
 
-export default class SqlServerColumnCodeGenerator {
+export default class OracleColumnCodeGenerator {
 
 	constructor(
-			private readonly typeResolver: SqlServerTypeResolver,
+			private readonly typeResolver: OracleTypeResolver,
 			private readonly columnNameCaseConverter: CaseConverter
 	) {
 
 	}
 
-	// FIXME refactor the way "identity" flag is used
-	public generateColumnCode(outputTableName: string, column: TableColumnDescriptor, identity: boolean = false): RegularColumnCode {
+	public generateColumnCode(outputTableName: string, column: TableColumnDescriptor): RegularColumnCode {
 
 		const outputColumnName = this.columnNameCaseConverter.convertCase(column.name);
 		const autoincrementalSequenceName = this.getAutoincrementalSequenceName(outputTableName, outputColumnName);
 
 		return {
 			createSequenceLine: column.autoincremental ? this.generateCreateSequenceLine(autoincrementalSequenceName) : undefined,
-			columnLine: this.generateColumnDeclarationLine(outputColumnName, column, identity, autoincrementalSequenceName),
+			columnLine: this.generateColumnDeclarationLine(outputColumnName, column, autoincrementalSequenceName),
 			uniqueConstraintLine: column.unique ? this.generateUniqueConstraintLine(outputTableName, outputColumnName) : undefined
 		};
 
 	}
 
 	private getAutoincrementalSequenceName(outputTableName: string, outputColumnName: string): string {
-		return `${outputTableName}_${outputColumnName}_seq`;
+		return `${outputTableName}_${outputColumnName}_SEQ`;
 	}
 
 	private generateCreateSequenceLine(autoincrementalSequenceName: string): string {
@@ -36,7 +35,7 @@ export default class SqlServerColumnCodeGenerator {
 	}
 
 	// FIXME refactor this methods - it receives too much arguments
-	private generateColumnDeclarationLine(outputColumnName: string, column: TableColumnDescriptor, identity: boolean, autoincrementalSequenceName: string): string {
+	private generateColumnDeclarationLine(outputColumnName: string, column: TableColumnDescriptor, autoincrementalSequenceName: string): string {
 
 		const {
 			notNull,
@@ -47,31 +46,27 @@ export default class SqlServerColumnCodeGenerator {
 
 		const lineParts: string[] = [
 			`"${outputColumnName}"`,
-			this.generateSqlServerTypeDeclaration(type, length)
+			this.generateOracleTypeDeclaration(type, length)
 		];
 
 		if (notNull) {
 			lineParts.push('NOT NULL');
 		}
 
-		if (identity) {
-			lineParts.push('IDENTITY(1, 1)');
-		}
-
 		if (autoincremental) {
-			lineParts.push(`DEFAULT NEXT VALUE FOR "${autoincrementalSequenceName}"`);
+			lineParts.push(`DEFAULT "${autoincrementalSequenceName}".nextval`);
 		}
 
 		return lineParts.join(' ');
 
 	}
 
-	private generateSqlServerTypeDeclaration(type: EntityPropertyType, length: number[]) {
+	private generateOracleTypeDeclaration(type: EntityPropertyType, length: number[]) {
 
-		const sqlServerType = this.typeResolver.resolveSqlServerType(type);
+		const oracleType = this.typeResolver.resolveOracleType(type);
 		const lengthCode = this.generateLengthCode(length);
 
-		return sqlServerType + lengthCode;
+		return oracleType + lengthCode;
 
 	}
 
