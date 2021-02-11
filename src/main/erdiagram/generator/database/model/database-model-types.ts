@@ -6,7 +6,7 @@ export interface DatabaseModel {
 
 export interface TableDescriptor {
 	name: string;
-	// identifierColumnName: string;
+	identifierColumnName: string;
 	columns: TableColumnDescriptor[];
 	references: TableReferenceDescriptor[];
 }
@@ -23,6 +23,7 @@ export interface TableColumnDescriptor {
 export interface TableReferenceDescriptor {
 	columnName: string;
 	targetTableName: string;
+	targetTableIdentifierColumnName: string;
 	notNull: boolean;
 	unique: boolean;
 }

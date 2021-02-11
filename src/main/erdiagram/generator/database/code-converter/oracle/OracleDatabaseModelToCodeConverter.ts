@@ -52,14 +52,12 @@ export default class OracleDatabaseModelToCodeConverter implements DatabaseModel
 		);
 
 		this.idColumnCodeGenerator = new OracleIdColumnCodeGenerator(
-				this.config.idNamingStrategy,
 				this.columnCodeGenerator,
 				columnNameCaseConverter,
 				this.config.idColumnType
 		);
 
 		this.foreignColumnCodeGenerator = new OracleForeignColumnCodeGenerator(
-				this.config.idNamingStrategy,
 				this.columnCodeGenerator,
 				this.tableNameCaseConverter,
 				columnNameCaseConverter
@@ -104,7 +102,7 @@ export default class OracleDatabaseModelToCodeConverter implements DatabaseModel
 			createSequenceLine: idCreateSequenceLine,
 			columnLine: idColumnLine,
 			pkConstraintLine
-		} = this.idColumnCodeGenerator.generateIdColumnCode(table.name, outputTableName);
+		} = this.idColumnCodeGenerator.generateIdColumnCode(outputTableName, table.identifierColumnName);
 
 		createSequenceLines.push(idCreateSequenceLine);
 		columnLines.push(idColumnLine);

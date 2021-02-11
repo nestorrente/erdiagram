@@ -1,5 +1,4 @@
 import pluralize from 'pluralize';
-import {capitalizeWord} from '@/erdiagram/util/string-utils';
 import {
 	DatabaseModel,
 	TableColumnDescriptor,
@@ -31,12 +30,12 @@ export default class DatabaseModelGenerator {
 		const tables: TableDescriptor[] = [];
 
 		model.entities
-				.map(entity => generateEntityTable(entity, model, this.config))
+				.map(entity => this.generateEntityTable(entity, model))
 				.forEach(sentence => tables.push(sentence));
 
 		model.relationships
-				.filter(isManyToManyRelationship)
-				.map(relationship => generateRelationshipTable(relationship, this.config))
+				.filter(relationship => this.isManyToManyRelationship(relationship))
+				.map(relationship => this.generateRelationshipTable(relationship))
 				.forEach(sentence => tables.push(sentence));
 
 		return {
@@ -45,131 +44,157 @@ export default class DatabaseModelGenerator {
 
 	}
 
-}
+	private generateEntityTable(entity: EntityDescriptor, model: EntityRelationshipModel): TableDescriptor {
 
-function generateEntityTable(entity: EntityDescriptor, model: EntityRelationshipModel, config: DatabaseModelGeneratorConfig): TableDescriptor {
+		const name = this.pluralizeEntityNameIfApplies(entity.name);
+		const identifierColumnName = this.getIdentifierColumnName(entity.name);
 
-	const name = pluralizeEntityNameIfApplies(capitalizeWord(entity.name), config);
+		const columns: TableColumnDescriptor[] = [];
 
-	const columns: TableColumnDescriptor[] = [];
+		const references: TableReferenceDescriptor[] = [];
 
-	const references: TableReferenceDescriptor[] = [];
+		for (const property of entity.properties) {
+			columns.push(this.mapPropertyToColumn(property));
+		}
 
-	for (const property of entity.properties) {
-		columns.push(mapPropertyToColumn(property));
+		for (const relationship of model.relationships) {
+			if (relationship.rightMember.cardinality === Cardinality.ONE) {
+				if (relationship.leftMember.entity === entity.name) {
+					references.push(this.createTableReference(relationship.rightMember));
+				}
+			} else if (relationship.leftMember.cardinality === Cardinality.ONE) {
+				if (relationship.rightMember.entity === entity.name) {
+					references.push(this.createTableReference(relationship.leftMember));
+				}
+			}
+		}
+
+		return {
+			name,
+			identifierColumnName,
+			columns,
+			references
+		};
+
 	}
 
-	for (const relationship of model.relationships) {
-		if (relationship.rightMember.cardinality === Cardinality.ONE) {
-			if (relationship.leftMember.entity === entity.name) {
-				references.push(createTableReference(relationship.rightMember, config));
-			}
-		} else if (relationship.leftMember.cardinality === Cardinality.ONE) {
-			if (relationship.rightMember.entity === entity.name) {
-				references.push(createTableReference(relationship.leftMember, config));
-			}
+	private generateRelationshipTable(relationship: RelationshipDescriptor): TableDescriptor {
+
+		const name = this.getRelationshipTableName(relationship);
+		const identifierColumnName = this.getRelationshipTableIdentifierColumnName(relationship);
+
+		return {
+			name,
+			identifierColumnName,
+			columns: [],
+			// We force references to be non-optional in this case, as "one or many" and "zero, one or many" cardinalities
+			// are modelled in the same way in SQL - foreign columns of relationship tables are never nullable.
+			references: [
+				this.createTableReference({
+					...relationship.leftMember,
+					optional: false
+				}),
+				this.createTableReference({
+					...relationship.rightMember,
+					optional: false
+				})
+			]
+		};
+
+	}
+
+	private getRelationshipTableName(relationship: RelationshipDescriptor): string {
+
+		const {
+			relationShipName,
+			leftMember,
+			rightMember
+		} = relationship;
+
+		if (relationShipName) {
+			return relationShipName;
+		}
+
+		return this.pluralizeEntityNameIfApplies(leftMember.entity)
+				+ this.pluralizeEntityNameIfApplies(rightMember.entity);
+
+	}
+
+	private getRelationshipTableIdentifierColumnName(relationship: RelationshipDescriptor): string {
+
+		const {
+			relationShipName,
+			leftMember,
+			rightMember
+		} = relationship;
+
+		if (relationShipName) {
+			return this.getIdentifierColumnName(relationShipName);
+		}
+
+		return this.getIdentifierColumnName(leftMember.entity + rightMember.entity);
+
+	}
+
+	private createTableReference(toMember: RelationshipMember): TableReferenceDescriptor {
+
+		const {
+			entityAlias,
+			entity,
+			optional,
+			unique
+		} = toMember;
+
+		return {
+			columnName: `${entityAlias}Id`,
+			targetTableName: this.pluralizeEntityNameIfApplies(entity),
+			targetTableIdentifierColumnName: this.getIdentifierColumnName(entity),
+			notNull: !optional,
+			unique
+		};
+
+	}
+
+	private pluralizeEntityNameIfApplies(entityName: string): string {
+		if (this.config.usePluralTableNames) {
+			return pluralize(entityName);
+		} else {
+			return entityName;
 		}
 	}
 
-	return {
-		name,
-		columns,
-		references
-	};
-
-}
-
-function generateRelationshipTable(relationship: RelationshipDescriptor, config: DatabaseModelGeneratorConfig): TableDescriptor {
-
-	const name = getRelationshipTableName(relationship, config);
-
-	return {
-		name,
-		columns: [],
-		// We force references to be non-optional in this case, as "one or many" and "zero, one or many" cardinalities
-		// are modelled in the same way in SQL - foreign columns of relationship tables are never nullable.
-		references: [
-			createTableReference({
-				...relationship.leftMember,
-				optional: false
-			}, config),
-			createTableReference({
-				...relationship.rightMember,
-				optional: false
-			}, config)
-		]
-	};
-
-}
-
-function getRelationshipTableName(relationship: RelationshipDescriptor, config: DatabaseModelGeneratorConfig): string {
-
-	const {
-		relationShipName,
-		leftMember,
-		rightMember
-	} = relationship;
-
-	if (relationShipName) {
-		return capitalizeWord(relationShipName);
+	private getIdentifierColumnName(entityName: string) {
+		const {idNamingStrategy} = this.config;
+		return idNamingStrategy(entityName);
 	}
 
-	return pluralizeEntityNameIfApplies(capitalizeWord(leftMember.entity), config)
-			+ pluralizeEntityNameIfApplies(capitalizeWord(rightMember.entity), config);
+	private mapPropertyToColumn(property: EntityPropertyDescriptor): TableColumnDescriptor {
 
-}
+		const {
+			name,
+			optional,
+			autoincremental,
+			unique,
+			type,
+			length
+		} = property;
 
-function createTableReference(toMember: RelationshipMember, config: DatabaseModelGeneratorConfig): TableReferenceDescriptor {
+		return {
+			name,
+			notNull: !optional,
+			autoincremental,
+			unique,
+			type,
+			length
+		};
 
-	const {
-		entityAlias,
-		entity,
-		optional,
-		unique
-	} = toMember;
-
-	return {
-		columnName: `${entityAlias}Id`,
-		targetTableName: pluralizeEntityNameIfApplies(entity, config),
-		notNull: !optional,
-		unique
-	};
-
-}
-
-function pluralizeEntityNameIfApplies(entityName: string, config: DatabaseModelGeneratorConfig): string {
-	if (config.pluralizeTableNames) {
-		return pluralize(entityName);
-	} else {
-		return entityName;
 	}
-}
 
-function mapPropertyToColumn(property: EntityPropertyDescriptor): TableColumnDescriptor {
+	private isManyToManyRelationship(relationship: RelationshipDescriptor): boolean {
+		return [
+			relationship.leftMember,
+			relationship.rightMember
+		].every(member => member.cardinality === Cardinality.MANY);
+	}
 
-	const {
-		name,
-		optional,
-		autoincremental,
-		unique,
-		type,
-		length
-	} = property;
-
-	return {
-		name,
-		notNull: !optional,
-		autoincremental,
-		unique,
-		type,
-		length
-	};
-
-}
-
-function isManyToManyRelationship(relationship: RelationshipDescriptor): boolean {
-	return [
-		relationship.leftMember,
-		relationship.rightMember
-	].every(member => member.cardinality === Cardinality.MANY);
 }

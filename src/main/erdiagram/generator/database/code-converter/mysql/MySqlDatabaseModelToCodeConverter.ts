@@ -52,14 +52,12 @@ export default class MySqlDatabaseModelToCodeConverter implements DatabaseModelT
 		);
 
 		this.idColumnCodeGenerator = new MySqlIdColumnCodeGenerator(
-				this.config.idNamingStrategy,
 				this.columnCodeGenerator,
 				columnNameCaseConverter,
 				this.config.idColumnType
 		);
 
 		this.foreignColumnCodeGenerator = new MySqlForeignColumnCodeGenerator(
-				this.config.idNamingStrategy,
 				this.columnCodeGenerator,
 				this.tableNameCaseConverter,
 				columnNameCaseConverter
@@ -102,7 +100,7 @@ export default class MySqlDatabaseModelToCodeConverter implements DatabaseModelT
 		const {
 			columnLine: idColumnLine,
 			pkConstraintLine
-		} = this.idColumnCodeGenerator.generateIdColumnCode(table.name, outputTableName);
+		} = this.idColumnCodeGenerator.generateIdColumnCode(outputTableName, table.identifierColumnName);
 
 		columnLines.push(idColumnLine);
 		otherConstraintLines.push(pkConstraintLine);

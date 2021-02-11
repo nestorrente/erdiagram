@@ -96,6 +96,8 @@ export function parseRelationshipStatement(line: string): RelationshipDescriptor
 	] = result;
 
 	return {
+		relationShipName: relationShipName ? capitalizeWord(relationShipName) : undefined,
+		direction: direction === '->' ? Direction.RIGHT : (direction === '<-' ? Direction.LEFT : Direction.BOTH),
 		leftMember: {
 			entity: capitalizeWord(leftEntity),
 			entityAlias: uncapitalizeWord(leftEntityAlias),
@@ -109,9 +111,7 @@ export function parseRelationshipStatement(line: string): RelationshipDescriptor
 			cardinality: rightCardinalityCharacter === '*' ? Cardinality.MANY : Cardinality.ONE,
 			optional: rightModifiers.includes('?'),
 			unique: rightModifiers.includes('!')
-		},
-		direction: direction === '->' ? Direction.RIGHT : (direction === '<-' ? Direction.LEFT : Direction.BOTH),
-		relationShipName
+		}
 	};
 
 }

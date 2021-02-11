@@ -1,4 +1,3 @@
-import StandardIdNamingStrategies from '@/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies';
 import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
 import StandardCaseFormats from '@/erdiagram/generator/common/case-format/StandardCaseFormats';
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
@@ -11,7 +10,6 @@ export class SqlServerDatabaseModelToCodeConverterConfigManager
 	getDefaultConfig(): SqlServerDatabaseModelToCodeConverterConfig {
 		return {
 			idColumnType: EntityPropertyType.LONG,
-			idNamingStrategy: StandardIdNamingStrategies.DEFAULT,
 			typeMappings: {
 				[EntityPropertyType.TEXT]: 'nvarchar',
 				[EntityPropertyType.LONG]: 'bigint',

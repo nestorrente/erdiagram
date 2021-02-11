@@ -3,13 +3,11 @@ import {TableColumnDescriptor} from '@/erdiagram/generator/database/model/databa
 import IdColumnCode from '@/erdiagram/generator/database/code-converter/mysql/column/types/IdColumnCode';
 import MySqlColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/mysql/column/MySqlColumnCodeGenerator';
-import IdNamingStrategy from '@/erdiagram/generator/common/id-naming-strategy/IdNamingStrategy';
 import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
 
 export default class MySqlIdColumnCodeGenerator {
 
 	constructor(
-			private readonly idNamingStrategy: IdNamingStrategy,
 			private readonly columnCodeGenerator: MySqlColumnCodeGenerator,
 			private readonly columnNameCaseConverter: CaseConverter,
 			private readonly idColumnType: EntityPropertyType
@@ -17,9 +15,9 @@ export default class MySqlIdColumnCodeGenerator {
 
 	}
 
-	public generateIdColumnCode(inputTableName: string, outputTableName: string): IdColumnCode {
+	public generateIdColumnCode(outputTableName: string, identifierColumnName: string): IdColumnCode {
 
-		const column = this.createIdColumnDescriptor(inputTableName);
+		const column = this.createIdColumnDescriptor(identifierColumnName);
 
 		const {
 			columnLine
@@ -34,9 +32,9 @@ export default class MySqlIdColumnCodeGenerator {
 
 	}
 
-	private createIdColumnDescriptor(tableDescriptorName: string): TableColumnDescriptor {
+	private createIdColumnDescriptor(identifierColumnName: string): TableColumnDescriptor {
 		return {
-			name: this.getTableId(tableDescriptorName),
+			name: identifierColumnName,
 			type: this.idColumnType,
 			length: [],
 			notNull: true,
@@ -50,11 +48,6 @@ export default class MySqlIdColumnCodeGenerator {
 	private createPrimaryKeyConstraint(outputTableName: string, column: TableColumnDescriptor) {
 		const columnName = this.columnNameCaseConverter.convertCase(column.name);
 		return `CONSTRAINT \`${outputTableName}_pk\` PRIMARY KEY (\`${columnName}\`)`;
-	}
-
-	private getTableId(tableDescriptorName: string) {
-		const {idNamingStrategy} = this;
-		return idNamingStrategy(tableDescriptorName);
 	}
 
 }

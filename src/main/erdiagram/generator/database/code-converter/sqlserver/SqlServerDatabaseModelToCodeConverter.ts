@@ -52,14 +52,12 @@ export default class SqlServerDatabaseModelToCodeConverter implements DatabaseMo
 		);
 
 		this.idColumnCodeGenerator = new SqlServerIdColumnCodeGenerator(
-				this.config.idNamingStrategy,
 				this.columnCodeGenerator,
 				columnNameCaseConverter,
 				this.config.idColumnType
 		);
 
 		this.foreignColumnCodeGenerator = new SqlServerForeignColumnCodeGenerator(
-				this.config.idNamingStrategy,
 				this.columnCodeGenerator,
 				this.tableNameCaseConverter,
 				columnNameCaseConverter
@@ -103,7 +101,7 @@ export default class SqlServerDatabaseModelToCodeConverter implements DatabaseMo
 		const {
 			columnLine: idColumnLine,
 			pkConstraintLine
-		} = this.idColumnCodeGenerator.generateIdColumnCode(table.name, outputTableName);
+		} = this.idColumnCodeGenerator.generateIdColumnCode(outputTableName, table.identifierColumnName);
 
 		columnLines.push(idColumnLine);
 		otherConstraintLines.push(pkConstraintLine);
