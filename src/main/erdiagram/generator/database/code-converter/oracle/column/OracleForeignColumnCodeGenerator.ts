@@ -64,7 +64,7 @@ export default class OracleForeignColumnCodeGenerator {
 		const outputTargetTableName = this.tableNameCaseConverter.convertCase(reference.targetTableName);
 		const outputTargetColumnName = this.columnNameCaseConverter.convertCase(this.getTableId(reference.targetTableName));
 
-		return `CONSTRAINT "${outputTableName}_${outputColumnName}_fk" FOREIGN KEY ("${outputColumnName}")`
+		return `CONSTRAINT "${outputTableName}_${outputColumnName}_FK" FOREIGN KEY ("${outputColumnName}")`
 				+ ` REFERENCES "${outputTargetTableName}" ("${outputTargetColumnName}")`;
 
 	}

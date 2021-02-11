@@ -57,7 +57,7 @@ export default class OracleIdColumnCodeGenerator {
 
 	private createPrimaryKeyConstraint(outputTableName: string, column: TableColumnDescriptor) {
 		const columnName = this.columnNameCaseConverter.convertCase(column.name);
-		return `CONSTRAINT "${outputTableName}_pk" PRIMARY KEY ("${columnName}")`;
+		return `CONSTRAINT "${outputTableName}_PK" PRIMARY KEY ("${columnName}")`;
 	}
 
 	private getTableId(tableDescriptorName: string) {

@@ -81,7 +81,7 @@ export default class OracleColumnCodeGenerator {
 	}
 
 	private generateUniqueConstraintLine(outputTableName: string, outputColumnName: string) {
-		return `CONSTRAINT "${outputTableName}_${outputColumnName}_unique" UNIQUE ("${outputColumnName}")`;
+		return `CONSTRAINT "${outputTableName}_${outputColumnName}_UNIQUE" UNIQUE ("${outputColumnName}")`;
 	}
 
 }
