@@ -25,10 +25,9 @@ export default function parseTypeScriptType(text: string): TypeScriptType {
 		throw new Error('Malformed TypeScript type: ' + trimmedText);
 	}
 
-	const rawType = parseTypeScriptSimpleType(text.substring(0, startOfParameterTypes));
+	const rawType = parseTypeScriptSimpleType(trimmedText.substring(0, startOfParameterTypes));
 
-	const parameterTypes = trimmedText.substring(startOfParameterTypes + 1, endOfParameterTypes)
-			.split(',')
+	const parameterTypes = splitParameterTypes(trimmedText.substring(startOfParameterTypes + 1, endOfParameterTypes))
 			.map(parameterType => parseTypeScriptType(parameterType));
 
 	return createTypeScriptParameterizedType(rawType.name, parameterTypes);
@@ -37,4 +36,48 @@ export default function parseTypeScriptType(text: string): TypeScriptType {
 
 function parseTypeScriptSimpleType(text: string): TypeScriptType {
 	return createTypeScriptType(text.trim());
+}
+
+function splitParameterTypes(parameterTypesText: string): string[] {
+
+	if (!parameterTypesText.includes(',')) {
+		return [parameterTypesText];
+	}
+
+	const commaIndices: number[] = [];
+
+	let nestedLevelsCount = 0;
+
+	[...parameterTypesText].forEach((character, index) => {
+		switch (character) {
+			case ',':
+				if (nestedLevelsCount === 0) {
+					commaIndices.push(index);
+				}
+				break;
+			case '<':
+				nestedLevelsCount++;
+				break;
+			case '>':
+				if (nestedLevelsCount === 0) {
+					throw new Error('Unexpected character ">"');
+				}
+				nestedLevelsCount--;
+				break;
+		}
+	});
+
+	const splittedParameterTypes: string[] = [];
+	let startIndex = 0;
+
+	for (const commaIndex of commaIndices) {
+		splittedParameterTypes.push(parameterTypesText.substring(startIndex, commaIndex));
+		startIndex = commaIndex + 1;
+	}
+
+	// Text after the last comma
+	splittedParameterTypes.push(parameterTypesText.substring(startIndex));
+
+	return splittedParameterTypes;
+
 }

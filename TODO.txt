@@ -51,4 +51,4 @@
 	- Allow a function and a pattern string (which will be used in CLI and Playground).
 	- Allow pattern string in "idNamingStrategy" also.
 
-- [FIX] Fix Java and TypeScript types parse methods (problem with split).
+- [DONE] Fix Java and TypeScript types parse methods (problem with split).
