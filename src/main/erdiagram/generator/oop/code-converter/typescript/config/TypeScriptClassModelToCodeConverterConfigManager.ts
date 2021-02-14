@@ -22,7 +22,7 @@ export class TypeScriptClassModelToCodeConverterConfigManager
 				[EntityPropertyType.DATE]: parseTypeScriptType('Date'),
 				[EntityPropertyType.TIME]: parseTypeScriptType('Date'),
 				[EntityPropertyType.DATETIME]: parseTypeScriptType('Date'),
-				[EntityPropertyType.BLOB]: parseTypeScriptType('number[]'),
+				[EntityPropertyType.BLOB]: parseTypeScriptType('Uint8Array'),
 			}
 		};
 	}
