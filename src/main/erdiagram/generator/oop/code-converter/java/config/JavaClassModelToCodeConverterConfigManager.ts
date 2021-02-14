@@ -35,6 +35,14 @@ export class JavaClassModelToCodeConverterConfigManager extends AbstractComponen
 		};
 	}
 
+	protected prepareBeforeSerializing(fullConfig: JavaClassModelToCodeConverterConfig): JavaClassModelToCodeConverterConfig {
+		throw new Error('Method not implemented.');
+	}
+
+	protected processAfterDeserializing(serializedConfig: JavaClassModelToCodeConverterConfig): JavaClassModelToCodeConverterConfig {
+		throw new Error('Method not implemented.');
+	}
+
 }
 
 const javaClassModelToCodeConverterConfigManager = new JavaClassModelToCodeConverterConfigManager();

@@ -38,6 +38,14 @@ export class MySqlDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
+	protected prepareBeforeSerializing(fullConfig: MySqlDatabaseModelToCodeConverterConfig): MySqlDatabaseModelToCodeConverterConfig {
+		throw new Error('Method not implemented.');
+	}
+
+	protected processAfterDeserializing(serializedConfig: MySqlDatabaseModelToCodeConverterConfig): MySqlDatabaseModelToCodeConverterConfig {
+		throw new Error('Method not implemented.');
+	}
+
 }
 
 const mysqlDatabaseModelToCodeConverterConfigManager = new MySqlDatabaseModelToCodeConverterConfigManager();

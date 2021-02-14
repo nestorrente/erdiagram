@@ -1,0 +1,6 @@
+import DatabaseModelToCodeConverterSerializedConfig
+	from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverterSerializedConfig';
+
+export default interface SqlServerDatabaseModelToCodeConverterSerializedConfig extends DatabaseModelToCodeConverterSerializedConfig {
+
+}

@@ -34,6 +34,14 @@ export class TypeScriptClassModelToCodeConverterConfigManager extends AbstractCo
 		};
 	}
 
+	protected prepareBeforeSerializing(fullConfig: TypeScriptClassModelToCodeConverterConfig): TypeScriptClassModelToCodeConverterConfig {
+		throw new Error('Method not implemented.');
+	}
+
+	protected processAfterDeserializing(serializedConfig: TypeScriptClassModelToCodeConverterConfig): TypeScriptClassModelToCodeConverterConfig {
+		throw new Error('Method not implemented.');
+	}
+
 }
 
 const typescriptClassModelToCodeConverterConfigManager = new TypeScriptClassModelToCodeConverterConfigManager();

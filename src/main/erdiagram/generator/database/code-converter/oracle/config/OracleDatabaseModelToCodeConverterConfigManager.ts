@@ -38,6 +38,14 @@ export class OracleDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
+	protected prepareBeforeSerializing(fullConfig: OracleDatabaseModelToCodeConverterConfig): OracleDatabaseModelToCodeConverterConfig {
+		throw new Error('Method not implemented.');
+	}
+
+	protected processAfterDeserializing(serializedConfig: OracleDatabaseModelToCodeConverterConfig): OracleDatabaseModelToCodeConverterConfig {
+		throw new Error('Method not implemented.');
+	}
+
 }
 
 const oracleDatabaseModelToCodeConverterConfigManager = new OracleDatabaseModelToCodeConverterConfigManager();

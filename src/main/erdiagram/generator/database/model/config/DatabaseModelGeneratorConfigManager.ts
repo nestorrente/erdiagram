@@ -18,6 +18,14 @@ export class DatabaseModelGeneratorConfigManager extends AbstractComponentConfig
 		};
 	}
 
+	protected prepareBeforeSerializing(fullConfig: DatabaseModelGeneratorConfig): DatabaseModelGeneratorConfig {
+		throw new Error('Method not implemented.');
+	}
+
+	protected processAfterDeserializing(serializedConfig: DatabaseModelGeneratorConfig): DatabaseModelGeneratorConfig {
+		throw new Error('Method not implemented.');
+	}
+
 }
 
 const databaseModelGeneratorConfigManager = new DatabaseModelGeneratorConfigManager();

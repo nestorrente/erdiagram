@@ -17,6 +17,14 @@ export class EntityRelationshipModelParserConfigManager
 		};
 	}
 
+	protected prepareBeforeSerializing(fullConfig: EntityRelationshipModelParserConfig): EntityRelationshipModelParserConfig {
+		throw new Error('Method not implemented.');
+	}
+
+	protected processAfterDeserializing(serializedConfig: EntityRelationshipModelParserConfig): EntityRelationshipModelParserConfig {
+		throw new Error('Method not implemented.');
+	}
+
 }
 
 const entityRelationshipModelParserConfigManager = new EntityRelationshipModelParserConfigManager();
