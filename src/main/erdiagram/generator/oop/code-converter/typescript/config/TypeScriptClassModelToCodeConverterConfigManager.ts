@@ -38,14 +38,14 @@ export class TypeScriptClassModelToCodeConverterConfigManager
 		};
 	}
 
-	protected prepareBeforeSerializing(fullConfig: TypeScriptClassModelToCodeConverterConfig): TypeScriptClassModelToCodeConverterSerializedConfig {
+	convertToSerializableObject(fullConfig: TypeScriptClassModelToCodeConverterConfig): TypeScriptClassModelToCodeConverterSerializedConfig {
 		return {
 			...fullConfig,
 			typeMappings: mapValues(fullConfig.typeMappings, typeScriptType => typeScriptType!.format()),
 		};
 	}
 
-	protected processAfterDeserializing(serializedConfig: TypeScriptClassModelToCodeConverterSerializedConfig): TypeScriptClassModelToCodeConverterConfig {
+	convertFromSerializableObject(serializedConfig: TypeScriptClassModelToCodeConverterSerializedConfig): TypeScriptClassModelToCodeConverterConfig {
 		return {
 			...serializedConfig,
 			typeMappings: mapValues(serializedConfig.typeMappings, parseTypeScriptType),

@@ -41,7 +41,7 @@ export class OracleDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
-	protected prepareBeforeSerializing(fullConfig: OracleDatabaseModelToCodeConverterConfig): OracleDatabaseModelToCodeConverterSerializedConfig {
+	convertToSerializableObject(fullConfig: OracleDatabaseModelToCodeConverterConfig): OracleDatabaseModelToCodeConverterSerializedConfig {
 		return {
 			...fullConfig,
 			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat),
@@ -49,7 +49,7 @@ export class OracleDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
-	protected processAfterDeserializing(serializedConfig: OracleDatabaseModelToCodeConverterSerializedConfig): OracleDatabaseModelToCodeConverterConfig {
+	convertFromSerializableObject(serializedConfig: OracleDatabaseModelToCodeConverterSerializedConfig): OracleDatabaseModelToCodeConverterConfig {
 		return {
 			...serializedConfig,
 			tableNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializedConfig.tableNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),

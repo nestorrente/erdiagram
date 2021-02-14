@@ -17,11 +17,11 @@ export class EntityRelationshipModelParserConfigManager
 		};
 	}
 
-	protected prepareBeforeSerializing(fullConfig: EntityRelationshipModelParserConfig): EntityRelationshipModelParserConfig {
+	convertToSerializableObject(fullConfig: EntityRelationshipModelParserConfig): EntityRelationshipModelParserConfig {
 		return fullConfig;
 	}
 
-	protected processAfterDeserializing(serializedConfig: EntityRelationshipModelParserConfig): EntityRelationshipModelParserConfig {
+	convertFromSerializableObject(serializedConfig: EntityRelationshipModelParserConfig): EntityRelationshipModelParserConfig {
 		return serializedConfig;
 	}
 

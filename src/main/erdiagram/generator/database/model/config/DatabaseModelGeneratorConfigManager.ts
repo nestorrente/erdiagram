@@ -1,7 +1,6 @@
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
 import DatabaseModelGeneratorConfig from '@/erdiagram/generator/database/model/config/DatabaseModelGeneratorConfig';
 import StandardIdNamingStrategies from '@/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies';
-import IdNamingStrategy from '@/erdiagram/generator/common/id-naming-strategy/IdNamingStrategy';
 import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
 import DatabaseModelGeneratorSerializedConfig
 	from '@/erdiagram/generator/database/model/config/DatabaseModelGeneratorSerializedConfig';
@@ -23,26 +22,18 @@ export class DatabaseModelGeneratorConfigManager
 		};
 	}
 
-	protected prepareBeforeSerializing(fullConfig: DatabaseModelGeneratorConfig): DatabaseModelGeneratorSerializedConfig {
+	convertToSerializableObject(fullConfig: DatabaseModelGeneratorConfig): DatabaseModelGeneratorSerializedConfig {
 		return {
 			...fullConfig,
-			idNamingStrategy: this.serializeIdNamingStrategy(fullConfig.idNamingStrategy)
+			idNamingStrategy: findKeyFromValue(StandardIdNamingStrategies, fullConfig.idNamingStrategy)
 		};
 	}
 
-	protected processAfterDeserializing(serializedConfig: DatabaseModelGeneratorSerializedConfig): DatabaseModelGeneratorConfig {
+	convertFromSerializableObject(serializedConfig: DatabaseModelGeneratorSerializedConfig): DatabaseModelGeneratorConfig {
 		return {
 			...serializedConfig,
-			idNamingStrategy: this.deserializeIdNamingStrategy(serializedConfig.idNamingStrategy)
+			idNamingStrategy: findValueFromNullableKey(StandardIdNamingStrategies, serializedConfig.idNamingStrategy, StandardIdNamingStrategies.DEFAULT)
 		};
-	}
-
-	private serializeIdNamingStrategy(idNamingStrategy: IdNamingStrategy) {
-		return findKeyFromValue(StandardIdNamingStrategies, idNamingStrategy);
-	}
-
-	private deserializeIdNamingStrategy(idNamingStrategy: string | undefined) {
-		return findValueFromNullableKey(StandardIdNamingStrategies, idNamingStrategy, StandardIdNamingStrategies.DEFAULT);
 	}
 
 }

@@ -1,7 +1,7 @@
 import ComponentConfigManager from '@/erdiagram/common/config/ComponentConfigManager';
 
 export default abstract class AbstractComponentConfigManager<C, P = Partial<C>, S = C>
-		implements ComponentConfigManager<C, P> {
+		implements ComponentConfigManager<C, P, S> {
 
 	abstract getDefaultConfig(): C;
 
@@ -15,16 +15,8 @@ export default abstract class AbstractComponentConfigManager<C, P = Partial<C>, 
 		return this.mergeConfigs(fullConfig);
 	}
 
-	serializeJson(fullConfig: C): string {
-		return JSON.stringify(this.prepareBeforeSerializing(fullConfig));
-	}
+	abstract convertToSerializableObject(fullConfig: C): S;
 
-	deserializeJson(jsonConfig: string): C {
-		return this.processAfterDeserializing(JSON.parse(jsonConfig));
-	}
-
-	protected abstract prepareBeforeSerializing(fullConfig: C): S;
-
-	protected abstract processAfterDeserializing(serializedConfig: S): C;
+	abstract convertFromSerializableObject(serializedConfig: S): C;
 
 }

@@ -1,4 +1,4 @@
-export default interface ComponentConfigManager<C, P = Partial<C>> {
+export default interface ComponentConfigManager<C, P, S> {
 
 	getDefaultConfig(): C;
 
@@ -8,8 +8,8 @@ export default interface ComponentConfigManager<C, P = Partial<C>> {
 
 	cloneConfig(fullConfig: C): C;
 
-	serializeJson(fullConfig: C): string;
+	convertToSerializableObject(fullConfig: C): S;
 
-	deserializeJson(jsonConfig: string): C;
+	convertFromSerializableObject(serializedConfig: S): C;
 
 }

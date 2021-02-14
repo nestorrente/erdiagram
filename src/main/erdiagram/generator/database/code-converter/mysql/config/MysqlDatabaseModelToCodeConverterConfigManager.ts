@@ -41,7 +41,7 @@ export class MySqlDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
-	protected prepareBeforeSerializing(fullConfig: MySqlDatabaseModelToCodeConverterConfig): MySqlDatabaseModelToCodeConverterSerializedConfig {
+	convertToSerializableObject(fullConfig: MySqlDatabaseModelToCodeConverterConfig): MySqlDatabaseModelToCodeConverterSerializedConfig {
 		return {
 			...fullConfig,
 			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat),
@@ -49,7 +49,7 @@ export class MySqlDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
-	protected processAfterDeserializing(serializedConfig: MySqlDatabaseModelToCodeConverterSerializedConfig): MySqlDatabaseModelToCodeConverterConfig {
+	convertFromSerializableObject(serializedConfig: MySqlDatabaseModelToCodeConverterSerializedConfig): MySqlDatabaseModelToCodeConverterConfig {
 		return {
 			...serializedConfig,
 			tableNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializedConfig.tableNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),

@@ -39,14 +39,14 @@ export class JavaClassModelToCodeConverterConfigManager
 		};
 	}
 
-	protected prepareBeforeSerializing(fullConfig: JavaClassModelToCodeConverterConfig): JavaClassModelToCodeConverterSerializedConfig {
+	convertToSerializableObject(fullConfig: JavaClassModelToCodeConverterConfig): JavaClassModelToCodeConverterSerializedConfig {
 		return {
 			...fullConfig,
 			typeMappings: mapValues(fullConfig.typeMappings, javaType => javaType!.formatCanonical()),
 		};
 	}
 
-	protected processAfterDeserializing(serializedConfig: JavaClassModelToCodeConverterSerializedConfig): JavaClassModelToCodeConverterConfig {
+	convertFromSerializableObject(serializedConfig: JavaClassModelToCodeConverterSerializedConfig): JavaClassModelToCodeConverterConfig {
 		return {
 			...serializedConfig,
 			typeMappings: mapValues(serializedConfig.typeMappings, parseJavaType),

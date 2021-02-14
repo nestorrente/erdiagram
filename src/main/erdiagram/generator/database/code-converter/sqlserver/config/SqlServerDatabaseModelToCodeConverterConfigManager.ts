@@ -41,7 +41,7 @@ export class SqlServerDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
-	protected prepareBeforeSerializing(fullConfig: SqlServerDatabaseModelToCodeConverterConfig): SqlServerDatabaseModelToCodeConverterSerializedConfig {
+	convertToSerializableObject(fullConfig: SqlServerDatabaseModelToCodeConverterConfig): SqlServerDatabaseModelToCodeConverterSerializedConfig {
 		return {
 			...fullConfig,
 			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat),
@@ -49,7 +49,7 @@ export class SqlServerDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
-	protected processAfterDeserializing(serializedConfig: SqlServerDatabaseModelToCodeConverterSerializedConfig): SqlServerDatabaseModelToCodeConverterConfig {
+	convertFromSerializableObject(serializedConfig: SqlServerDatabaseModelToCodeConverterSerializedConfig): SqlServerDatabaseModelToCodeConverterConfig {
 		return {
 			...serializedConfig,
 			tableNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializedConfig.tableNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
