@@ -14,16 +14,16 @@ export class SqlServerDatabaseModelToCodeConverterConfigManager
 		return {
 			idColumnType: EntityPropertyType.LONG,
 			typeMappings: {
-				[EntityPropertyType.TEXT]: 'nvarchar',
-				[EntityPropertyType.LONG]: 'bigint',
-				[EntityPropertyType.INT]: 'int',
-				[EntityPropertyType.SHORT]: 'smallint',
-				[EntityPropertyType.DECIMAL]: 'decimal',
-				[EntityPropertyType.BOOLEAN]: 'bit',
-				[EntityPropertyType.DATE]: 'date',
-				[EntityPropertyType.TIME]: 'time',
-				[EntityPropertyType.DATETIME]: 'datetime2',
-				[EntityPropertyType.BLOB]: 'varbinary'
+				[EntityPropertyType.TEXT]: 'NVARCHAR',
+				[EntityPropertyType.LONG]: 'BIGINT',
+				[EntityPropertyType.INT]: 'INT',
+				[EntityPropertyType.SHORT]: 'SMALLINT',
+				[EntityPropertyType.DECIMAL]: 'DECIMAL',
+				[EntityPropertyType.BOOLEAN]: 'BIT',
+				[EntityPropertyType.DATE]: 'DATE',
+				[EntityPropertyType.TIME]: 'TIME',
+				[EntityPropertyType.DATETIME]: 'DATETIME2',
+				[EntityPropertyType.BLOB]: 'VARBINARY(MAX)'
 			},
 			tableNameCaseFormat: StandardCaseFormats.UPPER_CAMEL,
 			columnNameCaseFormat: StandardCaseFormats.UPPER_CAMEL,
