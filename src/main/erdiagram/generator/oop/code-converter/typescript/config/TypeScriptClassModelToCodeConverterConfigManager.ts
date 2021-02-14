@@ -3,8 +3,12 @@ import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractCo
 import TypeScriptClassModelToCodeConverterConfig
 	from '@/erdiagram/generator/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfig';
 import parseTypeScriptType from '@/erdiagram/generator/oop/code-converter/typescript/type/parseTypeScriptType';
+import TypeScriptClassModelToCodeConverterSerializedConfig
+	from '@/erdiagram/generator/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterSerializedConfig';
+import {mapValues} from '@/erdiagram/util/record-utils';
 
-export class TypeScriptClassModelToCodeConverterConfigManager extends AbstractComponentConfigManager<TypeScriptClassModelToCodeConverterConfig> {
+export class TypeScriptClassModelToCodeConverterConfigManager
+		extends AbstractComponentConfigManager<TypeScriptClassModelToCodeConverterConfig, Partial<TypeScriptClassModelToCodeConverterConfig>, TypeScriptClassModelToCodeConverterSerializedConfig> {
 
 	getDefaultConfig(): TypeScriptClassModelToCodeConverterConfig {
 		return {
@@ -34,12 +38,18 @@ export class TypeScriptClassModelToCodeConverterConfigManager extends AbstractCo
 		};
 	}
 
-	protected prepareBeforeSerializing(fullConfig: TypeScriptClassModelToCodeConverterConfig): TypeScriptClassModelToCodeConverterConfig {
-		throw new Error('Method not implemented.');
+	protected prepareBeforeSerializing(fullConfig: TypeScriptClassModelToCodeConverterConfig): TypeScriptClassModelToCodeConverterSerializedConfig {
+		return {
+			...fullConfig,
+			typeMappings: mapValues(fullConfig.typeMappings, typeScriptType => typeScriptType!.format()),
+		};
 	}
 
-	protected processAfterDeserializing(serializedConfig: TypeScriptClassModelToCodeConverterConfig): TypeScriptClassModelToCodeConverterConfig {
-		throw new Error('Method not implemented.');
+	protected processAfterDeserializing(serializedConfig: TypeScriptClassModelToCodeConverterSerializedConfig): TypeScriptClassModelToCodeConverterConfig {
+		return {
+			...serializedConfig,
+			typeMappings: mapValues(serializedConfig.typeMappings, parseTypeScriptType),
+		};
 	}
 
 }

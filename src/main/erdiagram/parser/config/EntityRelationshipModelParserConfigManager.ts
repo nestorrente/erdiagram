@@ -18,11 +18,11 @@ export class EntityRelationshipModelParserConfigManager
 	}
 
 	protected prepareBeforeSerializing(fullConfig: EntityRelationshipModelParserConfig): EntityRelationshipModelParserConfig {
-		throw new Error('Method not implemented.');
+		return fullConfig;
 	}
 
 	protected processAfterDeserializing(serializedConfig: EntityRelationshipModelParserConfig): EntityRelationshipModelParserConfig {
-		throw new Error('Method not implemented.');
+		return serializedConfig;
 	}
 
 }

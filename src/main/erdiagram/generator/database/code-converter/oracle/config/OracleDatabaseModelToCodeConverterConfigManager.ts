@@ -3,9 +3,12 @@ import StandardCaseFormats from '@/erdiagram/generator/common/case-format/Standa
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
 import OracleDatabaseModelToCodeConverterConfig
 	from '@/erdiagram/generator/database/code-converter/oracle/config/OracleDatabaseModelToCodeConverterConfig';
+import OracleDatabaseModelToCodeConverterSerializedConfig
+	from '@/erdiagram/generator/database/code-converter/oracle/OracleDatabaseModelToCodeConverterSerializedConfig';
+import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
 
 export class OracleDatabaseModelToCodeConverterConfigManager
-		extends AbstractComponentConfigManager<OracleDatabaseModelToCodeConverterConfig> {
+		extends AbstractComponentConfigManager<OracleDatabaseModelToCodeConverterConfig, Partial<OracleDatabaseModelToCodeConverterConfig>, OracleDatabaseModelToCodeConverterSerializedConfig> {
 
 	getDefaultConfig(): OracleDatabaseModelToCodeConverterConfig {
 		return {
@@ -38,12 +41,20 @@ export class OracleDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
-	protected prepareBeforeSerializing(fullConfig: OracleDatabaseModelToCodeConverterConfig): OracleDatabaseModelToCodeConverterConfig {
-		throw new Error('Method not implemented.');
+	protected prepareBeforeSerializing(fullConfig: OracleDatabaseModelToCodeConverterConfig): OracleDatabaseModelToCodeConverterSerializedConfig {
+		return {
+			...fullConfig,
+			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat),
+			columnNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.columnNameCaseFormat),
+		};
 	}
 
-	protected processAfterDeserializing(serializedConfig: OracleDatabaseModelToCodeConverterConfig): OracleDatabaseModelToCodeConverterConfig {
-		throw new Error('Method not implemented.');
+	protected processAfterDeserializing(serializedConfig: OracleDatabaseModelToCodeConverterSerializedConfig): OracleDatabaseModelToCodeConverterConfig {
+		return {
+			...serializedConfig,
+			tableNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializedConfig.tableNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
+			columnNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializedConfig.columnNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
+		};
 	}
 
 }

@@ -3,9 +3,12 @@ import StandardCaseFormats from '@/erdiagram/generator/common/case-format/Standa
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
 import MySqlDatabaseModelToCodeConverterConfig
 	from '@/erdiagram/generator/database/code-converter/mysql/config/MySqlDatabaseModelToCodeConverterConfig';
+import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
+import MySqlDatabaseModelToCodeConverterSerializedConfig
+	from '@/erdiagram/generator/database/code-converter/mysql/MySqlDatabaseModelToCodeConverterSerializedConfig';
 
 export class MySqlDatabaseModelToCodeConverterConfigManager
-		extends AbstractComponentConfigManager<MySqlDatabaseModelToCodeConverterConfig> {
+		extends AbstractComponentConfigManager<MySqlDatabaseModelToCodeConverterConfig, Partial<MySqlDatabaseModelToCodeConverterConfig>, MySqlDatabaseModelToCodeConverterSerializedConfig> {
 
 	getDefaultConfig(): MySqlDatabaseModelToCodeConverterConfig {
 		return {
@@ -38,12 +41,20 @@ export class MySqlDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
-	protected prepareBeforeSerializing(fullConfig: MySqlDatabaseModelToCodeConverterConfig): MySqlDatabaseModelToCodeConverterConfig {
-		throw new Error('Method not implemented.');
+	protected prepareBeforeSerializing(fullConfig: MySqlDatabaseModelToCodeConverterConfig): MySqlDatabaseModelToCodeConverterSerializedConfig {
+		return {
+			...fullConfig,
+			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat),
+			columnNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.columnNameCaseFormat),
+		};
 	}
 
-	protected processAfterDeserializing(serializedConfig: MySqlDatabaseModelToCodeConverterConfig): MySqlDatabaseModelToCodeConverterConfig {
-		throw new Error('Method not implemented.');
+	protected processAfterDeserializing(serializedConfig: MySqlDatabaseModelToCodeConverterSerializedConfig): MySqlDatabaseModelToCodeConverterConfig {
+		return {
+			...serializedConfig,
+			tableNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializedConfig.tableNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
+			columnNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializedConfig.columnNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
+		};
 	}
 
 }

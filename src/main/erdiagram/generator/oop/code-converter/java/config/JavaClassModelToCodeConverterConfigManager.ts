@@ -3,8 +3,12 @@ import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractCo
 import JavaClassModelToCodeConverterConfig
 	from '@/erdiagram/generator/oop/code-converter/java/config/JavaClassModelToCodeConverterConfig';
 import parseJavaType from '@/erdiagram/generator/oop/code-converter/java/type/parseJavaType';
+import {mapValues} from '@/erdiagram/util/record-utils';
+import JavaClassModelToCodeConverterSerializedConfig
+	from '@/erdiagram/generator/oop/code-converter/java/config/JavaClassModelToCodeConverterSerializedConfig';
 
-export class JavaClassModelToCodeConverterConfigManager extends AbstractComponentConfigManager<JavaClassModelToCodeConverterConfig> {
+export class JavaClassModelToCodeConverterConfigManager
+		extends AbstractComponentConfigManager<JavaClassModelToCodeConverterConfig, Partial<JavaClassModelToCodeConverterConfig>, JavaClassModelToCodeConverterSerializedConfig> {
 
 	getDefaultConfig(): JavaClassModelToCodeConverterConfig {
 		return {
@@ -35,12 +39,18 @@ export class JavaClassModelToCodeConverterConfigManager extends AbstractComponen
 		};
 	}
 
-	protected prepareBeforeSerializing(fullConfig: JavaClassModelToCodeConverterConfig): JavaClassModelToCodeConverterConfig {
-		throw new Error('Method not implemented.');
+	protected prepareBeforeSerializing(fullConfig: JavaClassModelToCodeConverterConfig): JavaClassModelToCodeConverterSerializedConfig {
+		return {
+			...fullConfig,
+			typeMappings: mapValues(fullConfig.typeMappings, javaType => javaType!.formatCanonical()),
+		};
 	}
 
-	protected processAfterDeserializing(serializedConfig: JavaClassModelToCodeConverterConfig): JavaClassModelToCodeConverterConfig {
-		throw new Error('Method not implemented.');
+	protected processAfterDeserializing(serializedConfig: JavaClassModelToCodeConverterSerializedConfig): JavaClassModelToCodeConverterConfig {
+		return {
+			...serializedConfig,
+			typeMappings: mapValues(serializedConfig.typeMappings, parseJavaType),
+		};
 	}
 
 }
