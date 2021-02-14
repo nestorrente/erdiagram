@@ -1,5 +1,4 @@
-import OracleDatabaseModelToCodeConverter
-	from 'src/main/erdiagram/generator/database/code-converter/oracle/OracleDatabaseModelToCodeConverter';
+import OracleDatabaseModelToCodeConverter from './OracleDatabaseModelToCodeConverter';
 
 export * from './config/exports';
 

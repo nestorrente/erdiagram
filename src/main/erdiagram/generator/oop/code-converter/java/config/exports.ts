@@ -1,8 +1,10 @@
 import JavaClassModelToCodeConverterConfig from './JavaClassModelToCodeConverterConfig';
+import JavaClassModelToCodeConverterSerializedConfig from './JavaClassModelToCodeConverterSerializedConfig';
 import javaClassModelToCodeConverterConfigManager, {JavaClassModelToCodeConverterConfigManager} from './JavaClassModelToCodeConverterConfigManager';
 
 export {
 	JavaClassModelToCodeConverterConfig,
+	JavaClassModelToCodeConverterSerializedConfig,
 	JavaClassModelToCodeConverterConfigManager,
 	javaClassModelToCodeConverterConfigManager
 };

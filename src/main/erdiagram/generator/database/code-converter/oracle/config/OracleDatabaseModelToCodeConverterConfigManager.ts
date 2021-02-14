@@ -4,7 +4,7 @@ import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractCo
 import OracleDatabaseModelToCodeConverterConfig
 	from '@/erdiagram/generator/database/code-converter/oracle/config/OracleDatabaseModelToCodeConverterConfig';
 import OracleDatabaseModelToCodeConverterSerializedConfig
-	from '@/erdiagram/generator/database/code-converter/oracle/OracleDatabaseModelToCodeConverterSerializedConfig';
+	from '@/erdiagram/generator/database/code-converter/oracle/config/OracleDatabaseModelToCodeConverterSerializedConfig';
 import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
 
 export class OracleDatabaseModelToCodeConverterConfigManager

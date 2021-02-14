@@ -5,7 +5,7 @@ import MySqlDatabaseModelToCodeConverterConfig
 	from '@/erdiagram/generator/database/code-converter/mysql/config/MySqlDatabaseModelToCodeConverterConfig';
 import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
 import MySqlDatabaseModelToCodeConverterSerializedConfig
-	from '@/erdiagram/generator/database/code-converter/mysql/MySqlDatabaseModelToCodeConverterSerializedConfig';
+	from '@/erdiagram/generator/database/code-converter/mysql/config/MySqlDatabaseModelToCodeConverterSerializedConfig';
 
 export class MySqlDatabaseModelToCodeConverterConfigManager
 		extends AbstractComponentConfigManager<MySqlDatabaseModelToCodeConverterConfig, Partial<MySqlDatabaseModelToCodeConverterConfig>, MySqlDatabaseModelToCodeConverterSerializedConfig> {

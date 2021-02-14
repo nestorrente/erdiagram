@@ -1,8 +1,10 @@
 import OracleDatabaseModelToCodeConverterConfig from './OracleDatabaseModelToCodeConverterConfig';
+import OracleDatabaseModelToCodeConverterSerializedConfig from './OracleDatabaseModelToCodeConverterSerializedConfig';
 import oracleDatabaseModelToCodeConverterConfigManager, {OracleDatabaseModelToCodeConverterConfigManager} from './OracleDatabaseModelToCodeConverterConfigManager';
 
 export {
 	OracleDatabaseModelToCodeConverterConfig,
+	OracleDatabaseModelToCodeConverterSerializedConfig,
 	OracleDatabaseModelToCodeConverterConfigManager,
 	oracleDatabaseModelToCodeConverterConfigManager
 };

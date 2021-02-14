@@ -1,8 +1,10 @@
 import TypeScriptClassModelToCodeConverterConfig from './TypeScriptClassModelToCodeConverterConfig';
+import TypeScriptClassModelToCodeConverterSerializedConfig from './TypeScriptClassModelToCodeConverterSerializedConfig';
 import typescriptClassModelToCodeConverterConfigManager, {TypeScriptClassModelToCodeConverterConfigManager} from './TypeScriptClassModelToCodeConverterConfigManager';
 
 export {
 	TypeScriptClassModelToCodeConverterConfig,
+	TypeScriptClassModelToCodeConverterSerializedConfig,
 	TypeScriptClassModelToCodeConverterConfigManager,
 	typescriptClassModelToCodeConverterConfigManager
 };
