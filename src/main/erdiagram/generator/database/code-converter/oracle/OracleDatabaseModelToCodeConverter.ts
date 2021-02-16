@@ -47,7 +47,7 @@ export default class OracleDatabaseModelToCodeConverter implements DatabaseModel
 		);
 
 		this.columnCodeGenerator = new OracleColumnCodeGenerator(
-				new OracleTypeResolver(this.config.typeMappings),
+				new OracleTypeResolver(this.config.typeBindings),
 				columnNameCaseConverter
 		);
 

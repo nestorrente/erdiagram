@@ -2,7 +2,7 @@ import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-t
 
 export default interface DatabaseModelToCodeConverterSerializedConfig {
 	idColumnType: EntityPropertyType;
-	typeMappings: Partial<Record<EntityPropertyType, string>>;
+	typeBindings: Partial<Record<EntityPropertyType, string>>;
 	tableNameCaseFormat?: string;
 	columnNameCaseFormat?: string;
 }

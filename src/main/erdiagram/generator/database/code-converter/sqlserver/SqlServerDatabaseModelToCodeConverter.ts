@@ -47,7 +47,7 @@ export default class SqlServerDatabaseModelToCodeConverter implements DatabaseMo
 		);
 
 		this.columnCodeGenerator = new SqlServerColumnCodeGenerator(
-				new SqlServerTypeResolver(this.config.typeMappings),
+				new SqlServerTypeResolver(this.config.typeBindings),
 				columnNameCaseConverter
 		);
 

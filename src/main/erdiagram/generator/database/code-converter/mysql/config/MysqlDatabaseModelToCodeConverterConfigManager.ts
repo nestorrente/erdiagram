@@ -13,7 +13,7 @@ export class MySqlDatabaseModelToCodeConverterConfigManager
 	getDefaultConfig(): MySqlDatabaseModelToCodeConverterConfig {
 		return {
 			idColumnType: EntityPropertyType.LONG,
-			typeMappings: {
+			typeBindings: {
 				[EntityPropertyType.TEXT]: 'VARCHAR',
 				[EntityPropertyType.LONG]: 'BIGINT',
 				[EntityPropertyType.INT]: 'INT',
@@ -34,9 +34,9 @@ export class MySqlDatabaseModelToCodeConverterConfigManager
 		return {
 			...fullConfig,
 			...partialConfig,
-			typeMappings: {
-				...fullConfig.typeMappings,
-				...partialConfig?.typeMappings
+			typeBindings: {
+				...fullConfig.typeBindings,
+				...partialConfig?.typeBindings
 			}
 		};
 	}

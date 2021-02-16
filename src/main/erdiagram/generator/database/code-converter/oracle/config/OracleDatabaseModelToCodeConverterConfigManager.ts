@@ -13,7 +13,7 @@ export class OracleDatabaseModelToCodeConverterConfigManager
 	getDefaultConfig(): OracleDatabaseModelToCodeConverterConfig {
 		return {
 			idColumnType: EntityPropertyType.LONG,
-			typeMappings: {
+			typeBindings: {
 				[EntityPropertyType.TEXT]: 'VARCHAR2',
 				[EntityPropertyType.LONG]: 'NUMBER',
 				[EntityPropertyType.INT]: 'NUMBER',
@@ -34,9 +34,9 @@ export class OracleDatabaseModelToCodeConverterConfigManager
 		return {
 			...fullConfig,
 			...partialConfig,
-			typeMappings: {
-				...fullConfig.typeMappings,
-				...partialConfig?.typeMappings
+			typeBindings: {
+				...fullConfig.typeBindings,
+				...partialConfig?.typeBindings
 			}
 		};
 	}

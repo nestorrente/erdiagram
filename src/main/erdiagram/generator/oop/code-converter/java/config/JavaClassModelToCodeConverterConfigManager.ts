@@ -12,7 +12,7 @@ export class JavaClassModelToCodeConverterConfigManager
 
 	getDefaultConfig(): JavaClassModelToCodeConverterConfig {
 		return {
-			typeMappings: {
+			typeBindings: {
 				[EntityPropertyType.TEXT]: parseJavaType('java.lang.String'),
 				[EntityPropertyType.LONG]: parseJavaType('java.lang.Long'),
 				[EntityPropertyType.INT]: parseJavaType('java.lang.Integer'),
@@ -32,9 +32,9 @@ export class JavaClassModelToCodeConverterConfigManager
 		return {
 			...fullConfig,
 			...partialConfig,
-			typeMappings: {
-				...fullConfig.typeMappings,
-				...partialConfig?.typeMappings
+			typeBindings: {
+				...fullConfig.typeBindings,
+				...partialConfig?.typeBindings
 			}
 		};
 	}
@@ -42,14 +42,14 @@ export class JavaClassModelToCodeConverterConfigManager
 	convertToSerializableObject(fullConfig: JavaClassModelToCodeConverterConfig): JavaClassModelToCodeConverterSerializedConfig {
 		return {
 			...fullConfig,
-			typeMappings: mapValues(fullConfig.typeMappings, javaType => javaType!.formatCanonical()),
+			typeBindings: mapValues(fullConfig.typeBindings, javaType => javaType!.formatCanonical()),
 		};
 	}
 
 	convertFromSerializableObject(serializedConfig: JavaClassModelToCodeConverterSerializedConfig): JavaClassModelToCodeConverterConfig {
 		return {
 			...serializedConfig,
-			typeMappings: mapValues(serializedConfig.typeMappings, parseJavaType),
+			typeBindings: mapValues(serializedConfig.typeBindings, parseJavaType),
 		};
 	}
 

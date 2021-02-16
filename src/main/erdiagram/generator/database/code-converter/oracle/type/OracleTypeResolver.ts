@@ -2,19 +2,19 @@ import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-t
 
 export default class OracleTypeResolver {
 
-	private readonly typeMappings: Partial<Record<EntityPropertyType, string>>;
+	private readonly typeBindings: Partial<Record<EntityPropertyType, string>>;
 
-	constructor(typeMappings: Partial<Record<EntityPropertyType, string>>) {
-		this.typeMappings = typeMappings;
+	constructor(typeBindings: Partial<Record<EntityPropertyType, string>>) {
+		this.typeBindings = typeBindings;
 	}
 
 	public resolveOracleType(type: EntityPropertyType): string {
 
-		if (!this.typeMappings.hasOwnProperty(type)) {
+		if (!this.typeBindings.hasOwnProperty(type)) {
 			throw new Error('Unsupported type: ' + type);
 		}
 
-		return this.typeMappings[type]!;
+		return this.typeBindings[type]!;
 
 	}
 

@@ -12,7 +12,7 @@ export class TypeScriptClassModelToCodeConverterConfigManager
 
 	getDefaultConfig(): TypeScriptClassModelToCodeConverterConfig {
 		return {
-			typeMappings: {
+			typeBindings: {
 				[EntityPropertyType.TEXT]: parseTypeScriptType('string'),
 				[EntityPropertyType.LONG]: parseTypeScriptType('number'),
 				[EntityPropertyType.INT]: parseTypeScriptType('number'),
@@ -31,9 +31,9 @@ export class TypeScriptClassModelToCodeConverterConfigManager
 		return {
 			...fullConfig,
 			...partialConfig,
-			typeMappings: {
-				...fullConfig.typeMappings,
-				...partialConfig?.typeMappings
+			typeBindings: {
+				...fullConfig.typeBindings,
+				...partialConfig?.typeBindings
 			}
 		};
 	}
@@ -41,14 +41,14 @@ export class TypeScriptClassModelToCodeConverterConfigManager
 	convertToSerializableObject(fullConfig: TypeScriptClassModelToCodeConverterConfig): TypeScriptClassModelToCodeConverterSerializedConfig {
 		return {
 			...fullConfig,
-			typeMappings: mapValues(fullConfig.typeMappings, typeScriptType => typeScriptType!.format()),
+			typeBindings: mapValues(fullConfig.typeBindings, typeScriptType => typeScriptType!.format()),
 		};
 	}
 
 	convertFromSerializableObject(serializedConfig: TypeScriptClassModelToCodeConverterSerializedConfig): TypeScriptClassModelToCodeConverterConfig {
 		return {
 			...serializedConfig,
-			typeMappings: mapValues(serializedConfig.typeMappings, parseTypeScriptType),
+			typeBindings: mapValues(serializedConfig.typeBindings, parseTypeScriptType),
 		};
 	}
 

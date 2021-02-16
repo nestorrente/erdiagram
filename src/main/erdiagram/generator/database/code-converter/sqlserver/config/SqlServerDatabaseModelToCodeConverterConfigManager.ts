@@ -13,7 +13,7 @@ export class SqlServerDatabaseModelToCodeConverterConfigManager
 	getDefaultConfig(): SqlServerDatabaseModelToCodeConverterConfig {
 		return {
 			idColumnType: EntityPropertyType.LONG,
-			typeMappings: {
+			typeBindings: {
 				[EntityPropertyType.TEXT]: 'NVARCHAR',
 				[EntityPropertyType.LONG]: 'BIGINT',
 				[EntityPropertyType.INT]: 'INT',
@@ -34,9 +34,9 @@ export class SqlServerDatabaseModelToCodeConverterConfigManager
 		return {
 			...fullConfig,
 			...partialConfig,
-			typeMappings: {
-				...fullConfig.typeMappings,
-				...partialConfig?.typeMappings
+			typeBindings: {
+				...fullConfig.typeBindings,
+				...partialConfig?.typeBindings
 			}
 		};
 	}
