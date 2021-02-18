@@ -13,6 +13,7 @@ import EntityRelationshipModelParserConfig from '@/erdiagram/parser/config/Entit
 import EntityRelationshipModelValidator from '@/erdiagram/parser/validator/EntityRelationshipModelValidator';
 import entityRelationshipModelParserConfigManager
 	from '@/erdiagram/parser/config/EntityRelationshipModelParserConfigManager';
+import {ERDiagramSyntaxError} from '@/erdiagram/parser/errors';
 
 export default class EntityRelationshipModelParser {
 
@@ -53,7 +54,7 @@ export default class EntityRelationshipModelParser {
 					break;
 				case StatementType.ENTITY_PROPERTY:
 					if (!parsingEntity) {
-						throw new Error('Unexpected entity property statement');
+						throw new ERDiagramSyntaxError('Unexpected entity property statement');
 					}
 					const lastEntity = entities[entities.length - 1];
 					const entityPropertyDescriptor = parseEntityPropertyStatement(line);
@@ -69,7 +70,7 @@ export default class EntityRelationshipModelParser {
 					// Ignore
 					break;
 				default:
-					throw new Error(`Unknown statement type (${statementType}) for line: ${line}`);
+					throw new ERDiagramSyntaxError(`Unknown statement type (${statementType}) for line: ${line}`);
 			}
 
 		});

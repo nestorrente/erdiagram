@@ -1,4 +1,5 @@
 import {EntityRelationshipModel} from '@/erdiagram/parser/entity-relationship-model-types';
+import {ERDiagramUnknownEntityError} from '@/erdiagram/parser/errors';
 
 export default class EntityRelationshipModelValidator {
 
@@ -18,10 +19,10 @@ export default class EntityRelationshipModelValidator {
 
 		model.relationships.forEach(r => {
 			if (!entityNames.includes(r.leftMember.entity)) {
-				throw new Error(`Uknown entity in relationship's left side: ${r.leftMember.entity}`);
+				throw new ERDiagramUnknownEntityError(`Uknown entity in relationship's left side: ${r.leftMember.entity}`);
 			}
 			if (!entityNames.includes(r.rightMember.entity)) {
-				throw new Error(`Uknown entity in relationship's right side: ${r.rightMember.entity}`);
+				throw new ERDiagramUnknownEntityError(`Uknown entity in relationship's right side: ${r.rightMember.entity}`);
 			}
 		});
 

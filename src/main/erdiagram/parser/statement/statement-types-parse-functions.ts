@@ -11,13 +11,14 @@ import {
 	EntityPropertyType,
 	RelationshipDescriptor
 } from '@/erdiagram/parser/entity-relationship-model-types';
+import {ERDiagramSyntaxError, ERDiagramUnknownTypeError} from '@/erdiagram/parser/errors';
 
 export function parseEntityNameStatement(line: string): string {
 
 	const result = ENTITY_NAME_LINE_REGEX.exec(line);
 
 	if (result == null) {
-		throw new Error('Syntax error');
+		throw new ERDiagramSyntaxError('Syntax error');
 	}
 
 	const [
@@ -34,7 +35,7 @@ export function parseEntityPropertyStatement(line: string): EntityPropertyDescri
 	const result = ENTITY_PROPERTY_LINE_REGEX.exec(line);
 
 	if (result == null) {
-		throw new Error('Syntax error');
+		throw new ERDiagramSyntaxError('Syntax error');
 	}
 
 	const [
@@ -48,7 +49,7 @@ export function parseEntityPropertyStatement(line: string): EntityPropertyDescri
 	const mappedType = type.toLowerCase() as EntityPropertyType;
 
 	if (!Object.values(EntityPropertyType).includes(mappedType)) {
-		throw new Error('Unknown type: ' + type);
+		throw new ERDiagramUnknownTypeError('Unknown type: ' + type);
 	}
 
 	return {
@@ -78,7 +79,7 @@ export function parseRelationshipStatement(line: string): RelationshipDescriptor
 	const result = RELATIONSHIP_LINE_REGEX.exec(line);
 
 	if (result == null) {
-		throw new Error('Syntax error');
+		throw new ERDiagramSyntaxError('Syntax error');
 	}
 
 	const [
