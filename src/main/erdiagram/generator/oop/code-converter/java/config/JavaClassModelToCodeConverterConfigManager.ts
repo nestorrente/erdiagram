@@ -19,9 +19,9 @@ export class JavaClassModelToCodeConverterConfigManager
 				[EntityPropertyType.SHORT]: parseJavaType('java.lang.Short'),
 				[EntityPropertyType.DECIMAL]: parseJavaType('java.math.BigDecimal'),
 				[EntityPropertyType.BOOLEAN]: parseJavaType('java.lang.Boolean'),
-				[EntityPropertyType.DATE]: parseJavaType('java.util.time.LocalDate'),
-				[EntityPropertyType.TIME]: parseJavaType('java.util.time.LocalTime'),
-				[EntityPropertyType.DATETIME]: parseJavaType('java.util.time.LocalDateTime'),
+				[EntityPropertyType.DATE]: parseJavaType('java.time.LocalDate'),
+				[EntityPropertyType.TIME]: parseJavaType('java.time.LocalTime'),
+				[EntityPropertyType.DATETIME]: parseJavaType('java.time.LocalDateTime'),
 				[EntityPropertyType.BLOB]: parseJavaType('byte[]')
 			},
 			useSpringNullabilityAnnotations: false
