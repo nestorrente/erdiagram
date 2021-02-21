@@ -2,11 +2,11 @@ import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractCo
 import DatabaseModelGeneratorConfig from '@/erdiagram/generator/database/model/config/DatabaseModelGeneratorConfig';
 import StandardIdNamingStrategies from '@/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies';
 import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
-import DatabaseModelGeneratorSerializedConfig
-	from '@/erdiagram/generator/database/model/config/DatabaseModelGeneratorSerializedConfig';
+import DatabaseModelGeneratorSerializableConfig
+	from '@/erdiagram/generator/database/model/config/DatabaseModelGeneratorSerializableConfig';
 
 export class DatabaseModelGeneratorConfigManager
-		extends AbstractComponentConfigManager<DatabaseModelGeneratorConfig, Partial<DatabaseModelGeneratorConfig>, DatabaseModelGeneratorSerializedConfig> {
+		extends AbstractComponentConfigManager<DatabaseModelGeneratorConfig, Partial<DatabaseModelGeneratorConfig>, DatabaseModelGeneratorSerializableConfig> {
 
 	getDefaultConfig(): DatabaseModelGeneratorConfig {
 		return {
@@ -22,17 +22,17 @@ export class DatabaseModelGeneratorConfigManager
 		};
 	}
 
-	convertToSerializableObject(fullConfig: DatabaseModelGeneratorConfig): DatabaseModelGeneratorSerializedConfig {
+	convertToSerializableObject(fullConfig: DatabaseModelGeneratorConfig): DatabaseModelGeneratorSerializableConfig {
 		return {
 			...fullConfig,
 			idNamingStrategy: findKeyFromValue(StandardIdNamingStrategies, fullConfig.idNamingStrategy)
 		};
 	}
 
-	convertFromSerializableObject(serializedConfig: DatabaseModelGeneratorSerializedConfig): DatabaseModelGeneratorConfig {
+	convertFromSerializableObject(serializableConfig: DatabaseModelGeneratorSerializableConfig): DatabaseModelGeneratorConfig {
 		return {
-			...serializedConfig,
-			idNamingStrategy: findValueFromNullableKey(StandardIdNamingStrategies, serializedConfig.idNamingStrategy, StandardIdNamingStrategies.DEFAULT)
+			...serializableConfig,
+			idNamingStrategy: findValueFromNullableKey(StandardIdNamingStrategies, serializableConfig.idNamingStrategy, StandardIdNamingStrategies.DEFAULT)
 		};
 	}
 

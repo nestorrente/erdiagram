@@ -1,10 +1,10 @@
 import DatabaseModelGeneratorConfig from './DatabaseModelGeneratorConfig';
-import DatabaseModelGeneratorSerializedConfig from './DatabaseModelGeneratorSerializedConfig';
+import DatabaseModelGeneratorSerializableConfig from './DatabaseModelGeneratorSerializableConfig';
 import databaseModelGeneratorConfigManager, {DatabaseModelGeneratorConfigManager} from './DatabaseModelGeneratorConfigManager';
 
 export {
 	DatabaseModelGeneratorConfig,
-	DatabaseModelGeneratorSerializedConfig,
+	DatabaseModelGeneratorSerializableConfig,
 	DatabaseModelGeneratorConfigManager,
 	databaseModelGeneratorConfigManager
 };

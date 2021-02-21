@@ -1,10 +1,10 @@
 import MySqlDatabaseModelToCodeConverterConfig from './MySqlDatabaseModelToCodeConverterConfig';
-import MySqlDatabaseModelToCodeConverterSerializedConfig from './MySqlDatabaseModelToCodeConverterSerializedConfig';
+import MySqlDatabaseModelToCodeConverterSerializableConfig from './MySqlDatabaseModelToCodeConverterSerializableConfig';
 import mysqlDatabaseModelToCodeConverterConfigManager, {MySqlDatabaseModelToCodeConverterConfigManager} from './MysqlDatabaseModelToCodeConverterConfigManager';
 
 export {
 	MySqlDatabaseModelToCodeConverterConfig,
-	MySqlDatabaseModelToCodeConverterSerializedConfig,
+	MySqlDatabaseModelToCodeConverterSerializableConfig,
 	MySqlDatabaseModelToCodeConverterConfigManager,
 	mysqlDatabaseModelToCodeConverterConfigManager
 };

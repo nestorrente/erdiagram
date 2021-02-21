@@ -10,6 +10,6 @@ export default interface ComponentConfigManager<C, P, S> {
 
 	convertToSerializableObject(fullConfig: C): S;
 
-	convertFromSerializableObject(serializedConfig: S): C;
+	convertFromSerializableObject(serializableConfig: S): C;
 
 }

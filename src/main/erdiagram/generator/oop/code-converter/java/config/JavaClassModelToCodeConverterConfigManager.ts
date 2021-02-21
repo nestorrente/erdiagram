@@ -4,11 +4,11 @@ import JavaClassModelToCodeConverterConfig
 	from '@/erdiagram/generator/oop/code-converter/java/config/JavaClassModelToCodeConverterConfig';
 import parseJavaType from '@/erdiagram/generator/oop/code-converter/java/type/parseJavaType';
 import {mapValues} from '@/erdiagram/util/record-utils';
-import JavaClassModelToCodeConverterSerializedConfig
-	from '@/erdiagram/generator/oop/code-converter/java/config/JavaClassModelToCodeConverterSerializedConfig';
+import JavaClassModelToCodeConverterSerializableConfig
+	from '@/erdiagram/generator/oop/code-converter/java/config/JavaClassModelToCodeConverterSerializableConfig';
 
 export class JavaClassModelToCodeConverterConfigManager
-		extends AbstractComponentConfigManager<JavaClassModelToCodeConverterConfig, Partial<JavaClassModelToCodeConverterConfig>, JavaClassModelToCodeConverterSerializedConfig> {
+		extends AbstractComponentConfigManager<JavaClassModelToCodeConverterConfig, Partial<JavaClassModelToCodeConverterConfig>, JavaClassModelToCodeConverterSerializableConfig> {
 
 	getDefaultConfig(): JavaClassModelToCodeConverterConfig {
 		return {
@@ -39,17 +39,17 @@ export class JavaClassModelToCodeConverterConfigManager
 		};
 	}
 
-	convertToSerializableObject(fullConfig: JavaClassModelToCodeConverterConfig): JavaClassModelToCodeConverterSerializedConfig {
+	convertToSerializableObject(fullConfig: JavaClassModelToCodeConverterConfig): JavaClassModelToCodeConverterSerializableConfig {
 		return {
 			...fullConfig,
 			typeBindings: mapValues(fullConfig.typeBindings, javaType => javaType!.formatCanonical()),
 		};
 	}
 
-	convertFromSerializableObject(serializedConfig: JavaClassModelToCodeConverterSerializedConfig): JavaClassModelToCodeConverterConfig {
+	convertFromSerializableObject(serializableConfig: JavaClassModelToCodeConverterSerializableConfig): JavaClassModelToCodeConverterConfig {
 		return {
-			...serializedConfig,
-			typeBindings: mapValues(serializedConfig.typeBindings, parseJavaType),
+			...serializableConfig,
+			typeBindings: mapValues(serializableConfig.typeBindings, parseJavaType),
 		};
 	}
 

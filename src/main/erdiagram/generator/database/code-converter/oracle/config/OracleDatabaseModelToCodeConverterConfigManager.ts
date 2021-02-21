@@ -3,12 +3,12 @@ import StandardCaseFormats from '@/erdiagram/generator/common/case-format/Standa
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
 import OracleDatabaseModelToCodeConverterConfig
 	from '@/erdiagram/generator/database/code-converter/oracle/config/OracleDatabaseModelToCodeConverterConfig';
-import OracleDatabaseModelToCodeConverterSerializedConfig
-	from '@/erdiagram/generator/database/code-converter/oracle/config/OracleDatabaseModelToCodeConverterSerializedConfig';
+import OracleDatabaseModelToCodeConverterSerializableConfig
+	from '@/erdiagram/generator/database/code-converter/oracle/config/OracleDatabaseModelToCodeConverterSerializableConfig';
 import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
 
 export class OracleDatabaseModelToCodeConverterConfigManager
-		extends AbstractComponentConfigManager<OracleDatabaseModelToCodeConverterConfig, Partial<OracleDatabaseModelToCodeConverterConfig>, OracleDatabaseModelToCodeConverterSerializedConfig> {
+		extends AbstractComponentConfigManager<OracleDatabaseModelToCodeConverterConfig, Partial<OracleDatabaseModelToCodeConverterConfig>, OracleDatabaseModelToCodeConverterSerializableConfig> {
 
 	getDefaultConfig(): OracleDatabaseModelToCodeConverterConfig {
 		return {
@@ -41,7 +41,7 @@ export class OracleDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
-	convertToSerializableObject(fullConfig: OracleDatabaseModelToCodeConverterConfig): OracleDatabaseModelToCodeConverterSerializedConfig {
+	convertToSerializableObject(fullConfig: OracleDatabaseModelToCodeConverterConfig): OracleDatabaseModelToCodeConverterSerializableConfig {
 		return {
 			...fullConfig,
 			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat),
@@ -49,11 +49,11 @@ export class OracleDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
-	convertFromSerializableObject(serializedConfig: OracleDatabaseModelToCodeConverterSerializedConfig): OracleDatabaseModelToCodeConverterConfig {
+	convertFromSerializableObject(serializableConfig: OracleDatabaseModelToCodeConverterSerializableConfig): OracleDatabaseModelToCodeConverterConfig {
 		return {
-			...serializedConfig,
-			tableNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializedConfig.tableNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
-			columnNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializedConfig.columnNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
+			...serializableConfig,
+			tableNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializableConfig.tableNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
+			columnNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializableConfig.columnNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
 		};
 	}
 

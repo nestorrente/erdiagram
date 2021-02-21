@@ -4,11 +4,11 @@ import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractCo
 import SqlServerDatabaseModelToCodeConverterConfig
 	from '@/erdiagram/generator/database/code-converter/sqlserver/config/SqlServerDatabaseModelToCodeConverterConfig';
 import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
-import SqlServerDatabaseModelToCodeConverterSerializedConfig
-	from '@/erdiagram/generator/database/code-converter/sqlserver/config/SqlServerDatabaseModelToCodeConverterSerializedConfig';
+import SqlServerDatabaseModelToCodeConverterSerializableConfig
+	from '@/erdiagram/generator/database/code-converter/sqlserver/config/SqlServerDatabaseModelToCodeConverterSerializableConfig';
 
 export class SqlServerDatabaseModelToCodeConverterConfigManager
-		extends AbstractComponentConfigManager<SqlServerDatabaseModelToCodeConverterConfig, Partial<SqlServerDatabaseModelToCodeConverterConfig>, SqlServerDatabaseModelToCodeConverterSerializedConfig> {
+		extends AbstractComponentConfigManager<SqlServerDatabaseModelToCodeConverterConfig, Partial<SqlServerDatabaseModelToCodeConverterConfig>, SqlServerDatabaseModelToCodeConverterSerializableConfig> {
 
 	getDefaultConfig(): SqlServerDatabaseModelToCodeConverterConfig {
 		return {
@@ -41,7 +41,7 @@ export class SqlServerDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
-	convertToSerializableObject(fullConfig: SqlServerDatabaseModelToCodeConverterConfig): SqlServerDatabaseModelToCodeConverterSerializedConfig {
+	convertToSerializableObject(fullConfig: SqlServerDatabaseModelToCodeConverterConfig): SqlServerDatabaseModelToCodeConverterSerializableConfig {
 		return {
 			...fullConfig,
 			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat),
@@ -49,11 +49,11 @@ export class SqlServerDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
-	convertFromSerializableObject(serializedConfig: SqlServerDatabaseModelToCodeConverterSerializedConfig): SqlServerDatabaseModelToCodeConverterConfig {
+	convertFromSerializableObject(serializableConfig: SqlServerDatabaseModelToCodeConverterSerializableConfig): SqlServerDatabaseModelToCodeConverterConfig {
 		return {
-			...serializedConfig,
-			tableNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializedConfig.tableNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
-			columnNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializedConfig.columnNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
+			...serializableConfig,
+			tableNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializableConfig.tableNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
+			columnNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializableConfig.columnNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
 		};
 	}
 

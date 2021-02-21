@@ -3,12 +3,12 @@ import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractCo
 import TypeScriptClassModelToCodeConverterConfig
 	from '@/erdiagram/generator/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfig';
 import parseTypeScriptType from '@/erdiagram/generator/oop/code-converter/typescript/type/parseTypeScriptType';
-import TypeScriptClassModelToCodeConverterSerializedConfig
-	from '@/erdiagram/generator/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterSerializedConfig';
+import TypeScriptClassModelToCodeConverterSerializableConfig
+	from '@/erdiagram/generator/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterSerializableConfig';
 import {mapValues} from '@/erdiagram/util/record-utils';
 
 export class TypeScriptClassModelToCodeConverterConfigManager
-		extends AbstractComponentConfigManager<TypeScriptClassModelToCodeConverterConfig, Partial<TypeScriptClassModelToCodeConverterConfig>, TypeScriptClassModelToCodeConverterSerializedConfig> {
+		extends AbstractComponentConfigManager<TypeScriptClassModelToCodeConverterConfig, Partial<TypeScriptClassModelToCodeConverterConfig>, TypeScriptClassModelToCodeConverterSerializableConfig> {
 
 	getDefaultConfig(): TypeScriptClassModelToCodeConverterConfig {
 		return {
@@ -38,17 +38,17 @@ export class TypeScriptClassModelToCodeConverterConfigManager
 		};
 	}
 
-	convertToSerializableObject(fullConfig: TypeScriptClassModelToCodeConverterConfig): TypeScriptClassModelToCodeConverterSerializedConfig {
+	convertToSerializableObject(fullConfig: TypeScriptClassModelToCodeConverterConfig): TypeScriptClassModelToCodeConverterSerializableConfig {
 		return {
 			...fullConfig,
 			typeBindings: mapValues(fullConfig.typeBindings, typeScriptType => typeScriptType!.format()),
 		};
 	}
 
-	convertFromSerializableObject(serializedConfig: TypeScriptClassModelToCodeConverterSerializedConfig): TypeScriptClassModelToCodeConverterConfig {
+	convertFromSerializableObject(serializableConfig: TypeScriptClassModelToCodeConverterSerializableConfig): TypeScriptClassModelToCodeConverterConfig {
 		return {
-			...serializedConfig,
-			typeBindings: mapValues(serializedConfig.typeBindings, parseTypeScriptType),
+			...serializableConfig,
+			typeBindings: mapValues(serializableConfig.typeBindings, parseTypeScriptType),
 		};
 	}
 

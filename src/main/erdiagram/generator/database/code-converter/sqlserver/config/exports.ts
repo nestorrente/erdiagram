@@ -1,11 +1,11 @@
 import SqlServerDatabaseModelToCodeConverterConfig from './SqlServerDatabaseModelToCodeConverterConfig';
-import SqlServerDatabaseModelToCodeConverterSerializedConfig
-	from './SqlServerDatabaseModelToCodeConverterSerializedConfig';
+import SqlServerDatabaseModelToCodeConverterSerializableConfig
+	from './SqlServerDatabaseModelToCodeConverterSerializableConfig';
 import sqlServerDatabaseModelToCodeConverterConfigManager, {SqlServerDatabaseModelToCodeConverterConfigManager} from './SqlServerDatabaseModelToCodeConverterConfigManager';
 
 export {
 	SqlServerDatabaseModelToCodeConverterConfig,
-	SqlServerDatabaseModelToCodeConverterSerializedConfig,
+	SqlServerDatabaseModelToCodeConverterSerializableConfig,
 	SqlServerDatabaseModelToCodeConverterConfigManager,
 	sqlServerDatabaseModelToCodeConverterConfigManager
 };

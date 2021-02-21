@@ -17,6 +17,6 @@ export default abstract class AbstractComponentConfigManager<C, P = Partial<C>, 
 
 	abstract convertToSerializableObject(fullConfig: C): S;
 
-	abstract convertFromSerializableObject(serializedConfig: S): C;
+	abstract convertFromSerializableObject(serializableConfig: S): C;
 
 }

@@ -4,11 +4,11 @@ import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractCo
 import MySqlDatabaseModelToCodeConverterConfig
 	from '@/erdiagram/generator/database/code-converter/mysql/config/MySqlDatabaseModelToCodeConverterConfig';
 import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
-import MySqlDatabaseModelToCodeConverterSerializedConfig
-	from '@/erdiagram/generator/database/code-converter/mysql/config/MySqlDatabaseModelToCodeConverterSerializedConfig';
+import MySqlDatabaseModelToCodeConverterSerializableConfig
+	from '@/erdiagram/generator/database/code-converter/mysql/config/MySqlDatabaseModelToCodeConverterSerializableConfig';
 
 export class MySqlDatabaseModelToCodeConverterConfigManager
-		extends AbstractComponentConfigManager<MySqlDatabaseModelToCodeConverterConfig, Partial<MySqlDatabaseModelToCodeConverterConfig>, MySqlDatabaseModelToCodeConverterSerializedConfig> {
+		extends AbstractComponentConfigManager<MySqlDatabaseModelToCodeConverterConfig, Partial<MySqlDatabaseModelToCodeConverterConfig>, MySqlDatabaseModelToCodeConverterSerializableConfig> {
 
 	getDefaultConfig(): MySqlDatabaseModelToCodeConverterConfig {
 		return {
@@ -41,7 +41,7 @@ export class MySqlDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
-	convertToSerializableObject(fullConfig: MySqlDatabaseModelToCodeConverterConfig): MySqlDatabaseModelToCodeConverterSerializedConfig {
+	convertToSerializableObject(fullConfig: MySqlDatabaseModelToCodeConverterConfig): MySqlDatabaseModelToCodeConverterSerializableConfig {
 		return {
 			...fullConfig,
 			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat),
@@ -49,11 +49,11 @@ export class MySqlDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
-	convertFromSerializableObject(serializedConfig: MySqlDatabaseModelToCodeConverterSerializedConfig): MySqlDatabaseModelToCodeConverterConfig {
+	convertFromSerializableObject(serializableConfig: MySqlDatabaseModelToCodeConverterSerializableConfig): MySqlDatabaseModelToCodeConverterConfig {
 		return {
-			...serializedConfig,
-			tableNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializedConfig.tableNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
-			columnNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializedConfig.columnNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
+			...serializableConfig,
+			tableNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializableConfig.tableNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
+			columnNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializableConfig.columnNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
 		};
 	}
 
