@@ -2,7 +2,7 @@
 
 ## What is ERDiagram?
 
-_ERDiagram_ is a library for auto-generate the code of your entities and relationship.
+_ERDiagram_ is a library for auto-generate the code of your entities and relationships.
 It can generate SQL creation code (a.k.a. `GENERATE TABLE` statements) for your database
 and OOP classes' code for your application.
 
