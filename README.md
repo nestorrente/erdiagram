@@ -1,5 +1,7 @@
 # ERDiagram: Entity-Relationship diagram code generator
 
+You can try _ERDiagram_ online using the [ERDiagram playground](http://erdiagram.nestorrente.com/) application.
+
 ## Table of contents
 
 * **[What is ERDiagram?](#what-is-erdiagram)**
