@@ -28,9 +28,9 @@ This is the way you can define an `User` entity with `name`, `lastName` and `act
 
 ```erdiagram
 User
-    name text(50)
-    lastName text(50)
-    active bool
+  name text(50)
+  lastName text(50)
+  active bool
 ```
 
 As you can see, the properties of an entity must be indented (no matter how many tabs or spaces you use). Properties are defined by writing its name followed by its type, which can include an optional length, similar to SQL.
@@ -60,9 +60,9 @@ Here you can see an example of defining an optional unique property:
 
 ```erdiagram
 Task
-    description text(100)
-    priorityOrder?! int
-    done bool
+  description text(100)
+  priorityOrder?! int
+  done bool
 ```
 
 ### Relationships
@@ -166,8 +166,8 @@ Comments start with a _hash_ character (`#`). Only line comments are supported s
 
 ```erdiagram
 TreeNode
-    description text(100)
-    deleted bool # we use logical erase
+  description text(100)
+  deleted bool # we use logical erase
 
 # The root node doesn't have a parent, that's why
 # the "parent" member of the relationship is optional.
