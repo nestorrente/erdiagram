@@ -12,6 +12,8 @@ _ERDiagram_ uses its namesake language, which is exaplained later in this page.
 
 * Database
 	* MySQL
+	* Oracle DB
+	* SQL Server
 * OOP
 	* Java POJO
 	* TypeScript interfaces
@@ -44,6 +46,7 @@ Also, notice that we haven't defined an identifier property. This is because _ER
 * `date`: a date without time, like _01/01/1970_.
 * `time`: a time representation, like _00:00:00_.
 * `datetime`: a date and time representation, like _01/01/1970 at 00:00:00_.
+* `blob`: a binary object, a.k.a. a byte array.
 
 #### Property modifiers
 
@@ -176,6 +179,14 @@ TreeNode child *<->? TreeNode parent
 TODO &ndash; work in progress...
 
 ### MySQL
+
+TODO &ndash; work in progress...
+
+### Oracle DB
+
+TODO &ndash; work in progress...
+
+### SQL Server
 
 TODO &ndash; work in progress...
 
