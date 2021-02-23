@@ -246,16 +246,12 @@ describe('Parse relationship statement', () => {
 			leftMember: {
 				entity: 'Entity1',
 				entityAlias: 'entity1',
-				cardinality: Cardinality.MANY,
-				optional: false,
-				unique: false
+				cardinality: Cardinality.MANY
 			},
 			rightMember: {
 				entity: 'Entity2',
 				entityAlias: 'entity2',
-				cardinality: Cardinality.ONE,
-				optional: false,
-				unique: false
+				cardinality: Cardinality.ONE
 			}
 		};
 
@@ -273,16 +269,12 @@ describe('Parse relationship statement', () => {
 			leftMember: {
 				entity: 'Entity1',
 				entityAlias: 'entity1',
-				cardinality: Cardinality.MANY,
-				optional: false,
-				unique: false
+				cardinality: Cardinality.MANY
 			},
 			rightMember: {
 				entity: 'Entity2',
 				entityAlias: 'entity2',
-				cardinality: Cardinality.MANY,
-				optional: false,
-				unique: false
+				cardinality: Cardinality.MANY
 			}
 		};
 
@@ -296,20 +288,16 @@ describe('Parse relationship statement', () => {
 
 		const expected: RelationshipDescriptor = {
 			relationShipName: undefined,
-			direction: Direction.BOTH,
+			direction: Direction.BIDIRECTIONAL,
 			leftMember: {
 				entity: 'Entity1',
 				entityAlias: 'entity1',
-				cardinality: Cardinality.ONE,
-				optional: false,
-				unique: false
+				cardinality: Cardinality.ONE
 			},
 			rightMember: {
 				entity: 'Entity2',
 				entityAlias: 'entity2',
-				cardinality: Cardinality.ONE,
-				optional: false,
-				unique: false
+				cardinality: Cardinality.ONE
 			}
 		};
 
@@ -323,20 +311,16 @@ describe('Parse relationship statement', () => {
 
 		const expected: RelationshipDescriptor = {
 			relationShipName: undefined,
-			direction: Direction.BOTH,
+			direction: Direction.BIDIRECTIONAL,
 			leftMember: {
 				entity: 'Entity1',
 				entityAlias: 'entity1',
-				cardinality: Cardinality.ONE,
-				optional: false,
-				unique: false
+				cardinality: Cardinality.ONE
 			},
 			rightMember: {
 				entity: 'Entity2',
 				entityAlias: 'entity2',
-				cardinality: Cardinality.ONE,
-				optional: true,
-				unique: false
+				cardinality: Cardinality.ZERO_OR_ONE
 			}
 		};
 
@@ -344,26 +328,45 @@ describe('Parse relationship statement', () => {
 
 	});
 
-	test('One-to-one bidirectional relationship with optional left side and unique right side', () => {
+	test('One-to-one bidirectional relationship with optional left side', () => {
 
-		const result = parseRelationshipStatement('Entity1 ?<->! Entity2');
+		const result = parseRelationshipStatement('Entity1 ?<-> Entity2');
 
 		const expected: RelationshipDescriptor = {
 			relationShipName: undefined,
-			direction: Direction.BOTH,
+			direction: Direction.BIDIRECTIONAL,
 			leftMember: {
 				entity: 'Entity1',
 				entityAlias: 'entity1',
-				cardinality: Cardinality.ONE,
-				optional: true,
-				unique: false
+				cardinality: Cardinality.ZERO_OR_ONE
 			},
 			rightMember: {
 				entity: 'Entity2',
 				entityAlias: 'entity2',
-				cardinality: Cardinality.ONE,
-				optional: false,
-				unique: true
+				cardinality: Cardinality.ONE
+			}
+		};
+
+		expect(result).toStrictEqual(expected);
+
+	});
+
+	test('One-to-one bidirectional relationship with optional left and right sides', () => {
+
+		const result = parseRelationshipStatement('Entity1 ?<->? Entity2');
+
+		const expected: RelationshipDescriptor = {
+			relationShipName: undefined,
+			direction: Direction.BIDIRECTIONAL,
+			leftMember: {
+				entity: 'Entity1',
+				entityAlias: 'entity1',
+				cardinality: Cardinality.ZERO_OR_ONE
+			},
+			rightMember: {
+				entity: 'Entity2',
+				entityAlias: 'entity2',
+				cardinality: Cardinality.ZERO_OR_ONE
 			}
 		};
 
@@ -381,16 +384,12 @@ describe('Parse relationship statement', () => {
 			leftMember: {
 				entity: 'Entity1',
 				entityAlias: 'e1',
-				cardinality: Cardinality.MANY,
-				optional: false,
-				unique: false
+				cardinality: Cardinality.MANY
 			},
 			rightMember: {
 				entity: 'Entity2',
 				entityAlias: 'entity2',
-				cardinality: Cardinality.ONE,
-				optional: false,
-				unique: false
+				cardinality: Cardinality.ONE
 			}
 		};
 
@@ -408,16 +407,12 @@ describe('Parse relationship statement', () => {
 			leftMember: {
 				entity: 'Entity1',
 				entityAlias: 'entity1',
-				cardinality: Cardinality.MANY,
-				optional: false,
-				unique: false
+				cardinality: Cardinality.MANY
 			},
 			rightMember: {
 				entity: 'Entity2',
 				entityAlias: 'e2',
-				cardinality: Cardinality.ONE,
-				optional: false,
-				unique: false
+				cardinality: Cardinality.ONE
 			}
 		};
 
@@ -435,16 +430,12 @@ describe('Parse relationship statement', () => {
 			leftMember: {
 				entity: 'Entity1',
 				entityAlias: 'entity1',
-				cardinality: Cardinality.MANY,
-				optional: false,
-				unique: false
+				cardinality: Cardinality.MANY
 			},
 			rightMember: {
 				entity: 'Entity2',
 				entityAlias: 'entity2',
-				cardinality: Cardinality.ONE,
-				optional: false,
-				unique: false
+				cardinality: Cardinality.ONE
 			}
 		};
 
@@ -472,16 +463,12 @@ describe('Parse relationship statement', () => {
 			leftMember: {
 				entity: 'Entity1',
 				entityAlias: 'entity1',
-				cardinality: Cardinality.MANY,
-				optional: false,
-				unique: false
+				cardinality: Cardinality.MANY
 			},
 			rightMember: {
 				entity: 'Entity2',
 				entityAlias: 'entity2',
-				cardinality: Cardinality.ONE,
-				optional: false,
-				unique: false
+				cardinality: Cardinality.ONE
 			}
 		};
 
@@ -499,16 +486,12 @@ describe('Parse relationship statement', () => {
 			leftMember: {
 				entity: 'Entity1',
 				entityAlias: 'entity1',
-				cardinality: Cardinality.MANY,
-				optional: false,
-				unique: false
+				cardinality: Cardinality.MANY
 			},
 			rightMember: {
 				entity: 'Entity2',
 				entityAlias: 'entity2',
-				cardinality: Cardinality.ONE,
-				optional: false,
-				unique: false
+				cardinality: Cardinality.ONE
 			}
 		};
 

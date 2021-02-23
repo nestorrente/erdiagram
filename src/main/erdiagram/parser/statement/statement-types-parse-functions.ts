@@ -86,11 +86,9 @@ export function parseRelationshipStatement(line: string): RelationshipDescriptor
 		fullMatch,
 		leftEntity,
 		leftEntityAlias = leftEntity,
-		leftModifiers,
 		leftCardinalityCharacter,
 		direction,
 		rightCardinalityCharacter,
-		rightModifiers,
 		rightEntity,
 		rightEntityAlias = rightEntity,
 		relationShipName
@@ -98,21 +96,28 @@ export function parseRelationshipStatement(line: string): RelationshipDescriptor
 
 	return {
 		relationShipName: relationShipName ? capitalizeWord(relationShipName) : undefined,
-		direction: direction === '->' ? Direction.RIGHT : (direction === '<-' ? Direction.LEFT : Direction.BOTH),
+		direction: direction === '->' ? Direction.RIGHT : (direction === '<-' ? Direction.LEFT : Direction.BIDIRECTIONAL),
 		leftMember: {
 			entity: capitalizeWord(leftEntity),
 			entityAlias: uncapitalizeWord(leftEntityAlias),
-			cardinality: leftCardinalityCharacter === '*' ? Cardinality.MANY : Cardinality.ONE,
-			optional: leftModifiers.includes('?'),
-			unique: leftModifiers.includes('!')
+			cardinality: parseRelationshipMemberCardinality(leftCardinalityCharacter)
 		},
 		rightMember: {
 			entity: capitalizeWord(rightEntity),
 			entityAlias: uncapitalizeWord(rightEntityAlias),
-			cardinality: rightCardinalityCharacter === '*' ? Cardinality.MANY : Cardinality.ONE,
-			optional: rightModifiers.includes('?'),
-			unique: rightModifiers.includes('!')
+			cardinality: parseRelationshipMemberCardinality(rightCardinalityCharacter)
 		}
 	};
 
+}
+
+function parseRelationshipMemberCardinality(leftCardinalityCharacter: string) {
+	switch (leftCardinalityCharacter) {
+		case '*':
+			return Cardinality.MANY;
+		case '?':
+			return Cardinality.ZERO_OR_ONE;
+		default:
+			return Cardinality.ONE;
+	}
 }

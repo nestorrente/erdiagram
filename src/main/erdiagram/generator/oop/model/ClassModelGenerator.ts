@@ -49,11 +49,11 @@ function generateEntityTable(entity: EntityDescriptor, model: EntityRelationship
 			direction
 		} = relationship;
 
-		if (leftMember.entity === entity.name && [Direction.RIGHT, Direction.BOTH].includes(direction)) {
+		if (leftMember.entity === entity.name && [Direction.RIGHT, Direction.BIDIRECTIONAL].includes(direction)) {
 			fields.push(mapRelationshipMemberToField(rightMember));
 		}
 
-		if (rightMember.entity === entity.name && [Direction.LEFT, Direction.BOTH].includes(direction)) {
+		if (rightMember.entity === entity.name && [Direction.LEFT, Direction.BIDIRECTIONAL].includes(direction)) {
 			fields.push(mapRelationshipMemberToField(leftMember));
 		}
 
@@ -82,9 +82,7 @@ function mapRelationshipMemberToField(toMember: RelationshipMember): NonEntityFi
 
 	return {
 		name,
-		// List fields are never nullable, as both "one or many" and "zero, one or many"
-		// relationships are modelled using a list, which may be empty or not.
-		nullable: toMember.optional && !list,
+		nullable: toMember.cardinality === Cardinality.ZERO_OR_ONE,
 		entityType: toMember.entity,
 		list
 	};

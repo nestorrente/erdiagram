@@ -5,13 +5,14 @@ export interface EntityRelationshipModel {
 
 export enum Cardinality {
 	MANY = 'many',
-	ONE = 'one'
+	ONE = 'one',
+	ZERO_OR_ONE = 'zero_or_one'
 }
 
 export enum Direction {
 	LEFT = 'left',
 	RIGHT = 'right',
-	BOTH = 'both'
+	BIDIRECTIONAL = 'bidirectional'
 }
 
 export interface RelationshipDescriptor {
@@ -25,8 +26,6 @@ export interface RelationshipMember {
 	entity: string;
 	entityAlias: string;
 	cardinality: Cardinality;
-	optional: boolean;
-	unique: boolean;
 }
 
 export interface EntityDescriptor {

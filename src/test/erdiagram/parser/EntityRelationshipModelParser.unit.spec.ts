@@ -208,16 +208,12 @@ A <-> D
 					leftMember: {
 						entity: 'A',
 						entityAlias: 'a',
-						cardinality: Cardinality.ONE,
-						optional: false,
-						unique: false
+						cardinality: Cardinality.ONE
 					},
 					rightMember: {
 						entity: 'B',
 						entityAlias: 'b',
-						cardinality: Cardinality.ONE,
-						optional: false,
-						unique: false
+						cardinality: Cardinality.ONE
 					}
 				},
 				{
@@ -226,34 +222,26 @@ A <-> D
 					leftMember: {
 						entity: 'A',
 						entityAlias: 'a',
-						cardinality: Cardinality.ONE,
-						optional: false,
-						unique: false
+						cardinality: Cardinality.ONE
 					},
 					rightMember: {
 						entity: 'C',
 						entityAlias: 'c',
-						cardinality: Cardinality.ONE,
-						optional: false,
-						unique: false
+						cardinality: Cardinality.ONE
 					}
 				},
 				{
 					relationShipName: undefined,
-					direction: Direction.BOTH,
+					direction: Direction.BIDIRECTIONAL,
 					leftMember: {
 						entity: 'A',
 						entityAlias: 'a',
-						cardinality: Cardinality.ONE,
-						optional: false,
-						unique: false
+						cardinality: Cardinality.ONE
 					},
 					rightMember: {
 						entity: 'D',
 						entityAlias: 'd',
-						cardinality: Cardinality.ONE,
-						optional: false,
-						unique: false
+						cardinality: Cardinality.ONE
 					}
 				}
 			]
@@ -272,52 +260,76 @@ D
 E
 F
 G
+H
+I
+J
+K
+L
+M
+N
+O
+P
+Q
 
-A <-> B
-A <->1 C
-A <->* D
-A *<-> E
-A *<->* F
-A *<->1 G
+A ?<->? B
+A ?<-> C
+A ?<->1 D
+A ?<->* E
+
+A <->? F
+A <-> G
+A <->1 H
+A <->* I
+
+A 1<->? J
+A 1<-> K
+A 1<->1 L
+A 1<->* M
+
+A *<->? N
+A *<-> O
+A *<->1 P
+A *<->* Q
 
 		`);
 
 		expect(model).toStrictEqual<EntityRelationshipModel>({
-			entities: [
-				{name: 'A', properties: []},
-				{name: 'B', properties: []},
-				{name: 'C', properties: []},
-				{name: 'D', properties: []},
-				{name: 'E', properties: []},
-				{name: 'F', properties: []},
-				{name: 'G', properties: []},
-			],
+			entities: [...'ABCDEFGHIJKLMNOPQ'].map(entityName => ({
+				name: entityName,
+				properties: []
+			})),
 			relationships: (
 					[
-						[Cardinality.ONE, Cardinality.ONE, 'B'],
-						[Cardinality.ONE, Cardinality.ONE, 'C'],
-						[Cardinality.ONE, Cardinality.MANY, 'D'],
-						[Cardinality.MANY, Cardinality.ONE, 'E'],
-						[Cardinality.MANY, Cardinality.MANY, 'F'],
-						[Cardinality.MANY, Cardinality.ONE, 'G']
+						[Cardinality.ZERO_OR_ONE, Cardinality.ZERO_OR_ONE, 'B'],
+						[Cardinality.ZERO_OR_ONE, Cardinality.ONE, 'C'],
+						[Cardinality.ZERO_OR_ONE, Cardinality.ONE, 'D'],
+						[Cardinality.ZERO_OR_ONE, Cardinality.MANY, 'E'],
+						[Cardinality.ONE, Cardinality.ZERO_OR_ONE, 'F'],
+						[Cardinality.ONE, Cardinality.ONE, 'G'],
+						[Cardinality.ONE, Cardinality.ONE, 'H'],
+						[Cardinality.ONE, Cardinality.MANY, 'I'],
+						[Cardinality.ONE, Cardinality.ZERO_OR_ONE, 'J'],
+						[Cardinality.ONE, Cardinality.ONE, 'K'],
+						[Cardinality.ONE, Cardinality.ONE, 'L'],
+						[Cardinality.ONE, Cardinality.MANY, 'M'],
+						[Cardinality.MANY, Cardinality.ZERO_OR_ONE, 'N'],
+						[Cardinality.MANY, Cardinality.ONE, 'O'],
+						[Cardinality.MANY, Cardinality.ONE, 'P'],
+						[Cardinality.MANY, Cardinality.MANY, 'Q'],
 					] as [Cardinality, Cardinality, string][]
 			).map(([leftCardinality, rightCardinality, rightEntity]): RelationshipDescriptor => {
 				return {
 					relationShipName: undefined,
-					direction: Direction.BOTH,
+					direction: Direction.BIDIRECTIONAL,
 					leftMember: {
 						entity: 'A',
 						entityAlias: 'a',
-						cardinality: leftCardinality,
-						optional: false,
-						unique: false
+						cardinality: leftCardinality
 					},
 					rightMember: {
 						entity: rightEntity,
 						entityAlias: rightEntity.toLowerCase(),
-						cardinality: rightCardinality,
-						optional: false,
-						unique: false
+						cardinality: rightCardinality
 					}
 				};
 			})
@@ -325,7 +337,7 @@ A *<->1 G
 
 	});
 
-	test('Optionality, uniqueness and aliases and relationship name', () => {
+	test('Aliases and relationship name', () => {
 
 		const model = entityRelationshipModelParser.parseModel(`
 
@@ -334,13 +346,11 @@ B
 C
 D
 E
-F
 
-A <->? B
-A <->! C
-A <->?! D
-A *<->*?! E
-A <->!? F fAlias (RelationshipName)
+A aAlias <-> B
+A <-> C cAlias
+A <-> D (RelationshipName)
+A aAlias <-> E eAlias (RelationshipName)
 
 		`);
 
@@ -351,97 +361,62 @@ A <->!? F fAlias (RelationshipName)
 				{name: 'C', properties: []},
 				{name: 'D', properties: []},
 				{name: 'E', properties: []},
-				{name: 'F', properties: []},
 			],
 			relationships: [
 				{
 					relationShipName: undefined,
-					direction: Direction.BOTH,
+					direction: Direction.BIDIRECTIONAL,
 					leftMember: {
 						entity: 'A',
-						entityAlias: 'a',
-						cardinality: Cardinality.ONE,
-						optional: false,
-						unique: false
+						entityAlias: 'aAlias',
+						cardinality: Cardinality.ONE
 					},
 					rightMember: {
 						entity: 'B',
 						entityAlias: 'b',
-						cardinality: Cardinality.ONE,
-						optional: true,
-						unique: false
+						cardinality: Cardinality.ONE
 					}
 				},
 				{
 					relationShipName: undefined,
-					direction: Direction.BOTH,
+					direction: Direction.BIDIRECTIONAL,
 					leftMember: {
 						entity: 'A',
 						entityAlias: 'a',
-						cardinality: Cardinality.ONE,
-						optional: false,
-						unique: false
+						cardinality: Cardinality.ONE
 					},
 					rightMember: {
 						entity: 'C',
-						entityAlias: 'c',
-						cardinality: Cardinality.ONE,
-						optional: false,
-						unique: true
-					}
-				},
-				{
-					relationShipName: undefined,
-					direction: Direction.BOTH,
-					leftMember: {
-						entity: 'A',
-						entityAlias: 'a',
-						cardinality: Cardinality.ONE,
-						optional: false,
-						unique: false
-					},
-					rightMember: {
-						entity: 'D',
-						entityAlias: 'd',
-						cardinality: Cardinality.ONE,
-						optional: true,
-						unique: true
-					}
-				},
-				{
-					relationShipName: undefined,
-					direction: Direction.BOTH,
-					leftMember: {
-						entity: 'A',
-						entityAlias: 'a',
-						cardinality: Cardinality.MANY,
-						optional: false,
-						unique: false
-					},
-					rightMember: {
-						entity: 'E',
-						entityAlias: 'e',
-						cardinality: Cardinality.MANY,
-						optional: true,
-						unique: true
+						entityAlias: 'cAlias',
+						cardinality: Cardinality.ONE
 					}
 				},
 				{
 					relationShipName: 'RelationshipName',
-					direction: Direction.BOTH,
+					direction: Direction.BIDIRECTIONAL,
 					leftMember: {
 						entity: 'A',
 						entityAlias: 'a',
-						cardinality: Cardinality.ONE,
-						optional: false,
-						unique: false
+						cardinality: Cardinality.ONE
 					},
 					rightMember: {
-						entity: 'F',
-						entityAlias: 'fAlias',
-						cardinality: Cardinality.ONE,
-						optional: true,
-						unique: true
+						entity: 'D',
+						entityAlias: 'd',
+						cardinality: Cardinality.ONE
+					}
+				},
+				{
+					relationShipName: 'RelationshipName',
+					direction: Direction.BIDIRECTIONAL,
+					leftMember: {
+						entity: 'A',
+						entityAlias: 'aAlias',
+						cardinality: Cardinality.ONE
+					},
+					rightMember: {
+						entity: 'E',
+						entityAlias: 'eAlias',
+						cardinality: Cardinality.ONE
 					}
 				}
 			]
@@ -464,16 +439,12 @@ A <->!? F fAlias (RelationshipName)
 					leftMember: {
 						entity: 'A',
 						entityAlias: 'a',
-						cardinality: Cardinality.ONE,
-						optional: false,
-						unique: false
+						cardinality: Cardinality.ONE
 					},
 					rightMember: {
 						entity: 'B',
 						entityAlias: 'b',
-						cardinality: Cardinality.ONE,
-						optional: false,
-						unique: false
+						cardinality: Cardinality.ONE
 					}
 				}
 			]

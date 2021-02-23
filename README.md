@@ -74,6 +74,27 @@ _ERDiagram_ supports 3 different direction values:
 * _right to left_ (`<-`): indicates that the _left_ entity of the relationship is accessible from the _right_ entity.
 * _bidirectional_ (`<->`): indicates that both entities are accessible from the other.
 
+#### Aliases
+
+It's possible to name the members of a relationship using _aliases_.
+Imagine you are modelling a `Travel` entity which has two `originCity` and `destinyCity` attributes, both referencing the `City` entity.
+You could write `Travel -> City` in order to model one relationship from `Travel` to `City`, but how can you model both relationships at the same time?
+
+The way that _ERDiagram_ solves this is by using _aliases_:
+
+```erdiagram
+Travel *-> City originCity
+Travel *-> City destinyCity
+```
+
+By doing this, you're naming the right member of your relationship. You can also name both sides of the relationship, just like this:
+
+```erdiagram
+Employee subordinates *<-> Employee boss
+```
+
+When you don't specify any _alias_, the name of the entity is used as the name of the member.
+
 #### Cardinalities
 
 This is how you can define the different types of relationships (examples are written using bidirectional relationships):
@@ -85,13 +106,11 @@ This is how you can define the different types of relationships (examples are wr
 
 As you can see, you can omit the character `1`, as that's the default cardinality.
 
-#### Relationship modifiers
+You can also use the character `?`, which allows to specify a `0..1` cardinality. For example, imagine you are modelling a tree structure, where each node points to its parent. In this scenario, the root nodes will not have a parent, so the relationship will be a _many-to-zero-or-one_, which can be write this way:
 
-In the same way that can be done with properties, there are 2 modifiers that can be applied to the sides of the relationship:
-
-* Optional modifier (`?`): when the cardinality is _one_, this modifier can be used in order to indicate that side of the relationship is not mandatory.
-    * This may not cause any effect in output code when the cardinality is _many_, as "one or many" (`1..*`) and "zero, one or many" (`0..*`) cardinalities are modelled in the same way in most programming languages.
-* Unique modifier (`!`): indicates that each possible instance of that entity must be related to at most one of the instances of the other entity.
+```erdiagram
+TreeNode child *<->? TreeNode parent
+```
 
 #### Relationship's name
 
@@ -127,25 +146,28 @@ On the other side, its direction indicates that employee's boss can be accessed 
 ##### Example 3
 
 ```erdiagram
-Employee *<-* Project
+Employee *<-* Project (EmployeesWorkingOnProjects)
 ```
 
 The cardinality of this relationship indicates that each employee can work on many projects, and each project can have many employees working on it.
 
-On the other side, its direction indicates that it's possible to get the employees that are working on a project, but it's not possible to know which projects is an employee working on.
+On the other side, its direction indicates that it's possible to get the employees that are working on a project, but it's not possible to access to an employee's projects.
+
+Finally, the relationship's name is _EmployeesWorkingOnProjects_, which may be used as a name for the intermediate _relationship table used_ in relational databases.
 
 ### Comments
 
 Even when [Uncle Bob](https://en.wikipedia.org/wiki/Robert_C._Martin) doesn't like them, every language needs comments, so _ERDiagram_ couldn't be less :stuck_out_tongue:
 
-Comments start with a _hash_ character (`#`). So far only line comments are supported. Here you can see an example:
+Comments start with a _hash_ character (`#`). Only line comments are supported so far. Here you can see an example:
 
 ```erdiagram
 TreeNode
-    name text(50)
+    description text(100)
+    deleted bool # we use logical erase
 
-# The root node doesn't have a parent,
-# so "parent" property is optional.
+# The root node doesn't have a parent, that's why
+# the "parent" member of the relationship is optional.
 TreeNode child *<->? TreeNode parent
 ```
 

@@ -58,11 +58,12 @@ export default class DatabaseModelGenerator {
 		}
 
 		for (const relationship of model.relationships) {
-			if (relationship.rightMember.cardinality === Cardinality.ONE) {
+			if (relationship.rightMember.cardinality !== Cardinality.MANY) {
 				if (relationship.leftMember.entity === entity.name) {
-					references.push(this.createTableReference(relationship.rightMember));
+					const isOneToOneRelationship = relationship.leftMember.cardinality !== Cardinality.MANY;
+					references.push(this.createTableReference(relationship.rightMember, isOneToOneRelationship));
 				}
-			} else if (relationship.leftMember.cardinality === Cardinality.ONE) {
+			} else if (relationship.leftMember.cardinality !== Cardinality.MANY) {
 				if (relationship.rightMember.entity === entity.name) {
 					references.push(this.createTableReference(relationship.leftMember));
 				}
@@ -87,17 +88,9 @@ export default class DatabaseModelGenerator {
 			name,
 			identifierColumnName,
 			columns: [],
-			// We force references to be non-optional in this case, as "one or many" and "zero, one or many" cardinalities
-			// are modelled in the same way in SQL - foreign columns of relationship tables are never nullable.
 			references: [
-				this.createTableReference({
-					...relationship.leftMember,
-					optional: false
-				}),
-				this.createTableReference({
-					...relationship.rightMember,
-					optional: false
-				})
+				this.createTableReference(relationship.leftMember),
+				this.createTableReference(relationship.rightMember)
 			]
 		};
 
@@ -136,20 +129,19 @@ export default class DatabaseModelGenerator {
 
 	}
 
-	private createTableReference(toMember: RelationshipMember): TableReferenceDescriptor {
+	private createTableReference(toMember: RelationshipMember, unique: boolean = false): TableReferenceDescriptor {
 
 		const {
 			entityAlias,
 			entity,
-			optional,
-			unique
+			cardinality
 		} = toMember;
 
 		return {
 			columnName: `${entityAlias}Id`,
 			targetTableName: this.pluralizeEntityNameIfApplies(entity),
 			targetTableIdentifierColumnName: this.getIdentifierColumnName(entity),
-			notNull: !optional,
+			notNull: cardinality !== Cardinality.ZERO_OR_ONE,
 			unique
 		};
 
