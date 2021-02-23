@@ -2,7 +2,7 @@
 
 ## Table of contents
 
-* **[What is ERDiagram?](#what-is-erdiagram-)**
+* **[What is ERDiagram?](#what-is-erdiagram)**
     + [Supported databases and languages](#supported-databases-and-languages)
 * **[ERDiagram language](#erdiagram-language)**
     + **[Defining an entity](#defining-an-entity)**
@@ -12,7 +12,7 @@
         - [Directions](#directions)
         - [Aliases](#aliases)
         - [Cardinalities](#cardinalities)
-        - [Relationship's name](#relationship-s-name)
+        - [Relationship's name](#relationships-name)
         - [Relationship examples](#relationship-examples)
     + **[Comments](#comments)**
 * **[Contributing](#contributing)**
