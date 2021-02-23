@@ -1,8 +1,11 @@
-node_modules
+/.idea
+/node_modules
+/scripts
+/src
 /lib
 /coverage
-.idea
 *.iml
 package-lock.json
-src
+jest.config.js
 webpack.config.js
+TODO.txt

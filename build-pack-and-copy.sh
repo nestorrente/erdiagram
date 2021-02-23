@@ -3,9 +3,9 @@ rm -rf dist \
     && npm run build \
     && npm pack \
     && echo 'Copying to erdiagram-cli...' \
-    && cp nestorrente-erdiagram-0.1.0.tgz ../erdiagram-cli/lib/nestorrente-erdiagram-0.1.0.tgz \
+    && cp nestorrente-erdiagram-*.tgz ../erdiagram-cli/lib/nestorrente-erdiagram.tgz \
     && echo 'Copying to erdiagram-playground...' \
-    && cp nestorrente-erdiagram-0.1.0.tgz ../erdiagram-playground/lib/nestorrente-erdiagram-0.1.0.tgz \
+    && cp nestorrente-erdiagram-*.tgz ../erdiagram-playground/lib/nestorrente-erdiagram.tgz \
     && echo 'Cleanup...' \
-    && rm nestorrente-erdiagram-0.1.0.tgz \
+    && rm nestorrente-erdiagram-*.tgz \
     && echo 'DONE'

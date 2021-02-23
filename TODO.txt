@@ -1,44 +1,8 @@
-- Soportar distintos dialectos de SQL.
-	- Ver si compensa crear algo estilo SQLDialect, o simplemente hacer que sean nuevas implementaciones de SqlCodeGenerator.
+- Analyze the pros and cons of creating a SQLDialect interface that allows us to reuse the same implementation of SqlCodeGenerator for the different DB engines/versions.
 
-- Soportar distintas estrategias de nombrado.
-	- En el .erd siempre será CamelCase, pero se tiene que poder escoger el case de salida (al menos en SQL).
-		- Aplica por separado para los nombres de las tablas y los de las columnas.
-		- No aplica en Java, porque hay una convención.
-		- Esta conversión se aplicaría en el DatabaseModel, de modo que cada
-		  SqlCodeGenerator solo tenga que hacer caso de lo que diga el modelo.
-			- UPPER_UNDERSCORE_CASE
-			- lower_underscore_case
-			- UpperCamelCase
-			- lowerCamelCase
-
-- [HECHO] Solventar el tema del orden en las FK de SQL.
-	- [HECHO] La forma sencilla (y única válida en todos los casos) es hacerlo con un:
-		- ALTER TABLE ... ADD CONSTRAINT ...
-	  después de haber creado todas las tablas.
-
-- Permitir modificar los bindings de los tipos:
-    - [HECHO] Permitir modificar los bindings de los tipos existentes.
-    - Permitir añadir tus propios tipos (prioridad baja).
-	- Permitir indicar cuál es el tipo a utilizar en los IDs.
-
-- [HECHO] Permitir indicar diferentes estrategias para el nombrado de los campos ID.
-
-- [HECHO] En Java, los bindings de los tipos deberían diferenciar entre clase y paquete?
-	- [HECHO] Tiene la ventaja de poder añadir los imports con total seguridad.
-	- [DESCARTADO] No obstante, esto se podría hacer también en base a convenciones.
-		- Empieza por mayúsculas: clase.
-		- Empieza por minúsculas: paquete.
-
-- En Java, permitir escoger si utilizar clases o primitivos para tipos como Long/long y así.
-
-- En Java, añadir los imports de las anotaciones utilizadas (como @Nullable).
-
-- [DONE] Change "pluralizeTableNames" property's name to "usePluralTableNames" in DatabaseModelGeneratorConfig.
-
-- [DONE] Move the "idNamingStrategy" config from different implementations to DatabaseModelGenerator.
-    - This way, the DatabaseModel can provide now the name of the identifier column.
-    - By doing this, pluralization of ID columns is fixed now (identity column of "Users" table should be "userId", not "usersId").
+- Type bindings improvement:
+	- Allow adding custom types.
+	- Allow to specify the type of the PK/ID columns.
 
 - Create a generic TypeResolver<T> that can be used not only in DB code generators but also in Java and TypeScript ones.
 
@@ -50,5 +14,3 @@
 - Allow to customize naming formats of sequences and constraints (PK, FK and unique).
 	- Allow a function and a pattern string (which will be used in CLI and Playground).
 	- Allow pattern string in "idNamingStrategy" also.
-
-- [DONE] Fix Java and TypeScript types parse methods (problem with split).
