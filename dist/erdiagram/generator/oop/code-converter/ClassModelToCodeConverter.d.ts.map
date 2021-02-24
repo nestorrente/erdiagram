@@ -1,0 +1,1 @@
+{"version":3,"file":"ClassModelToCodeConverter.d.ts","sourceRoot":"","sources":["../../../../../src/main/erdiagram/generator/oop/code-converter/ClassModelToCodeConverter.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,UAAU,EAAC,MAAM,mDAAmD,CAAC;AAE7E,MAAM,CAAC,OAAO,WAAW,yBAAyB;IACjD,YAAY,CAAC,UAAU,EAAE,UAAU,GAAG,MAAM,CAAC;CAC7C"}

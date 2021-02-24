@@ -1,0 +1,4 @@
+import DatabaseModelToCodeConverterSerializableConfig from '../../DatabaseModelToCodeConverterSerializableConfig';
+export default interface MySqlDatabaseModelToCodeConverterSerializableConfig extends DatabaseModelToCodeConverterSerializableConfig {
+}
+//# sourceMappingURL=MySqlDatabaseModelToCodeConverterSerializableConfig.d.ts.map

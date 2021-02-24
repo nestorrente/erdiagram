@@ -17,12 +17,8 @@ There you will find some code examples that are very useful for learning the _ER
 
 ## Documentation
 
-* [ERDiagram language](docs/ERDiagram_language.md)
-* Concepts (pending)
-    + EntityRelationshipModel
-    + DatabaseModel
-    + ClassModel
-    + Code converters
+* **[ERDiagram language](docs/ERDiagram_language.md)**: how to define entities and relationships.
+* **[ERDiagram library](docs/Library_usage.md)**: installation, concepts and usage.
 
 ## Contributing
 

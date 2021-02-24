@@ -1,0 +1,4 @@
+import DatabaseModelToCodeConverterSerializableConfig from '../../DatabaseModelToCodeConverterSerializableConfig';
+export default interface SqlServerDatabaseModelToCodeConverterSerializableConfig extends DatabaseModelToCodeConverterSerializableConfig {
+}
+//# sourceMappingURL=SqlServerDatabaseModelToCodeConverterSerializableConfig.d.ts.map

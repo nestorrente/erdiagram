@@ -1,0 +1,1 @@
+{"version":3,"file":"DatabaseModelToCodeConverter.d.ts","sourceRoot":"","sources":["../../../../../src/main/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverter.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,aAAa,EAAC,MAAM,2DAA2D,CAAC;AAExF,MAAM,CAAC,OAAO,WAAW,4BAA4B;IACpD,YAAY,CAAC,aAAa,EAAE,aAAa,GAAG,MAAM,CAAC;CACnD"}

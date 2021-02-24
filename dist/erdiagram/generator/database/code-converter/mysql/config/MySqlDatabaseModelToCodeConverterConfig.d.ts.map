@@ -1,0 +1,1 @@
+{"version":3,"file":"MySqlDatabaseModelToCodeConverterConfig.d.ts","sourceRoot":"","sources":["../../../../../../../src/main/erdiagram/generator/database/code-converter/mysql/config/MySqlDatabaseModelToCodeConverterConfig.ts"],"names":[],"mappings":"AAAA,OAAO,kCAAkC,MACnC,kFAAkF,CAAC;AAEzF,MAAM,CAAC,OAAO,WAAW,uCAAwC,SAAQ,kCAAkC;CAE1G"}

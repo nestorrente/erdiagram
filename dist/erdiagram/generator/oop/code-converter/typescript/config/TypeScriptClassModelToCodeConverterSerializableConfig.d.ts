@@ -1,0 +1,4 @@
+import ClassModelToCodeConverterSerializableConfig from '../../ClassModelToCodeConverterSerializableConfig';
+export default interface TypeScriptClassModelToCodeConverterSerializableConfig extends ClassModelToCodeConverterSerializableConfig {
+}
+//# sourceMappingURL=TypeScriptClassModelToCodeConverterSerializableConfig.d.ts.map

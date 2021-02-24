@@ -1,0 +1,12 @@
+import AbstractComponentConfigManager from '../../../../../common/config/AbstractComponentConfigManager';
+import OracleDatabaseModelToCodeConverterConfig from './OracleDatabaseModelToCodeConverterConfig';
+import OracleDatabaseModelToCodeConverterSerializableConfig from './OracleDatabaseModelToCodeConverterSerializableConfig';
+export declare class OracleDatabaseModelToCodeConverterConfigManager extends AbstractComponentConfigManager<OracleDatabaseModelToCodeConverterConfig, Partial<OracleDatabaseModelToCodeConverterConfig>, OracleDatabaseModelToCodeConverterSerializableConfig> {
+    getDefaultConfig(): OracleDatabaseModelToCodeConverterConfig;
+    mergeConfigs(fullConfig: OracleDatabaseModelToCodeConverterConfig, partialConfig?: Partial<OracleDatabaseModelToCodeConverterConfig>): OracleDatabaseModelToCodeConverterConfig;
+    convertToSerializableObject(fullConfig: OracleDatabaseModelToCodeConverterConfig): OracleDatabaseModelToCodeConverterSerializableConfig;
+    convertFromSerializableObject(serializableConfig: OracleDatabaseModelToCodeConverterSerializableConfig): OracleDatabaseModelToCodeConverterConfig;
+}
+declare const oracleDatabaseModelToCodeConverterConfigManager: OracleDatabaseModelToCodeConverterConfigManager;
+export default oracleDatabaseModelToCodeConverterConfigManager;
+//# sourceMappingURL=OracleDatabaseModelToCodeConverterConfigManager.d.ts.map

@@ -1,0 +1,12 @@
+import AbstractComponentConfigManager from '../../common/config/AbstractComponentConfigManager';
+import EntityRelationshipModelParserConfig from './EntityRelationshipModelParserConfig';
+import EntityRelationshipModelParserSerializableConfig from './EntityRelationshipModelParserSerializableConfig';
+export declare class EntityRelationshipModelParserConfigManager extends AbstractComponentConfigManager<EntityRelationshipModelParserConfig, Partial<EntityRelationshipModelParserConfig>, EntityRelationshipModelParserSerializableConfig> {
+    getDefaultConfig(): EntityRelationshipModelParserConfig;
+    mergeConfigs(fullConfig: EntityRelationshipModelParserConfig, partialConfig?: Partial<EntityRelationshipModelParserConfig>): EntityRelationshipModelParserConfig;
+    convertToSerializableObject(fullConfig: EntityRelationshipModelParserConfig): EntityRelationshipModelParserSerializableConfig;
+    convertFromSerializableObject(serializableConfig: EntityRelationshipModelParserSerializableConfig): EntityRelationshipModelParserConfig;
+}
+declare const entityRelationshipModelParserConfigManager: EntityRelationshipModelParserConfigManager;
+export default entityRelationshipModelParserConfigManager;
+//# sourceMappingURL=EntityRelationshipModelParserConfigManager.d.ts.map

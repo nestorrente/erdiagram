@@ -1,0 +1,12 @@
+import AbstractComponentConfigManager from '../../../../../common/config/AbstractComponentConfigManager';
+import SqlServerDatabaseModelToCodeConverterConfig from './SqlServerDatabaseModelToCodeConverterConfig';
+import SqlServerDatabaseModelToCodeConverterSerializableConfig from './SqlServerDatabaseModelToCodeConverterSerializableConfig';
+export declare class SqlServerDatabaseModelToCodeConverterConfigManager extends AbstractComponentConfigManager<SqlServerDatabaseModelToCodeConverterConfig, Partial<SqlServerDatabaseModelToCodeConverterConfig>, SqlServerDatabaseModelToCodeConverterSerializableConfig> {
+    getDefaultConfig(): SqlServerDatabaseModelToCodeConverterConfig;
+    mergeConfigs(fullConfig: SqlServerDatabaseModelToCodeConverterConfig, partialConfig?: Partial<SqlServerDatabaseModelToCodeConverterConfig>): SqlServerDatabaseModelToCodeConverterConfig;
+    convertToSerializableObject(fullConfig: SqlServerDatabaseModelToCodeConverterConfig): SqlServerDatabaseModelToCodeConverterSerializableConfig;
+    convertFromSerializableObject(serializableConfig: SqlServerDatabaseModelToCodeConverterSerializableConfig): SqlServerDatabaseModelToCodeConverterConfig;
+}
+declare const sqlServerDatabaseModelToCodeConverterConfigManager: SqlServerDatabaseModelToCodeConverterConfigManager;
+export default sqlServerDatabaseModelToCodeConverterConfigManager;
+//# sourceMappingURL=SqlServerDatabaseModelToCodeConverterConfigManager.d.ts.map

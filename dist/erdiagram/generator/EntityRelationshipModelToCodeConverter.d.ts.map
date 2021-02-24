@@ -1,0 +1,1 @@
+{"version":3,"file":"EntityRelationshipModelToCodeConverter.d.ts","sourceRoot":"","sources":["../../../src/main/erdiagram/generator/EntityRelationshipModelToCodeConverter.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,uBAAuB,EAAC,MAAM,oDAAoD,CAAC;AAE3F,MAAM,CAAC,OAAO,WAAW,sCAAsC;IAE9D,YAAY,CAAC,KAAK,EAAE,uBAAuB,GAAG,MAAM,CAAC;CAErD"}
