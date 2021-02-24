@@ -96,7 +96,7 @@ export function parseRelationshipStatement(line: string): RelationshipDescriptor
 
 	return {
 		relationShipName: relationShipName ? capitalizeWord(relationShipName) : undefined,
-		direction: direction === '->' ? Direction.RIGHT : (direction === '<-' ? Direction.LEFT : Direction.BIDIRECTIONAL),
+		direction: direction === '->' ? Direction.LEFT_TO_RIGHT : (direction === '<-' ? Direction.RIGHT_TO_LEFT : Direction.BIDIRECTIONAL),
 		leftMember: {
 			entity: capitalizeWord(leftEntity),
 			entityAlias: uncapitalizeWord(leftEntityAlias),

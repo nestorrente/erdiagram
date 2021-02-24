@@ -10,8 +10,8 @@ export enum Cardinality {
 }
 
 export enum Direction {
-	LEFT = 'left',
-	RIGHT = 'right',
+	LEFT_TO_RIGHT = 'left_to_right',
+	RIGHT_TO_LEFT = 'right_to_left',
 	BIDIRECTIONAL = 'bidirectional'
 }
 

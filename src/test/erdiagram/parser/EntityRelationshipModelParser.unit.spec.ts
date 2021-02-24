@@ -204,7 +204,7 @@ A <-> D
 			relationships: [
 				{
 					relationShipName: undefined,
-					direction: Direction.RIGHT,
+					direction: Direction.LEFT_TO_RIGHT,
 					leftMember: {
 						entity: 'A',
 						entityAlias: 'a',
@@ -218,7 +218,7 @@ A <-> D
 				},
 				{
 					relationShipName: undefined,
-					direction: Direction.LEFT,
+					direction: Direction.RIGHT_TO_LEFT,
 					leftMember: {
 						entity: 'A',
 						entityAlias: 'a',
@@ -435,7 +435,7 @@ A aAlias <-> E eAlias (RelationshipName)
 			relationships: [
 				{
 					relationShipName: undefined,
-					direction: Direction.RIGHT,
+					direction: Direction.LEFT_TO_RIGHT,
 					leftMember: {
 						entity: 'A',
 						entityAlias: 'a',

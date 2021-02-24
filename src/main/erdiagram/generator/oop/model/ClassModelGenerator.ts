@@ -49,11 +49,11 @@ function generateEntityTable(entity: EntityDescriptor, model: EntityRelationship
 			direction
 		} = relationship;
 
-		if (leftMember.entity === entity.name && [Direction.RIGHT, Direction.BIDIRECTIONAL].includes(direction)) {
+		if (leftMember.entity === entity.name && [Direction.LEFT_TO_RIGHT, Direction.BIDIRECTIONAL].includes(direction)) {
 			fields.push(mapRelationshipMemberToField(rightMember));
 		}
 
-		if (rightMember.entity === entity.name && [Direction.LEFT, Direction.BIDIRECTIONAL].includes(direction)) {
+		if (rightMember.entity === entity.name && [Direction.RIGHT_TO_LEFT, Direction.BIDIRECTIONAL].includes(direction)) {
 			fields.push(mapRelationshipMemberToField(leftMember));
 		}
 
