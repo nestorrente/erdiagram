@@ -112,9 +112,10 @@ relationships):
 
 As you can see, you can omit the character `1`, as that's the default cardinality.
 
-You can also use the character `?`, which allows to specify a `0..1` cardinality. For example, imagine you are modelling
-a tree structure, where each node points to its parent. In this scenario, the root nodes will not have a parent, so the
-relationship will be a _many-to-zero-or-one_, which can be write this way:
+In addition to `1` and `*` characters, it's also possible to use the question mark character (`?`)
+in order to indicate a `0..1` cardinality. For example, imagine you are modelling a tree structure,
+where each node has a relationship to its parent. As root nodes don't have a parent,
+the relationship should be a _many-to-zero-or-one_, which can be written this way:
 
 ```erdiagram
 TreeNode child *<->? TreeNode parent
