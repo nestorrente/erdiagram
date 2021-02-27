@@ -6,9 +6,9 @@ how to define an entity, its properties and its relationships.
 ## Table of contents
 
 * **[Defining an entity](#defining-an-entity)**
-    + [Entity identifier property](#entity-identifier-property)
     + [Supported property types](#supported-property-types)
     + [Property modifiers](#property-modifiers)
+    + [Entity identifier property](#entity-identifier-property)
 * **[Relationships](#relationships)**
     + [Directions](#directions)
     + [Aliases](#aliases)
@@ -66,8 +66,9 @@ Task
 
 Notice that we haven't defined an identifier property for the entities of the previous examples. When we don't define an
 identifier for an entity, _ERDiagram_ will generate one for us. By default, that property will be named `id` both in
-[Database Model](#) and [Class Model](#), but it's possible to use different _[naming strategies](#)_. Another
-possibility is to explicitly declare the identifier property of the entity:
+[Database Model (TODO add link)](#) and [Class Model (TODO add link)](#), but it's possible to use different
+_[naming strategies (TODO add link)](#)_. Another possibility is to explicitly declare the identifier property of the
+entity:
 
 ```erdiagram
 User
