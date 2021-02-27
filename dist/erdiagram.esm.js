@@ -4,7 +4,7 @@
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-02-27T10:21:41.543Z
+ * Build date: 2021-02-27T10:53:42.520Z
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -704,6 +704,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownEntityError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramUnknownEntityError"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramMultipleIdentifiersError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramMultipleIdentifiersError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramDuplicatedPropertyNameError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramDuplicatedPropertyNameError"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityRelationshipModelParser", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["EntityRelationshipModelParser"]; });
 
@@ -4653,7 +4655,7 @@ var EntityPropertyType;
 /*!*********************************************!*\
   !*** ./src/main/erdiagram/parser/errors.ts ***!
   \*********************************************/
-/*! exports provided: ERDiagramParseError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramUnknownEntityError, ERDiagramMultipleIdentifiersError */
+/*! exports provided: ERDiagramParseError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramUnknownEntityError, ERDiagramMultipleIdentifiersError, ERDiagramDuplicatedPropertyNameError */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4663,6 +4665,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownTypeError", function() { return ERDiagramUnknownTypeError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownEntityError", function() { return ERDiagramUnknownEntityError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramMultipleIdentifiersError", function() { return ERDiagramMultipleIdentifiersError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramDuplicatedPropertyNameError", function() { return ERDiagramDuplicatedPropertyNameError; });
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -4716,6 +4719,14 @@ var ERDiagramMultipleIdentifiersError = /** @class */ (function (_super) {
     return ERDiagramMultipleIdentifiersError;
 }(ERDiagramParseError));
 
+var ERDiagramDuplicatedPropertyNameError = /** @class */ (function (_super) {
+    __extends(ERDiagramDuplicatedPropertyNameError, _super);
+    function ERDiagramDuplicatedPropertyNameError() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return ERDiagramDuplicatedPropertyNameError;
+}(ERDiagramParseError));
+
 
 
 /***/ }),
@@ -4724,7 +4735,7 @@ var ERDiagramMultipleIdentifiersError = /** @class */ (function (_super) {
 /*!**********************************************!*\
   !*** ./src/main/erdiagram/parser/exports.ts ***!
   \**********************************************/
-/*! exports provided: EntityRelationshipModelParserConfigManager, entityRelationshipModelParserConfigManager, Cardinality, Direction, EntityPropertyType, ERDiagramParseError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramUnknownEntityError, ERDiagramMultipleIdentifiersError, EntityRelationshipModelParser */
+/*! exports provided: EntityRelationshipModelParserConfigManager, entityRelationshipModelParserConfigManager, Cardinality, Direction, EntityPropertyType, ERDiagramParseError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramUnknownEntityError, ERDiagramMultipleIdentifiersError, ERDiagramDuplicatedPropertyNameError, EntityRelationshipModelParser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4754,6 +4765,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownEntityError", function() { return _errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramUnknownEntityError"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramMultipleIdentifiersError", function() { return _errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramMultipleIdentifiersError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramDuplicatedPropertyNameError", function() { return _errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramDuplicatedPropertyNameError"]; });
 
 
 
@@ -4978,6 +4991,18 @@ var EntityRelationshipModelValidator = /** @class */ (function () {
             if (!entityNames.includes(relationship.rightMember.entity)) {
                 throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramUnknownEntityError"]("Uknown entity in relationship's right side: " + relationship.rightMember.entity);
             }
+        });
+    };
+    EntityRelationshipModelValidator.prototype.validateNonRepeatedPropertyNames = function (model) {
+        model.entities.forEach(function (entity) {
+            var entityPropertyNames = new Set();
+            entity.properties.forEach(function (property) {
+                var propertyName = property.name;
+                if (entityPropertyNames.has(propertyName)) {
+                    throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramDuplicatedPropertyNameError"]("Repeated property " + propertyName + " in entity " + entity.name);
+                }
+                entityPropertyNames.add(propertyName);
+            });
         });
     };
     return EntityRelationshipModelValidator;

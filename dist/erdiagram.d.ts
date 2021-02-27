@@ -396,5 +396,7 @@ export declare class ERDiagramUnknownEntityError extends ERDiagramParseError {
 }
 export declare class ERDiagramMultipleIdentifiersError extends ERDiagramParseError {
 }
+export declare class ERDiagramDuplicatedPropertyNameError extends ERDiagramParseError {
+}
 
 export {};
