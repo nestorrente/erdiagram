@@ -49,7 +49,7 @@ export default class EntityRelationshipModelValidator {
 				const propertyName = property.name;
 
 				if (entityPropertyNames.has(propertyName)) {
-					throw new ERDiagramDuplicatedPropertyNameError(`Repeated property ${propertyName} in entity ${entity.name}`);
+					throw new ERDiagramDuplicatedPropertyNameError(`Repeated property "${propertyName}" in "${entity.name}" entity`);
 				}
 
 				entityPropertyNames.add(propertyName);
