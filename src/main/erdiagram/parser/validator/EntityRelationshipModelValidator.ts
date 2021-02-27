@@ -40,6 +40,10 @@ export default class EntityRelationshipModelValidator {
 
 			const entityPropertyNames = new Set<string>();
 
+			if (entity.identifierPropertyName) {
+				entityPropertyNames.add(entity.identifierPropertyName);
+			}
+
 			entity.properties.forEach(property => {
 
 				const propertyName = property.name;

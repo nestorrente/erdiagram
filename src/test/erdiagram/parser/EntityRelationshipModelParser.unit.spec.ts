@@ -133,6 +133,22 @@ Entity
 
 	});
 
+	test('Entity with property name equals to its explicit identifier', () => {
+
+		expect(() => {
+
+			const model = entityRelationshipModelParser.parseModel(`
+
+Entity
+	prop identifier
+	prop bool
+
+			`);
+
+		}).toThrow(Error);
+
+	});
+
 	test('Supported types', () => {
 
 		const model = entityRelationshipModelParser.parseModel(`
