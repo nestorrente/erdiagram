@@ -25,10 +25,10 @@ export default class EntityRelationshipModelValidator {
 
 		model.relationships.forEach(relationship => {
 			if (!entityNames.includes(relationship.leftMember.entity)) {
-				throw new ERDiagramUnknownEntityError(`Uknown entity in relationship's left side: ${relationship.leftMember.entity}`);
+				throw new ERDiagramUnknownEntityError(`Uknown entity "${relationship.leftMember.entity}" in relationship's left side`);
 			}
 			if (!entityNames.includes(relationship.rightMember.entity)) {
-				throw new ERDiagramUnknownEntityError(`Uknown entity in relationship's right side: ${relationship.rightMember.entity}`);
+				throw new ERDiagramUnknownEntityError(`Uknown entity "${relationship.rightMember.entity}" in relationship's right side`);
 			}
 		});
 
