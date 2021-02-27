@@ -1,5 +1,5 @@
 import {EntityRelationshipModel} from '@/erdiagram/parser/entity-relationship-model-types';
-import {ERDiagramUnknownEntityError} from '@/erdiagram/parser/errors';
+import {ERDiagramDuplicatedPropertyNameError, ERDiagramUnknownEntityError} from '@/erdiagram/parser/errors';
 
 export default class EntityRelationshipModelValidator {
 
@@ -26,6 +26,28 @@ export default class EntityRelationshipModelValidator {
 			if (!entityNames.includes(relationship.rightMember.entity)) {
 				throw new ERDiagramUnknownEntityError(`Uknown entity in relationship's right side: ${relationship.rightMember.entity}`);
 			}
+		});
+
+	}
+
+	private validateNonRepeatedPropertyNames(model: EntityRelationshipModel) {
+
+		model.entities.forEach(entity => {
+
+			const entityPropertyNames = new Set<string>();
+
+			entity.properties.forEach(property => {
+
+				const propertyName = property.name;
+
+				if (entityPropertyNames.has(propertyName)) {
+					throw new ERDiagramDuplicatedPropertyNameError(`Repeated property ${propertyName} in entity ${entity.name}`);
+				}
+
+				entityPropertyNames.add(propertyName);
+
+			});
+
 		});
 
 	}

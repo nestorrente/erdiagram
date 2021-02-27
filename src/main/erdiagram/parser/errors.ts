@@ -17,3 +17,7 @@ export class ERDiagramUnknownEntityError extends ERDiagramParseError {
 export class ERDiagramMultipleIdentifiersError extends ERDiagramParseError {
 
 }
+
+export class ERDiagramDuplicatedPropertyNameError extends ERDiagramParseError {
+
+}
