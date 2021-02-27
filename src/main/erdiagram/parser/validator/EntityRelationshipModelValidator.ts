@@ -10,9 +10,13 @@ export default class EntityRelationshipModelValidator {
 	}
 
 	public validateModel(model: EntityRelationshipModel) {
+
 		if (!this.allowUnknownEntities) {
 			this.validateRelationshipsHaveNoUnknownEntities(model);
 		}
+
+		this.validateNonRepeatedPropertyNames(model);
+
 	}
 
 	private validateRelationshipsHaveNoUnknownEntities(model: EntityRelationshipModel) {

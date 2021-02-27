@@ -4,7 +4,7 @@
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-02-27T10:53:42.520Z
+ * Build date: 2021-02-27T10:58:36.503Z
  */
 var ERDiagram =
 /******/ (function(modules) { // webpackBootstrap
@@ -4972,6 +4972,7 @@ var EntityRelationshipModelValidator = /** @class */ (function () {
         if (!this.allowUnknownEntities) {
             this.validateRelationshipsHaveNoUnknownEntities(model);
         }
+        this.validateNonRepeatedPropertyNames(model);
     };
     EntityRelationshipModelValidator.prototype.validateRelationshipsHaveNoUnknownEntities = function (model) {
         var entityNames = model.entities.map(function (e) { return e.name; });
