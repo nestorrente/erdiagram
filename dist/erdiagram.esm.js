@@ -4,7 +4,7 @@
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-02-27T11:09:31.562Z
+ * Build date: 2021-02-27T11:15:21.211Z
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -4987,10 +4987,10 @@ var EntityRelationshipModelValidator = /** @class */ (function () {
         var entityNames = model.entities.map(function (e) { return e.name; });
         model.relationships.forEach(function (relationship) {
             if (!entityNames.includes(relationship.leftMember.entity)) {
-                throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramUnknownEntityError"]("Uknown entity in relationship's left side: " + relationship.leftMember.entity);
+                throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramUnknownEntityError"]("Uknown entity \"" + relationship.leftMember.entity + "\" in relationship's left side");
             }
             if (!entityNames.includes(relationship.rightMember.entity)) {
-                throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramUnknownEntityError"]("Uknown entity in relationship's right side: " + relationship.rightMember.entity);
+                throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramUnknownEntityError"]("Uknown entity \"" + relationship.rightMember.entity + "\" in relationship's right side");
             }
         });
     };
@@ -5003,7 +5003,7 @@ var EntityRelationshipModelValidator = /** @class */ (function () {
             entity.properties.forEach(function (property) {
                 var propertyName = property.name;
                 if (entityPropertyNames.has(propertyName)) {
-                    throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramDuplicatedPropertyNameError"]("Repeated property " + propertyName + " in entity " + entity.name);
+                    throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramDuplicatedPropertyNameError"]("Repeated property \"" + propertyName + "\" in \"" + entity.name + "\" entity");
                 }
                 entityPropertyNames.add(propertyName);
             });
