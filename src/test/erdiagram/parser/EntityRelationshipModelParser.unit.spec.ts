@@ -117,6 +117,22 @@ Entity
 
 	});
 
+	test('Entity with duplicated property name', () => {
+
+		expect(() => {
+
+			const model = entityRelationshipModelParser.parseModel(`
+
+Entity
+	name text(20)
+	name text(20)
+
+			`);
+
+		}).toThrow(Error);
+
+	});
+
 	test('Supported types', () => {
 
 		const model = entityRelationshipModelParser.parseModel(`
