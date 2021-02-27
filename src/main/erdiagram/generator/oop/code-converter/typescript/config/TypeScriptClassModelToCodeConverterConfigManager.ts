@@ -13,6 +13,7 @@ export class TypeScriptClassModelToCodeConverterConfigManager
 	getDefaultConfig(): TypeScriptClassModelToCodeConverterConfig {
 		return {
 			typeBindings: {
+				[EntityPropertyType.IDENTIFIER]: parseTypeScriptType('number'),
 				[EntityPropertyType.TEXT]: parseTypeScriptType('string'),
 				[EntityPropertyType.LONG]: parseTypeScriptType('number'),
 				[EntityPropertyType.INT]: parseTypeScriptType('number'),

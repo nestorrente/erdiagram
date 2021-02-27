@@ -1,1 +1,0 @@
-{"version":3,"file":"DatabaseModelGeneratorConfig.d.ts","sourceRoot":"","sources":["../../../../../../src/main/erdiagram/generator/database/model/config/DatabaseModelGeneratorConfig.ts"],"names":[],"mappings":"AAAA,OAAO,gBAAgB,MAAM,kEAAkE,CAAC;AAEhG,MAAM,CAAC,OAAO,WAAW,4BAA4B;IACpD,mBAAmB,EAAE,OAAO,CAAC;IAC7B,gBAAgB,EAAE,gBAAgB,CAAC;CACnC"}

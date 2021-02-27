@@ -6,14 +6,15 @@ how to define an entity, its properties and its relationships.
 ## Table of contents
 
 * **[Defining an entity](#defining-an-entity)**
-	+ [Supported property types](#supported-property-types)
-	+ [Property modifiers](#property-modifiers)
+    + [Entity identifier property](#entity-identifier-property)
+    + [Supported property types](#supported-property-types)
+    + [Property modifiers](#property-modifiers)
 * **[Relationships](#relationships)**
-	+ [Directions](#directions)
-	+ [Aliases](#aliases)
-	+ [Cardinalities](#cardinalities)
-	+ [Relationship's name](#relationships-name)
-	+ [Relationship examples](#relationship-examples)
+    + [Directions](#directions)
+    + [Aliases](#aliases)
+    + [Cardinalities](#cardinalities)
+    + [Relationship's name](#relationships-name)
+    + [Relationship examples](#relationship-examples)
 * **[Comments](#comments)**
 
 ## Defining an entity
@@ -30,10 +31,6 @@ User
 As you can see, the properties of an entity must be indented (no matter how many tabs or spaces you use). Properties are
 defined by writing its name followed by its type, which can include an optional length, similar to SQL.
 
-Also, notice that we haven't defined an identifier property. This is because _ERDiagram_ will always generate an
-identifier property for each entity. By default, that property will be named `id`, but this behaviour can be changed in
-order to use another _naming strategy_ (TODO add a link to the IdNamingStrategy documentation).
-
 ### Supported property types
 
 * `bool`: a boolean value, like _true_ and _false_.
@@ -44,6 +41,7 @@ order to use another _naming strategy_ (TODO add a link to the IdNamingStrategy 
 * `time`: a time representation, like _00:00:00_.
 * `datetime`: a date and time representation, like _01/01/1970 at 00:00:00_.
 * `blob`: a binary object, a.k.a. a byte array.
+* `identifier`: a special type that represents the identifier of the entity.
 
 ### Property modifiers
 
@@ -63,6 +61,25 @@ Task
   priorityOrder?! int
   done bool
 ```
+
+### Entity identifier property
+
+Notice that we haven't defined an identifier property for the entities of the previous examples. When we don't define an
+identifier for an entity, _ERDiagram_ will generate one for us. By default, that property will be named `id` both in
+[Database Model](#) and [Class Model](#), but it's possible to use different _[naming strategies](#)_. Another
+possibility is to explicitly declare the identifier property of the entity:
+
+```erdiagram
+User
+  theUserId identifier
+  name text(50)
+  lastName text(50)
+  active bool
+```
+
+An entity **cannot** have more that one `identifier` property, and this property doesn't accept any
+[modifier](#property-modifiers). Also, it doesn't matter if that property is defined at the beginning of the entity or
+in another position; it will always be considered the first property of the entity.
 
 ## Relationships
 
@@ -113,9 +130,9 @@ relationships):
 As you can see, you can omit the character `1`, as that's the default cardinality.
 
 In addition to `1` and `*` characters, it's also possible to use the question mark character (`?`)
-in order to indicate a `0..1` cardinality. For example, imagine you are modelling a tree structure,
-where each node has a relationship to its parent. As root nodes don't have a parent,
-the relationship should be a _many-to-zero-or-one_, which can be written this way:
+in order to indicate a `0..1` cardinality. For example, imagine you are modelling a tree structure, where each node has
+a relationship to its parent. As root nodes don't have a parent, the relationship should be a _many-to-zero-or-one_,
+which can be written this way:
 
 ```erdiagram
 TreeNode child *<->? TreeNode parent

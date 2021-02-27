@@ -1,1 +1,0 @@
-{"version":3,"file":"ClassModelGenerator.d.ts","sourceRoot":"","sources":["../../../../../src/main/erdiagram/generator/oop/model/ClassModelGenerator.ts"],"names":[],"mappings":"AAEA,OAAO,EAAkB,UAAU,EAA2B,MAAM,mDAAmD,CAAC;AACxH,OAAO,EAMN,uBAAuB,EAEvB,MAAM,oDAAoD,CAAC;AAE5D,MAAM,CAAC,OAAO,OAAO,mBAAmB;IAEvC,kBAAkB,CAAC,KAAK,EAAE,uBAAuB,GAAG,UAAU;CAc9D"}

@@ -6,22 +6,14 @@ export interface ClassModel {
 
 export interface ClassDescriptor {
 	name: string;
-	fields: NonEntityFieldDescriptor[];
+	fields: ClassFieldDescriptor[];
 }
 
-// TODO find a better name
-export interface NonEntityFieldDescriptor {
+export interface ClassFieldDescriptor {
 	name: string;
 	nullable: boolean;
 	list: boolean;
 	// Find a better way to represent when a field is an entity or a built-in type
 	primitiveType?: EntityPropertyType;
 	entityType?: string;
-}
-
-export interface EntityFieldDescriptor {
-	name: string;
-	nullable: boolean;
-	list: boolean;
-	type?: string;
 }

@@ -1,5 +1,0 @@
-import EntityRelationshipModelParserConfig from './EntityRelationshipModelParserConfig';
-import EntityRelationshipModelParserSerializableConfig from './EntityRelationshipModelParserSerializableConfig';
-import entityRelationshipModelParserConfigManager, { EntityRelationshipModelParserConfigManager } from './EntityRelationshipModelParserConfigManager';
-export { EntityRelationshipModelParserConfig, EntityRelationshipModelParserSerializableConfig, EntityRelationshipModelParserConfigManager, entityRelationshipModelParserConfigManager };
-//# sourceMappingURL=exports.d.ts.map

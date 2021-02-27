@@ -14,6 +14,7 @@ export class SqlServerDatabaseModelToCodeConverterConfigManager
 		return {
 			idColumnType: EntityPropertyType.LONG,
 			typeBindings: {
+				[EntityPropertyType.IDENTIFIER]: 'BIGINT',
 				[EntityPropertyType.TEXT]: 'NVARCHAR',
 				[EntityPropertyType.LONG]: 'BIGINT',
 				[EntityPropertyType.INT]: 'INT',

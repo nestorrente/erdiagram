@@ -14,6 +14,7 @@ export class OracleDatabaseModelToCodeConverterConfigManager
 		return {
 			idColumnType: EntityPropertyType.LONG,
 			typeBindings: {
+				[EntityPropertyType.IDENTIFIER]: 'NUMBER',
 				[EntityPropertyType.TEXT]: 'VARCHAR2',
 				[EntityPropertyType.LONG]: 'NUMBER',
 				[EntityPropertyType.INT]: 'NUMBER',

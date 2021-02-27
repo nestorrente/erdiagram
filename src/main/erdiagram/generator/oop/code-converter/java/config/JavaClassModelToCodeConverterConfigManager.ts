@@ -13,6 +13,7 @@ export class JavaClassModelToCodeConverterConfigManager
 	getDefaultConfig(): JavaClassModelToCodeConverterConfig {
 		return {
 			typeBindings: {
+				[EntityPropertyType.IDENTIFIER]: parseJavaType('java.lang.Long'),
 				[EntityPropertyType.TEXT]: parseJavaType('java.lang.String'),
 				[EntityPropertyType.LONG]: parseJavaType('java.lang.Long'),
 				[EntityPropertyType.INT]: parseJavaType('java.lang.Integer'),

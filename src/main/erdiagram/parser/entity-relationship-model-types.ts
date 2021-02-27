@@ -30,6 +30,7 @@ export interface RelationshipMember {
 
 export interface EntityDescriptor {
 	name: string;
+	identifierPropertyName?: string;
 	properties: EntityPropertyDescriptor[];
 }
 
@@ -43,6 +44,7 @@ export interface EntityPropertyDescriptor {
 }
 
 export enum EntityPropertyType {
+	IDENTIFIER = 'identifier',
 	BOOLEAN = 'bool',
 	SHORT = 'short',
 	INT = 'int',

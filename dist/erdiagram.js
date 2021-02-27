@@ -4,7 +4,7 @@
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-02-24T20:54:23.614Z
+ * Build date: 2021-02-27T10:21:41.543Z
  */
 var ERDiagram =
 /******/ (function(modules) { // webpackBootstrap
@@ -693,6 +693,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownTypeError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramUnknownTypeError"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownEntityError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramUnknownEntityError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramMultipleIdentifiersError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramMultipleIdentifiersError"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityRelationshipModelParser", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["EntityRelationshipModelParser"]; });
 
@@ -1596,6 +1598,7 @@ var MySqlDatabaseModelToCodeConverterConfigManager = /** @class */ (function (_s
         return {
             idColumnType: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG,
             typeBindings: (_a = {},
+                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER] = 'BIGINT',
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT] = 'VARCHAR',
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG] = 'BIGINT',
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT] = 'INT',
@@ -2081,6 +2084,7 @@ var OracleDatabaseModelToCodeConverterConfigManager = /** @class */ (function (_
         return {
             idColumnType: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG,
             typeBindings: (_a = {},
+                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER] = 'NUMBER',
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT] = 'VARCHAR2',
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG] = 'NUMBER',
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT] = 'NUMBER',
@@ -2566,6 +2570,7 @@ var SqlServerDatabaseModelToCodeConverterConfigManager = /** @class */ (function
         return {
             idColumnType: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG,
             typeBindings: (_a = {},
+                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER] = 'BIGINT',
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT] = 'NVARCHAR',
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG] = 'BIGINT',
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT] = 'INT',
@@ -2720,6 +2725,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(pluralize__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
 /* harmony import */ var _erdiagram_generator_database_model_config_DatabaseModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/database/model/config/DatabaseModelGeneratorConfigManager */ "./src/main/erdiagram/generator/database/model/config/DatabaseModelGeneratorConfigManager.ts");
+/* harmony import */ var _erdiagram_util_map_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/map-utils */ "./src/main/erdiagram/util/map-utils.ts");
 var __values = (undefined && undefined.__values) || function(o) {
     var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
     if (m) return m.call(o);
@@ -2734,28 +2740,28 @@ var __values = (undefined && undefined.__values) || function(o) {
 
 
 
+
 var DatabaseModelGenerator = /** @class */ (function () {
     function DatabaseModelGenerator(config) {
         this.config = _erdiagram_generator_database_model_config_DatabaseModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_2__["default"].mergeWithDefaultConfig(config);
     }
     DatabaseModelGenerator.prototype.generateDatabaseModel = function (model) {
-        var _this = this;
+        var entityIdentifiersMap = Object(_erdiagram_util_map_utils__WEBPACK_IMPORTED_MODULE_3__["classifyBy"])(model.entities.filter(function (entity) { return entity.identifierPropertyName; }), function (entity) { return entity.name; }, function (entity) { return entity.identifierPropertyName; });
         var tables = [];
-        model.entities
-            .map(function (entity) { return _this.generateEntityTable(entity, model); })
-            .forEach(function (sentence) { return tables.push(sentence); });
-        model.relationships
-            .filter(function (relationship) { return _this.isManyToManyRelationship(relationship); })
-            .map(function (relationship) { return _this.generateRelationshipTable(relationship); })
-            .forEach(function (sentence) { return tables.push(sentence); });
+        this.generateEntityTables(model, entityIdentifiersMap, tables);
+        this.generateRelationshipTables(model, entityIdentifiersMap, tables);
         return {
             tables: tables
         };
     };
-    DatabaseModelGenerator.prototype.generateEntityTable = function (entity, model) {
+    DatabaseModelGenerator.prototype.generateEntityTables = function (model, entityIdentifiersMap, tables) {
+        var _this = this;
+        model.entities
+            .map(function (entity) { return _this.generateEntityTable(entity, model, entityIdentifiersMap); })
+            .forEach(function (sentence) { return tables.push(sentence); });
+    };
+    DatabaseModelGenerator.prototype.generateEntityTable = function (entity, model, entityIdentifiersMap) {
         var e_1, _a, e_2, _b;
-        var name = this.pluralizeEntityNameIfApplies(entity.name);
-        var identifierColumnName = this.getIdentifierColumnName(entity.name);
         var columns = [];
         var references = [];
         try {
@@ -2777,12 +2783,12 @@ var DatabaseModelGenerator = /** @class */ (function () {
                 if (relationship.rightMember.cardinality !== _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY) {
                     if (relationship.leftMember.entity === entity.name) {
                         var isOneToOneRelationship = relationship.leftMember.cardinality !== _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY;
-                        references.push(this.createTableReference(relationship.rightMember, isOneToOneRelationship));
+                        references.push(this.createTableReference(relationship.rightMember, entityIdentifiersMap, isOneToOneRelationship));
                     }
                 }
                 else if (relationship.leftMember.cardinality !== _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY) {
                     if (relationship.rightMember.entity === entity.name) {
-                        references.push(this.createTableReference(relationship.leftMember));
+                        references.push(this.createTableReference(relationship.leftMember, entityIdentifiersMap));
                     }
                 }
             }
@@ -2795,22 +2801,29 @@ var DatabaseModelGenerator = /** @class */ (function () {
             finally { if (e_2) throw e_2.error; }
         }
         return {
-            name: name,
-            identifierColumnName: identifierColumnName,
+            name: this.pluralizeEntityNameIfApplies(entity.name),
+            identifierColumnName: this.getIdentifierColumnName(entity.name, entityIdentifiersMap),
             columns: columns,
             references: references
         };
     };
-    DatabaseModelGenerator.prototype.generateRelationshipTable = function (relationship) {
+    DatabaseModelGenerator.prototype.generateRelationshipTables = function (model, entityIdentifiersMap, tables) {
+        var _this = this;
+        model.relationships
+            .filter(function (relationship) { return _this.isManyToManyRelationship(relationship); })
+            .map(function (relationship) { return _this.generateRelationshipTable(relationship, entityIdentifiersMap); })
+            .forEach(function (sentence) { return tables.push(sentence); });
+    };
+    DatabaseModelGenerator.prototype.generateRelationshipTable = function (relationship, entityIdentifiersMap) {
         var name = this.getRelationshipTableName(relationship);
-        var identifierColumnName = this.getRelationshipTableIdentifierColumnName(relationship);
+        var identifierColumnName = this.getRelationshipTableIdentifierColumnName(relationship, entityIdentifiersMap);
         return {
             name: name,
             identifierColumnName: identifierColumnName,
             columns: [],
             references: [
-                this.createTableReference(relationship.leftMember),
-                this.createTableReference(relationship.rightMember)
+                this.createTableReference(relationship.leftMember, entityIdentifiersMap),
+                this.createTableReference(relationship.rightMember, entityIdentifiersMap)
             ]
         };
     };
@@ -2822,20 +2835,20 @@ var DatabaseModelGenerator = /** @class */ (function () {
         return this.pluralizeEntityNameIfApplies(leftMember.entity)
             + this.pluralizeEntityNameIfApplies(rightMember.entity);
     };
-    DatabaseModelGenerator.prototype.getRelationshipTableIdentifierColumnName = function (relationship) {
+    DatabaseModelGenerator.prototype.getRelationshipTableIdentifierColumnName = function (relationship, entityIdentifiersMap) {
         var relationShipName = relationship.relationShipName, leftMember = relationship.leftMember, rightMember = relationship.rightMember;
         if (relationShipName) {
-            return this.getIdentifierColumnName(relationShipName);
+            return this.getIdentifierColumnName(relationShipName, entityIdentifiersMap);
         }
-        return this.getIdentifierColumnName(leftMember.entity + rightMember.entity);
+        return this.getIdentifierColumnName(leftMember.entity + rightMember.entity, entityIdentifiersMap);
     };
-    DatabaseModelGenerator.prototype.createTableReference = function (toMember, unique) {
+    DatabaseModelGenerator.prototype.createTableReference = function (toMember, entityIdentifiersMap, unique) {
         if (unique === void 0) { unique = false; }
         var entityAlias = toMember.entityAlias, entity = toMember.entity, cardinality = toMember.cardinality;
         return {
             columnName: entityAlias + "Id",
             targetTableName: this.pluralizeEntityNameIfApplies(entity),
-            targetTableIdentifierColumnName: this.getIdentifierColumnName(entity),
+            targetTableIdentifierColumnName: this.getIdentifierColumnName(entity, entityIdentifiersMap),
             notNull: cardinality !== _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].ZERO_OR_ONE,
             unique: unique
         };
@@ -2848,7 +2861,10 @@ var DatabaseModelGenerator = /** @class */ (function () {
             return entityName;
         }
     };
-    DatabaseModelGenerator.prototype.getIdentifierColumnName = function (entityName) {
+    DatabaseModelGenerator.prototype.getIdentifierColumnName = function (entityName, entityIdentifiersMap) {
+        if (entityIdentifiersMap.has(entityName)) {
+            return entityIdentifiersMap.get(entityName);
+        }
         var idNamingStrategy = this.config.idNamingStrategy;
         return idNamingStrategy(entityName);
     };
@@ -3381,6 +3397,7 @@ var JavaClassModelToCodeConverterConfigManager = /** @class */ (function (_super
         var _a;
         return {
             typeBindings: (_a = {},
+                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER] = Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Long'),
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT] = Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.String'),
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG] = Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Long'),
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT] = Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Integer'),
@@ -3840,6 +3857,7 @@ var TypeScriptClassModelToCodeConverterConfigManager = /** @class */ (function (
         var _a;
         return {
             typeBindings: (_a = {},
+                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER] = Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT] = Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('string'),
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG] = Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT] = Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
@@ -4168,6 +4186,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(pluralize__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
 /* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_generator_oop_model_config_ClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/generator/oop/model/config/ClassModelGeneratorConfigManager */ "./src/main/erdiagram/generator/oop/model/config/ClassModelGeneratorConfigManager.ts");
 var __values = (undefined && undefined.__values) || function(o) {
     var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
     if (m) return m.call(o);
@@ -4182,92 +4201,102 @@ var __values = (undefined && undefined.__values) || function(o) {
 
 
 
+
 var ClassModelGenerator = /** @class */ (function () {
-    function ClassModelGenerator() {
+    function ClassModelGenerator(config) {
+        this.config = _erdiagram_generator_oop_model_config_ClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_3__["default"].mergeWithDefaultConfig(config);
     }
     ClassModelGenerator.prototype.generateClassModel = function (model) {
+        var _this = this;
         var classes = [];
         model.entities
-            .map(function (entity) { return generateEntityTable(entity, model); })
+            .map(function (entity) { return _this.generateEntityTable(entity, model); })
             .forEach(function (sentence) { return classes.push(sentence); });
         return {
             classes: classes
+        };
+    };
+    ClassModelGenerator.prototype.generateEntityTable = function (entity, model) {
+        var e_1, _a, e_2, _b;
+        var name = Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__["capitalizeWord"])(entity.name);
+        var fields = [
+            this.createIdField(entity)
+        ];
+        try {
+            for (var _c = __values(entity.properties), _d = _c.next(); !_d.done; _d = _c.next()) {
+                var property = _d.value;
+                fields.push(this.mapPropertyToField(property));
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        try {
+            for (var _e = __values(model.relationships), _f = _e.next(); !_f.done; _f = _e.next()) {
+                var relationship = _f.value;
+                var leftMember = relationship.leftMember, rightMember = relationship.rightMember, direction = relationship.direction;
+                if (leftMember.entity === entity.name && [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].LEFT_TO_RIGHT, _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].BIDIRECTIONAL].includes(direction)) {
+                    fields.push(this.mapRelationshipMemberToField(rightMember));
+                }
+                if (rightMember.entity === entity.name && [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].RIGHT_TO_LEFT, _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].BIDIRECTIONAL].includes(direction)) {
+                    fields.push(this.mapRelationshipMemberToField(leftMember));
+                }
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (_f && !_f.done && (_b = _e.return)) _b.call(_e);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
+        return {
+            name: name,
+            fields: fields
+        };
+    };
+    ClassModelGenerator.prototype.createIdField = function (entity) {
+        return {
+            name: this.getIdentifierFieldName(entity),
+            primitiveType: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["EntityPropertyType"].LONG,
+            nullable: false,
+            list: false
+        };
+    };
+    ClassModelGenerator.prototype.getIdentifierFieldName = function (entity) {
+        if (entity.identifierPropertyName) {
+            return entity.identifierPropertyName;
+        }
+        var idNamingStrategy = this.config.idNamingStrategy;
+        return idNamingStrategy(entity.name);
+    };
+    ClassModelGenerator.prototype.mapRelationshipMemberToField = function (toMember) {
+        var list = toMember.cardinality === _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Cardinality"].MANY;
+        var name = list ? pluralize__WEBPACK_IMPORTED_MODULE_0___default()(toMember.entityAlias) : toMember.entityAlias;
+        return {
+            name: name,
+            nullable: toMember.cardinality === _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Cardinality"].ZERO_OR_ONE,
+            entityType: toMember.entity,
+            list: list
+        };
+    };
+    ClassModelGenerator.prototype.mapPropertyToField = function (property) {
+        var name = property.name, optional = property.optional, type = property.type;
+        return {
+            name: name,
+            nullable: optional,
+            primitiveType: type,
+            list: false
         };
     };
     return ClassModelGenerator;
 }());
 /* harmony default export */ __webpack_exports__["default"] = (ClassModelGenerator);
 ;
-function generateEntityTable(entity, model) {
-    var e_1, _a, e_2, _b;
-    var name = Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__["capitalizeWord"])(entity.name);
-    var fields = [
-        createIdField()
-    ];
-    try {
-        for (var _c = __values(entity.properties), _d = _c.next(); !_d.done; _d = _c.next()) {
-            var property = _d.value;
-            fields.push(mapPropertyToField(property));
-        }
-    }
-    catch (e_1_1) { e_1 = { error: e_1_1 }; }
-    finally {
-        try {
-            if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
-        }
-        finally { if (e_1) throw e_1.error; }
-    }
-    try {
-        for (var _e = __values(model.relationships), _f = _e.next(); !_f.done; _f = _e.next()) {
-            var relationship = _f.value;
-            var leftMember = relationship.leftMember, rightMember = relationship.rightMember, direction = relationship.direction;
-            if (leftMember.entity === entity.name && [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].LEFT_TO_RIGHT, _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].BIDIRECTIONAL].includes(direction)) {
-                fields.push(mapRelationshipMemberToField(rightMember));
-            }
-            if (rightMember.entity === entity.name && [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].RIGHT_TO_LEFT, _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].BIDIRECTIONAL].includes(direction)) {
-                fields.push(mapRelationshipMemberToField(leftMember));
-            }
-        }
-    }
-    catch (e_2_1) { e_2 = { error: e_2_1 }; }
-    finally {
-        try {
-            if (_f && !_f.done && (_b = _e.return)) _b.call(_e);
-        }
-        finally { if (e_2) throw e_2.error; }
-    }
-    return {
-        name: name,
-        fields: fields
-    };
-}
-function createIdField() {
-    return {
-        name: 'id',
-        primitiveType: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["EntityPropertyType"].LONG,
-        nullable: false,
-        list: false
-    };
-}
-function mapRelationshipMemberToField(toMember) {
-    var list = toMember.cardinality === _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Cardinality"].MANY;
-    var name = list ? pluralize__WEBPACK_IMPORTED_MODULE_0___default()(toMember.entityAlias) : toMember.entityAlias;
-    return {
-        name: name,
-        nullable: toMember.cardinality === _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Cardinality"].ZERO_OR_ONE,
-        entityType: toMember.entity,
-        list: list
-    };
-}
-function mapPropertyToField(property) {
-    var name = property.name, optional = property.optional, type = property.type;
-    return {
-        name: name,
-        nullable: optional,
-        primitiveType: type,
-        list: false
-    };
-}
 
 
 /***/ }),
@@ -4278,6 +4307,94 @@ function mapPropertyToField(property) {
   \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/oop/model/config/ClassModelGeneratorConfigManager.ts":
+/*!*******************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/oop/model/config/ClassModelGeneratorConfigManager.ts ***!
+  \*******************************************************************************************/
+/*! exports provided: ClassModelGeneratorConfigManager, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ClassModelGeneratorConfigManager", function() { return ClassModelGeneratorConfigManager; });
+/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var _erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies */ "./src/main/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies.ts");
+/* harmony import */ var _erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/util/record-utils */ "./src/main/erdiagram/util/record-utils.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+
+
+var ClassModelGeneratorConfigManager = /** @class */ (function (_super) {
+    __extends(ClassModelGeneratorConfigManager, _super);
+    function ClassModelGeneratorConfigManager() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ClassModelGeneratorConfigManager.prototype.getDefaultConfig = function () {
+        return {
+            idNamingStrategy: _erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"].DEFAULT
+        };
+    };
+    ClassModelGeneratorConfigManager.prototype.mergeConfigs = function (fullConfig, partialConfig) {
+        return __assign(__assign({}, fullConfig), partialConfig);
+    };
+    ClassModelGeneratorConfigManager.prototype.convertToSerializableObject = function (fullConfig) {
+        return __assign(__assign({}, fullConfig), { idNamingStrategy: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_2__["findKeyFromValue"])(_erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.idNamingStrategy) });
+    };
+    ClassModelGeneratorConfigManager.prototype.convertFromSerializableObject = function (serializableConfig) {
+        return __assign(__assign({}, serializableConfig), { idNamingStrategy: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_2__["findValueFromNullableKey"])(_erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.idNamingStrategy, _erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"].DEFAULT) });
+    };
+    return ClassModelGeneratorConfigManager;
+}(_erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"]));
+
+var classModelGeneratorConfigManager = new ClassModelGeneratorConfigManager();
+/* harmony default export */ __webpack_exports__["default"] = (classModelGeneratorConfigManager);
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/oop/model/config/exports.ts":
+/*!******************************************************************!*\
+  !*** ./src/main/erdiagram/generator/oop/model/config/exports.ts ***!
+  \******************************************************************/
+/*! exports provided: ClassModelGeneratorConfigManager, classModelGeneratorConfigManager */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ClassModelGeneratorConfigManager */ "./src/main/erdiagram/generator/oop/model/config/ClassModelGeneratorConfigManager.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ClassModelGeneratorConfigManager", function() { return _ClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__["ClassModelGeneratorConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "classModelGeneratorConfigManager", function() { return _ClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
 
 
 
@@ -4298,6 +4415,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _class_model_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./class-model-types */ "./src/main/erdiagram/generator/oop/model/class-model-types.ts");
 /* harmony import */ var _class_model_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_class_model_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _class_model_types__WEBPACK_IMPORTED_MODULE_1__) if(["default","ClassModelGenerator"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _class_model_types__WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/generator/oop/model/config/exports.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ClassModelGeneratorConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_2__["ClassModelGeneratorConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "classModelGeneratorConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_2__["classModelGeneratorConfigManager"]; });
+
+
 
 
 
@@ -4316,9 +4439,11 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/statement/statement-types-parse-functions */ "./src/main/erdiagram/parser/statement/statement-types-parse-functions.ts");
 /* harmony import */ var _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/parser/statement/statement-type-guesser */ "./src/main/erdiagram/parser/statement/statement-type-guesser.ts");
-/* harmony import */ var _erdiagram_parser_validator_EntityRelationshipModelValidator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/parser/validator/EntityRelationshipModelValidator */ "./src/main/erdiagram/parser/validator/EntityRelationshipModelValidator.ts");
-/* harmony import */ var _erdiagram_parser_config_EntityRelationshipModelParserConfigManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/parser/config/EntityRelationshipModelParserConfigManager */ "./src/main/erdiagram/parser/config/EntityRelationshipModelParserConfigManager.ts");
-/* harmony import */ var _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/parser/errors */ "./src/main/erdiagram/parser/errors.ts");
+/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_validator_EntityRelationshipModelValidator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/parser/validator/EntityRelationshipModelValidator */ "./src/main/erdiagram/parser/validator/EntityRelationshipModelValidator.ts");
+/* harmony import */ var _erdiagram_parser_config_EntityRelationshipModelParserConfigManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/parser/config/EntityRelationshipModelParserConfigManager */ "./src/main/erdiagram/parser/config/EntityRelationshipModelParserConfigManager.ts");
+/* harmony import */ var _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/parser/errors */ "./src/main/erdiagram/parser/errors.ts");
+
 
 
 
@@ -4326,8 +4451,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var EntityRelationshipModelParser = /** @class */ (function () {
     function EntityRelationshipModelParser(config) {
-        this.config = _erdiagram_parser_config_EntityRelationshipModelParserConfigManager__WEBPACK_IMPORTED_MODULE_3__["default"].mergeWithDefaultConfig(config);
-        this.validator = new _erdiagram_parser_validator_EntityRelationshipModelValidator__WEBPACK_IMPORTED_MODULE_2__["default"](this.config.allowUnknownEntities);
+        this.config = _erdiagram_parser_config_EntityRelationshipModelParserConfigManager__WEBPACK_IMPORTED_MODULE_4__["default"].mergeWithDefaultConfig(config);
+        this.validator = new _erdiagram_parser_validator_EntityRelationshipModelValidator__WEBPACK_IMPORTED_MODULE_3__["default"](this.config.allowUnknownEntities);
     }
     EntityRelationshipModelParser.prototype.parseModel = function (code) {
         var model = this.parseModelWithoutValidation(code);
@@ -4351,11 +4476,19 @@ var EntityRelationshipModelParser = /** @class */ (function () {
                     break;
                 case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].ENTITY_PROPERTY:
                     if (!parsingEntity) {
-                        throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramSyntaxError"]('Unexpected entity property statement');
+                        throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_5__["ERDiagramSyntaxError"]('Unexpected entity property statement');
                     }
-                    var lastEntity = entities[entities.length - 1];
                     var entityPropertyDescriptor = Object(_erdiagram_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["parseEntityPropertyStatement"])(line);
-                    lastEntity.properties.push(entityPropertyDescriptor);
+                    var lastEntity = entities[entities.length - 1];
+                    if (entityPropertyDescriptor.type != _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["EntityPropertyType"].IDENTIFIER) {
+                        lastEntity.properties.push(entityPropertyDescriptor);
+                    }
+                    else if (lastEntity.identifierPropertyName) {
+                        throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_5__["ERDiagramMultipleIdentifiersError"]("Entity " + lastEntity.name + " has more than one identifier property");
+                    }
+                    else {
+                        lastEntity.identifierPropertyName = entityPropertyDescriptor.name;
+                    }
                     break;
                 case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].RELATIONSHIP:
                     var relationshipDescriptor = Object(_erdiagram_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["parseRelationshipStatement"])(line);
@@ -4363,11 +4496,10 @@ var EntityRelationshipModelParser = /** @class */ (function () {
                     parsingEntity = false;
                     break;
                 case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].BLANK_LINE:
-                case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].COMMENT:
                     // Ignore
                     break;
                 default:
-                    throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramSyntaxError"]("Unknown statement type (" + statementType + ") for line: " + line);
+                    throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_5__["ERDiagramSyntaxError"]("Unknown statement type (" + statementType + ") for line: " + line);
             }
         });
         return {
@@ -4432,10 +4564,10 @@ var EntityRelationshipModelParserConfigManager = /** @class */ (function (_super
         return __assign(__assign({}, fullConfig), partialConfig);
     };
     EntityRelationshipModelParserConfigManager.prototype.convertToSerializableObject = function (fullConfig) {
-        return fullConfig;
+        return __assign({}, fullConfig);
     };
     EntityRelationshipModelParserConfigManager.prototype.convertFromSerializableObject = function (serializableConfig) {
-        return serializableConfig;
+        return __assign({}, serializableConfig);
     };
     return EntityRelationshipModelParserConfigManager;
 }(_erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"]));
@@ -4492,6 +4624,7 @@ var Direction;
 })(Direction || (Direction = {}));
 var EntityPropertyType;
 (function (EntityPropertyType) {
+    EntityPropertyType["IDENTIFIER"] = "identifier";
     EntityPropertyType["BOOLEAN"] = "bool";
     EntityPropertyType["SHORT"] = "short";
     EntityPropertyType["INT"] = "int";
@@ -4511,7 +4644,7 @@ var EntityPropertyType;
 /*!*********************************************!*\
   !*** ./src/main/erdiagram/parser/errors.ts ***!
   \*********************************************/
-/*! exports provided: ERDiagramParseError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramUnknownEntityError */
+/*! exports provided: ERDiagramParseError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramUnknownEntityError, ERDiagramMultipleIdentifiersError */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4520,6 +4653,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramSyntaxError", function() { return ERDiagramSyntaxError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownTypeError", function() { return ERDiagramUnknownTypeError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownEntityError", function() { return ERDiagramUnknownEntityError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramMultipleIdentifiersError", function() { return ERDiagramMultipleIdentifiersError; });
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -4565,6 +4699,14 @@ var ERDiagramUnknownEntityError = /** @class */ (function (_super) {
     return ERDiagramUnknownEntityError;
 }(ERDiagramParseError));
 
+var ERDiagramMultipleIdentifiersError = /** @class */ (function (_super) {
+    __extends(ERDiagramMultipleIdentifiersError, _super);
+    function ERDiagramMultipleIdentifiersError() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return ERDiagramMultipleIdentifiersError;
+}(ERDiagramParseError));
+
 
 
 /***/ }),
@@ -4573,7 +4715,7 @@ var ERDiagramUnknownEntityError = /** @class */ (function (_super) {
 /*!**********************************************!*\
   !*** ./src/main/erdiagram/parser/exports.ts ***!
   \**********************************************/
-/*! exports provided: EntityRelationshipModelParserConfigManager, entityRelationshipModelParserConfigManager, Cardinality, Direction, EntityPropertyType, ERDiagramParseError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramUnknownEntityError, EntityRelationshipModelParser */
+/*! exports provided: EntityRelationshipModelParserConfigManager, entityRelationshipModelParserConfigManager, Cardinality, Direction, EntityPropertyType, ERDiagramParseError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramUnknownEntityError, ERDiagramMultipleIdentifiersError, EntityRelationshipModelParser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4602,6 +4744,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownEntityError", function() { return _errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramUnknownEntityError"]; });
 
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramMultipleIdentifiersError", function() { return _errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramMultipleIdentifiersError"]; });
+
 
 
 
@@ -4629,7 +4773,6 @@ var StatementType;
     StatementType["ENTITY_NAME"] = "entityName";
     StatementType["ENTITY_PROPERTY"] = "entityProperty";
     StatementType["RELATIONSHIP"] = "relationship";
-    StatementType["COMMENT"] = "comment";
     StatementType["BLANK_LINE"] = "blankLine";
     StatementType["UNKNOWN"] = "unknown";
 })(StatementType || (StatementType = {}));
@@ -4646,18 +4789,12 @@ function guessStatementType(line) {
     else if (isBlankLine(line)) {
         return StatementType.BLANK_LINE;
     }
-    else if (isCommentLine(line)) {
-        return StatementType.COMMENT;
-    }
     else {
         return StatementType.UNKNOWN;
     }
 }
 function isBlankLine(line) {
-    return /^\s*$/.test(line);
-}
-function isCommentLine(line) {
-    return /^\s*#/.test(line);
+    return /^\s*(#.*)?$/.test(line);
 }
 
 
@@ -4819,16 +4956,18 @@ var EntityRelationshipModelValidator = /** @class */ (function () {
         this.allowUnknownEntities = allowUnknownEntities;
     }
     EntityRelationshipModelValidator.prototype.validateModel = function (model) {
-        if (this.allowUnknownEntities) {
-            return;
+        if (!this.allowUnknownEntities) {
+            this.validateRelationshipsHaveNoUnknownEntities(model);
         }
+    };
+    EntityRelationshipModelValidator.prototype.validateRelationshipsHaveNoUnknownEntities = function (model) {
         var entityNames = model.entities.map(function (e) { return e.name; });
-        model.relationships.forEach(function (r) {
-            if (!entityNames.includes(r.leftMember.entity)) {
-                throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramUnknownEntityError"]("Uknown entity in relationship's left side: " + r.leftMember.entity);
+        model.relationships.forEach(function (relationship) {
+            if (!entityNames.includes(relationship.leftMember.entity)) {
+                throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramUnknownEntityError"]("Uknown entity in relationship's left side: " + relationship.leftMember.entity);
             }
-            if (!entityNames.includes(r.rightMember.entity)) {
-                throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramUnknownEntityError"]("Uknown entity in relationship's right side: " + r.rightMember.entity);
+            if (!entityNames.includes(relationship.rightMember.entity)) {
+                throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramUnknownEntityError"]("Uknown entity in relationship's right side: " + relationship.rightMember.entity);
             }
         });
     };
@@ -4905,6 +5044,29 @@ function generateIndentText(indent) {
         return indent;
     }
     return ''.padEnd(indent, ' ');
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/util/map-utils.ts":
+/*!**********************************************!*\
+  !*** ./src/main/erdiagram/util/map-utils.ts ***!
+  \**********************************************/
+/*! exports provided: classifyBy */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "classifyBy", function() { return classifyBy; });
+function classifyBy(objects, keyMapper, valueMapper) {
+    var map = new Map();
+    objects.forEach(function (object) {
+        var key = keyMapper(object);
+        var value = valueMapper(object);
+        map.set(key, value);
+    });
+    return map;
 }
 
 

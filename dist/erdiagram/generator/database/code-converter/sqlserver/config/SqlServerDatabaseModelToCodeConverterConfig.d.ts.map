@@ -1,1 +1,0 @@
-{"version":3,"file":"SqlServerDatabaseModelToCodeConverterConfig.d.ts","sourceRoot":"","sources":["../../../../../../../src/main/erdiagram/generator/database/code-converter/sqlserver/config/SqlServerDatabaseModelToCodeConverterConfig.ts"],"names":[],"mappings":"AAAA,OAAO,kCAAkC,MACnC,kFAAkF,CAAC;AAEzF,MAAM,CAAC,OAAO,WAAW,2CAA4C,SAAQ,kCAAkC;CAE9G"}

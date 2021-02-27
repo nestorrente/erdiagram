@@ -13,3 +13,7 @@ export class ERDiagramUnknownTypeError extends ERDiagramParseError {
 export class ERDiagramUnknownEntityError extends ERDiagramParseError {
 
 }
+
+export class ERDiagramMultipleIdentifiersError extends ERDiagramParseError {
+
+}

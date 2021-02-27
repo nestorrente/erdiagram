@@ -20,11 +20,15 @@ export class EntityRelationshipModelParserConfigManager
 	}
 
 	convertToSerializableObject(fullConfig: EntityRelationshipModelParserConfig): EntityRelationshipModelParserSerializableConfig {
-		return fullConfig;
+		return {
+			...fullConfig
+		};
 	}
 
 	convertFromSerializableObject(serializableConfig: EntityRelationshipModelParserSerializableConfig): EntityRelationshipModelParserConfig {
-		return serializableConfig;
+		return {
+			...serializableConfig
+		};
 	}
 
 }

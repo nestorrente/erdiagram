@@ -1,5 +1,5 @@
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
-import {ClassDescriptor, ClassModel, NonEntityFieldDescriptor} from '@/erdiagram/generator/oop/model/class-model-types';
+import {ClassDescriptor, ClassFieldDescriptor, ClassModel} from '@/erdiagram/generator/oop/model/class-model-types';
 import {indentLines} from '@/erdiagram/util/indent-utils';
 import TypeScriptParameterizedType, {createTypeScriptArrayType} from '@/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptParameterizedType';
 import TypeScriptType, {createTypeScriptType} from '@/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptType';
@@ -42,7 +42,7 @@ export default class TypeScriptClassModelToCodeConverter implements ClassModelTo
 
 	}
 
-	private createField(field: NonEntityFieldDescriptor) {
+	private createField(field: ClassFieldDescriptor) {
 
 		const fieldName = field.name;
 
@@ -54,7 +54,7 @@ export default class TypeScriptClassModelToCodeConverter implements ClassModelTo
 
 	}
 
-	private mapFieldTypeToTypeScriptType(field: NonEntityFieldDescriptor): TypeScriptType {
+	private mapFieldTypeToTypeScriptType(field: ClassFieldDescriptor): TypeScriptType {
 		if (field.list) {
 			return this.mapListTypeToTypeScriptType(field);
 		} else {
@@ -62,11 +62,11 @@ export default class TypeScriptClassModelToCodeConverter implements ClassModelTo
 		}
 	}
 
-	private mapListTypeToTypeScriptType(field: NonEntityFieldDescriptor): TypeScriptParameterizedType {
+	private mapListTypeToTypeScriptType(field: ClassFieldDescriptor): TypeScriptParameterizedType {
 		return createTypeScriptArrayType(this.mapSingleTypeToTypeScriptType(field));
 	}
 
-	private mapSingleTypeToTypeScriptType(field: NonEntityFieldDescriptor): TypeScriptType {
+	private mapSingleTypeToTypeScriptType(field: ClassFieldDescriptor): TypeScriptType {
 
 		const {
 			entityType,

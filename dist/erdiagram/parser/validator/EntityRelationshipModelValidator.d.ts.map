@@ -1,1 +1,0 @@
-{"version":3,"file":"EntityRelationshipModelValidator.d.ts","sourceRoot":"","sources":["../../../../src/main/erdiagram/parser/validator/EntityRelationshipModelValidator.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,uBAAuB,EAAC,MAAM,oDAAoD,CAAC;AAG3F,MAAM,CAAC,OAAO,OAAO,gCAAgC;IAGlD,OAAO,CAAC,QAAQ,CAAC,oBAAoB;gBAApB,oBAAoB,EAAE,OAAO;IAKzC,aAAa,CAAC,KAAK,EAAE,uBAAuB;CAmBnD"}

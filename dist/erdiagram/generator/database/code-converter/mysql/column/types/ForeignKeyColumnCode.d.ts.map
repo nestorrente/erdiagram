@@ -1,1 +1,0 @@
-{"version":3,"file":"ForeignKeyColumnCode.d.ts","sourceRoot":"","sources":["../../../../../../../../src/main/erdiagram/generator/database/code-converter/mysql/column/types/ForeignKeyColumnCode.ts"],"names":[],"mappings":"AAAA,OAAO,iBAAiB,MAAM,oFAAoF,CAAC;AAEnH,MAAM,CAAC,OAAO,WAAW,oBAAqB,SAAQ,iBAAiB;IACtE,gBAAgB,EAAE,MAAM,CAAC;CACzB"}
