@@ -4,7 +4,7 @@
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-02-27T10:58:36.503Z
+ * Build date: 2021-02-27T11:09:31.562Z
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -4997,6 +4997,9 @@ var EntityRelationshipModelValidator = /** @class */ (function () {
     EntityRelationshipModelValidator.prototype.validateNonRepeatedPropertyNames = function (model) {
         model.entities.forEach(function (entity) {
             var entityPropertyNames = new Set();
+            if (entity.identifierPropertyName) {
+                entityPropertyNames.add(entity.identifierPropertyName);
+            }
             entity.properties.forEach(function (property) {
                 var propertyName = property.name;
                 if (entityPropertyNames.has(propertyName)) {
