@@ -2,11 +2,19 @@ import EntityRelationshipModelParser from '@/erdiagram/parser/EntityRelationship
 import {
 	Cardinality,
 	Direction,
+	EntityDescriptor,
 	EntityPropertyDescriptor,
 	EntityPropertyType,
 	EntityRelationshipModel,
 	RelationshipDescriptor
 } from '@/erdiagram/parser/entity-relationship-model-types';
+
+function createEntityWithoutProperties(name: string): EntityDescriptor {
+	return {
+		name,
+		properties: []
+	};
+}
 
 function createSimpleProperty(name: string, type: EntityPropertyType, length: number[] = []): EntityPropertyDescriptor {
 	return {
@@ -46,6 +54,101 @@ Entity
 
 	});
 
+	test('Entity with explicit identifier property', () => {
+
+		const model = entityRelationshipModelParser.parseModel(`
+
+Entity
+	customEntityId identifier
+
+		`);
+
+		expect(model).toStrictEqual<EntityRelationshipModel>({
+			entities: [
+				{
+					name: 'Entity',
+					identifierPropertyName: 'customEntityId',
+					properties: []
+				}
+			],
+			relationships: []
+		});
+
+	});
+
+	test('Entity with explicit identifier property defined as the last property', () => {
+
+		const model = entityRelationshipModelParser.parseModel(`
+
+Entity
+	name text(10)
+	customEntityId identifier
+
+		`);
+
+		expect(model).toStrictEqual<EntityRelationshipModel>({
+			entities: [
+				{
+					name: 'Entity',
+					identifierPropertyName: 'customEntityId',
+					properties: [
+						createSimpleProperty('name', EntityPropertyType.TEXT, [10])
+					]
+				}
+			],
+			relationships: []
+		});
+
+	});
+
+	test('Entity with more than one identifier property', () => {
+
+		expect(() => {
+
+			const model = entityRelationshipModelParser.parseModel(`
+
+Entity
+	customEntityId1 identifier
+	customEntityId2 identifier
+
+			`);
+
+		}).toThrow(Error);
+
+	});
+
+	test('Entity with duplicated property name', () => {
+
+		expect(() => {
+
+			const model = entityRelationshipModelParser.parseModel(`
+
+Entity
+	name text(20)
+	name text(20)
+
+			`);
+
+		}).toThrow(Error);
+
+	});
+
+	test('Entity with property name equals to its explicit identifier', () => {
+
+		expect(() => {
+
+			const model = entityRelationshipModelParser.parseModel(`
+
+Entity
+	prop identifier
+	prop bool
+
+			`);
+
+		}).toThrow(Error);
+
+	});
+
 	test('Supported types', () => {
 
 		const model = entityRelationshipModelParser.parseModel(`
@@ -59,7 +162,8 @@ Entity
 	f text(50)
 	g date
 	h time
-	j datetime
+	i datetime
+	j blob
 
 		`);
 
@@ -76,7 +180,8 @@ Entity
 						createSimpleProperty('f', EntityPropertyType.TEXT, [50]),
 						createSimpleProperty('g', EntityPropertyType.DATE),
 						createSimpleProperty('h', EntityPropertyType.TIME),
-						createSimpleProperty('j', EntityPropertyType.DATETIME),
+						createSimpleProperty('i', EntityPropertyType.DATETIME),
+						createSimpleProperty('j', EntityPropertyType.BLOB),
 					]
 				}
 			],
@@ -195,16 +300,11 @@ A <-> D
 		`);
 
 		expect(model).toStrictEqual<EntityRelationshipModel>({
-			entities: [
-				{name: 'A', properties: []},
-				{name: 'B', properties: []},
-				{name: 'C', properties: []},
-				{name: 'D', properties: []},
-			],
+			entities: [...'ABCD'].map(createEntityWithoutProperties),
 			relationships: [
 				{
 					relationShipName: undefined,
-					direction: Direction.RIGHT,
+					direction: Direction.LEFT_TO_RIGHT,
 					leftMember: {
 						entity: 'A',
 						entityAlias: 'a',
@@ -218,7 +318,7 @@ A <-> D
 				},
 				{
 					relationShipName: undefined,
-					direction: Direction.LEFT,
+					direction: Direction.RIGHT_TO_LEFT,
 					leftMember: {
 						entity: 'A',
 						entityAlias: 'a',
@@ -294,10 +394,7 @@ A *<->* Q
 		`);
 
 		expect(model).toStrictEqual<EntityRelationshipModel>({
-			entities: [...'ABCDEFGHIJKLMNOPQ'].map(entityName => ({
-				name: entityName,
-				properties: []
-			})),
+			entities: [...'ABCDEFGHIJKLMNOPQ'].map(createEntityWithoutProperties),
 			relationships: (
 					[
 						[Cardinality.ZERO_OR_ONE, Cardinality.ZERO_OR_ONE, 'B'],
@@ -355,13 +452,7 @@ A aAlias <-> E eAlias (RelationshipName)
 		`);
 
 		expect(model).toStrictEqual<EntityRelationshipModel>({
-			entities: [
-				{name: 'A', properties: []},
-				{name: 'B', properties: []},
-				{name: 'C', properties: []},
-				{name: 'D', properties: []},
-				{name: 'E', properties: []},
-			],
+			entities: [...'ABCDE'].map(createEntityWithoutProperties),
 			relationships: [
 				{
 					relationShipName: undefined,
@@ -435,7 +526,7 @@ A aAlias <-> E eAlias (RelationshipName)
 			relationships: [
 				{
 					relationShipName: undefined,
-					direction: Direction.RIGHT,
+					direction: Direction.LEFT_TO_RIGHT,
 					leftMember: {
 						entity: 'A',
 						entityAlias: 'a',

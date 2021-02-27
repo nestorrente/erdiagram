@@ -1,6 +1,6 @@
 import pluralize from 'pluralize';
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
-import {ClassDescriptor, ClassModel, NonEntityFieldDescriptor} from '@/erdiagram/generator/oop/model/class-model-types';
+import {ClassDescriptor, ClassFieldDescriptor, ClassModel} from '@/erdiagram/generator/oop/model/class-model-types';
 import {
 	Cardinality,
 	Direction,
@@ -10,15 +10,23 @@ import {
 	EntityRelationshipModel,
 	RelationshipMember
 } from '@/erdiagram/parser/entity-relationship-model-types';
+import ClassModelGeneratorConfig from '@/erdiagram/generator/oop/model/config/ClassModelGeneratorConfig';
+import classModelGeneratorConfigManager from '@/erdiagram/generator/oop/model/config/ClassModelGeneratorConfigManager';
 
 export default class ClassModelGenerator {
+
+	private readonly config: ClassModelGeneratorConfig;
+
+	constructor(config?: Partial<ClassModelGeneratorConfig>) {
+		this.config = classModelGeneratorConfigManager.mergeWithDefaultConfig(config);
+	}
 
 	generateClassModel(model: EntityRelationshipModel): ClassModel {
 
 		const classes: ClassDescriptor[] = [];
 
 		model.entities
-				.map(entity => generateEntityTable(entity, model))
+				.map(entity => this.generateEntityTable(entity, model))
 				.forEach(sentence => classes.push(sentence));
 
 		return {
@@ -27,81 +35,92 @@ export default class ClassModelGenerator {
 
 	}
 
-};
+	private generateEntityTable(entity: EntityDescriptor, model: EntityRelationshipModel): ClassDescriptor {
 
-function generateEntityTable(entity: EntityDescriptor, model: EntityRelationshipModel): ClassDescriptor {
+		const name = capitalizeWord(entity.name);
 
-	const name = capitalizeWord(entity.name);
+		const fields: ClassFieldDescriptor[] = [
+			this.createIdField(entity)
+		];
 
-	const fields: NonEntityFieldDescriptor[] = [
-		createIdField()
-	];
+		for (const property of entity.properties) {
+			fields.push(this.mapPropertyToField(property));
+		}
 
-	for (const property of entity.properties) {
-		fields.push(mapPropertyToField(property));
+		for (const relationship of model.relationships) {
+
+			const {
+				leftMember,
+				rightMember,
+				direction
+			} = relationship;
+
+			if (leftMember.entity === entity.name && [Direction.LEFT_TO_RIGHT, Direction.BIDIRECTIONAL].includes(direction)) {
+				fields.push(this.mapRelationshipMemberToField(rightMember));
+			}
+
+			if (rightMember.entity === entity.name && [Direction.RIGHT_TO_LEFT, Direction.BIDIRECTIONAL].includes(direction)) {
+				fields.push(this.mapRelationshipMemberToField(leftMember));
+			}
+
+		}
+
+		return {
+			name,
+			fields
+		};
+
 	}
 
-	for (const relationship of model.relationships) {
+	private createIdField(entity: EntityDescriptor): ClassFieldDescriptor {
+		return {
+			name: this.getIdentifierFieldName(entity),
+			primitiveType: EntityPropertyType.LONG,
+			nullable: false,
+			list: false
+		};
+	}
+
+	private getIdentifierFieldName(entity: EntityDescriptor) {
+
+		if (entity.identifierPropertyName) {
+			return entity.identifierPropertyName;
+		}
+
+		const {idNamingStrategy} = this.config;
+		return idNamingStrategy(entity.name);
+
+	}
+
+	private mapRelationshipMemberToField(toMember: RelationshipMember): ClassFieldDescriptor {
+
+		const list = toMember.cardinality === Cardinality.MANY;
+		const name = list ? pluralize(toMember.entityAlias) : toMember.entityAlias;
+
+		return {
+			name,
+			nullable: toMember.cardinality === Cardinality.ZERO_OR_ONE,
+			entityType: toMember.entity,
+			list
+		};
+
+	}
+
+	private mapPropertyToField(property: EntityPropertyDescriptor): ClassFieldDescriptor {
 
 		const {
-			leftMember,
-			rightMember,
-			direction
-		} = relationship;
+			name,
+			optional,
+			type
+		} = property;
 
-		if (leftMember.entity === entity.name && [Direction.RIGHT, Direction.BIDIRECTIONAL].includes(direction)) {
-			fields.push(mapRelationshipMemberToField(rightMember));
-		}
-
-		if (rightMember.entity === entity.name && [Direction.LEFT, Direction.BIDIRECTIONAL].includes(direction)) {
-			fields.push(mapRelationshipMemberToField(leftMember));
-		}
+		return {
+			name,
+			nullable: optional,
+			primitiveType: type,
+			list: false
+		};
 
 	}
 
-	return {
-		name,
-		fields
-	};
-
-}
-
-function createIdField(): NonEntityFieldDescriptor {
-	return {
-		name: 'id',
-		primitiveType: EntityPropertyType.LONG,
-		nullable: false,
-		list: false
-	};
-}
-
-function mapRelationshipMemberToField(toMember: RelationshipMember): NonEntityFieldDescriptor {
-
-	const list = toMember.cardinality === Cardinality.MANY;
-	const name = list ? pluralize(toMember.entityAlias) : toMember.entityAlias;
-
-	return {
-		name,
-		nullable: toMember.cardinality === Cardinality.ZERO_OR_ONE,
-		entityType: toMember.entity,
-		list
-	};
-
-}
-
-function mapPropertyToField(property: EntityPropertyDescriptor): NonEntityFieldDescriptor {
-
-	const {
-		name,
-		optional,
-		type
-	} = property;
-
-	return {
-		name,
-		nullable: optional,
-		primitiveType: type,
-		list: false
-	};
-
-}
+};

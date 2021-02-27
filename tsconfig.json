@@ -1,37 +1,37 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "module": "ES6",
-    "declaration": true,
-    "outDir": "./dist",
-    "strict": true,
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
-    "declarationMap": true,
-    "downlevelIteration": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/main/*"
-      ]
+    "compilerOptions": {
+        "target": "es5",
+        "module": "ES6",
+        "outDir": "./dist",
+        "strict": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": true,
+        "declaration": false,
+        "declarationMap": false,
+        "downlevelIteration": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "src/main/*"
+            ]
+        },
+        "types": [
+            "node",
+            "jest"
+        ],
+        "lib": [
+            "esnext"
+        ]
     },
-    "types": [
-      "node",
-      "jest"
+    "include": [
+        "src"
     ],
-    "lib": [
-      "esnext"
+    "exclude": [
+        "node_modules",
+        "node_modules/**",
+        "src/test/**"
     ]
-  },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "node_modules/**",
-    "src/test/**"
-  ]
 }

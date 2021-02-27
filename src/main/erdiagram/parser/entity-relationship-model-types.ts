@@ -10,8 +10,8 @@ export enum Cardinality {
 }
 
 export enum Direction {
-	LEFT = 'left',
-	RIGHT = 'right',
+	LEFT_TO_RIGHT = 'left_to_right',
+	RIGHT_TO_LEFT = 'right_to_left',
 	BIDIRECTIONAL = 'bidirectional'
 }
 
@@ -30,6 +30,7 @@ export interface RelationshipMember {
 
 export interface EntityDescriptor {
 	name: string;
+	identifierPropertyName?: string;
 	properties: EntityPropertyDescriptor[];
 }
 
@@ -43,6 +44,7 @@ export interface EntityPropertyDescriptor {
 }
 
 export enum EntityPropertyType {
+	IDENTIFIER = 'identifier',
 	BOOLEAN = 'bool',
 	SHORT = 'short',
 	INT = 'int',

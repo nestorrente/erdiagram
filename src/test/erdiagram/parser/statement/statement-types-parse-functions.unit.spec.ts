@@ -242,7 +242,7 @@ describe('Parse relationship statement', () => {
 
 		const expected: RelationshipDescriptor = {
 			relationShipName: undefined,
-			direction: Direction.RIGHT,
+			direction: Direction.LEFT_TO_RIGHT,
 			leftMember: {
 				entity: 'Entity1',
 				entityAlias: 'entity1',
@@ -265,7 +265,7 @@ describe('Parse relationship statement', () => {
 
 		const expected: RelationshipDescriptor = {
 			relationShipName: undefined,
-			direction: Direction.LEFT,
+			direction: Direction.RIGHT_TO_LEFT,
 			leftMember: {
 				entity: 'Entity1',
 				entityAlias: 'entity1',
@@ -380,7 +380,7 @@ describe('Parse relationship statement', () => {
 
 		const expected: RelationshipDescriptor = {
 			relationShipName: undefined,
-			direction: Direction.RIGHT,
+			direction: Direction.LEFT_TO_RIGHT,
 			leftMember: {
 				entity: 'Entity1',
 				entityAlias: 'e1',
@@ -403,7 +403,7 @@ describe('Parse relationship statement', () => {
 
 		const expected: RelationshipDescriptor = {
 			relationShipName: undefined,
-			direction: Direction.RIGHT,
+			direction: Direction.LEFT_TO_RIGHT,
 			leftMember: {
 				entity: 'Entity1',
 				entityAlias: 'entity1',
@@ -426,7 +426,7 @@ describe('Parse relationship statement', () => {
 
 		const expected: RelationshipDescriptor = {
 			relationShipName: 'Rel',
-			direction: Direction.RIGHT,
+			direction: Direction.LEFT_TO_RIGHT,
 			leftMember: {
 				entity: 'Entity1',
 				entityAlias: 'entity1',
@@ -459,7 +459,7 @@ describe('Parse relationship statement', () => {
 
 		const expected: RelationshipDescriptor = {
 			relationShipName: 'Rel',
-			direction: Direction.RIGHT,
+			direction: Direction.LEFT_TO_RIGHT,
 			leftMember: {
 				entity: 'Entity1',
 				entityAlias: 'entity1',
@@ -482,7 +482,7 @@ describe('Parse relationship statement', () => {
 
 		const expected: RelationshipDescriptor = {
 			relationShipName: 'Rel',
-			direction: Direction.RIGHT,
+			direction: Direction.LEFT_TO_RIGHT,
 			leftMember: {
 				entity: 'Entity1',
 				entityAlias: 'entity1',

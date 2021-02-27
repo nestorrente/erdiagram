@@ -6,6 +6,7 @@ import {
 import {guessStatementType, StatementType} from '@/erdiagram/parser/statement/statement-type-guesser';
 import {
 	EntityDescriptor,
+	EntityPropertyType,
 	EntityRelationshipModel,
 	RelationshipDescriptor
 } from '@/erdiagram/parser/entity-relationship-model-types';
@@ -13,7 +14,7 @@ import EntityRelationshipModelParserConfig from '@/erdiagram/parser/config/Entit
 import EntityRelationshipModelValidator from '@/erdiagram/parser/validator/EntityRelationshipModelValidator';
 import entityRelationshipModelParserConfigManager
 	from '@/erdiagram/parser/config/EntityRelationshipModelParserConfigManager';
-import {ERDiagramSyntaxError} from '@/erdiagram/parser/errors';
+import {ERDiagramMultipleIdentifiersError, ERDiagramSyntaxError} from '@/erdiagram/parser/errors';
 
 export default class EntityRelationshipModelParser {
 
@@ -56,9 +57,15 @@ export default class EntityRelationshipModelParser {
 					if (!parsingEntity) {
 						throw new ERDiagramSyntaxError('Unexpected entity property statement');
 					}
-					const lastEntity = entities[entities.length - 1];
 					const entityPropertyDescriptor = parseEntityPropertyStatement(line);
-					lastEntity.properties.push(entityPropertyDescriptor);
+					const lastEntity = entities[entities.length - 1];
+					if (entityPropertyDescriptor.type != EntityPropertyType.IDENTIFIER) {
+						lastEntity.properties.push(entityPropertyDescriptor);
+					} else if (lastEntity.identifierPropertyName) {
+						throw new ERDiagramMultipleIdentifiersError(`Entity ${lastEntity.name} has more than one identifier property`);
+					} else {
+						lastEntity.identifierPropertyName = entityPropertyDescriptor.name;
+					}
 					break;
 				case StatementType.RELATIONSHIP:
 					const relationshipDescriptor = parseRelationshipStatement(line);
@@ -66,7 +73,6 @@ export default class EntityRelationshipModelParser {
 					parsingEntity = false;
 					break;
 				case StatementType.BLANK_LINE:
-				case StatementType.COMMENT:
 					// Ignore
 					break;
 				default:

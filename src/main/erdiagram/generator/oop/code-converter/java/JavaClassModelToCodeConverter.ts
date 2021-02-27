@@ -1,5 +1,5 @@
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
-import {ClassDescriptor, ClassModel, NonEntityFieldDescriptor} from '@/erdiagram/generator/oop/model/class-model-types';
+import {ClassDescriptor, ClassFieldDescriptor, ClassModel} from '@/erdiagram/generator/oop/model/class-model-types';
 import {indentLine, indentLines} from '@/erdiagram/util/indent-utils';
 import JavaParameterizedType, {
 	createJavaParameterizedType,
@@ -97,7 +97,7 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 
 	}
 
-	private createField(field: NonEntityFieldDescriptor) {
+	private createField(field: ClassFieldDescriptor) {
 
 		const fieldName = field.name;
 		const capitalizedFieldName = capitalizeWord(fieldName);
@@ -140,7 +140,7 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 
 	}
 
-	private mapFieldTypeToJavaType(field: NonEntityFieldDescriptor): JavaType {
+	private mapFieldTypeToJavaType(field: ClassFieldDescriptor): JavaType {
 		if (field.list) {
 			return this.mapListTypeToJavaType(field);
 		} else {
@@ -148,7 +148,7 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 		}
 	}
 
-	private mapListTypeToJavaType(field: NonEntityFieldDescriptor): JavaParameterizedType {
+	private mapListTypeToJavaType(field: ClassFieldDescriptor): JavaParameterizedType {
 		return createJavaParameterizedType(
 				'List',
 				'java.util',
@@ -158,7 +158,7 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 		);
 	}
 
-	private mapSingleTypeToJavaType(field: NonEntityFieldDescriptor): JavaType {
+	private mapSingleTypeToJavaType(field: ClassFieldDescriptor): JavaType {
 
 		const {
 			entityType,

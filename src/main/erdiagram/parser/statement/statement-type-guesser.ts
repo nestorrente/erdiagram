@@ -8,7 +8,6 @@ export enum StatementType {
 	ENTITY_NAME = 'entityName',
 	ENTITY_PROPERTY = 'entityProperty',
 	RELATIONSHIP = 'relationship',
-	COMMENT = 'comment',
 	BLANK_LINE = 'blankLine',
 	UNKNOWN = 'unknown'
 }
@@ -22,17 +21,11 @@ export function guessStatementType(line: string): StatementType {
 		return StatementType.RELATIONSHIP;
 	} else if (isBlankLine(line)) {
 		return StatementType.BLANK_LINE;
-	} else if (isCommentLine(line)) {
-		return StatementType.COMMENT;
 	} else {
 		return StatementType.UNKNOWN;
 	}
 }
 
 function isBlankLine(line: string) {
-	return /^\s*$/.test(line);
-}
-
-function isCommentLine(line: string) {
-	return /^\s*#/.test(line);
+	return /^\s*(#.*)?$/.test(line);
 }

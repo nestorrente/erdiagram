@@ -14,6 +14,7 @@ export class MySqlDatabaseModelToCodeConverterConfigManager
 		return {
 			idColumnType: EntityPropertyType.LONG,
 			typeBindings: {
+				[EntityPropertyType.IDENTIFIER]: 'BIGINT',
 				[EntityPropertyType.TEXT]: 'VARCHAR',
 				[EntityPropertyType.LONG]: 'BIGINT',
 				[EntityPropertyType.INT]: 'INT',

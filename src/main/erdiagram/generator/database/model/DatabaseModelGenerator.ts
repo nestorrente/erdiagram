@@ -16,6 +16,7 @@ import {
 } from '@/erdiagram/parser/entity-relationship-model-types';
 import databaseModelGeneratorConfigManager
 	from '@/erdiagram/generator/database/model/config/DatabaseModelGeneratorConfigManager';
+import {classifyBy} from '@/erdiagram/util/map-utils';
 
 export default class DatabaseModelGenerator {
 
@@ -27,16 +28,16 @@ export default class DatabaseModelGenerator {
 
 	generateDatabaseModel(model: EntityRelationshipModel): DatabaseModel {
 
+		const entityIdentifiersMap = classifyBy(
+				model.entities.filter(entity => entity.identifierPropertyName),
+				entity => entity.name,
+				entity => entity.identifierPropertyName!
+		);
+
 		const tables: TableDescriptor[] = [];
 
-		model.entities
-				.map(entity => this.generateEntityTable(entity, model))
-				.forEach(sentence => tables.push(sentence));
-
-		model.relationships
-				.filter(relationship => this.isManyToManyRelationship(relationship))
-				.map(relationship => this.generateRelationshipTable(relationship))
-				.forEach(sentence => tables.push(sentence));
+		this.generateEntityTables(model, entityIdentifiersMap, tables);
+		this.generateRelationshipTables(model, entityIdentifiersMap, tables);
 
 		return {
 			tables
@@ -44,10 +45,13 @@ export default class DatabaseModelGenerator {
 
 	}
 
-	private generateEntityTable(entity: EntityDescriptor, model: EntityRelationshipModel): TableDescriptor {
+	private generateEntityTables(model: EntityRelationshipModel, entityIdentifiersMap: Map<string, string>, tables: TableDescriptor[]) {
+		model.entities
+				.map(entity => this.generateEntityTable(entity, model, entityIdentifiersMap))
+				.forEach(sentence => tables.push(sentence));
+	}
 
-		const name = this.pluralizeEntityNameIfApplies(entity.name);
-		const identifierColumnName = this.getIdentifierColumnName(entity.name);
+	private generateEntityTable(entity: EntityDescriptor, model: EntityRelationshipModel, entityIdentifiersMap: Map<string, string>): TableDescriptor {
 
 		const columns: TableColumnDescriptor[] = [];
 
@@ -61,36 +65,43 @@ export default class DatabaseModelGenerator {
 			if (relationship.rightMember.cardinality !== Cardinality.MANY) {
 				if (relationship.leftMember.entity === entity.name) {
 					const isOneToOneRelationship = relationship.leftMember.cardinality !== Cardinality.MANY;
-					references.push(this.createTableReference(relationship.rightMember, isOneToOneRelationship));
+					references.push(this.createTableReference(relationship.rightMember, entityIdentifiersMap, isOneToOneRelationship));
 				}
 			} else if (relationship.leftMember.cardinality !== Cardinality.MANY) {
 				if (relationship.rightMember.entity === entity.name) {
-					references.push(this.createTableReference(relationship.leftMember));
+					references.push(this.createTableReference(relationship.leftMember, entityIdentifiersMap));
 				}
 			}
 		}
 
 		return {
-			name,
-			identifierColumnName,
+			name: this.pluralizeEntityNameIfApplies(entity.name),
+			identifierColumnName: this.getIdentifierColumnName(entity.name, entityIdentifiersMap),
 			columns,
 			references
 		};
 
 	}
 
-	private generateRelationshipTable(relationship: RelationshipDescriptor): TableDescriptor {
+	private generateRelationshipTables(model: EntityRelationshipModel, entityIdentifiersMap: Map<string, string>, tables: TableDescriptor[]) {
+		model.relationships
+				.filter(relationship => this.isManyToManyRelationship(relationship))
+				.map(relationship => this.generateRelationshipTable(relationship, entityIdentifiersMap))
+				.forEach(sentence => tables.push(sentence));
+	}
+
+	private generateRelationshipTable(relationship: RelationshipDescriptor, entityIdentifiersMap: Map<string, string>): TableDescriptor {
 
 		const name = this.getRelationshipTableName(relationship);
-		const identifierColumnName = this.getRelationshipTableIdentifierColumnName(relationship);
+		const identifierColumnName = this.getRelationshipTableIdentifierColumnName(relationship, entityIdentifiersMap);
 
 		return {
 			name,
 			identifierColumnName,
 			columns: [],
 			references: [
-				this.createTableReference(relationship.leftMember),
-				this.createTableReference(relationship.rightMember)
+				this.createTableReference(relationship.leftMember, entityIdentifiersMap),
+				this.createTableReference(relationship.rightMember, entityIdentifiersMap)
 			]
 		};
 
@@ -113,7 +124,7 @@ export default class DatabaseModelGenerator {
 
 	}
 
-	private getRelationshipTableIdentifierColumnName(relationship: RelationshipDescriptor): string {
+	private getRelationshipTableIdentifierColumnName(relationship: RelationshipDescriptor, entityIdentifiersMap: Map<string, string>): string {
 
 		const {
 			relationShipName,
@@ -122,14 +133,14 @@ export default class DatabaseModelGenerator {
 		} = relationship;
 
 		if (relationShipName) {
-			return this.getIdentifierColumnName(relationShipName);
+			return this.getIdentifierColumnName(relationShipName, entityIdentifiersMap);
 		}
 
-		return this.getIdentifierColumnName(leftMember.entity + rightMember.entity);
+		return this.getIdentifierColumnName(leftMember.entity + rightMember.entity, entityIdentifiersMap);
 
 	}
 
-	private createTableReference(toMember: RelationshipMember, unique: boolean = false): TableReferenceDescriptor {
+	private createTableReference(toMember: RelationshipMember, entityIdentifiersMap: Map<string, string>, unique: boolean = false): TableReferenceDescriptor {
 
 		const {
 			entityAlias,
@@ -140,7 +151,7 @@ export default class DatabaseModelGenerator {
 		return {
 			columnName: `${entityAlias}Id`,
 			targetTableName: this.pluralizeEntityNameIfApplies(entity),
-			targetTableIdentifierColumnName: this.getIdentifierColumnName(entity),
+			targetTableIdentifierColumnName: this.getIdentifierColumnName(entity, entityIdentifiersMap),
 			notNull: cardinality !== Cardinality.ZERO_OR_ONE,
 			unique
 		};
@@ -155,9 +166,15 @@ export default class DatabaseModelGenerator {
 		}
 	}
 
-	private getIdentifierColumnName(entityName: string) {
+	private getIdentifierColumnName(entityName: string, entityIdentifiersMap: Map<string, string>): string {
+
+		if (entityIdentifiersMap.has(entityName)) {
+			return entityIdentifiersMap.get(entityName)!;
+		}
+
 		const {idNamingStrategy} = this.config;
 		return idNamingStrategy(entityName);
+
 	}
 
 	private mapPropertyToColumn(property: EntityPropertyDescriptor): TableColumnDescriptor {
