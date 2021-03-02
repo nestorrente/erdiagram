@@ -53,8 +53,7 @@ export default class OracleDatabaseModelToCodeConverter implements DatabaseModel
 
 		this.idColumnCodeGenerator = new OracleIdColumnCodeGenerator(
 				this.columnCodeGenerator,
-				columnNameCaseConverter,
-				this.config.idColumnType
+				columnNameCaseConverter
 		);
 
 		this.foreignColumnCodeGenerator = new OracleForeignColumnCodeGenerator(

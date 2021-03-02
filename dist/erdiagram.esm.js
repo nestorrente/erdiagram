@@ -1,10 +1,10 @@
 /*!
- * Entity-Relationship Diagram Code Generator v0.1.0-alpha.1
+ * Entity-Relationship Diagram Code Generator v0.1.0-alpha.2
  * https://github.com/nestorrente/erdiagram
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-02-27T11:15:21.211Z
+ * Build date: 2021-03-02T23:07:23.399Z
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -1309,7 +1309,7 @@ var MySqlDatabaseModelToCodeConverter = /** @class */ (function () {
         this.tableNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.tableNameCaseFormat);
         var columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.columnNameCaseFormat);
         this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_mysql_column_MySqlColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](new _erdiagram_generator_database_code_converter_mysql_type_MySqlTypeResolver__WEBPACK_IMPORTED_MODULE_1__["default"](this.config.typeBindings), columnNameCaseConverter);
-        this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_mysql_column_MySqlIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.columnCodeGenerator, columnNameCaseConverter, this.config.idColumnType);
+        this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_mysql_column_MySqlIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.columnCodeGenerator, columnNameCaseConverter);
         this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_mysql_column_MySqlForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
     }
     MySqlDatabaseModelToCodeConverter.prototype.generateCode = function (databaseModel) {
@@ -1489,7 +1489,7 @@ var MySqlForeignColumnCodeGenerator = /** @class */ (function () {
         var columnName = reference.columnName, notNull = reference.notNull, unique = reference.unique;
         return {
             name: columnName,
-            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG,
+            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
             length: [],
             notNull: notNull,
             unique: unique,
@@ -1519,11 +1519,12 @@ var MySqlForeignColumnCodeGenerator = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+
 var MySqlIdColumnCodeGenerator = /** @class */ (function () {
-    function MySqlIdColumnCodeGenerator(columnCodeGenerator, columnNameCaseConverter, idColumnType) {
+    function MySqlIdColumnCodeGenerator(columnCodeGenerator, columnNameCaseConverter) {
         this.columnCodeGenerator = columnCodeGenerator;
         this.columnNameCaseConverter = columnNameCaseConverter;
-        this.idColumnType = idColumnType;
     }
     MySqlIdColumnCodeGenerator.prototype.generateIdColumnCode = function (outputTableName, identifierColumnName) {
         var column = this.createIdColumnDescriptor(identifierColumnName);
@@ -1537,7 +1538,7 @@ var MySqlIdColumnCodeGenerator = /** @class */ (function () {
     MySqlIdColumnCodeGenerator.prototype.createIdColumnDescriptor = function (identifierColumnName) {
         return {
             name: identifierColumnName,
-            type: this.idColumnType,
+            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
             length: [],
             notNull: true,
             autoincremental: true,
@@ -1607,7 +1608,6 @@ var MySqlDatabaseModelToCodeConverterConfigManager = /** @class */ (function (_s
     MySqlDatabaseModelToCodeConverterConfigManager.prototype.getDefaultConfig = function () {
         var _a;
         return {
-            idColumnType: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG,
             typeBindings: (_a = {},
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER] = 'BIGINT',
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT] = 'VARCHAR',
@@ -1775,7 +1775,7 @@ var OracleDatabaseModelToCodeConverter = /** @class */ (function () {
         this.tableNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.tableNameCaseFormat);
         var columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.columnNameCaseFormat);
         this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_oracle_column_OracleColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](new _erdiagram_generator_database_code_converter_oracle_type_OracleTypeResolver__WEBPACK_IMPORTED_MODULE_1__["default"](this.config.typeBindings), columnNameCaseConverter);
-        this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_oracle_column_OracleIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.columnCodeGenerator, columnNameCaseConverter, this.config.idColumnType);
+        this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_oracle_column_OracleIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.columnCodeGenerator, columnNameCaseConverter);
         this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_oracle_column_OracleForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
     }
     OracleDatabaseModelToCodeConverter.prototype.generateCode = function (databaseModel) {
@@ -1969,7 +1969,7 @@ var OracleForeignColumnCodeGenerator = /** @class */ (function () {
         var columnName = reference.columnName, notNull = reference.notNull, unique = reference.unique;
         return {
             name: columnName,
-            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG,
+            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
             length: [],
             notNull: notNull,
             unique: unique,
@@ -1999,11 +1999,12 @@ var OracleForeignColumnCodeGenerator = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+
 var OracleIdColumnCodeGenerator = /** @class */ (function () {
-    function OracleIdColumnCodeGenerator(columnCodeGenerator, columnNameCaseConverter, idColumnType) {
+    function OracleIdColumnCodeGenerator(columnCodeGenerator, columnNameCaseConverter) {
         this.columnCodeGenerator = columnCodeGenerator;
         this.columnNameCaseConverter = columnNameCaseConverter;
-        this.idColumnType = idColumnType;
     }
     OracleIdColumnCodeGenerator.prototype.generateIdColumnCode = function (outputTableName, identifierColumnName) {
         var column = this.createIdColumnDescriptor(identifierColumnName);
@@ -2021,7 +2022,7 @@ var OracleIdColumnCodeGenerator = /** @class */ (function () {
     OracleIdColumnCodeGenerator.prototype.createIdColumnDescriptor = function (identifierColumnName) {
         return {
             name: identifierColumnName,
-            type: this.idColumnType,
+            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
             length: [],
             notNull: true,
             // FIXME when different IDENTITY strategies are supported, we must
@@ -2093,7 +2094,6 @@ var OracleDatabaseModelToCodeConverterConfigManager = /** @class */ (function (_
     OracleDatabaseModelToCodeConverterConfigManager.prototype.getDefaultConfig = function () {
         var _a;
         return {
-            idColumnType: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG,
             typeBindings: (_a = {},
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER] = 'NUMBER',
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT] = 'VARCHAR2',
@@ -2261,7 +2261,7 @@ var SqlServerDatabaseModelToCodeConverter = /** @class */ (function () {
         this.tableNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.tableNameCaseFormat);
         var columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.columnNameCaseFormat);
         this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](new _erdiagram_generator_database_code_converter_sqlserver_type_SqlServerTypeResolver__WEBPACK_IMPORTED_MODULE_1__["default"](this.config.typeBindings), columnNameCaseConverter);
-        this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.columnCodeGenerator, columnNameCaseConverter, this.config.idColumnType);
+        this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.columnCodeGenerator, columnNameCaseConverter);
         this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
     }
     SqlServerDatabaseModelToCodeConverter.prototype.generateCode = function (databaseModel) {
@@ -2459,7 +2459,7 @@ var SqlServerForeignColumnCodeGenerator = /** @class */ (function () {
         var columnName = reference.columnName, notNull = reference.notNull, unique = reference.unique;
         return {
             name: columnName,
-            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG,
+            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
             length: [],
             notNull: notNull,
             unique: unique,
@@ -2489,11 +2489,12 @@ var SqlServerForeignColumnCodeGenerator = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+
 var SqlServerIdColumnCodeGenerator = /** @class */ (function () {
-    function SqlServerIdColumnCodeGenerator(columnCodeGenerator, columnNameCaseConverter, idColumnType) {
+    function SqlServerIdColumnCodeGenerator(columnCodeGenerator, columnNameCaseConverter) {
         this.columnCodeGenerator = columnCodeGenerator;
         this.columnNameCaseConverter = columnNameCaseConverter;
-        this.idColumnType = idColumnType;
     }
     SqlServerIdColumnCodeGenerator.prototype.generateIdColumnCode = function (outputTableName, identifierColumnName) {
         var column = this.createIdColumnDescriptor(identifierColumnName);
@@ -2507,7 +2508,7 @@ var SqlServerIdColumnCodeGenerator = /** @class */ (function () {
     SqlServerIdColumnCodeGenerator.prototype.createIdColumnDescriptor = function (identifierColumnName) {
         return {
             name: identifierColumnName,
-            type: this.idColumnType,
+            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
             length: [],
             notNull: true,
             // Autoincrement of identity columns have to be achieved using IDENTITY,
@@ -2579,7 +2580,6 @@ var SqlServerDatabaseModelToCodeConverterConfigManager = /** @class */ (function
     SqlServerDatabaseModelToCodeConverterConfigManager.prototype.getDefaultConfig = function () {
         var _a;
         return {
-            idColumnType: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG,
             typeBindings: (_a = {},
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER] = 'BIGINT',
                 _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT] = 'NVARCHAR',
@@ -4273,7 +4273,7 @@ var ClassModelGenerator = /** @class */ (function () {
     ClassModelGenerator.prototype.createIdField = function (entity) {
         return {
             name: this.getIdentifierFieldName(entity),
-            primitiveType: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["EntityPropertyType"].LONG,
+            primitiveType: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["EntityPropertyType"].IDENTIFIER,
             nullable: false,
             list: false
         };

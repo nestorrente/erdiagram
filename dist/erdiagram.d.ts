@@ -121,13 +121,11 @@ export interface DatabaseModelToCodeConverter {
 	generateCode(databaseModel: DatabaseModel): string;
 }
 export interface DatabaseModelToCodeConverterConfig {
-	idColumnType: EntityPropertyType;
 	typeBindings: Partial<Record<EntityPropertyType, string>>;
 	tableNameCaseFormat: CaseFormat;
 	columnNameCaseFormat: CaseFormat;
 }
 export interface DatabaseModelToCodeConverterSerializableConfig {
-	idColumnType: EntityPropertyType;
 	typeBindings: Partial<Record<EntityPropertyType, string>>;
 	tableNameCaseFormat?: string;
 	columnNameCaseFormat?: string;

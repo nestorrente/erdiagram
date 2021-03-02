@@ -75,7 +75,7 @@ export default class ClassModelGenerator {
 	private createIdField(entity: EntityDescriptor): ClassFieldDescriptor {
 		return {
 			name: this.getIdentifierFieldName(entity),
-			primitiveType: EntityPropertyType.LONG,
+			primitiveType: EntityPropertyType.IDENTIFIER,
 			nullable: false,
 			list: false
 		};

@@ -9,8 +9,7 @@ export default class OracleIdColumnCodeGenerator {
 
 	constructor(
 			private readonly columnCodeGenerator: OracleColumnCodeGenerator,
-			private readonly columnNameCaseConverter: CaseConverter,
-			private readonly idColumnType: EntityPropertyType
+			private readonly columnNameCaseConverter: CaseConverter
 	) {
 
 	}
@@ -41,7 +40,7 @@ export default class OracleIdColumnCodeGenerator {
 	private createIdColumnDescriptor(identifierColumnName: string): TableColumnDescriptor {
 		return {
 			name: identifierColumnName,
-			type: this.idColumnType,
+			type: EntityPropertyType.IDENTIFIER,
 			length: [],
 			notNull: true,
 			// FIXME when different IDENTITY strategies are supported, we must

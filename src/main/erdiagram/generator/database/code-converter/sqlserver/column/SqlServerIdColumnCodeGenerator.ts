@@ -9,8 +9,7 @@ export default class SqlServerIdColumnCodeGenerator {
 
 	constructor(
 			private readonly columnCodeGenerator: SqlServerColumnCodeGenerator,
-			private readonly columnNameCaseConverter: CaseConverter,
-			private readonly idColumnType: EntityPropertyType
+			private readonly columnNameCaseConverter: CaseConverter
 	) {
 
 	}
@@ -35,7 +34,7 @@ export default class SqlServerIdColumnCodeGenerator {
 	private createIdColumnDescriptor(identifierColumnName: string): TableColumnDescriptor {
 		return {
 			name: identifierColumnName,
-			type: this.idColumnType,
+			type: EntityPropertyType.IDENTIFIER,
 			length: [],
 			notNull: true,
 			// Autoincrement of identity columns have to be achieved using IDENTITY,

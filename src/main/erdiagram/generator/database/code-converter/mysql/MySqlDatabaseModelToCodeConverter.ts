@@ -53,8 +53,7 @@ export default class MySqlDatabaseModelToCodeConverter implements DatabaseModelT
 
 		this.idColumnCodeGenerator = new MySqlIdColumnCodeGenerator(
 				this.columnCodeGenerator,
-				columnNameCaseConverter,
-				this.config.idColumnType
+				columnNameCaseConverter
 		);
 
 		this.foreignColumnCodeGenerator = new MySqlForeignColumnCodeGenerator(

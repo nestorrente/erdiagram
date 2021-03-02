@@ -46,7 +46,7 @@ export default class OracleForeignColumnCodeGenerator {
 
 		return {
 			name: columnName,
-			type: EntityPropertyType.LONG,
+			type: EntityPropertyType.IDENTIFIER,
 			length: [],
 			notNull,
 			unique,

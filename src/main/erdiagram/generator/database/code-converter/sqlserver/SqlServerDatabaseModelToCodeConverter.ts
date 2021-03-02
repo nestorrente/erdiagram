@@ -53,8 +53,7 @@ export default class SqlServerDatabaseModelToCodeConverter implements DatabaseMo
 
 		this.idColumnCodeGenerator = new SqlServerIdColumnCodeGenerator(
 				this.columnCodeGenerator,
-				columnNameCaseConverter,
-				this.config.idColumnType
+				columnNameCaseConverter
 		);
 
 		this.foreignColumnCodeGenerator = new SqlServerForeignColumnCodeGenerator(

@@ -2,7 +2,6 @@ import CaseFormat from '@/erdiagram/generator/common/case-format/CaseFormat';
 import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
 
 export default interface DatabaseModelToCodeConverterConfig {
-	idColumnType: EntityPropertyType;
 	typeBindings: Partial<Record<EntityPropertyType, string>>;
 	tableNameCaseFormat: CaseFormat;
 	columnNameCaseFormat: CaseFormat;

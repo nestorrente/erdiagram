@@ -9,8 +9,7 @@ export default class MySqlIdColumnCodeGenerator {
 
 	constructor(
 			private readonly columnCodeGenerator: MySqlColumnCodeGenerator,
-			private readonly columnNameCaseConverter: CaseConverter,
-			private readonly idColumnType: EntityPropertyType
+			private readonly columnNameCaseConverter: CaseConverter
 	) {
 
 	}
@@ -35,7 +34,7 @@ export default class MySqlIdColumnCodeGenerator {
 	private createIdColumnDescriptor(identifierColumnName: string): TableColumnDescriptor {
 		return {
 			name: identifierColumnName,
-			type: this.idColumnType,
+			type: EntityPropertyType.IDENTIFIER,
 			length: [],
 			notNull: true,
 			autoincremental: true,
