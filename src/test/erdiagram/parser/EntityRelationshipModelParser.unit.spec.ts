@@ -12,6 +12,7 @@ import {
 function createEntityWithoutProperties(name: string): EntityDescriptor {
 	return {
 		name,
+		identifierPropertyName: undefined,
 		properties: []
 	};
 }
@@ -44,6 +45,7 @@ Entity
 			entities: [
 				{
 					name: 'Entity',
+					identifierPropertyName: undefined,
 					properties: [
 						createSimpleProperty('name', EntityPropertyType.TEXT, [10]),
 					]
@@ -171,6 +173,7 @@ Entity
 			entities: [
 				{
 					name: 'Entity',
+					identifierPropertyName: undefined,
 					properties: [
 						createSimpleProperty('a', EntityPropertyType.BOOLEAN),
 						createSimpleProperty('b', EntityPropertyType.SHORT),
@@ -203,6 +206,7 @@ Entity
 			entities: [
 				{
 					name: 'Entity',
+					identifierPropertyName: undefined,
 					properties: [
 						{
 							name: 'num',
@@ -233,6 +237,7 @@ Entity
 			entities: [
 				{
 					name: 'Entity',
+					identifierPropertyName: undefined,
 					properties: [
 						{
 							name: 'num',
@@ -263,6 +268,7 @@ Entity
 			entities: [
 				{
 					name: 'Entity',
+					identifierPropertyName: undefined,
 					properties: [
 						{
 							name: 'num',
@@ -397,24 +403,24 @@ A *<->* Q
 			entities: [...'ABCDEFGHIJKLMNOPQ'].map(createEntityWithoutProperties),
 			relationships: (
 					[
-						[Cardinality.ZERO_OR_ONE, Cardinality.ZERO_OR_ONE, 'B'],
-						[Cardinality.ZERO_OR_ONE, Cardinality.ONE, 'C'],
-						[Cardinality.ZERO_OR_ONE, Cardinality.ONE, 'D'],
-						[Cardinality.ZERO_OR_ONE, Cardinality.MANY, 'E'],
-						[Cardinality.ONE, Cardinality.ZERO_OR_ONE, 'F'],
-						[Cardinality.ONE, Cardinality.ONE, 'G'],
-						[Cardinality.ONE, Cardinality.ONE, 'H'],
-						[Cardinality.ONE, Cardinality.MANY, 'I'],
-						[Cardinality.ONE, Cardinality.ZERO_OR_ONE, 'J'],
-						[Cardinality.ONE, Cardinality.ONE, 'K'],
-						[Cardinality.ONE, Cardinality.ONE, 'L'],
-						[Cardinality.ONE, Cardinality.MANY, 'M'],
-						[Cardinality.MANY, Cardinality.ZERO_OR_ONE, 'N'],
-						[Cardinality.MANY, Cardinality.ONE, 'O'],
-						[Cardinality.MANY, Cardinality.ONE, 'P'],
-						[Cardinality.MANY, Cardinality.MANY, 'Q'],
-					] as [Cardinality, Cardinality, string][]
-			).map(([leftCardinality, rightCardinality, rightEntity]): RelationshipDescriptor => {
+						[Cardinality.ZERO_OR_ONE, Cardinality.ZERO_OR_ONE, 'B', 20],
+						[Cardinality.ZERO_OR_ONE, Cardinality.ONE, 'C', 21],
+						[Cardinality.ZERO_OR_ONE, Cardinality.ONE, 'D', 22],
+						[Cardinality.ZERO_OR_ONE, Cardinality.MANY, 'E', 23],
+						[Cardinality.ONE, Cardinality.ZERO_OR_ONE, 'F', 25],
+						[Cardinality.ONE, Cardinality.ONE, 'G', 26],
+						[Cardinality.ONE, Cardinality.ONE, 'H', 27],
+						[Cardinality.ONE, Cardinality.MANY, 'I', 28],
+						[Cardinality.ONE, Cardinality.ZERO_OR_ONE, 'J', 30],
+						[Cardinality.ONE, Cardinality.ONE, 'K', 31],
+						[Cardinality.ONE, Cardinality.ONE, 'L', 32],
+						[Cardinality.ONE, Cardinality.MANY, 'M', 33],
+						[Cardinality.MANY, Cardinality.ZERO_OR_ONE, 'N', 35],
+						[Cardinality.MANY, Cardinality.ONE, 'O', 36],
+						[Cardinality.MANY, Cardinality.ONE, 'P', 37],
+						[Cardinality.MANY, Cardinality.MANY, 'Q', 38],
+					] as [Cardinality, Cardinality, string, number][]
+			).map(([leftCardinality, rightCardinality, rightEntity, lineIndex]): RelationshipDescriptor => {
 				return {
 					relationShipName: undefined,
 					direction: Direction.BIDIRECTIONAL,
@@ -562,6 +568,7 @@ Entity
 			entities: [
 				{
 					name: 'Entity',
+					identifierPropertyName: undefined,
 					properties: [
 						createSimpleProperty('name', EntityPropertyType.TEXT, [10]),
 					]

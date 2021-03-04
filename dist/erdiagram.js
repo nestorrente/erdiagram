@@ -4,7 +4,7 @@
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-03-02T23:07:23.399Z
+ * Build date: 2021-03-04T22:55:52.800Z
  */
 var ERDiagram =
 /******/ (function(modules) { // webpackBootstrap
@@ -610,18 +610,15 @@ var ERDiagram =
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var AbstractComponentConfigManager = /** @class */ (function () {
-    function AbstractComponentConfigManager() {
-    }
-    AbstractComponentConfigManager.prototype.mergeWithDefaultConfig = function (partialConfig) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AbstractComponentConfigManager; });
+class AbstractComponentConfigManager {
+    mergeWithDefaultConfig(partialConfig) {
         return this.mergeConfigs(this.getDefaultConfig(), partialConfig);
-    };
-    AbstractComponentConfigManager.prototype.cloneConfig = function (fullConfig) {
+    }
+    cloneConfig(fullConfig) {
         return this.mergeConfigs(fullConfig);
-    };
-    return AbstractComponentConfigManager;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (AbstractComponentConfigManager);
+    }
+}
 
 
 /***/ }),
@@ -680,21 +677,33 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "entityRelationshipModelParserConfigManager", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["entityRelationshipModelParserConfigManager"]; });
 
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityPropertyType", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["EntityPropertyType"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Cardinality", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["Cardinality"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Direction", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["Direction"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityPropertyType", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["EntityPropertyType"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramError"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramParseError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramParseError"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramParseLineError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramParseLineError"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramSyntaxError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramSyntaxError"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownTypeError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramUnknownTypeError"]; });
 
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramRelationshipError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramRelationshipError"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownEntityError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramUnknownEntityError"]; });
 
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramEntityError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramEntityError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramDuplicatedEntityNameError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramDuplicatedEntityNameError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramEntityPropertyError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramEntityPropertyError"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramMultipleIdentifiersError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramMultipleIdentifiersError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramInvalidIdentifierDefinitionError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramInvalidIdentifierDefinitionError"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramDuplicatedPropertyNameError", function() { return _parser_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramDuplicatedPropertyNameError"]; });
 
@@ -716,17 +725,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var CAMEL_CASE_WORD_BOUNDARIES_REGEX = /((?<=[^A-Z])(?=[A-Z])|(?=[A-Z][a-z]))/;
-var AbstractCamelCaseFormat = /** @class */ (function () {
-    function AbstractCamelCaseFormat() {
-    }
-    AbstractCamelCaseFormat.prototype.splitWords = function (text) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AbstractCamelCaseFormat; });
+const CAMEL_CASE_WORD_BOUNDARIES_REGEX = /((?<=[^A-Z])(?=[A-Z])|(?=[A-Z][a-z]))/;
+class AbstractCamelCaseFormat {
+    splitWords(text) {
         return text.split(CAMEL_CASE_WORD_BOUNDARIES_REGEX)
-            .filter(function (chunk) { return chunk.length > 0; });
-    };
-    return AbstractCamelCaseFormat;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (AbstractCamelCaseFormat);
+            .filter(chunk => chunk.length > 0);
+    }
+}
 
 
 /***/ }),
@@ -740,15 +746,12 @@ var AbstractCamelCaseFormat = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var AbstractUnderscoreCaseFormat = /** @class */ (function () {
-    function AbstractUnderscoreCaseFormat() {
-    }
-    AbstractUnderscoreCaseFormat.prototype.splitWords = function (text) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AbstractUnderscoreCaseFormat; });
+class AbstractUnderscoreCaseFormat {
+    splitWords(text) {
         return text.split('_');
-    };
-    return AbstractUnderscoreCaseFormat;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (AbstractUnderscoreCaseFormat);
+    }
+}
 
 
 /***/ }),
@@ -762,37 +765,19 @@ var AbstractUnderscoreCaseFormat = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CapitalizedUnderscoreCaseFormat; });
 /* harmony import */ var _erdiagram_generator_common_case_format_AbstractUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/AbstractUnderscoreCaseFormat */ "./src/main/erdiagram/generator/common/case-format/AbstractUnderscoreCaseFormat.ts");
 /* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 
 
-var CapitalizedUnderscoreCaseFormat = /** @class */ (function (_super) {
-    __extends(CapitalizedUnderscoreCaseFormat, _super);
-    function CapitalizedUnderscoreCaseFormat() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    CapitalizedUnderscoreCaseFormat.prototype.joinWords = function (words) {
+class CapitalizedUnderscoreCaseFormat extends _erdiagram_generator_common_case_format_AbstractUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"] {
+    joinWords(words) {
         return words
-            .map(function (word) { return word.toLowerCase(); })
+            .map(word => word.toLowerCase())
             .map(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__["capitalizeWord"])
             .join('_');
-    };
-    return CapitalizedUnderscoreCaseFormat;
-}(_erdiagram_generator_common_case_format_AbstractUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"]));
-/* harmony default export */ __webpack_exports__["default"] = (CapitalizedUnderscoreCaseFormat);
+    }
+}
 
 
 /***/ }),
@@ -806,18 +791,17 @@ var CapitalizedUnderscoreCaseFormat = /** @class */ (function (_super) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var CaseConverter = /** @class */ (function () {
-    function CaseConverter(originCaseFormat, targetCaseFormat) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CaseConverter; });
+class CaseConverter {
+    constructor(originCaseFormat, targetCaseFormat) {
         this.originCaseFormat = originCaseFormat;
         this.targetCaseFormat = targetCaseFormat;
     }
-    CaseConverter.prototype.convertCase = function (text) {
-        var words = this.originCaseFormat.splitWords(text);
+    convertCase(text) {
+        const words = this.originCaseFormat.splitWords(text);
         return this.targetCaseFormat.joinWords(words);
-    };
-    return CaseConverter;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (CaseConverter);
+    }
+}
 
 
 /***/ }),
@@ -831,32 +815,14 @@ var CaseConverter = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CaseInsensitiveUnderscoreCaseFormat; });
 /* harmony import */ var _erdiagram_generator_common_case_format_AbstractUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/AbstractUnderscoreCaseFormat */ "./src/main/erdiagram/generator/common/case-format/AbstractUnderscoreCaseFormat.ts");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 
-var CaseInsensitiveUnderscoreCaseFormat = /** @class */ (function (_super) {
-    __extends(CaseInsensitiveUnderscoreCaseFormat, _super);
-    function CaseInsensitiveUnderscoreCaseFormat() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    CaseInsensitiveUnderscoreCaseFormat.prototype.joinWords = function (words) {
+class CaseInsensitiveUnderscoreCaseFormat extends _erdiagram_generator_common_case_format_AbstractUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"] {
+    joinWords(words) {
         return words.join('_');
-    };
-    return CaseInsensitiveUnderscoreCaseFormat;
-}(_erdiagram_generator_common_case_format_AbstractUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"]));
-/* harmony default export */ __webpack_exports__["default"] = (CaseInsensitiveUnderscoreCaseFormat);
+    }
+}
 
 
 /***/ }),
@@ -870,58 +836,24 @@ var CaseInsensitiveUnderscoreCaseFormat = /** @class */ (function (_super) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LowerCamelCaseFormat; });
 /* harmony import */ var _erdiagram_generator_common_case_format_AbstractCamelCaseFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/AbstractCamelCaseFormat */ "./src/main/erdiagram/generator/common/case-format/AbstractCamelCaseFormat.ts");
 /* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __read = (undefined && undefined.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
 
 
-var LowerCamelCaseFormat = /** @class */ (function (_super) {
-    __extends(LowerCamelCaseFormat, _super);
-    function LowerCamelCaseFormat() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    LowerCamelCaseFormat.prototype.joinWords = function (words) {
+class LowerCamelCaseFormat extends _erdiagram_generator_common_case_format_AbstractCamelCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"] {
+    joinWords(words) {
         if (words.length === 0) {
             return '';
         }
-        var _a = __read(words), firstWord = _a[0], otherWords = _a.slice(1);
-        var lowerCaseFirstWord = firstWord.toLowerCase();
-        var capitalizedOtherWords = otherWords
-            .map(function (word) { return word.toLowerCase(); })
+        const [firstWord, ...otherWords] = words;
+        const lowerCaseFirstWord = firstWord.toLowerCase();
+        const capitalizedOtherWords = otherWords
+            .map(word => word.toLowerCase())
             .map(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__["capitalizeWord"]);
         return lowerCaseFirstWord + capitalizedOtherWords.join('');
-    };
-    return LowerCamelCaseFormat;
-}(_erdiagram_generator_common_case_format_AbstractCamelCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"]));
-/* harmony default export */ __webpack_exports__["default"] = (LowerCamelCaseFormat);
+    }
+}
 
 
 /***/ }),
@@ -935,34 +867,16 @@ var LowerCamelCaseFormat = /** @class */ (function (_super) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LowerUnderscoreCaseFormat; });
 /* harmony import */ var _erdiagram_generator_common_case_format_AbstractUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/AbstractUnderscoreCaseFormat */ "./src/main/erdiagram/generator/common/case-format/AbstractUnderscoreCaseFormat.ts");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 
-var LowerUnderscoreCaseFormat = /** @class */ (function (_super) {
-    __extends(LowerUnderscoreCaseFormat, _super);
-    function LowerUnderscoreCaseFormat() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    LowerUnderscoreCaseFormat.prototype.joinWords = function (words) {
+class LowerUnderscoreCaseFormat extends _erdiagram_generator_common_case_format_AbstractUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"] {
+    joinWords(words) {
         return words
-            .map(function (word) { return word.toLowerCase(); })
+            .map(word => word.toLowerCase())
             .join('_');
-    };
-    return LowerUnderscoreCaseFormat;
-}(_erdiagram_generator_common_case_format_AbstractUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"]));
-/* harmony default export */ __webpack_exports__["default"] = (LowerUnderscoreCaseFormat);
+    }
+}
 
 
 /***/ }),
@@ -988,7 +902,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var StandardCaseFormats = {
+const StandardCaseFormats = {
     LOWER_CAMEL: new _erdiagram_generator_common_case_format_LowerCamelCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"](),
     UPPER_CAMEL: new _erdiagram_generator_common_case_format_UpperCamelCaseFormat__WEBPACK_IMPORTED_MODULE_1__["default"](),
     LOWER_UNDERSCORE: new _erdiagram_generator_common_case_format_LowerUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_2__["default"](),
@@ -1010,37 +924,19 @@ var StandardCaseFormats = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return UpperCamelCaseFormat; });
 /* harmony import */ var _erdiagram_generator_common_case_format_AbstractCamelCaseFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/AbstractCamelCaseFormat */ "./src/main/erdiagram/generator/common/case-format/AbstractCamelCaseFormat.ts");
 /* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 
 
-var UpperCamelCaseFormat = /** @class */ (function (_super) {
-    __extends(UpperCamelCaseFormat, _super);
-    function UpperCamelCaseFormat() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    UpperCamelCaseFormat.prototype.joinWords = function (words) {
+class UpperCamelCaseFormat extends _erdiagram_generator_common_case_format_AbstractCamelCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"] {
+    joinWords(words) {
         return words
-            .map(function (word) { return word.toLowerCase(); })
+            .map(word => word.toLowerCase())
             .map(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__["capitalizeWord"])
             .join('');
-    };
-    return UpperCamelCaseFormat;
-}(_erdiagram_generator_common_case_format_AbstractCamelCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"]));
-/* harmony default export */ __webpack_exports__["default"] = (UpperCamelCaseFormat);
+    }
+}
 
 
 /***/ }),
@@ -1054,34 +950,16 @@ var UpperCamelCaseFormat = /** @class */ (function (_super) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return UpperUnderscoreCaseFormat; });
 /* harmony import */ var _erdiagram_generator_common_case_format_AbstractUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/AbstractUnderscoreCaseFormat */ "./src/main/erdiagram/generator/common/case-format/AbstractUnderscoreCaseFormat.ts");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 
-var UpperUnderscoreCaseFormat = /** @class */ (function (_super) {
-    __extends(UpperUnderscoreCaseFormat, _super);
-    function UpperUnderscoreCaseFormat() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    UpperUnderscoreCaseFormat.prototype.joinWords = function (words) {
+class UpperUnderscoreCaseFormat extends _erdiagram_generator_common_case_format_AbstractUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"] {
+    joinWords(words) {
         return words
-            .map(function (word) { return word.toUpperCase(); })
+            .map(word => word.toUpperCase())
             .join('_');
-    };
-    return UpperUnderscoreCaseFormat;
-}(_erdiagram_generator_common_case_format_AbstractUnderscoreCaseFormat__WEBPACK_IMPORTED_MODULE_0__["default"]));
-/* harmony default export */ __webpack_exports__["default"] = (UpperUnderscoreCaseFormat);
+    }
+}
 
 
 /***/ }),
@@ -1142,9 +1020,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
 
-var defaultIdNamingStrategy = function () { return 'id'; };
-var entityNamePrefixIdNamingStrategy = function (entityName) { return Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["uncapitalizeWord"])(entityName) + "Id"; };
-var StandardIdNamingStrategies = {
+const defaultIdNamingStrategy = () => 'id';
+const entityNamePrefixIdNamingStrategy = entityName => `${Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["uncapitalizeWord"])(entityName)}Id`;
+const StandardIdNamingStrategies = {
     DEFAULT: defaultIdNamingStrategy,
     ENTITY_NAME_PREFIX: entityNamePrefixIdNamingStrategy
 };
@@ -1180,18 +1058,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var EntityRelationshipModelToDatabaseCodeConverter = /** @class */ (function () {
-    function EntityRelationshipModelToDatabaseCodeConverter(databaseModelGenerator, databaseModelToCodeConverter) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EntityRelationshipModelToDatabaseCodeConverter; });
+class EntityRelationshipModelToDatabaseCodeConverter {
+    constructor(databaseModelGenerator, databaseModelToCodeConverter) {
         this.databaseModelGenerator = databaseModelGenerator;
         this.databaseModelToCodeConverter = databaseModelToCodeConverter;
     }
-    EntityRelationshipModelToDatabaseCodeConverter.prototype.generateCode = function (entityRelationshipModel) {
-        var databaseModel = this.databaseModelGenerator.generateDatabaseModel(entityRelationshipModel);
+    generateCode(entityRelationshipModel) {
+        const databaseModel = this.databaseModelGenerator.generateDatabaseModel(entityRelationshipModel);
         return this.databaseModelToCodeConverter.generateCode(databaseModel);
-    };
-    return EntityRelationshipModelToDatabaseCodeConverter;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (EntityRelationshipModelToDatabaseCodeConverter);
+    }
+}
 
 
 /***/ }),
@@ -1247,6 +1124,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MySqlDatabaseModelToCodeConverter; });
 /* harmony import */ var _erdiagram_generator_database_code_converter_mysql_column_MySqlColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/mysql/column/MySqlColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/mysql/column/MySqlColumnCodeGenerator.ts");
 /* harmony import */ var _erdiagram_generator_database_code_converter_mysql_type_MySqlTypeResolver__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/mysql/type/MySqlTypeResolver */ "./src/main/erdiagram/generator/database/code-converter/mysql/type/MySqlTypeResolver.ts");
 /* harmony import */ var _erdiagram_generator_database_code_converter_mysql_column_MySqlIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/mysql/column/MySqlIdColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/mysql/column/MySqlIdColumnCodeGenerator.ts");
@@ -1255,37 +1133,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
 /* harmony import */ var _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/CaseConverter */ "./src/main/erdiagram/generator/common/case-format/CaseConverter.ts");
 /* harmony import */ var _erdiagram_generator_database_code_converter_mysql_config_MysqlDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/mysql/config/MysqlDatabaseModelToCodeConverterConfigManager */ "./src/main/erdiagram/generator/database/code-converter/mysql/config/MysqlDatabaseModelToCodeConverterConfigManager.ts");
-var __read = (undefined && undefined.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
-var __spread = (undefined && undefined.__spread) || function () {
-    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-    return ar;
-};
-var __values = (undefined && undefined.__values) || function(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
 
 
 
@@ -1294,23 +1141,21 @@ var __values = (undefined && undefined.__values) || function(o) {
 
 
 
-var MySqlDatabaseModelToCodeConverter = /** @class */ (function () {
-    function MySqlDatabaseModelToCodeConverter(config) {
+class MySqlDatabaseModelToCodeConverter {
+    constructor(config) {
         this.config = _erdiagram_generator_database_code_converter_mysql_config_MysqlDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_7__["default"].mergeWithDefaultConfig(config);
         this.tableNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.tableNameCaseFormat);
-        var columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.columnNameCaseFormat);
+        const columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.columnNameCaseFormat);
         this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_mysql_column_MySqlColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](new _erdiagram_generator_database_code_converter_mysql_type_MySqlTypeResolver__WEBPACK_IMPORTED_MODULE_1__["default"](this.config.typeBindings), columnNameCaseConverter);
         this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_mysql_column_MySqlIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.columnCodeGenerator, columnNameCaseConverter);
         this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_mysql_column_MySqlForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
     }
-    MySqlDatabaseModelToCodeConverter.prototype.generateCode = function (databaseModel) {
-        var _this = this;
-        var allCreateTableStatements = [];
-        var allAlterTableStatements = [];
+    generateCode(databaseModel) {
+        const allCreateTableStatements = [];
+        const allAlterTableStatements = [];
         databaseModel.tables
-            .map(function (table) { return _this.generateTableCode(table); })
-            .forEach(function (_a) {
-            var createTableStatement = _a.createTableStatement, alterTableStatements = _a.alterTableStatements;
+            .map(table => this.generateTableCode(table))
+            .forEach(({ createTableStatement, alterTableStatements }) => {
             allCreateTableStatements.push(createTableStatement);
             if (alterTableStatements) {
                 allAlterTableStatements.push(alterTableStatements);
@@ -1319,77 +1164,56 @@ var MySqlDatabaseModelToCodeConverter = /** @class */ (function () {
         return allCreateTableStatements.join('\n\n')
             + '\n\n'
             + allAlterTableStatements.join('\n\n');
-    };
+    }
     // FIXME split this method
-    MySqlDatabaseModelToCodeConverter.prototype.generateTableCode = function (table) {
-        var columnLines = [];
-        var fkConstraintLines = [];
-        var otherConstraintLines = [];
-        var outputTableName = this.tableNameCaseConverter.convertCase(table.name);
-        var _a = this.idColumnCodeGenerator.generateIdColumnCode(outputTableName, table.identifierColumnName), idColumnLine = _a.columnLine, pkConstraintLine = _a.pkConstraintLine;
+    generateTableCode(table) {
+        const columnLines = [];
+        const fkConstraintLines = [];
+        const otherConstraintLines = [];
+        const outputTableName = this.tableNameCaseConverter.convertCase(table.name);
+        const { columnLine: idColumnLine, pkConstraintLine } = this.idColumnCodeGenerator.generateIdColumnCode(outputTableName, table.identifierColumnName);
         columnLines.push(idColumnLine);
         otherConstraintLines.push(pkConstraintLine);
         this.processColumns(outputTableName, table.columns, columnLines, otherConstraintLines);
         this.processReferences(outputTableName, table.references, columnLines, fkConstraintLines, otherConstraintLines);
-        var createTableInnerLines = __spread(columnLines, otherConstraintLines);
-        var createTableLines = [
-            "CREATE TABLE `" + outputTableName + "` (",
+        const createTableInnerLines = [
+            ...columnLines,
+            ...otherConstraintLines
+        ];
+        const createTableLines = [
+            `CREATE TABLE \`${outputTableName}\` (`,
             Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_4__["indentLines"])(createTableInnerLines).join(',\n'),
             ');'
         ];
-        var createTableStatement = createTableLines.join('\n');
-        var alterTableStatements = fkConstraintLines.map(function (fkConstraintLine) {
-            return "ALTER TABLE `" + outputTableName + "` ADD " + fkConstraintLine + ";";
+        const createTableStatement = createTableLines.join('\n');
+        const alterTableStatements = fkConstraintLines.map(fkConstraintLine => {
+            return `ALTER TABLE \`${outputTableName}\` ADD ${fkConstraintLine};`;
         }).join('\n');
         return {
-            createTableStatement: createTableStatement,
-            alterTableStatements: alterTableStatements
+            createTableStatement,
+            alterTableStatements
         };
-    };
-    MySqlDatabaseModelToCodeConverter.prototype.processReferences = function (outputTableName, references, columnLines, fkConstraintLines, otherConstraintLines) {
-        var e_1, _a;
-        try {
-            for (var references_1 = __values(references), references_1_1 = references_1.next(); !references_1_1.done; references_1_1 = references_1.next()) {
-                var reference = references_1_1.value;
-                var _b = this.foreignColumnCodeGenerator.generateForeignColumnCode(outputTableName, reference), columnLine = _b.columnLine, uniqueConstraintLine = _b.uniqueConstraintLine, fkConstraintLine = _b.fkConstraintLine;
-                columnLines.push(columnLine);
-                fkConstraintLines.push(fkConstraintLine);
-                if (uniqueConstraintLine) {
-                    otherConstraintLines.push(uniqueConstraintLine);
-                }
+    }
+    processReferences(outputTableName, references, columnLines, fkConstraintLines, otherConstraintLines) {
+        for (const reference of references) {
+            const { columnLine, uniqueConstraintLine, fkConstraintLine } = this.foreignColumnCodeGenerator.generateForeignColumnCode(outputTableName, reference);
+            columnLines.push(columnLine);
+            fkConstraintLines.push(fkConstraintLine);
+            if (uniqueConstraintLine) {
+                otherConstraintLines.push(uniqueConstraintLine);
             }
         }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-        finally {
-            try {
-                if (references_1_1 && !references_1_1.done && (_a = references_1.return)) _a.call(references_1);
-            }
-            finally { if (e_1) throw e_1.error; }
-        }
-    };
-    MySqlDatabaseModelToCodeConverter.prototype.processColumns = function (outputTableName, columns, columnLines, otherConstraintLines) {
-        var e_2, _a;
-        try {
-            for (var columns_1 = __values(columns), columns_1_1 = columns_1.next(); !columns_1_1.done; columns_1_1 = columns_1.next()) {
-                var column = columns_1_1.value;
-                var _b = this.columnCodeGenerator.generateColumnCode(outputTableName, column), columnLine = _b.columnLine, uniqueConstraintLine = _b.uniqueConstraintLine;
-                columnLines.push(columnLine);
-                if (uniqueConstraintLine) {
-                    otherConstraintLines.push(uniqueConstraintLine);
-                }
+    }
+    processColumns(outputTableName, columns, columnLines, otherConstraintLines) {
+        for (const column of columns) {
+            const { columnLine, uniqueConstraintLine } = this.columnCodeGenerator.generateColumnCode(outputTableName, column);
+            columnLines.push(columnLine);
+            if (uniqueConstraintLine) {
+                otherConstraintLines.push(uniqueConstraintLine);
             }
         }
-        catch (e_2_1) { e_2 = { error: e_2_1 }; }
-        finally {
-            try {
-                if (columns_1_1 && !columns_1_1.done && (_a = columns_1.return)) _a.call(columns_1);
-            }
-            finally { if (e_2) throw e_2.error; }
-        }
-    };
-    return MySqlDatabaseModelToCodeConverter;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (MySqlDatabaseModelToCodeConverter);
+    }
+}
 
 
 /***/ }),
@@ -1403,22 +1227,23 @@ var MySqlDatabaseModelToCodeConverter = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var MySqlColumnCodeGenerator = /** @class */ (function () {
-    function MySqlColumnCodeGenerator(typeResolver, columnNameCaseConverter) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MySqlColumnCodeGenerator; });
+class MySqlColumnCodeGenerator {
+    constructor(typeResolver, columnNameCaseConverter) {
         this.typeResolver = typeResolver;
         this.columnNameCaseConverter = columnNameCaseConverter;
     }
-    MySqlColumnCodeGenerator.prototype.generateColumnCode = function (outputTableName, column) {
-        var outputColumnName = this.columnNameCaseConverter.convertCase(column.name);
+    generateColumnCode(outputTableName, column) {
+        const outputColumnName = this.columnNameCaseConverter.convertCase(column.name);
         return {
             columnLine: this.generateColumnDeclarationLine(outputColumnName, column),
             uniqueConstraintLine: column.unique ? this.generateUniqueConstraintLine(outputTableName, outputColumnName) : undefined
         };
-    };
-    MySqlColumnCodeGenerator.prototype.generateColumnDeclarationLine = function (outputColumnName, column) {
-        var notNull = column.notNull, autoincremental = column.autoincremental, type = column.type, length = column.length;
-        var lineParts = [
-            "`" + outputColumnName + "`",
+    }
+    generateColumnDeclarationLine(outputColumnName, column) {
+        const { notNull, autoincremental, type, length } = column;
+        const lineParts = [
+            `\`${outputColumnName}\``,
             this.generateMySqlTypeDeclaration(type, length)
         ];
         if (notNull) {
@@ -1428,24 +1253,22 @@ var MySqlColumnCodeGenerator = /** @class */ (function () {
             lineParts.push('AUTO_INCREMENT');
         }
         return lineParts.join(' ');
-    };
-    MySqlColumnCodeGenerator.prototype.generateMySqlTypeDeclaration = function (type, length) {
-        var mysqlType = this.typeResolver.resolveMySqlType(type);
-        var lengthCode = this.generateLengthCode(length);
+    }
+    generateMySqlTypeDeclaration(type, length) {
+        const mysqlType = this.typeResolver.resolveMySqlType(type);
+        const lengthCode = this.generateLengthCode(length);
         return mysqlType + lengthCode;
-    };
-    MySqlColumnCodeGenerator.prototype.generateLengthCode = function (length) {
+    }
+    generateLengthCode(length) {
         if (length.length === 0) {
             return '';
         }
-        return "(" + length.join(', ') + ")";
-    };
-    MySqlColumnCodeGenerator.prototype.generateUniqueConstraintLine = function (outputTableName, outputColumnName) {
-        return "CONSTRAINT `" + outputTableName + "_" + outputColumnName + "_unique` UNIQUE (`" + outputColumnName + "`)";
-    };
-    return MySqlColumnCodeGenerator;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (MySqlColumnCodeGenerator);
+        return `(${length.join(', ')})`;
+    }
+    generateUniqueConstraintLine(outputTableName, outputColumnName) {
+        return `CONSTRAINT \`${outputTableName}_${outputColumnName}_unique\` UNIQUE (\`${outputColumnName}\`)`;
+    }
+}
 
 
 /***/ }),
@@ -1459,44 +1282,43 @@ var MySqlColumnCodeGenerator = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MySqlForeignColumnCodeGenerator; });
 /* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
 
-var MySqlForeignColumnCodeGenerator = /** @class */ (function () {
-    function MySqlForeignColumnCodeGenerator(columnCodeGenerator, tableNameCaseConverter, columnNameCaseConverter) {
+class MySqlForeignColumnCodeGenerator {
+    constructor(columnCodeGenerator, tableNameCaseConverter, columnNameCaseConverter) {
         this.columnCodeGenerator = columnCodeGenerator;
         this.tableNameCaseConverter = tableNameCaseConverter;
         this.columnNameCaseConverter = columnNameCaseConverter;
     }
-    MySqlForeignColumnCodeGenerator.prototype.generateForeignColumnCode = function (outputTableName, reference) {
-        var columnDescriptor = this.createForeignKeyColumnDescriptor(reference);
-        var _a = this.columnCodeGenerator.generateColumnCode(outputTableName, columnDescriptor), columnLine = _a.columnLine, uniqueConstraintLine = _a.uniqueConstraintLine;
+    generateForeignColumnCode(outputTableName, reference) {
+        const columnDescriptor = this.createForeignKeyColumnDescriptor(reference);
+        const { columnLine, uniqueConstraintLine } = this.columnCodeGenerator.generateColumnCode(outputTableName, columnDescriptor);
         return {
-            columnLine: columnLine,
-            uniqueConstraintLine: uniqueConstraintLine,
+            columnLine,
+            uniqueConstraintLine,
             fkConstraintLine: this.createForeignKeyConstraint(outputTableName, reference)
         };
-    };
-    MySqlForeignColumnCodeGenerator.prototype.createForeignKeyColumnDescriptor = function (reference) {
-        var columnName = reference.columnName, notNull = reference.notNull, unique = reference.unique;
+    }
+    createForeignKeyColumnDescriptor(reference) {
+        const { columnName, notNull, unique } = reference;
         return {
             name: columnName,
             type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
             length: [],
-            notNull: notNull,
-            unique: unique,
+            notNull,
+            unique,
             autoincremental: false
         };
-    };
-    MySqlForeignColumnCodeGenerator.prototype.createForeignKeyConstraint = function (outputTableName, reference) {
-        var outputColumnName = this.columnNameCaseConverter.convertCase(reference.columnName);
-        var outputTargetTableName = this.tableNameCaseConverter.convertCase(reference.targetTableName);
-        var outputTargetColumnName = this.columnNameCaseConverter.convertCase(reference.targetTableIdentifierColumnName);
-        return "CONSTRAINT `" + outputTableName + "_" + outputColumnName + "_fk` FOREIGN KEY (`" + outputColumnName + "`)"
-            + (" REFERENCES `" + outputTargetTableName + "` (`" + outputTargetColumnName + "`)");
-    };
-    return MySqlForeignColumnCodeGenerator;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (MySqlForeignColumnCodeGenerator);
+    }
+    createForeignKeyConstraint(outputTableName, reference) {
+        const outputColumnName = this.columnNameCaseConverter.convertCase(reference.columnName);
+        const outputTargetTableName = this.tableNameCaseConverter.convertCase(reference.targetTableName);
+        const outputTargetColumnName = this.columnNameCaseConverter.convertCase(reference.targetTableIdentifierColumnName);
+        return `CONSTRAINT \`${outputTableName}_${outputColumnName}_fk\` FOREIGN KEY (\`${outputColumnName}\`)`
+            + ` REFERENCES \`${outputTargetTableName}\` (\`${outputTargetColumnName}\`)`;
+    }
+}
 
 
 /***/ }),
@@ -1510,23 +1332,24 @@ var MySqlForeignColumnCodeGenerator = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MySqlIdColumnCodeGenerator; });
 /* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
 
-var MySqlIdColumnCodeGenerator = /** @class */ (function () {
-    function MySqlIdColumnCodeGenerator(columnCodeGenerator, columnNameCaseConverter) {
+class MySqlIdColumnCodeGenerator {
+    constructor(columnCodeGenerator, columnNameCaseConverter) {
         this.columnCodeGenerator = columnCodeGenerator;
         this.columnNameCaseConverter = columnNameCaseConverter;
     }
-    MySqlIdColumnCodeGenerator.prototype.generateIdColumnCode = function (outputTableName, identifierColumnName) {
-        var column = this.createIdColumnDescriptor(identifierColumnName);
-        var columnLine = this.columnCodeGenerator.generateColumnCode(outputTableName, column).columnLine;
-        var pkConstraintLine = this.createPrimaryKeyConstraint(outputTableName, column);
+    generateIdColumnCode(outputTableName, identifierColumnName) {
+        const column = this.createIdColumnDescriptor(identifierColumnName);
+        const { columnLine } = this.columnCodeGenerator.generateColumnCode(outputTableName, column);
+        const pkConstraintLine = this.createPrimaryKeyConstraint(outputTableName, column);
         return {
-            columnLine: columnLine,
-            pkConstraintLine: pkConstraintLine
+            columnLine,
+            pkConstraintLine
         };
-    };
-    MySqlIdColumnCodeGenerator.prototype.createIdColumnDescriptor = function (identifierColumnName) {
+    }
+    createIdColumnDescriptor(identifierColumnName) {
         return {
             name: identifierColumnName,
             type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
@@ -1537,14 +1360,12 @@ var MySqlIdColumnCodeGenerator = /** @class */ (function () {
             // need to manually define an UNIQUE KEY constraint
             unique: false
         };
-    };
-    MySqlIdColumnCodeGenerator.prototype.createPrimaryKeyConstraint = function (outputTableName, column) {
-        var columnName = this.columnNameCaseConverter.convertCase(column.name);
-        return "CONSTRAINT `" + outputTableName + "_pk` PRIMARY KEY (`" + columnName + "`)";
-    };
-    return MySqlIdColumnCodeGenerator;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (MySqlIdColumnCodeGenerator);
+    }
+    createPrimaryKeyConstraint(outputTableName, column) {
+        const columnName = this.columnNameCaseConverter.convertCase(column.name);
+        return `CONSTRAINT \`${outputTableName}_pk\` PRIMARY KEY (\`${columnName}\`)`;
+    }
+}
 
 
 /***/ }),
@@ -1563,72 +1384,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
 /* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
 /* harmony import */ var _erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/record-utils */ "./src/main/erdiagram/util/record-utils.ts");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (undefined && undefined.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 
 
 
 
-var MySqlDatabaseModelToCodeConverterConfigManager = /** @class */ (function (_super) {
-    __extends(MySqlDatabaseModelToCodeConverterConfigManager, _super);
-    function MySqlDatabaseModelToCodeConverterConfigManager() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    MySqlDatabaseModelToCodeConverterConfigManager.prototype.getDefaultConfig = function () {
-        var _a;
+class MySqlDatabaseModelToCodeConverterConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__["default"] {
+    getDefaultConfig() {
         return {
-            typeBindings: (_a = {},
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER] = 'BIGINT',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT] = 'VARCHAR',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG] = 'BIGINT',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT] = 'INT',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT] = 'SHORT',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL] = 'DECIMAL',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN] = 'BOOLEAN',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE] = 'DATE',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME] = 'TIME',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME] = 'TIMESTAMP',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB] = 'BLOB',
-                _a),
+            typeBindings: {
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: 'BIGINT',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: 'VARCHAR',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: 'BIGINT',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: 'INT',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: 'SHORT',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: 'DECIMAL',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: 'BOOLEAN',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: 'DATE',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: 'TIME',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: 'TIMESTAMP',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: 'BLOB'
+            },
             tableNameCaseFormat: _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL,
             columnNameCaseFormat: _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].LOWER_CAMEL,
         };
-    };
-    MySqlDatabaseModelToCodeConverterConfigManager.prototype.mergeConfigs = function (fullConfig, partialConfig) {
-        return __assign(__assign(__assign({}, fullConfig), partialConfig), { typeBindings: __assign(__assign({}, fullConfig.typeBindings), partialConfig === null || partialConfig === void 0 ? void 0 : partialConfig.typeBindings) });
-    };
-    MySqlDatabaseModelToCodeConverterConfigManager.prototype.convertToSerializableObject = function (fullConfig) {
-        return __assign(__assign({}, fullConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findKeyFromValue"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.tableNameCaseFormat), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findKeyFromValue"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.columnNameCaseFormat) });
-    };
-    MySqlDatabaseModelToCodeConverterConfigManager.prototype.convertFromSerializableObject = function (serializableConfig) {
-        return __assign(__assign({}, serializableConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.tableNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.columnNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL) });
-    };
-    return MySqlDatabaseModelToCodeConverterConfigManager;
-}(_erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__["default"]));
-
-var mysqlDatabaseModelToCodeConverterConfigManager = new MySqlDatabaseModelToCodeConverterConfigManager();
+    }
+    mergeConfigs(fullConfig, partialConfig) {
+        return Object.assign(Object.assign(Object.assign({}, fullConfig), partialConfig), { typeBindings: Object.assign(Object.assign({}, fullConfig.typeBindings), partialConfig === null || partialConfig === void 0 ? void 0 : partialConfig.typeBindings) });
+    }
+    convertToSerializableObject(fullConfig) {
+        return Object.assign(Object.assign({}, fullConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findKeyFromValue"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.tableNameCaseFormat), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findKeyFromValue"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.columnNameCaseFormat) });
+    }
+    convertFromSerializableObject(serializableConfig) {
+        return Object.assign(Object.assign({}, serializableConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.tableNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.columnNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL) });
+    }
+}
+const mysqlDatabaseModelToCodeConverterConfigManager = new MySqlDatabaseModelToCodeConverterConfigManager();
 /* harmony default export */ __webpack_exports__["default"] = (mysqlDatabaseModelToCodeConverterConfigManager);
 
 
@@ -1687,19 +1477,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var MySqlTypeResolver = /** @class */ (function () {
-    function MySqlTypeResolver(typeBindings) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MySqlTypeResolver; });
+class MySqlTypeResolver {
+    constructor(typeBindings) {
         this.typeBindings = typeBindings;
     }
-    MySqlTypeResolver.prototype.resolveMySqlType = function (type) {
+    resolveMySqlType(type) {
         if (!this.typeBindings.hasOwnProperty(type)) {
             throw new Error('Unsupported type: ' + type);
         }
         return this.typeBindings[type];
-    };
-    return MySqlTypeResolver;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (MySqlTypeResolver);
+    }
+}
 
 
 /***/ }),
@@ -1713,6 +1502,7 @@ var MySqlTypeResolver = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OracleDatabaseModelToCodeConverter; });
 /* harmony import */ var _erdiagram_generator_database_code_converter_oracle_column_OracleColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/oracle/column/OracleColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/oracle/column/OracleColumnCodeGenerator.ts");
 /* harmony import */ var _erdiagram_generator_database_code_converter_oracle_type_OracleTypeResolver__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/oracle/type/OracleTypeResolver */ "./src/main/erdiagram/generator/database/code-converter/oracle/type/OracleTypeResolver.ts");
 /* harmony import */ var _erdiagram_generator_database_code_converter_oracle_column_OracleIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/oracle/column/OracleIdColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/oracle/column/OracleIdColumnCodeGenerator.ts");
@@ -1721,37 +1511,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
 /* harmony import */ var _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/CaseConverter */ "./src/main/erdiagram/generator/common/case-format/CaseConverter.ts");
 /* harmony import */ var _erdiagram_generator_database_code_converter_oracle_config_OracleDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/oracle/config/OracleDatabaseModelToCodeConverterConfigManager */ "./src/main/erdiagram/generator/database/code-converter/oracle/config/OracleDatabaseModelToCodeConverterConfigManager.ts");
-var __read = (undefined && undefined.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
-var __spread = (undefined && undefined.__spread) || function () {
-    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-    return ar;
-};
-var __values = (undefined && undefined.__values) || function(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
 
 
 
@@ -1760,23 +1519,21 @@ var __values = (undefined && undefined.__values) || function(o) {
 
 
 
-var OracleDatabaseModelToCodeConverter = /** @class */ (function () {
-    function OracleDatabaseModelToCodeConverter(config) {
+class OracleDatabaseModelToCodeConverter {
+    constructor(config) {
         this.config = _erdiagram_generator_database_code_converter_oracle_config_OracleDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_7__["default"].mergeWithDefaultConfig(config);
         this.tableNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.tableNameCaseFormat);
-        var columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.columnNameCaseFormat);
+        const columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.columnNameCaseFormat);
         this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_oracle_column_OracleColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](new _erdiagram_generator_database_code_converter_oracle_type_OracleTypeResolver__WEBPACK_IMPORTED_MODULE_1__["default"](this.config.typeBindings), columnNameCaseConverter);
         this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_oracle_column_OracleIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.columnCodeGenerator, columnNameCaseConverter);
         this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_oracle_column_OracleForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
     }
-    OracleDatabaseModelToCodeConverter.prototype.generateCode = function (databaseModel) {
-        var _this = this;
-        var allCreateTableStatements = [];
-        var allAlterTableStatements = [];
+    generateCode(databaseModel) {
+        const allCreateTableStatements = [];
+        const allAlterTableStatements = [];
         databaseModel.tables
-            .map(function (table) { return _this.generateTableCode(table); })
-            .forEach(function (_a) {
-            var createTableStatement = _a.createTableStatement, alterTableStatements = _a.alterTableStatements;
+            .map(table => this.generateTableCode(table))
+            .forEach(({ createTableStatement, alterTableStatements }) => {
             allCreateTableStatements.push(createTableStatement);
             if (alterTableStatements) {
                 allAlterTableStatements.push(alterTableStatements);
@@ -1785,82 +1542,62 @@ var OracleDatabaseModelToCodeConverter = /** @class */ (function () {
         return allCreateTableStatements.join('\n\n')
             + '\n\n'
             + allAlterTableStatements.join('\n\n');
-    };
+    }
     // FIXME split this method
-    OracleDatabaseModelToCodeConverter.prototype.generateTableCode = function (table) {
-        var columnLines = [];
-        var createSequenceLines = [];
-        var fkConstraintLines = [];
-        var otherConstraintLines = [];
-        var outputTableName = this.tableNameCaseConverter.convertCase(table.name);
-        var _a = this.idColumnCodeGenerator.generateIdColumnCode(outputTableName, table.identifierColumnName), idCreateSequenceLine = _a.createSequenceLine, idColumnLine = _a.columnLine, pkConstraintLine = _a.pkConstraintLine;
+    generateTableCode(table) {
+        const columnLines = [];
+        const createSequenceLines = [];
+        const fkConstraintLines = [];
+        const otherConstraintLines = [];
+        const outputTableName = this.tableNameCaseConverter.convertCase(table.name);
+        const { createSequenceLine: idCreateSequenceLine, columnLine: idColumnLine, pkConstraintLine } = this.idColumnCodeGenerator.generateIdColumnCode(outputTableName, table.identifierColumnName);
         createSequenceLines.push(idCreateSequenceLine);
         columnLines.push(idColumnLine);
         otherConstraintLines.push(pkConstraintLine);
         this.processColumns(outputTableName, table.columns, columnLines, createSequenceLines, otherConstraintLines);
         this.processReferences(outputTableName, table.references, columnLines, fkConstraintLines, otherConstraintLines);
-        var createTableInnerLines = __spread(columnLines, otherConstraintLines);
-        var createTableLines = __spread(createSequenceLines, [
-            "CREATE TABLE \"" + outputTableName + "\" (",
+        const createTableInnerLines = [
+            ...columnLines,
+            ...otherConstraintLines
+        ];
+        const createTableLines = [
+            ...createSequenceLines,
+            `CREATE TABLE "${outputTableName}" (`,
             Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_4__["indentLines"])(createTableInnerLines).join(',\n'),
             ');'
-        ]);
-        var createTableStatement = createTableLines.join('\n');
-        var alterTableStatements = fkConstraintLines.map(function (fkConstraintLine) {
-            return "ALTER TABLE \"" + outputTableName + "\" ADD " + fkConstraintLine + ";";
+        ];
+        const createTableStatement = createTableLines.join('\n');
+        const alterTableStatements = fkConstraintLines.map(fkConstraintLine => {
+            return `ALTER TABLE "${outputTableName}" ADD ${fkConstraintLine};`;
         }).join('\n');
         return {
-            createTableStatement: createTableStatement,
-            alterTableStatements: alterTableStatements
+            createTableStatement,
+            alterTableStatements
         };
-    };
-    OracleDatabaseModelToCodeConverter.prototype.processReferences = function (outputTableName, references, columnLines, fkConstraintLines, otherConstraintLines) {
-        var e_1, _a;
-        try {
-            for (var references_1 = __values(references), references_1_1 = references_1.next(); !references_1_1.done; references_1_1 = references_1.next()) {
-                var reference = references_1_1.value;
-                var _b = this.foreignColumnCodeGenerator.generateForeignColumnCode(outputTableName, reference), columnLine = _b.columnLine, uniqueConstraintLine = _b.uniqueConstraintLine, fkConstraintLine = _b.fkConstraintLine;
-                columnLines.push(columnLine);
-                fkConstraintLines.push(fkConstraintLine);
-                if (uniqueConstraintLine) {
-                    otherConstraintLines.push(uniqueConstraintLine);
-                }
+    }
+    processReferences(outputTableName, references, columnLines, fkConstraintLines, otherConstraintLines) {
+        for (const reference of references) {
+            const { columnLine, uniqueConstraintLine, fkConstraintLine } = this.foreignColumnCodeGenerator.generateForeignColumnCode(outputTableName, reference);
+            columnLines.push(columnLine);
+            fkConstraintLines.push(fkConstraintLine);
+            if (uniqueConstraintLine) {
+                otherConstraintLines.push(uniqueConstraintLine);
             }
         }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-        finally {
-            try {
-                if (references_1_1 && !references_1_1.done && (_a = references_1.return)) _a.call(references_1);
+    }
+    processColumns(outputTableName, columns, columnLines, createSequenceLines, otherConstraintLines) {
+        for (const column of columns) {
+            const { columnLine, createSequenceLine, uniqueConstraintLine } = this.columnCodeGenerator.generateColumnCode(outputTableName, column);
+            columnLines.push(columnLine);
+            if (createSequenceLine) {
+                createSequenceLines.push(createSequenceLine);
             }
-            finally { if (e_1) throw e_1.error; }
-        }
-    };
-    OracleDatabaseModelToCodeConverter.prototype.processColumns = function (outputTableName, columns, columnLines, createSequenceLines, otherConstraintLines) {
-        var e_2, _a;
-        try {
-            for (var columns_1 = __values(columns), columns_1_1 = columns_1.next(); !columns_1_1.done; columns_1_1 = columns_1.next()) {
-                var column = columns_1_1.value;
-                var _b = this.columnCodeGenerator.generateColumnCode(outputTableName, column), columnLine = _b.columnLine, createSequenceLine = _b.createSequenceLine, uniqueConstraintLine = _b.uniqueConstraintLine;
-                columnLines.push(columnLine);
-                if (createSequenceLine) {
-                    createSequenceLines.push(createSequenceLine);
-                }
-                if (uniqueConstraintLine) {
-                    otherConstraintLines.push(uniqueConstraintLine);
-                }
+            if (uniqueConstraintLine) {
+                otherConstraintLines.push(uniqueConstraintLine);
             }
         }
-        catch (e_2_1) { e_2 = { error: e_2_1 }; }
-        finally {
-            try {
-                if (columns_1_1 && !columns_1_1.done && (_a = columns_1.return)) _a.call(columns_1);
-            }
-            finally { if (e_2) throw e_2.error; }
-        }
-    };
-    return OracleDatabaseModelToCodeConverter;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (OracleDatabaseModelToCodeConverter);
+    }
+}
 
 
 /***/ }),
@@ -1874,58 +1611,57 @@ var OracleDatabaseModelToCodeConverter = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var OracleColumnCodeGenerator = /** @class */ (function () {
-    function OracleColumnCodeGenerator(typeResolver, columnNameCaseConverter) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OracleColumnCodeGenerator; });
+class OracleColumnCodeGenerator {
+    constructor(typeResolver, columnNameCaseConverter) {
         this.typeResolver = typeResolver;
         this.columnNameCaseConverter = columnNameCaseConverter;
     }
-    OracleColumnCodeGenerator.prototype.generateColumnCode = function (outputTableName, column) {
-        var outputColumnName = this.columnNameCaseConverter.convertCase(column.name);
-        var autoincrementalSequenceName = this.getAutoincrementalSequenceName(outputTableName, outputColumnName);
+    generateColumnCode(outputTableName, column) {
+        const outputColumnName = this.columnNameCaseConverter.convertCase(column.name);
+        const autoincrementalSequenceName = this.getAutoincrementalSequenceName(outputTableName, outputColumnName);
         return {
             createSequenceLine: column.autoincremental ? this.generateCreateSequenceLine(autoincrementalSequenceName) : undefined,
             columnLine: this.generateColumnDeclarationLine(outputColumnName, column, autoincrementalSequenceName),
             uniqueConstraintLine: column.unique ? this.generateUniqueConstraintLine(outputTableName, outputColumnName) : undefined
         };
-    };
-    OracleColumnCodeGenerator.prototype.getAutoincrementalSequenceName = function (outputTableName, outputColumnName) {
-        return outputTableName + "_" + outputColumnName + "_SEQ";
-    };
-    OracleColumnCodeGenerator.prototype.generateCreateSequenceLine = function (autoincrementalSequenceName) {
-        return "CREATE SEQUENCE \"" + autoincrementalSequenceName + "\" START WITH 1;";
-    };
+    }
+    getAutoincrementalSequenceName(outputTableName, outputColumnName) {
+        return `${outputTableName}_${outputColumnName}_SEQ`;
+    }
+    generateCreateSequenceLine(autoincrementalSequenceName) {
+        return `CREATE SEQUENCE "${autoincrementalSequenceName}" START WITH 1;`;
+    }
     // FIXME refactor this methods - it receives too much arguments
-    OracleColumnCodeGenerator.prototype.generateColumnDeclarationLine = function (outputColumnName, column, autoincrementalSequenceName) {
-        var notNull = column.notNull, autoincremental = column.autoincremental, type = column.type, length = column.length;
-        var lineParts = [
-            "\"" + outputColumnName + "\"",
+    generateColumnDeclarationLine(outputColumnName, column, autoincrementalSequenceName) {
+        const { notNull, autoincremental, type, length } = column;
+        const lineParts = [
+            `"${outputColumnName}"`,
             this.generateOracleTypeDeclaration(type, length)
         ];
         if (notNull) {
             lineParts.push('NOT NULL');
         }
         if (autoincremental) {
-            lineParts.push("DEFAULT \"" + autoincrementalSequenceName + "\".nextval");
+            lineParts.push(`DEFAULT "${autoincrementalSequenceName}".nextval`);
         }
         return lineParts.join(' ');
-    };
-    OracleColumnCodeGenerator.prototype.generateOracleTypeDeclaration = function (type, length) {
-        var oracleType = this.typeResolver.resolveOracleType(type);
-        var lengthCode = this.generateLengthCode(length);
+    }
+    generateOracleTypeDeclaration(type, length) {
+        const oracleType = this.typeResolver.resolveOracleType(type);
+        const lengthCode = this.generateLengthCode(length);
         return oracleType + lengthCode;
-    };
-    OracleColumnCodeGenerator.prototype.generateLengthCode = function (length) {
+    }
+    generateLengthCode(length) {
         if (length.length === 0) {
             return '';
         }
-        return "(" + length.join(', ') + ")";
-    };
-    OracleColumnCodeGenerator.prototype.generateUniqueConstraintLine = function (outputTableName, outputColumnName) {
-        return "CONSTRAINT \"" + outputTableName + "_" + outputColumnName + "_UNIQUE\" UNIQUE (\"" + outputColumnName + "\")";
-    };
-    return OracleColumnCodeGenerator;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (OracleColumnCodeGenerator);
+        return `(${length.join(', ')})`;
+    }
+    generateUniqueConstraintLine(outputTableName, outputColumnName) {
+        return `CONSTRAINT "${outputTableName}_${outputColumnName}_UNIQUE" UNIQUE ("${outputColumnName}")`;
+    }
+}
 
 
 /***/ }),
@@ -1939,44 +1675,43 @@ var OracleColumnCodeGenerator = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OracleForeignColumnCodeGenerator; });
 /* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
 
-var OracleForeignColumnCodeGenerator = /** @class */ (function () {
-    function OracleForeignColumnCodeGenerator(columnCodeGenerator, tableNameCaseConverter, columnNameCaseConverter) {
+class OracleForeignColumnCodeGenerator {
+    constructor(columnCodeGenerator, tableNameCaseConverter, columnNameCaseConverter) {
         this.columnCodeGenerator = columnCodeGenerator;
         this.tableNameCaseConverter = tableNameCaseConverter;
         this.columnNameCaseConverter = columnNameCaseConverter;
     }
-    OracleForeignColumnCodeGenerator.prototype.generateForeignColumnCode = function (outputTableName, reference) {
-        var columnDescriptor = this.createForeignKeyColumnDescriptor(reference);
-        var _a = this.columnCodeGenerator.generateColumnCode(outputTableName, columnDescriptor), columnLine = _a.columnLine, uniqueConstraintLine = _a.uniqueConstraintLine;
+    generateForeignColumnCode(outputTableName, reference) {
+        const columnDescriptor = this.createForeignKeyColumnDescriptor(reference);
+        const { columnLine, uniqueConstraintLine } = this.columnCodeGenerator.generateColumnCode(outputTableName, columnDescriptor);
         return {
-            columnLine: columnLine,
-            uniqueConstraintLine: uniqueConstraintLine,
+            columnLine,
+            uniqueConstraintLine,
             fkConstraintLine: this.createForeignKeyConstraint(outputTableName, reference)
         };
-    };
-    OracleForeignColumnCodeGenerator.prototype.createForeignKeyColumnDescriptor = function (reference) {
-        var columnName = reference.columnName, notNull = reference.notNull, unique = reference.unique;
+    }
+    createForeignKeyColumnDescriptor(reference) {
+        const { columnName, notNull, unique } = reference;
         return {
             name: columnName,
             type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
             length: [],
-            notNull: notNull,
-            unique: unique,
+            notNull,
+            unique,
             autoincremental: false
         };
-    };
-    OracleForeignColumnCodeGenerator.prototype.createForeignKeyConstraint = function (outputTableName, reference) {
-        var outputColumnName = this.columnNameCaseConverter.convertCase(reference.columnName);
-        var outputTargetTableName = this.tableNameCaseConverter.convertCase(reference.targetTableName);
-        var outputTargetColumnName = this.columnNameCaseConverter.convertCase(reference.targetTableIdentifierColumnName);
-        return "CONSTRAINT \"" + outputTableName + "_" + outputColumnName + "_FK\" FOREIGN KEY (\"" + outputColumnName + "\")"
-            + (" REFERENCES \"" + outputTargetTableName + "\" (\"" + outputTargetColumnName + "\")");
-    };
-    return OracleForeignColumnCodeGenerator;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (OracleForeignColumnCodeGenerator);
+    }
+    createForeignKeyConstraint(outputTableName, reference) {
+        const outputColumnName = this.columnNameCaseConverter.convertCase(reference.columnName);
+        const outputTargetTableName = this.tableNameCaseConverter.convertCase(reference.targetTableName);
+        const outputTargetColumnName = this.columnNameCaseConverter.convertCase(reference.targetTableIdentifierColumnName);
+        return `CONSTRAINT "${outputTableName}_${outputColumnName}_FK" FOREIGN KEY ("${outputColumnName}")`
+            + ` REFERENCES "${outputTargetTableName}" ("${outputTargetColumnName}")`;
+    }
+}
 
 
 /***/ }),
@@ -1990,27 +1725,28 @@ var OracleForeignColumnCodeGenerator = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OracleIdColumnCodeGenerator; });
 /* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
 
-var OracleIdColumnCodeGenerator = /** @class */ (function () {
-    function OracleIdColumnCodeGenerator(columnCodeGenerator, columnNameCaseConverter) {
+class OracleIdColumnCodeGenerator {
+    constructor(columnCodeGenerator, columnNameCaseConverter) {
         this.columnCodeGenerator = columnCodeGenerator;
         this.columnNameCaseConverter = columnNameCaseConverter;
     }
-    OracleIdColumnCodeGenerator.prototype.generateIdColumnCode = function (outputTableName, identifierColumnName) {
-        var column = this.createIdColumnDescriptor(identifierColumnName);
-        var _a = this.columnCodeGenerator.generateColumnCode(outputTableName, column), createSequenceLine = _a.createSequenceLine, columnLine = _a.columnLine;
+    generateIdColumnCode(outputTableName, identifierColumnName) {
+        const column = this.createIdColumnDescriptor(identifierColumnName);
+        const { createSequenceLine, columnLine } = this.columnCodeGenerator.generateColumnCode(outputTableName, column);
         if (createSequenceLine == null) {
             throw new Error('Unexpected error: missing sequence for primary key column');
         }
-        var pkConstraintLine = this.createPrimaryKeyConstraint(outputTableName, column);
+        const pkConstraintLine = this.createPrimaryKeyConstraint(outputTableName, column);
         return {
-            createSequenceLine: createSequenceLine,
-            columnLine: columnLine,
-            pkConstraintLine: pkConstraintLine
+            createSequenceLine,
+            columnLine,
+            pkConstraintLine
         };
-    };
-    OracleIdColumnCodeGenerator.prototype.createIdColumnDescriptor = function (identifierColumnName) {
+    }
+    createIdColumnDescriptor(identifierColumnName) {
         return {
             name: identifierColumnName,
             type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
@@ -2023,14 +1759,12 @@ var OracleIdColumnCodeGenerator = /** @class */ (function () {
             // need to manually define an UNIQUE KEY constraint
             unique: false
         };
-    };
-    OracleIdColumnCodeGenerator.prototype.createPrimaryKeyConstraint = function (outputTableName, column) {
-        var columnName = this.columnNameCaseConverter.convertCase(column.name);
-        return "CONSTRAINT \"" + outputTableName + "_PK\" PRIMARY KEY (\"" + columnName + "\")";
-    };
-    return OracleIdColumnCodeGenerator;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (OracleIdColumnCodeGenerator);
+    }
+    createPrimaryKeyConstraint(outputTableName, column) {
+        const columnName = this.columnNameCaseConverter.convertCase(column.name);
+        return `CONSTRAINT "${outputTableName}_PK" PRIMARY KEY ("${columnName}")`;
+    }
+}
 
 
 /***/ }),
@@ -2049,72 +1783,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
 /* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
 /* harmony import */ var _erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/record-utils */ "./src/main/erdiagram/util/record-utils.ts");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (undefined && undefined.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 
 
 
 
-var OracleDatabaseModelToCodeConverterConfigManager = /** @class */ (function (_super) {
-    __extends(OracleDatabaseModelToCodeConverterConfigManager, _super);
-    function OracleDatabaseModelToCodeConverterConfigManager() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    OracleDatabaseModelToCodeConverterConfigManager.prototype.getDefaultConfig = function () {
-        var _a;
+class OracleDatabaseModelToCodeConverterConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__["default"] {
+    getDefaultConfig() {
         return {
-            typeBindings: (_a = {},
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER] = 'NUMBER',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT] = 'VARCHAR2',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG] = 'NUMBER',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT] = 'NUMBER',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT] = 'NUMBER',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL] = 'NUMBER',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN] = 'NUMBER(1, 0)',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE] = 'DATE',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME] = 'TIMESTAMP',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME] = 'TIMESTAMP',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB] = 'BLOB',
-                _a),
+            typeBindings: {
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: 'NUMBER',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: 'VARCHAR2',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: 'NUMBER',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: 'NUMBER',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: 'NUMBER',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: 'NUMBER',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: 'NUMBER(1, 0)',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: 'DATE',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: 'TIMESTAMP',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: 'TIMESTAMP',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: 'BLOB'
+            },
             tableNameCaseFormat: _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_UNDERSCORE,
             columnNameCaseFormat: _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_UNDERSCORE,
         };
-    };
-    OracleDatabaseModelToCodeConverterConfigManager.prototype.mergeConfigs = function (fullConfig, partialConfig) {
-        return __assign(__assign(__assign({}, fullConfig), partialConfig), { typeBindings: __assign(__assign({}, fullConfig.typeBindings), partialConfig === null || partialConfig === void 0 ? void 0 : partialConfig.typeBindings) });
-    };
-    OracleDatabaseModelToCodeConverterConfigManager.prototype.convertToSerializableObject = function (fullConfig) {
-        return __assign(__assign({}, fullConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findKeyFromValue"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.tableNameCaseFormat), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findKeyFromValue"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.columnNameCaseFormat) });
-    };
-    OracleDatabaseModelToCodeConverterConfigManager.prototype.convertFromSerializableObject = function (serializableConfig) {
-        return __assign(__assign({}, serializableConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.tableNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.columnNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL) });
-    };
-    return OracleDatabaseModelToCodeConverterConfigManager;
-}(_erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__["default"]));
-
-var oracleDatabaseModelToCodeConverterConfigManager = new OracleDatabaseModelToCodeConverterConfigManager();
+    }
+    mergeConfigs(fullConfig, partialConfig) {
+        return Object.assign(Object.assign(Object.assign({}, fullConfig), partialConfig), { typeBindings: Object.assign(Object.assign({}, fullConfig.typeBindings), partialConfig === null || partialConfig === void 0 ? void 0 : partialConfig.typeBindings) });
+    }
+    convertToSerializableObject(fullConfig) {
+        return Object.assign(Object.assign({}, fullConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findKeyFromValue"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.tableNameCaseFormat), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findKeyFromValue"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.columnNameCaseFormat) });
+    }
+    convertFromSerializableObject(serializableConfig) {
+        return Object.assign(Object.assign({}, serializableConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.tableNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.columnNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL) });
+    }
+}
+const oracleDatabaseModelToCodeConverterConfigManager = new OracleDatabaseModelToCodeConverterConfigManager();
 /* harmony default export */ __webpack_exports__["default"] = (oracleDatabaseModelToCodeConverterConfigManager);
 
 
@@ -2173,19 +1876,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var OracleTypeResolver = /** @class */ (function () {
-    function OracleTypeResolver(typeBindings) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OracleTypeResolver; });
+class OracleTypeResolver {
+    constructor(typeBindings) {
         this.typeBindings = typeBindings;
     }
-    OracleTypeResolver.prototype.resolveOracleType = function (type) {
+    resolveOracleType(type) {
         if (!this.typeBindings.hasOwnProperty(type)) {
             throw new Error('Unsupported type: ' + type);
         }
         return this.typeBindings[type];
-    };
-    return OracleTypeResolver;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (OracleTypeResolver);
+    }
+}
 
 
 /***/ }),
@@ -2199,6 +1901,7 @@ var OracleTypeResolver = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SqlServerDatabaseModelToCodeConverter; });
 /* harmony import */ var _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/sqlserver/column/SqlServerColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/sqlserver/column/SqlServerColumnCodeGenerator.ts");
 /* harmony import */ var _erdiagram_generator_database_code_converter_sqlserver_type_SqlServerTypeResolver__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/sqlserver/type/SqlServerTypeResolver */ "./src/main/erdiagram/generator/database/code-converter/sqlserver/type/SqlServerTypeResolver.ts");
 /* harmony import */ var _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/sqlserver/column/SqlServerIdColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/sqlserver/column/SqlServerIdColumnCodeGenerator.ts");
@@ -2207,37 +1910,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
 /* harmony import */ var _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/CaseConverter */ "./src/main/erdiagram/generator/common/case-format/CaseConverter.ts");
 /* harmony import */ var _erdiagram_generator_database_code_converter_sqlserver_config_SqlServerDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/sqlserver/config/SqlServerDatabaseModelToCodeConverterConfigManager */ "./src/main/erdiagram/generator/database/code-converter/sqlserver/config/SqlServerDatabaseModelToCodeConverterConfigManager.ts");
-var __read = (undefined && undefined.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
-var __spread = (undefined && undefined.__spread) || function () {
-    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-    return ar;
-};
-var __values = (undefined && undefined.__values) || function(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
 
 
 
@@ -2246,23 +1918,21 @@ var __values = (undefined && undefined.__values) || function(o) {
 
 
 
-var SqlServerDatabaseModelToCodeConverter = /** @class */ (function () {
-    function SqlServerDatabaseModelToCodeConverter(config) {
+class SqlServerDatabaseModelToCodeConverter {
+    constructor(config) {
         this.config = _erdiagram_generator_database_code_converter_sqlserver_config_SqlServerDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_7__["default"].mergeWithDefaultConfig(config);
         this.tableNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.tableNameCaseFormat);
-        var columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.columnNameCaseFormat);
+        const columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.columnNameCaseFormat);
         this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](new _erdiagram_generator_database_code_converter_sqlserver_type_SqlServerTypeResolver__WEBPACK_IMPORTED_MODULE_1__["default"](this.config.typeBindings), columnNameCaseConverter);
         this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.columnCodeGenerator, columnNameCaseConverter);
         this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
     }
-    SqlServerDatabaseModelToCodeConverter.prototype.generateCode = function (databaseModel) {
-        var _this = this;
-        var allCreateTableStatements = [];
-        var allAlterTableStatements = [];
+    generateCode(databaseModel) {
+        const allCreateTableStatements = [];
+        const allAlterTableStatements = [];
         databaseModel.tables
-            .map(function (table) { return _this.generateTableCode(table); })
-            .forEach(function (_a) {
-            var createTableStatement = _a.createTableStatement, alterTableStatements = _a.alterTableStatements;
+            .map(table => this.generateTableCode(table))
+            .forEach(({ createTableStatement, alterTableStatements }) => {
             allCreateTableStatements.push(createTableStatement);
             if (alterTableStatements) {
                 allAlterTableStatements.push(alterTableStatements);
@@ -2271,81 +1941,61 @@ var SqlServerDatabaseModelToCodeConverter = /** @class */ (function () {
         return allCreateTableStatements.join('\n\n')
             + '\n\n'
             + allAlterTableStatements.join('\n\n');
-    };
+    }
     // FIXME split this method
-    SqlServerDatabaseModelToCodeConverter.prototype.generateTableCode = function (table) {
-        var columnLines = [];
-        var createSequenceLines = [];
-        var fkConstraintLines = [];
-        var otherConstraintLines = [];
-        var outputTableName = this.tableNameCaseConverter.convertCase(table.name);
-        var _a = this.idColumnCodeGenerator.generateIdColumnCode(outputTableName, table.identifierColumnName), idColumnLine = _a.columnLine, pkConstraintLine = _a.pkConstraintLine;
+    generateTableCode(table) {
+        const columnLines = [];
+        const createSequenceLines = [];
+        const fkConstraintLines = [];
+        const otherConstraintLines = [];
+        const outputTableName = this.tableNameCaseConverter.convertCase(table.name);
+        const { columnLine: idColumnLine, pkConstraintLine } = this.idColumnCodeGenerator.generateIdColumnCode(outputTableName, table.identifierColumnName);
         columnLines.push(idColumnLine);
         otherConstraintLines.push(pkConstraintLine);
         this.processColumns(outputTableName, table.columns, columnLines, createSequenceLines, otherConstraintLines);
         this.processReferences(outputTableName, table.references, columnLines, fkConstraintLines, otherConstraintLines);
-        var createTableInnerLines = __spread(columnLines, otherConstraintLines);
-        var createTableLines = __spread(createSequenceLines, [
-            "CREATE TABLE \"" + outputTableName + "\" (",
+        const createTableInnerLines = [
+            ...columnLines,
+            ...otherConstraintLines
+        ];
+        const createTableLines = [
+            ...createSequenceLines,
+            `CREATE TABLE "${outputTableName}" (`,
             Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_4__["indentLines"])(createTableInnerLines).join(',\n'),
             ');'
-        ]);
-        var createTableStatement = createTableLines.join('\n');
-        var alterTableStatements = fkConstraintLines.map(function (fkConstraintLine) {
-            return "ALTER TABLE \"" + outputTableName + "\" ADD " + fkConstraintLine + ";";
+        ];
+        const createTableStatement = createTableLines.join('\n');
+        const alterTableStatements = fkConstraintLines.map(fkConstraintLine => {
+            return `ALTER TABLE "${outputTableName}" ADD ${fkConstraintLine};`;
         }).join('\n');
         return {
-            createTableStatement: createTableStatement,
-            alterTableStatements: alterTableStatements
+            createTableStatement,
+            alterTableStatements
         };
-    };
-    SqlServerDatabaseModelToCodeConverter.prototype.processReferences = function (outputTableName, references, columnLines, fkConstraintLines, otherConstraintLines) {
-        var e_1, _a;
-        try {
-            for (var references_1 = __values(references), references_1_1 = references_1.next(); !references_1_1.done; references_1_1 = references_1.next()) {
-                var reference = references_1_1.value;
-                var _b = this.foreignColumnCodeGenerator.generateForeignColumnCode(outputTableName, reference), columnLine = _b.columnLine, uniqueConstraintLine = _b.uniqueConstraintLine, fkConstraintLine = _b.fkConstraintLine;
-                columnLines.push(columnLine);
-                fkConstraintLines.push(fkConstraintLine);
-                if (uniqueConstraintLine) {
-                    otherConstraintLines.push(uniqueConstraintLine);
-                }
+    }
+    processReferences(outputTableName, references, columnLines, fkConstraintLines, otherConstraintLines) {
+        for (const reference of references) {
+            const { columnLine, uniqueConstraintLine, fkConstraintLine } = this.foreignColumnCodeGenerator.generateForeignColumnCode(outputTableName, reference);
+            columnLines.push(columnLine);
+            fkConstraintLines.push(fkConstraintLine);
+            if (uniqueConstraintLine) {
+                otherConstraintLines.push(uniqueConstraintLine);
             }
         }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-        finally {
-            try {
-                if (references_1_1 && !references_1_1.done && (_a = references_1.return)) _a.call(references_1);
+    }
+    processColumns(outputTableName, columns, columnLines, createSequenceLines, otherConstraintLines) {
+        for (const column of columns) {
+            const { columnLine, createSequenceLine, uniqueConstraintLine } = this.columnCodeGenerator.generateColumnCode(outputTableName, column);
+            columnLines.push(columnLine);
+            if (createSequenceLine) {
+                createSequenceLines.push(createSequenceLine);
             }
-            finally { if (e_1) throw e_1.error; }
-        }
-    };
-    SqlServerDatabaseModelToCodeConverter.prototype.processColumns = function (outputTableName, columns, columnLines, createSequenceLines, otherConstraintLines) {
-        var e_2, _a;
-        try {
-            for (var columns_1 = __values(columns), columns_1_1 = columns_1.next(); !columns_1_1.done; columns_1_1 = columns_1.next()) {
-                var column = columns_1_1.value;
-                var _b = this.columnCodeGenerator.generateColumnCode(outputTableName, column), columnLine = _b.columnLine, createSequenceLine = _b.createSequenceLine, uniqueConstraintLine = _b.uniqueConstraintLine;
-                columnLines.push(columnLine);
-                if (createSequenceLine) {
-                    createSequenceLines.push(createSequenceLine);
-                }
-                if (uniqueConstraintLine) {
-                    otherConstraintLines.push(uniqueConstraintLine);
-                }
+            if (uniqueConstraintLine) {
+                otherConstraintLines.push(uniqueConstraintLine);
             }
         }
-        catch (e_2_1) { e_2 = { error: e_2_1 }; }
-        finally {
-            try {
-                if (columns_1_1 && !columns_1_1.done && (_a = columns_1.return)) _a.call(columns_1);
-            }
-            finally { if (e_2) throw e_2.error; }
-        }
-    };
-    return SqlServerDatabaseModelToCodeConverter;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (SqlServerDatabaseModelToCodeConverter);
+    }
+}
 
 
 /***/ }),
@@ -2359,33 +2009,33 @@ var SqlServerDatabaseModelToCodeConverter = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var SqlServerColumnCodeGenerator = /** @class */ (function () {
-    function SqlServerColumnCodeGenerator(typeResolver, columnNameCaseConverter) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SqlServerColumnCodeGenerator; });
+class SqlServerColumnCodeGenerator {
+    constructor(typeResolver, columnNameCaseConverter) {
         this.typeResolver = typeResolver;
         this.columnNameCaseConverter = columnNameCaseConverter;
     }
     // FIXME refactor the way "identity" flag is used
-    SqlServerColumnCodeGenerator.prototype.generateColumnCode = function (outputTableName, column, identity) {
-        if (identity === void 0) { identity = false; }
-        var outputColumnName = this.columnNameCaseConverter.convertCase(column.name);
-        var autoincrementalSequenceName = this.getAutoincrementalSequenceName(outputTableName, outputColumnName);
+    generateColumnCode(outputTableName, column, identity = false) {
+        const outputColumnName = this.columnNameCaseConverter.convertCase(column.name);
+        const autoincrementalSequenceName = this.getAutoincrementalSequenceName(outputTableName, outputColumnName);
         return {
             createSequenceLine: column.autoincremental ? this.generateCreateSequenceLine(autoincrementalSequenceName) : undefined,
             columnLine: this.generateColumnDeclarationLine(outputColumnName, column, identity, autoincrementalSequenceName),
             uniqueConstraintLine: column.unique ? this.generateUniqueConstraintLine(outputTableName, outputColumnName) : undefined
         };
-    };
-    SqlServerColumnCodeGenerator.prototype.getAutoincrementalSequenceName = function (outputTableName, outputColumnName) {
-        return outputTableName + "_" + outputColumnName + "_seq";
-    };
-    SqlServerColumnCodeGenerator.prototype.generateCreateSequenceLine = function (autoincrementalSequenceName) {
-        return "CREATE SEQUENCE \"" + autoincrementalSequenceName + "\" START WITH 1;";
-    };
+    }
+    getAutoincrementalSequenceName(outputTableName, outputColumnName) {
+        return `${outputTableName}_${outputColumnName}_seq`;
+    }
+    generateCreateSequenceLine(autoincrementalSequenceName) {
+        return `CREATE SEQUENCE "${autoincrementalSequenceName}" START WITH 1;`;
+    }
     // FIXME refactor this methods - it receives too much arguments
-    SqlServerColumnCodeGenerator.prototype.generateColumnDeclarationLine = function (outputColumnName, column, identity, autoincrementalSequenceName) {
-        var notNull = column.notNull, autoincremental = column.autoincremental, type = column.type, length = column.length;
-        var lineParts = [
-            "\"" + outputColumnName + "\"",
+    generateColumnDeclarationLine(outputColumnName, column, identity, autoincrementalSequenceName) {
+        const { notNull, autoincremental, type, length } = column;
+        const lineParts = [
+            `"${outputColumnName}"`,
             this.generateSqlServerTypeDeclaration(type, length)
         ];
         if (notNull) {
@@ -2395,27 +2045,25 @@ var SqlServerColumnCodeGenerator = /** @class */ (function () {
             lineParts.push('IDENTITY(1, 1)');
         }
         if (autoincremental) {
-            lineParts.push("DEFAULT NEXT VALUE FOR \"" + autoincrementalSequenceName + "\"");
+            lineParts.push(`DEFAULT NEXT VALUE FOR "${autoincrementalSequenceName}"`);
         }
         return lineParts.join(' ');
-    };
-    SqlServerColumnCodeGenerator.prototype.generateSqlServerTypeDeclaration = function (type, length) {
-        var sqlServerType = this.typeResolver.resolveSqlServerType(type);
-        var lengthCode = this.generateLengthCode(length);
+    }
+    generateSqlServerTypeDeclaration(type, length) {
+        const sqlServerType = this.typeResolver.resolveSqlServerType(type);
+        const lengthCode = this.generateLengthCode(length);
         return sqlServerType + lengthCode;
-    };
-    SqlServerColumnCodeGenerator.prototype.generateLengthCode = function (length) {
+    }
+    generateLengthCode(length) {
         if (length.length === 0) {
             return '';
         }
-        return "(" + length.join(', ') + ")";
-    };
-    SqlServerColumnCodeGenerator.prototype.generateUniqueConstraintLine = function (outputTableName, outputColumnName) {
-        return "CONSTRAINT \"" + outputTableName + "_" + outputColumnName + "_unique\" UNIQUE (\"" + outputColumnName + "\")";
-    };
-    return SqlServerColumnCodeGenerator;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (SqlServerColumnCodeGenerator);
+        return `(${length.join(', ')})`;
+    }
+    generateUniqueConstraintLine(outputTableName, outputColumnName) {
+        return `CONSTRAINT "${outputTableName}_${outputColumnName}_unique" UNIQUE ("${outputColumnName}")`;
+    }
+}
 
 
 /***/ }),
@@ -2429,44 +2077,43 @@ var SqlServerColumnCodeGenerator = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SqlServerForeignColumnCodeGenerator; });
 /* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
 
-var SqlServerForeignColumnCodeGenerator = /** @class */ (function () {
-    function SqlServerForeignColumnCodeGenerator(columnCodeGenerator, tableNameCaseConverter, columnNameCaseConverter) {
+class SqlServerForeignColumnCodeGenerator {
+    constructor(columnCodeGenerator, tableNameCaseConverter, columnNameCaseConverter) {
         this.columnCodeGenerator = columnCodeGenerator;
         this.tableNameCaseConverter = tableNameCaseConverter;
         this.columnNameCaseConverter = columnNameCaseConverter;
     }
-    SqlServerForeignColumnCodeGenerator.prototype.generateForeignColumnCode = function (outputTableName, reference) {
-        var columnDescriptor = this.createForeignKeyColumnDescriptor(reference);
-        var _a = this.columnCodeGenerator.generateColumnCode(outputTableName, columnDescriptor), columnLine = _a.columnLine, uniqueConstraintLine = _a.uniqueConstraintLine;
+    generateForeignColumnCode(outputTableName, reference) {
+        const columnDescriptor = this.createForeignKeyColumnDescriptor(reference);
+        const { columnLine, uniqueConstraintLine } = this.columnCodeGenerator.generateColumnCode(outputTableName, columnDescriptor);
         return {
-            columnLine: columnLine,
-            uniqueConstraintLine: uniqueConstraintLine,
+            columnLine,
+            uniqueConstraintLine,
             fkConstraintLine: this.createForeignKeyConstraint(outputTableName, reference)
         };
-    };
-    SqlServerForeignColumnCodeGenerator.prototype.createForeignKeyColumnDescriptor = function (reference) {
-        var columnName = reference.columnName, notNull = reference.notNull, unique = reference.unique;
+    }
+    createForeignKeyColumnDescriptor(reference) {
+        const { columnName, notNull, unique } = reference;
         return {
             name: columnName,
             type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
             length: [],
-            notNull: notNull,
-            unique: unique,
+            notNull,
+            unique,
             autoincremental: false
         };
-    };
-    SqlServerForeignColumnCodeGenerator.prototype.createForeignKeyConstraint = function (outputTableName, reference) {
-        var outputColumnName = this.columnNameCaseConverter.convertCase(reference.columnName);
-        var outputTargetTableName = this.tableNameCaseConverter.convertCase(reference.targetTableName);
-        var outputTargetColumnName = this.columnNameCaseConverter.convertCase(reference.targetTableIdentifierColumnName);
-        return "CONSTRAINT \"" + outputTableName + "_" + outputColumnName + "_fk\" FOREIGN KEY (\"" + outputColumnName + "\")"
-            + (" REFERENCES \"" + outputTargetTableName + "\" (\"" + outputTargetColumnName + "\")");
-    };
-    return SqlServerForeignColumnCodeGenerator;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (SqlServerForeignColumnCodeGenerator);
+    }
+    createForeignKeyConstraint(outputTableName, reference) {
+        const outputColumnName = this.columnNameCaseConverter.convertCase(reference.columnName);
+        const outputTargetTableName = this.tableNameCaseConverter.convertCase(reference.targetTableName);
+        const outputTargetColumnName = this.columnNameCaseConverter.convertCase(reference.targetTableIdentifierColumnName);
+        return `CONSTRAINT "${outputTableName}_${outputColumnName}_fk" FOREIGN KEY ("${outputColumnName}")`
+            + ` REFERENCES "${outputTargetTableName}" ("${outputTargetColumnName}")`;
+    }
+}
 
 
 /***/ }),
@@ -2480,23 +2127,24 @@ var SqlServerForeignColumnCodeGenerator = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SqlServerIdColumnCodeGenerator; });
 /* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
 
-var SqlServerIdColumnCodeGenerator = /** @class */ (function () {
-    function SqlServerIdColumnCodeGenerator(columnCodeGenerator, columnNameCaseConverter) {
+class SqlServerIdColumnCodeGenerator {
+    constructor(columnCodeGenerator, columnNameCaseConverter) {
         this.columnCodeGenerator = columnCodeGenerator;
         this.columnNameCaseConverter = columnNameCaseConverter;
     }
-    SqlServerIdColumnCodeGenerator.prototype.generateIdColumnCode = function (outputTableName, identifierColumnName) {
-        var column = this.createIdColumnDescriptor(identifierColumnName);
-        var columnLine = this.columnCodeGenerator.generateColumnCode(outputTableName, column, true).columnLine;
-        var pkConstraintLine = this.createPrimaryKeyConstraint(outputTableName, column);
+    generateIdColumnCode(outputTableName, identifierColumnName) {
+        const column = this.createIdColumnDescriptor(identifierColumnName);
+        const { columnLine } = this.columnCodeGenerator.generateColumnCode(outputTableName, column, true);
+        const pkConstraintLine = this.createPrimaryKeyConstraint(outputTableName, column);
         return {
-            columnLine: columnLine,
-            pkConstraintLine: pkConstraintLine
+            columnLine,
+            pkConstraintLine
         };
-    };
-    SqlServerIdColumnCodeGenerator.prototype.createIdColumnDescriptor = function (identifierColumnName) {
+    }
+    createIdColumnDescriptor(identifierColumnName) {
         return {
             name: identifierColumnName,
             type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
@@ -2509,14 +2157,12 @@ var SqlServerIdColumnCodeGenerator = /** @class */ (function () {
             // need to manually define an UNIQUE KEY constraint
             unique: false
         };
-    };
-    SqlServerIdColumnCodeGenerator.prototype.createPrimaryKeyConstraint = function (outputTableName, column) {
-        var columnName = this.columnNameCaseConverter.convertCase(column.name);
-        return "CONSTRAINT \"" + outputTableName + "_pk\" PRIMARY KEY (\"" + columnName + "\")";
-    };
-    return SqlServerIdColumnCodeGenerator;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (SqlServerIdColumnCodeGenerator);
+    }
+    createPrimaryKeyConstraint(outputTableName, column) {
+        const columnName = this.columnNameCaseConverter.convertCase(column.name);
+        return `CONSTRAINT "${outputTableName}_pk" PRIMARY KEY ("${columnName}")`;
+    }
+}
 
 
 /***/ }),
@@ -2535,72 +2181,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
 /* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
 /* harmony import */ var _erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/record-utils */ "./src/main/erdiagram/util/record-utils.ts");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (undefined && undefined.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 
 
 
 
-var SqlServerDatabaseModelToCodeConverterConfigManager = /** @class */ (function (_super) {
-    __extends(SqlServerDatabaseModelToCodeConverterConfigManager, _super);
-    function SqlServerDatabaseModelToCodeConverterConfigManager() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    SqlServerDatabaseModelToCodeConverterConfigManager.prototype.getDefaultConfig = function () {
-        var _a;
+class SqlServerDatabaseModelToCodeConverterConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__["default"] {
+    getDefaultConfig() {
         return {
-            typeBindings: (_a = {},
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER] = 'BIGINT',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT] = 'NVARCHAR',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG] = 'BIGINT',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT] = 'INT',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT] = 'SMALLINT',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL] = 'DECIMAL',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN] = 'BIT',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE] = 'DATE',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME] = 'TIME',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME] = 'DATETIME2',
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB] = 'VARBINARY(MAX)',
-                _a),
+            typeBindings: {
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: 'BIGINT',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: 'NVARCHAR',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: 'BIGINT',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: 'INT',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: 'SMALLINT',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: 'DECIMAL',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: 'BIT',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: 'DATE',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: 'TIME',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: 'DATETIME2',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: 'VARBINARY(MAX)'
+            },
             tableNameCaseFormat: _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL,
             columnNameCaseFormat: _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL,
         };
-    };
-    SqlServerDatabaseModelToCodeConverterConfigManager.prototype.mergeConfigs = function (fullConfig, partialConfig) {
-        return __assign(__assign(__assign({}, fullConfig), partialConfig), { typeBindings: __assign(__assign({}, fullConfig.typeBindings), partialConfig === null || partialConfig === void 0 ? void 0 : partialConfig.typeBindings) });
-    };
-    SqlServerDatabaseModelToCodeConverterConfigManager.prototype.convertToSerializableObject = function (fullConfig) {
-        return __assign(__assign({}, fullConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findKeyFromValue"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.tableNameCaseFormat), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findKeyFromValue"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.columnNameCaseFormat) });
-    };
-    SqlServerDatabaseModelToCodeConverterConfigManager.prototype.convertFromSerializableObject = function (serializableConfig) {
-        return __assign(__assign({}, serializableConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.tableNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.columnNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL) });
-    };
-    return SqlServerDatabaseModelToCodeConverterConfigManager;
-}(_erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__["default"]));
-
-var sqlServerDatabaseModelToCodeConverterConfigManager = new SqlServerDatabaseModelToCodeConverterConfigManager();
+    }
+    mergeConfigs(fullConfig, partialConfig) {
+        return Object.assign(Object.assign(Object.assign({}, fullConfig), partialConfig), { typeBindings: Object.assign(Object.assign({}, fullConfig.typeBindings), partialConfig === null || partialConfig === void 0 ? void 0 : partialConfig.typeBindings) });
+    }
+    convertToSerializableObject(fullConfig) {
+        return Object.assign(Object.assign({}, fullConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findKeyFromValue"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.tableNameCaseFormat), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findKeyFromValue"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.columnNameCaseFormat) });
+    }
+    convertFromSerializableObject(serializableConfig) {
+        return Object.assign(Object.assign({}, serializableConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.tableNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.columnNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL) });
+    }
+}
+const sqlServerDatabaseModelToCodeConverterConfigManager = new SqlServerDatabaseModelToCodeConverterConfigManager();
 /* harmony default export */ __webpack_exports__["default"] = (sqlServerDatabaseModelToCodeConverterConfigManager);
 
 
@@ -2659,19 +2274,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var SqlServerTypeResolver = /** @class */ (function () {
-    function SqlServerTypeResolver(typeBindings) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SqlServerTypeResolver; });
+class SqlServerTypeResolver {
+    constructor(typeBindings) {
         this.typeBindings = typeBindings;
     }
-    SqlServerTypeResolver.prototype.resolveSqlServerType = function (type) {
+    resolveSqlServerType(type) {
         if (!this.typeBindings.hasOwnProperty(type)) {
             throw new Error('Unsupported type: ' + type);
         }
         return this.typeBindings[type];
-    };
-    return SqlServerTypeResolver;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (SqlServerTypeResolver);
+    }
+}
 
 
 /***/ }),
@@ -2723,173 +2337,137 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DatabaseModelGenerator; });
 /* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pluralize */ "./node_modules/pluralize/pluralize.js");
 /* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(pluralize__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
 /* harmony import */ var _erdiagram_generator_database_model_config_DatabaseModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/database/model/config/DatabaseModelGeneratorConfigManager */ "./src/main/erdiagram/generator/database/model/config/DatabaseModelGeneratorConfigManager.ts");
 /* harmony import */ var _erdiagram_util_map_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/map-utils */ "./src/main/erdiagram/util/map-utils.ts");
-var __values = (undefined && undefined.__values) || function(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
 
 
 
 
-var DatabaseModelGenerator = /** @class */ (function () {
-    function DatabaseModelGenerator(config) {
+class DatabaseModelGenerator {
+    constructor(config) {
         this.config = _erdiagram_generator_database_model_config_DatabaseModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_2__["default"].mergeWithDefaultConfig(config);
     }
-    DatabaseModelGenerator.prototype.generateDatabaseModel = function (model) {
-        var entityIdentifiersMap = Object(_erdiagram_util_map_utils__WEBPACK_IMPORTED_MODULE_3__["classifyBy"])(model.entities.filter(function (entity) { return entity.identifierPropertyName; }), function (entity) { return entity.name; }, function (entity) { return entity.identifierPropertyName; });
-        var tables = [];
+    generateDatabaseModel(model) {
+        const entityIdentifiersMap = Object(_erdiagram_util_map_utils__WEBPACK_IMPORTED_MODULE_3__["classifyBy"])(model.entities.filter(entity => entity.identifierPropertyName), entity => entity.name, entity => entity.identifierPropertyName);
+        const tables = [];
         this.generateEntityTables(model, entityIdentifiersMap, tables);
         this.generateRelationshipTables(model, entityIdentifiersMap, tables);
         return {
-            tables: tables
+            tables
         };
-    };
-    DatabaseModelGenerator.prototype.generateEntityTables = function (model, entityIdentifiersMap, tables) {
-        var _this = this;
+    }
+    generateEntityTables(model, entityIdentifiersMap, tables) {
         model.entities
-            .map(function (entity) { return _this.generateEntityTable(entity, model, entityIdentifiersMap); })
-            .forEach(function (sentence) { return tables.push(sentence); });
-    };
-    DatabaseModelGenerator.prototype.generateEntityTable = function (entity, model, entityIdentifiersMap) {
-        var e_1, _a, e_2, _b;
-        var columns = [];
-        var references = [];
-        try {
-            for (var _c = __values(entity.properties), _d = _c.next(); !_d.done; _d = _c.next()) {
-                var property = _d.value;
-                columns.push(this.mapPropertyToColumn(property));
-            }
+            .map(entity => this.generateEntityTable(entity, model, entityIdentifiersMap))
+            .forEach(sentence => tables.push(sentence));
+    }
+    generateEntityTable(entity, model, entityIdentifiersMap) {
+        const columns = [];
+        const references = [];
+        for (const property of entity.properties) {
+            columns.push(this.mapPropertyToColumn(property));
         }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-        finally {
-            try {
-                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
-            }
-            finally { if (e_1) throw e_1.error; }
-        }
-        try {
-            for (var _e = __values(model.relationships), _f = _e.next(); !_f.done; _f = _e.next()) {
-                var relationship = _f.value;
-                if (relationship.rightMember.cardinality !== _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY) {
-                    if (relationship.leftMember.entity === entity.name) {
-                        var isOneToOneRelationship = relationship.leftMember.cardinality !== _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY;
-                        references.push(this.createTableReference(relationship.rightMember, entityIdentifiersMap, isOneToOneRelationship));
-                    }
-                }
-                else if (relationship.leftMember.cardinality !== _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY) {
-                    if (relationship.rightMember.entity === entity.name) {
-                        references.push(this.createTableReference(relationship.leftMember, entityIdentifiersMap));
-                    }
+        for (const relationship of model.relationships) {
+            if (relationship.rightMember.cardinality !== _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY) {
+                if (relationship.leftMember.entity === entity.name) {
+                    const isOneToOneRelationship = relationship.leftMember.cardinality !== _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY;
+                    references.push(this.createTableReference(relationship.rightMember, entityIdentifiersMap, isOneToOneRelationship));
                 }
             }
-        }
-        catch (e_2_1) { e_2 = { error: e_2_1 }; }
-        finally {
-            try {
-                if (_f && !_f.done && (_b = _e.return)) _b.call(_e);
+            else if (relationship.leftMember.cardinality !== _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY) {
+                if (relationship.rightMember.entity === entity.name) {
+                    references.push(this.createTableReference(relationship.leftMember, entityIdentifiersMap));
+                }
             }
-            finally { if (e_2) throw e_2.error; }
         }
         return {
             name: this.pluralizeEntityNameIfApplies(entity.name),
             identifierColumnName: this.getIdentifierColumnName(entity.name, entityIdentifiersMap),
-            columns: columns,
-            references: references
+            columns,
+            references
         };
-    };
-    DatabaseModelGenerator.prototype.generateRelationshipTables = function (model, entityIdentifiersMap, tables) {
-        var _this = this;
+    }
+    generateRelationshipTables(model, entityIdentifiersMap, tables) {
         model.relationships
-            .filter(function (relationship) { return _this.isManyToManyRelationship(relationship); })
-            .map(function (relationship) { return _this.generateRelationshipTable(relationship, entityIdentifiersMap); })
-            .forEach(function (sentence) { return tables.push(sentence); });
-    };
-    DatabaseModelGenerator.prototype.generateRelationshipTable = function (relationship, entityIdentifiersMap) {
-        var name = this.getRelationshipTableName(relationship);
-        var identifierColumnName = this.getRelationshipTableIdentifierColumnName(relationship, entityIdentifiersMap);
+            .filter(relationship => this.isManyToManyRelationship(relationship))
+            .map(relationship => this.generateRelationshipTable(relationship, entityIdentifiersMap))
+            .forEach(sentence => tables.push(sentence));
+    }
+    generateRelationshipTable(relationship, entityIdentifiersMap) {
+        const name = this.getRelationshipTableName(relationship);
+        const identifierColumnName = this.getRelationshipTableIdentifierColumnName(relationship, entityIdentifiersMap);
         return {
-            name: name,
-            identifierColumnName: identifierColumnName,
+            name,
+            identifierColumnName,
             columns: [],
             references: [
                 this.createTableReference(relationship.leftMember, entityIdentifiersMap),
                 this.createTableReference(relationship.rightMember, entityIdentifiersMap)
             ]
         };
-    };
-    DatabaseModelGenerator.prototype.getRelationshipTableName = function (relationship) {
-        var relationShipName = relationship.relationShipName, leftMember = relationship.leftMember, rightMember = relationship.rightMember;
+    }
+    getRelationshipTableName(relationship) {
+        const { relationShipName, leftMember, rightMember } = relationship;
         if (relationShipName) {
             return relationShipName;
         }
         return this.pluralizeEntityNameIfApplies(leftMember.entity)
             + this.pluralizeEntityNameIfApplies(rightMember.entity);
-    };
-    DatabaseModelGenerator.prototype.getRelationshipTableIdentifierColumnName = function (relationship, entityIdentifiersMap) {
-        var relationShipName = relationship.relationShipName, leftMember = relationship.leftMember, rightMember = relationship.rightMember;
+    }
+    getRelationshipTableIdentifierColumnName(relationship, entityIdentifiersMap) {
+        const { relationShipName, leftMember, rightMember } = relationship;
         if (relationShipName) {
             return this.getIdentifierColumnName(relationShipName, entityIdentifiersMap);
         }
         return this.getIdentifierColumnName(leftMember.entity + rightMember.entity, entityIdentifiersMap);
-    };
-    DatabaseModelGenerator.prototype.createTableReference = function (toMember, entityIdentifiersMap, unique) {
-        if (unique === void 0) { unique = false; }
-        var entityAlias = toMember.entityAlias, entity = toMember.entity, cardinality = toMember.cardinality;
+    }
+    createTableReference(toMember, entityIdentifiersMap, unique = false) {
+        const { entityAlias, entity, cardinality } = toMember;
         return {
-            columnName: entityAlias + "Id",
+            columnName: `${entityAlias}Id`,
             targetTableName: this.pluralizeEntityNameIfApplies(entity),
             targetTableIdentifierColumnName: this.getIdentifierColumnName(entity, entityIdentifiersMap),
             notNull: cardinality !== _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].ZERO_OR_ONE,
-            unique: unique
+            unique
         };
-    };
-    DatabaseModelGenerator.prototype.pluralizeEntityNameIfApplies = function (entityName) {
+    }
+    pluralizeEntityNameIfApplies(entityName) {
         if (this.config.usePluralTableNames) {
             return pluralize__WEBPACK_IMPORTED_MODULE_0___default()(entityName);
         }
         else {
             return entityName;
         }
-    };
-    DatabaseModelGenerator.prototype.getIdentifierColumnName = function (entityName, entityIdentifiersMap) {
+    }
+    getIdentifierColumnName(entityName, entityIdentifiersMap) {
         if (entityIdentifiersMap.has(entityName)) {
             return entityIdentifiersMap.get(entityName);
         }
-        var idNamingStrategy = this.config.idNamingStrategy;
+        const { idNamingStrategy } = this.config;
         return idNamingStrategy(entityName);
-    };
-    DatabaseModelGenerator.prototype.mapPropertyToColumn = function (property) {
-        var name = property.name, optional = property.optional, autoincremental = property.autoincremental, unique = property.unique, type = property.type, length = property.length;
+    }
+    mapPropertyToColumn(property) {
+        const { name, optional, autoincremental, unique, type, length } = property;
         return {
-            name: name,
+            name,
             notNull: !optional,
-            autoincremental: autoincremental,
-            unique: unique,
-            type: type,
-            length: length
+            autoincremental,
+            unique,
+            type,
+            length
         };
-    };
-    DatabaseModelGenerator.prototype.isManyToManyRelationship = function (relationship) {
+    }
+    isManyToManyRelationship(relationship) {
         return [
             relationship.leftMember,
             relationship.rightMember
-        ].every(function (member) { return member.cardinality === _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY; });
-    };
-    return DatabaseModelGenerator;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (DatabaseModelGenerator);
+        ].every(member => member.cardinality === _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY);
+    }
+}
 
 
 /***/ }),
@@ -2907,57 +2485,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
 /* harmony import */ var _erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies */ "./src/main/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies.ts");
 /* harmony import */ var _erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/util/record-utils */ "./src/main/erdiagram/util/record-utils.ts");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (undefined && undefined.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 
 
 
-var DatabaseModelGeneratorConfigManager = /** @class */ (function (_super) {
-    __extends(DatabaseModelGeneratorConfigManager, _super);
-    function DatabaseModelGeneratorConfigManager() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    DatabaseModelGeneratorConfigManager.prototype.getDefaultConfig = function () {
+class DatabaseModelGeneratorConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"] {
+    getDefaultConfig() {
         return {
             usePluralTableNames: false,
             idNamingStrategy: _erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"].DEFAULT
         };
-    };
-    DatabaseModelGeneratorConfigManager.prototype.mergeConfigs = function (fullConfig, partialConfig) {
-        return __assign(__assign({}, fullConfig), partialConfig);
-    };
-    DatabaseModelGeneratorConfigManager.prototype.convertToSerializableObject = function (fullConfig) {
-        return __assign(__assign({}, fullConfig), { idNamingStrategy: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_2__["findKeyFromValue"])(_erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.idNamingStrategy) });
-    };
-    DatabaseModelGeneratorConfigManager.prototype.convertFromSerializableObject = function (serializableConfig) {
-        return __assign(__assign({}, serializableConfig), { idNamingStrategy: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_2__["findValueFromNullableKey"])(_erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.idNamingStrategy, _erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"].DEFAULT) });
-    };
-    return DatabaseModelGeneratorConfigManager;
-}(_erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"]));
-
-var databaseModelGeneratorConfigManager = new DatabaseModelGeneratorConfigManager();
+    }
+    mergeConfigs(fullConfig, partialConfig) {
+        return Object.assign(Object.assign({}, fullConfig), partialConfig);
+    }
+    convertToSerializableObject(fullConfig) {
+        return Object.assign(Object.assign({}, fullConfig), { idNamingStrategy: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_2__["findKeyFromValue"])(_erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.idNamingStrategy) });
+    }
+    convertFromSerializableObject(serializableConfig) {
+        return Object.assign(Object.assign({}, serializableConfig), { idNamingStrategy: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_2__["findValueFromNullableKey"])(_erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.idNamingStrategy, _erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"].DEFAULT) });
+    }
+}
+const databaseModelGeneratorConfigManager = new DatabaseModelGeneratorConfigManager();
 /* harmony default export */ __webpack_exports__["default"] = (databaseModelGeneratorConfigManager);
 
 
@@ -3058,18 +2606,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var EntityRelationshipModelToClassCodeConverter = /** @class */ (function () {
-    function EntityRelationshipModelToClassCodeConverter(classModelGenerator, classModelToCodeConverter) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EntityRelationshipModelToClassCodeConverter; });
+class EntityRelationshipModelToClassCodeConverter {
+    constructor(classModelGenerator, classModelToCodeConverter) {
         this.classModelGenerator = classModelGenerator;
         this.classModelToCodeConverter = classModelToCodeConverter;
     }
-    EntityRelationshipModelToClassCodeConverter.prototype.generateCode = function (entityRelationshipModel) {
-        var classModel = this.classModelGenerator.generateClassModel(entityRelationshipModel);
+    generateCode(entityRelationshipModel) {
+        const classModel = this.classModelGenerator.generateClassModel(entityRelationshipModel);
         return this.classModelToCodeConverter.generateCode(classModel);
-    };
-    return EntityRelationshipModelToClassCodeConverter;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (EntityRelationshipModelToClassCodeConverter);
+    }
+}
 
 
 /***/ }),
@@ -3137,119 +2684,78 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return JavaClassModelToCodeConverter; });
 /* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
 /* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
 /* harmony import */ var _erdiagram_generator_oop_code_converter_java_type_JavaParameterizedType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/java/type/JavaParameterizedType */ "./src/main/erdiagram/generator/oop/code-converter/java/type/JavaParameterizedType.ts");
 /* harmony import */ var _erdiagram_generator_oop_code_converter_java_type_JavaType__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/java/type/JavaType */ "./src/main/erdiagram/generator/oop/code-converter/java/type/JavaType.ts");
 /* harmony import */ var _erdiagram_util_array_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/util/array-utils */ "./src/main/erdiagram/util/array-utils.ts");
 /* harmony import */ var _erdiagram_generator_oop_code_converter_java_config_JavaClassModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/java/config/JavaClassModelToCodeConverterConfigManager */ "./src/main/erdiagram/generator/oop/code-converter/java/config/JavaClassModelToCodeConverterConfigManager.ts");
-var __values = (undefined && undefined.__values) || function(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
-var __read = (undefined && undefined.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
-var __spread = (undefined && undefined.__spread) || function () {
-    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-    return ar;
-};
 
 
 
 
 
 
-var EMPTY_STRING = '';
-var JavaClassModelToCodeConverter = /** @class */ (function () {
-    function JavaClassModelToCodeConverter(config) {
+const EMPTY_STRING = '';
+class JavaClassModelToCodeConverter {
+    constructor(config) {
         this.config = _erdiagram_generator_oop_code_converter_java_config_JavaClassModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_5__["default"].mergeWithDefaultConfig(config);
     }
-    JavaClassModelToCodeConverter.prototype.generateCode = function (classModel) {
-        var _this = this;
+    generateCode(classModel) {
         return classModel.classes
-            .map(function (classDescriptor) { return _this.generateClass(classDescriptor); })
+            .map(classDescriptor => this.generateClass(classDescriptor))
             .join('\n\n');
-    };
-    JavaClassModelToCodeConverter.prototype.generateClass = function (classDescriptor) {
-        var e_1, _a;
-        var className = Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(classDescriptor.name);
-        var fieldsTypes = [];
-        var fieldsLines = [];
-        var methodsLines = [];
-        try {
-            for (var _b = __values(classDescriptor.fields), _c = _b.next(); !_c.done; _c = _b.next()) {
-                var field = _c.value;
-                var _d = this.createField(field), fieldType = _d.fieldType, fieldLines = _d.fieldLines, getterLines = _d.getterLines, setterLines = _d.setterLines;
-                fieldsTypes.push(fieldType);
-                fieldsLines.push.apply(fieldsLines, __spread(fieldLines));
-                methodsLines.push.apply(methodsLines, __spread(getterLines, [EMPTY_STRING], setterLines, [EMPTY_STRING]));
-            }
+    }
+    generateClass(classDescriptor) {
+        const className = Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(classDescriptor.name);
+        const fieldsTypes = [];
+        const fieldsLines = [];
+        const methodsLines = [];
+        for (const field of classDescriptor.fields) {
+            const { fieldType, fieldLines, getterLines, setterLines } = this.createField(field);
+            fieldsTypes.push(fieldType);
+            fieldsLines.push(...fieldLines);
+            methodsLines.push(...getterLines, EMPTY_STRING, ...setterLines, EMPTY_STRING);
         }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-        finally {
-            try {
-                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-            }
-            finally { if (e_1) throw e_1.error; }
-        }
-        var classOuterLines = [
-            "/* ========== " + className + " class ========== */",
+        const classOuterLines = [
+            `/* ========== ${className} class ========== */`,
             EMPTY_STRING
         ];
         if (this.config.generatedClassesPackage) {
-            classOuterLines.push("package " + this.config.generatedClassesPackage + ";", EMPTY_STRING);
+            classOuterLines.push(`package ${this.config.generatedClassesPackage};`, EMPTY_STRING);
         }
-        var importLines = this.createImportStatements(fieldsTypes);
+        const importLines = this.createImportStatements(fieldsTypes);
         if (this.config.useSpringNullabilityAnnotations) {
             // FIXME gestionar estos imports de otra forma
             // Quizás hacer que createField() devuelva qué tipos utiliza, y no solo el tipo del campo
-            var importNonNullAnnotation = classDescriptor.fields.some(function (f) { return !f.nullable; });
+            const importNonNullAnnotation = classDescriptor.fields.some(f => !f.nullable);
             if (importNonNullAnnotation) {
                 importLines.push('import org.springframework.lang.NonNull;');
             }
-            var importNullableAnnotation = classDescriptor.fields.some(function (f) { return f.nullable; });
+            const importNullableAnnotation = classDescriptor.fields.some(f => f.nullable);
             if (importNullableAnnotation) {
                 importLines.push('import org.springframework.lang.Nullable;');
             }
         }
         if (importLines.length !== 0) {
-            classOuterLines.push.apply(classOuterLines, __spread(importLines, [EMPTY_STRING]));
+            classOuterLines.push(...importLines, EMPTY_STRING);
         }
-        classOuterLines.push("public class " + className + " {");
-        var classContentLines = __spread([
-            EMPTY_STRING
-        ], fieldsLines, [
-            EMPTY_STRING
-        ], methodsLines);
-        classOuterLines.push.apply(classOuterLines, __spread(Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_1__["indentLines"])(classContentLines)));
-        classOuterLines.push("}");
+        classOuterLines.push(`public class ${className} {`);
+        const classContentLines = [
+            EMPTY_STRING,
+            ...fieldsLines,
+            EMPTY_STRING,
+            ...methodsLines
+        ];
+        classOuterLines.push(...Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_1__["indentLines"])(classContentLines));
+        classOuterLines.push(`}`);
         return classOuterLines.join('\n');
-    };
-    JavaClassModelToCodeConverter.prototype.createField = function (field) {
-        var fieldName = field.name;
-        var capitalizedFieldName = Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(fieldName);
-        var fieldLines = [];
+    }
+    createField(field) {
+        const fieldName = field.name;
+        const capitalizedFieldName = Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(fieldName);
+        const fieldLines = [];
         // TODO use length for validation annotations?
         if (this.config.useSpringNullabilityAnnotations) {
             if (field.nullable) {
@@ -3259,41 +2765,41 @@ var JavaClassModelToCodeConverter = /** @class */ (function () {
                 fieldLines.push('@NonNull');
             }
         }
-        var javaType = this.mapFieldTypeToJavaType(field);
-        var formattedJavaType = javaType.formatSimple();
-        fieldLines.push("private " + formattedJavaType + " " + fieldName + ";");
-        var getterLines = [
-            "public " + formattedJavaType + " get" + capitalizedFieldName + "() {",
-            Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_1__["indentLine"])("return " + fieldName + ";"),
+        const javaType = this.mapFieldTypeToJavaType(field);
+        const formattedJavaType = javaType.formatSimple();
+        fieldLines.push(`private ${formattedJavaType} ${fieldName};`);
+        const getterLines = [
+            `public ${formattedJavaType} get${capitalizedFieldName}() {`,
+            Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_1__["indentLine"])(`return ${fieldName};`),
             '}',
         ];
-        var setterLines = [
-            "public " + formattedJavaType + " set" + capitalizedFieldName + "(" + formattedJavaType + " " + fieldName + ") {",
-            Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_1__["indentLine"])("this." + fieldName + " = " + fieldName + ";"),
+        const setterLines = [
+            `public ${formattedJavaType} set${capitalizedFieldName}(${formattedJavaType} ${fieldName}) {`,
+            Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_1__["indentLine"])(`this.${fieldName} = ${fieldName};`),
             '}',
         ];
         return {
             fieldType: javaType,
-            fieldLines: fieldLines,
-            getterLines: getterLines,
-            setterLines: setterLines
+            fieldLines,
+            getterLines,
+            setterLines
         };
-    };
-    JavaClassModelToCodeConverter.prototype.mapFieldTypeToJavaType = function (field) {
+    }
+    mapFieldTypeToJavaType(field) {
         if (field.list) {
             return this.mapListTypeToJavaType(field);
         }
         else {
             return this.mapSingleTypeToJavaType(field);
         }
-    };
-    JavaClassModelToCodeConverter.prototype.mapListTypeToJavaType = function (field) {
+    }
+    mapListTypeToJavaType(field) {
         return Object(_erdiagram_generator_oop_code_converter_java_type_JavaParameterizedType__WEBPACK_IMPORTED_MODULE_2__["createJavaParameterizedType"])('List', 'java.util', [
             this.mapSingleTypeToJavaType(field)
         ]);
-    };
-    JavaClassModelToCodeConverter.prototype.mapSingleTypeToJavaType = function (field) {
-        var entityType = field.entityType, primitiveType = field.primitiveType;
+    }
+    mapSingleTypeToJavaType(field) {
+        const { entityType, primitiveType } = field;
         if (entityType) {
             if (primitiveType) {
                 throw new Error('Invalid field descriptor: provided both primitive and entity types');
@@ -3307,43 +2813,28 @@ var JavaClassModelToCodeConverter = /** @class */ (function () {
             throw new Error('Unsupported type: ' + primitiveType);
         }
         return this.config.typeBindings[primitiveType];
-    };
-    JavaClassModelToCodeConverter.prototype.createImportStatements = function (javaTypes) {
-        var _this = this;
-        var importStatements = this.unrollTypesRecursively(javaTypes)
-            .filter(function (javaType) { return _this.isImportRequired(javaType); })
-            .map(function (javaType) { return "import " + javaType.canonicalName + ";"; });
+    }
+    createImportStatements(javaTypes) {
+        const importStatements = this.unrollTypesRecursively(javaTypes)
+            .filter(javaType => this.isImportRequired(javaType))
+            .map(javaType => `import ${javaType.canonicalName};`);
         return Object(_erdiagram_util_array_utils__WEBPACK_IMPORTED_MODULE_4__["removeDuplicates"])(importStatements).sort();
-    };
-    JavaClassModelToCodeConverter.prototype.unrollTypesRecursively = function (javaTypes, appendTo) {
-        var e_2, _a;
-        if (appendTo === void 0) { appendTo = []; }
-        try {
-            for (var javaTypes_1 = __values(javaTypes), javaTypes_1_1 = javaTypes_1.next(); !javaTypes_1_1.done; javaTypes_1_1 = javaTypes_1.next()) {
-                var javaType = javaTypes_1_1.value;
-                appendTo.push(javaType);
-                if (Object(_erdiagram_generator_oop_code_converter_java_type_JavaParameterizedType__WEBPACK_IMPORTED_MODULE_2__["isJavaParameterizedType"])(javaType)) {
-                    this.unrollTypesRecursively(javaType.parameterTypes, appendTo);
-                }
+    }
+    unrollTypesRecursively(javaTypes, appendTo = []) {
+        for (const javaType of javaTypes) {
+            appendTo.push(javaType);
+            if (Object(_erdiagram_generator_oop_code_converter_java_type_JavaParameterizedType__WEBPACK_IMPORTED_MODULE_2__["isJavaParameterizedType"])(javaType)) {
+                this.unrollTypesRecursively(javaType.parameterTypes, appendTo);
             }
-        }
-        catch (e_2_1) { e_2 = { error: e_2_1 }; }
-        finally {
-            try {
-                if (javaTypes_1_1 && !javaTypes_1_1.done && (_a = javaTypes_1.return)) _a.call(javaTypes_1);
-            }
-            finally { if (e_2) throw e_2.error; }
         }
         return appendTo;
-    };
-    JavaClassModelToCodeConverter.prototype.isImportRequired = function (javaType) {
+    }
+    isImportRequired(javaType) {
         return !!javaType.packageName
             && javaType.packageName !== 'java.lang'
             && this.config.generatedClassesPackage !== javaType.packageName;
-    };
-    return JavaClassModelToCodeConverter;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (JavaClassModelToCodeConverter);
+    }
+}
 
 
 /***/ }),
@@ -3362,71 +2853,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
 /* harmony import */ var _erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/java/type/parseJavaType */ "./src/main/erdiagram/generator/oop/code-converter/java/type/parseJavaType.ts");
 /* harmony import */ var _erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/record-utils */ "./src/main/erdiagram/util/record-utils.ts");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (undefined && undefined.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 
 
 
 
-var JavaClassModelToCodeConverterConfigManager = /** @class */ (function (_super) {
-    __extends(JavaClassModelToCodeConverterConfigManager, _super);
-    function JavaClassModelToCodeConverterConfigManager() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    JavaClassModelToCodeConverterConfigManager.prototype.getDefaultConfig = function () {
-        var _a;
+class JavaClassModelToCodeConverterConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_1__["default"] {
+    getDefaultConfig() {
         return {
-            typeBindings: (_a = {},
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER] = Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Long'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT] = Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.String'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG] = Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Long'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT] = Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Integer'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT] = Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Short'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL] = Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.math.BigDecimal'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN] = Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Boolean'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE] = Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.time.LocalDate'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME] = Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.time.LocalTime'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME] = Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.time.LocalDateTime'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB] = Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('byte[]'),
-                _a),
+            typeBindings: {
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Long'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.String'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Long'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Integer'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Short'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.math.BigDecimal'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Boolean'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.time.LocalDate'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.time.LocalTime'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.time.LocalDateTime'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('byte[]')
+            },
             useSpringNullabilityAnnotations: false
         };
-    };
-    JavaClassModelToCodeConverterConfigManager.prototype.mergeConfigs = function (fullConfig, partialConfig) {
-        return __assign(__assign(__assign({}, fullConfig), partialConfig), { typeBindings: __assign(__assign({}, fullConfig.typeBindings), partialConfig === null || partialConfig === void 0 ? void 0 : partialConfig.typeBindings) });
-    };
-    JavaClassModelToCodeConverterConfigManager.prototype.convertToSerializableObject = function (fullConfig) {
-        return __assign(__assign({}, fullConfig), { typeBindings: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["mapValues"])(fullConfig.typeBindings, function (javaType) { return javaType.formatCanonical(); }) });
-    };
-    JavaClassModelToCodeConverterConfigManager.prototype.convertFromSerializableObject = function (serializableConfig) {
-        return __assign(__assign({}, serializableConfig), { typeBindings: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["mapValues"])(serializableConfig.typeBindings, _erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"]) });
-    };
-    return JavaClassModelToCodeConverterConfigManager;
-}(_erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_1__["default"]));
-
-var javaClassModelToCodeConverterConfigManager = new JavaClassModelToCodeConverterConfigManager();
+    }
+    mergeConfigs(fullConfig, partialConfig) {
+        return Object.assign(Object.assign(Object.assign({}, fullConfig), partialConfig), { typeBindings: Object.assign(Object.assign({}, fullConfig.typeBindings), partialConfig === null || partialConfig === void 0 ? void 0 : partialConfig.typeBindings) });
+    }
+    convertToSerializableObject(fullConfig) {
+        return Object.assign(Object.assign({}, fullConfig), { typeBindings: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["mapValues"])(fullConfig.typeBindings, javaType => javaType.formatCanonical()) });
+    }
+    convertFromSerializableObject(serializableConfig) {
+        return Object.assign(Object.assign({}, serializableConfig), { typeBindings: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["mapValues"])(serializableConfig.typeBindings, _erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"]) });
+    }
+}
+const javaClassModelToCodeConverterConfigManager = new JavaClassModelToCodeConverterConfigManager();
 /* harmony default export */ __webpack_exports__["default"] = (javaClassModelToCodeConverterConfigManager);
 
 
@@ -3505,35 +2965,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createJavaArrayType", function() { return createJavaArrayType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isJavaParameterizedType", function() { return isJavaParameterizedType; });
 function createJavaParameterizedType(name, packageName, parameterTypes) {
-    var canonicalName = packageName ? packageName + "." + name : name;
+    const canonicalName = packageName ? `${packageName}.${name}` : name;
     return {
-        packageName: packageName,
-        name: name,
-        parameterTypes: parameterTypes,
-        canonicalName: canonicalName,
-        formatSimple: function (canonical) {
-            if (canonical === void 0) { canonical = false; }
-            var formattedParameterTypes = parameterTypes.map(function (t) { return t.formatSimple(); }).join(', ');
-            return name + "<" + formattedParameterTypes + ">";
+        packageName,
+        name,
+        parameterTypes,
+        canonicalName,
+        formatSimple(canonical = false) {
+            const formattedParameterTypes = parameterTypes.map(t => t.formatSimple()).join(', ');
+            return `${name}<${formattedParameterTypes}>`;
         },
-        formatCanonical: function (canonical) {
-            if (canonical === void 0) { canonical = false; }
-            var formattedParameterTypes = parameterTypes.map(function (t) { return t.formatCanonical(); }).join(', ');
-            return canonicalName + "<" + formattedParameterTypes + ">";
+        formatCanonical(canonical = false) {
+            const formattedParameterTypes = parameterTypes.map(t => t.formatCanonical()).join(', ');
+            return `${canonicalName}<${formattedParameterTypes}>`;
         }
     };
 }
 function createJavaArrayType(parameterType) {
-    var name = parameterType.name + "[]";
+    const name = `${parameterType.name}[]`;
     return {
-        name: name,
+        name,
         parameterTypes: [parameterType],
         canonicalName: name,
-        formatSimple: function () {
-            return parameterType.formatSimple() + "[]";
+        formatSimple() {
+            return `${parameterType.formatSimple()}[]`;
         },
-        formatCanonical: function () {
-            return parameterType.formatCanonical() + "[]";
+        formatCanonical() {
+            return `${parameterType.formatCanonical()}[]`;
         }
     };
 }
@@ -3555,15 +3013,15 @@ function isJavaParameterizedType(javaType) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createJavaType", function() { return createJavaType; });
 function createJavaType(name, packageName) {
-    var canonicalName = packageName ? packageName + "." + name : name;
+    const canonicalName = packageName ? `${packageName}.${name}` : name;
     return {
-        packageName: packageName,
-        name: name,
-        canonicalName: canonicalName,
-        formatSimple: function () {
+        packageName,
+        name,
+        canonicalName,
+        formatSimple() {
             return name;
         },
-        formatCanonical: function () {
+        formatCanonical() {
             return canonicalName;
         }
     };
@@ -3584,37 +3042,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return parseJavaType; });
 /* harmony import */ var _erdiagram_generator_oop_code_converter_java_type_JavaParameterizedType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/java/type/JavaParameterizedType */ "./src/main/erdiagram/generator/oop/code-converter/java/type/JavaParameterizedType.ts");
 /* harmony import */ var _erdiagram_generator_oop_code_converter_java_type_JavaType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/java/type/JavaType */ "./src/main/erdiagram/generator/oop/code-converter/java/type/JavaType.ts");
-var __read = (undefined && undefined.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
-var __spread = (undefined && undefined.__spread) || function () {
-    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-    return ar;
-};
-var __values = (undefined && undefined.__values) || function(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
 
 
 function parseJavaType(text) {
@@ -3626,45 +3053,44 @@ function parseJavaType(text) {
     }
 }
 function parseJavaTypeInternal(text) {
-    var trimmedText = text.trim();
+    const trimmedText = text.trim();
     if (trimmedText.endsWith('[]')) {
-        var parameterType = trimmedText.substring(0, trimmedText.length - 2);
+        const parameterType = trimmedText.substring(0, trimmedText.length - 2);
         return Object(_erdiagram_generator_oop_code_converter_java_type_JavaParameterizedType__WEBPACK_IMPORTED_MODULE_0__["createJavaArrayType"])(parseJavaType(parameterType));
     }
-    var startOfParameterTypes = trimmedText.indexOf('<');
+    const startOfParameterTypes = trimmedText.indexOf('<');
     if (startOfParameterTypes === -1) {
         return parseJavaSimpleType(trimmedText);
     }
-    var endOfParameterTypes = trimmedText.lastIndexOf('>');
+    const endOfParameterTypes = trimmedText.lastIndexOf('>');
     if (endOfParameterTypes === -1) {
         throw new Error('Missing end character of parameter types (>)');
     }
     if (endOfParameterTypes !== trimmedText.length - 1) {
         throw new Error('Unexpected characters found after parameter types');
     }
-    var rawType = parseJavaSimpleType(trimmedText.substring(0, startOfParameterTypes));
-    var parameterTypes = splitParameterTypes(trimmedText.substring(startOfParameterTypes + 1, endOfParameterTypes))
-        .map(function (parameterType) { return parseJavaType(parameterType); });
+    const rawType = parseJavaSimpleType(trimmedText.substring(0, startOfParameterTypes));
+    const parameterTypes = splitParameterTypes(trimmedText.substring(startOfParameterTypes + 1, endOfParameterTypes))
+        .map(parameterType => parseJavaType(parameterType));
     return Object(_erdiagram_generator_oop_code_converter_java_type_JavaParameterizedType__WEBPACK_IMPORTED_MODULE_0__["createJavaParameterizedType"])(rawType.name, rawType.packageName, parameterTypes);
 }
 function parseJavaSimpleType(text) {
-    var trimmedText = text.trim();
-    var lastDotIndex = trimmedText.lastIndexOf('.');
+    const trimmedText = text.trim();
+    const lastDotIndex = trimmedText.lastIndexOf('.');
     if (lastDotIndex === -1) {
         return Object(_erdiagram_generator_oop_code_converter_java_type_JavaType__WEBPACK_IMPORTED_MODULE_1__["createJavaType"])(trimmedText);
     }
-    var packageName = trimmedText.substring(0, lastDotIndex);
-    var className = trimmedText.substring(lastDotIndex + 1);
+    const packageName = trimmedText.substring(0, lastDotIndex);
+    const className = trimmedText.substring(lastDotIndex + 1);
     return Object(_erdiagram_generator_oop_code_converter_java_type_JavaType__WEBPACK_IMPORTED_MODULE_1__["createJavaType"])(className, packageName);
 }
 function splitParameterTypes(parameterTypesText) {
-    var e_1, _a;
     if (!parameterTypesText.includes(',')) {
         return [parameterTypesText];
     }
-    var commaIndices = [];
-    var nestedLevelsCount = 0;
-    __spread(parameterTypesText).forEach(function (character, index) {
+    const commaIndices = [];
+    let nestedLevelsCount = 0;
+    [...parameterTypesText].forEach((character, index) => {
         switch (character) {
             case ',':
                 if (nestedLevelsCount === 0) {
@@ -3682,21 +3108,11 @@ function splitParameterTypes(parameterTypesText) {
                 break;
         }
     });
-    var splittedParameterTypes = [];
-    var startIndex = 0;
-    try {
-        for (var commaIndices_1 = __values(commaIndices), commaIndices_1_1 = commaIndices_1.next(); !commaIndices_1_1.done; commaIndices_1_1 = commaIndices_1.next()) {
-            var commaIndex = commaIndices_1_1.value;
-            splittedParameterTypes.push(parameterTypesText.substring(startIndex, commaIndex));
-            startIndex = commaIndex + 1;
-        }
-    }
-    catch (e_1_1) { e_1 = { error: e_1_1 }; }
-    finally {
-        try {
-            if (commaIndices_1_1 && !commaIndices_1_1.done && (_a = commaIndices_1.return)) _a.call(commaIndices_1);
-        }
-        finally { if (e_1) throw e_1.error; }
+    const splittedParameterTypes = [];
+    let startIndex = 0;
+    for (const commaIndex of commaIndices) {
+        splittedParameterTypes.push(parameterTypesText.substring(startIndex, commaIndex));
+        startIndex = commaIndex + 1;
     }
     // Text after the last comma
     splittedParameterTypes.push(parameterTypesText.substring(startIndex));
@@ -3715,78 +3131,57 @@ function splitParameterTypes(parameterTypesText) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TypeScriptClassModelToCodeConverter; });
 /* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
 /* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
 /* harmony import */ var _erdiagram_generator_oop_code_converter_typescript_type_TypeScriptParameterizedType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptParameterizedType */ "./src/main/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptParameterizedType.ts");
 /* harmony import */ var _erdiagram_generator_oop_code_converter_typescript_type_TypeScriptType__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptType */ "./src/main/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptType.ts");
 /* harmony import */ var _erdiagram_generator_oop_code_converter_typescript_config_TypeScriptClassModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfigManager */ "./src/main/erdiagram/generator/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfigManager.ts");
-var __read = (undefined && undefined.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
-var __spread = (undefined && undefined.__spread) || function () {
-    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-    return ar;
-};
 
 
 
 
 
-var TypeScriptClassModelToCodeConverter = /** @class */ (function () {
-    function TypeScriptClassModelToCodeConverter(config) {
+class TypeScriptClassModelToCodeConverter {
+    constructor(config) {
         this.config = _erdiagram_generator_oop_code_converter_typescript_config_TypeScriptClassModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_4__["default"].mergeWithDefaultConfig(config);
     }
-    TypeScriptClassModelToCodeConverter.prototype.generateCode = function (classModel) {
-        var _this = this;
+    generateCode(classModel) {
         return classModel.classes
-            .map(function (classDescriptor) { return _this.generateClass(classDescriptor); })
+            .map(classDescriptor => this.generateClass(classDescriptor))
             .join('\n\n');
-    };
-    TypeScriptClassModelToCodeConverter.prototype.generateClass = function (classDescriptor) {
-        var _this = this;
-        var interfaceName = Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(classDescriptor.name);
-        var fieldsLines = classDescriptor.fields
-            .map(function (field) { return _this.createField(field); });
-        var classOuterLines = [
-            "interface " + interfaceName + " {"
+    }
+    generateClass(classDescriptor) {
+        const interfaceName = Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(classDescriptor.name);
+        const fieldsLines = classDescriptor.fields
+            .map(field => this.createField(field));
+        const classOuterLines = [
+            `interface ${interfaceName} {`
         ];
-        classOuterLines.push.apply(classOuterLines, __spread(Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_1__["indentLines"])(fieldsLines)));
-        classOuterLines.push("}");
+        classOuterLines.push(...Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_1__["indentLines"])(fieldsLines));
+        classOuterLines.push(`}`);
         return classOuterLines.join('\n');
-    };
-    TypeScriptClassModelToCodeConverter.prototype.createField = function (field) {
-        var fieldName = field.name;
-        var typescriptType = this.mapFieldTypeToTypeScriptType(field);
-        var formattedTypeScriptType = typescriptType.format();
-        var optionalIndicatorChar = field.nullable ? '?' : '';
-        return "" + fieldName + optionalIndicatorChar + ": " + formattedTypeScriptType + ";";
-    };
-    TypeScriptClassModelToCodeConverter.prototype.mapFieldTypeToTypeScriptType = function (field) {
+    }
+    createField(field) {
+        const fieldName = field.name;
+        const typescriptType = this.mapFieldTypeToTypeScriptType(field);
+        const formattedTypeScriptType = typescriptType.format();
+        const optionalIndicatorChar = field.nullable ? '?' : '';
+        return `${fieldName}${optionalIndicatorChar}: ${formattedTypeScriptType};`;
+    }
+    mapFieldTypeToTypeScriptType(field) {
         if (field.list) {
             return this.mapListTypeToTypeScriptType(field);
         }
         else {
             return this.mapSingleTypeToTypeScriptType(field);
         }
-    };
-    TypeScriptClassModelToCodeConverter.prototype.mapListTypeToTypeScriptType = function (field) {
+    }
+    mapListTypeToTypeScriptType(field) {
         return Object(_erdiagram_generator_oop_code_converter_typescript_type_TypeScriptParameterizedType__WEBPACK_IMPORTED_MODULE_2__["createTypeScriptArrayType"])(this.mapSingleTypeToTypeScriptType(field));
-    };
-    TypeScriptClassModelToCodeConverter.prototype.mapSingleTypeToTypeScriptType = function (field) {
-        var entityType = field.entityType, primitiveType = field.primitiveType;
+    }
+    mapSingleTypeToTypeScriptType(field) {
+        const { entityType, primitiveType } = field;
         if (entityType) {
             if (primitiveType) {
                 throw new Error('Invalid field descriptor: provided both primitive and entity types');
@@ -3800,10 +3195,8 @@ var TypeScriptClassModelToCodeConverter = /** @class */ (function () {
             throw new Error('Unsupported type: ' + primitiveType);
         }
         return this.config.typeBindings[primitiveType];
-    };
-    return TypeScriptClassModelToCodeConverter;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (TypeScriptClassModelToCodeConverter);
+    }
+}
 
 
 /***/ }),
@@ -3822,70 +3215,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
 /* harmony import */ var _erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/typescript/type/parseTypeScriptType */ "./src/main/erdiagram/generator/oop/code-converter/typescript/type/parseTypeScriptType.ts");
 /* harmony import */ var _erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/record-utils */ "./src/main/erdiagram/util/record-utils.ts");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (undefined && undefined.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 
 
 
 
-var TypeScriptClassModelToCodeConverterConfigManager = /** @class */ (function (_super) {
-    __extends(TypeScriptClassModelToCodeConverterConfigManager, _super);
-    function TypeScriptClassModelToCodeConverterConfigManager() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    TypeScriptClassModelToCodeConverterConfigManager.prototype.getDefaultConfig = function () {
-        var _a;
+class TypeScriptClassModelToCodeConverterConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_1__["default"] {
+    getDefaultConfig() {
         return {
-            typeBindings: (_a = {},
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER] = Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT] = Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('string'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG] = Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT] = Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT] = Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL] = Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN] = Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('boolean'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE] = Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('Date'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME] = Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('Date'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME] = Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('Date'),
-                _a[_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB] = Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('Uint8Array'),
-                _a)
+            typeBindings: {
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('string'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('boolean'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('Date'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('Date'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('Date'),
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('Uint8Array'),
+            }
         };
-    };
-    TypeScriptClassModelToCodeConverterConfigManager.prototype.mergeConfigs = function (fullConfig, partialConfig) {
-        return __assign(__assign(__assign({}, fullConfig), partialConfig), { typeBindings: __assign(__assign({}, fullConfig.typeBindings), partialConfig === null || partialConfig === void 0 ? void 0 : partialConfig.typeBindings) });
-    };
-    TypeScriptClassModelToCodeConverterConfigManager.prototype.convertToSerializableObject = function (fullConfig) {
-        return __assign(__assign({}, fullConfig), { typeBindings: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["mapValues"])(fullConfig.typeBindings, function (typeScriptType) { return typeScriptType.format(); }) });
-    };
-    TypeScriptClassModelToCodeConverterConfigManager.prototype.convertFromSerializableObject = function (serializableConfig) {
-        return __assign(__assign({}, serializableConfig), { typeBindings: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["mapValues"])(serializableConfig.typeBindings, _erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"]) });
-    };
-    return TypeScriptClassModelToCodeConverterConfigManager;
-}(_erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_1__["default"]));
-
-var typescriptClassModelToCodeConverterConfigManager = new TypeScriptClassModelToCodeConverterConfigManager();
+    }
+    mergeConfigs(fullConfig, partialConfig) {
+        return Object.assign(Object.assign(Object.assign({}, fullConfig), partialConfig), { typeBindings: Object.assign(Object.assign({}, fullConfig.typeBindings), partialConfig === null || partialConfig === void 0 ? void 0 : partialConfig.typeBindings) });
+    }
+    convertToSerializableObject(fullConfig) {
+        return Object.assign(Object.assign({}, fullConfig), { typeBindings: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["mapValues"])(fullConfig.typeBindings, typeScriptType => typeScriptType.format()) });
+    }
+    convertFromSerializableObject(serializableConfig) {
+        return Object.assign(Object.assign({}, serializableConfig), { typeBindings: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["mapValues"])(serializableConfig.typeBindings, _erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"]) });
+    }
+}
+const typescriptClassModelToCodeConverterConfigManager = new TypeScriptClassModelToCodeConverterConfigManager();
 /* harmony default export */ __webpack_exports__["default"] = (typescriptClassModelToCodeConverterConfigManager);
 
 
@@ -3965,11 +3327,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isTypeScriptParameterizedType", function() { return isTypeScriptParameterizedType; });
 function createTypeScriptParameterizedType(name, parameterTypes) {
     return {
-        name: name,
-        parameterTypes: parameterTypes,
-        format: function () {
-            var formattedParameterTypes = parameterTypes.map(function (t) { return t.format(); }).join(', ');
-            return name + "<" + formattedParameterTypes + ">";
+        name,
+        parameterTypes,
+        format: () => {
+            const formattedParameterTypes = parameterTypes.map(t => t.format()).join(', ');
+            return `${name}<${formattedParameterTypes}>`;
         }
     };
 }
@@ -3977,7 +3339,7 @@ function createTypeScriptArrayType(parameterType) {
     return {
         name: 'Array',
         parameterTypes: [parameterType],
-        format: function () { return parameterType.format() + "[]"; }
+        format: () => `${parameterType.format()}[]`
     };
 }
 function isTypeScriptParameterizedType(javaType) {
@@ -3999,8 +3361,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTypeScriptType", function() { return createTypeScriptType; });
 function createTypeScriptType(name) {
     return {
-        name: name,
-        format: function () { return name; }
+        name,
+        format: () => name
     };
 }
 
@@ -4019,69 +3381,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return parseTypeScriptType; });
 /* harmony import */ var _erdiagram_generator_oop_code_converter_typescript_type_TypeScriptType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptType */ "./src/main/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptType.ts");
 /* harmony import */ var _erdiagram_generator_oop_code_converter_typescript_type_TypeScriptParameterizedType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptParameterizedType */ "./src/main/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptParameterizedType.ts");
-var __read = (undefined && undefined.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
-var __spread = (undefined && undefined.__spread) || function () {
-    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-    return ar;
-};
-var __values = (undefined && undefined.__values) || function(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
 
 
 function parseTypeScriptType(text) {
-    var trimmedText = text.trim();
+    const trimmedText = text.trim();
     if (trimmedText.endsWith('[]')) {
-        var parameterType = trimmedText.substring(0, trimmedText.length - 2);
+        const parameterType = trimmedText.substring(0, trimmedText.length - 2);
         return Object(_erdiagram_generator_oop_code_converter_typescript_type_TypeScriptParameterizedType__WEBPACK_IMPORTED_MODULE_1__["createTypeScriptArrayType"])(parseTypeScriptType(parameterType));
     }
-    var startOfParameterTypes = trimmedText.indexOf('<');
+    const startOfParameterTypes = trimmedText.indexOf('<');
     if (startOfParameterTypes === -1) {
         return parseTypeScriptSimpleType(trimmedText);
     }
-    var endOfParameterTypes = trimmedText.lastIndexOf('>');
+    const endOfParameterTypes = trimmedText.lastIndexOf('>');
     if (endOfParameterTypes === -1 || endOfParameterTypes !== trimmedText.length - 1) {
         throw new Error('Malformed TypeScript type: ' + trimmedText);
     }
-    var rawType = parseTypeScriptSimpleType(trimmedText.substring(0, startOfParameterTypes));
-    var parameterTypes = splitParameterTypes(trimmedText.substring(startOfParameterTypes + 1, endOfParameterTypes))
-        .map(function (parameterType) { return parseTypeScriptType(parameterType); });
+    const rawType = parseTypeScriptSimpleType(trimmedText.substring(0, startOfParameterTypes));
+    const parameterTypes = splitParameterTypes(trimmedText.substring(startOfParameterTypes + 1, endOfParameterTypes))
+        .map(parameterType => parseTypeScriptType(parameterType));
     return Object(_erdiagram_generator_oop_code_converter_typescript_type_TypeScriptParameterizedType__WEBPACK_IMPORTED_MODULE_1__["createTypeScriptParameterizedType"])(rawType.name, parameterTypes);
 }
 function parseTypeScriptSimpleType(text) {
     return Object(_erdiagram_generator_oop_code_converter_typescript_type_TypeScriptType__WEBPACK_IMPORTED_MODULE_0__["createTypeScriptType"])(text.trim());
 }
 function splitParameterTypes(parameterTypesText) {
-    var e_1, _a;
     if (!parameterTypesText.includes(',')) {
         return [parameterTypesText];
     }
-    var commaIndices = [];
-    var nestedLevelsCount = 0;
-    __spread(parameterTypesText).forEach(function (character, index) {
+    const commaIndices = [];
+    let nestedLevelsCount = 0;
+    [...parameterTypesText].forEach((character, index) => {
         switch (character) {
             case ',':
                 if (nestedLevelsCount === 0) {
@@ -4099,21 +3429,11 @@ function splitParameterTypes(parameterTypesText) {
                 break;
         }
     });
-    var splittedParameterTypes = [];
-    var startIndex = 0;
-    try {
-        for (var commaIndices_1 = __values(commaIndices), commaIndices_1_1 = commaIndices_1.next(); !commaIndices_1_1.done; commaIndices_1_1 = commaIndices_1.next()) {
-            var commaIndex = commaIndices_1_1.value;
-            splittedParameterTypes.push(parameterTypesText.substring(startIndex, commaIndex));
-            startIndex = commaIndex + 1;
-        }
-    }
-    catch (e_1_1) { e_1 = { error: e_1_1 }; }
-    finally {
-        try {
-            if (commaIndices_1_1 && !commaIndices_1_1.done && (_a = commaIndices_1.return)) _a.call(commaIndices_1);
-        }
-        finally { if (e_1) throw e_1.error; }
+    const splittedParameterTypes = [];
+    let startIndex = 0;
+    for (const commaIndex of commaIndices) {
+        splittedParameterTypes.push(parameterTypesText.substring(startIndex, commaIndex));
+        startIndex = commaIndex + 1;
     }
     // Text after the last comma
     splittedParameterTypes.push(parameterTypesText.substring(startIndex));
@@ -4184,120 +3504,86 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClassModelGenerator; });
 /* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pluralize */ "./node_modules/pluralize/pluralize.js");
 /* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(pluralize__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
 /* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
 /* harmony import */ var _erdiagram_generator_oop_model_config_ClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/generator/oop/model/config/ClassModelGeneratorConfigManager */ "./src/main/erdiagram/generator/oop/model/config/ClassModelGeneratorConfigManager.ts");
-var __values = (undefined && undefined.__values) || function(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
 
 
 
 
-var ClassModelGenerator = /** @class */ (function () {
-    function ClassModelGenerator(config) {
+class ClassModelGenerator {
+    constructor(config) {
         this.config = _erdiagram_generator_oop_model_config_ClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_3__["default"].mergeWithDefaultConfig(config);
     }
-    ClassModelGenerator.prototype.generateClassModel = function (model) {
-        var _this = this;
-        var classes = [];
+    generateClassModel(model) {
+        const classes = [];
         model.entities
-            .map(function (entity) { return _this.generateEntityTable(entity, model); })
-            .forEach(function (sentence) { return classes.push(sentence); });
+            .map(entity => this.generateEntityTable(entity, model))
+            .forEach(sentence => classes.push(sentence));
         return {
-            classes: classes
+            classes
         };
-    };
-    ClassModelGenerator.prototype.generateEntityTable = function (entity, model) {
-        var e_1, _a, e_2, _b;
-        var name = Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__["capitalizeWord"])(entity.name);
-        var fields = [
+    }
+    generateEntityTable(entity, model) {
+        const name = Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__["capitalizeWord"])(entity.name);
+        const fields = [
             this.createIdField(entity)
         ];
-        try {
-            for (var _c = __values(entity.properties), _d = _c.next(); !_d.done; _d = _c.next()) {
-                var property = _d.value;
-                fields.push(this.mapPropertyToField(property));
-            }
+        for (const property of entity.properties) {
+            fields.push(this.mapPropertyToField(property));
         }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-        finally {
-            try {
-                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
+        for (const relationship of model.relationships) {
+            const { leftMember, rightMember, direction } = relationship;
+            if (leftMember.entity === entity.name && [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].LEFT_TO_RIGHT, _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].BIDIRECTIONAL].includes(direction)) {
+                fields.push(this.mapRelationshipMemberToField(rightMember));
             }
-            finally { if (e_1) throw e_1.error; }
-        }
-        try {
-            for (var _e = __values(model.relationships), _f = _e.next(); !_f.done; _f = _e.next()) {
-                var relationship = _f.value;
-                var leftMember = relationship.leftMember, rightMember = relationship.rightMember, direction = relationship.direction;
-                if (leftMember.entity === entity.name && [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].LEFT_TO_RIGHT, _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].BIDIRECTIONAL].includes(direction)) {
-                    fields.push(this.mapRelationshipMemberToField(rightMember));
-                }
-                if (rightMember.entity === entity.name && [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].RIGHT_TO_LEFT, _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].BIDIRECTIONAL].includes(direction)) {
-                    fields.push(this.mapRelationshipMemberToField(leftMember));
-                }
+            if (rightMember.entity === entity.name && [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].RIGHT_TO_LEFT, _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].BIDIRECTIONAL].includes(direction)) {
+                fields.push(this.mapRelationshipMemberToField(leftMember));
             }
-        }
-        catch (e_2_1) { e_2 = { error: e_2_1 }; }
-        finally {
-            try {
-                if (_f && !_f.done && (_b = _e.return)) _b.call(_e);
-            }
-            finally { if (e_2) throw e_2.error; }
         }
         return {
-            name: name,
-            fields: fields
+            name,
+            fields
         };
-    };
-    ClassModelGenerator.prototype.createIdField = function (entity) {
+    }
+    createIdField(entity) {
         return {
             name: this.getIdentifierFieldName(entity),
             primitiveType: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["EntityPropertyType"].IDENTIFIER,
             nullable: false,
             list: false
         };
-    };
-    ClassModelGenerator.prototype.getIdentifierFieldName = function (entity) {
+    }
+    getIdentifierFieldName(entity) {
         if (entity.identifierPropertyName) {
             return entity.identifierPropertyName;
         }
-        var idNamingStrategy = this.config.idNamingStrategy;
+        const { idNamingStrategy } = this.config;
         return idNamingStrategy(entity.name);
-    };
-    ClassModelGenerator.prototype.mapRelationshipMemberToField = function (toMember) {
-        var list = toMember.cardinality === _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Cardinality"].MANY;
-        var name = list ? pluralize__WEBPACK_IMPORTED_MODULE_0___default()(toMember.entityAlias) : toMember.entityAlias;
+    }
+    mapRelationshipMemberToField(toMember) {
+        const list = toMember.cardinality === _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Cardinality"].MANY;
+        const name = list ? pluralize__WEBPACK_IMPORTED_MODULE_0___default()(toMember.entityAlias) : toMember.entityAlias;
         return {
-            name: name,
+            name,
             nullable: toMember.cardinality === _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Cardinality"].ZERO_OR_ONE,
             entityType: toMember.entity,
-            list: list
+            list
         };
-    };
-    ClassModelGenerator.prototype.mapPropertyToField = function (property) {
-        var name = property.name, optional = property.optional, type = property.type;
+    }
+    mapPropertyToField(property) {
+        const { name, optional, type } = property;
         return {
-            name: name,
+            name,
             nullable: optional,
             primitiveType: type,
             list: false
         };
-    };
-    return ClassModelGenerator;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (ClassModelGenerator);
+    }
+}
 ;
 
 
@@ -4327,56 +3613,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
 /* harmony import */ var _erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies */ "./src/main/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies.ts");
 /* harmony import */ var _erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/util/record-utils */ "./src/main/erdiagram/util/record-utils.ts");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (undefined && undefined.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 
 
 
-var ClassModelGeneratorConfigManager = /** @class */ (function (_super) {
-    __extends(ClassModelGeneratorConfigManager, _super);
-    function ClassModelGeneratorConfigManager() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    ClassModelGeneratorConfigManager.prototype.getDefaultConfig = function () {
+class ClassModelGeneratorConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"] {
+    getDefaultConfig() {
         return {
             idNamingStrategy: _erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"].DEFAULT
         };
-    };
-    ClassModelGeneratorConfigManager.prototype.mergeConfigs = function (fullConfig, partialConfig) {
-        return __assign(__assign({}, fullConfig), partialConfig);
-    };
-    ClassModelGeneratorConfigManager.prototype.convertToSerializableObject = function (fullConfig) {
-        return __assign(__assign({}, fullConfig), { idNamingStrategy: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_2__["findKeyFromValue"])(_erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.idNamingStrategy) });
-    };
-    ClassModelGeneratorConfigManager.prototype.convertFromSerializableObject = function (serializableConfig) {
-        return __assign(__assign({}, serializableConfig), { idNamingStrategy: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_2__["findValueFromNullableKey"])(_erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.idNamingStrategy, _erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"].DEFAULT) });
-    };
-    return ClassModelGeneratorConfigManager;
-}(_erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"]));
-
-var classModelGeneratorConfigManager = new ClassModelGeneratorConfigManager();
+    }
+    mergeConfigs(fullConfig, partialConfig) {
+        return Object.assign(Object.assign({}, fullConfig), partialConfig);
+    }
+    convertToSerializableObject(fullConfig) {
+        return Object.assign(Object.assign({}, fullConfig), { idNamingStrategy: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_2__["findKeyFromValue"])(_erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.idNamingStrategy) });
+    }
+    convertFromSerializableObject(serializableConfig) {
+        return Object.assign(Object.assign({}, serializableConfig), { idNamingStrategy: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_2__["findValueFromNullableKey"])(_erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.idNamingStrategy, _erdiagram_generator_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"].DEFAULT) });
+    }
+}
+const classModelGeneratorConfigManager = new ClassModelGeneratorConfigManager();
 /* harmony default export */ __webpack_exports__["default"] = (classModelGeneratorConfigManager);
 
 
@@ -4439,79 +3695,149 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EntityRelationshipModelParser; });
 /* harmony import */ var _erdiagram_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/statement/statement-types-parse-functions */ "./src/main/erdiagram/parser/statement/statement-types-parse-functions.ts");
 /* harmony import */ var _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/parser/statement/statement-type-guesser */ "./src/main/erdiagram/parser/statement/statement-type-guesser.ts");
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
-/* harmony import */ var _erdiagram_parser_validator_EntityRelationshipModelValidator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/parser/validator/EntityRelationshipModelValidator */ "./src/main/erdiagram/parser/validator/EntityRelationshipModelValidator.ts");
-/* harmony import */ var _erdiagram_parser_config_EntityRelationshipModelParserConfigManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/parser/config/EntityRelationshipModelParserConfigManager */ "./src/main/erdiagram/parser/config/EntityRelationshipModelParserConfigManager.ts");
-/* harmony import */ var _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/parser/errors */ "./src/main/erdiagram/parser/errors.ts");
+/* harmony import */ var _erdiagram_parser_validator_ParsedEntityRelationshipModelValidator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/parser/validator/ParsedEntityRelationshipModelValidator */ "./src/main/erdiagram/parser/validator/ParsedEntityRelationshipModelValidator.ts");
+/* harmony import */ var _erdiagram_parser_config_EntityRelationshipModelParserConfigManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/parser/config/EntityRelationshipModelParserConfigManager */ "./src/main/erdiagram/parser/config/EntityRelationshipModelParserConfigManager.ts");
+/* harmony import */ var _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/parser/parse-errors */ "./src/main/erdiagram/parser/parse-errors.ts");
+/* harmony import */ var _erdiagram_parser_ParsedModelToPublicModelConverter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/parser/ParsedModelToPublicModelConverter */ "./src/main/erdiagram/parser/ParsedModelToPublicModelConverter.ts");
 
 
 
 
 
 
-var EntityRelationshipModelParser = /** @class */ (function () {
-    function EntityRelationshipModelParser(config) {
-        this.config = _erdiagram_parser_config_EntityRelationshipModelParserConfigManager__WEBPACK_IMPORTED_MODULE_4__["default"].mergeWithDefaultConfig(config);
-        this.validator = new _erdiagram_parser_validator_EntityRelationshipModelValidator__WEBPACK_IMPORTED_MODULE_3__["default"](this.config.allowUnknownEntities);
+class EntityRelationshipModelParser {
+    constructor(config) {
+        this.config = _erdiagram_parser_config_EntityRelationshipModelParserConfigManager__WEBPACK_IMPORTED_MODULE_3__["default"].mergeWithDefaultConfig(config);
+        this.validator = new _erdiagram_parser_validator_ParsedEntityRelationshipModelValidator__WEBPACK_IMPORTED_MODULE_2__["default"](this.config.allowUnknownEntities);
+        this.parsedModelToPublicModelConverter = new _erdiagram_parser_ParsedModelToPublicModelConverter__WEBPACK_IMPORTED_MODULE_5__["default"]();
     }
-    EntityRelationshipModelParser.prototype.parseModel = function (code) {
-        var model = this.parseModelWithoutValidation(code);
-        this.validator.validateModel(model);
-        return model;
-    };
-    EntityRelationshipModelParser.prototype.parseModelWithoutValidation = function (code) {
-        var lines = code.split('\n');
-        var entities = [];
-        var relationships = [];
-        var parsingEntity = false;
-        lines.forEach(function (line) {
-            var statementType = Object(_erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["guessStatementType"])(line);
-            switch (statementType) {
-                case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].ENTITY_NAME:
-                    entities.push({
-                        name: Object(_erdiagram_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["parseEntityNameStatement"])(line),
-                        properties: []
-                    });
-                    parsingEntity = true;
-                    break;
-                case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].ENTITY_PROPERTY:
-                    if (!parsingEntity) {
-                        throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_5__["ERDiagramSyntaxError"]('Unexpected entity property statement');
-                    }
-                    var entityPropertyDescriptor = Object(_erdiagram_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["parseEntityPropertyStatement"])(line);
-                    var lastEntity = entities[entities.length - 1];
-                    if (entityPropertyDescriptor.type != _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["EntityPropertyType"].IDENTIFIER) {
-                        lastEntity.properties.push(entityPropertyDescriptor);
-                    }
-                    else if (lastEntity.identifierPropertyName) {
-                        throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_5__["ERDiagramMultipleIdentifiersError"]("Entity " + lastEntity.name + " has more than one identifier property");
-                    }
-                    else {
-                        lastEntity.identifierPropertyName = entityPropertyDescriptor.name;
-                    }
-                    break;
-                case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].RELATIONSHIP:
-                    var relationshipDescriptor = Object(_erdiagram_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["parseRelationshipStatement"])(line);
-                    relationships.push(relationshipDescriptor);
-                    parsingEntity = false;
-                    break;
-                case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].BLANK_LINE:
-                    // Ignore
-                    break;
-                default:
-                    throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_5__["ERDiagramSyntaxError"]("Unknown statement type (" + statementType + ") for line: " + line);
+    parseModel(code) {
+        const { model, statementResultToLineMap } = this.parseModelWithoutValidation(code);
+        try {
+            this.validator.validateParsedModel(model);
+        }
+        catch (error) {
+            this.handleValidationError(error, statementResultToLineMap);
+        }
+        return this.parsedModelToPublicModelConverter.convertParsedModelToPublicModel(model);
+    }
+    parseModelWithoutValidation(code) {
+        const lines = code.split('\n');
+        const state = {
+            entities: [],
+            relationships: [],
+            entityBeingParsed: null,
+            statementResultToLineMap: new Map()
+        };
+        lines.forEach((line, lineIndex) => {
+            try {
+                this.parseLine(line, lineIndex, state);
+            }
+            catch (error) {
+                this.handleLineError(error, lineIndex);
             }
         });
         return {
-            entities: entities,
-            relationships: relationships
+            model: {
+                entities: state.entities,
+                relationships: state.relationships
+            },
+            statementResultToLineMap: state.statementResultToLineMap
         };
-    };
-    return EntityRelationshipModelParser;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (EntityRelationshipModelParser);
+    }
+    parseLine(line, lineIndex, state) {
+        const statementType = Object(_erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["guessStatementType"])(line);
+        switch (statementType) {
+            case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].ENTITY_NAME:
+                const entityDescriptor = {
+                    name: Object(_erdiagram_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["parseEntityNameStatement"])(line),
+                    properties: []
+                };
+                state.entities.push(entityDescriptor);
+                state.entityBeingParsed = entityDescriptor;
+                state.statementResultToLineMap.set(entityDescriptor, lineIndex);
+                break;
+            case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].ENTITY_PROPERTY:
+                if (state.entityBeingParsed == null) {
+                    throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramSyntaxError"]('Unexpected entity property statement');
+                }
+                const entityPropertyDescriptor = Object(_erdiagram_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["parseEntityPropertyStatement"])(line);
+                state.entityBeingParsed.properties.push(entityPropertyDescriptor);
+                state.statementResultToLineMap.set(entityPropertyDescriptor, lineIndex);
+                break;
+            case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].RELATIONSHIP:
+                const relationshipDescriptor = Object(_erdiagram_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["parseRelationshipStatement"])(line);
+                state.relationships.push(relationshipDescriptor);
+                state.entityBeingParsed = null;
+                state.statementResultToLineMap.set(relationshipDescriptor, lineIndex);
+                break;
+            case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].BLANK_LINE:
+                // Ignore
+                break;
+            default:
+                throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramSyntaxError"](`Unknown statement type`);
+        }
+    }
+    handleLineError(error, lineIndex) {
+        if (error instanceof _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramError"]) {
+            throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramParseLineError"](error, lineIndex);
+        }
+        throw error;
+    }
+    handleValidationError(error, statementResultToLineMap) {
+        if (error instanceof _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramParseLineError"]) {
+            throw error;
+        }
+        if (error instanceof _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramEntityPropertyError"]) {
+            throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramParseLineError"](error, statementResultToLineMap.get(error.property));
+        }
+        if (error instanceof _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramEntityError"]) {
+            throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramParseLineError"](error, statementResultToLineMap.get(error.entity));
+        }
+        if (error instanceof _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramRelationshipError"]) {
+            throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramParseLineError"](error, statementResultToLineMap.get(error.relationship));
+        }
+        throw error;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/parser/ParsedModelToPublicModelConverter.ts":
+/*!************************************************************************!*\
+  !*** ./src/main/erdiagram/parser/ParsedModelToPublicModelConverter.ts ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ParsedModelToPublicModelConverter; });
+/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+
+class ParsedModelToPublicModelConverter {
+    convertParsedModelToPublicModel(parsedModel) {
+        return {
+            entities: parsedModel.entities.map(parsedEntity => this.convertParsedEntityToPublicEntity(parsedEntity)),
+            relationships: parsedModel.relationships
+        };
+    }
+    convertParsedEntityToPublicEntity(parsedEntity) {
+        const identifierProperty = this.getEntityIdentifierProperty(parsedEntity);
+        return {
+            name: parsedEntity.name,
+            identifierPropertyName: identifierProperty === null || identifierProperty === void 0 ? void 0 : identifierProperty.name,
+            properties: parsedEntity.properties.filter(property => property != identifierProperty)
+        };
+    }
+    getEntityIdentifierProperty(parsedEntity) {
+        return parsedEntity.properties.find(property => property.type === _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER);
+    }
+}
 
 
 /***/ }),
@@ -4527,54 +3853,24 @@ var EntityRelationshipModelParser = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EntityRelationshipModelParserConfigManager", function() { return EntityRelationshipModelParserConfigManager; });
 /* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (undefined && undefined.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 
-var EntityRelationshipModelParserConfigManager = /** @class */ (function (_super) {
-    __extends(EntityRelationshipModelParserConfigManager, _super);
-    function EntityRelationshipModelParserConfigManager() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    EntityRelationshipModelParserConfigManager.prototype.getDefaultConfig = function () {
+class EntityRelationshipModelParserConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"] {
+    getDefaultConfig() {
         return {
             allowUnknownEntities: false
         };
-    };
-    EntityRelationshipModelParserConfigManager.prototype.mergeConfigs = function (fullConfig, partialConfig) {
-        return __assign(__assign({}, fullConfig), partialConfig);
-    };
-    EntityRelationshipModelParserConfigManager.prototype.convertToSerializableObject = function (fullConfig) {
-        return __assign({}, fullConfig);
-    };
-    EntityRelationshipModelParserConfigManager.prototype.convertFromSerializableObject = function (serializableConfig) {
-        return __assign({}, serializableConfig);
-    };
-    return EntityRelationshipModelParserConfigManager;
-}(_erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"]));
-
-var entityRelationshipModelParserConfigManager = new EntityRelationshipModelParserConfigManager();
+    }
+    mergeConfigs(fullConfig, partialConfig) {
+        return Object.assign(Object.assign({}, fullConfig), partialConfig);
+    }
+    convertToSerializableObject(fullConfig) {
+        return Object.assign({}, fullConfig);
+    }
+    convertFromSerializableObject(serializableConfig) {
+        return Object.assign({}, serializableConfig);
+    }
+}
+const entityRelationshipModelParserConfigManager = new EntityRelationshipModelParserConfigManager();
 /* harmony default export */ __webpack_exports__["default"] = (entityRelationshipModelParserConfigManager);
 
 
@@ -4604,26 +3900,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************************************!*\
   !*** ./src/main/erdiagram/parser/entity-relationship-model-types.ts ***!
   \**********************************************************************/
-/*! exports provided: Cardinality, Direction, EntityPropertyType */
+/*! exports provided: EntityPropertyType, Cardinality, Direction */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EntityPropertyType", function() { return EntityPropertyType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Cardinality", function() { return Cardinality; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Direction", function() { return Direction; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EntityPropertyType", function() { return EntityPropertyType; });
-var Cardinality;
-(function (Cardinality) {
-    Cardinality["MANY"] = "many";
-    Cardinality["ONE"] = "one";
-    Cardinality["ZERO_OR_ONE"] = "zero_or_one";
-})(Cardinality || (Cardinality = {}));
-var Direction;
-(function (Direction) {
-    Direction["LEFT_TO_RIGHT"] = "left_to_right";
-    Direction["RIGHT_TO_LEFT"] = "right_to_left";
-    Direction["BIDIRECTIONAL"] = "bidirectional";
-})(Direction || (Direction = {}));
 var EntityPropertyType;
 (function (EntityPropertyType) {
     EntityPropertyType["IDENTIFIER"] = "identifier";
@@ -4638,86 +3922,18 @@ var EntityPropertyType;
     EntityPropertyType["DATETIME"] = "datetime";
     EntityPropertyType["BLOB"] = "blob";
 })(EntityPropertyType || (EntityPropertyType = {}));
-
-
-/***/ }),
-
-/***/ "./src/main/erdiagram/parser/errors.ts":
-/*!*********************************************!*\
-  !*** ./src/main/erdiagram/parser/errors.ts ***!
-  \*********************************************/
-/*! exports provided: ERDiagramParseError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramUnknownEntityError, ERDiagramMultipleIdentifiersError, ERDiagramDuplicatedPropertyNameError */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramParseError", function() { return ERDiagramParseError; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramSyntaxError", function() { return ERDiagramSyntaxError; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownTypeError", function() { return ERDiagramUnknownTypeError; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownEntityError", function() { return ERDiagramUnknownEntityError; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramMultipleIdentifiersError", function() { return ERDiagramMultipleIdentifiersError; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramDuplicatedPropertyNameError", function() { return ERDiagramDuplicatedPropertyNameError; });
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var ERDiagramParseError = /** @class */ (function (_super) {
-    __extends(ERDiagramParseError, _super);
-    function ERDiagramParseError() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return ERDiagramParseError;
-}(Error));
-
-var ERDiagramSyntaxError = /** @class */ (function (_super) {
-    __extends(ERDiagramSyntaxError, _super);
-    function ERDiagramSyntaxError() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return ERDiagramSyntaxError;
-}(ERDiagramParseError));
-
-var ERDiagramUnknownTypeError = /** @class */ (function (_super) {
-    __extends(ERDiagramUnknownTypeError, _super);
-    function ERDiagramUnknownTypeError() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return ERDiagramUnknownTypeError;
-}(ERDiagramParseError));
-
-var ERDiagramUnknownEntityError = /** @class */ (function (_super) {
-    __extends(ERDiagramUnknownEntityError, _super);
-    function ERDiagramUnknownEntityError() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return ERDiagramUnknownEntityError;
-}(ERDiagramParseError));
-
-var ERDiagramMultipleIdentifiersError = /** @class */ (function (_super) {
-    __extends(ERDiagramMultipleIdentifiersError, _super);
-    function ERDiagramMultipleIdentifiersError() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return ERDiagramMultipleIdentifiersError;
-}(ERDiagramParseError));
-
-var ERDiagramDuplicatedPropertyNameError = /** @class */ (function (_super) {
-    __extends(ERDiagramDuplicatedPropertyNameError, _super);
-    function ERDiagramDuplicatedPropertyNameError() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return ERDiagramDuplicatedPropertyNameError;
-}(ERDiagramParseError));
-
+var Cardinality;
+(function (Cardinality) {
+    Cardinality["MANY"] = "many";
+    Cardinality["ONE"] = "one";
+    Cardinality["ZERO_OR_ONE"] = "zero_or_one";
+})(Cardinality || (Cardinality = {}));
+var Direction;
+(function (Direction) {
+    Direction["LEFT_TO_RIGHT"] = "left_to_right";
+    Direction["RIGHT_TO_LEFT"] = "right_to_left";
+    Direction["BIDIRECTIONAL"] = "bidirectional";
+})(Direction || (Direction = {}));
 
 
 /***/ }),
@@ -4726,7 +3942,7 @@ var ERDiagramDuplicatedPropertyNameError = /** @class */ (function (_super) {
 /*!**********************************************!*\
   !*** ./src/main/erdiagram/parser/exports.ts ***!
   \**********************************************/
-/*! exports provided: EntityRelationshipModelParserConfigManager, entityRelationshipModelParserConfigManager, Cardinality, Direction, EntityPropertyType, ERDiagramParseError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramUnknownEntityError, ERDiagramMultipleIdentifiersError, ERDiagramDuplicatedPropertyNameError, EntityRelationshipModelParser */
+/*! exports provided: EntityRelationshipModelParserConfigManager, entityRelationshipModelParserConfigManager, EntityPropertyType, Cardinality, Direction, ERDiagramError, ERDiagramParseLineError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramRelationshipError, ERDiagramUnknownEntityError, ERDiagramEntityError, ERDiagramDuplicatedEntityNameError, ERDiagramEntityPropertyError, ERDiagramMultipleIdentifiersError, ERDiagramInvalidIdentifierDefinitionError, ERDiagramDuplicatedPropertyNameError, EntityRelationshipModelParser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4740,30 +3956,120 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "entityRelationshipModelParserConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["entityRelationshipModelParserConfigManager"]; });
 
 /* harmony import */ var _entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityPropertyType", function() { return _entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["EntityPropertyType"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Cardinality", function() { return _entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Cardinality"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Direction", function() { return _entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityPropertyType", function() { return _entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["EntityPropertyType"]; });
+/* harmony import */ var _parse_errors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./parse-errors */ "./src/main/erdiagram/parser/parse-errors.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramError"]; });
 
-/* harmony import */ var _errors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./errors */ "./src/main/erdiagram/parser/errors.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramParseError", function() { return _errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramParseError"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramParseLineError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramParseLineError"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramSyntaxError", function() { return _errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramSyntaxError"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramSyntaxError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramSyntaxError"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownTypeError", function() { return _errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramUnknownTypeError"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownTypeError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramUnknownTypeError"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownEntityError", function() { return _errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramUnknownEntityError"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramRelationshipError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramRelationshipError"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramMultipleIdentifiersError", function() { return _errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramMultipleIdentifiersError"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownEntityError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramUnknownEntityError"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramDuplicatedPropertyNameError", function() { return _errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramDuplicatedPropertyNameError"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramEntityError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramEntityError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramDuplicatedEntityNameError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramDuplicatedEntityNameError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramEntityPropertyError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramEntityPropertyError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramMultipleIdentifiersError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramMultipleIdentifiersError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramInvalidIdentifierDefinitionError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramInvalidIdentifierDefinitionError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramDuplicatedPropertyNameError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramDuplicatedPropertyNameError"]; });
 
 
 
 
 
 
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/parser/parse-errors.ts":
+/*!***************************************************!*\
+  !*** ./src/main/erdiagram/parser/parse-errors.ts ***!
+  \***************************************************/
+/*! exports provided: ERDiagramError, ERDiagramParseLineError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramRelationshipError, ERDiagramUnknownEntityError, ERDiagramEntityError, ERDiagramDuplicatedEntityNameError, ERDiagramEntityPropertyError, ERDiagramMultipleIdentifiersError, ERDiagramInvalidIdentifierDefinitionError, ERDiagramDuplicatedPropertyNameError */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramError", function() { return ERDiagramError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramParseLineError", function() { return ERDiagramParseLineError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramSyntaxError", function() { return ERDiagramSyntaxError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownTypeError", function() { return ERDiagramUnknownTypeError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramRelationshipError", function() { return ERDiagramRelationshipError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownEntityError", function() { return ERDiagramUnknownEntityError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramEntityError", function() { return ERDiagramEntityError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramDuplicatedEntityNameError", function() { return ERDiagramDuplicatedEntityNameError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramEntityPropertyError", function() { return ERDiagramEntityPropertyError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramMultipleIdentifiersError", function() { return ERDiagramMultipleIdentifiersError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramInvalidIdentifierDefinitionError", function() { return ERDiagramInvalidIdentifierDefinitionError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERDiagramDuplicatedPropertyNameError", function() { return ERDiagramDuplicatedPropertyNameError; });
+class ERDiagramError extends Error {
+}
+class ERDiagramParseLineError extends ERDiagramError {
+    constructor(cause, lineIndex) {
+        super(cause.message);
+        this.cause = cause;
+        this.lineIndex = lineIndex;
+    }
+    get lineNumber() {
+        return this.lineIndex + 1;
+    }
+}
+class ERDiagramSyntaxError extends ERDiagramError {
+}
+class ERDiagramUnknownTypeError extends ERDiagramError {
+}
+class ERDiagramRelationshipError extends ERDiagramError {
+    constructor(message, relationship) {
+        super(message);
+        this.relationship = relationship;
+    }
+}
+class ERDiagramUnknownEntityError extends ERDiagramRelationshipError {
+    constructor(message, relationship, member) {
+        super(message, relationship);
+        this.member = member;
+    }
+}
+class ERDiagramEntityError extends ERDiagramError {
+    constructor(message, entity) {
+        super(message);
+        this.entity = entity;
+    }
+}
+class ERDiagramDuplicatedEntityNameError extends ERDiagramEntityError {
+}
+class ERDiagramEntityPropertyError extends ERDiagramEntityError {
+    constructor(message, entity, property) {
+        super(message, entity);
+        this.property = property;
+    }
+}
+class ERDiagramMultipleIdentifiersError extends ERDiagramEntityPropertyError {
+    constructor(message, entity, identifierProperties) {
+        const firstDuplicateApparition = identifierProperties[1];
+        super(message, entity, firstDuplicateApparition);
+        this.identifierProperties = identifierProperties;
+    }
+}
+class ERDiagramInvalidIdentifierDefinitionError extends ERDiagramEntityPropertyError {
+}
+class ERDiagramDuplicatedPropertyNameError extends ERDiagramEntityPropertyError {
+}
 
 
 /***/ }),
@@ -4828,44 +4134,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
 /* harmony import */ var _erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/parser/statement/statement-types-regexes */ "./src/main/erdiagram/parser/statement/statement-types-regexes.ts");
 /* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
-/* harmony import */ var _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/parser/errors */ "./src/main/erdiagram/parser/errors.ts");
-var __read = (undefined && undefined.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
+/* harmony import */ var _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/parser/parse-errors */ "./src/main/erdiagram/parser/parse-errors.ts");
 
 
 
 
 function parseEntityNameStatement(line) {
-    var result = _erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_1__["ENTITY_NAME_LINE_REGEX"].exec(line);
+    const result = _erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_1__["ENTITY_NAME_LINE_REGEX"].exec(line);
     if (result == null) {
-        throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramSyntaxError"]('Syntax error');
+        throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramSyntaxError"]('Syntax error');
     }
-    var _a = __read(result, 2), fullMatch = _a[0], entityName = _a[1];
+    const [fullMatch, entityName] = result;
     return Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(entityName);
 }
 function parseEntityPropertyStatement(line) {
-    var result = _erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_1__["ENTITY_PROPERTY_LINE_REGEX"].exec(line);
+    const result = _erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_1__["ENTITY_PROPERTY_LINE_REGEX"].exec(line);
     if (result == null) {
-        throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramSyntaxError"]('Syntax error');
+        throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramSyntaxError"]('Syntax error');
     }
-    var _a = __read(result, 5), fullMatch = _a[0], name = _a[1], modifiers = _a[2], type = _a[3], length = _a[4];
-    var mappedType = type.toLowerCase();
+    const [fullMatch, name, modifiers, type, length] = result;
+    const mappedType = type.toLowerCase();
     if (!Object.values(_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["EntityPropertyType"]).includes(mappedType)) {
-        throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramUnknownTypeError"]('Unknown type: ' + type);
+        throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramUnknownTypeError"]('Unknown type: ' + type);
     }
     return {
         name: Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["uncapitalizeWord"])(name),
@@ -4881,14 +4171,14 @@ function parsePropertyLength(length) {
         return [];
     }
     return length.split(',')
-        .map(function (lengthNumber) { return parseInt(lengthNumber.trim(), 10); });
+        .map(lengthNumber => parseInt(lengthNumber.trim(), 10));
 }
 function parseRelationshipStatement(line) {
-    var result = _erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_1__["RELATIONSHIP_LINE_REGEX"].exec(line);
+    const result = _erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_1__["RELATIONSHIP_LINE_REGEX"].exec(line);
     if (result == null) {
-        throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramSyntaxError"]('Syntax error');
+        throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramSyntaxError"]('Syntax error');
     }
-    var _a = __read(result, 9), fullMatch = _a[0], leftEntity = _a[1], _b = _a[2], leftEntityAlias = _b === void 0 ? leftEntity : _b, leftCardinalityCharacter = _a[3], direction = _a[4], rightCardinalityCharacter = _a[5], rightEntity = _a[6], _c = _a[7], rightEntityAlias = _c === void 0 ? rightEntity : _c, relationShipName = _a[8];
+    const [fullMatch, leftEntity, leftEntityAlias = leftEntity, leftCardinalityCharacter, direction, rightCardinalityCharacter, rightEntity, rightEntityAlias = rightEntity, relationShipName] = result;
     return {
         relationShipName: relationShipName ? Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(relationShipName) : undefined,
         direction: direction === '->' ? _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].LEFT_TO_RIGHT : (direction === '<-' ? _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].RIGHT_TO_LEFT : _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].BIDIRECTIONAL),
@@ -4932,77 +4222,110 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RELATIONSHIP_LINE_REGEX", function() { return RELATIONSHIP_LINE_REGEX; });
 /* harmony import */ var _erdiagram_util_regex_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/regex-utils */ "./src/main/erdiagram/util/regex-utils.ts");
 
-var IDENTIFIER_REGEX = /[a-zA-Z_][a-zA-Z_0-9]*/;
-var OPTIONAL_TRAILING_SPACES_AND_COMMENT = /\s*(#.*)?$/;
+const IDENTIFIER_REGEX = /[a-zA-Z_][a-zA-Z_0-9]*/;
+const OPTIONAL_TRAILING_SPACES_AND_COMMENT = /\s*(#.*)?$/;
 // Entity name
-var ENTITY_NAME_LINE_REGEX = new RegExp("^(" + IDENTIFIER_REGEX.source + ")" + OPTIONAL_TRAILING_SPACES_AND_COMMENT.source);
+const ENTITY_NAME_LINE_REGEX = new RegExp(`^(${IDENTIFIER_REGEX.source})${OPTIONAL_TRAILING_SPACES_AND_COMMENT.source}`);
 // Entity property
-var PROPERTY_NAME_REGEX = new RegExp("(" + IDENTIFIER_REGEX.source + ")");
-var PROPERTY_MODIFIERS_REGEX = new RegExp("([?!+]*)");
-var PROPERTY_TYPE_NAME_REGEX = new RegExp("(" + IDENTIFIER_REGEX.source + ")");
-var PROPERTY_TYPE_LENGTH_REGEX = new RegExp("(?:\\((\\s*\\d+\\s*(?:,\\s*\\d+\\s*)*)\\))?");
-var ENTITY_PROPERTY_REGEX = Object(_erdiagram_util_regex_utils__WEBPACK_IMPORTED_MODULE_0__["joinRegExps"])(PROPERTY_NAME_REGEX, PROPERTY_MODIFIERS_REGEX, /\s+/, PROPERTY_TYPE_NAME_REGEX, PROPERTY_TYPE_LENGTH_REGEX);
-var ENTITY_PROPERTY_LINE_REGEX = new RegExp("^\\s+" + ENTITY_PROPERTY_REGEX.source + OPTIONAL_TRAILING_SPACES_AND_COMMENT.source);
+const PROPERTY_NAME_REGEX = new RegExp(`(${IDENTIFIER_REGEX.source})`);
+const PROPERTY_MODIFIERS_REGEX = new RegExp(`([?!+]*)`);
+const PROPERTY_TYPE_NAME_REGEX = new RegExp(`(${IDENTIFIER_REGEX.source})`);
+const PROPERTY_TYPE_LENGTH_REGEX = new RegExp(`(?:\\((\\s*\\d+\\s*(?:,\\s*\\d+\\s*)*)\\))?`);
+const ENTITY_PROPERTY_REGEX = Object(_erdiagram_util_regex_utils__WEBPACK_IMPORTED_MODULE_0__["joinRegExps"])(PROPERTY_NAME_REGEX, PROPERTY_MODIFIERS_REGEX, /\s+/, PROPERTY_TYPE_NAME_REGEX, PROPERTY_TYPE_LENGTH_REGEX);
+const ENTITY_PROPERTY_LINE_REGEX = new RegExp(`^\\s+${ENTITY_PROPERTY_REGEX.source}${OPTIONAL_TRAILING_SPACES_AND_COMMENT.source}`);
 // Relationship
-var RELATIONSHIP_DIRECTION_REGEX = /(<-|->|<->)/;
-var RELATIONSHIP_CARDINALITY_REGEX = /([?1*])?/;
-var DIRECTION_AND_CARDINALITY_REGEX = Object(_erdiagram_util_regex_utils__WEBPACK_IMPORTED_MODULE_0__["joinRegExps"])(RELATIONSHIP_CARDINALITY_REGEX, RELATIONSHIP_DIRECTION_REGEX, RELATIONSHIP_CARDINALITY_REGEX);
-var ENTITY_AND_ALIAS_REGEX = new RegExp("(" + IDENTIFIER_REGEX.source + ")(?:\\s+(" + IDENTIFIER_REGEX.source + "))?");
-var RELATIONSHIP_LINE_REGEX = new RegExp("^" + ENTITY_AND_ALIAS_REGEX.source + "\\s*?" + DIRECTION_AND_CARDINALITY_REGEX.source + "\\s*?" + ENTITY_AND_ALIAS_REGEX.source + "(?:\\s+\\(\\s*(" + IDENTIFIER_REGEX.source + ")\\s*\\))?" + OPTIONAL_TRAILING_SPACES_AND_COMMENT.source);
+const RELATIONSHIP_DIRECTION_REGEX = /(<-|->|<->)/;
+const RELATIONSHIP_CARDINALITY_REGEX = /([?1*])?/;
+const DIRECTION_AND_CARDINALITY_REGEX = Object(_erdiagram_util_regex_utils__WEBPACK_IMPORTED_MODULE_0__["joinRegExps"])(RELATIONSHIP_CARDINALITY_REGEX, RELATIONSHIP_DIRECTION_REGEX, RELATIONSHIP_CARDINALITY_REGEX);
+const ENTITY_AND_ALIAS_REGEX = new RegExp(`(${IDENTIFIER_REGEX.source})(?:\\s+(${IDENTIFIER_REGEX.source}))?`);
+const RELATIONSHIP_LINE_REGEX = new RegExp(`^${ENTITY_AND_ALIAS_REGEX.source}\\s*?${DIRECTION_AND_CARDINALITY_REGEX.source}\\s*?${ENTITY_AND_ALIAS_REGEX.source}(?:\\s+\\(\\s*(${IDENTIFIER_REGEX.source})\\s*\\))?${OPTIONAL_TRAILING_SPACES_AND_COMMENT.source}`);
 
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/parser/validator/EntityRelationshipModelValidator.ts":
-/*!*********************************************************************************!*\
-  !*** ./src/main/erdiagram/parser/validator/EntityRelationshipModelValidator.ts ***!
-  \*********************************************************************************/
+/***/ "./src/main/erdiagram/parser/validator/ParsedEntityRelationshipModelValidator.ts":
+/*!***************************************************************************************!*\
+  !*** ./src/main/erdiagram/parser/validator/ParsedEntityRelationshipModelValidator.ts ***!
+  \***************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/errors */ "./src/main/erdiagram/parser/errors.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ParsedEntityRelationshipModelValidator; });
+/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/parser/parse-errors */ "./src/main/erdiagram/parser/parse-errors.ts");
 
-var EntityRelationshipModelValidator = /** @class */ (function () {
-    function EntityRelationshipModelValidator(allowUnknownEntities) {
+
+class ParsedEntityRelationshipModelValidator {
+    constructor(allowUnknownEntities) {
         this.allowUnknownEntities = allowUnknownEntities;
     }
-    EntityRelationshipModelValidator.prototype.validateModel = function (model) {
+    validateParsedModel(model) {
+        this.validateNonRepeatedEntityNames(model);
+        this.validateNonRepeatedPropertyNames(model);
+        this.validateIdentifierProperties(model);
         if (!this.allowUnknownEntities) {
             this.validateRelationshipsHaveNoUnknownEntities(model);
         }
-        this.validateNonRepeatedPropertyNames(model);
-    };
-    EntityRelationshipModelValidator.prototype.validateRelationshipsHaveNoUnknownEntities = function (model) {
-        var entityNames = model.entities.map(function (e) { return e.name; });
-        model.relationships.forEach(function (relationship) {
-            if (!entityNames.includes(relationship.leftMember.entity)) {
-                throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramUnknownEntityError"]("Uknown entity \"" + relationship.leftMember.entity + "\" in relationship's left side");
+    }
+    validateNonRepeatedEntityNames(model) {
+        const entityNames = new Set();
+        model.entities.forEach(entity => {
+            const entityName = entity.name;
+            if (entityNames.has(entityName)) {
+                throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramDuplicatedEntityNameError"](`Repeated entity "${entityName}"`, entity);
             }
-            if (!entityNames.includes(relationship.rightMember.entity)) {
-                throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramUnknownEntityError"]("Uknown entity \"" + relationship.rightMember.entity + "\" in relationship's right side");
-            }
+            entityNames.add(entityName);
         });
-    };
-    EntityRelationshipModelValidator.prototype.validateNonRepeatedPropertyNames = function (model) {
-        model.entities.forEach(function (entity) {
-            var entityPropertyNames = new Set();
-            if (entity.identifierPropertyName) {
-                entityPropertyNames.add(entity.identifierPropertyName);
-            }
-            entity.properties.forEach(function (property) {
-                var propertyName = property.name;
+    }
+    validateNonRepeatedPropertyNames(model) {
+        model.entities.forEach(entity => {
+            const entityPropertyNames = new Set();
+            entity.properties.forEach(property => {
+                const propertyName = property.name;
                 if (entityPropertyNames.has(propertyName)) {
-                    throw new _erdiagram_parser_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramDuplicatedPropertyNameError"]("Repeated property \"" + propertyName + "\" in \"" + entity.name + "\" entity");
+                    throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramDuplicatedPropertyNameError"](`Repeated property "${propertyName}" in "${entity.name}" entity`, entity, property);
                 }
                 entityPropertyNames.add(propertyName);
             });
         });
-    };
-    return EntityRelationshipModelValidator;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (EntityRelationshipModelValidator);
+    }
+    validateIdentifierProperties(model) {
+        model.entities.forEach(entity => {
+            const identifierProperties = entity.properties.filter(property => property.type === _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER);
+            if (identifierProperties.length > 1) {
+                throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramMultipleIdentifiersError"](`Entity ${entity.name} has more than one identifier property`, entity, identifierProperties);
+            }
+            const identifierProperty = identifierProperties[0];
+            if (identifierProperty != null) {
+                if (identifierProperty.autoincremental) {
+                    throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramInvalidIdentifierDefinitionError"]('Autoincremental modifier (+) cannot be used in identifier properties', entity, identifierProperty);
+                }
+                if (identifierProperty.optional) {
+                    throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramInvalidIdentifierDefinitionError"]('Optional modifier (?) cannot be used in identifier properties', entity, identifierProperty);
+                }
+                if (identifierProperty.unique) {
+                    throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramInvalidIdentifierDefinitionError"]('Unique modifier (!) cannot be used in identifier properties', entity, identifierProperty);
+                }
+                if (identifierProperty.length.length > 0) {
+                    throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramInvalidIdentifierDefinitionError"]('Identifier properties cannot have a length', entity, identifierProperty);
+                }
+            }
+        });
+    }
+    validateRelationshipsHaveNoUnknownEntities(model) {
+        const entityNames = model.entities.map(e => e.name);
+        model.relationships.forEach(relationship => {
+            if (!entityNames.includes(relationship.leftMember.entity)) {
+                throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramUnknownEntityError"](`Uknown entity "${relationship.leftMember.entity}" in relationship's left member`, relationship, relationship.leftMember);
+            }
+            if (!entityNames.includes(relationship.rightMember.entity)) {
+                throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramUnknownEntityError"](`Uknown entity "${relationship.rightMember.entity}" in relationship's right member`, relationship, relationship.rightMember);
+            }
+        });
+    }
+}
 
 
 /***/ }),
@@ -5017,28 +4340,8 @@ var EntityRelationshipModelValidator = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeDuplicates", function() { return removeDuplicates; });
-var __read = (undefined && undefined.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
-var __spread = (undefined && undefined.__spread) || function () {
-    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-    return ar;
-};
 function removeDuplicates(array) {
-    return __spread(new Set(array));
+    return [...new Set(array)];
 }
 
 
@@ -5055,12 +4358,11 @@ function removeDuplicates(array) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "indentLines", function() { return indentLines; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "indentLine", function() { return indentLine; });
-var DEFAULT_INDENT = '    ';
+const DEFAULT_INDENT = '    ';
 function indentLines(lines, indent) {
-    return lines.map(function (line) { return indentLine(line, indent); });
+    return lines.map(line => indentLine(line, indent));
 }
-function indentLine(line, indent) {
-    if (indent === void 0) { indent = DEFAULT_INDENT; }
+function indentLine(line, indent = DEFAULT_INDENT) {
     if (line.trim().length === 0) {
         return line;
     }
@@ -5089,10 +4391,10 @@ function generateIndentText(indent) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "classifyBy", function() { return classifyBy; });
 function classifyBy(objects, keyMapper, valueMapper) {
-    var map = new Map();
-    objects.forEach(function (object) {
-        var key = keyMapper(object);
-        var value = valueMapper(object);
+    const map = new Map();
+    objects.forEach(object => {
+        const key = keyMapper(object);
+        const value = valueMapper(object);
         map.set(key, value);
     });
     return map;
@@ -5113,30 +4415,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapValues", function() { return mapValues; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findKeyFromValue", function() { return findKeyFromValue; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findValueFromNullableKey", function() { return findValueFromNullableKey; });
-var __read = (undefined && undefined.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
 function mapValues(record, mapper) {
-    return Object.fromEntries(Object.entries(record).map(function (_a) {
-        var _b = __read(_a, 2), key = _b[0], value = _b[1];
-        return [key, mapper(value)];
-    }));
+    return Object.fromEntries(Object.entries(record).map(([key, value]) => [key, mapper(value)]));
 }
 function findKeyFromValue(record, value) {
-    var entry = Object.entries(record).find(function (entry) { return value === entry[1]; });
+    const entry = Object.entries(record).find(entry => value === entry[1]);
     return entry === null || entry === void 0 ? void 0 : entry[0];
 }
 function findValueFromNullableKey(record, key, defaultValue) {
@@ -5160,13 +4443,9 @@ __webpack_require__.r(__webpack_exports__);
 function escapeRegExpSpecialChars(text) {
     return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
 }
-function joinRegExps() {
-    var regexes = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        regexes[_i] = arguments[_i];
-    }
-    var source = regexes
-        .map(function (e) {
+function joinRegExps(...regexes) {
+    const source = regexes
+        .map((e) => {
         if (typeof e === 'string') {
             return escapeRegExpSpecialChars(e);
         }

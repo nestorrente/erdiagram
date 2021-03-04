@@ -1,4 +1,4 @@
-import {capitalizeWord, uncapitalizeWord} from '../../../main/erdiagram/util/string-utils';
+import {capitalizeWord, uncapitalizeWord} from '@/erdiagram/util/string-utils';
 
 describe('Capitalize word', () => {
 

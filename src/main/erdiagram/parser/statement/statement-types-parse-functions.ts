@@ -4,14 +4,12 @@ import {
 	ENTITY_PROPERTY_LINE_REGEX,
 	RELATIONSHIP_LINE_REGEX
 } from '@/erdiagram/parser/statement/statement-types-regexes';
+import {Cardinality, Direction, EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
 import {
-	Cardinality,
-	Direction,
-	EntityPropertyDescriptor,
-	EntityPropertyType,
-	RelationshipDescriptor
-} from '@/erdiagram/parser/entity-relationship-model-types';
-import {ERDiagramSyntaxError, ERDiagramUnknownTypeError} from '@/erdiagram/parser/errors';
+	ParsedEntityPropertyDescriptor,
+	ParsedRelationshipDescriptor
+} from '@/erdiagram/parser/parsed-entity-relationship-model-types';
+import {ERDiagramSyntaxError, ERDiagramUnknownTypeError} from '@/erdiagram/parser/parse-errors';
 
 export function parseEntityNameStatement(line: string): string {
 
@@ -30,7 +28,7 @@ export function parseEntityNameStatement(line: string): string {
 
 }
 
-export function parseEntityPropertyStatement(line: string): EntityPropertyDescriptor {
+export function parseEntityPropertyStatement(line: string): ParsedEntityPropertyDescriptor {
 
 	const result = ENTITY_PROPERTY_LINE_REGEX.exec(line);
 
@@ -74,7 +72,7 @@ function parsePropertyLength(length: string): number[] {
 
 }
 
-export function parseRelationshipStatement(line: string): RelationshipDescriptor {
+export function parseRelationshipStatement(line: string): ParsedRelationshipDescriptor {
 
 	const result = RELATIONSHIP_LINE_REGEX.exec(line);
 

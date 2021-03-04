@@ -20,27 +20,6 @@ export interface EntityRelationshipModel {
 	entities: EntityDescriptor[];
 	relationships: RelationshipDescriptor[];
 }
-export declare enum Cardinality {
-	MANY = "many",
-	ONE = "one",
-	ZERO_OR_ONE = "zero_or_one"
-}
-export declare enum Direction {
-	LEFT_TO_RIGHT = "left_to_right",
-	RIGHT_TO_LEFT = "right_to_left",
-	BIDIRECTIONAL = "bidirectional"
-}
-export interface RelationshipDescriptor {
-	leftMember: RelationshipMember;
-	rightMember: RelationshipMember;
-	direction: Direction;
-	relationShipName?: string;
-}
-export interface RelationshipMember {
-	entity: string;
-	entityAlias: string;
-	cardinality: Cardinality;
-}
 export interface EntityDescriptor {
 	name: string;
 	identifierPropertyName?: string;
@@ -66,6 +45,27 @@ export declare enum EntityPropertyType {
 	TIME = "time",
 	DATETIME = "datetime",
 	BLOB = "blob"
+}
+export interface RelationshipDescriptor {
+	leftMember: RelationshipMember;
+	rightMember: RelationshipMember;
+	direction: Direction;
+	relationShipName?: string;
+}
+export interface RelationshipMember {
+	entity: string;
+	entityAlias: string;
+	cardinality: Cardinality;
+}
+export declare enum Cardinality {
+	MANY = "many",
+	ONE = "one",
+	ZERO_OR_ONE = "zero_or_one"
+}
+export declare enum Direction {
+	LEFT_TO_RIGHT = "left_to_right",
+	RIGHT_TO_LEFT = "right_to_left",
+	BIDIRECTIONAL = "bidirectional"
 }
 export interface EntityRelationshipModelToCodeConverter {
 	generateCode(model: EntityRelationshipModel): string;
@@ -370,9 +370,13 @@ export interface EntityRelationshipModelParserConfig {
 export declare class EntityRelationshipModelParser {
 	private readonly config;
 	private readonly validator;
+	private readonly parsedModelToPublicModelConverter;
 	constructor(config?: Partial<EntityRelationshipModelParserConfig>);
 	parseModel(code: string): EntityRelationshipModel;
 	private parseModelWithoutValidation;
+	private parseLine;
+	private handleLineError;
+	private handleValidationError;
 }
 export interface EntityRelationshipModelParserSerializableConfig {
 	allowUnknownEntities: boolean;
@@ -384,17 +388,61 @@ export declare class EntityRelationshipModelParserConfigManager extends Abstract
 	convertFromSerializableObject(serializableConfig: EntityRelationshipModelParserSerializableConfig): EntityRelationshipModelParserConfig;
 }
 export declare const entityRelationshipModelParserConfigManager: EntityRelationshipModelParserConfigManager;
-export declare class ERDiagramParseError extends Error {
+export interface ParsedEntityDescriptor {
+	name: string;
+	properties: ParsedEntityPropertyDescriptor[];
 }
-export declare class ERDiagramSyntaxError extends ERDiagramParseError {
+export interface ParsedEntityPropertyDescriptor {
+	name: string;
+	optional: boolean;
+	autoincremental: boolean;
+	unique: boolean;
+	type: EntityPropertyType;
+	length: number[];
 }
-export declare class ERDiagramUnknownTypeError extends ERDiagramParseError {
+export interface ParsedRelationshipDescriptor {
+	leftMember: RelationshipMember;
+	rightMember: RelationshipMember;
+	direction: Direction;
+	relationShipName?: string;
 }
-export declare class ERDiagramUnknownEntityError extends ERDiagramParseError {
+export declare class ERDiagramError extends Error {
 }
-export declare class ERDiagramMultipleIdentifiersError extends ERDiagramParseError {
+export declare class ERDiagramParseLineError extends ERDiagramError {
+	private readonly cause;
+	private readonly lineIndex;
+	constructor(cause: ERDiagramError, lineIndex: number);
+	get lineNumber(): number;
 }
-export declare class ERDiagramDuplicatedPropertyNameError extends ERDiagramParseError {
+export declare class ERDiagramSyntaxError extends ERDiagramError {
+}
+export declare class ERDiagramUnknownTypeError extends ERDiagramError {
+}
+export declare class ERDiagramRelationshipError extends ERDiagramError {
+	readonly relationship: ParsedRelationshipDescriptor;
+	constructor(message: string, relationship: ParsedRelationshipDescriptor);
+}
+export declare class ERDiagramUnknownEntityError extends ERDiagramRelationshipError {
+	readonly member: RelationshipMember;
+	constructor(message: string, relationship: ParsedRelationshipDescriptor, member: RelationshipMember);
+}
+export declare class ERDiagramEntityError extends ERDiagramError {
+	readonly entity: ParsedEntityDescriptor;
+	constructor(message: string, entity: ParsedEntityDescriptor);
+}
+export declare class ERDiagramDuplicatedEntityNameError extends ERDiagramEntityError {
+}
+export declare class ERDiagramEntityPropertyError extends ERDiagramEntityError {
+	readonly property: ParsedEntityPropertyDescriptor;
+	constructor(message: string, entity: ParsedEntityDescriptor, property: ParsedEntityPropertyDescriptor);
+}
+export declare class ERDiagramMultipleIdentifiersError extends ERDiagramEntityPropertyError {
+	readonly identifierProperties: ParsedEntityPropertyDescriptor[];
+	constructor(message: string, entity: ParsedEntityDescriptor, identifierProperties: ParsedEntityPropertyDescriptor[]);
+}
+export declare class ERDiagramInvalidIdentifierDefinitionError extends ERDiagramEntityPropertyError {
+}
+export declare class ERDiagramDuplicatedPropertyNameError extends ERDiagramEntityPropertyError {
 }
 
 export {};

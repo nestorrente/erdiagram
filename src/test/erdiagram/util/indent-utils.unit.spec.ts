@@ -1,4 +1,4 @@
-import {indentLine, indentLines} from '../../../main/erdiagram/util/indent-utils';
+import {indentLine, indentLines} from '@/erdiagram/util/indent-utils';
 
 describe('Indent one line', () => {
 

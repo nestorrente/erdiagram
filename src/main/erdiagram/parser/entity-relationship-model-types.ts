@@ -3,31 +3,6 @@ export interface EntityRelationshipModel {
 	relationships: RelationshipDescriptor[];
 }
 
-export enum Cardinality {
-	MANY = 'many',
-	ONE = 'one',
-	ZERO_OR_ONE = 'zero_or_one'
-}
-
-export enum Direction {
-	LEFT_TO_RIGHT = 'left_to_right',
-	RIGHT_TO_LEFT = 'right_to_left',
-	BIDIRECTIONAL = 'bidirectional'
-}
-
-export interface RelationshipDescriptor {
-	leftMember: RelationshipMember;
-	rightMember: RelationshipMember;
-	direction: Direction;
-	relationShipName?: string;
-}
-
-export interface RelationshipMember {
-	entity: string;
-	entityAlias: string;
-	cardinality: Cardinality;
-}
-
 export interface EntityDescriptor {
 	name: string;
 	identifierPropertyName?: string;
@@ -55,4 +30,29 @@ export enum EntityPropertyType {
 	TIME = 'time',
 	DATETIME = 'datetime',
 	BLOB = 'blob'
+}
+
+export interface RelationshipDescriptor {
+	leftMember: RelationshipMember;
+	rightMember: RelationshipMember;
+	direction: Direction;
+	relationShipName?: string;
+}
+
+export interface RelationshipMember {
+	entity: string;
+	entityAlias: string;
+	cardinality: Cardinality;
+}
+
+export enum Cardinality {
+	MANY = 'many',
+	ONE = 'one',
+	ZERO_OR_ONE = 'zero_or_one'
+}
+
+export enum Direction {
+	LEFT_TO_RIGHT = 'left_to_right',
+	RIGHT_TO_LEFT = 'right_to_left',
+	BIDIRECTIONAL = 'bidirectional'
 }

@@ -1,4 +1,4 @@
-import {removeDuplicates} from '../../../main/erdiagram/util/array-utils';
+import {removeDuplicates} from '@/erdiagram/util/array-utils';
 
 describe('Remove duplicates', () => {
 
