@@ -33,6 +33,9 @@ const commonConfig = {
     plugins: [
         new webpack.BannerPlugin({banner: BUNDLE_HEADER})
     ],
+    node: {
+        fs: 'empty'
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
     }

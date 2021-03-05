@@ -364,6 +364,17 @@ export declare class ClassModelGeneratorConfigManager extends AbstractComponentC
 	convertFromSerializableObject(serializableConfig: ClassModelGeneratorSerializableConfig): ClassModelGeneratorConfig;
 }
 export declare const classModelGeneratorConfigManager: ClassModelGeneratorConfigManager;
+export declare class EntityRelationshipModelToNomnomlCodeConverter implements EntityRelationshipModelToCodeConverter {
+	private readonly entityCodeGenerator;
+	private readonly relationshipCodeGenerator;
+	generateCode(model: EntityRelationshipModel): string;
+}
+export declare class NomnomlDiagramGenerator {
+	private erModelToNomnomlCodeConverter;
+	generateSvgDiagram(model: EntityRelationshipModel): string;
+	drawDiagram(model: EntityRelationshipModel, canvas: HTMLCanvasElement): {};
+	private generateCode;
+}
 export interface EntityRelationshipModelParserConfig {
 	allowUnknownEntities: boolean;
 }
