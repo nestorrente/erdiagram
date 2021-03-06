@@ -2,6 +2,6 @@ import {EntityRelationshipModel} from '@/erdiagram/parser/entity-relationship-mo
 
 export default interface EntityRelationshipModelToCodeConverter {
 
-	generateCode(model: EntityRelationshipModel): string;
+	convertToCode(model: EntityRelationshipModel): string;
 
 }

@@ -68,7 +68,7 @@ export declare enum Direction {
 	BIDIRECTIONAL = "bidirectional"
 }
 export interface EntityRelationshipModelToCodeConverter {
-	generateCode(model: EntityRelationshipModel): string;
+	convertToCode(model: EntityRelationshipModel): string;
 }
 export interface CaseFormat {
 	splitWords(text: string): string[];
@@ -118,7 +118,7 @@ export interface TableReferenceDescriptor {
 	unique: boolean;
 }
 export interface DatabaseModelToCodeConverter {
-	generateCode(databaseModel: DatabaseModel): string;
+	convertToCode(databaseModel: DatabaseModel): string;
 }
 export interface DatabaseModelToCodeConverterConfig {
 	typeBindings: Partial<Record<EntityPropertyType, string>>;
@@ -154,7 +154,7 @@ export declare class EntityRelationshipModelToDatabaseCodeConverter implements E
 	private readonly databaseModelGenerator;
 	private readonly databaseModelToCodeConverter;
 	constructor(databaseModelGenerator: DatabaseModelGenerator, databaseModelToCodeConverter: DatabaseModelToCodeConverter);
-	generateCode(entityRelationshipModel: EntityRelationshipModel): string;
+	convertToCode(entityRelationshipModel: EntityRelationshipModel): string;
 }
 export interface MySqlDatabaseModelToCodeConverterConfig extends DatabaseModelToCodeConverterConfig {
 }
@@ -165,7 +165,7 @@ export declare class MySqlDatabaseModelToCodeConverter implements DatabaseModelT
 	private readonly idColumnCodeGenerator;
 	private readonly foreignColumnCodeGenerator;
 	constructor(config?: Partial<MySqlDatabaseModelToCodeConverterConfig>);
-	generateCode(databaseModel: DatabaseModel): string;
+	convertToCode(databaseModel: DatabaseModel): string;
 	private generateTableCode;
 	private processReferences;
 	private processColumns;
@@ -188,7 +188,7 @@ export declare class OracleDatabaseModelToCodeConverter implements DatabaseModel
 	private readonly idColumnCodeGenerator;
 	private readonly foreignColumnCodeGenerator;
 	constructor(config?: Partial<OracleDatabaseModelToCodeConverterConfig>);
-	generateCode(databaseModel: DatabaseModel): string;
+	convertToCode(databaseModel: DatabaseModel): string;
 	private generateTableCode;
 	private processReferences;
 	private processColumns;
@@ -211,7 +211,7 @@ export declare class SqlServerDatabaseModelToCodeConverter implements DatabaseMo
 	private readonly idColumnCodeGenerator;
 	private readonly foreignColumnCodeGenerator;
 	constructor(config?: Partial<SqlServerDatabaseModelToCodeConverterConfig>);
-	generateCode(databaseModel: DatabaseModel): string;
+	convertToCode(databaseModel: DatabaseModel): string;
 	private generateTableCode;
 	private processReferences;
 	private processColumns;
@@ -257,7 +257,7 @@ export interface ClassFieldDescriptor {
 	entityType?: string;
 }
 export interface ClassModelToCodeConverter {
-	generateCode(classModel: ClassModel): string;
+	convertToCode(classModel: ClassModel): string;
 }
 export interface ClassModelGeneratorConfig {
 	idNamingStrategy: IdNamingStrategy;
@@ -276,7 +276,7 @@ export declare class EntityRelationshipModelToClassCodeConverter implements Enti
 	private readonly classModelGenerator;
 	private readonly classModelToCodeConverter;
 	constructor(classModelGenerator: ClassModelGenerator, classModelToCodeConverter: ClassModelToCodeConverter);
-	generateCode(entityRelationshipModel: EntityRelationshipModel): string;
+	convertToCode(entityRelationshipModel: EntityRelationshipModel): string;
 }
 export interface JavaType {
 	packageName?: string;
@@ -299,7 +299,7 @@ export interface JavaClassModelToCodeConverterConfig extends ClassModelToCodeCon
 export declare class JavaClassModelToCodeConverter implements ClassModelToCodeConverter {
 	private readonly config;
 	constructor(config?: Partial<JavaClassModelToCodeConverterConfig>);
-	generateCode(classModel: ClassModel): string;
+	convertToCode(classModel: ClassModel): string;
 	private generateClass;
 	private createField;
 	private mapFieldTypeToJavaType;
@@ -337,7 +337,7 @@ export interface TypeScriptClassModelToCodeConverterConfig extends ClassModelToC
 export declare class TypeScriptClassModelToCodeConverter implements ClassModelToCodeConverter {
 	private readonly config;
 	constructor(config?: Partial<TypeScriptClassModelToCodeConverterConfig>);
-	generateCode(classModel: ClassModel): string;
+	convertToCode(classModel: ClassModel): string;
 	private generateClass;
 	private createField;
 	private mapFieldTypeToTypeScriptType;
@@ -364,12 +364,7 @@ export declare class ClassModelGeneratorConfigManager extends AbstractComponentC
 	convertFromSerializableObject(serializableConfig: ClassModelGeneratorSerializableConfig): ClassModelGeneratorConfig;
 }
 export declare const classModelGeneratorConfigManager: ClassModelGeneratorConfigManager;
-export declare class EntityRelationshipModelToNomnomlCodeConverter implements EntityRelationshipModelToCodeConverter {
-	private readonly entityCodeGenerator;
-	private readonly relationshipCodeGenerator;
-	generateCode(model: EntityRelationshipModel): string;
-}
-export interface NomnomlOptions {
+export interface NomnomlEntityRelationshipModelToDiagramCodeConverterConfig {
 	arrowSize?: number;
 	bendSize?: number;
 	direction?: "down" | "right";
@@ -392,12 +387,21 @@ export interface NomnomlOptions {
 	acyclicer?: "greedy";
 	ranker?: "network-simplex" | "tight-tree" | "longest-path";
 }
-export declare class NomnomlDiagramGenerator {
-	private erModelToNomnomlCodeConverter;
-	generateSvgDiagram(model: EntityRelationshipModel, options?: NomnomlOptions): string;
-	drawDiagram(model: EntityRelationshipModel, canvas: HTMLCanvasElement, options?: NomnomlOptions): {};
-	private generateCode;
-	private convertOptionsIntoDirectives;
+export declare class NomnomlEntityRelationshipModelToDiagramCodeConverter implements EntityRelationshipModelToCodeConverter {
+	private readonly config;
+	private readonly entityCodeGenerator;
+	private readonly relationshipCodeGenerator;
+	private readonly directivesCodeGenerator;
+	constructor(config?: Partial<NomnomlEntityRelationshipModelToDiagramCodeConverterConfig>);
+	convertToCode(model: EntityRelationshipModel): string;
+}
+export interface EntityRelationshipModelToDiagramConverter {
+	convertToDiagram(model: EntityRelationshipModel): string | null;
+}
+export declare class NomnomlEntityRelationshipModelToDiagramConverter implements EntityRelationshipModelToDiagramConverter {
+	private readonly erModelToDiagramCodeConverter;
+	constructor(erModelToDiagramCodeConverter: NomnomlEntityRelationshipModelToDiagramCodeConverter);
+	convertToDiagram(model: EntityRelationshipModel): string | null;
 }
 export interface EntityRelationshipModelParserConfig {
 	allowUnknownEntities: boolean;
@@ -445,7 +449,7 @@ export declare class ERDiagramError extends Error {
 }
 export declare class ERDiagramParseLineError extends ERDiagramError {
 	private readonly cause;
-	private readonly lineIndex;
+	readonly lineIndex: number;
 	constructor(cause: ERDiagramError, lineIndex: number);
 	get lineNumber(): number;
 }

@@ -64,7 +64,7 @@ export default class MySqlDatabaseModelToCodeConverter implements DatabaseModelT
 
 	}
 
-	public generateCode(databaseModel: DatabaseModel): string {
+	public convertToCode(databaseModel: DatabaseModel): string {
 
 		const allCreateTableStatements: string[] = [];
 		const allAlterTableStatements: string[] = [];

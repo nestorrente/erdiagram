@@ -12,9 +12,9 @@ export default class EntityRelationshipModelToClassCodeConverter implements Enti
 
 	}
 
-	public generateCode(entityRelationshipModel: EntityRelationshipModel): string {
+	public convertToCode(entityRelationshipModel: EntityRelationshipModel): string {
 		const classModel = this.classModelGenerator.generateClassModel(entityRelationshipModel);
-		return this.classModelToCodeConverter.generateCode(classModel);
+		return this.classModelToCodeConverter.convertToCode(classModel);
 	}
 
 }

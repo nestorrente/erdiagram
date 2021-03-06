@@ -64,7 +64,7 @@ export default class SqlServerDatabaseModelToCodeConverter implements DatabaseMo
 
 	}
 
-	public generateCode(databaseModel: DatabaseModel): string {
+	public convertToCode(databaseModel: DatabaseModel): string {
 
 		const allCreateTableStatements: string[] = [];
 		const allAlterTableStatements: string[] = [];

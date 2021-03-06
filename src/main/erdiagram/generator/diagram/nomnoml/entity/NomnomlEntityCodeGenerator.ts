@@ -1,12 +1,13 @@
 import {EntityDescriptor} from '@/erdiagram/parser/entity-relationship-model-types';
-import EntityIdentifierPropertyCodeGenerator
-	from '@/erdiagram/generator/diagram/nomnoml/entity/EntityIdentifierPropertyCodeGenerator';
-import EntityPropertyCodeGenerator from '@/erdiagram/generator/diagram/nomnoml/entity/EntityPropertyCodeGenerator';
+import NomnomlEntityIdentifierPropertyCodeGenerator
+	from '@/erdiagram/generator/diagram/nomnoml/entity/NomnomlEntityIdentifierPropertyCodeGenerator';
+import NomnomlEntityPropertyCodeGenerator
+	from '@/erdiagram/generator/diagram/nomnoml/entity/NomnomlEntityPropertyCodeGenerator';
 
-export default class EntityCodeGenerator {
+export default class NomnomlEntityCodeGenerator {
 
-	private readonly entityIdentifierPropertyCodeGenerator = new EntityIdentifierPropertyCodeGenerator();
-	private readonly entityPropertyCodeGenerator = new EntityPropertyCodeGenerator();
+	private readonly entityIdentifierPropertyCodeGenerator = new NomnomlEntityIdentifierPropertyCodeGenerator();
+	private readonly entityPropertyCodeGenerator = new NomnomlEntityPropertyCodeGenerator();
 
 	public generateEntityCode(entity: EntityDescriptor): string {
 

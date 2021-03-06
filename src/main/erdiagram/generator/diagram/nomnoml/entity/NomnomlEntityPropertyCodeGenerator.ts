@@ -1,6 +1,6 @@
 import {EntityPropertyDescriptor, EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
 
-export default class EntityPropertyCodeGenerator {
+export default class NomnomlEntityPropertyCodeGenerator {
 
 	public generateEntityPropertyCode(property: EntityPropertyDescriptor): string {
 

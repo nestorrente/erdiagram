@@ -16,9 +16,9 @@ export default class EntityRelationshipModelToDatabaseCodeConverter implements E
 		this.databaseModelToCodeConverter = databaseModelToCodeConverter;
 	}
 
-	public generateCode(entityRelationshipModel: EntityRelationshipModel): string {
+	public convertToCode(entityRelationshipModel: EntityRelationshipModel): string {
 		const databaseModel = this.databaseModelGenerator.generateDatabaseModel(entityRelationshipModel);
-		return this.databaseModelToCodeConverter.generateCode(databaseModel);
+		return this.databaseModelToCodeConverter.convertToCode(databaseModel);
 	}
 
 }

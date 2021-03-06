@@ -1,8 +1,9 @@
-import EntityRelationshipModelToNomnomlCodeConverter
-	from '@/erdiagram/generator/diagram/nomnoml/EntityRelationshipModelToNomnomlCodeConverter';
-import NomnomlDiagramGenerator from '@/erdiagram/generator/diagram/nomnoml/NomnomlDiagramGenerator';
+import NomnomlEntityRelationshipModelToDiagramCodeConverter
+	from '@/erdiagram/generator/diagram/nomnoml/NomnomlEntityRelationshipModelToDiagramCodeConverter';
+import NomnomlEntityRelationshipModelToDiagramConverter
+	from '@/erdiagram/generator/diagram/nomnoml/NomnomlEntityRelationshipModelToDiagramConverter';
 
 export {
-	EntityRelationshipModelToNomnomlCodeConverter,
-	NomnomlDiagramGenerator
+	NomnomlEntityRelationshipModelToDiagramCodeConverter,
+	NomnomlEntityRelationshipModelToDiagramConverter
 };

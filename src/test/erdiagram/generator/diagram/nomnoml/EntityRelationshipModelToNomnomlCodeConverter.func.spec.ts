@@ -4,10 +4,24 @@ import {
 	EntityPropertyType,
 	EntityRelationshipModel
 } from '@/erdiagram/parser/entity-relationship-model-types';
-import EntityRelationshipModelToNomnomlCodeConverter
-	from '@/erdiagram/generator/diagram/nomnoml/EntityRelationshipModelToNomnomlCodeConverter';
+import NomnomlEntityRelationshipModelToDiagramCodeConverter
+	from '@/erdiagram/generator/diagram/nomnoml/NomnomlEntityRelationshipModelToDiagramCodeConverter';
 
-const erModelToNomnomlCodeConverter = new EntityRelationshipModelToNomnomlCodeConverter();
+const erModelToNomnomlCodeConverter = new NomnomlEntityRelationshipModelToDiagramCodeConverter({});
+
+function addDefaultDirectives(expectedResult: string): string {
+	return [
+		expectedResult,
+		'',
+		'#background: white',
+		'#fill: #eef6ff',
+		'#gravity: 1.5',
+		'#lineWidth: 1',
+		'#stroke: #555',
+		'#arrowSize: 1',
+		'#ranker: longest-path',
+	].join('\n');
+}
 
 describe('Entities', () => {
 
@@ -24,9 +38,9 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = erModelToNomnomlCodeConverter.generateCode(model);
+		const result = erModelToNomnomlCodeConverter.convertToCode(model);
 
-		expect(result).toBe('[User]');
+		expect(result).toBe(addDefaultDirectives('[User]'));
 
 	});
 
@@ -43,11 +57,11 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = erModelToNomnomlCodeConverter.generateCode(model);
+		const result = erModelToNomnomlCodeConverter.convertToCode(model);
 
-		expect(result).toBe(`[User|
+		expect(result).toBe(addDefaultDirectives(`[User|
   userId: identifier
-]`);
+]`));
 
 	});
 
@@ -73,11 +87,11 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = erModelToNomnomlCodeConverter.generateCode(model);
+		const result = erModelToNomnomlCodeConverter.convertToCode(model);
 
-		expect(result).toBe(`[User|
+		expect(result).toBe(addDefaultDirectives(`[User|
   active: bool
-]`);
+]`));
 
 	});
 
@@ -103,11 +117,11 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = erModelToNomnomlCodeConverter.generateCode(model);
+		const result = erModelToNomnomlCodeConverter.convertToCode(model);
 
-		expect(result).toBe(`[User|
+		expect(result).toBe(addDefaultDirectives(`[User|
   username: text(20)
-]`);
+]`));
 
 	});
 
@@ -133,11 +147,11 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = erModelToNomnomlCodeConverter.generateCode(model);
+		const result = erModelToNomnomlCodeConverter.convertToCode(model);
 
-		expect(result).toBe(`[User|
+		expect(result).toBe(addDefaultDirectives(`[User|
   score: decimal(10, 5)
-]`);
+]`));
 
 	});
 
@@ -179,13 +193,13 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = erModelToNomnomlCodeConverter.generateCode(model);
+		const result = erModelToNomnomlCodeConverter.convertToCode(model);
 
-		expect(result).toBe(`[User|
+		expect(result).toBe(addDefaultDirectives(`[User|
   username!: text(20)
   realName?: text(50)
   order?!+: int
-]`);
+]`));
 
 	});
 
@@ -215,9 +229,9 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = erModelToNomnomlCodeConverter.generateCode(model);
+		const result = erModelToNomnomlCodeConverter.convertToCode(model);
 
-		expect(result).toBe('[A] 1<->1 [B]');
+		expect(result).toBe(addDefaultDirectives('[A] 1<->1 [B]'));
 
 	});
 
@@ -243,9 +257,9 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = erModelToNomnomlCodeConverter.generateCode(model);
+		const result = erModelToNomnomlCodeConverter.convertToCode(model);
 
-		expect(result).toBe('[A] 1->* [B]');
+		expect(result).toBe(addDefaultDirectives('[A] 1->* [B]'));
 
 	});
 
@@ -271,9 +285,9 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = erModelToNomnomlCodeConverter.generateCode(model);
+		const result = erModelToNomnomlCodeConverter.convertToCode(model);
 
-		expect(result).toBe('[A] *<-* [B]');
+		expect(result).toBe(addDefaultDirectives('[A] *<-* [B]'));
 
 	});
 
@@ -299,9 +313,9 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = erModelToNomnomlCodeConverter.generateCode(model);
+		const result = erModelToNomnomlCodeConverter.convertToCode(model);
 
-		expect(result).toBe('[A] *<->1 [B]');
+		expect(result).toBe(addDefaultDirectives('[A] *<->1 [B]'));
 
 	});
 
@@ -327,11 +341,11 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = erModelToNomnomlCodeConverter.generateCode(model);
+		const result = erModelToNomnomlCodeConverter.convertToCode(model);
 
-		expect(result).toBe(`[<label>Rel]
+		expect(result).toBe(addDefaultDirectives(`[<label>Rel]
 [A] *- [Rel]
-[Rel] ->1 [B]`);
+[Rel] ->1 [B]`));
 
 	});
 
@@ -357,11 +371,11 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = erModelToNomnomlCodeConverter.generateCode(model);
+		const result = erModelToNomnomlCodeConverter.convertToCode(model);
 
-		expect(result).toBe(`[<label>Rel]
+		expect(result).toBe(addDefaultDirectives(`[<label>Rel]
 [A] *<- [Rel]
-[Rel] ->* [B]`);
+[Rel] ->* [B]`));
 
 	});
 
@@ -428,9 +442,9 @@ describe('Entities and relationships', () => {
 			]
 		};
 
-		const result = erModelToNomnomlCodeConverter.generateCode(model);
+		const result = erModelToNomnomlCodeConverter.convertToCode(model);
 
-		expect(result).toBe(`[User|
+		expect(result).toBe(addDefaultDirectives(`[User|
   uuid: identifier
   username!: text(20)
   active: bool
@@ -440,7 +454,7 @@ describe('Entities and relationships', () => {
   date: datetime
 ]
 
-[User] 1<-* [Order]`);
+[User] 1<-* [Order]`));
 
 	});
 

@@ -64,7 +64,7 @@ export default class OracleDatabaseModelToCodeConverter implements DatabaseModel
 
 	}
 
-	public generateCode(databaseModel: DatabaseModel): string {
+	public convertToCode(databaseModel: DatabaseModel): string {
 
 		const allCreateTableStatements: string[] = [];
 		const allAlterTableStatements: string[] = [];

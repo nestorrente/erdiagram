@@ -17,7 +17,7 @@ export default class TypeScriptClassModelToCodeConverter implements ClassModelTo
 		this.config = typescriptClassModelToCodeConverterConfigManager.mergeWithDefaultConfig(config);
 	}
 
-	public generateCode(classModel: ClassModel): string {
+	public convertToCode(classModel: ClassModel): string {
 		return classModel.classes
 				.map(classDescriptor => this.generateClass(classDescriptor))
 				.join('\n\n');
