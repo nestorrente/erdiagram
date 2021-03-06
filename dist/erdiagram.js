@@ -4,7 +4,7 @@
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-03-06T20:14:31.665Z
+ * Build date: 2021-03-06T20:50:48.734Z
  */
 var ERDiagram =
 /******/ (function(modules) { // webpackBootstrap
@@ -5242,12 +5242,16 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************************!*\
   !*** ./src/main/erdiagram/generator/diagram/exports.ts ***!
   \*********************************************************/
-/*! exports provided: NomnomlEntityRelationshipModelToDiagramCodeConverter, NomnomlEntityRelationshipModelToDiagramConverter */
+/*! exports provided: NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, NomnomlEntityRelationshipModelToDiagramCodeConverter, NomnomlEntityRelationshipModelToDiagramConverter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nomnoml/exports */ "./src/main/erdiagram/generator/diagram/nomnoml/exports.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager", function() { return _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__["NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager", function() { return _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__["nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NomnomlEntityRelationshipModelToDiagramCodeConverter", function() { return _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__["NomnomlEntityRelationshipModelToDiagramCodeConverter"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NomnomlEntityRelationshipModelToDiagramConverter", function() { return _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__["NomnomlEntityRelationshipModelToDiagramConverter"]; });
@@ -5338,12 +5342,26 @@ __webpack_require__.r(__webpack_exports__);
 class NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"] {
     getDefaultConfig() {
         return {
+            arrowSize: 1,
+            bendSize: undefined,
+            direction: undefined,
+            gutter: undefined,
+            edgeMargin: undefined,
+            gravity: 1.5,
+            edges: undefined,
             background: 'transparent',
             fill: '#eef6ff',
-            gravity: 1.5,
+            fillArrows: undefined,
+            font: undefined,
+            fontSize: undefined,
+            leading: undefined,
             lineWidth: 1,
+            padding: undefined,
+            spacing: undefined,
             stroke: '#555',
-            arrowSize: 1,
+            title: undefined,
+            zoom: undefined,
+            acyclicer: undefined,
             ranker: 'longest-path'
         };
     }
@@ -5363,6 +5381,26 @@ const nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager = new No
 
 /***/ }),
 
+/***/ "./src/main/erdiagram/generator/diagram/nomnoml/config/exports.ts":
+/*!************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/diagram/nomnoml/config/exports.ts ***!
+  \************************************************************************/
+/*! exports provided: NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _erdiagram_generator_diagram_nomnoml_config_NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/diagram/nomnoml/config/NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager */ "./src/main/erdiagram/generator/diagram/nomnoml/config/NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager", function() { return _erdiagram_generator_diagram_nomnoml_config_NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_0__["NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager", function() { return _erdiagram_generator_diagram_nomnoml_config_NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+
+
+/***/ }),
+
 /***/ "./src/main/erdiagram/generator/diagram/nomnoml/directive/NomnomlDirectivesCodeGenerator.ts":
 /*!**************************************************************************************************!*\
   !*** ./src/main/erdiagram/generator/diagram/nomnoml/directive/NomnomlDirectivesCodeGenerator.ts ***!
@@ -5376,6 +5414,7 @@ __webpack_require__.r(__webpack_exports__);
 class NomnomlDirectivesCodeGenerator {
     generateDirectivesCode(config) {
         return Object.entries(config)
+            .filter(([key, value]) => value != null && value !== '')
             .map(([key, value]) => `#${key}: ${value}`)
             .join('\n');
     }
@@ -5486,7 +5525,7 @@ class NomnomlEntityPropertyCodeGenerator {
 /*!*****************************************************************!*\
   !*** ./src/main/erdiagram/generator/diagram/nomnoml/exports.ts ***!
   \*****************************************************************/
-/*! exports provided: NomnomlEntityRelationshipModelToDiagramCodeConverter, NomnomlEntityRelationshipModelToDiagramConverter */
+/*! exports provided: NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, NomnomlEntityRelationshipModelToDiagramCodeConverter, NomnomlEntityRelationshipModelToDiagramConverter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5496,6 +5535,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _erdiagram_generator_diagram_nomnoml_NomnomlEntityRelationshipModelToDiagramConverter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/diagram/nomnoml/NomnomlEntityRelationshipModelToDiagramConverter */ "./src/main/erdiagram/generator/diagram/nomnoml/NomnomlEntityRelationshipModelToDiagramConverter.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NomnomlEntityRelationshipModelToDiagramConverter", function() { return _erdiagram_generator_diagram_nomnoml_NomnomlEntityRelationshipModelToDiagramConverter__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+/* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/generator/diagram/nomnoml/config/exports.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_2__["NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_2__["nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager"]; });
+
 
 
 
@@ -5684,6 +5729,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _oop_exports__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./oop/exports */ "./src/main/erdiagram/generator/oop/exports.ts");
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _oop_exports__WEBPACK_IMPORTED_MODULE_2__) if(["default","StandardCaseFormats","CaseConverter","StandardIdNamingStrategies"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _oop_exports__WEBPACK_IMPORTED_MODULE_2__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _diagram_exports__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./diagram/exports */ "./src/main/erdiagram/generator/diagram/exports.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager", function() { return _diagram_exports__WEBPACK_IMPORTED_MODULE_3__["NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager", function() { return _diagram_exports__WEBPACK_IMPORTED_MODULE_3__["nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NomnomlEntityRelationshipModelToDiagramCodeConverter", function() { return _diagram_exports__WEBPACK_IMPORTED_MODULE_3__["NomnomlEntityRelationshipModelToDiagramCodeConverter"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NomnomlEntityRelationshipModelToDiagramConverter", function() { return _diagram_exports__WEBPACK_IMPORTED_MODULE_3__["NomnomlEntityRelationshipModelToDiagramConverter"]; });
