@@ -13,7 +13,7 @@ export class ERDiagramParseLineError extends ERDiagramError {
 
 	constructor(
 			private readonly cause: ERDiagramError,
-			private readonly lineIndex: number
+			public readonly lineIndex: number
 	) {
 		super(cause.message);
 	}
