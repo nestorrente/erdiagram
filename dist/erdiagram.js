@@ -4,7 +4,7 @@
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-03-05T21:00:09.456Z
+ * Build date: 2021-03-06T00:57:40.556Z
  */
 var ERDiagram =
 /******/ (function(modules) { // webpackBootstrap
@@ -5302,32 +5302,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nomnoml__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(nomnoml__WEBPACK_IMPORTED_MODULE_1__);
 
 
-const NOMNOML_DIAGRAM_PROPERTIES = `
-#background: white
-#fill: #eef6ff
-#gravity: 2
-##font: monospace
-#lineWidth: 1
-##gutter: 10
-#stroke: #555
-#arrowSize: 1
-##ranker: network-simplex
-##ranker: tight-tree
-#ranker: longest-path
-`;
+const DEFAULT_OPTIONS = {
+    background: 'white',
+    fill: '#eef6ff',
+    gravity: 1.5,
+    lineWidth: 1,
+    stroke: '#555',
+    arrowSize: 1,
+    ranker: 'longest-path'
+};
 class NomnomlDiagramGenerator {
     constructor() {
         this.erModelToNomnomlCodeConverter = new _erdiagram_generator_diagram_nomnoml_EntityRelationshipModelToNomnomlCodeConverter__WEBPACK_IMPORTED_MODULE_0__["default"]();
     }
-    generateSvgDiagram(model) {
-        return nomnoml__WEBPACK_IMPORTED_MODULE_1___default.a.renderSvg(this.generateCode(model));
+    generateSvgDiagram(model, options) {
+        return nomnoml__WEBPACK_IMPORTED_MODULE_1___default.a.renderSvg(this.generateCode(model, options));
     }
-    drawDiagram(model, canvas) {
-        return nomnoml__WEBPACK_IMPORTED_MODULE_1___default.a.draw(canvas, this.generateCode(model));
+    drawDiagram(model, canvas, options) {
+        return nomnoml__WEBPACK_IMPORTED_MODULE_1___default.a.draw(canvas, this.generateCode(model, options));
     }
-    generateCode(model) {
-        const nomnomlCode = this.erModelToNomnomlCodeConverter.generateCode(model);
-        return nomnomlCode + NOMNOML_DIAGRAM_PROPERTIES;
+    generateCode(model, options) {
+        const directivesCode = this.convertOptionsIntoDirectives(Object.assign(Object.assign({}, DEFAULT_OPTIONS), options));
+        const diagramCode = this.erModelToNomnomlCodeConverter.generateCode(model);
+        return directivesCode + '\n\n' + diagramCode;
+    }
+    convertOptionsIntoDirectives(options) {
+        return Object.entries(options)
+            .map(([key, value]) => `#${key}: ${value}`)
+            .join('\n');
     }
 }
 

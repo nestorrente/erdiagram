@@ -369,11 +369,35 @@ export declare class EntityRelationshipModelToNomnomlCodeConverter implements En
 	private readonly relationshipCodeGenerator;
 	generateCode(model: EntityRelationshipModel): string;
 }
+export interface NomnomlOptions {
+	arrowSize?: number;
+	bendSize?: number;
+	direction?: "down" | "right";
+	gutter?: number;
+	edgeMargin?: number;
+	gravity?: number;
+	edges?: "hard" | "rounded";
+	background?: string;
+	fill?: string;
+	fillArrows?: boolean;
+	font?: string;
+	fontSize?: number;
+	leading?: number;
+	lineWidth?: number;
+	padding?: number;
+	spacing?: number;
+	stroke?: string;
+	title?: string;
+	zoom?: number;
+	acyclicer?: "greedy";
+	ranker?: "network-simplex" | "tight-tree" | "longest-path";
+}
 export declare class NomnomlDiagramGenerator {
 	private erModelToNomnomlCodeConverter;
-	generateSvgDiagram(model: EntityRelationshipModel): string;
-	drawDiagram(model: EntityRelationshipModel, canvas: HTMLCanvasElement): {};
+	generateSvgDiagram(model: EntityRelationshipModel, options?: NomnomlOptions): string;
+	drawDiagram(model: EntityRelationshipModel, canvas: HTMLCanvasElement, options?: NomnomlOptions): {};
 	private generateCode;
+	private convertOptionsIntoDirectives;
 }
 export interface EntityRelationshipModelParserConfig {
 	allowUnknownEntities: boolean;
