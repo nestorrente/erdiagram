@@ -13,7 +13,7 @@ function addDefaultDirectives(expectedResult: string): string {
 	return [
 		expectedResult,
 		'',
-		'#background: white',
+		'#background: transparent',
 		'#fill: #eef6ff',
 		'#gravity: 1.5',
 		'#lineWidth: 1',

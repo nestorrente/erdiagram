@@ -9,7 +9,7 @@ export class NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager
 
 	getDefaultConfig(): NomnomlEntityRelationshipModelToDiagramCodeConverterConfig {
 		return {
-			background: 'white',
+			background: 'transparent',
 			fill: '#eef6ff',
 			gravity: 1.5,
 			lineWidth: 1,

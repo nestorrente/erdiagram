@@ -4,7 +4,7 @@
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-03-06T15:38:16.959Z
+ * Build date: 2021-03-06T20:14:31.665Z
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -5347,7 +5347,7 @@ __webpack_require__.r(__webpack_exports__);
 class NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"] {
     getDefaultConfig() {
         return {
-            background: 'white',
+            background: 'transparent',
             fill: '#eef6ff',
             gravity: 1.5,
             lineWidth: 1,
