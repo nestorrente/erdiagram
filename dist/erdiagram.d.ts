@@ -70,6 +70,13 @@ export declare enum Direction {
 export interface EntityRelationshipModelToCodeConverter {
 	convertToCode(model: EntityRelationshipModel): string;
 }
+export interface EntityRelationshipModelToDiagramConverter {
+	convertToDiagram(model: EntityRelationshipModel): Promise<string>;
+}
+export declare abstract class BaseEntityRelationshipModelToDiagramConverter implements EntityRelationshipModelToDiagramConverter {
+	convertToDiagram(model: EntityRelationshipModel): Promise<string>;
+	protected abstract convertNonEmptyModelToDiagram(model: EntityRelationshipModel): Promise<string>;
+}
 export interface CaseFormat {
 	splitWords(text: string): string[];
 	joinWords(words: string[]): string;
@@ -395,13 +402,10 @@ export declare class NomnomlEntityRelationshipModelToDiagramCodeConverter implem
 	constructor(config?: Partial<NomnomlEntityRelationshipModelToDiagramCodeConverterConfig>);
 	convertToCode(model: EntityRelationshipModel): string;
 }
-export interface EntityRelationshipModelToDiagramConverter {
-	convertToDiagram(model: EntityRelationshipModel): string | null;
-}
-export declare class NomnomlEntityRelationshipModelToDiagramConverter implements EntityRelationshipModelToDiagramConverter {
+export declare class NomnomlEntityRelationshipModelToDiagramConverter extends BaseEntityRelationshipModelToDiagramConverter {
 	private readonly erModelToDiagramCodeConverter;
 	constructor(erModelToDiagramCodeConverter: NomnomlEntityRelationshipModelToDiagramCodeConverter);
-	convertToDiagram(model: EntityRelationshipModel): string | null;
+	protected convertNonEmptyModelToDiagram(model: EntityRelationshipModel): Promise<string>;
 }
 export declare type NomnomlEntityRelationshipModelToDiagramCodeConverterSerializableConfig = NomnomlEntityRelationshipModelToDiagramCodeConverterConfig;
 export declare class NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager extends AbstractComponentConfigManager<NomnomlEntityRelationshipModelToDiagramCodeConverterConfig, NomnomlEntityRelationshipModelToDiagramCodeConverterConfig, NomnomlEntityRelationshipModelToDiagramCodeConverterSerializableConfig> {
@@ -419,6 +423,15 @@ export declare class PlantUmlEntityRelationshipModelToDiagramCodeConverter imple
 	private readonly relationshipCodeGenerator;
 	constructor(config?: Partial<PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig>);
 	convertToCode(model: EntityRelationshipModel): string;
+}
+export declare class PlantUmlEntityRelationshipModelToDiagramConverter extends BaseEntityRelationshipModelToDiagramConverter {
+	private readonly erModelToDiagramCodeConverter;
+	constructor(erModelToDiagramCodeConverter: PlantUmlEntityRelationshipModelToDiagramCodeConverter);
+	protected convertNonEmptyModelToDiagram(model: EntityRelationshipModel): Promise<string>;
+	private getDiagramUrl;
+	private convertToHexString;
+	private convertToHexChar;
+	private fetchDiagram;
 }
 export declare type PlantUmlEntityRelationshipModelToDiagramCodeConverterSerializableConfig = PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig;
 export declare class PlantUmlEntityRelationshipModelToDiagramCodeConverterConfigManager extends AbstractComponentConfigManager<PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig, PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig, PlantUmlEntityRelationshipModelToDiagramCodeConverterSerializableConfig> {
