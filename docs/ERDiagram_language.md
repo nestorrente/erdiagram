@@ -189,15 +189,17 @@ many employees working on it.
 On the other side, its direction indicates that it's possible to get the employees that are working on a project, but
 it's not possible to access to an employee's projects.
 
-Finally, the relationship's name is _EmployeesWorkingOnProjects_, which may be used as a name for the intermediate _
-relationship table used_ in relational databases.
+Finally, the relationship's name is _EmployeesWorkingOnProjects_, which may be used as a name for the intermediate
+_relationship table_ used in relational databases.
 
 ## Comments
 
 Even when [Uncle Bob](https://en.wikipedia.org/wiki/Robert_C._Martin) doesn't like them, every language needs comments,
 so _ERDiagram_ couldn't be less :stuck_out_tongue:
 
-Comments start with a _hash_ character (`#`). Only line comments are supported so far. Here you can see an example:
+Comments begin with a _hash_ character (`#`) followed by any other ones. Only line comments are supported so far.
+
+Here you can see some example comments:
 
 ```erdiagram
 TreeNode
