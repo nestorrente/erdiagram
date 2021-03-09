@@ -1,7 +1,6 @@
 import NomnomlEntityRelationshipModelToDiagramCodeConverter
-	from '@/erdiagram/generator/diagram/nomnoml/NomnomlEntityRelationshipModelToDiagramCodeConverter';
-import NomnomlEntityRelationshipModelToDiagramConverter
-	from '@/erdiagram/generator/diagram/nomnoml/NomnomlEntityRelationshipModelToDiagramConverter';
+	from './NomnomlEntityRelationshipModelToDiagramCodeConverter';
+import NomnomlEntityRelationshipModelToDiagramConverter from './NomnomlEntityRelationshipModelToDiagramConverter';
 
 export * from './config/exports';
 

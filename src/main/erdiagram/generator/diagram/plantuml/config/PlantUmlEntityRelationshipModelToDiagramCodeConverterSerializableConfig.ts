@@ -1,0 +1,6 @@
+import PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig
+	from '@/erdiagram/generator/diagram/plantuml/config/PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig';
+
+type PlantUmlEntityRelationshipModelToDiagramCodeConverterSerializableConfig = PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig
+
+export default PlantUmlEntityRelationshipModelToDiagramCodeConverterSerializableConfig;

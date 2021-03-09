@@ -1,5 +1,4 @@
-import SqlServerDatabaseModelToCodeConverter
-	from 'src/main/erdiagram/generator/database/code-converter/sqlserver/SqlServerDatabaseModelToCodeConverter';
+import SqlServerDatabaseModelToCodeConverter from './SqlServerDatabaseModelToCodeConverter';
 
 export * from './config/exports';
 

@@ -1,5 +1,5 @@
-import ComponentConfigManager from '@/erdiagram/common/config/ComponentConfigManager';
-import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
+import ComponentConfigManager from './ComponentConfigManager';
+import AbstractComponentConfigManager from './AbstractComponentConfigManager';
 
 export {
 	ComponentConfigManager,

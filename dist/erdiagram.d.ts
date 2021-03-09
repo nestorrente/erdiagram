@@ -292,6 +292,7 @@ export interface JavaParameterizedType extends JavaType {
 export declare function createJavaParameterizedType(name: string, packageName: string | undefined, parameterTypes: JavaType[]): JavaParameterizedType;
 export declare function createJavaArrayType(parameterType: JavaType): JavaParameterizedType;
 export declare function isJavaParameterizedType(javaType: JavaType): javaType is JavaParameterizedType;
+export function parseJavaType(text: string): JavaType;
 export interface JavaClassModelToCodeConverterConfig extends ClassModelToCodeConverterConfig<JavaType> {
 	generatedClassesPackage?: string;
 	useSpringNullabilityAnnotations: boolean;
@@ -309,7 +310,6 @@ export declare class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 	private unrollTypesRecursively;
 	private isImportRequired;
 }
-export function parseJavaType(text: string): JavaType;
 export interface JavaClassModelToCodeConverterSerializableConfig extends ClassModelToCodeConverterSerializableConfig {
 	generatedClassesPackage?: string;
 	useSpringNullabilityAnnotations: boolean;
@@ -332,6 +332,7 @@ export interface TypeScriptParameterizedType extends TypeScriptType {
 export declare function createTypeScriptParameterizedType(name: string, parameterTypes: TypeScriptType[]): TypeScriptParameterizedType;
 export declare function createTypeScriptArrayType(parameterType: TypeScriptType): TypeScriptParameterizedType;
 export declare function isTypeScriptParameterizedType(javaType: TypeScriptType): javaType is TypeScriptParameterizedType;
+export function parseTypeScriptType(text: string): TypeScriptType;
 export interface TypeScriptClassModelToCodeConverterConfig extends ClassModelToCodeConverterConfig<TypeScriptType> {
 }
 export declare class TypeScriptClassModelToCodeConverter implements ClassModelToCodeConverter {
@@ -344,7 +345,6 @@ export declare class TypeScriptClassModelToCodeConverter implements ClassModelTo
 	private mapListTypeToTypeScriptType;
 	private mapSingleTypeToTypeScriptType;
 }
-export function parseTypeScriptType(text: string): TypeScriptType;
 export interface TypeScriptClassModelToCodeConverterSerializableConfig extends ClassModelToCodeConverterSerializableConfig {
 }
 export declare class TypeScriptClassModelToCodeConverterConfigManager extends AbstractComponentConfigManager<TypeScriptClassModelToCodeConverterConfig, Partial<TypeScriptClassModelToCodeConverterConfig>, TypeScriptClassModelToCodeConverterSerializableConfig> {
@@ -411,6 +411,23 @@ export declare class NomnomlEntityRelationshipModelToDiagramCodeConverterConfigM
 	convertFromSerializableObject(serializableConfig: NomnomlEntityRelationshipModelToDiagramCodeConverterSerializableConfig): NomnomlEntityRelationshipModelToDiagramCodeConverterConfig;
 }
 export declare const nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager: NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager;
+export interface PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig {
+}
+export declare class PlantUmlEntityRelationshipModelToDiagramCodeConverter implements EntityRelationshipModelToCodeConverter {
+	private readonly config;
+	private readonly entityCodeGenerator;
+	private readonly relationshipCodeGenerator;
+	constructor(config?: Partial<PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig>);
+	convertToCode(model: EntityRelationshipModel): string;
+}
+export declare type PlantUmlEntityRelationshipModelToDiagramCodeConverterSerializableConfig = PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig;
+export declare class PlantUmlEntityRelationshipModelToDiagramCodeConverterConfigManager extends AbstractComponentConfigManager<PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig, PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig, PlantUmlEntityRelationshipModelToDiagramCodeConverterSerializableConfig> {
+	getDefaultConfig(): PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig;
+	mergeConfigs(fullConfig: PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig, partialConfig?: Partial<PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig>): PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig;
+	convertToSerializableObject(fullConfig: PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig): PlantUmlEntityRelationshipModelToDiagramCodeConverterSerializableConfig;
+	convertFromSerializableObject(serializableConfig: PlantUmlEntityRelationshipModelToDiagramCodeConverterSerializableConfig): PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig;
+}
+export declare const plantumlEntityRelationshipModelToDiagramCodeConverterConfigManager: PlantUmlEntityRelationshipModelToDiagramCodeConverterConfigManager;
 export interface EntityRelationshipModelParserConfig {
 	allowUnknownEntities: boolean;
 }

@@ -4,8 +4,8 @@ import JavaParameterizedType, {
 	createJavaParameterizedType,
 	isJavaParameterizedType
 } from './type/JavaParameterizedType';
+import parseJavaType from './type/parseJavaType';
 import JavaClassModelToCodeConverter from './JavaClassModelToCodeConverter';
-import parseJavaType from '@/erdiagram/generator/oop/code-converter/java/type/parseJavaType';
 
 export * from './config/exports';
 

@@ -1,6 +1,6 @@
 import {EntityPropertyDescriptor, EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
 
-export default class NomnomlEntityPropertyCodeGenerator {
+export default class PlantUmlEntityPropertyCodeGenerator {
 
 	public generateEntityPropertyCode(property: EntityPropertyDescriptor): string {
 
@@ -17,7 +17,7 @@ export default class NomnomlEntityPropertyCodeGenerator {
 
 		const modifiersCode = this.getModifiersCode(optional, unique, autoincremental);
 
-		return `${name}${modifiersCode}: ${typeWithLengthCode}`;
+		return `{field} ${name}${modifiersCode}: ${typeWithLengthCode}`;
 
 	}
 

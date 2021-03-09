@@ -4,22 +4,18 @@ import {
 	EntityPropertyType,
 	EntityRelationshipModel
 } from '@/erdiagram/parser/entity-relationship-model-types';
-import NomnomlEntityRelationshipModelToDiagramCodeConverter
-	from '@/erdiagram/generator/diagram/nomnoml/NomnomlEntityRelationshipModelToDiagramCodeConverter';
+import PlantUmlEntityRelationshipModelToDiagramCodeConverter
+	from '@/erdiagram/generator/diagram/plantuml/PlantUmlEntityRelationshipModelToDiagramCodeConverter';
 
-const nomnomlERModelToDiagramCodeConverter = new NomnomlEntityRelationshipModelToDiagramCodeConverter();
+const plantumlERModelToDiagramCodeConverter = new PlantUmlEntityRelationshipModelToDiagramCodeConverter({});
 
-function addDefaultDirectives(expectedResult: string): string {
+function addHeaderAndFooter(expectedResult: string): string {
 	return [
+		'@startuml',
+		'',
 		expectedResult,
 		'',
-		'#arrowSize: 1',
-		'#gravity: 1.5',
-		'#background: transparent',
-		'#fill: #eef6ff',
-		'#lineWidth: 1',
-		'#stroke: #555',
-		'#ranker: longest-path',
+		'@enduml'
 	].join('\n');
 }
 
@@ -38,9 +34,9 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
 
-		expect(result).toBe(addDefaultDirectives('[User]'));
+		expect(result).toBe(addHeaderAndFooter(`class User {}`));
 
 	});
 
@@ -57,11 +53,11 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
 
-		expect(result).toBe(addDefaultDirectives(`[User|
-    userId: identifier
-]`));
+		expect(result).toBe(addHeaderAndFooter(`class User {
+    {field} userId: identifier
+}`));
 
 	});
 
@@ -87,11 +83,11 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
 
-		expect(result).toBe(addDefaultDirectives(`[User|
-    active: bool
-]`));
+		expect(result).toBe(addHeaderAndFooter(`class User {
+    {field} active: bool
+}`));
 
 	});
 
@@ -117,11 +113,11 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
 
-		expect(result).toBe(addDefaultDirectives(`[User|
-    username: text(20)
-]`));
+		expect(result).toBe(addHeaderAndFooter(`class User {
+    {field} username: text(20)
+}`));
 
 	});
 
@@ -147,11 +143,11 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
 
-		expect(result).toBe(addDefaultDirectives(`[User|
-    score: decimal(10, 5)
-]`));
+		expect(result).toBe(addHeaderAndFooter(`class User {
+    {field} score: decimal(10, 5)
+}`));
 
 	});
 
@@ -193,13 +189,13 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
 
-		expect(result).toBe(addDefaultDirectives(`[User|
-    username!: text(20)
-    realName?: text(50)
-    order?!+: int
-]`));
+		expect(result).toBe(addHeaderAndFooter(`class User {
+    {field} username!: text(20)
+    {field} realName?: text(50)
+    {field} order?!+: int
+}`));
 
 	});
 
@@ -229,9 +225,9 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
 
-		expect(result).toBe(addDefaultDirectives('[A] 1<->1 [B]'));
+		expect(result).toBe(addHeaderAndFooter('A "1" <--> "1" B'));
 
 	});
 
@@ -257,9 +253,9 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
 
-		expect(result).toBe(addDefaultDirectives('[A] 1->* [B]'));
+		expect(result).toBe(addHeaderAndFooter('A "1" --> "*" B'));
 
 	});
 
@@ -285,9 +281,9 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
 
-		expect(result).toBe(addDefaultDirectives('[A] *<-* [B]'));
+		expect(result).toBe(addHeaderAndFooter('A "*" <-- "*" B'));
 
 	});
 
@@ -313,9 +309,9 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
 
-		expect(result).toBe(addDefaultDirectives('[A] *<->1 [B]'));
+		expect(result).toBe(addHeaderAndFooter('A "*" <--> "1" B'));
 
 	});
 
@@ -341,11 +337,9 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
 
-		expect(result).toBe(addDefaultDirectives(`[<label>Rel]
-[A] *- [Rel]
-[Rel] ->1 [B]`));
+		expect(result).toBe(addHeaderAndFooter('A "*" --> "1" B : Rel'));
 
 	});
 
@@ -371,11 +365,9 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
 
-		expect(result).toBe(addDefaultDirectives(`[<label>Rel]
-[A] *<- [Rel]
-[Rel] ->* [B]`));
+		expect(result).toBe(addHeaderAndFooter('A "*" <--> "*" B : Rel'));
 
 	});
 
@@ -442,19 +434,19 @@ describe('Entities and relationships', () => {
 			]
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
 
-		expect(result).toBe(addDefaultDirectives(`[User|
-    uuid: identifier
-    username!: text(20)
-    active: bool
-]
+		expect(result).toBe(addHeaderAndFooter(`class User {
+    {field} uuid: identifier
+    {field} username!: text(20)
+    {field} active: bool
+}
 
-[Order|
-    date: datetime
-]
+class Order {
+    {field} date: datetime
+}
 
-[User] 1<-* [Order]`));
+User "1" <-- "*" Order`));
 
 	});
 
