@@ -4,6 +4,10 @@ import {
 } from '@/erdiagram/generator/oop/code-converter/java/type/JavaParameterizedType';
 import JavaType, {createJavaType} from '@/erdiagram/generator/oop/code-converter/java/type/JavaType';
 
+const RAW_TYPE_REGEX = /^(?:[a-zA-Z_$][a-zA-Z_$\d]*\.)*[a-zA-Z_$][a-zA-Z_$\d]*$/;
+const ARRAY_TYPE_REGEX = /^(.*)\[\s*]\s*$/;
+const PACKAGE_SEPARATOR = '.';
+
 export default function parseJavaType(text: string): JavaType {
 	try {
 		return parseJavaTypeInternal(text);
@@ -16,15 +20,15 @@ function parseJavaTypeInternal(text: string): JavaType {
 
 	const trimmedText = text.trim();
 
-	if (trimmedText.endsWith('[]')) {
-		const parameterType = trimmedText.substring(0, trimmedText.length - 2);
-		return createJavaArrayType(parseJavaType(parameterType));
+	if (ARRAY_TYPE_REGEX.test(trimmedText)) {
+		const [fullMatch, rawTypeText] = ARRAY_TYPE_REGEX.exec(trimmedText)!;
+		return createJavaArrayType(parseJavaTypeInternal(rawTypeText));
 	}
 
 	const startOfParameterTypes = trimmedText.indexOf('<');
 
 	if (startOfParameterTypes === -1) {
-		return parseJavaSimpleType(trimmedText);
+		return parseJavaRawType(trimmedText);
 	}
 
 	const endOfParameterTypes = trimmedText.lastIndexOf('>');
@@ -37,20 +41,24 @@ function parseJavaTypeInternal(text: string): JavaType {
 		throw new Error('Unexpected characters found after parameter types');
 	}
 
-	const rawType = parseJavaSimpleType(trimmedText.substring(0, startOfParameterTypes));
+	const rawType = parseJavaRawType(trimmedText.substring(0, startOfParameterTypes));
 
 	const parameterTypes = splitParameterTypes(trimmedText.substring(startOfParameterTypes + 1, endOfParameterTypes))
-			.map(parameterType => parseJavaType(parameterType));
+			.map(parameterType => parseJavaTypeInternal(parameterType));
 
 	return createJavaParameterizedType(rawType.name, rawType.packageName, parameterTypes);
 
 }
 
-function parseJavaSimpleType(text: string): JavaType {
+function parseJavaRawType(text: string): JavaType {
 
-	const trimmedText = text.trim();
+	const trimmedText = trimRawJavaTypeParts(text.trim());
 
-	const lastDotIndex = trimmedText.lastIndexOf('.');
+	if (!RAW_TYPE_REGEX.test(trimmedText)) {
+		throw new Error(`Illegal Java type format: ${text}`);
+	}
+
+	const lastDotIndex = trimmedText.lastIndexOf(PACKAGE_SEPARATOR);
 
 	if (lastDotIndex === -1) {
 		return createJavaType(trimmedText);
@@ -61,6 +69,10 @@ function parseJavaSimpleType(text: string): JavaType {
 
 	return createJavaType(className, packageName);
 
+}
+
+function trimRawJavaTypeParts(packageName: string): string {
+	return packageName.split(PACKAGE_SEPARATOR).map(e => e.trim()).join(PACKAGE_SEPARATOR);
 }
 
 function splitParameterTypes(parameterTypesText: string): string[] {
