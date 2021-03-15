@@ -4,7 +4,7 @@
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-03-09T18:39:22.056Z
+ * Build date: 2021-03-15T18:53:33.992Z
  */
 var ERDiagram =
 /******/ (function(modules) { // webpackBootstrap
@@ -5813,7 +5813,10 @@ class PlantUmlEntityRelationshipModelToDiagramConverter extends _erdiagram_gener
             .padStart(2, '0');
     }
     fetchDiagram(diagramUrl) {
-        return fetch(diagramUrl).then(response => response.text());
+        return fetch(diagramUrl, {
+        // TODO allow to customize this option
+        //cache: ''
+        }).then(response => response.text());
     }
 }
 
@@ -6590,6 +6593,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_generator_oop_code_converter_java_type_JavaType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/java/type/JavaType */ "./src/main/erdiagram/generator/oop/code-converter/java/type/JavaType.ts");
 
 
+const RAW_TYPE_REGEX = /^(?:[a-zA-Z_$][a-zA-Z_$\d]*\.)*[a-zA-Z_$][a-zA-Z_$\d]*$/;
+const ARRAY_TYPE_REGEX = /^(.*)\[\s*]\s*$/;
+const PACKAGE_SEPARATOR = '.';
 function parseJavaType(text) {
     try {
         return parseJavaTypeInternal(text);
@@ -6600,13 +6606,13 @@ function parseJavaType(text) {
 }
 function parseJavaTypeInternal(text) {
     const trimmedText = text.trim();
-    if (trimmedText.endsWith('[]')) {
-        const parameterType = trimmedText.substring(0, trimmedText.length - 2);
-        return Object(_erdiagram_generator_oop_code_converter_java_type_JavaParameterizedType__WEBPACK_IMPORTED_MODULE_0__["createJavaArrayType"])(parseJavaType(parameterType));
+    if (ARRAY_TYPE_REGEX.test(trimmedText)) {
+        const [fullMatch, rawTypeText] = ARRAY_TYPE_REGEX.exec(trimmedText);
+        return Object(_erdiagram_generator_oop_code_converter_java_type_JavaParameterizedType__WEBPACK_IMPORTED_MODULE_0__["createJavaArrayType"])(parseJavaTypeInternal(rawTypeText));
     }
     const startOfParameterTypes = trimmedText.indexOf('<');
     if (startOfParameterTypes === -1) {
-        return parseJavaSimpleType(trimmedText);
+        return parseJavaRawType(trimmedText);
     }
     const endOfParameterTypes = trimmedText.lastIndexOf('>');
     if (endOfParameterTypes === -1) {
@@ -6615,20 +6621,26 @@ function parseJavaTypeInternal(text) {
     if (endOfParameterTypes !== trimmedText.length - 1) {
         throw new Error('Unexpected characters found after parameter types');
     }
-    const rawType = parseJavaSimpleType(trimmedText.substring(0, startOfParameterTypes));
+    const rawType = parseJavaRawType(trimmedText.substring(0, startOfParameterTypes));
     const parameterTypes = splitParameterTypes(trimmedText.substring(startOfParameterTypes + 1, endOfParameterTypes))
-        .map(parameterType => parseJavaType(parameterType));
+        .map(parameterType => parseJavaTypeInternal(parameterType));
     return Object(_erdiagram_generator_oop_code_converter_java_type_JavaParameterizedType__WEBPACK_IMPORTED_MODULE_0__["createJavaParameterizedType"])(rawType.name, rawType.packageName, parameterTypes);
 }
-function parseJavaSimpleType(text) {
-    const trimmedText = text.trim();
-    const lastDotIndex = trimmedText.lastIndexOf('.');
+function parseJavaRawType(text) {
+    const trimmedText = trimRawJavaTypeParts(text.trim());
+    if (!RAW_TYPE_REGEX.test(trimmedText)) {
+        throw new Error(`Illegal Java type format: ${text}`);
+    }
+    const lastDotIndex = trimmedText.lastIndexOf(PACKAGE_SEPARATOR);
     if (lastDotIndex === -1) {
         return Object(_erdiagram_generator_oop_code_converter_java_type_JavaType__WEBPACK_IMPORTED_MODULE_1__["createJavaType"])(trimmedText);
     }
     const packageName = trimmedText.substring(0, lastDotIndex);
     const className = trimmedText.substring(lastDotIndex + 1);
     return Object(_erdiagram_generator_oop_code_converter_java_type_JavaType__WEBPACK_IMPORTED_MODULE_1__["createJavaType"])(className, packageName);
+}
+function trimRawJavaTypeParts(packageName) {
+    return packageName.split(PACKAGE_SEPARATOR).map(e => e.trim()).join(PACKAGE_SEPARATOR);
 }
 function splitParameterTypes(parameterTypesText) {
     if (!parameterTypesText.includes(',')) {
@@ -6929,27 +6941,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_generator_oop_code_converter_typescript_type_TypeScriptParameterizedType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptParameterizedType */ "./src/main/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptParameterizedType.ts");
 
 
+const RAW_TYPE_REGEX = /^[a-zA-Z_$][a-zA-Z_$\d]*$/;
+const ARRAY_TYPE_REGEX = /^(.*)\[\s*]\s*$/;
 function parseTypeScriptType(text) {
+    try {
+        return parseTypeScriptTypeInternal(text);
+    }
+    catch (error) {
+        throw new Error('Malformed TypeScript type: ' + text);
+    }
+}
+function parseTypeScriptTypeInternal(text) {
     const trimmedText = text.trim();
-    if (trimmedText.endsWith('[]')) {
-        const parameterType = trimmedText.substring(0, trimmedText.length - 2);
-        return Object(_erdiagram_generator_oop_code_converter_typescript_type_TypeScriptParameterizedType__WEBPACK_IMPORTED_MODULE_1__["createTypeScriptArrayType"])(parseTypeScriptType(parameterType));
+    if (ARRAY_TYPE_REGEX.test(trimmedText)) {
+        const [fullMatch, rawTypeText] = ARRAY_TYPE_REGEX.exec(trimmedText);
+        return Object(_erdiagram_generator_oop_code_converter_typescript_type_TypeScriptParameterizedType__WEBPACK_IMPORTED_MODULE_1__["createTypeScriptArrayType"])(parseTypeScriptTypeInternal(rawTypeText));
     }
     const startOfParameterTypes = trimmedText.indexOf('<');
     if (startOfParameterTypes === -1) {
-        return parseTypeScriptSimpleType(trimmedText);
+        return parseTypeScriptRawType(trimmedText);
     }
     const endOfParameterTypes = trimmedText.lastIndexOf('>');
-    if (endOfParameterTypes === -1 || endOfParameterTypes !== trimmedText.length - 1) {
-        throw new Error('Malformed TypeScript type: ' + trimmedText);
+    if (endOfParameterTypes === -1) {
+        throw new Error('Missing end character of parameter types (>)');
     }
-    const rawType = parseTypeScriptSimpleType(trimmedText.substring(0, startOfParameterTypes));
+    if (endOfParameterTypes !== trimmedText.length - 1) {
+        throw new Error('Unexpected characters found after parameter types');
+    }
+    const rawType = parseTypeScriptRawType(trimmedText.substring(0, startOfParameterTypes));
     const parameterTypes = splitParameterTypes(trimmedText.substring(startOfParameterTypes + 1, endOfParameterTypes))
-        .map(parameterType => parseTypeScriptType(parameterType));
+        .map(parameterType => parseTypeScriptTypeInternal(parameterType));
     return Object(_erdiagram_generator_oop_code_converter_typescript_type_TypeScriptParameterizedType__WEBPACK_IMPORTED_MODULE_1__["createTypeScriptParameterizedType"])(rawType.name, parameterTypes);
 }
-function parseTypeScriptSimpleType(text) {
-    return Object(_erdiagram_generator_oop_code_converter_typescript_type_TypeScriptType__WEBPACK_IMPORTED_MODULE_0__["createTypeScriptType"])(text.trim());
+function parseTypeScriptRawType(text) {
+    const trimmedText = text.trim();
+    if (!RAW_TYPE_REGEX.test(trimmedText)) {
+        throw new Error(`Illegal TypeScript type format: ${text}`);
+    }
+    return Object(_erdiagram_generator_oop_code_converter_typescript_type_TypeScriptType__WEBPACK_IMPORTED_MODULE_0__["createTypeScriptType"])(trimmedText);
 }
 function splitParameterTypes(parameterTypesText) {
     if (!parameterTypesText.includes(',')) {
