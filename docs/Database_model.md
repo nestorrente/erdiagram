@@ -7,14 +7,19 @@ the input _entity-relationship model_ is converted to a _database model_.
 
 * **[Entities](#entities)**
     + [Property modifiers](#property-modifiers)
+        + [Optional modifier](#optional-modifier)
+        + [Unique modifier](#unique-modifier)
+        + [Auto-incremental modifier](#auto-incremental-modifier)
     + [Entity identifier property](#entity-identifier-property)
 * **[Relationships](#relationships)**
-    + [Directions](#directions)
-    + [Aliases](#aliases)
     + [Cardinalities](#cardinalities)
+        + [One to one](#one-to-one)
+        + [One to many](#one-to-many)
+        + [Many to one](#many-to-one)
+        + [Many to many](#many-to-many)
+    + [Aliases](#aliases)
     + [Relationship's name](#relationships-name)
-    + [Relationship examples](#relationship-examples)
-* **[Comments](#comments)**
+    + [Directions](#directions)
 
 ## Entities
 
@@ -57,17 +62,17 @@ means that a _foreign column_ is added to the left table. See the following sect
 #### One to many
 
 Relationships whose cardinality is _one-to-many_ are modelled by adding a _foreign column_ to the right table (the _many_
-side of the relationship).
-
-Let's see an example:
+side of the relationship). Let's see an example:
 
 ```erdiagram
 User <->* Address
 ```
 
-The relationship above represents a _User_ that may have many _Addresses_. On the other side, an _Address_ belongs to
+The relationship above represents a _User_ that may have many _Addresses_. On the other side, each _Address_ belongs to
 one (and only one) _User_. This is modelled by adding a `usedId` column and its corresponding `FOREIGN KEY` to the
 `Address` table.
+
+You can learn how to customize the name of the _foreign column_ in the [Aliases](#aliases) section.
 
 #### Many to one
 
@@ -84,7 +89,46 @@ User <->* Address
 
 #### Many to many
 
-_**TODO pending**_
+Relationships whose cardinality is _many-to-many_ are modelled by creating an _intermediate_table_ which 2 _foreign columns_,
+one for each entity. Let's see an example:
+
+```erdiagram
+User *<->* Role
+```
+
+The relationship above represents a _User_ that may have many _Roles_. At the same time, each _Role_ is related to many _Users_.
+This is modelled by creating a new table `UserRole` with the columns `userId` and `roleId`, including their corresponding
+`FOREIGN KEY` to the `User` and `Role` tables respectively.
+
+You can learn how to customize the name of the _intermediate table_ and the _foreign columns_ in the
+[Relationship's name](#relationships-name) and [Aliases](#aliases) sections.
+
+### Aliases
+
+Defining aliases for the members of a relationship is useful not only for semantic purposes but also for customizing the
+_foreign columns_ names.
+
+For example, imagine you want to model a _Travel_ entity that as 2 relationships to the same _City_ entity, one for the _origin
+city_ and the other for the _destiny city_. If you define those relationships without specifying an alias for the _City_ member,
+you will end up with two identical `cityId` columns in your `Travel` table.
+
+The way to handle this situation is by adding alias to the _City_ member of both relationships:
+
+```erdiagram
+Travel *-> City originCity
+Travel *-> City destinyCity
+```
+
+By doing this, _ERDiagram_ will name the columns `originCityId` and `destinyCityId`.
+
+You can also use _aliases_ in _self referencing_ tables:
+
+```erdiagram
+Employee subordinates *<-> Employee boss
+```
+
+This will be modelled by adding a `bossId` column to the `Employee` table. If you don't use _aliases_, the column's name would
+be `employeeId`, which is much less semantic.
 
 ### Relationship's name
 
@@ -92,30 +136,6 @@ When defining the name of a _many-to-many_ relationship, _ERDiagram_ will use it
 the relationship is mapped to.
 
 Defining the name of any other kind of relationship has no effect over the _database model_.
-
-### Aliases
-
-_**TODO pending**_
-
-It's possible to name the members of a relationship using _aliases_. Imagine you are modelling a `Travel` entity which
-has two `originCity` and `destinyCity` attributes, both referencing the `City` entity. You could write `Travel -> City`
-in order to model one relationship from `Travel` to `City`, but how can you model both relationships at the same time?
-
-The way that _ERDiagram_ solves this is by using _aliases_:
-
-```erdiagram
-Travel *-> City originCity
-Travel *-> City destinyCity
-```
-
-By doing this, you're naming the right member of your relationship. You can also name both sides of the relationship,
-just like this:
-
-```erdiagram
-Employee subordinates *<-> Employee boss
-```
-
-When you don't specify any _alias_, the name of the entity is used as the name of the member.
 
 ### Directions
 
