@@ -66,7 +66,7 @@ Task
 
 Notice that we haven't defined an identifier property for the entities of the previous examples. When we don't define an
 identifier for an entity, _ERDiagram_ will generate one for us. By default, that property will be named `id` both in
-[Database Model](Database_model.md) and [Class Model (TODO add link)](#), but it's possible to use different
+[Database Model](Database_model.md) and [Class Model](Class_model.md), but it's possible to use different
 _[naming strategies (TODO add link)](#)_. Another possibility is to explicitly declare the identifier property of the
 entity:
 

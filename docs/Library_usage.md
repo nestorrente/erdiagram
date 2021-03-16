@@ -76,4 +76,12 @@ TODO: mention MySQLDatabaseModelToCodeConverter, OracleDatabaseModelToCodeConver
 
 TODO: mention JavaClassModelToCodeConverter and TypeScriptClassModelToCodeConverter.
 
+#### Other converters
+
+TODO: mention NomnomlEntityRelationshipModelToDiagramCodeConverter and PlantUmlEntityRelationshipModelToDiagramCodeConverter.
+
+### EntityRelationshipModelToDiagramConverter
+
+TODO: mention NomnomlEntityRelationshipModelToDiagramConverter and PlantUmlEntityRelationshipModelToDiagramConverter.
+
 ## Usage example

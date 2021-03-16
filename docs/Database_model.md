@@ -23,23 +23,23 @@ the input _entity-relationship model_ is converted to a _database model_.
 
 ## Entities
 
-Each entity defined in the input _entity-relationship model_ will be mapped to a different table in the _database
-model_. In the same way, every entity property will be mapped to a different column of that table.
+Each entity defined in the input _entity-relationship model_ will be modelled to a different table in the _database
+model_. In the same way, every entity property will be modelled to a different column of that table.
 
 ### Property modifiers
 
 #### Optional modifier
 
 _ERDiagram_ defines all database columns as `NOT NULL` by default. However, properties defined using the optional
-modifier will be mapped as _nullable_ columns, so `NOT NULL` statement will not be used on its definition.
+modifier will be modelled as _nullable_ columns, so `NOT NULL` statement will not be used on its definition.
 
 #### Unique modifier
 
-Properties defined using the unique modifier will be mapped using a `UNIQUE` constraint on relational databases.
+Properties defined using the unique modifier will be modelled using a `UNIQUE` constraint on relational databases.
 
 #### Auto-incremental modifier
 
-Properties defined using the auto-incremental modifier will be mapped to `AUTO_INCREMENTAL` columns.
+Properties defined using the auto-incremental modifier will be modelled to `AUTO_INCREMENTAL` columns.
 
 _Note: as there are some database engines that doesn't support the `AUTO_INCREMENTAL` modifier, ERDiagram will try to
 emulate the same behavior using a combination of a `SEQUENCE` and a `DEFAULT` value in those database engines that
@@ -132,10 +132,24 @@ be `employeeId`, which is much less semantic.
 
 ### Relationship's name
 
-When defining the name of a _many-to-many_ relationship, _ERDiagram_ will use it for naming the _intermediate table_
-the relationship is mapped to.
+When defining the name of a _many-to-many_ relationship, _ERDiagram_ will use it for naming the corresponding _intermediate
+table_. Let's see an example:
 
-Defining the name of any other kind of relationship has no effect over the _database model_.
+```erdiagram
+User *<->* Role
+```
+
+The relationship above will be modelled by creating the `UserRole` table. If we want to customize this name, we can define a
+name for the relationship in this way:
+
+```erdiagram
+User *<->* Role (UserRoleMapping)
+```
+
+By doing this, we are telling _ERDiagram_ to use the name `UserRoleMapping` for the _intermediate table_.
+
+_Note: defining the name of any other kind of relationship (one-to-one, one-to-many or many-to-one) does not affect the
+database model._
 
 ### Directions
 
