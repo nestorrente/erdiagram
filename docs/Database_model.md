@@ -23,8 +23,8 @@ the input _entity-relationship model_ is converted to a _database model_.
 
 ## Entities
 
-Each entity defined in the input _entity-relationship model_ will be modelled to a different table in the _database
-model_. In the same way, every entity property will be modelled to a different column of that table.
+Each entity defined in the input _entity-relationship model_ will be modelled as a table in the _database model_. In the
+same way, every entity property will be modelled as a column of that table.
 
 ### Property modifiers
 
@@ -39,7 +39,7 @@ Properties defined using the unique modifier will be modelled using a `UNIQUE` c
 
 #### Auto-incremental modifier
 
-Properties defined using the auto-incremental modifier will be modelled to `AUTO_INCREMENTAL` columns.
+Properties defined using the auto-incremental modifier will be modelled as `AUTO_INCREMENTAL` columns.
 
 _Note: as there are some database engines that doesn't support the `AUTO_INCREMENTAL` modifier, ERDiagram will try to
 emulate the same behavior using a combination of a `SEQUENCE` and a `DEFAULT` value in those database engines that
