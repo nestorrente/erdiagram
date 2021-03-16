@@ -13,13 +13,9 @@ how _ERDiagram_ converts the input _entity-relationship model_ into a _class mod
     + [Entity identifier property](#entity-identifier-property)
 * **[Relationships](#relationships)**
     + [Cardinalities](#cardinalities)
-        + [One to one](#one-to-one)
-        + [One to many](#one-to-many)
-        + [Many to one](#many-to-one)
-        + [Many to many](#many-to-many)
+    + [Directions](#directions)
     + [Aliases](#aliases)
     + [Relationship's name](#relationships-name)
-    + [Directions](#directions)
 
 ## Entities
 
@@ -61,70 +57,33 @@ The identifier property of the entity will be treated just like any other field.
 
 ### Cardinalities
 
-#### One to one
+_ERDiagram_ allows 4 types of relationships regarding the cardinality of its members:
 
-Relationships whose cardinality is _one-to-one_ are modelled just in the same way that _many-to-one_ relationships. This
-means that a _foreign column_ is added to the left table. See the following sections for more detail.
+* _one-to-one_
+* _one-to-many_
+* _many-to-one_
+* _many-to-many_
 
-#### One to many
+Members with a _one_ (`1`) cardinality are modelled by using a field whose type is the entity of that member, while members with a
+_many_ (`*`) cardinality are modelled by using a _list_ or _array_.
 
-Relationships whose cardinality is _one-to-many_ are modelled by adding a _foreign column_ to the right table (the _many_
-side of the relationship). Let's see an example:
-
-```erdiagram
-User <->* Address
-```
-
-The relationship above represents a _User_ that may have many _Addresses_. On the other side, each _Address_ belongs to
-one (and only one) _User_. This is modelled by adding a `usedId` column and its corresponding `FOREIGN KEY` constraint
-referencing the `Address` table.
-
-You can learn how to customize the name of the _foreign column_ in the [Aliases](#aliases) section.
-
-#### Many to one
-
-Relationships whose cardinality is _many-to-one_ are just like mirrored _one-to-many_ relationships. To be precise, the
-following relationships are equivalent:
-
-```erdiagram
-# many-to-one
-Address *<-> User
-
-# one-to-many
-User <->* Address
-```
-
-#### Many to many
-
-Relationships whose cardinality is _many-to-many_ are modelled by creating an _intermediate_table_ which 2 _foreign columns_,
-one for each entity. Let's see an example:
-
-```erdiagram
-User *<->* Role
-```
-
-The relationship above represents a _User_ that may have many _Roles_. At the same time, each _Role_ is related to many _Users_.
-This is modelled by creating a new table `UserRole` with the columns `userId` and `roleId`, including their corresponding
-`FOREIGN KEY` constraints referencing the `User` and `Role` tables respectively.
-
-You can learn how to customize the name of the _intermediate table_ and the _foreign columns_ in the
-[Relationship's name](#relationships-name) and [Aliases](#aliases) sections.
+In addition, there is a special cardinality that represents a _zero-or-one_ (`0..1`) cardinality, which is modelled in the same
+way as a _one_ (`1`) cardinality with the only difference that its corresponding field will be _nullable_.
 
 ### Directions
 
-Relationship's directions are no taken into account when generating the _database model_. The reason for this is that
-the relationship's direction defines how the data can be accessed (i.e. it's possible to get the roles of a user, but
-it's not possible to get the users that have a specific role), which is out of the scope of the _database model_, as
-data can be queried in any way using `JOIN` statements.
+:construction: Work in progress :construction:
+
+_**TODO pending**_
 
 ### Aliases
 
 Defining aliases for the members of a relationship is useful not only for semantic purposes but also for customizing the
-_foreign columns_ names.
+name of its corresponding fields.
 
 For example, imagine you want to model a _Travel_ entity that as 2 relationships to the same _City_ entity, one for the _origin
 city_ and the other for the _destiny city_. If you define those relationships without specifying an alias for the _City_ member,
-you will end up with two identical `cityId` columns in your `Travel` table.
+you will end up with two identical `City city` fields in your `Travel` class.
 
 The way to handle this situation is by adding alias to the _City_ member of both relationships:
 
@@ -133,34 +92,19 @@ Travel *-> City originCity
 Travel *-> City destinyCity
 ```
 
-By doing this, _ERDiagram_ will name the columns `originCityId` and `destinyCityId`.
+By doing this, _ERDiagram_ will name the fields `City originCity` and `City destinyCity`.
 
-You can also use _aliases_ in _self referencing_ tables:
+You can also use _aliases_ in _self referencing_ classes:
 
 ```erdiagram
 Employee subordinates *<-> Employee boss
 ```
 
-This will be modelled by adding a `bossId` column to the `Employee` table. If you don't use _aliases_, the column would
-be named `employeeId`, which is much less semantic.
+This will be modelled by creating the `Employee boss` and `Employee[] subordinates` fields in the `Employee` class. If you don't
+use _aliases_, the fields would be `Employee employee` and `Employee[] employees` respectively, which are much less semantic.
 
 ### Relationship's name
 
-When defining the name of a _many-to-many_ relationship, _ERDiagram_ will use it for naming the corresponding _intermediate
-table_. Let's see an example:
+_The name of the relationship is intended for database code generation, and it's not used in class model generation._
 
-```erdiagram
-User *<->* Role
-```
-
-The relationship above will be modelled by creating the `UserRole` table. If we want to customize this name, we can define a
-name for the relationship in this way:
-
-```erdiagram
-User *<->* Role (UserRoleMapping)
-```
-
-By doing this, we are telling _ERDiagram_ to use the name `UserRoleMapping` for the _intermediate table_.
-
-_Note: defining the name of any other kind of relationship (one-to-one, one-to-many or many-to-one) does not affect the
-database model._
+This means that defining a relationship's name has doesn't produce any effect over the class model.

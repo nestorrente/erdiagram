@@ -108,7 +108,7 @@ You can learn how to customize the name of the _intermediate table_ and the _for
 Defining aliases for the members of a relationship is useful not only for semantic purposes but also for customizing the
 _foreign columns_ names.
 
-For example, imagine you want to model a _Travel_ entity that as 2 relationships to the same _City_ entity, one for the _origin
+For example, imagine you want to model a _Travel_ entity that has 2 relationships to the same _City_ entity, one for the _origin
 city_ and the other for the _destiny city_. If you define those relationships without specifying an alias for the _City_ member,
 you will end up with two identical `cityId` columns in your `Travel` table.
 
@@ -153,7 +153,9 @@ database model._
 
 ### Directions
 
-Relationship's directions are no taken into account when generating the _database model_. The reason for this is that
-the relationship's direction defines how the data can be accessed (i.e. it's possible to get the roles of a user, but
-it's not possible to get the users that have a specific role), which is out of the scope of the _database model_, as
-data can be queried in any way using `JOIN` statements.
+_The auto-incremental modifier is intended for OOP classes code generation, and it's not used in database model generation._
+
+The main reason for ignoring the direction of the relationship in the database model is because it's used to define how the data
+can be accessed (i.e. it's possible to get the roles of a user, but it's not possible to get the users that have a specific
+role), which is out of the scope of the _database model_, as database data can be queried in any direction using `JOIN`
+statements.
