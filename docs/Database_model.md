@@ -1,7 +1,7 @@
 # Database model
 
 The concept _database model_ refers to the set of tables and columns of a relational database. This page will cover how
-the input _entity-relationship model_ is converted to a _database model_.
+_ERDiagram_ converts the input _entity-relationship model_ into a _database model_.
 
 ## Table of contents
 
@@ -35,19 +35,19 @@ modifier will be modelled as _nullable_ columns, so `NOT NULL` statement will no
 
 #### Unique modifier
 
-Properties defined using the unique modifier will be modelled using a `UNIQUE` constraint on relational databases.
+Properties defined using the unique modifier will be modelled by adding a `UNIQUE` constraint to that column.
 
 #### Auto-incremental modifier
 
 Properties defined using the auto-incremental modifier will be modelled as `AUTO_INCREMENTAL` columns.
 
 _Note: as there are some database engines that doesn't support the `AUTO_INCREMENTAL` modifier, ERDiagram will try to
-emulate the same behavior using a combination of a `SEQUENCE` and a `DEFAULT` value in those database engines that
+emulate the same behavior using a combination of a `SEQUENCE` and a `DEFAULT` value in the database engines that
 support those features._
 
 ### Entity identifier property
 
-The identifier property of the entity will be treated as any other column, with the only difference that it will be
+The identifier property of the entity will be treated like any other column, with the only difference that it will be
 defined as the `PRIMARY KEY` (a.k.a. `IDENTIFIER`) of the table.
 
 ## Relationships
@@ -69,8 +69,8 @@ User <->* Address
 ```
 
 The relationship above represents a _User_ that may have many _Addresses_. On the other side, each _Address_ belongs to
-one (and only one) _User_. This is modelled by adding a `usedId` column and its corresponding `FOREIGN KEY` to the
-`Address` table.
+one (and only one) _User_. This is modelled by adding a `usedId` column and its corresponding `FOREIGN KEY` constraint
+referencing the `Address` table.
 
 You can learn how to customize the name of the _foreign column_ in the [Aliases](#aliases) section.
 
@@ -98,7 +98,7 @@ User *<->* Role
 
 The relationship above represents a _User_ that may have many _Roles_. At the same time, each _Role_ is related to many _Users_.
 This is modelled by creating a new table `UserRole` with the columns `userId` and `roleId`, including their corresponding
-`FOREIGN KEY` to the `User` and `Role` tables respectively.
+`FOREIGN KEY` constraints referencing the `User` and `Role` tables respectively.
 
 You can learn how to customize the name of the _intermediate table_ and the _foreign columns_ in the
 [Relationship's name](#relationships-name) and [Aliases](#aliases) sections.
@@ -127,8 +127,8 @@ You can also use _aliases_ in _self referencing_ tables:
 Employee subordinates *<-> Employee boss
 ```
 
-This will be modelled by adding a `bossId` column to the `Employee` table. If you don't use _aliases_, the column's name would
-be `employeeId`, which is much less semantic.
+This will be modelled by adding a `bossId` column to the `Employee` table. If you don't use _aliases_, the column would
+be named `employeeId`, which is much less semantic.
 
 ### Relationship's name
 
