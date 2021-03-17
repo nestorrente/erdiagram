@@ -90,6 +90,9 @@ _cardinalities_ [here](https://en.wikipedia.org/wiki/Cardinality_(data_modeling)
 
 ### Directions
 
+The direction of the relationship is used to indicate how the data can be accessed from one side of the relationship to
+the other one.
+
 _ERDiagram_ supports 3 different direction values:
 
 * _left to right_ (`->`): indicates that the _right_ entity of the relationship is accessible from the _left_ entity.

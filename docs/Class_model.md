@@ -64,17 +64,36 @@ _ERDiagram_ allows 4 types of relationships regarding the cardinality of its mem
 * _many-to-one_
 * _many-to-many_
 
-Members with a _one_ (`1`) cardinality are modelled by using a field whose type is the entity of that member, while members with a
-_many_ (`*`) cardinality are modelled by using a _list_ or _array_.
+Members with a cardinality of _one_ (`1`) are modelled by using a field whose type is the entity of that member, while members with a
+cardinality of _many_ (`*`) are modelled by using a _list_ or _array_.
 
-In addition, there is a special cardinality that represents a _zero-or-one_ (`0..1`) cardinality, which is modelled in the same
-way as a _one_ (`1`) cardinality with the only difference that its corresponding field will be _nullable_.
+In addition, there is a special _zero-or-one_ (`0..1`) cardinality, which is modelled in the same way as a cardinality
+of _one_ (`1`) with the only difference that its corresponding field will be _nullable_.
 
 ### Directions
 
-:construction: Work in progress :construction:
+The direction of the relationship is used to indicate how the data can be accessed from one side of the relationship to
+the other one. Let's see some examples in order to learn how the direction affects the _class model_:
 
-_**TODO pending**_
+```erdiagram
+User ->* Address
+```
+
+As you can see, the relationship defined in the example above is defined as _left-to-right_. This makes the `User`
+entity to have a list of addresses, but it doesn't make the `Address` entity to have a reference to the user.
+
+If we want to have a reference from the `Address` entity to its user, we can define the relationship as _bidirectional_:
+
+```erdiagram
+User <->* Address
+```
+
+Finally, if we don't want the `User` entity to have a reference to its addresses, we can define the relationship as
+_right-to-left_:
+
+```erdiagram
+User <-* Address
+```
 
 ### Aliases
 
