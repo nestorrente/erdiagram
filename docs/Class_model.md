@@ -43,12 +43,6 @@ _The auto-incremental modifier is intended for database code generation, and it'
 This means that defining auto-incremental class fields is currently an unsupported feature. This may change in
 the future, so you can create an issue in order to discuss this if you need it :slightly_smiling_face:
 
-Properties defined using the auto-incremental modifier will be modelled as `AUTO_INCREMENTAL` columns.
-
-_Note: as there are some database engines that doesn't support the `AUTO_INCREMENTAL` modifier, ERDiagram will try to
-emulate the same behavior using a combination of a `SEQUENCE` and a `DEFAULT` value in the database engines that
-support those features._
-
 ### Entity identifier property
 
 The identifier property of the entity will be treated just like any other field.
