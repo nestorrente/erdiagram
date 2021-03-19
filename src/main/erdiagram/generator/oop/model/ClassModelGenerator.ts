@@ -76,7 +76,8 @@ export default class ClassModelGenerator {
 		return {
 			name: this.getIdentifierFieldName(entity),
 			primitiveType: EntityPropertyType.IDENTIFIER,
-			nullable: false,
+			// ID field must be nullable, so NULL value can be used to represent an unsaved instance
+			nullable: true,
 			list: false
 		};
 	}

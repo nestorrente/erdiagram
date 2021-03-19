@@ -45,7 +45,9 @@ the future, so you can create an issue to discuss this if you need it :slightly_
 
 ### Entity identifier property
 
-The identifier property of the entity will be treated just like any other field.
+The identifier property of the entity will be modelled just like any other field. Contrary to the
+_[database model](Database_model.md#entity-identifier-property)_, the identifier field of the _class model_ must be
+_nullable_, so a `null` value can be used to represent an _unsaved instance_ of an entity.
 
 ## Relationships
 
