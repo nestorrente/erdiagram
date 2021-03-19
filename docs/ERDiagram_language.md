@@ -95,21 +95,21 @@ the other one.
 
 _ERDiagram_ supports 3 different direction values:
 
-* _left to right_ (`->`): indicates that the _right_ entity of the relationship is accessible from the _left_ entity.
-* _right to left_ (`<-`): indicates that the _left_ entity of the relationship is accessible from the _right_ entity.
+* _left-to-right_ (`->`): indicates that the _right_ entity of the relationship is accessible from the _left_ entity.
+* _right-to-left_ (`<-`): indicates that the _left_ entity of the relationship is accessible from the _right_ entity.
 * _bidirectional_ (`<->`): indicates that both entities are accessible from the other.
 
 ### Aliases
 
 It's possible to name the members of a relationship using _aliases_. Imagine you are modelling a `Travel` entity which
-has two `originCity` and `destinyCity` attributes, both referencing the `City` entity. You could write `Travel -> City`
+has two `originCity` and `destinationCity` attributes, both referencing the `City` entity. You could write `Travel -> City`
 in order to model one relationship from `Travel` to `City`, but how can you model both relationships at the same time?
 
 The way that _ERDiagram_ solves this is by using _aliases_:
 
 ```erdiagram
 Travel *-> City originCity
-Travel *-> City destinyCity
+Travel *-> City destinationCity
 ```
 
 By doing this, you're naming the right member of your relationship. You can also name both sides of the relationship,

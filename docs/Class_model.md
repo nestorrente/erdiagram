@@ -33,15 +33,15 @@ will be modelled as _nullable_ fields.
 
 _The unique modifier is intended for database code generation, and it's not used in class model generation._
 
-This means that defining unique class fields is currently an unsupported feature. This may change in the future, so you can
-create an issue in order to discuss this if you need it :slightly_smiling_face:
+This means that defining unique class fields is currently an unsupported feature. This may change in the future, so you
+can create an issue to discuss this if you need it :slightly_smiling_face:
 
 #### Auto-incremental modifier
 
 _The auto-incremental modifier is intended for database code generation, and it's not used in class model generation._
 
 This means that defining auto-incremental class fields is currently an unsupported feature. This may change in
-the future, so you can create an issue in order to discuss this if you need it :slightly_smiling_face:
+the future, so you can create an issue to discuss this if you need it :slightly_smiling_face:
 
 ### Entity identifier property
 
@@ -49,22 +49,32 @@ The identifier property of the entity will be treated just like any other field.
 
 ## Relationships
 
+Relationships are modelled by adding new fields to the entity classes. In the following sections, we will explain in
+deep how the cardinalities, direction, and aliases of the relationship affect the final _class model_.
+
 ### Cardinalities
 
-_ERDiagram_ allows 4 types of relationships regarding the cardinality of its members:
+_ERDiagram_ supports different types of relationships regarding the cardinality of its members. We recommend reading
+[Cardinalities](ERDiagram_language.md#cardinalities) before continue for a better understanding.
 
-* _one-to-one_
-* _one-to-many_
-* _many-to-one_
-* _many-to-many_
+Each member of a relationship can have 2 different cardinalities:
 
-Members with a cardinality of _one_ (`1`) are modelled by using a field whose type is the entity of that member, while members with a
-cardinality of _many_ (`*`) are modelled by using a _list_ or _array_.
+* _one_ (`1`): members with this cardinality are modelled by using a field whose type is the
+  entity of that member.
+* _many_ (`*`): members with this cardinality are modelled by using a _list_ or _array_.
 
-In addition, there is a special _zero-or-one_ (`0..1`) cardinality, which is modelled in the same way as a cardinality
-of _one_ (`1`) with the only difference that its corresponding field will be _nullable_.
+Also, there is a special _zero-or-one_ cardinality (represented in _ERDiagram_ using a question mark `?`), which
+is modelled in the same way as the _one_ (`1`) cardinality, with the only difference that its corresponding field will
+be _nullable_.
 
 ### Directions
+
+_ERDiagram_ supports 3 different directions for a relationship (see
+[Directions](ERDiagram_language.md#directions) for more detail):
+
+* _left-to-right_ (`->`)
+* _right-to-left_ (`<-`)
+* _bidirectional_ (`<->`)
 
 The direction of the relationship is used to indicate how the data can be accessed from one side of the relationship to
 the other one. Let's see some examples in order to learn how the direction affects the _class model_:
@@ -74,7 +84,7 @@ User ->* Address
 ```
 
 As you can see, the relationship defined in the example above is defined as _left-to-right_. This makes the `User`
-entity to have a list of addresses, but it doesn't make the `Address` entity to have a reference to the user.
+entity have a list of addresses, but it doesn't make the `Address` entity have a reference to the user.
 
 If we want to have a reference from the `Address` entity to its user, we can define the relationship as _bidirectional_:
 
@@ -94,20 +104,20 @@ User <-* Address
 Defining aliases for the members of a relationship is useful not only for semantic purposes but also for customizing the
 name of its corresponding fields.
 
-For example, imagine you want to model a _Travel_ entity that as 2 relationships to the same _City_ entity, one for the _origin
-city_ and the other for the _destiny city_. If you define those relationships without specifying an alias for the _City_ member,
+For example, imagine you want to model a _Travel_ entity that has 2 relationships to the same _City_ entity, one for the _origin
+city_ and the other for the _destination city_. If you define those relationships without specifying an alias for the _City_ member,
 you will end up with two identical `City city` fields in your `Travel` class.
 
-The way to handle this situation is by adding alias to the _City_ member of both relationships:
+The way to handle this situation is by adding an alias to the _City_ member of both relationships:
 
 ```erdiagram
 Travel *-> City originCity
-Travel *-> City destinyCity
+Travel *-> City destinationCity
 ```
 
-By doing this, _ERDiagram_ will name the fields `City originCity` and `City destinyCity`.
+By doing this, _ERDiagram_ will name the fields `City originCity` and `City destinationCity`.
 
-You can also use _aliases_ in _self referencing_ classes:
+You can also use _aliases_ in _self-referencing_ classes:
 
 ```erdiagram
 Employee subordinates *<-> Employee boss
@@ -120,4 +130,4 @@ use _aliases_, the fields would be `Employee employee` and `Employee[] employees
 
 _The name of the relationship is intended for database code generation, and it's not used in class model generation._
 
-This means that defining a relationship's name has doesn't produce any effect over the class model.
+This means that defining a relationship's name has doesn't produce any effect on the class model.

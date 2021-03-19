@@ -41,18 +41,20 @@ Properties defined using the unique modifier will be modelled by adding a `UNIQU
 
 Properties defined using the auto-incremental modifier will be modelled as `AUTO_INCREMENTAL` columns.
 
-_Note: as there are some database engines that doesn't support the `AUTO_INCREMENTAL` modifier, ERDiagram will try to
-emulate the same behavior using a combination of a `SEQUENCE` and a `DEFAULT` value in the database engines that
-support those features._
+_Note: as some database engines don't support the `AUTO_INCREMENTAL` modifier, ERDiagram will try to emulate the same
+behavior using a combination of a `SEQUENCE` and a `DEFAULT` value in the database engines that support those features._
 
 ### Entity identifier property
 
-The identifier property of the entity will be treated like any other column, with the only difference that it will be
-defined as the `PRIMARY KEY` (a.k.a. `IDENTIFIER`) of the table.
+The identifier property of the entity will be modelled as a `NOT_NULL` and `AUTO_INCREMENTAL` column. Moreover, it will
+be also defined as the `PRIMARY KEY` (a.k.a. `IDENTIFIER`) of the table.
 
 ## Relationships
 
 ### Cardinalities
+
+_ERDiagram_ supports different types of relationships regarding the cardinality of its members. We recommend reading
+[Cardinalities](ERDiagram_language.md#cardinalities) before continue for a better understanding.
 
 #### One to one
 
@@ -109,19 +111,19 @@ Defining aliases for the members of a relationship is useful not only for semant
 _foreign columns_ names.
 
 For example, imagine you want to model a _Travel_ entity that has 2 relationships to the same _City_ entity, one for the _origin
-city_ and the other for the _destiny city_. If you define those relationships without specifying an alias for the _City_ member,
+city_ and the other for the _destination city_. If you define those relationships without specifying an alias for the _City_ member,
 you will end up with two identical `cityId` columns in your `Travel` table.
 
-The way to handle this situation is by adding alias to the _City_ member of both relationships:
+The way to handle this situation is by adding an alias to the _City_ member of both relationships:
 
 ```erdiagram
 Travel *-> City originCity
-Travel *-> City destinyCity
+Travel *-> City destinationCity
 ```
 
-By doing this, _ERDiagram_ will name the columns `originCityId` and `destinyCityId`.
+By doing this, _ERDiagram_ will name the columns `originCityId` and `destinationCityId`.
 
-You can also use _aliases_ in _self referencing_ tables:
+You can also use _aliases_ in _self-referencing_ tables:
 
 ```erdiagram
 Employee subordinates *<-> Employee boss
@@ -148,7 +150,7 @@ User *<->* Role (UserRoleMapping)
 
 By doing this, we are telling _ERDiagram_ to use the name `UserRoleMapping` for the _intermediate table_.
 
-_Note: defining the name of any other kind of relationship (one-to-one, one-to-many or many-to-one) does not affect the
+_Note: defining the name of any other kind of relationship (one-to-one, one-to-many, or many-to-one) does not affect the
 database model._
 
 ### Directions
