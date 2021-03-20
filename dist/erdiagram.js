@@ -4,7 +4,7 @@
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-03-15T18:53:33.992Z
+ * Build date: 2021-03-19T11:28:30.548Z
  */
 var ERDiagram =
 /******/ (function(modules) { // webpackBootstrap
@@ -7128,7 +7128,8 @@ class ClassModelGenerator {
         return {
             name: this.getIdentifierFieldName(entity),
             primitiveType: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["EntityPropertyType"].IDENTIFIER,
-            nullable: false,
+            // ID field must be nullable, so NULL value can be used to represent an unsaved instance
+            nullable: true,
             list: false
         };
     }
