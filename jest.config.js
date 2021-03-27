@@ -12,5 +12,6 @@ module.exports = {
 	],
 	moduleNameMapper: {
 		'@/(.*)': '<rootDir>/src/main/$1',
+		'#/(.*)': '<rootDir>/src/test/$1',
 	}
 };

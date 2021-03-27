@@ -20,14 +20,14 @@ how _ERDiagram_ converts the input _entity-relationship model_ into a _class mod
 ## Entities
 
 Each entity defined in the input _entity-relationship model_ will be converted into a class in the _class model_. In the
-same way, every entity property will be modelled as a field of that class.
+same way, every entity property will be modeled as a field of that class.
 
 ### Property modifiers
 
 #### Optional modifier
 
 _ERDiagram_ considers all properties as mandatory by default. However, properties defined using the optional modifier
-will be modelled as _nullable_ fields.
+will be modeled as _nullable_ fields.
 
 #### Unique modifier
 
@@ -45,13 +45,13 @@ the future, so you can create an issue to discuss this if you need it :slightly_
 
 ### Entity identifier property
 
-The identifier property of the entity will be modelled just like any other field. Contrary to the
+The identifier property of the entity will be modeled just like any other field. Contrary to the
 _[database model](Database_model.md#entity-identifier-property)_, the identifier field of the _class model_ must be
 _nullable_, so a `null` value can be used to represent an _unsaved instance_ of an entity.
 
 ## Relationships
 
-Relationships are modelled by adding new fields to the entity classes. In the following sections, we will explain in
+Relationships are modeled by adding new fields to the entity classes. In the following sections, we will explain in
 deep how the cardinalities, direction, and aliases of the relationship affect the final _class model_.
 
 ### Cardinalities
@@ -61,12 +61,12 @@ _ERDiagram_ supports different types of relationships regarding the cardinality 
 
 Each member of a relationship can have 2 different cardinalities:
 
-* _one_ (`1`): members with this cardinality are modelled by using a field whose type is the
+* _one_ (`1`): members with this cardinality are modeled by using a field whose type is the
   entity of that member.
-* _many_ (`*`): members with this cardinality are modelled by using a _list_ or _array_.
+* _many_ (`*`): members with this cardinality are modeled by using a _list_ or _array_.
 
 Also, there is a special _zero-or-one_ cardinality (represented in _ERDiagram_ using a question mark `?`), which
-is modelled in the same way as the _one_ (`1`) cardinality, with the only difference that its corresponding field will
+is modeled in the same way as the _one_ (`1`) cardinality, with the only difference that its corresponding field will
 be _nullable_.
 
 ### Directions
@@ -125,7 +125,7 @@ You can also use _aliases_ in _self-referencing_ classes:
 Employee subordinates *<-> Employee boss
 ```
 
-This will be modelled by creating the `Employee boss` and `Employee[] subordinates` fields in the `Employee` class. If you don't
+This will be modeled by creating the `Employee boss` and `Employee[] subordinates` fields in the `Employee` class. If you don't
 use _aliases_, the fields would be `Employee employee` and `Employee[] employees` respectively, which are much less semantic.
 
 ### Relationship's name

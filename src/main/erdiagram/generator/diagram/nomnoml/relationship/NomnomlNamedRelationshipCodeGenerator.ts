@@ -19,7 +19,7 @@ export default class NomnomlNamedRelationshipCodeGenerator {
 			leftMember,
 			rightMember,
 			direction,
-			relationShipName
+			relationshipName
 		} = relationship;
 
 		const leftMemberCardinalityCode = this.relationshipCardinalityCodeGenerator.generateCardinalityCode(leftMember.cardinality);
@@ -29,9 +29,9 @@ export default class NomnomlNamedRelationshipCodeGenerator {
 		const rightSideDirectionCode = this.relationshipDirectionCodeGenerator.generateRightSideDirectionCode(direction);
 
 		return [
-			`[<label>${relationShipName}]`,
-			`[${leftMember.entity}] ${leftMemberCardinalityCode}${leftSideDirectionCode} [${relationShipName}]`,
-			`[${relationShipName}] ${rightSideDirectionCode}${rightMemberCardinalityCode} [${rightMember.entity}]`
+			`[<label>${relationshipName}]`,
+			`[${leftMember.entity}] ${leftMemberCardinalityCode}${leftSideDirectionCode} [${relationshipName}]`,
+			`[${relationshipName}] ${rightSideDirectionCode}${rightMemberCardinalityCode} [${rightMember.entity}]`
 		].join('\n');
 
 	}

@@ -36,7 +36,7 @@ export interface RelationshipDescriptor {
 	leftMember: RelationshipMember;
 	rightMember: RelationshipMember;
 	direction: Direction;
-	relationShipName?: string;
+	relationshipName?: string;
 }
 
 export interface RelationshipMember {

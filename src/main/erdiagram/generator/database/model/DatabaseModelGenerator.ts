@@ -17,6 +17,7 @@ import {
 import databaseModelGeneratorConfigManager
 	from '@/erdiagram/generator/database/model/config/DatabaseModelGeneratorConfigManager';
 import {classifyBy} from '@/erdiagram/util/map-utils';
+import {capitalizeWord, uncapitalizeWord} from '@/erdiagram/util/string-utils';
 
 export default class DatabaseModelGenerator {
 
@@ -110,13 +111,13 @@ export default class DatabaseModelGenerator {
 	private getRelationshipTableName(relationship: RelationshipDescriptor): string {
 
 		const {
-			relationShipName,
+			relationshipName,
 			leftMember,
 			rightMember
 		} = relationship;
 
-		if (relationShipName) {
-			return relationShipName;
+		if (relationshipName) {
+			return relationshipName;
 		}
 
 		return this.pluralizeEntityNameIfApplies(leftMember.entity)
@@ -127,13 +128,13 @@ export default class DatabaseModelGenerator {
 	private getRelationshipTableIdentifierColumnName(relationship: RelationshipDescriptor, entityIdentifiersMap: Map<string, string>): string {
 
 		const {
-			relationShipName,
+			relationshipName,
 			leftMember,
 			rightMember
 		} = relationship;
 
-		if (relationShipName) {
-			return this.getIdentifierColumnName(relationShipName, entityIdentifiersMap);
+		if (relationshipName) {
+			return this.getIdentifierColumnName(relationshipName, entityIdentifiersMap);
 		}
 
 		return this.getIdentifierColumnName(leftMember.entity + rightMember.entity, entityIdentifiersMap);
@@ -159,11 +160,20 @@ export default class DatabaseModelGenerator {
 	}
 
 	private pluralizeEntityNameIfApplies(entityName: string): string {
-		if (this.config.usePluralTableNames) {
-			return pluralize(entityName);
-		} else {
+
+		if (!this.config.usePluralTableNames) {
 			return entityName;
 		}
+
+		// pluralize() takes into account the case of the word, so 'A' is pluralized to 'AS' instead of 'As'.
+		// This means that we have to uncapitalize the entity name before calling pluralize() in order to get the
+		// expected behavior, then capitalize the result.
+
+		const uncapitalizedEntityName = uncapitalizeWord(entityName);
+		const pluralizedUncapitalizedEntityName = pluralize(uncapitalizedEntityName);
+
+		return capitalizeWord(pluralizedUncapitalizedEntityName);
+
 	}
 
 	private getIdentifierColumnName(entityName: string, entityIdentifiersMap: Map<string, string>): string {

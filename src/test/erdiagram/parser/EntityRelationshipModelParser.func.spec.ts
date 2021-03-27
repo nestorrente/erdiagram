@@ -2,31 +2,14 @@ import EntityRelationshipModelParser from '@/erdiagram/parser/EntityRelationship
 import {
 	Cardinality,
 	Direction,
-	EntityDescriptor,
-	EntityPropertyDescriptor,
 	EntityPropertyType,
 	EntityRelationshipModel,
 	RelationshipDescriptor
 } from '@/erdiagram/parser/entity-relationship-model-types';
-
-function createEntityWithoutProperties(name: string): EntityDescriptor {
-	return {
-		name,
-		identifierPropertyName: undefined,
-		properties: []
-	};
-}
-
-function createSimpleProperty(name: string, type: EntityPropertyType, length: number[] = []): EntityPropertyDescriptor {
-	return {
-		name,
-		type,
-		length,
-		optional: false,
-		unique: false,
-		autoincremental: false
-	};
-}
+import {
+	createEntityWithoutProperties,
+	createSimpleEntityProperty
+} from '#/erdiagram/parser/entity-relationship-model-test-utils';
 
 const entityRelationshipModelParser = new EntityRelationshipModelParser();
 
@@ -47,7 +30,7 @@ Entity
 					name: 'Entity',
 					identifierPropertyName: undefined,
 					properties: [
-						createSimpleProperty('name', EntityPropertyType.TEXT, [10]),
+						createSimpleEntityProperty('name', EntityPropertyType.TEXT, [10]),
 					]
 				}
 			],
@@ -94,7 +77,7 @@ Entity
 					name: 'Entity',
 					identifierPropertyName: 'customEntityId',
 					properties: [
-						createSimpleProperty('name', EntityPropertyType.TEXT, [10])
+						createSimpleEntityProperty('name', EntityPropertyType.TEXT, [10])
 					]
 				}
 			],
@@ -175,16 +158,16 @@ Entity
 					name: 'Entity',
 					identifierPropertyName: undefined,
 					properties: [
-						createSimpleProperty('a', EntityPropertyType.BOOLEAN),
-						createSimpleProperty('b', EntityPropertyType.SHORT),
-						createSimpleProperty('c', EntityPropertyType.INT),
-						createSimpleProperty('d', EntityPropertyType.LONG),
-						createSimpleProperty('e', EntityPropertyType.DECIMAL, [10, 2]),
-						createSimpleProperty('f', EntityPropertyType.TEXT, [50]),
-						createSimpleProperty('g', EntityPropertyType.DATE),
-						createSimpleProperty('h', EntityPropertyType.TIME),
-						createSimpleProperty('i', EntityPropertyType.DATETIME),
-						createSimpleProperty('j', EntityPropertyType.BLOB),
+						createSimpleEntityProperty('a', EntityPropertyType.BOOLEAN),
+						createSimpleEntityProperty('b', EntityPropertyType.SHORT),
+						createSimpleEntityProperty('c', EntityPropertyType.INT),
+						createSimpleEntityProperty('d', EntityPropertyType.LONG),
+						createSimpleEntityProperty('e', EntityPropertyType.DECIMAL, [10, 2]),
+						createSimpleEntityProperty('f', EntityPropertyType.TEXT, [50]),
+						createSimpleEntityProperty('g', EntityPropertyType.DATE),
+						createSimpleEntityProperty('h', EntityPropertyType.TIME),
+						createSimpleEntityProperty('i', EntityPropertyType.DATETIME),
+						createSimpleEntityProperty('j', EntityPropertyType.BLOB),
 					]
 				}
 			],
@@ -309,7 +292,7 @@ A <-> D
 			entities: [...'ABCD'].map(createEntityWithoutProperties),
 			relationships: [
 				{
-					relationShipName: undefined,
+					relationshipName: undefined,
 					direction: Direction.LEFT_TO_RIGHT,
 					leftMember: {
 						entity: 'A',
@@ -323,7 +306,7 @@ A <-> D
 					}
 				},
 				{
-					relationShipName: undefined,
+					relationshipName: undefined,
 					direction: Direction.RIGHT_TO_LEFT,
 					leftMember: {
 						entity: 'A',
@@ -337,7 +320,7 @@ A <-> D
 					}
 				},
 				{
-					relationShipName: undefined,
+					relationshipName: undefined,
 					direction: Direction.BIDIRECTIONAL,
 					leftMember: {
 						entity: 'A',
@@ -403,26 +386,26 @@ A *<->* Q
 			entities: [...'ABCDEFGHIJKLMNOPQ'].map(createEntityWithoutProperties),
 			relationships: (
 					[
-						[Cardinality.ZERO_OR_ONE, Cardinality.ZERO_OR_ONE, 'B', 20],
-						[Cardinality.ZERO_OR_ONE, Cardinality.ONE, 'C', 21],
-						[Cardinality.ZERO_OR_ONE, Cardinality.ONE, 'D', 22],
-						[Cardinality.ZERO_OR_ONE, Cardinality.MANY, 'E', 23],
-						[Cardinality.ONE, Cardinality.ZERO_OR_ONE, 'F', 25],
-						[Cardinality.ONE, Cardinality.ONE, 'G', 26],
-						[Cardinality.ONE, Cardinality.ONE, 'H', 27],
-						[Cardinality.ONE, Cardinality.MANY, 'I', 28],
-						[Cardinality.ONE, Cardinality.ZERO_OR_ONE, 'J', 30],
-						[Cardinality.ONE, Cardinality.ONE, 'K', 31],
-						[Cardinality.ONE, Cardinality.ONE, 'L', 32],
-						[Cardinality.ONE, Cardinality.MANY, 'M', 33],
-						[Cardinality.MANY, Cardinality.ZERO_OR_ONE, 'N', 35],
-						[Cardinality.MANY, Cardinality.ONE, 'O', 36],
-						[Cardinality.MANY, Cardinality.ONE, 'P', 37],
-						[Cardinality.MANY, Cardinality.MANY, 'Q', 38],
-					] as [Cardinality, Cardinality, string, number][]
-			).map(([leftCardinality, rightCardinality, rightEntity, lineIndex]): RelationshipDescriptor => {
+						[Cardinality.ZERO_OR_ONE, Cardinality.ZERO_OR_ONE, 'B'],
+						[Cardinality.ZERO_OR_ONE, Cardinality.ONE, 'C'],
+						[Cardinality.ZERO_OR_ONE, Cardinality.ONE, 'D'],
+						[Cardinality.ZERO_OR_ONE, Cardinality.MANY, 'E'],
+						[Cardinality.ONE, Cardinality.ZERO_OR_ONE, 'F'],
+						[Cardinality.ONE, Cardinality.ONE, 'G'],
+						[Cardinality.ONE, Cardinality.ONE, 'H'],
+						[Cardinality.ONE, Cardinality.MANY, 'I'],
+						[Cardinality.ONE, Cardinality.ZERO_OR_ONE, 'J'],
+						[Cardinality.ONE, Cardinality.ONE, 'K'],
+						[Cardinality.ONE, Cardinality.ONE, 'L'],
+						[Cardinality.ONE, Cardinality.MANY, 'M'],
+						[Cardinality.MANY, Cardinality.ZERO_OR_ONE, 'N'],
+						[Cardinality.MANY, Cardinality.ONE, 'O'],
+						[Cardinality.MANY, Cardinality.ONE, 'P'],
+						[Cardinality.MANY, Cardinality.MANY, 'Q'],
+					] as [Cardinality, Cardinality, string][]
+			).map(([leftCardinality, rightCardinality, rightEntity]): RelationshipDescriptor => {
 				return {
-					relationShipName: undefined,
+					relationshipName: undefined,
 					direction: Direction.BIDIRECTIONAL,
 					leftMember: {
 						entity: 'A',
@@ -452,8 +435,8 @@ E
 
 A aAlias <-> B
 A <-> C cAlias
-A <-> D (RelationshipName)
-A aAlias <-> E eAlias (RelationshipName)
+A <-> D (AToD)
+A aAlias *<->* E eAlias (AToE)
 
 		`);
 
@@ -461,7 +444,7 @@ A aAlias <-> E eAlias (RelationshipName)
 			entities: [...'ABCDE'].map(createEntityWithoutProperties),
 			relationships: [
 				{
-					relationShipName: undefined,
+					relationshipName: undefined,
 					direction: Direction.BIDIRECTIONAL,
 					leftMember: {
 						entity: 'A',
@@ -475,7 +458,7 @@ A aAlias <-> E eAlias (RelationshipName)
 					}
 				},
 				{
-					relationShipName: undefined,
+					relationshipName: undefined,
 					direction: Direction.BIDIRECTIONAL,
 					leftMember: {
 						entity: 'A',
@@ -489,7 +472,7 @@ A aAlias <-> E eAlias (RelationshipName)
 					}
 				},
 				{
-					relationShipName: 'RelationshipName',
+					relationshipName: 'AToD',
 					direction: Direction.BIDIRECTIONAL,
 					leftMember: {
 						entity: 'A',
@@ -503,17 +486,17 @@ A aAlias <-> E eAlias (RelationshipName)
 					}
 				},
 				{
-					relationShipName: 'RelationshipName',
+					relationshipName: 'AToE',
 					direction: Direction.BIDIRECTIONAL,
 					leftMember: {
 						entity: 'A',
 						entityAlias: 'aAlias',
-						cardinality: Cardinality.ONE
+						cardinality: Cardinality.MANY
 					},
 					rightMember: {
 						entity: 'E',
 						entityAlias: 'eAlias',
-						cardinality: Cardinality.ONE
+						cardinality: Cardinality.MANY
 					}
 				}
 			]
@@ -531,7 +514,7 @@ A aAlias <-> E eAlias (RelationshipName)
 			entities: [],
 			relationships: [
 				{
-					relationShipName: undefined,
+					relationshipName: undefined,
 					direction: Direction.LEFT_TO_RIGHT,
 					leftMember: {
 						entity: 'A',
@@ -570,7 +553,7 @@ Entity
 					name: 'Entity',
 					identifierPropertyName: undefined,
 					properties: [
-						createSimpleProperty('name', EntityPropertyType.TEXT, [10]),
+						createSimpleEntityProperty('name', EntityPropertyType.TEXT, [10]),
 					]
 				}
 			],

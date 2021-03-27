@@ -16,6 +16,9 @@
         "paths": {
             "@/*": [
                 "src/main/*"
+            ],
+            "#/*": [
+                "src/test/*"
             ]
         },
         "types": [

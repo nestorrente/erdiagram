@@ -28,5 +28,5 @@ export interface ParsedRelationshipDescriptor {
 	leftMember: RelationshipMember;
 	rightMember: RelationshipMember;
 	direction: Direction;
-	relationShipName?: string;
+	relationshipName?: string;
 }

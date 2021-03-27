@@ -89,11 +89,11 @@ export function parseRelationshipStatement(line: string): ParsedRelationshipDesc
 		rightCardinalityCharacter,
 		rightEntity,
 		rightEntityAlias = rightEntity,
-		relationShipName
+		relationshipName
 	] = result;
 
 	return {
-		relationShipName: relationShipName ? capitalizeWord(relationShipName) : undefined,
+		relationshipName: relationshipName ? capitalizeWord(relationshipName) : undefined,
 		direction: direction === '->' ? Direction.LEFT_TO_RIGHT : (direction === '<-' ? Direction.RIGHT_TO_LEFT : Direction.BIDIRECTIONAL),
 		leftMember: {
 			entity: capitalizeWord(leftEntity),

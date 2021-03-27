@@ -241,7 +241,7 @@ describe('Parse relationship statement', () => {
 		const result = parseRelationshipStatement('Entity1 *-> Entity2');
 
 		const expected: RelationshipDescriptor = {
-			relationShipName: undefined,
+			relationshipName: undefined,
 			direction: Direction.LEFT_TO_RIGHT,
 			leftMember: {
 				entity: 'Entity1',
@@ -264,7 +264,7 @@ describe('Parse relationship statement', () => {
 		const result = parseRelationshipStatement('Entity1 *<-* Entity2');
 
 		const expected: RelationshipDescriptor = {
-			relationShipName: undefined,
+			relationshipName: undefined,
 			direction: Direction.RIGHT_TO_LEFT,
 			leftMember: {
 				entity: 'Entity1',
@@ -287,7 +287,7 @@ describe('Parse relationship statement', () => {
 		const result = parseRelationshipStatement('Entity1 1<->1 Entity2');
 
 		const expected: RelationshipDescriptor = {
-			relationShipName: undefined,
+			relationshipName: undefined,
 			direction: Direction.BIDIRECTIONAL,
 			leftMember: {
 				entity: 'Entity1',
@@ -310,7 +310,7 @@ describe('Parse relationship statement', () => {
 		const result = parseRelationshipStatement('Entity1 <->? Entity2');
 
 		const expected: RelationshipDescriptor = {
-			relationShipName: undefined,
+			relationshipName: undefined,
 			direction: Direction.BIDIRECTIONAL,
 			leftMember: {
 				entity: 'Entity1',
@@ -333,7 +333,7 @@ describe('Parse relationship statement', () => {
 		const result = parseRelationshipStatement('Entity1 ?<-> Entity2');
 
 		const expected: RelationshipDescriptor = {
-			relationShipName: undefined,
+			relationshipName: undefined,
 			direction: Direction.BIDIRECTIONAL,
 			leftMember: {
 				entity: 'Entity1',
@@ -356,7 +356,7 @@ describe('Parse relationship statement', () => {
 		const result = parseRelationshipStatement('Entity1 ?<->? Entity2');
 
 		const expected: RelationshipDescriptor = {
-			relationShipName: undefined,
+			relationshipName: undefined,
 			direction: Direction.BIDIRECTIONAL,
 			leftMember: {
 				entity: 'Entity1',
@@ -379,7 +379,7 @@ describe('Parse relationship statement', () => {
 		const result = parseRelationshipStatement('Entity1 e1 *-> Entity2');
 
 		const expected: RelationshipDescriptor = {
-			relationShipName: undefined,
+			relationshipName: undefined,
 			direction: Direction.LEFT_TO_RIGHT,
 			leftMember: {
 				entity: 'Entity1',
@@ -402,7 +402,7 @@ describe('Parse relationship statement', () => {
 		const result = parseRelationshipStatement('Entity1 *-> Entity2 e2');
 
 		const expected: RelationshipDescriptor = {
-			relationShipName: undefined,
+			relationshipName: undefined,
 			direction: Direction.LEFT_TO_RIGHT,
 			leftMember: {
 				entity: 'Entity1',
@@ -425,7 +425,7 @@ describe('Parse relationship statement', () => {
 		const result = parseRelationshipStatement('Entity1 *-> Entity2 (Rel)');
 
 		const expected: RelationshipDescriptor = {
-			relationShipName: 'Rel',
+			relationshipName: 'Rel',
 			direction: Direction.LEFT_TO_RIGHT,
 			leftMember: {
 				entity: 'Entity1',
@@ -458,7 +458,7 @@ describe('Parse relationship statement', () => {
 		const result = parseRelationshipStatement('Entity1  \t   *->      \tEntity2   \t  (\tRel  )      \t   ');
 
 		const expected: RelationshipDescriptor = {
-			relationShipName: 'Rel',
+			relationshipName: 'Rel',
 			direction: Direction.LEFT_TO_RIGHT,
 			leftMember: {
 				entity: 'Entity1',
@@ -481,7 +481,7 @@ describe('Parse relationship statement', () => {
 		const result = parseRelationshipStatement('Entity1  *-> Entity2 (Rel) # this is a comment');
 
 		const expected: RelationshipDescriptor = {
-			relationShipName: 'Rel',
+			relationshipName: 'Rel',
 			direction: Direction.LEFT_TO_RIGHT,
 			leftMember: {
 				entity: 'Entity1',

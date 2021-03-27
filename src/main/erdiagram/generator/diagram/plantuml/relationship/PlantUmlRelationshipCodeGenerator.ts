@@ -24,8 +24,8 @@ export default class PlantUmlRelationshipCodeGenerator {
 
 		const relationshipCode = `${leftMember.entity} "${leftMemberCardinalityCode}" ${directionCode} "${rightMemberCardinalityCode}" ${rightMember.entity}`;
 
-		if (relationship.relationShipName) {
-			return `${relationshipCode} : ${relationship.relationShipName}`;
+		if (relationship.relationshipName) {
+			return `${relationshipCode} : ${relationship.relationshipName}`;
 		} else {
 			return relationshipCode;
 		}

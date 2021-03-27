@@ -23,30 +23,30 @@ _ERDiagram_ converts the input _entity-relationship model_ into a _database mode
 
 ## Entities
 
-Each entity defined in the input _entity-relationship model_ will be modelled as a table in the _database model_. In the
-same way, every entity property will be modelled as a column of that table.
+Each entity defined in the input _entity-relationship model_ will be modeled as a table in the _database model_. In the
+same way, every entity property will be modeled as a column of that table.
 
 ### Property modifiers
 
 #### Optional modifier
 
 _ERDiagram_ defines all database columns as `NOT NULL` by default. However, properties defined using the optional
-modifier will be modelled as _nullable_ columns, so `NOT NULL` statement will not be used on its definition.
+modifier will be modeled as _nullable_ columns, so `NOT NULL` statement will not be used on its definition.
 
 #### Unique modifier
 
-Properties defined using the unique modifier will be modelled by adding a `UNIQUE` constraint to that column.
+Properties defined using the unique modifier will be modeled by adding a `UNIQUE` constraint to that column.
 
 #### Auto-incremental modifier
 
-Properties defined using the auto-incremental modifier will be modelled as `AUTO_INCREMENTAL` columns.
+Properties defined using the auto-incremental modifier will be modeled as `AUTO_INCREMENTAL` columns.
 
 _Note: as some database engines don't support the `AUTO_INCREMENTAL` modifier, ERDiagram will try to emulate the same
 behavior using a combination of a `SEQUENCE` and a `DEFAULT` value in the database engines that support those features._
 
 ### Entity identifier property
 
-The identifier property of the entity will be modelled as a `NOT_NULL` and `AUTO_INCREMENTAL` column. Moreover, it will
+The identifier property of the entity will be modeled as a `NOT_NULL` and `AUTO_INCREMENTAL` column. Moreover, it will
 be also defined as the `PRIMARY KEY` (a.k.a. `IDENTIFIER`) of the table.
 
 ## Relationships
@@ -58,12 +58,12 @@ _ERDiagram_ supports different types of relationships regarding the cardinality 
 
 #### One to one
 
-Relationships whose cardinality is _one-to-one_ are modelled just in the same way that _many-to-one_ relationships. This
+Relationships whose cardinality is _one-to-one_ are modeled just in the same way that _many-to-one_ relationships. This
 means that a _foreign column_ is added to the left table. See the following sections for more detail.
 
 #### One to many
 
-Relationships whose cardinality is _one-to-many_ are modelled by adding a _foreign column_ to the right table (the _many_
+Relationships whose cardinality is _one-to-many_ are modeled by adding a _foreign column_ to the right table (the _many_
 side of the relationship). Let's see an example:
 
 ```erdiagram
@@ -71,7 +71,7 @@ User <->* Address
 ```
 
 The relationship above represents a _User_ that may have many _Addresses_. On the other side, each _Address_ belongs to
-one (and only one) _User_. This is modelled by adding a `usedId` column and its corresponding `FOREIGN KEY` constraint
+one (and only one) _User_. This is modeled by adding a `usedId` column and its corresponding `FOREIGN KEY` constraint
 referencing the `Address` table.
 
 You can learn how to customize the name of the _foreign column_ in the [Aliases](#aliases) section.
@@ -91,7 +91,7 @@ User <->* Address
 
 #### Many to many
 
-Relationships whose cardinality is _many-to-many_ are modelled by creating an _intermediate_table_ which 2 _foreign columns_,
+Relationships whose cardinality is _many-to-many_ are modeled by creating an _intermediate_table_ which 2 _foreign columns_,
 one for each entity. Let's see an example:
 
 ```erdiagram
@@ -99,7 +99,7 @@ User *<->* Role
 ```
 
 The relationship above represents a _User_ that may have many _Roles_. At the same time, each _Role_ is related to many _Users_.
-This is modelled by creating a new table `UserRole` with the columns `userId` and `roleId`, including their corresponding
+This is modeled by creating a new table `UserRole` with the columns `userId` and `roleId`, including their corresponding
 `FOREIGN KEY` constraints referencing the `User` and `Role` tables respectively.
 
 You can learn how to customize the name of the _intermediate table_ and the _foreign columns_ in the
@@ -129,7 +129,7 @@ You can also use _aliases_ in _self-referencing_ tables:
 Employee subordinates *<-> Employee boss
 ```
 
-This will be modelled by adding a `bossId` column to the `Employee` table. If you don't use _aliases_, the column would
+This will be modeled by adding a `bossId` column to the `Employee` table. If you don't use _aliases_, the column would
 be named `employeeId`, which is much less semantic.
 
 ### Relationship's name
@@ -141,7 +141,7 @@ table_. Let's see an example:
 User *<->* Role
 ```
 
-The relationship above will be modelled by creating the `UserRole` table. If we want to customize this name, we can define a
+The relationship above will be modeled by creating the `UserRole` table. If we want to customize this name, we can define a
 name for the relationship in this way:
 
 ```erdiagram
@@ -152,6 +152,18 @@ By doing this, we are telling _ERDiagram_ to use the name `UserRoleMapping` for 
 
 _Note: defining the name of any other kind of relationship (one-to-one, one-to-many, or many-to-one) does not affect the
 database model._
+
+#### usePluralTableNames config option
+
+It's possible to configure _ERDiagram_ for using plural table names, so the entity `User` will be modeled by creating a
+`Users` table. However, if you have specified the relationship's name explicitly, it will be used without applying any
+transformation, so you have to specify it in plural if you what that behavior.
+
+The reason for this is that there are some scenarios where the pluralization of the relationship's name can lead to
+unexpected behaviors. For example, the default name of a table representing the relationship between `Users` and `Roles`
+tables should be `UsersRoles`. However. if you specify the relationship's name as `UserAndRole`, it will be pluralized
+to `UserAndRoles` instead of `UsersAndRoles`. To prevent this, _ERDiagram_ will use explicit relationship names without
+applying any transformation, so you can manually pluralize them in the right way.
 
 ### Directions
 

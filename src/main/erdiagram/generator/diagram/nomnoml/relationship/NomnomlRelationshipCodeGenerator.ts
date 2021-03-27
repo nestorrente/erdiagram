@@ -24,7 +24,7 @@ export default class NomnomlRelationshipCodeGenerator {
 	);
 
 	public generateRelationshipCode(relationship: RelationshipDescriptor): string {
-		if (relationship.relationShipName) {
+		if (relationship.relationshipName) {
 			return this.namedRelationshipCodeGenerator.generateNamedRelationshipCode(relationship);
 		} else {
 			return this.unnamedRelationshipCodeGenerator.generateUnnamedRelationshipCode(relationship);

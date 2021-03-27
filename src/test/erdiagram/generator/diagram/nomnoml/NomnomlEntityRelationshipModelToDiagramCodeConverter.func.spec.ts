@@ -224,7 +224,7 @@ describe('Relationships', () => {
 						cardinality: Cardinality.ONE
 					},
 					direction: Direction.BIDIRECTIONAL,
-					relationShipName: undefined
+					relationshipName: undefined
 				}
 			]
 		};
@@ -252,7 +252,7 @@ describe('Relationships', () => {
 						cardinality: Cardinality.MANY
 					},
 					direction: Direction.LEFT_TO_RIGHT,
-					relationShipName: undefined
+					relationshipName: undefined
 				}
 			]
 		};
@@ -280,7 +280,7 @@ describe('Relationships', () => {
 						cardinality: Cardinality.MANY
 					},
 					direction: Direction.RIGHT_TO_LEFT,
-					relationShipName: undefined
+					relationshipName: undefined
 				}
 			]
 		};
@@ -308,7 +308,7 @@ describe('Relationships', () => {
 						cardinality: Cardinality.ONE
 					},
 					direction: Direction.BIDIRECTIONAL,
-					relationShipName: undefined
+					relationshipName: undefined
 				}
 			]
 		};
@@ -336,7 +336,7 @@ describe('Relationships', () => {
 						cardinality: Cardinality.ONE
 					},
 					direction: Direction.LEFT_TO_RIGHT,
-					relationShipName: 'Rel'
+					relationshipName: 'Rel'
 				}
 			]
 		};
@@ -366,7 +366,7 @@ describe('Relationships', () => {
 						cardinality: Cardinality.MANY
 					},
 					direction: Direction.BIDIRECTIONAL,
-					relationShipName: 'Rel'
+					relationshipName: 'Rel'
 				}
 			]
 		};
@@ -437,7 +437,7 @@ describe('Entities and relationships', () => {
 						cardinality: Cardinality.MANY
 					},
 					direction: Direction.RIGHT_TO_LEFT,
-					relationShipName: undefined
+					relationshipName: undefined
 				}
 			]
 		};
