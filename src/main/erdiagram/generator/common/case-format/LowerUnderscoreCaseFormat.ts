@@ -1,9 +1,10 @@
 import AbstractUnderscoreCaseFormat from '@/erdiagram/generator/common/case-format/AbstractUnderscoreCaseFormat';
+import {removeNonEmptyStrings} from '@/erdiagram/util/string-utils';
 
 export default class LowerUnderscoreCaseFormat extends AbstractUnderscoreCaseFormat {
 
 	public joinWords(words: string[]): string {
-		return words
+		return removeNonEmptyStrings(words)
 				.map(word => word.toLowerCase())
 				.join('_');
 	}

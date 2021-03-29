@@ -10,6 +10,9 @@ import {
 	createEntityWithoutProperties,
 	createSimpleEntityProperty
 } from '#/erdiagram/parser/entity-relationship-model-test-utils';
+import StandardIdNamingStrategies
+	from '../../../../../main/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies';
+import {capitalizeWord} from '../../../../../main/erdiagram/util/string-utils';
 
 function createIdClassField(name: string = 'id') {
 	return {
@@ -582,3 +585,69 @@ describe('Relationship', () => {
 	});
 
 });
+
+describe('Config', () => {
+
+	test('Use another standard ID naming strategy', () => {
+
+		const databaseModel = new ClassModelGenerator({
+			idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX
+		}).generateClassModel({
+			entities: [
+				createEntityWithoutProperties('A'),
+				createEntityWithoutProperties('Another'),
+			],
+			relationships: []
+		});
+
+		expect(databaseModel).toStrictEqual<ClassModel>({
+			classes: [
+				{
+					name: 'A',
+					fields: [
+						createIdClassField('aId')
+					]
+				},
+				{
+					name: 'Another',
+					fields: [
+						createIdClassField('anotherId')
+					]
+				}
+			]
+		});
+
+	});
+
+	test('Use a custom ID naming strategy', () => {
+
+		const databaseModel = new ClassModelGenerator({
+			idNamingStrategy: entityName => `the${capitalizeWord(entityName)}Id`,
+		}).generateClassModel({
+			entities: [
+				createEntityWithoutProperties('A'),
+				createEntityWithoutProperties('Another'),
+			],
+			relationships: []
+		});
+
+		expect(databaseModel).toStrictEqual<ClassModel>({
+			classes: [
+				{
+					name: 'A',
+					fields: [
+						createIdClassField('theAId')
+					]
+				},
+				{
+					name: 'Another',
+					fields: [
+						createIdClassField('theAnotherId')
+					]
+				}
+			]
+		});
+
+	});
+
+})

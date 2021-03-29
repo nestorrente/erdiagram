@@ -86,54 +86,6 @@ Entity
 
 	});
 
-	test('Entity with more than one identifier property', () => {
-
-		expect(() => {
-
-			const model = entityRelationshipModelParser.parseModel(`
-
-Entity
-	customEntityId1 identifier
-	customEntityId2 identifier
-
-			`);
-
-		}).toThrow(Error);
-
-	});
-
-	test('Entity with duplicated property name', () => {
-
-		expect(() => {
-
-			const model = entityRelationshipModelParser.parseModel(`
-
-Entity
-	name text(20)
-	name text(20)
-
-			`);
-
-		}).toThrow(Error);
-
-	});
-
-	test('Entity with property name equals to its explicit identifier', () => {
-
-		expect(() => {
-
-			const model = entityRelationshipModelParser.parseModel(`
-
-Entity
-	prop identifier
-	prop bool
-
-			`);
-
-		}).toThrow(Error);
-
-	});
-
 	test('Supported types', () => {
 
 		const model = entityRelationshipModelParser.parseModel(`
@@ -560,6 +512,170 @@ Entity
 			relationships: []
 		});
 
+	});
+
+});
+
+describe('Errors', () => {
+
+	test('Entity with autoincremental identifier property', () => {
+
+		expect(() => {
+
+			entityRelationshipModelParser.parseModel(`
+
+Entity
+	customEntityId+ identifier
+
+			`);
+
+		}).toThrow(Error);
+
+	});
+
+	test('Entity with optional identifier property', () => {
+
+		expect(() => {
+
+			entityRelationshipModelParser.parseModel(`
+
+Entity
+	customEntityId? identifier
+
+			`);
+
+		}).toThrow(Error);
+
+	});
+
+	test('Entity with unique identifier property', () => {
+
+		expect(() => {
+
+			entityRelationshipModelParser.parseModel(`
+
+Entity
+	customEntityId! identifier
+
+			`);
+
+		}).toThrow(Error);
+
+	});
+
+	test('Entity with identifier property with length', () => {
+
+		expect(() => {
+
+			entityRelationshipModelParser.parseModel(`
+
+Entity
+	customEntityId identifier(10)
+
+			`);
+
+		}).toThrow(Error);
+
+	});
+
+	test('Entity with more than one identifier property', () => {
+
+		expect(() => {
+
+			entityRelationshipModelParser.parseModel(`
+
+Entity
+	customEntityId1 identifier
+	customEntityId2 identifier
+
+			`);
+
+		}).toThrow(Error);
+
+	});
+
+	test('Entity with duplicated property name', () => {
+
+		expect(() => {
+
+			entityRelationshipModelParser.parseModel(`
+
+Entity
+	name text(20)
+	name text(20)
+
+			`);
+
+		}).toThrow(Error);
+
+	});
+
+	test('Entity with property name equals to its explicit identifier', () => {
+
+		expect(() => {
+
+			entityRelationshipModelParser.parseModel(`
+
+Entity
+	prop identifier
+	prop bool
+
+			`);
+
+		}).toThrow(Error);
+
+	});
+
+	test('Entity with property of unknown type', () => {
+		expect(() => {
+			entityRelationshipModelParser.parseModel(`
+
+Entity
+	prop unknownType
+
+			`);
+		}).toThrow(Error);
+	});
+
+	test('Repeated entity name', () => {
+		expect(() => {
+			entityRelationshipModelParser.parseModel(`
+
+Entity
+Entity
+
+			`);
+		}).toThrow(Error);
+	});
+
+	test('Unknown statement type', () => {
+		expect(() => {
+			entityRelationshipModelParser.parseModel('a a');
+		}).toThrow(Error);
+	});
+
+	test('Entity property statement outside an entity', () => {
+		expect(() => {
+			entityRelationshipModelParser.parseModel('    name text(30)');
+		}).toThrow(Error);
+	});
+
+	test('Unknown entity in relationship\'s left member', () => {
+		expect(() => {
+			entityRelationshipModelParser.parseModel(`
+Entity
+Unknown <-> Entity
+			`);
+		}).toThrow(Error);
+	});
+
+	test('Unknown entity in relationship\'s right member', () => {
+		expect(() => {
+			entityRelationshipModelParser.parseModel(`
+Entity
+Entity <-> Unknown
+			`);
+		}).toThrow(Error);
 	});
 
 });

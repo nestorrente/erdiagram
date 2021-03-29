@@ -15,6 +15,7 @@ import {
 	TableReferenceDescriptor
 } from '@/erdiagram/generator/database/model/database-model-types';
 import StandardIdNamingStrategies from '@/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies';
+import {capitalizeWord} from '../../../../../main/erdiagram/util/string-utils';
 
 function createSimpleTableColumn(name: string, type: EntityPropertyType, length: number[] = []): TableColumnDescriptor {
 	return {
@@ -717,7 +718,7 @@ describe('Config', () => {
 
 	});
 
-	test('Use a different ID naming strategy', () => {
+	test('Use another standard ID naming strategy', () => {
 
 		const databaseModel = new DatabaseModelGenerator({
 			idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX
@@ -774,6 +775,73 @@ describe('Config', () => {
 							columnName: 'bId',
 							targetTableName: 'B',
 							targetTableIdentifierColumnName: 'bId',
+							notNull: true,
+							unique: false
+						}
+					]
+				}
+			]
+		});
+
+	});
+
+	test('Use a custom ID naming strategy', () => {
+
+		const databaseModel = new DatabaseModelGenerator({
+			idNamingStrategy: entityName => `the${capitalizeWord(entityName)}Id`,
+		}).generateDatabaseModel({
+			entities: [
+				createEntityWithoutProperties('A'),
+				createEntityWithoutProperties('B'),
+			],
+			relationships: [
+				{
+					relationshipName: 'AToB',
+					direction: Direction.BIDIRECTIONAL,
+					leftMember: {
+						entity: 'A',
+						entityAlias: 'a',
+						cardinality: Cardinality.MANY
+					},
+					rightMember: {
+						entity: 'B',
+						entityAlias: 'b',
+						cardinality: Cardinality.MANY
+					}
+				}
+			]
+		});
+
+		expect(databaseModel).toStrictEqual<DatabaseModel>({
+			tables: [
+				{
+					name: 'A',
+					identifierColumnName: 'theAId',
+					columns: [],
+					references: []
+				},
+				{
+					name: 'B',
+					identifierColumnName: 'theBId',
+					columns: [],
+					references: []
+				},
+				{
+					name: 'AToB',
+					identifierColumnName: 'theAToBId',
+					columns: [],
+					references: [
+						{
+							columnName: 'aId',
+							targetTableName: 'A',
+							targetTableIdentifierColumnName: 'theAId',
+							notNull: true,
+							unique: false
+						},
+						{
+							columnName: 'bId',
+							targetTableName: 'B',
+							targetTableIdentifierColumnName: 'theBId',
 							notNull: true,
 							unique: false
 						}

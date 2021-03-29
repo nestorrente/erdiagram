@@ -145,15 +145,12 @@ export default class EntityRelationshipModelParser {
 			throw new ERDiagramParseLineError(error, lineIndex);
 		}
 
+		/* istanbul ignore next */
 		throw error;
 
 	}
 
 	private handleValidationError(error: Error, statementResultToLineMap: Map<ParsedStatementResult, number>): never {
-
-		if (error instanceof ERDiagramParseLineError) {
-			throw error;
-		}
 
 		if (error instanceof ERDiagramEntityPropertyError) {
 			throw new ERDiagramParseLineError(error, statementResultToLineMap.get(error.property)!);
@@ -167,6 +164,7 @@ export default class EntityRelationshipModelParser {
 			throw new ERDiagramParseLineError(error, statementResultToLineMap.get(error.relationship)!);
 		}
 
+		/* istanbul ignore next */
 		throw error;
 
 	}
