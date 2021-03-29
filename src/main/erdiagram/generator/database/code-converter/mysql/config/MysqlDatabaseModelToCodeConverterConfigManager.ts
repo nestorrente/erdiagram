@@ -1,16 +1,16 @@
 import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
 import StandardCaseFormats from '@/erdiagram/generator/common/case-format/StandardCaseFormats';
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
-import MySqlDatabaseModelToCodeConverterConfig
-	from '@/erdiagram/generator/database/code-converter/mysql/config/MySqlDatabaseModelToCodeConverterConfig';
+import MysqlDatabaseModelToCodeConverterConfig
+	from '@/erdiagram/generator/database/code-converter/mysql/config/MysqlDatabaseModelToCodeConverterConfig';
 import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
-import MySqlDatabaseModelToCodeConverterSerializableConfig
-	from '@/erdiagram/generator/database/code-converter/mysql/config/MySqlDatabaseModelToCodeConverterSerializableConfig';
+import MysqlDatabaseModelToCodeConverterSerializableConfig
+	from '@/erdiagram/generator/database/code-converter/mysql/config/MysqlDatabaseModelToCodeConverterSerializableConfig';
 
-export class MySqlDatabaseModelToCodeConverterConfigManager
-		extends AbstractComponentConfigManager<MySqlDatabaseModelToCodeConverterConfig, Partial<MySqlDatabaseModelToCodeConverterConfig>, MySqlDatabaseModelToCodeConverterSerializableConfig> {
+export class MysqlDatabaseModelToCodeConverterConfigManager
+		extends AbstractComponentConfigManager<MysqlDatabaseModelToCodeConverterConfig, Partial<MysqlDatabaseModelToCodeConverterConfig>, MysqlDatabaseModelToCodeConverterSerializableConfig> {
 
-	getDefaultConfig(): MySqlDatabaseModelToCodeConverterConfig {
+	getDefaultConfig(): MysqlDatabaseModelToCodeConverterConfig {
 		return {
 			typeBindings: {
 				[EntityPropertyType.IDENTIFIER]: 'BIGINT',
@@ -30,7 +30,7 @@ export class MySqlDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
-	mergeConfigs(fullConfig: MySqlDatabaseModelToCodeConverterConfig, partialConfig?: Partial<MySqlDatabaseModelToCodeConverterConfig>): MySqlDatabaseModelToCodeConverterConfig {
+	mergeConfigs(fullConfig: MysqlDatabaseModelToCodeConverterConfig, partialConfig?: Partial<MysqlDatabaseModelToCodeConverterConfig>): MysqlDatabaseModelToCodeConverterConfig {
 		return {
 			...fullConfig,
 			...partialConfig,
@@ -41,7 +41,7 @@ export class MySqlDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
-	convertToSerializableObject(fullConfig: MySqlDatabaseModelToCodeConverterConfig): MySqlDatabaseModelToCodeConverterSerializableConfig {
+	convertToSerializableObject(fullConfig: MysqlDatabaseModelToCodeConverterConfig): MysqlDatabaseModelToCodeConverterSerializableConfig {
 		return {
 			...fullConfig,
 			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat),
@@ -49,7 +49,7 @@ export class MySqlDatabaseModelToCodeConverterConfigManager
 		};
 	}
 
-	convertFromSerializableObject(serializableConfig: MySqlDatabaseModelToCodeConverterSerializableConfig): MySqlDatabaseModelToCodeConverterConfig {
+	convertFromSerializableObject(serializableConfig: MysqlDatabaseModelToCodeConverterSerializableConfig): MysqlDatabaseModelToCodeConverterConfig {
 		return {
 			...serializableConfig,
 			tableNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializableConfig.tableNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
@@ -59,5 +59,5 @@ export class MySqlDatabaseModelToCodeConverterConfigManager
 
 }
 
-const mysqlDatabaseModelToCodeConverterConfigManager = new MySqlDatabaseModelToCodeConverterConfigManager();
+const mysqlDatabaseModelToCodeConverterConfigManager = new MysqlDatabaseModelToCodeConverterConfigManager();
 export default mysqlDatabaseModelToCodeConverterConfigManager;

@@ -10,9 +10,8 @@ import {
 	createEntityWithoutProperties,
 	createSimpleEntityProperty
 } from '#/erdiagram/parser/entity-relationship-model-test-utils';
-import StandardIdNamingStrategies
-	from '../../../../../main/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies';
-import {capitalizeWord} from '../../../../../main/erdiagram/util/string-utils';
+import StandardIdNamingStrategies from '@/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies';
+import {capitalizeWord} from '@/erdiagram/util/string-utils';
 
 function createIdClassField(name: string = 'id') {
 	return {

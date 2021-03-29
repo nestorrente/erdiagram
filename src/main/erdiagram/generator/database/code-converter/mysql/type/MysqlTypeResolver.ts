@@ -1,6 +1,6 @@
 import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
 
-export default class MySqlTypeResolver {
+export default class MysqlTypeResolver {
 
 	private readonly typeBindings: Partial<Record<EntityPropertyType, string>>;
 
@@ -8,7 +8,7 @@ export default class MySqlTypeResolver {
 		this.typeBindings = typeBindings;
 	}
 
-	public resolveMySqlType(type: EntityPropertyType): string {
+	public resolveMysqlType(type: EntityPropertyType): string {
 
 		if (!this.typeBindings.hasOwnProperty(type)) {
 			throw new Error('Unsupported type: ' + type);

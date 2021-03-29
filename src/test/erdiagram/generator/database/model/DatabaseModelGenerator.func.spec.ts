@@ -9,44 +9,10 @@ import {
 	createEntityWithoutProperties,
 	createSimpleEntityProperty
 } from '#/erdiagram/parser/entity-relationship-model-test-utils';
-import {
-	DatabaseModel,
-	TableColumnDescriptor,
-	TableReferenceDescriptor
-} from '@/erdiagram/generator/database/model/database-model-types';
+import {DatabaseModel} from '@/erdiagram/generator/database/model/database-model-types';
 import StandardIdNamingStrategies from '@/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies';
-import {capitalizeWord} from '../../../../../main/erdiagram/util/string-utils';
-
-function createSimpleTableColumn(name: string, type: EntityPropertyType, length: number[] = []): TableColumnDescriptor {
-	return {
-		name,
-		notNull: true,
-		autoincremental: false,
-		unique: false,
-		type,
-		length,
-	};
-}
-
-function createTableReference(columnName: string, targetTableName: string, notNull: boolean = true): TableReferenceDescriptor {
-	return {
-		columnName,
-		targetTableName,
-		targetTableIdentifierColumnName: 'id',
-		notNull,
-		unique: false
-	};
-}
-
-function createUniqueTableReference(columnName: string, targetTableName: string, notNull: boolean = true): TableReferenceDescriptor {
-	return {
-		columnName,
-		targetTableName,
-		targetTableIdentifierColumnName: 'id',
-		notNull,
-		unique: true
-	};
-}
+import {capitalizeWord} from '@/erdiagram/util/string-utils';
+import {createSimpleTableColumn, createTableReference, createUniqueTableReference} from './database-model-test-utils';
 
 const databaseModelGenerator = new DatabaseModelGenerator();
 

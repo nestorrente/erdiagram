@@ -81,9 +81,10 @@ export default class OracleDatabaseModelToCodeConverter implements DatabaseModel
 
 				});
 
-		return allCreateTableStatements.join('\n\n')
-				+ '\n\n'
-				+ allAlterTableStatements.join('\n\n');
+		return [
+			...allCreateTableStatements,
+			...allAlterTableStatements
+		].join('\n\n');
 
 	}
 

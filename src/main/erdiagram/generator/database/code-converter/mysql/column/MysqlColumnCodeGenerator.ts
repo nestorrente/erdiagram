@@ -1,13 +1,13 @@
 import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
 import {TableColumnDescriptor} from '@/erdiagram/generator/database/model/database-model-types';
 import RegularColumnCode from '@/erdiagram/generator/database/code-converter/mysql/column/types/RegularColumnCode';
-import MySqlTypeResolver from '@/erdiagram/generator/database/code-converter/mysql/type/MySqlTypeResolver';
+import MysqlTypeResolver from '@/erdiagram/generator/database/code-converter/mysql/type/MysqlTypeResolver';
 import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
 
-export default class MySqlColumnCodeGenerator {
+export default class MysqlColumnCodeGenerator {
 
 	constructor(
-			private readonly typeResolver: MySqlTypeResolver,
+			private readonly typeResolver: MysqlTypeResolver,
 			private readonly columnNameCaseConverter: CaseConverter
 	) {
 
@@ -35,7 +35,7 @@ export default class MySqlColumnCodeGenerator {
 
 		const lineParts: string[] = [
 			`\`${outputColumnName}\``,
-			this.generateMySqlTypeDeclaration(type, length)
+			this.generateMysqlTypeDeclaration(type, length)
 		];
 
 		if (notNull) {
@@ -50,9 +50,9 @@ export default class MySqlColumnCodeGenerator {
 
 	}
 
-	private generateMySqlTypeDeclaration(type: EntityPropertyType, length: number[]) {
+	private generateMysqlTypeDeclaration(type: EntityPropertyType, length: number[]) {
 
-		const mysqlType = this.typeResolver.resolveMySqlType(type);
+		const mysqlType = this.typeResolver.resolveMysqlType(type);
 		const lengthCode = this.generateLengthCode(length);
 
 		return mysqlType + lengthCode;

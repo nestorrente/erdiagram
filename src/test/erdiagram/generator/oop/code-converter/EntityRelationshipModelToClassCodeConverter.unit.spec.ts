@@ -3,39 +3,36 @@ import {EntityRelationshipModel} from '@/erdiagram/parser/entity-relationship-mo
 import {ClassModel} from '@/erdiagram/generator/oop/model/class-model-types';
 import EntityRelationshipModelToClassCodeConverter
 	from '@/erdiagram/generator/oop/code-converter/EntityRelationshipModelToClassCodeConverter';
-import ClassModelToCodeConverter from '@/erdiagram/generator/oop/code-converter/ClassModelToCodeConverter';
 
 test('convertToCode() calls dependencies', () => {
 
 	const mockValues = {
 
-		entityRelationshipModel: {
+		entityRelationshipModel: <EntityRelationshipModel>{
 			entities: [],
 			relationships: []
-		} as EntityRelationshipModel,
+		},
 
-		classModel: {
+		classModel: <ClassModel>{
 			classes: []
-		} as ClassModel,
+		},
 
 		outputCode: 'Output_code'
 
 	}
 
-	const generateClassModelMockFunction = jest.fn(() => mockValues.classModel);
-
 	const classModelGeneratorMock = {
-		generateClassModel: generateClassModelMockFunction
-	} as unknown as ClassModelGenerator;
+		generateClassModel: jest.fn(() => mockValues.classModel)
+	};
 
 	const convertToCodeMockFunction = jest.fn(() => mockValues.outputCode);
 
 	const classModelToCodeConverterMock = {
 		convertToCode: convertToCodeMockFunction
-	} as unknown as ClassModelToCodeConverter;
+	};
 
 	const entityRelationshipModelToClassCodeConverter = new EntityRelationshipModelToClassCodeConverter(
-			classModelGeneratorMock,
+			classModelGeneratorMock as unknown as ClassModelGenerator,
 			classModelToCodeConverterMock
 	);
 
@@ -43,13 +40,13 @@ test('convertToCode() calls dependencies', () => {
 
 	expect(result).toBe(mockValues.outputCode);
 
-	const generateClassModelCalls = generateClassModelMockFunction.mock.calls;
+	const generateClassModelCalls = classModelGeneratorMock.generateClassModel.mock.calls;
 	expect(generateClassModelCalls.length).toBe(1);
 
 	const generateClassModelCallArgs = generateClassModelCalls[0] as any[];
 	expect(generateClassModelCallArgs[0]).toBe(mockValues.entityRelationshipModel);
 
-	const convertToCodeCalls = convertToCodeMockFunction.mock.calls;
+	const convertToCodeCalls = classModelToCodeConverterMock.convertToCode.mock.calls;
 	expect(convertToCodeCalls.length).toBe(1);
 
 	const convertToCodeCallArgs = convertToCodeCalls[0] as any[];

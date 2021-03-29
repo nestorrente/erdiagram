@@ -1,6 +1,6 @@
 import DatabaseModelToCodeConverterSerializableConfig
 	from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverterSerializableConfig';
 
-export default interface MySqlDatabaseModelToCodeConverterSerializableConfig extends DatabaseModelToCodeConverterSerializableConfig {
+export default interface MysqlDatabaseModelToCodeConverterSerializableConfig extends DatabaseModelToCodeConverterSerializableConfig {
 
 }

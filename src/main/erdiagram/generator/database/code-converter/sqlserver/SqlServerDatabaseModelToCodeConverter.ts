@@ -81,9 +81,10 @@ export default class SqlServerDatabaseModelToCodeConverter implements DatabaseMo
 
 				});
 
-		return allCreateTableStatements.join('\n\n')
-				+ '\n\n'
-				+ allAlterTableStatements.join('\n\n');
+		return [
+			...allCreateTableStatements,
+			...allAlterTableStatements
+		].join('\n\n');
 
 	}
 

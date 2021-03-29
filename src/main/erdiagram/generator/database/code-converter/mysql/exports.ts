@@ -1,7 +1,7 @@
-import MySqlDatabaseModelToCodeConverter from './MySqlDatabaseModelToCodeConverter';
+import MysqlDatabaseModelToCodeConverter from './MysqlDatabaseModelToCodeConverter';
 
 export * from './config/exports';
 
 export {
-	MySqlDatabaseModelToCodeConverter
+	MysqlDatabaseModelToCodeConverter
 };

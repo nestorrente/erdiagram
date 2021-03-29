@@ -1,14 +1,14 @@
 import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
 import {TableColumnDescriptor} from '@/erdiagram/generator/database/model/database-model-types';
 import IdColumnCode from '@/erdiagram/generator/database/code-converter/mysql/column/types/IdColumnCode';
-import MySqlColumnCodeGenerator
-	from '@/erdiagram/generator/database/code-converter/mysql/column/MySqlColumnCodeGenerator';
+import MysqlColumnCodeGenerator
+	from '@/erdiagram/generator/database/code-converter/mysql/column/MysqlColumnCodeGenerator';
 import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
 
-export default class MySqlIdColumnCodeGenerator {
+export default class MysqlIdColumnCodeGenerator {
 
 	constructor(
-			private readonly columnCodeGenerator: MySqlColumnCodeGenerator,
+			private readonly columnCodeGenerator: MysqlColumnCodeGenerator,
 			private readonly columnNameCaseConverter: CaseConverter
 	) {
 

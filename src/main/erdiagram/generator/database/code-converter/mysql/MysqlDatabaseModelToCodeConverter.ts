@@ -4,35 +4,35 @@ import {
 	TableDescriptor,
 	TableReferenceDescriptor
 } from '@/erdiagram/generator/database/model/database-model-types';
-import MySqlDatabaseModelToCodeConverterConfig
-	from '@/erdiagram/generator/database/code-converter/mysql/config/MySqlDatabaseModelToCodeConverterConfig';
+import MysqlDatabaseModelToCodeConverterConfig
+	from '@/erdiagram/generator/database/code-converter/mysql/config/MysqlDatabaseModelToCodeConverterConfig';
 import DatabaseModelToCodeConverter from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverter';
 import TableCreationStatements
 	from '@/erdiagram/generator/database/code-converter/mysql/column/types/TableCreationStatements';
-import MySqlColumnCodeGenerator
-	from '@/erdiagram/generator/database/code-converter/mysql/column/MySqlColumnCodeGenerator';
-import MySqlTypeResolver from '@/erdiagram/generator/database/code-converter/mysql/type/MySqlTypeResolver';
-import MySqlIdColumnCodeGenerator
-	from '@/erdiagram/generator/database/code-converter/mysql/column/MySqlIdColumnCodeGenerator';
-import MySqlForeignColumnCodeGenerator
-	from '@/erdiagram/generator/database/code-converter/mysql/column/MySqlForeignColumnCodeGenerator';
+import MysqlColumnCodeGenerator
+	from '@/erdiagram/generator/database/code-converter/mysql/column/MysqlColumnCodeGenerator';
+import MysqlTypeResolver from '@/erdiagram/generator/database/code-converter/mysql/type/MysqlTypeResolver';
+import MysqlIdColumnCodeGenerator
+	from '@/erdiagram/generator/database/code-converter/mysql/column/MysqlIdColumnCodeGenerator';
+import MysqlForeignColumnCodeGenerator
+	from '@/erdiagram/generator/database/code-converter/mysql/column/MysqlForeignColumnCodeGenerator';
 import {indentLines} from '@/erdiagram/util/indent-utils';
 import StandardCaseFormats from '@/erdiagram/generator/common/case-format/StandardCaseFormats';
 import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
 import mysqlDatabaseModelToCodeConverterConfigManager
 	from '@/erdiagram/generator/database/code-converter/mysql/config/MysqlDatabaseModelToCodeConverterConfigManager';
 
-export default class MySqlDatabaseModelToCodeConverter implements DatabaseModelToCodeConverter {
+export default class MysqlDatabaseModelToCodeConverter implements DatabaseModelToCodeConverter {
 
-	private readonly config: MySqlDatabaseModelToCodeConverterConfig;
+	private readonly config: MysqlDatabaseModelToCodeConverterConfig;
 
 	private readonly tableNameCaseConverter: CaseConverter;
 
-	private readonly columnCodeGenerator: MySqlColumnCodeGenerator;
-	private readonly idColumnCodeGenerator: MySqlIdColumnCodeGenerator;
-	private readonly foreignColumnCodeGenerator: MySqlForeignColumnCodeGenerator;
+	private readonly columnCodeGenerator: MysqlColumnCodeGenerator;
+	private readonly idColumnCodeGenerator: MysqlIdColumnCodeGenerator;
+	private readonly foreignColumnCodeGenerator: MysqlForeignColumnCodeGenerator;
 
-	constructor(config?: Partial<MySqlDatabaseModelToCodeConverterConfig>) {
+	constructor(config?: Partial<MysqlDatabaseModelToCodeConverterConfig>) {
 
 		this.config = mysqlDatabaseModelToCodeConverterConfigManager.mergeWithDefaultConfig(config);
 
@@ -46,17 +46,17 @@ export default class MySqlDatabaseModelToCodeConverter implements DatabaseModelT
 				this.config.columnNameCaseFormat
 		);
 
-		this.columnCodeGenerator = new MySqlColumnCodeGenerator(
-				new MySqlTypeResolver(this.config.typeBindings),
+		this.columnCodeGenerator = new MysqlColumnCodeGenerator(
+				new MysqlTypeResolver(this.config.typeBindings),
 				columnNameCaseConverter
 		);
 
-		this.idColumnCodeGenerator = new MySqlIdColumnCodeGenerator(
+		this.idColumnCodeGenerator = new MysqlIdColumnCodeGenerator(
 				this.columnCodeGenerator,
 				columnNameCaseConverter
 		);
 
-		this.foreignColumnCodeGenerator = new MySqlForeignColumnCodeGenerator(
+		this.foreignColumnCodeGenerator = new MysqlForeignColumnCodeGenerator(
 				this.columnCodeGenerator,
 				this.tableNameCaseConverter,
 				columnNameCaseConverter
@@ -81,9 +81,10 @@ export default class MySqlDatabaseModelToCodeConverter implements DatabaseModelT
 
 				});
 
-		return allCreateTableStatements.join('\n\n')
-				+ '\n\n'
-				+ allAlterTableStatements.join('\n\n');
+		return [
+			...allCreateTableStatements,
+			...allAlterTableStatements
+		].join('\n\n');
 
 	}
 

@@ -1,6 +1,6 @@
 import CaseFormat from '@/erdiagram/generator/common/case-format/CaseFormat';
-import CaseConverter from '../../../../../main/erdiagram/generator/common/case-format/CaseConverter';
-import {removeNonEmptyStrings} from '../../../../../main/erdiagram/util/string-utils';
+import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
+import {removeNonEmptyStrings} from '@/erdiagram/util/string-utils';
 
 const hashCaseFormat: CaseFormat = {
 	joinWords(words: string[]): string {
