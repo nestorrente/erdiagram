@@ -18,12 +18,12 @@ describe('Split words', () => {
 	type SplitWordsTestCase = [keyof typeof StandardCaseFormats, string, string[]];
 
 	const testCases: SplitWordsTestCase[] = [
-		['LOWER_CAMEL', 'loremIpsumDolorSitAmet', ['lorem', 'Ipsum', 'Dolor', 'Sit', 'Amet']],
-		['UPPER_CAMEL', 'LoremIpsumDolorSitAmet', ['Lorem', 'Ipsum', 'Dolor', 'Sit', 'Amet']],
-		['LOWER_UNDERSCORE', 'lorem_ipsum_dolor_sit_amet', ['lorem', 'ipsum', 'dolor', 'sit', 'amet']],
-		['CAPITALIZED_UNDERSCORE', 'Lorem_Ipsum_Dolor_Sit_Amet', ['Lorem', 'Ipsum', 'Dolor', 'Sit', 'Amet']],
-		['UPPER_UNDERSCORE', 'LOREM_IPSUM_DOLOR_SIT_AMET', ['LOREM', 'IPSUM', 'DOLOR', 'SIT', 'AMET']],
-		['CASE_INSENSITIVE_UNDERSCORE', 'LOREM_ipsum_Dolor_sIT_aMeT', ['LOREM', 'ipsum', 'Dolor', 'sIT', 'aMeT']],
+		['LOWER_CAMEL', 'loremIpsumDolorSitAmet0', ['lorem', 'Ipsum', 'Dolor', 'Sit', 'Amet', '0']],
+		['UPPER_CAMEL', 'LoremIpsumDolorSitAmet0', ['Lorem', 'Ipsum', 'Dolor', 'Sit', 'Amet', '0']],
+		['LOWER_UNDERSCORE', 'lorem_ipsum_dolor_sit_amet_0', ['lorem', 'ipsum', 'dolor', 'sit', 'amet', '0']],
+		['CAPITALIZED_UNDERSCORE', 'Lorem_Ipsum_Dolor_Sit_Amet_0', ['Lorem', 'Ipsum', 'Dolor', 'Sit', 'Amet', '0']],
+		['UPPER_UNDERSCORE', 'LOREM_IPSUM_DOLOR_SIT_AMET_0', ['LOREM', 'IPSUM', 'DOLOR', 'SIT', 'AMET', '0']],
+		['CASE_INSENSITIVE_UNDERSCORE', 'LOREM_ipsum_Dolor_sIT_aMeT_0', ['LOREM', 'ipsum', 'Dolor', 'sIT', 'aMeT', '0']],
 	];
 
 	testCases.forEach(([caseFormatName, inputText, expectedResult]) => {
@@ -58,15 +58,15 @@ describe('Join words', () => {
 
 	type JoinWordsTestCase = [keyof typeof StandardCaseFormats, string];
 
-	const inputWords = ['LOREM', 'ipsum', 'Dolor', 'sIT', 'aMeT'];
+	const inputWords = ['LOREM', 'ipsum', 'Dolor', 'sIT', 'aMeT', '0'];
 
 	const testCases: JoinWordsTestCase[] = [
-		['LOWER_CAMEL', 'loremIpsumDolorSitAmet'],
-		['UPPER_CAMEL', 'LoremIpsumDolorSitAmet'],
-		['LOWER_UNDERSCORE', 'lorem_ipsum_dolor_sit_amet'],
-		['CAPITALIZED_UNDERSCORE', 'Lorem_Ipsum_Dolor_Sit_Amet'],
-		['UPPER_UNDERSCORE', 'LOREM_IPSUM_DOLOR_SIT_AMET'],
-		['CASE_INSENSITIVE_UNDERSCORE', 'LOREM_ipsum_Dolor_sIT_aMeT'],
+		['LOWER_CAMEL', 'loremIpsumDolorSitAmet0'],
+		['UPPER_CAMEL', 'LoremIpsumDolorSitAmet0'],
+		['LOWER_UNDERSCORE', 'lorem_ipsum_dolor_sit_amet_0'],
+		['CAPITALIZED_UNDERSCORE', 'Lorem_Ipsum_Dolor_Sit_Amet_0'],
+		['UPPER_UNDERSCORE', 'LOREM_IPSUM_DOLOR_SIT_AMET_0'],
+		['CASE_INSENSITIVE_UNDERSCORE', 'LOREM_ipsum_Dolor_sIT_aMeT_0'],
 	];
 
 	testCases.forEach(([caseFormatName, expectedResult]) => {

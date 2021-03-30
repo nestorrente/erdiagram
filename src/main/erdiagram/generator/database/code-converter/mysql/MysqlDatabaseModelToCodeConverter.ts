@@ -7,8 +7,6 @@ import {
 import MysqlDatabaseModelToCodeConverterConfig
 	from '@/erdiagram/generator/database/code-converter/mysql/config/MysqlDatabaseModelToCodeConverterConfig';
 import DatabaseModelToCodeConverter from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverter';
-import TableCreationStatements
-	from '@/erdiagram/generator/database/code-converter/mysql/column/types/TableCreationStatements';
 import MysqlColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/mysql/column/MysqlColumnCodeGenerator';
 import MysqlTypeResolver from '@/erdiagram/generator/database/code-converter/mysql/type/MysqlTypeResolver';
@@ -21,6 +19,10 @@ import StandardCaseFormats from '@/erdiagram/generator/common/case-format/Standa
 import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
 import mysqlDatabaseModelToCodeConverterConfigManager
 	from '@/erdiagram/generator/database/code-converter/mysql/config/MysqlDatabaseModelToCodeConverterConfigManager';
+import {
+	CreateTableLines,
+	TableCreationStatements
+} from '@/erdiagram/generator/database/code-converter/common/sql-script-types';
 
 export default class MysqlDatabaseModelToCodeConverter implements DatabaseModelToCodeConverter {
 
@@ -91,9 +93,11 @@ export default class MysqlDatabaseModelToCodeConverter implements DatabaseModelT
 	// FIXME split this method
 	private generateTableCode(table: TableDescriptor): TableCreationStatements {
 
-		const columnLines: string[] = [];
-		const fkConstraintLines: string[] = [];
-		const otherConstraintLines: string[] = [];
+		const lines: CreateTableLines = {
+			columns: [],
+			fkConstraints: [],
+			otherConstraints: []
+		}
 
 		const outputTableName = this.tableNameCaseConverter.convertCase(table.name);
 
@@ -102,15 +106,15 @@ export default class MysqlDatabaseModelToCodeConverter implements DatabaseModelT
 			pkConstraintLine
 		} = this.idColumnCodeGenerator.generateIdColumnCode(outputTableName, table.identifierColumnName);
 
-		columnLines.push(idColumnLine);
-		otherConstraintLines.push(pkConstraintLine);
+		lines.columns.push(idColumnLine);
+		lines.otherConstraints.push(pkConstraintLine);
 
-		this.processColumns(outputTableName, table.columns, columnLines, otherConstraintLines);
-		this.processReferences(outputTableName, table.references, columnLines, fkConstraintLines, otherConstraintLines);
+		this.processColumns(outputTableName, table.columns, lines);
+		this.processReferences(outputTableName, table.references, lines);
 
 		const createTableInnerLines = [
-			...columnLines,
-			...otherConstraintLines
+			...lines.columns,
+			...lines.otherConstraints
 		];
 
 		const createTableLines = [
@@ -120,7 +124,7 @@ export default class MysqlDatabaseModelToCodeConverter implements DatabaseModelT
 		];
 
 		const createTableStatement = createTableLines.join('\n');
-		const alterTableStatements = fkConstraintLines.map(fkConstraintLine => {
+		const alterTableStatements = lines.fkConstraints.map(fkConstraintLine => {
 			return `ALTER TABLE \`${outputTableName}\` ADD ${fkConstraintLine};`;
 		}).join('\n');
 
@@ -131,7 +135,7 @@ export default class MysqlDatabaseModelToCodeConverter implements DatabaseModelT
 
 	}
 
-	private processReferences(outputTableName: string, references: TableReferenceDescriptor[], columnLines: string[], fkConstraintLines: string[], otherConstraintLines: string[]) {
+	private processReferences(outputTableName: string, references: TableReferenceDescriptor[], lines: CreateTableLines) {
 
 		for (const reference of references) {
 
@@ -141,18 +145,18 @@ export default class MysqlDatabaseModelToCodeConverter implements DatabaseModelT
 				fkConstraintLine
 			} = this.foreignColumnCodeGenerator.generateForeignColumnCode(outputTableName, reference);
 
-			columnLines.push(columnLine);
-			fkConstraintLines.push(fkConstraintLine);
+			lines.columns.push(columnLine);
+			lines.fkConstraints.push(fkConstraintLine);
 
 			if (uniqueConstraintLine) {
-				otherConstraintLines.push(uniqueConstraintLine);
+				lines.otherConstraints.push(uniqueConstraintLine);
 			}
 
 		}
 
 	}
 
-	private processColumns(outputTableName: string, columns: TableColumnDescriptor[], columnLines: string[], otherConstraintLines: string[]) {
+	private processColumns(outputTableName: string, columns: TableColumnDescriptor[], lines: CreateTableLines) {
 
 		for (const column of columns) {
 
@@ -161,10 +165,10 @@ export default class MysqlDatabaseModelToCodeConverter implements DatabaseModelT
 				uniqueConstraintLine
 			} = this.columnCodeGenerator.generateColumnCode(outputTableName, column);
 
-			columnLines.push(columnLine);
+			lines.columns.push(columnLine);
 
 			if (uniqueConstraintLine) {
-				otherConstraintLines.push(uniqueConstraintLine);
+				lines.otherConstraints.push(uniqueConstraintLine);
 			}
 
 		}

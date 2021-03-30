@@ -24,6 +24,7 @@ export default class OracleIdColumnCodeGenerator {
 		} = this.columnCodeGenerator.generateColumnCode(outputTableName, column);
 
 		if (createSequenceLine == null) {
+			/* istanbul ignore next */
 			throw new Error('Unexpected error: missing sequence for primary key column');
 		}
 

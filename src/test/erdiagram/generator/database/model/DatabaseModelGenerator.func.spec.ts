@@ -12,7 +12,7 @@ import {
 import {DatabaseModel} from '@/erdiagram/generator/database/model/database-model-types';
 import StandardIdNamingStrategies from '@/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies';
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
-import {createSimpleTableColumn, createTableReference, createUniqueTableReference} from './database-model-test-utils';
+import {createSimpleTableColumn, createTableReference} from './database-model-test-utils';
 
 const databaseModelGenerator = new DatabaseModelGenerator();
 
@@ -345,9 +345,9 @@ describe('Relationship', () => {
 					identifierColumnName: 'id',
 					columns: [],
 					references: [
-						createUniqueTableReference('bId', 'B'),
-						createUniqueTableReference('cId', 'C'),
-						createUniqueTableReference('dId', 'D')
+						createTableReference('bId', 'B', {unique: true}),
+						createTableReference('cId', 'C', {unique: true}),
+						createTableReference('dId', 'D', {unique: true})
 					]
 				},
 				{
@@ -414,11 +414,11 @@ describe('Relationship', () => {
 					identifierColumnName: 'id',
 					columns: [],
 					references: [
-						createUniqueTableReference('bId', 'B', false),
-						createUniqueTableReference('cId', 'C'),
-						createUniqueTableReference('eId', 'E', false),
-						createUniqueTableReference('fId', 'F'),
-						createTableReference('hId', 'H', false),
+						createTableReference('bId', 'B', {unique: true, notNull: false}),
+						createTableReference('cId', 'C', {unique: true}),
+						createTableReference('eId', 'E', {unique: true, notNull: false}),
+						createTableReference('fId', 'F', {unique: true}),
+						createTableReference('hId', 'H', {notNull: false}),
 						createTableReference('iId', 'I'),
 					]
 				},
@@ -439,7 +439,7 @@ describe('Relationship', () => {
 					identifierColumnName: 'id',
 					columns: [],
 					references: [
-						createTableReference('aId', 'A', false)
+						createTableReference('aId', 'A', {notNull: false})
 					]
 				},
 				{
@@ -565,9 +565,9 @@ describe('Relationship', () => {
 					identifierColumnName: 'id',
 					columns: [],
 					references: [
-						createUniqueTableReference('bId', 'B'),
-						createUniqueTableReference('cAliasId', 'C'),
-						createUniqueTableReference('dId', 'D'),
+						createTableReference('bId', 'B', {unique: true}),
+						createTableReference('cAliasId', 'C', {unique: true}),
+						createTableReference('dId', 'D', {unique: true}),
 					]
 				},
 				{
@@ -661,7 +661,7 @@ describe('Config', () => {
 					identifierColumnName: 'id',
 					columns: [],
 					references: [
-						createUniqueTableReference('bId', 'Bs'),
+						createTableReference('bId', 'Bs', {unique: true}),
 					]
 				},
 				{

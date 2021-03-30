@@ -15,22 +15,12 @@ export function createSimpleTableColumn(name: string, type: EntityPropertyType, 
 	};
 }
 
-export function createTableReference(columnName: string, targetTableName: string, notNull: boolean = true): TableReferenceDescriptor {
+export function createTableReference(columnName: string, targetTableName: string, options?: Partial<Omit<TableReferenceDescriptor, 'columnName' | 'targetTableName'>>): TableReferenceDescriptor {
 	return {
 		columnName,
 		targetTableName,
-		targetTableIdentifierColumnName: 'id',
-		notNull,
-		unique: false
-	};
-}
-
-export function createUniqueTableReference(columnName: string, targetTableName: string, notNull: boolean = true): TableReferenceDescriptor {
-	return {
-		columnName,
-		targetTableName,
-		targetTableIdentifierColumnName: 'id',
-		notNull,
-		unique: true
+		targetTableIdentifierColumnName: options?.targetTableIdentifierColumnName ?? 'id',
+		notNull: options?.notNull ?? true,
+		unique: options?.unique ?? false
 	};
 }

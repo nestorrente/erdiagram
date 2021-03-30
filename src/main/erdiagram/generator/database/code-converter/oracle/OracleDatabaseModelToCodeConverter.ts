@@ -7,8 +7,6 @@ import {
 import OracleDatabaseModelToCodeConverterConfig
 	from '@/erdiagram/generator/database/code-converter/oracle/config/OracleDatabaseModelToCodeConverterConfig';
 import DatabaseModelToCodeConverter from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverter';
-import TableCreationStatements
-	from '@/erdiagram/generator/database/code-converter/oracle/column/types/TableCreationStatements';
 import OracleColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/oracle/column/OracleColumnCodeGenerator';
 import OracleTypeResolver from '@/erdiagram/generator/database/code-converter/oracle/type/OracleTypeResolver';
@@ -21,6 +19,10 @@ import StandardCaseFormats from '@/erdiagram/generator/common/case-format/Standa
 import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
 import oracleDatabaseModelToCodeConverterConfigManager
 	from '@/erdiagram/generator/database/code-converter/oracle/config/OracleDatabaseModelToCodeConverterConfigManager';
+import {
+	CreateTableLinesWithSequences,
+	TableCreationStatements
+} from '@/erdiagram/generator/database/code-converter/common/sql-script-types';
 
 export default class OracleDatabaseModelToCodeConverter implements DatabaseModelToCodeConverter {
 
@@ -91,10 +93,12 @@ export default class OracleDatabaseModelToCodeConverter implements DatabaseModel
 	// FIXME split this method
 	private generateTableCode(table: TableDescriptor): TableCreationStatements {
 
-		const columnLines: string[] = [];
-		const createSequenceLines: string[] = [];
-		const fkConstraintLines: string[] = [];
-		const otherConstraintLines: string[] = [];
+		const lines: CreateTableLinesWithSequences = {
+			columns: [],
+			fkConstraints: [],
+			otherConstraints: [],
+			sequences: []
+		}
 
 		const outputTableName = this.tableNameCaseConverter.convertCase(table.name);
 
@@ -104,27 +108,27 @@ export default class OracleDatabaseModelToCodeConverter implements DatabaseModel
 			pkConstraintLine
 		} = this.idColumnCodeGenerator.generateIdColumnCode(outputTableName, table.identifierColumnName);
 
-		createSequenceLines.push(idCreateSequenceLine);
-		columnLines.push(idColumnLine);
-		otherConstraintLines.push(pkConstraintLine);
+		lines.sequences.push(idCreateSequenceLine);
+		lines.columns.push(idColumnLine);
+		lines.otherConstraints.push(pkConstraintLine);
 
-		this.processColumns(outputTableName, table.columns, columnLines, createSequenceLines, otherConstraintLines);
-		this.processReferences(outputTableName, table.references, columnLines, fkConstraintLines, otherConstraintLines);
+		this.processColumns(outputTableName, table.columns, lines);
+		this.processReferences(outputTableName, table.references, lines);
 
 		const createTableInnerLines = [
-			...columnLines,
-			...otherConstraintLines
+			...lines.columns,
+			...lines.otherConstraints
 		];
 
 		const createTableLines = [
-			...createSequenceLines,
+			...lines.sequences,
 			`CREATE TABLE "${outputTableName}" (`,
 			indentLines(createTableInnerLines).join(',\n'),
 			');'
 		];
 
 		const createTableStatement = createTableLines.join('\n');
-		const alterTableStatements = fkConstraintLines.map(fkConstraintLine => {
+		const alterTableStatements = lines.fkConstraints.map(fkConstraintLine => {
 			return `ALTER TABLE "${outputTableName}" ADD ${fkConstraintLine};`;
 		}).join('\n');
 
@@ -135,34 +139,7 @@ export default class OracleDatabaseModelToCodeConverter implements DatabaseModel
 
 	}
 
-	private processReferences(outputTableName: string, references: TableReferenceDescriptor[], columnLines: string[], fkConstraintLines: string[], otherConstraintLines: string[]) {
-
-		for (const reference of references) {
-
-			const {
-				columnLine,
-				uniqueConstraintLine,
-				fkConstraintLine
-			} = this.foreignColumnCodeGenerator.generateForeignColumnCode(outputTableName, reference);
-
-			columnLines.push(columnLine);
-			fkConstraintLines.push(fkConstraintLine);
-
-			if (uniqueConstraintLine) {
-				otherConstraintLines.push(uniqueConstraintLine);
-			}
-
-		}
-
-	}
-
-	private processColumns(
-			outputTableName: string,
-			columns: TableColumnDescriptor[],
-			columnLines: string[],
-			createSequenceLines: string[],
-			otherConstraintLines: string[]
-	) {
+	private processColumns(outputTableName: string, columns: TableColumnDescriptor[], lines: CreateTableLinesWithSequences) {
 
 		for (const column of columns) {
 
@@ -172,14 +149,35 @@ export default class OracleDatabaseModelToCodeConverter implements DatabaseModel
 				uniqueConstraintLine
 			} = this.columnCodeGenerator.generateColumnCode(outputTableName, column);
 
-			columnLines.push(columnLine);
+			lines.columns.push(columnLine);
 
 			if (createSequenceLine) {
-				createSequenceLines.push(createSequenceLine);
+				lines.sequences.push(createSequenceLine);
 			}
 
 			if (uniqueConstraintLine) {
-				otherConstraintLines.push(uniqueConstraintLine);
+				lines.otherConstraints.push(uniqueConstraintLine);
+			}
+
+		}
+
+	}
+
+	private processReferences(outputTableName: string, references: TableReferenceDescriptor[], lines: CreateTableLinesWithSequences) {
+
+		for (const reference of references) {
+
+			const {
+				columnLine,
+				uniqueConstraintLine,
+				fkConstraintLine
+			} = this.foreignColumnCodeGenerator.generateForeignColumnCode(outputTableName, reference);
+
+			lines.columns.push(columnLine);
+			lines.fkConstraints.push(fkConstraintLine);
+
+			if (uniqueConstraintLine) {
+				lines.otherConstraints.push(uniqueConstraintLine);
 			}
 
 		}
