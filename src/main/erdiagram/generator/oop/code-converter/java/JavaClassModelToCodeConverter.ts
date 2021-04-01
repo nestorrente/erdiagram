@@ -33,20 +33,20 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 
 		const className = capitalizeWord(classDescriptor.name);
 
-		const fieldsTypes: JavaType[] = [];
+		const usedTypes: JavaType[] = [];
 		const fieldsLines: string[] = [];
 		const methodsLines: string[] = [];
 
 		for (const field of classDescriptor.fields) {
 
 			const {
-				fieldType,
+				usedTypes: fieldUsedTypes,
 				fieldLines,
 				getterLines,
 				setterLines
 			} = this.createField(field);
 
-			fieldsTypes.push(fieldType);
+			usedTypes.push(...fieldUsedTypes);
 			fieldsLines.push(...fieldLines);
 			methodsLines.push(...getterLines, EMPTY_STRING, ...setterLines, EMPTY_STRING);
 
@@ -61,7 +61,7 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 			classOuterLines.push(`package ${this.config.generatedClassesPackage};`, EMPTY_STRING);
 		}
 
-		const importLines = this.createImportStatements(fieldsTypes, classDescriptor.fields);
+		const importLines = this.createImportStatements(usedTypes, classDescriptor.fields);
 
 		if (importLines.length !== 0) {
 			classOuterLines.push(...importLines, EMPTY_STRING);
@@ -90,19 +90,24 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 		const capitalizedFieldName = capitalizeWord(fieldName);
 
 		const fieldLines: string[] = [];
+		const usedTypes: JavaType[] = [];
 
 		// TODO use length for validation annotations?
 
 		if (this.config.useSpringNullabilityAnnotations) {
 			if (field.nullable) {
 				fieldLines.push('@Nullable');
+				usedTypes.push(createJavaType('Nullable', 'org.springframework.lang'));
 			} else {
 				fieldLines.push('@NonNull');
+				usedTypes.push(createJavaType('NonNull', 'org.springframework.lang'));
 			}
 		}
 
-		const javaType = this.mapFieldTypeToJavaType(field);
-		const formattedJavaType = javaType.formatSimple();
+		const fieldType = this.mapFieldTypeToJavaType(field);
+		usedTypes.push(fieldType);
+
+		const formattedJavaType = fieldType.formatSimple();
 
 		fieldLines.push(`private ${formattedJavaType} ${fieldName};`);
 
@@ -119,7 +124,7 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 		];
 
 		return {
-			fieldType: javaType,
+			usedTypes,
 			fieldLines,
 			getterLines,
 			setterLines
@@ -177,27 +182,8 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 
 	private createImportStatements(javaTypes: JavaType[], classFields: ClassFieldDescriptor[]): string[] {
 
-		const importTypes = this.unrollTypesRecursively(javaTypes);
-
-		// FIXME manage this imports in another way
-		//  Maybe we can change createField() to return which types it uses, instead of returning the type of the field only
-		if (this.config.useSpringNullabilityAnnotations) {
-
-			const importNonNullAnnotation = classFields.some(f => !f.nullable);
-
-			if (importNonNullAnnotation) {
-				importTypes.push(createJavaType('NonNull', 'org.springframework.lang'));
-			}
-
-			const importNullableAnnotation = classFields.some(f => f.nullable);
-
-			if (importNullableAnnotation) {
-				importTypes.push(createJavaType('Nullable', 'org.springframework.lang'));
-			}
-
-		}
-
-		const importStatements = importTypes.filter(javaType => this.isImportRequired(javaType))
+		const importStatements = this.unrollTypesRecursively(javaTypes)
+				.filter(javaType => this.isImportRequired(javaType))
 				.map(javaType => `import ${javaType.canonicalName};`);
 
 		return removeDuplicates(importStatements).sort();
