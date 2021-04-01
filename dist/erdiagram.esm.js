@@ -1,10 +1,10 @@
 /*!
- * Entity-Relationship Diagram Code Generator v0.1.0-alpha.2
+ * Entity-Relationship Diagram Code Generator v0.1.0-alpha.3
  * https://github.com/nestorrente/erdiagram
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-03-30T14:31:05.107Z
+ * Build date: 2021-04-01T17:13:16.583Z
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -4285,8 +4285,8 @@ class MysqlTypeResolver {
         this.typeBindings = typeBindings;
     }
     resolveMysqlType(type) {
+        /* istanbul ignore next */
         if (!this.typeBindings.hasOwnProperty(type)) {
-            /* istanbul ignore next */
             throw new Error('Unsupported type: ' + type);
         }
         return this.typeBindings[type];
@@ -4542,8 +4542,8 @@ class OracleIdColumnCodeGenerator {
     generateIdColumnCode(outputTableName, identifierColumnName) {
         const column = this.createIdColumnDescriptor(identifierColumnName);
         const { createSequenceLine, columnLine } = this.columnCodeGenerator.generateColumnCode(outputTableName, column);
+        /* istanbul ignore next */
         if (createSequenceLine == null) {
-            /* istanbul ignore next */
             throw new Error('Unexpected error: missing sequence for primary key column');
         }
         const pkConstraintLine = this.createPrimaryKeyConstraint(outputTableName, column);
@@ -4689,6 +4689,7 @@ class OracleTypeResolver {
         this.typeBindings = typeBindings;
     }
     resolveOracleType(type) {
+        /* istanbul ignore next */
         if (!this.typeBindings.hasOwnProperty(type)) {
             throw new Error('Unsupported type: ' + type);
         }
@@ -5090,6 +5091,7 @@ class SqlServerTypeResolver {
         this.typeBindings = typeBindings;
     }
     resolveSqlServerType(type) {
+        /* istanbul ignore next */
         if (!this.typeBindings.hasOwnProperty(type)) {
             throw new Error('Unsupported type: ' + type);
         }
@@ -6452,12 +6454,12 @@ class JavaClassModelToCodeConverter {
     }
     generateClass(classDescriptor) {
         const className = Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(classDescriptor.name);
-        const fieldsTypes = [];
+        const usedTypes = [];
         const fieldsLines = [];
         const methodsLines = [];
         for (const field of classDescriptor.fields) {
-            const { fieldType, fieldLines, getterLines, setterLines } = this.createField(field);
-            fieldsTypes.push(fieldType);
+            const { usedTypes: fieldUsedTypes, fieldLines, getterLines, setterLines } = this.createField(field);
+            usedTypes.push(...fieldUsedTypes);
             fieldsLines.push(...fieldLines);
             methodsLines.push(...getterLines, EMPTY_STRING, ...setterLines, EMPTY_STRING);
         }
@@ -6468,19 +6470,7 @@ class JavaClassModelToCodeConverter {
         if (this.config.generatedClassesPackage) {
             classOuterLines.push(`package ${this.config.generatedClassesPackage};`, EMPTY_STRING);
         }
-        const importLines = this.createImportStatements(fieldsTypes);
-        if (this.config.useSpringNullabilityAnnotations) {
-            // FIXME gestionar estos imports de otra forma
-            // Quizás hacer que createField() devuelva qué tipos utiliza, y no solo el tipo del campo
-            const importNonNullAnnotation = classDescriptor.fields.some(f => !f.nullable);
-            if (importNonNullAnnotation) {
-                importLines.push('import org.springframework.lang.NonNull;');
-            }
-            const importNullableAnnotation = classDescriptor.fields.some(f => f.nullable);
-            if (importNullableAnnotation) {
-                importLines.push('import org.springframework.lang.Nullable;');
-            }
-        }
+        const importLines = this.createImportStatements(usedTypes, classDescriptor.fields);
         if (importLines.length !== 0) {
             classOuterLines.push(...importLines, EMPTY_STRING);
         }
@@ -6499,17 +6489,21 @@ class JavaClassModelToCodeConverter {
         const fieldName = field.name;
         const capitalizedFieldName = Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(fieldName);
         const fieldLines = [];
+        const usedTypes = [];
         // TODO use length for validation annotations?
         if (this.config.useSpringNullabilityAnnotations) {
             if (field.nullable) {
                 fieldLines.push('@Nullable');
+                usedTypes.push(Object(_erdiagram_generator_oop_code_converter_java_type_JavaType__WEBPACK_IMPORTED_MODULE_3__["createJavaType"])('Nullable', 'org.springframework.lang'));
             }
             else {
                 fieldLines.push('@NonNull');
+                usedTypes.push(Object(_erdiagram_generator_oop_code_converter_java_type_JavaType__WEBPACK_IMPORTED_MODULE_3__["createJavaType"])('NonNull', 'org.springframework.lang'));
             }
         }
-        const javaType = this.mapFieldTypeToJavaType(field);
-        const formattedJavaType = javaType.formatSimple();
+        const fieldType = this.mapFieldTypeToJavaType(field);
+        usedTypes.push(fieldType);
+        const formattedJavaType = fieldType.formatSimple();
         fieldLines.push(`private ${formattedJavaType} ${fieldName};`);
         const getterLines = [
             `public ${formattedJavaType} get${capitalizedFieldName}() {`,
@@ -6517,12 +6511,12 @@ class JavaClassModelToCodeConverter {
             '}',
         ];
         const setterLines = [
-            `public ${formattedJavaType} set${capitalizedFieldName}(${formattedJavaType} ${fieldName}) {`,
+            `public void set${capitalizedFieldName}(${formattedJavaType} ${fieldName}) {`,
             Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_1__["indentLine"])(`this.${fieldName} = ${fieldName};`),
             '}',
         ];
         return {
-            fieldType: javaType,
+            usedTypes,
             fieldLines,
             getterLines,
             setterLines
@@ -6552,12 +6546,13 @@ class JavaClassModelToCodeConverter {
         if (!primitiveType) {
             throw new Error('Invalid field descriptor: missing type');
         }
+        /* istanbul ignore next */
         if (!this.config.typeBindings.hasOwnProperty(primitiveType)) {
             throw new Error('Unsupported type: ' + primitiveType);
         }
         return this.config.typeBindings[primitiveType];
     }
-    createImportStatements(javaTypes) {
+    createImportStatements(javaTypes, classFields) {
         const importStatements = this.unrollTypesRecursively(javaTypes)
             .filter(javaType => this.isImportRequired(javaType))
             .map(javaType => `import ${javaType.canonicalName};`);

@@ -1,6 +1,6 @@
 {
     "name": "@nestorrente/erdiagram",
-    "version": "0.1.0-alpha.2",
+    "version": "0.1.0-alpha.3",
     "description": "Entity-Relationship Diagram Code Generator",
     "main": "dist/erdiagram.js",
     "module": "dist/erdiagram.esm.js",
