@@ -12,42 +12,7 @@ import {
 } from '#/erdiagram/parser/entity-relationship-model-test-utils';
 import StandardIdNamingStrategies from '@/erdiagram/generator/common/id-naming-strategy/StandardIdNamingStrategies';
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
-
-function createIdClassField(name: string = 'id') {
-	return {
-		name,
-		list: false,
-		nullable: true,
-		primitiveType: EntityPropertyType.IDENTIFIER
-	};
-}
-
-function createSimplePrimitiveClassField(name: string, type: EntityPropertyType, nullable: boolean = false): ClassFieldDescriptor {
-	return {
-		name,
-		list: false,
-		nullable,
-		primitiveType: type
-	};
-}
-
-function createSimpleEntityClassField(name: string, type: string, nullable: boolean = false): ClassFieldDescriptor {
-	return {
-		name,
-		list: false,
-		nullable,
-		entityType: type
-	};
-}
-
-function createListEntityClassField(name: string, type: string, nullable: boolean = false): ClassFieldDescriptor {
-	return {
-		name,
-		list: true,
-		nullable,
-		entityType: type
-	};
-}
+import {createEntityClassField, createIdClassField, createPrimitiveClassField} from './class-model-test-utils';
 
 const classModelGenerator = new ClassModelGenerator();
 
@@ -74,7 +39,7 @@ describe('Entity', () => {
 					name: 'Entity',
 					fields: [
 						createIdClassField(),
-						createSimplePrimitiveClassField('name', EntityPropertyType.TEXT)
+						createPrimitiveClassField('name', EntityPropertyType.TEXT)
 					]
 				}
 			]
@@ -129,7 +94,7 @@ describe('Entity', () => {
 					name: 'Entity',
 					fields: [
 						createIdClassField('customEntityId'),
-						createSimplePrimitiveClassField('name', EntityPropertyType.TEXT)
+						createPrimitiveClassField('name', EntityPropertyType.TEXT)
 					]
 				}
 			]
@@ -167,16 +132,16 @@ describe('Entity', () => {
 					name: 'Entity',
 					fields: [
 						createIdClassField(),
-						createSimplePrimitiveClassField('a', EntityPropertyType.BOOLEAN),
-						createSimplePrimitiveClassField('b', EntityPropertyType.SHORT),
-						createSimplePrimitiveClassField('c', EntityPropertyType.INT),
-						createSimplePrimitiveClassField('d', EntityPropertyType.LONG),
-						createSimplePrimitiveClassField('e', EntityPropertyType.DECIMAL),
-						createSimplePrimitiveClassField('f', EntityPropertyType.TEXT),
-						createSimplePrimitiveClassField('g', EntityPropertyType.DATE),
-						createSimplePrimitiveClassField('h', EntityPropertyType.TIME),
-						createSimplePrimitiveClassField('i', EntityPropertyType.DATETIME),
-						createSimplePrimitiveClassField('j', EntityPropertyType.BLOB),
+						createPrimitiveClassField('a', EntityPropertyType.BOOLEAN),
+						createPrimitiveClassField('b', EntityPropertyType.SHORT),
+						createPrimitiveClassField('c', EntityPropertyType.INT),
+						createPrimitiveClassField('d', EntityPropertyType.LONG),
+						createPrimitiveClassField('e', EntityPropertyType.DECIMAL),
+						createPrimitiveClassField('f', EntityPropertyType.TEXT),
+						createPrimitiveClassField('g', EntityPropertyType.DATE),
+						createPrimitiveClassField('h', EntityPropertyType.TIME),
+						createPrimitiveClassField('i', EntityPropertyType.DATETIME),
+						createPrimitiveClassField('j', EntityPropertyType.BLOB),
 					]
 				}
 			]
@@ -212,7 +177,7 @@ describe('Entity', () => {
 					name: 'Entity',
 					fields: [
 						createIdClassField(),
-						createSimplePrimitiveClassField('num', EntityPropertyType.INT, true)
+						createPrimitiveClassField('num', EntityPropertyType.INT, {nullable: true})
 					]
 				}
 			]
@@ -248,7 +213,7 @@ describe('Entity', () => {
 					name: 'Entity',
 					fields: [
 						createIdClassField(),
-						createSimplePrimitiveClassField('num', EntityPropertyType.INT)
+						createPrimitiveClassField('num', EntityPropertyType.INT)
 					]
 				}
 			]
@@ -284,7 +249,7 @@ describe('Entity', () => {
 					name: 'Entity',
 					fields: [
 						createIdClassField(),
-						createSimplePrimitiveClassField('num', EntityPropertyType.INT)
+						createPrimitiveClassField('num', EntityPropertyType.INT)
 					]
 				}
 			]
@@ -352,8 +317,8 @@ describe('Relationship', () => {
 					name: 'A',
 					fields: [
 						createIdClassField(),
-						createSimpleEntityClassField('b', 'B'),
-						createSimpleEntityClassField('d', 'D')
+						createEntityClassField('b', 'B'),
+						createEntityClassField('d', 'D')
 					]
 				},
 				{
@@ -366,14 +331,14 @@ describe('Relationship', () => {
 					name: 'C',
 					fields: [
 						createIdClassField(),
-						createSimpleEntityClassField('a', 'A')
+						createEntityClassField('a', 'A')
 					]
 				},
 				{
 					name: 'D',
 					fields: [
 						createIdClassField(),
-						createSimpleEntityClassField('a', 'A')
+						createEntityClassField('a', 'A')
 					]
 				}
 			]
@@ -544,38 +509,38 @@ describe('Relationship', () => {
 					name: 'A',
 					fields: [
 						createIdClassField(),
-						createSimpleEntityClassField('b', 'B'),
-						createSimpleEntityClassField('cAlias', 'C'),
-						createSimpleEntityClassField('d', 'D'),
-						createListEntityClassField('eAliases', 'E')
+						createEntityClassField('b', 'B'),
+						createEntityClassField('cAlias', 'C'),
+						createEntityClassField('d', 'D'),
+						createEntityClassField('eAliases', 'E', {list: true})
 					]
 				},
 				{
 					name: 'B',
 					fields: [
 						createIdClassField(),
-						createSimpleEntityClassField('aAlias', 'A')
+						createEntityClassField('aAlias', 'A')
 					]
 				},
 				{
 					name: 'C',
 					fields: [
 						createIdClassField(),
-						createSimpleEntityClassField('a', 'A')
+						createEntityClassField('a', 'A')
 					]
 				},
 				{
 					name: 'D',
 					fields: [
 						createIdClassField(),
-						createSimpleEntityClassField('a', 'A')
+						createEntityClassField('a', 'A')
 					]
 				},
 				{
 					name: 'E',
 					fields: [
 						createIdClassField(),
-						createListEntityClassField('aAliases', 'A')
+						createEntityClassField('aAliases', 'A', {list: true})
 					]
 				}
 			]

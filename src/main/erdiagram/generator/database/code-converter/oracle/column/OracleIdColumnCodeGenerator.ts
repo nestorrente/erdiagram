@@ -23,8 +23,8 @@ export default class OracleIdColumnCodeGenerator {
 			columnLine
 		} = this.columnCodeGenerator.generateColumnCode(outputTableName, column);
 
+		/* istanbul ignore next */
 		if (createSequenceLine == null) {
-			/* istanbul ignore next */
 			throw new Error('Unexpected error: missing sequence for primary key column');
 		}
 

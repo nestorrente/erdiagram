@@ -10,6 +10,7 @@ export default class OracleTypeResolver {
 
 	public resolveOracleType(type: EntityPropertyType): string {
 
+		/* istanbul ignore next */
 		if (!this.typeBindings.hasOwnProperty(type)) {
 			throw new Error('Unsupported type: ' + type);
 		}

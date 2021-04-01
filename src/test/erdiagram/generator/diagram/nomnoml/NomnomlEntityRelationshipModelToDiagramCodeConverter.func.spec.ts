@@ -6,6 +6,7 @@ import {
 } from '@/erdiagram/parser/entity-relationship-model-types';
 import NomnomlEntityRelationshipModelToDiagramCodeConverter
 	from '@/erdiagram/generator/diagram/nomnoml/NomnomlEntityRelationshipModelToDiagramCodeConverter';
+import {createEntityProperty} from '../../../parser/entity-relationship-model-test-utils';
 
 const nomnomlERModelToDiagramCodeConverter = new NomnomlEntityRelationshipModelToDiagramCodeConverter();
 
@@ -73,14 +74,7 @@ describe('Entities', () => {
 					name: 'User',
 					identifierPropertyName: undefined,
 					properties: [
-						{
-							name: 'active',
-							type: EntityPropertyType.BOOLEAN,
-							length: [],
-							optional: false,
-							unique: false,
-							autoincremental: false
-						}
+						createEntityProperty('active', EntityPropertyType.BOOLEAN)
 					]
 				}
 			],
@@ -103,14 +97,7 @@ describe('Entities', () => {
 					name: 'User',
 					identifierPropertyName: undefined,
 					properties: [
-						{
-							name: 'username',
-							type: EntityPropertyType.TEXT,
-							length: [20],
-							optional: false,
-							unique: false,
-							autoincremental: false
-						}
+						createEntityProperty('username', EntityPropertyType.TEXT, {length: [20]})
 					]
 				}
 			],
@@ -133,14 +120,7 @@ describe('Entities', () => {
 					name: 'User',
 					identifierPropertyName: undefined,
 					properties: [
-						{
-							name: 'score',
-							type: EntityPropertyType.DECIMAL,
-							length: [10, 5],
-							optional: false,
-							unique: false,
-							autoincremental: false
-						}
+						createEntityProperty('score', EntityPropertyType.DECIMAL, {length: [10, 5]})
 					]
 				}
 			],
@@ -163,30 +143,9 @@ describe('Entities', () => {
 					name: 'User',
 					identifierPropertyName: undefined,
 					properties: [
-						{
-							name: 'username',
-							type: EntityPropertyType.TEXT,
-							length: [20],
-							optional: false,
-							unique: true,
-							autoincremental: false
-						},
-						{
-							name: 'realName',
-							type: EntityPropertyType.TEXT,
-							length: [50],
-							optional: true,
-							unique: false,
-							autoincremental: false
-						},
-						{
-							name: 'order',
-							type: EntityPropertyType.INT,
-							length: [],
-							optional: true,
-							unique: true,
-							autoincremental: true
-						}
+						createEntityProperty('username', EntityPropertyType.TEXT, {length: [20], unique: true}),
+						createEntityProperty('realName', EntityPropertyType.TEXT, {length: [50], optional: true}),
+						createEntityProperty('order', EntityPropertyType.INT, {optional: true, unique: true, autoincremental: true})
 					]
 				}
 			],
@@ -319,6 +278,36 @@ describe('Relationships', () => {
 
 	});
 
+	test('Single right-to-left many-to-one relationship with an optional side', () => {
+
+		const model: EntityRelationshipModel = {
+			entities: [],
+			relationships: [
+				{
+					leftMember: {
+						entity: 'A',
+						entityAlias: 'a',
+						cardinality: Cardinality.MANY
+					},
+					rightMember: {
+						entity: 'B',
+						entityAlias: 'b',
+						cardinality: Cardinality.ZERO_OR_ONE
+					},
+					direction: Direction.RIGHT_TO_LEFT,
+					relationshipName: 'Rel'
+				}
+			]
+		};
+
+		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+
+		expect(result).toBe(addDefaultDirectives(`[<label>Rel]
+[A] *<- [Rel]
+[Rel] -0..1 [B]`));
+
+	});
+
 	test('Single left-to-right many-to-one relationship with custom name', () => {
 
 		const model: EntityRelationshipModel = {
@@ -391,36 +380,15 @@ describe('Entities and relationships', () => {
 					name: 'User',
 					identifierPropertyName: 'uuid',
 					properties: [
-						{
-							name: 'username',
-							type: EntityPropertyType.TEXT,
-							length: [20],
-							optional: false,
-							unique: true,
-							autoincremental: false
-						},
-						{
-							name: 'active',
-							type: EntityPropertyType.BOOLEAN,
-							length: [],
-							optional: false,
-							unique: false,
-							autoincremental: false
-						}
+						createEntityProperty('username', EntityPropertyType.TEXT, {length: [20], unique: true}),
+						createEntityProperty('active', EntityPropertyType.BOOLEAN)
 					]
 				},
 				{
 					name: 'Order',
 					identifierPropertyName: undefined,
 					properties: [
-						{
-							name: 'date',
-							type: EntityPropertyType.DATETIME,
-							length: [],
-							optional: false,
-							unique: false,
-							autoincremental: false
-						}
+						createEntityProperty('date', EntityPropertyType.DATETIME)
 					]
 				}
 			],

@@ -10,6 +10,7 @@ export default class SqlServerTypeResolver {
 
 	public resolveSqlServerType(type: EntityPropertyType): string {
 
+		/* istanbul ignore next */
 		if (!this.typeBindings.hasOwnProperty(type)) {
 			throw new Error('Unsupported type: ' + type);
 		}

@@ -61,20 +61,7 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 			classOuterLines.push(`package ${this.config.generatedClassesPackage};`, EMPTY_STRING);
 		}
 
-		const importLines = this.createImportStatements(fieldsTypes);
-
-		if (this.config.useSpringNullabilityAnnotations) {
-			// FIXME gestionar estos imports de otra forma
-			// Quizás hacer que createField() devuelva qué tipos utiliza, y no solo el tipo del campo
-			const importNonNullAnnotation = classDescriptor.fields.some(f => !f.nullable);
-			if (importNonNullAnnotation) {
-				importLines.push('import org.springframework.lang.NonNull;');
-			}
-			const importNullableAnnotation = classDescriptor.fields.some(f => f.nullable);
-			if (importNullableAnnotation) {
-				importLines.push('import org.springframework.lang.Nullable;');
-			}
-		}
+		const importLines = this.createImportStatements(fieldsTypes, classDescriptor.fields);
 
 		if (importLines.length !== 0) {
 			classOuterLines.push(...importLines, EMPTY_STRING);
@@ -126,7 +113,7 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 		];
 
 		const setterLines: string[] = [
-			`public ${formattedJavaType} set${capitalizedFieldName}(${formattedJavaType} ${fieldName}) {`,
+			`public void set${capitalizedFieldName}(${formattedJavaType} ${fieldName}) {`,
 			indentLine(`this.${fieldName} = ${fieldName};`),
 			'}',
 		];
@@ -179,6 +166,7 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 			throw new Error('Invalid field descriptor: missing type');
 		}
 
+		/* istanbul ignore next */
 		if (!this.config.typeBindings.hasOwnProperty(primitiveType)) {
 			throw new Error('Unsupported type: ' + primitiveType);
 		}
@@ -187,10 +175,29 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 
 	}
 
-	private createImportStatements(javaTypes: JavaType[]): string[] {
+	private createImportStatements(javaTypes: JavaType[], classFields: ClassFieldDescriptor[]): string[] {
 
-		const importStatements = this.unrollTypesRecursively(javaTypes)
-				.filter(javaType => this.isImportRequired(javaType))
+		const importTypes = this.unrollTypesRecursively(javaTypes);
+
+		// FIXME manage this imports in another way
+		//  Maybe we can change createField() to return which types it uses, instead of returning the type of the field only
+		if (this.config.useSpringNullabilityAnnotations) {
+
+			const importNonNullAnnotation = classFields.some(f => !f.nullable);
+
+			if (importNonNullAnnotation) {
+				importTypes.push(createJavaType('NonNull', 'org.springframework.lang'));
+			}
+
+			const importNullableAnnotation = classFields.some(f => f.nullable);
+
+			if (importNullableAnnotation) {
+				importTypes.push(createJavaType('Nullable', 'org.springframework.lang'));
+			}
+
+		}
+
+		const importStatements = importTypes.filter(javaType => this.isImportRequired(javaType))
 				.map(javaType => `import ${javaType.canonicalName};`);
 
 		return removeDuplicates(importStatements).sort();

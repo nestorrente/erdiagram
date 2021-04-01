@@ -10,8 +10,8 @@ export default class MysqlTypeResolver {
 
 	public resolveMysqlType(type: EntityPropertyType): string {
 
+		/* istanbul ignore next */
 		if (!this.typeBindings.hasOwnProperty(type)) {
-			/* istanbul ignore next */
 			throw new Error('Unsupported type: ' + type);
 		}
 

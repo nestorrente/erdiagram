@@ -15,7 +15,9 @@ export function createSimpleTableColumn(name: string, type: EntityPropertyType, 
 	};
 }
 
-export function createTableReference(columnName: string, targetTableName: string, options?: Partial<Omit<TableReferenceDescriptor, 'columnName' | 'targetTableName'>>): TableReferenceDescriptor {
+export type PartialTableReferenceDescriptor = Partial<Omit<TableReferenceDescriptor, 'columnName' | 'targetTableName'>>;
+
+export function createTableReference(columnName: string, targetTableName: string, options?: PartialTableReferenceDescriptor): TableReferenceDescriptor {
 	return {
 		columnName,
 		targetTableName,
