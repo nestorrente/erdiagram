@@ -5,12 +5,12 @@ DISCLAIMER: This documentation is still work in progress.
 ## Table of contents
 
 * **[Installation](#installation)**
-	+ **[Using NPM](#using-npm)**
-	+ **[Using `<script>` tag](#using-script-tag)**
+    + **[Using NPM](#using-npm)**
+    + **[Using `<script>` tag](#using-script-tag)**
 * **[Concepts](#concepts)**
-	+ [EntityRelationshipModel](#entityrelationshipmodel)
-	+ [DatabaseModel](#databasemodel)
-	+ [ClassModel](#classmodel)
+    + [EntityRelationshipModel](#entityrelationshipmodel)
+    + [DatabaseModel](#databasemodel)
+    + [ClassModel](#classmodel)
 * **[Usage examples](#usage-examples)**
     + [Parsing the ERDiagram language into a EntityRelationshipModel object](#parsing-the-erdiagram-language-into-a-entityrelationshipmodel-object)
     + [Generate a database creation script from an EntityRelationshipModel object](#generate-a-database-creation-script-from-an-entityrelationshipmodel-object)
@@ -33,7 +33,7 @@ Then you can import _ERDiagram_ components in your modules:
 import {
     EntityRelationshipModel,
     EntityRelationshipModelParser,
-    // ...
+    // ... other imports...
 } from '@nestorrente/erdiagram';
 ```
 
@@ -205,17 +205,14 @@ const parser = new EntityRelationshipModelParser({
 
 ### Generate a database creation script from an EntityRelationshipModel object
 
-TODO: show an example using MySQL and mention that Oracle and SQL Server code generation is also supported.
-
 ```javascript
-
 import {
-  EntityRelationshipModelToDatabaseCodeConverter,
-  DatabaseModelGenerator,
-  MysqlDatabaseModelToCodeConverter
+    EntityRelationshipModelToDatabaseCodeConverter,
+    DatabaseModelGenerator,
+    MysqlDatabaseModelToCodeConverter
 } from '@nestorrente/erdiagram';
 
-const model = { /* the model of the previous example */};
+const model = { /* the model of the parsing example */};
 
 // We instantiate a DatabaseModelGenerator and a DatabaseModelToCodeConverter
 // (the one for MySQL databases in this case) using the default config.
@@ -226,8 +223,8 @@ const databaseModelToCodeConverter = new MysqlDatabaseModelToCodeConverter();
 // First the database model is generated, then it's converted to the output code.
 
 const databaseModel = databaseModelGenerator.generateDatabaseModel(model);
-const sqlCode = databaseModelToCodeConverter.convertToCode(databaseModel);
-console.log(sqlCode);
+const outputCode = databaseModelToCodeConverter.convertToCode(databaseModel);
+console.log(outputCode);
 
 // Way 2: create an EntityRelationshipModelToDatabaseCodeConverter.
 // That class implements the EntityRelationshipModelToCodeConverter interface,
@@ -239,8 +236,8 @@ const erModelToCodeConverter = new EntityRelationshipModelToDatabaseCodeConverte
         databaseModelToCodeConverter
 );
 
-const sqlCode = erModelToCodeConverter.convertToCode(model)
-console.log(sqlCode);
+const outputCode = erModelToCodeConverter.convertToCode(model)
+console.log(outputCode);
 ```
 
 Output:
@@ -271,18 +268,19 @@ Both the `DatabaseModelGenerator` and the `MysqlDatabaseModelToCodeConverter` co
 ```javascript
 import {
     DatabaseModelGenerator,
-	MysqlDatabaseModelToCodeConverter,
-	StandardIdNamingStrategies,
-	LowerCamelCaseFormat
+    MysqlDatabaseModelToCodeConverter,
+    StandardIdNamingStrategies,
+    LowerCamelCaseFormat
 } from '@nestorrente/erdiagram';
 
 const databaseModelGenerator = new DatabaseModelGenerator({
-	usePluralTableNames: true,
-	idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX
+    usePluralTableNames: true,
+    // ... other config options...
 });
 
 const databaseModelToCodeConverter = new MysqlDatabaseModelToCodeConverter({
-	tableNameCaseFormat: LowerCamelCaseFormat.UPPER_UNDERSCORE
+    tableNameCaseFormat: LowerCamelCaseFormat.UPPER_UNDERSCORE,
+    // ... other config options...
 });
 ```
 
@@ -292,7 +290,168 @@ engines, like Oracle (using `OracleDatabaseModelToCodeConverter`) or SQL Server 
 
 ### Generate OOP classes from an EntityRelationshipModel object
 
-TODO: show an example using Java and mention that TypeScript code generation is also supported.
+```javascript
+import {
+    EntityRelationshipModelToClassCodeConverter,
+    ClassModelGenerator,
+    JavaClassModelToCodeConverter
+} from '@nestorrente/erdiagram';
+
+const model = { /* the model of the parsing example */};
+
+// We instantiate a ClassModelGenerator and a ClassModelToCodeConverter
+// (the one for Java classes in this case) using the default config.
+const classModelGenerator = new ClassModelGenerator();
+const classModelToCodeConverter = new JavaClassModelToCodeConverter();
+
+// Way 1: 2-step conversion using both the classModelGenerator and the classModelToCodeConverter.
+// First the class model is generated, then it's converted to the output code.
+
+const classModel = classModelGenerator.generateClassModel(model);
+const outputCode = classModelToCodeConverter.convertToCode(classModel);
+console.log(outputCode);
+
+// Way 2: create an EntityRelationshipModelToClassCodeConverter.
+// That class implements the EntityRelationshipModelToCodeConverter interface,
+// which allows to transform the EntityRelationshipModel to the output code directly.
+// It does the 2-step conversion under the hood.
+
+const erModelToCodeConverter = new EntityRelationshipModelToClassCodeConverter(
+        classModelGenerator,
+        classModelToCodeConverter
+);
+
+const outputCode = erModelToCodeConverter.convertToCode(model)
+console.log(outputCode);
+```
+
+Output:
+
+```java
+/* ========== Product class ========== */
+
+import java.math.BigDecimal;
+
+public class Product {
+
+    private Long id;
+    private String name;
+    private String description;
+    private BigDecimal price;
+    private Boolean active;
+
+    public Long getId() {
+        return id;
+    }
+
+    public Long setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String setDescription(String description) {
+        this.description = description;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public BigDecimal setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public Boolean setActive(Boolean active) {
+        this.active = active;
+    }
+
+}
+
+/* ========== Order class ========== */
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+public class Order {
+
+    private Long id;
+    private LocalDateTime creationDate;
+    private String state;
+    private List<Product> products;
+
+    public Long getId() {
+        return id;
+    }
+
+    public Long setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public LocalDateTime setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String setState(String state) {
+        this.state = state;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public List<Product> setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+}
+```
+
+Both the `ClassModelGenerator` and the `JavaClassModelToCodeConverter` could be also instantiated using custom config properties:
+
+```javascript
+import {
+    ClassModelGenerator,
+    JavaClassModelToCodeConverter,
+    StandardIdNamingStrategies,
+    LowerCamelCaseFormat
+} from '@nestorrente/erdiagram';
+
+const classModelGenerator = new ClassModelGenerator({
+    idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX,
+    // ... other config options...
+});
+
+const classModelToCodeConverter = new JavaClassModelToCodeConverter({
+    generatedClassesPackage: 'com.example.mypackage',
+    // ... other config options...
+});
+```
+
+Although we are using `JavaClassModelToCodeConverter` in this example, there is also support for TypeScript (using
+`TypeScriptClassModelToCodeConverter`).
 
 ### Generate a diagram image from an EntityRelationshipModel object
 
