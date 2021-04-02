@@ -17,10 +17,10 @@ There you will find some code examples that are very useful for learning the _ER
 
 ## Documentation
 
-* **[ERDiagram language](docs/ERDiagram_language.md)**: how to define entities and relationships.
-    * **[Database model](docs/Database_model.md)**: how entities and relationships are modeled as tables and columns.
-    * **[Class model](docs/Class_model.md)**: how entities and relationships are modeled as OOP classes.
-* **[ERDiagram library](docs/Library_usage.md)**: installation, concepts and usage.
+* **[ERDiagram language](docs/ERDiagram_language.md)**: learn how to define entities and relationships.
+* **[ERDiagram library](docs/Library_usage.md)**: installation, basic concepts and usage.
+* **[Database model](docs/Database_model.md)**: learn how entities and relationships are modeled as tables and columns.
+* **[Class model](docs/Class_model.md)**: learn how entities and relationships are modeled as OOP classes.
 
 ## Contributing
 
