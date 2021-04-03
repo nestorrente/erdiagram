@@ -9,7 +9,6 @@ import MysqlDatabaseModelToCodeConverterConfig
 import DatabaseModelToCodeConverter from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverter';
 import MysqlColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/mysql/column/MysqlColumnCodeGenerator';
-import MysqlTypeResolver from '@/erdiagram/generator/database/code-converter/mysql/type/MysqlTypeResolver';
 import MysqlIdColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/mysql/column/MysqlIdColumnCodeGenerator';
 import MysqlForeignColumnCodeGenerator
@@ -23,6 +22,7 @@ import {
 	CreateTableLines,
 	TableCreationStatements
 } from '@/erdiagram/generator/database/code-converter/common/sql-script-types';
+import SqlTypeResolver from '@/erdiagram/generator/database/code-converter/common/SqlTypeResolver';
 
 export default class MysqlDatabaseModelToCodeConverter implements DatabaseModelToCodeConverter {
 
@@ -49,7 +49,7 @@ export default class MysqlDatabaseModelToCodeConverter implements DatabaseModelT
 		);
 
 		this.columnCodeGenerator = new MysqlColumnCodeGenerator(
-				new MysqlTypeResolver(this.config.typeBindings),
+				new SqlTypeResolver(this.config.typeBindings),
 				columnNameCaseConverter
 		);
 

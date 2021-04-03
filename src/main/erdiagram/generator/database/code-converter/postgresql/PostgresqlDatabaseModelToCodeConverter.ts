@@ -9,8 +9,6 @@ import PostgresqlDatabaseModelToCodeConverterConfig
 import DatabaseModelToCodeConverter from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverter';
 import PostgresqlColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlColumnCodeGenerator';
-import PostgresqlTypeResolver
-	from '@/erdiagram/generator/database/code-converter/postgresql/type/PostgresqlTypeResolver';
 import PostgresqlIdColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlIdColumnCodeGenerator';
 import PostgresqlForeignColumnCodeGenerator
@@ -24,6 +22,7 @@ import {
 	CreateTableLinesWithSequences,
 	TableCreationStatements
 } from '@/erdiagram/generator/database/code-converter/common/sql-script-types';
+import SqlTypeResolver from '@/erdiagram/generator/database/code-converter/common/SqlTypeResolver';
 
 export default class PostgresqlDatabaseModelToCodeConverter implements DatabaseModelToCodeConverter {
 
@@ -50,7 +49,7 @@ export default class PostgresqlDatabaseModelToCodeConverter implements DatabaseM
 		);
 
 		this.columnCodeGenerator = new PostgresqlColumnCodeGenerator(
-				new PostgresqlTypeResolver(this.config.typeBindings),
+				new SqlTypeResolver(this.config.typeBindings),
 				columnNameCaseConverter
 		);
 

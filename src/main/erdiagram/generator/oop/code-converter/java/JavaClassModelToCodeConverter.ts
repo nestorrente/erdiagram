@@ -1,10 +1,7 @@
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
 import {ClassDescriptor, ClassFieldDescriptor, ClassModel} from '@/erdiagram/generator/oop/model/class-model-types';
 import {indentLine, indentLines} from '@/erdiagram/util/indent-utils';
-import JavaParameterizedType, {
-	createJavaParameterizedType,
-	isJavaParameterizedType
-} from '@/erdiagram/generator/oop/code-converter/java/type/JavaParameterizedType';
+import {isJavaParameterizedType} from '@/erdiagram/generator/oop/code-converter/java/type/JavaParameterizedType';
 import JavaType, {createJavaType} from '@/erdiagram/generator/oop/code-converter/java/type/JavaType';
 import {removeDuplicates} from '@/erdiagram/util/array-utils';
 import ClassModelToCodeConverter from '@/erdiagram/generator/oop/code-converter/ClassModelToCodeConverter';
@@ -12,15 +9,18 @@ import JavaClassModelToCodeConverterConfig
 	from '@/erdiagram/generator/oop/code-converter/java/config/JavaClassModelToCodeConverterConfig';
 import javaClassModelToCodeConverterConfigManager
 	from '@/erdiagram/generator/oop/code-converter/java/config/JavaClassModelToCodeConverterConfigManager';
+import JavaFieldTypeResolver from '@/erdiagram/generator/oop/code-converter/java/type/JavaFieldTypeResolver';
 
 const EMPTY_STRING: string = '';
 
 export default class JavaClassModelToCodeConverter implements ClassModelToCodeConverter {
 
 	private readonly config: JavaClassModelToCodeConverterConfig;
+	private readonly typeResolver: JavaFieldTypeResolver;
 
 	constructor(config?: Partial<JavaClassModelToCodeConverterConfig>) {
 		this.config = javaClassModelToCodeConverterConfigManager.mergeWithDefaultConfig(config);
+		this.typeResolver = new JavaFieldTypeResolver(this.config.typeBindings, this.config.generatedClassesPackage);
 	}
 
 	public convertToCode(classModel: ClassModel): string {
@@ -104,7 +104,7 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 			}
 		}
 
-		const fieldType = this.mapFieldTypeToJavaType(field);
+		const fieldType = this.typeResolver.resolveFieldType(field);
 		usedTypes.push(fieldType);
 
 		const formattedJavaType = fieldType.formatSimple();
@@ -129,54 +129,6 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 			getterLines,
 			setterLines
 		};
-
-	}
-
-	private mapFieldTypeToJavaType(field: ClassFieldDescriptor): JavaType {
-		if (field.list) {
-			return this.mapListTypeToJavaType(field);
-		} else {
-			return this.mapSingleTypeToJavaType(field);
-		}
-	}
-
-	private mapListTypeToJavaType(field: ClassFieldDescriptor): JavaParameterizedType {
-		return createJavaParameterizedType(
-				'List',
-				'java.util',
-				[
-					this.mapSingleTypeToJavaType(field)
-				]
-		);
-	}
-
-	private mapSingleTypeToJavaType(field: ClassFieldDescriptor): JavaType {
-
-		const {
-			entityType,
-			primitiveType
-		} = field;
-
-		if (entityType) {
-
-			if (primitiveType) {
-				throw new Error('Invalid field descriptor: provided both primitive and entity types');
-			}
-
-			return createJavaType(entityType, this.config.generatedClassesPackage);
-
-		}
-
-		if (!primitiveType) {
-			throw new Error('Invalid field descriptor: missing type');
-		}
-
-		/* istanbul ignore next */
-		if (!this.config.typeBindings.hasOwnProperty(primitiveType)) {
-			throw new Error('Unsupported type: ' + primitiveType);
-		}
-
-		return this.config.typeBindings[primitiveType]!;
 
 	}
 

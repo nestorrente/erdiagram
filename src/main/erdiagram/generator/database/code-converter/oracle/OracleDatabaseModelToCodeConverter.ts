@@ -9,7 +9,6 @@ import OracleDatabaseModelToCodeConverterConfig
 import DatabaseModelToCodeConverter from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverter';
 import OracleColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/oracle/column/OracleColumnCodeGenerator';
-import OracleTypeResolver from '@/erdiagram/generator/database/code-converter/oracle/type/OracleTypeResolver';
 import OracleIdColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/oracle/column/OracleIdColumnCodeGenerator';
 import OracleForeignColumnCodeGenerator
@@ -23,6 +22,7 @@ import {
 	CreateTableLinesWithSequences,
 	TableCreationStatements
 } from '@/erdiagram/generator/database/code-converter/common/sql-script-types';
+import SqlTypeResolver from '@/erdiagram/generator/database/code-converter/common/SqlTypeResolver';
 
 export default class OracleDatabaseModelToCodeConverter implements DatabaseModelToCodeConverter {
 
@@ -49,7 +49,7 @@ export default class OracleDatabaseModelToCodeConverter implements DatabaseModel
 		);
 
 		this.columnCodeGenerator = new OracleColumnCodeGenerator(
-				new OracleTypeResolver(this.config.typeBindings),
+				new SqlTypeResolver(this.config.typeBindings),
 				columnNameCaseConverter
 		);
 

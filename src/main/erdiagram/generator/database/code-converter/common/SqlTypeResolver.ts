@@ -1,6 +1,6 @@
 import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
 
-export default class PostgresqlTypeResolver {
+export default class SqlTypeResolver {
 
 	private readonly typeBindings: Partial<Record<EntityPropertyType, string>>;
 
@@ -8,7 +8,7 @@ export default class PostgresqlTypeResolver {
 		this.typeBindings = typeBindings;
 	}
 
-	public resolvePostgresqlType(type: EntityPropertyType): string {
+	public resolveSqlType(type: EntityPropertyType): string {
 
 		/* istanbul ignore next */
 		if (!this.typeBindings.hasOwnProperty(type)) {

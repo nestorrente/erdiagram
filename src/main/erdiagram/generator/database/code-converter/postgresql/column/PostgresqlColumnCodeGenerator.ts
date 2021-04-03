@@ -1,14 +1,13 @@
 import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
 import {TableColumnDescriptor} from '@/erdiagram/generator/database/model/database-model-types';
 import RegularColumnCode from '@/erdiagram/generator/database/code-converter/postgresql/column/types/RegularColumnCode';
-import PostgresqlTypeResolver
-	from '@/erdiagram/generator/database/code-converter/postgresql/type/PostgresqlTypeResolver';
 import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
+import SqlTypeResolver from '@/erdiagram/generator/database/code-converter/common/SqlTypeResolver';
 
 export default class PostgresqlColumnCodeGenerator {
 
 	constructor(
-			private readonly typeResolver: PostgresqlTypeResolver,
+			private readonly typeResolver: SqlTypeResolver,
 			private readonly columnNameCaseConverter: CaseConverter
 	) {
 
@@ -68,7 +67,7 @@ export default class PostgresqlColumnCodeGenerator {
 
 	private generatePostgresqlTypeDeclaration(type: EntityPropertyType, length: number[]) {
 
-		const postgresqlType = this.typeResolver.resolvePostgresqlType(type);
+		const postgresqlType = this.typeResolver.resolveSqlType(type);
 		const lengthCode = this.generateLengthCode(length);
 
 		return postgresqlType + lengthCode;

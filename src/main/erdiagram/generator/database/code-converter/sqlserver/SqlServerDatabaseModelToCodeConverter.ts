@@ -9,7 +9,6 @@ import SqlServerDatabaseModelToCodeConverterConfig
 import DatabaseModelToCodeConverter from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverter';
 import SqlServerColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/sqlserver/column/SqlServerColumnCodeGenerator';
-import SqlServerTypeResolver from '@/erdiagram/generator/database/code-converter/sqlserver/type/SqlServerTypeResolver';
 import SqlServerIdColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/sqlserver/column/SqlServerIdColumnCodeGenerator';
 import SqlServerForeignColumnCodeGenerator
@@ -23,6 +22,7 @@ import {
 	CreateTableLinesWithSequences,
 	TableCreationStatements
 } from '@/erdiagram/generator/database/code-converter/common/sql-script-types';
+import SqlTypeResolver from '@/erdiagram/generator/database/code-converter/common/SqlTypeResolver';
 
 export default class SqlServerDatabaseModelToCodeConverter implements DatabaseModelToCodeConverter {
 
@@ -49,7 +49,7 @@ export default class SqlServerDatabaseModelToCodeConverter implements DatabaseMo
 		);
 
 		this.columnCodeGenerator = new SqlServerColumnCodeGenerator(
-				new SqlServerTypeResolver(this.config.typeBindings),
+				new SqlTypeResolver(this.config.typeBindings),
 				columnNameCaseConverter
 		);
 
