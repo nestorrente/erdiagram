@@ -1,40 +1,42 @@
 import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
 import {TableColumnDescriptor} from '@/erdiagram/generator/database/model/database-model-types';
-import RegularColumnCode from '@/erdiagram/generator/database/code-converter/oracle/column/types/RegularColumnCode';
-import OracleTypeResolver from '@/erdiagram/generator/database/code-converter/oracle/type/OracleTypeResolver';
+import RegularColumnCode from '@/erdiagram/generator/database/code-converter/postgresql/column/types/RegularColumnCode';
+import PostgresqlTypeResolver
+	from '@/erdiagram/generator/database/code-converter/postgresql/type/PostgresqlTypeResolver';
 import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
 
-export default class OracleColumnCodeGenerator {
+export default class PostgresqlColumnCodeGenerator {
 
 	constructor(
-			private readonly typeResolver: OracleTypeResolver,
+			private readonly typeResolver: PostgresqlTypeResolver,
 			private readonly columnNameCaseConverter: CaseConverter
 	) {
 
 	}
 
-	public generateColumnCode(outputTableName: string, column: TableColumnDescriptor): RegularColumnCode {
+	public generateColumnCode(outputTableName: string, column: TableColumnDescriptor, identity: boolean = false): RegularColumnCode {
 
 		const outputColumnName = this.columnNameCaseConverter.convertCase(column.name);
 		const autoincrementalSequenceName = this.getAutoincrementalSequenceName(outputTableName, outputColumnName);
 
 		return {
 			createSequenceLine: column.autoincremental ? this.generateCreateSequenceLine(autoincrementalSequenceName) : undefined,
-			columnLine: this.generateColumnDeclarationLine(outputColumnName, column, autoincrementalSequenceName),
+			columnLine: this.generateColumnDeclarationLine(outputColumnName, column, identity, autoincrementalSequenceName),
 			uniqueConstraintLine: column.unique ? this.generateUniqueConstraintLine(outputTableName, outputColumnName) : undefined
 		};
 
 	}
 
 	private getAutoincrementalSequenceName(outputTableName: string, outputColumnName: string): string {
-		return `${outputTableName}_${outputColumnName}_SEQ`;
+		return `${outputTableName}_${outputColumnName}_seq`;
 	}
 
 	private generateCreateSequenceLine(autoincrementalSequenceName: string): string {
 		return `CREATE SEQUENCE "${autoincrementalSequenceName}" START WITH 1;`;
 	}
 
-	private generateColumnDeclarationLine(outputColumnName: string, column: TableColumnDescriptor, autoincrementalSequenceName: string): string {
+	// FIXME refactor this methods - it receives too much arguments
+	private generateColumnDeclarationLine(outputColumnName: string, column: TableColumnDescriptor, identity: boolean, autoincrementalSequenceName: string): string {
 
 		const {
 			notNull,
@@ -45,27 +47,31 @@ export default class OracleColumnCodeGenerator {
 
 		const lineParts: string[] = [
 			`"${outputColumnName}"`,
-			this.generateOracleTypeDeclaration(type, length)
+			this.generatePostgresqlTypeDeclaration(type, length)
 		];
 
 		if (notNull) {
 			lineParts.push('NOT NULL');
 		}
 
+		if (identity) {
+			lineParts.push('GENERATED ALWAYS AS IDENTITY');
+		}
+
 		if (autoincremental) {
-			lineParts.push(`DEFAULT "${autoincrementalSequenceName}".nextval`);
+			lineParts.push(`DEFAULT nextval('"${autoincrementalSequenceName}"')`);
 		}
 
 		return lineParts.join(' ');
 
 	}
 
-	private generateOracleTypeDeclaration(type: EntityPropertyType, length: number[]) {
+	private generatePostgresqlTypeDeclaration(type: EntityPropertyType, length: number[]) {
 
-		const oracleType = this.typeResolver.resolveOracleType(type);
+		const postgresqlType = this.typeResolver.resolvePostgresqlType(type);
 		const lengthCode = this.generateLengthCode(length);
 
-		return oracleType + lengthCode;
+		return postgresqlType + lengthCode;
 
 	}
 
@@ -80,7 +86,7 @@ export default class OracleColumnCodeGenerator {
 	}
 
 	private generateUniqueConstraintLine(outputTableName: string, outputColumnName: string) {
-		return `CONSTRAINT "${outputTableName}_${outputColumnName}_UNIQUE" UNIQUE ("${outputColumnName}")`;
+		return `CONSTRAINT "${outputTableName}_${outputColumnName}_unique" UNIQUE ("${outputColumnName}")`;
 	}
 
 }

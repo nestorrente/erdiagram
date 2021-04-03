@@ -261,6 +261,7 @@ describe('Config', () => {
 		}).convertToCode(fullDatabaseModel);
 
 		expect(result).toBe(`
+
 CREATE SEQUENCE "Modifiers_Table_autoincremental_column_seq" START WITH 1;
 CREATE TABLE "Modifiers_Table" (
     "the_id_of_modifiers_table" CUSTOM_IDENTIFIER_TYPE NOT NULL IDENTITY(1, 1),

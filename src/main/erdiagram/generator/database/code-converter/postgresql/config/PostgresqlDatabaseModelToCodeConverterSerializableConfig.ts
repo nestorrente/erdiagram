@@ -1,0 +1,6 @@
+import DatabaseModelToCodeConverterSerializableConfig
+	from '@/erdiagram/generator/database/code-converter/DatabaseModelToCodeConverterSerializableConfig';
+
+export default interface PostgresqlDatabaseModelToCodeConverterSerializableConfig extends DatabaseModelToCodeConverterSerializableConfig {
+
+}

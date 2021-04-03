@@ -4,7 +4,7 @@
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-04-01T17:13:16.583Z
+ * Build date: 2021-04-03T09:08:20.033Z
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -3339,7 +3339,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************!*\
   !*** ./src/main/erdiagram/exports.ts ***!
   \***************************************/
-/*! exports provided: AbstractComponentConfigManager, StandardCaseFormats, CaseConverter, StandardIdNamingStrategies, MysqlDatabaseModelToCodeConverterConfigManager, mysqlDatabaseModelToCodeConverterConfigManager, MysqlDatabaseModelToCodeConverter, OracleDatabaseModelToCodeConverterConfigManager, oracleDatabaseModelToCodeConverterConfigManager, OracleDatabaseModelToCodeConverter, SqlServerDatabaseModelToCodeConverterConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager, SqlServerDatabaseModelToCodeConverter, EntityRelationshipModelToDatabaseCodeConverter, DatabaseModelGeneratorConfigManager, databaseModelGeneratorConfigManager, DatabaseModelGenerator, JavaClassModelToCodeConverterConfigManager, javaClassModelToCodeConverterConfigManager, createJavaType, createJavaParameterizedType, createJavaArrayType, isJavaParameterizedType, parseJavaType, JavaClassModelToCodeConverter, TypeScriptClassModelToCodeConverterConfigManager, typescriptClassModelToCodeConverterConfigManager, createTypeScriptType, createTypeScriptParameterizedType, createTypeScriptArrayType, isTypeScriptParameterizedType, parseTypeScriptType, TypeScriptClassModelToCodeConverter, EntityRelationshipModelToClassCodeConverter, ClassModelGeneratorConfigManager, classModelGeneratorConfigManager, ClassModelGenerator, NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, NomnomlEntityRelationshipModelToDiagramCodeConverter, NomnomlEntityRelationshipModelToDiagramConverter, PlantUmlEntityRelationshipModelToDiagramCodeConverterConfigManager, plantumlEntityRelationshipModelToDiagramCodeConverterConfigManager, PlantUmlEntityRelationshipModelToDiagramCodeConverter, PlantUmlEntityRelationshipModelToDiagramConverter, BaseEntityRelationshipModelToDiagramConverter, EntityRelationshipModelParserConfigManager, entityRelationshipModelParserConfigManager, EntityPropertyType, Cardinality, Direction, ERDiagramError, ERDiagramParseLineError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramRelationshipError, ERDiagramUnknownEntityError, ERDiagramEntityError, ERDiagramDuplicatedEntityNameError, ERDiagramEntityPropertyError, ERDiagramMultipleIdentifiersError, ERDiagramInvalidIdentifierDefinitionError, ERDiagramDuplicatedPropertyNameError, EntityRelationshipModelParser */
+/*! exports provided: AbstractComponentConfigManager, StandardCaseFormats, CaseConverter, StandardIdNamingStrategies, MysqlDatabaseModelToCodeConverterConfigManager, mysqlDatabaseModelToCodeConverterConfigManager, MysqlDatabaseModelToCodeConverter, OracleDatabaseModelToCodeConverterConfigManager, oracleDatabaseModelToCodeConverterConfigManager, OracleDatabaseModelToCodeConverter, SqlServerDatabaseModelToCodeConverterConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager, SqlServerDatabaseModelToCodeConverter, PostgresqlDatabaseModelToCodeConverterConfigManager, postgresqlDatabaseModelToCodeConverterConfigManager, PostgresqlDatabaseModelToCodeConverter, EntityRelationshipModelToDatabaseCodeConverter, DatabaseModelGeneratorConfigManager, databaseModelGeneratorConfigManager, DatabaseModelGenerator, JavaClassModelToCodeConverterConfigManager, javaClassModelToCodeConverterConfigManager, createJavaType, createJavaParameterizedType, createJavaArrayType, isJavaParameterizedType, parseJavaType, JavaClassModelToCodeConverter, TypeScriptClassModelToCodeConverterConfigManager, typescriptClassModelToCodeConverterConfigManager, createTypeScriptType, createTypeScriptParameterizedType, createTypeScriptArrayType, isTypeScriptParameterizedType, parseTypeScriptType, TypeScriptClassModelToCodeConverter, EntityRelationshipModelToClassCodeConverter, ClassModelGeneratorConfigManager, classModelGeneratorConfigManager, ClassModelGenerator, NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, NomnomlEntityRelationshipModelToDiagramCodeConverter, NomnomlEntityRelationshipModelToDiagramConverter, PlantUmlEntityRelationshipModelToDiagramCodeConverterConfigManager, plantumlEntityRelationshipModelToDiagramCodeConverterConfigManager, PlantUmlEntityRelationshipModelToDiagramCodeConverter, PlantUmlEntityRelationshipModelToDiagramConverter, BaseEntityRelationshipModelToDiagramConverter, EntityRelationshipModelParserConfigManager, entityRelationshipModelParserConfigManager, EntityPropertyType, Cardinality, Direction, ERDiagramError, ERDiagramParseLineError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramRelationshipError, ERDiagramUnknownEntityError, ERDiagramEntityError, ERDiagramDuplicatedEntityNameError, ERDiagramEntityPropertyError, ERDiagramMultipleIdentifiersError, ERDiagramInvalidIdentifierDefinitionError, ERDiagramDuplicatedPropertyNameError, EntityRelationshipModelParser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3371,6 +3371,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDatabaseModelToCodeConverterConfigManager", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["sqlServerDatabaseModelToCodeConverterConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDatabaseModelToCodeConverter", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["SqlServerDatabaseModelToCodeConverter"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDatabaseModelToCodeConverterConfigManager", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["PostgresqlDatabaseModelToCodeConverterConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDatabaseModelToCodeConverterConfigManager", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["postgresqlDatabaseModelToCodeConverterConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDatabaseModelToCodeConverter", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["PostgresqlDatabaseModelToCodeConverter"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityRelationshipModelToDatabaseCodeConverter", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["EntityRelationshipModelToDatabaseCodeConverter"]; });
 
@@ -3876,7 +3882,7 @@ class EntityRelationshipModelToDatabaseCodeConverter {
 /*!*************************************************************************!*\
   !*** ./src/main/erdiagram/generator/database/code-converter/exports.ts ***!
   \*************************************************************************/
-/*! exports provided: MysqlDatabaseModelToCodeConverterConfigManager, mysqlDatabaseModelToCodeConverterConfigManager, MysqlDatabaseModelToCodeConverter, OracleDatabaseModelToCodeConverterConfigManager, oracleDatabaseModelToCodeConverterConfigManager, OracleDatabaseModelToCodeConverter, SqlServerDatabaseModelToCodeConverterConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager, SqlServerDatabaseModelToCodeConverter, EntityRelationshipModelToDatabaseCodeConverter */
+/*! exports provided: MysqlDatabaseModelToCodeConverterConfigManager, mysqlDatabaseModelToCodeConverterConfigManager, MysqlDatabaseModelToCodeConverter, OracleDatabaseModelToCodeConverterConfigManager, oracleDatabaseModelToCodeConverterConfigManager, OracleDatabaseModelToCodeConverter, SqlServerDatabaseModelToCodeConverterConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager, SqlServerDatabaseModelToCodeConverter, PostgresqlDatabaseModelToCodeConverterConfigManager, postgresqlDatabaseModelToCodeConverterConfigManager, PostgresqlDatabaseModelToCodeConverter, EntityRelationshipModelToDatabaseCodeConverter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3904,6 +3910,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDatabaseModelToCodeConverterConfigManager", function() { return _sqlserver_exports__WEBPACK_IMPORTED_MODULE_3__["sqlServerDatabaseModelToCodeConverterConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDatabaseModelToCodeConverter", function() { return _sqlserver_exports__WEBPACK_IMPORTED_MODULE_3__["SqlServerDatabaseModelToCodeConverter"]; });
+
+/* harmony import */ var _postgresql_exports__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./postgresql/exports */ "./src/main/erdiagram/generator/database/code-converter/postgresql/exports.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDatabaseModelToCodeConverterConfigManager", function() { return _postgresql_exports__WEBPACK_IMPORTED_MODULE_4__["PostgresqlDatabaseModelToCodeConverterConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDatabaseModelToCodeConverterConfigManager", function() { return _postgresql_exports__WEBPACK_IMPORTED_MODULE_4__["postgresqlDatabaseModelToCodeConverterConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDatabaseModelToCodeConverter", function() { return _postgresql_exports__WEBPACK_IMPORTED_MODULE_4__["PostgresqlDatabaseModelToCodeConverter"]; });
+
 
 
 
@@ -4438,7 +4452,6 @@ class OracleColumnCodeGenerator {
     generateCreateSequenceLine(autoincrementalSequenceName) {
         return `CREATE SEQUENCE "${autoincrementalSequenceName}" START WITH 1;`;
     }
-    // FIXME refactor this methods - it receives too much arguments
     generateColumnDeclarationLine(outputColumnName, column, autoincrementalSequenceName) {
         const { notNull, autoincremental, type, length } = column;
         const lineParts = [
@@ -4689,6 +4702,407 @@ class OracleTypeResolver {
         this.typeBindings = typeBindings;
     }
     resolveOracleType(type) {
+        /* istanbul ignore next */
+        if (!this.typeBindings.hasOwnProperty(type)) {
+            throw new Error('Unsupported type: ' + type);
+        }
+        return this.typeBindings[type];
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/database/code-converter/postgresql/PostgresqlDatabaseModelToCodeConverter.ts":
+/*!*******************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/database/code-converter/postgresql/PostgresqlDatabaseModelToCodeConverter.ts ***!
+  \*******************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PostgresqlDatabaseModelToCodeConverter; });
+/* harmony import */ var _erdiagram_generator_database_code_converter_postgresql_column_PostgresqlColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlColumnCodeGenerator.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_postgresql_type_PostgresqlTypeResolver__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/postgresql/type/PostgresqlTypeResolver */ "./src/main/erdiagram/generator/database/code-converter/postgresql/type/PostgresqlTypeResolver.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_postgresql_column_PostgresqlIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlIdColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlIdColumnCodeGenerator.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_postgresql_column_PostgresqlForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlForeignColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlForeignColumnCodeGenerator.ts");
+/* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
+/* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
+/* harmony import */ var _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/CaseConverter */ "./src/main/erdiagram/generator/common/case-format/CaseConverter.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_postgresql_config_PostgresqlDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/postgresql/config/PostgresqlDatabaseModelToCodeConverterConfigManager */ "./src/main/erdiagram/generator/database/code-converter/postgresql/config/PostgresqlDatabaseModelToCodeConverterConfigManager.ts");
+
+
+
+
+
+
+
+
+class PostgresqlDatabaseModelToCodeConverter {
+    constructor(config) {
+        this.config = _erdiagram_generator_database_code_converter_postgresql_config_PostgresqlDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_7__["default"].mergeWithDefaultConfig(config);
+        this.tableNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.tableNameCaseFormat);
+        const columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.columnNameCaseFormat);
+        this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_postgresql_column_PostgresqlColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](new _erdiagram_generator_database_code_converter_postgresql_type_PostgresqlTypeResolver__WEBPACK_IMPORTED_MODULE_1__["default"](this.config.typeBindings), columnNameCaseConverter);
+        this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_postgresql_column_PostgresqlIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.columnCodeGenerator, columnNameCaseConverter);
+        this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_postgresql_column_PostgresqlForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
+    }
+    convertToCode(databaseModel) {
+        const allCreateTableStatements = [];
+        const allAlterTableStatements = [];
+        databaseModel.tables
+            .map(table => this.generateTableCode(table))
+            .forEach(({ createTableStatement, alterTableStatements }) => {
+            allCreateTableStatements.push(createTableStatement);
+            if (alterTableStatements) {
+                allAlterTableStatements.push(alterTableStatements);
+            }
+        });
+        return [
+            ...allCreateTableStatements,
+            ...allAlterTableStatements
+        ].join('\n\n');
+    }
+    // FIXME split this method
+    generateTableCode(table) {
+        const lines = {
+            columns: [],
+            fkConstraints: [],
+            otherConstraints: [],
+            sequences: []
+        };
+        const outputTableName = this.tableNameCaseConverter.convertCase(table.name);
+        const { columnLine: idColumnLine, pkConstraintLine } = this.idColumnCodeGenerator.generateIdColumnCode(outputTableName, table.identifierColumnName);
+        lines.columns.push(idColumnLine);
+        lines.otherConstraints.push(pkConstraintLine);
+        this.processColumns(outputTableName, table.columns, lines);
+        this.processReferences(outputTableName, table.references, lines);
+        const createTableInnerLines = [
+            ...lines.columns,
+            ...lines.otherConstraints
+        ];
+        const createTableLines = [
+            ...lines.sequences,
+            `CREATE TABLE "${outputTableName}" (`,
+            Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_4__["indentLines"])(createTableInnerLines).join(',\n'),
+            ');'
+        ];
+        const createTableStatement = createTableLines.join('\n');
+        const alterTableStatements = lines.fkConstraints.map(fkConstraintLine => {
+            return `ALTER TABLE "${outputTableName}" ADD ${fkConstraintLine};`;
+        }).join('\n');
+        return {
+            createTableStatement,
+            alterTableStatements
+        };
+    }
+    processColumns(outputTableName, columns, lines) {
+        for (const column of columns) {
+            const { columnLine, createSequenceLine, uniqueConstraintLine } = this.columnCodeGenerator.generateColumnCode(outputTableName, column);
+            lines.columns.push(columnLine);
+            if (createSequenceLine) {
+                lines.sequences.push(createSequenceLine);
+            }
+            if (uniqueConstraintLine) {
+                lines.otherConstraints.push(uniqueConstraintLine);
+            }
+        }
+    }
+    processReferences(outputTableName, references, lines) {
+        for (const reference of references) {
+            const { columnLine, uniqueConstraintLine, fkConstraintLine } = this.foreignColumnCodeGenerator.generateForeignColumnCode(outputTableName, reference);
+            lines.columns.push(columnLine);
+            lines.fkConstraints.push(fkConstraintLine);
+            if (uniqueConstraintLine) {
+                lines.otherConstraints.push(uniqueConstraintLine);
+            }
+        }
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlColumnCodeGenerator.ts":
+/*!*****************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlColumnCodeGenerator.ts ***!
+  \*****************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PostgresqlColumnCodeGenerator; });
+class PostgresqlColumnCodeGenerator {
+    constructor(typeResolver, columnNameCaseConverter) {
+        this.typeResolver = typeResolver;
+        this.columnNameCaseConverter = columnNameCaseConverter;
+    }
+    generateColumnCode(outputTableName, column, identity = false) {
+        const outputColumnName = this.columnNameCaseConverter.convertCase(column.name);
+        const autoincrementalSequenceName = this.getAutoincrementalSequenceName(outputTableName, outputColumnName);
+        return {
+            createSequenceLine: column.autoincremental ? this.generateCreateSequenceLine(autoincrementalSequenceName) : undefined,
+            columnLine: this.generateColumnDeclarationLine(outputColumnName, column, identity, autoincrementalSequenceName),
+            uniqueConstraintLine: column.unique ? this.generateUniqueConstraintLine(outputTableName, outputColumnName) : undefined
+        };
+    }
+    getAutoincrementalSequenceName(outputTableName, outputColumnName) {
+        return `${outputTableName}_${outputColumnName}_seq`;
+    }
+    generateCreateSequenceLine(autoincrementalSequenceName) {
+        return `CREATE SEQUENCE "${autoincrementalSequenceName}" START WITH 1;`;
+    }
+    // FIXME refactor this methods - it receives too much arguments
+    generateColumnDeclarationLine(outputColumnName, column, identity, autoincrementalSequenceName) {
+        const { notNull, autoincremental, type, length } = column;
+        const lineParts = [
+            `"${outputColumnName}"`,
+            this.generatePostgresqlTypeDeclaration(type, length)
+        ];
+        if (notNull) {
+            lineParts.push('NOT NULL');
+        }
+        if (identity) {
+            lineParts.push('GENERATED ALWAYS AS IDENTITY');
+        }
+        if (autoincremental) {
+            lineParts.push(`DEFAULT nextval('"${autoincrementalSequenceName}"')`);
+        }
+        return lineParts.join(' ');
+    }
+    generatePostgresqlTypeDeclaration(type, length) {
+        const postgresqlType = this.typeResolver.resolvePostgresqlType(type);
+        const lengthCode = this.generateLengthCode(length);
+        return postgresqlType + lengthCode;
+    }
+    generateLengthCode(length) {
+        if (length.length === 0) {
+            return '';
+        }
+        return `(${length.join(', ')})`;
+    }
+    generateUniqueConstraintLine(outputTableName, outputColumnName) {
+        return `CONSTRAINT "${outputTableName}_${outputColumnName}_unique" UNIQUE ("${outputColumnName}")`;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlForeignColumnCodeGenerator.ts":
+/*!************************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlForeignColumnCodeGenerator.ts ***!
+  \************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PostgresqlForeignColumnCodeGenerator; });
+/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+
+class PostgresqlForeignColumnCodeGenerator {
+    constructor(columnCodeGenerator, tableNameCaseConverter, columnNameCaseConverter) {
+        this.columnCodeGenerator = columnCodeGenerator;
+        this.tableNameCaseConverter = tableNameCaseConverter;
+        this.columnNameCaseConverter = columnNameCaseConverter;
+    }
+    generateForeignColumnCode(outputTableName, reference) {
+        const columnDescriptor = this.createForeignKeyColumnDescriptor(reference);
+        const { columnLine, uniqueConstraintLine } = this.columnCodeGenerator.generateColumnCode(outputTableName, columnDescriptor);
+        return {
+            columnLine,
+            uniqueConstraintLine,
+            fkConstraintLine: this.createForeignKeyConstraint(outputTableName, reference)
+        };
+    }
+    createForeignKeyColumnDescriptor(reference) {
+        const { columnName, notNull, unique } = reference;
+        return {
+            name: columnName,
+            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
+            length: [],
+            notNull,
+            unique,
+            autoincremental: false
+        };
+    }
+    createForeignKeyConstraint(outputTableName, reference) {
+        const outputColumnName = this.columnNameCaseConverter.convertCase(reference.columnName);
+        const outputTargetTableName = this.tableNameCaseConverter.convertCase(reference.targetTableName);
+        const outputTargetColumnName = this.columnNameCaseConverter.convertCase(reference.targetTableIdentifierColumnName);
+        return `CONSTRAINT "${outputTableName}_${outputColumnName}_fk" FOREIGN KEY ("${outputColumnName}")`
+            + ` REFERENCES "${outputTargetTableName}" ("${outputTargetColumnName}")`;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlIdColumnCodeGenerator.ts":
+/*!*******************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlIdColumnCodeGenerator.ts ***!
+  \*******************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PostgresqlIdColumnCodeGenerator; });
+/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+
+class PostgresqlIdColumnCodeGenerator {
+    constructor(columnCodeGenerator, columnNameCaseConverter) {
+        this.columnCodeGenerator = columnCodeGenerator;
+        this.columnNameCaseConverter = columnNameCaseConverter;
+    }
+    generateIdColumnCode(outputTableName, identifierColumnName) {
+        const column = this.createIdColumnDescriptor(identifierColumnName);
+        const { columnLine } = this.columnCodeGenerator.generateColumnCode(outputTableName, column, true);
+        const pkConstraintLine = this.createPrimaryKeyConstraint(outputTableName, column);
+        return {
+            columnLine,
+            pkConstraintLine
+        };
+    }
+    createIdColumnDescriptor(identifierColumnName) {
+        return {
+            name: identifierColumnName,
+            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
+            length: [],
+            notNull: true,
+            // Autoincrement of identity columns have to be achieved using serial types,
+            // while other autoincremental columns have to use a custom sequence.
+            autoincremental: false,
+            // As primary keys are unique by default, we don't
+            // need to manually define an UNIQUE KEY constraint
+            unique: false
+        };
+    }
+    createPrimaryKeyConstraint(outputTableName, column) {
+        const columnName = this.columnNameCaseConverter.convertCase(column.name);
+        return `CONSTRAINT "${outputTableName}_pk" PRIMARY KEY ("${columnName}")`;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/database/code-converter/postgresql/config/PostgresqlDatabaseModelToCodeConverterConfigManager.ts":
+/*!***************************************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/database/code-converter/postgresql/config/PostgresqlDatabaseModelToCodeConverterConfigManager.ts ***!
+  \***************************************************************************************************************************************/
+/*! exports provided: PostgresqlDatabaseModelToCodeConverterConfigManager, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDatabaseModelToCodeConverterConfigManager", function() { return PostgresqlDatabaseModelToCodeConverterConfigManager; });
+/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
+/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var _erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/record-utils */ "./src/main/erdiagram/util/record-utils.ts");
+
+
+
+
+class PostgresqlDatabaseModelToCodeConverterConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__["default"] {
+    getDefaultConfig() {
+        return {
+            typeBindings: {
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: 'BIGINT',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: 'VARCHAR',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: 'BIGINT',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: 'INTEGER',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: 'SMALLINT',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: 'DECIMAL',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: 'BOOLEAN',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: 'DATE',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: 'TIME',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: 'TIMESTAMP',
+                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: 'BYTEA'
+            },
+            tableNameCaseFormat: _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].LOWER_UNDERSCORE,
+            columnNameCaseFormat: _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].LOWER_UNDERSCORE,
+        };
+    }
+    mergeConfigs(fullConfig, partialConfig) {
+        return Object.assign(Object.assign(Object.assign({}, fullConfig), partialConfig), { typeBindings: Object.assign(Object.assign({}, fullConfig.typeBindings), partialConfig === null || partialConfig === void 0 ? void 0 : partialConfig.typeBindings) });
+    }
+    convertToSerializableObject(fullConfig) {
+        return Object.assign(Object.assign({}, fullConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findKeyFromValue"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.tableNameCaseFormat), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findKeyFromValue"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.columnNameCaseFormat) });
+    }
+    convertFromSerializableObject(serializableConfig) {
+        return Object.assign(Object.assign({}, serializableConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.tableNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.columnNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL) });
+    }
+}
+const postgresqlDatabaseModelToCodeConverterConfigManager = new PostgresqlDatabaseModelToCodeConverterConfigManager();
+/* harmony default export */ __webpack_exports__["default"] = (postgresqlDatabaseModelToCodeConverterConfigManager);
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/database/code-converter/postgresql/config/exports.ts":
+/*!*******************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/database/code-converter/postgresql/config/exports.ts ***!
+  \*******************************************************************************************/
+/*! exports provided: PostgresqlDatabaseModelToCodeConverterConfigManager, postgresqlDatabaseModelToCodeConverterConfigManager */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PostgresqlDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PostgresqlDatabaseModelToCodeConverterConfigManager */ "./src/main/erdiagram/generator/database/code-converter/postgresql/config/PostgresqlDatabaseModelToCodeConverterConfigManager.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDatabaseModelToCodeConverterConfigManager", function() { return _PostgresqlDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_0__["PostgresqlDatabaseModelToCodeConverterConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDatabaseModelToCodeConverterConfigManager", function() { return _PostgresqlDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/database/code-converter/postgresql/exports.ts":
+/*!************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/database/code-converter/postgresql/exports.ts ***!
+  \************************************************************************************/
+/*! exports provided: PostgresqlDatabaseModelToCodeConverterConfigManager, postgresqlDatabaseModelToCodeConverterConfigManager, PostgresqlDatabaseModelToCodeConverter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PostgresqlDatabaseModelToCodeConverter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PostgresqlDatabaseModelToCodeConverter */ "./src/main/erdiagram/generator/database/code-converter/postgresql/PostgresqlDatabaseModelToCodeConverter.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDatabaseModelToCodeConverter", function() { return _PostgresqlDatabaseModelToCodeConverter__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/generator/database/code-converter/postgresql/config/exports.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDatabaseModelToCodeConverterConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["PostgresqlDatabaseModelToCodeConverterConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDatabaseModelToCodeConverterConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["postgresqlDatabaseModelToCodeConverterConfigManager"]; });
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/database/code-converter/postgresql/type/PostgresqlTypeResolver.ts":
+/*!********************************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/database/code-converter/postgresql/type/PostgresqlTypeResolver.ts ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PostgresqlTypeResolver; });
+class PostgresqlTypeResolver {
+    constructor(typeBindings) {
+        this.typeBindings = typeBindings;
+    }
+    resolvePostgresqlType(type) {
         /* istanbul ignore next */
         if (!this.typeBindings.hasOwnProperty(type)) {
             throw new Error('Unsupported type: ' + type);
@@ -5106,7 +5520,7 @@ class SqlServerTypeResolver {
 /*!**********************************************************!*\
   !*** ./src/main/erdiagram/generator/database/exports.ts ***!
   \**********************************************************/
-/*! exports provided: MysqlDatabaseModelToCodeConverterConfigManager, mysqlDatabaseModelToCodeConverterConfigManager, MysqlDatabaseModelToCodeConverter, OracleDatabaseModelToCodeConverterConfigManager, oracleDatabaseModelToCodeConverterConfigManager, OracleDatabaseModelToCodeConverter, SqlServerDatabaseModelToCodeConverterConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager, SqlServerDatabaseModelToCodeConverter, EntityRelationshipModelToDatabaseCodeConverter, DatabaseModelGeneratorConfigManager, databaseModelGeneratorConfigManager, DatabaseModelGenerator */
+/*! exports provided: MysqlDatabaseModelToCodeConverterConfigManager, mysqlDatabaseModelToCodeConverterConfigManager, MysqlDatabaseModelToCodeConverter, OracleDatabaseModelToCodeConverterConfigManager, oracleDatabaseModelToCodeConverterConfigManager, OracleDatabaseModelToCodeConverter, SqlServerDatabaseModelToCodeConverterConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager, SqlServerDatabaseModelToCodeConverter, PostgresqlDatabaseModelToCodeConverterConfigManager, postgresqlDatabaseModelToCodeConverterConfigManager, PostgresqlDatabaseModelToCodeConverter, EntityRelationshipModelToDatabaseCodeConverter, DatabaseModelGeneratorConfigManager, databaseModelGeneratorConfigManager, DatabaseModelGenerator */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5129,6 +5543,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDatabaseModelToCodeConverterConfigManager", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["sqlServerDatabaseModelToCodeConverterConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDatabaseModelToCodeConverter", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["SqlServerDatabaseModelToCodeConverter"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDatabaseModelToCodeConverterConfigManager", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["PostgresqlDatabaseModelToCodeConverterConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDatabaseModelToCodeConverterConfigManager", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["postgresqlDatabaseModelToCodeConverterConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDatabaseModelToCodeConverter", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["PostgresqlDatabaseModelToCodeConverter"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityRelationshipModelToDatabaseCodeConverter", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["EntityRelationshipModelToDatabaseCodeConverter"]; });
 
@@ -6232,7 +6652,7 @@ class PlantUmlRelationshipDirectionCodeGenerator {
 /*!*************************************************!*\
   !*** ./src/main/erdiagram/generator/exports.ts ***!
   \*************************************************/
-/*! exports provided: StandardCaseFormats, CaseConverter, StandardIdNamingStrategies, MysqlDatabaseModelToCodeConverterConfigManager, mysqlDatabaseModelToCodeConverterConfigManager, MysqlDatabaseModelToCodeConverter, OracleDatabaseModelToCodeConverterConfigManager, oracleDatabaseModelToCodeConverterConfigManager, OracleDatabaseModelToCodeConverter, SqlServerDatabaseModelToCodeConverterConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager, SqlServerDatabaseModelToCodeConverter, EntityRelationshipModelToDatabaseCodeConverter, DatabaseModelGeneratorConfigManager, databaseModelGeneratorConfigManager, DatabaseModelGenerator, JavaClassModelToCodeConverterConfigManager, javaClassModelToCodeConverterConfigManager, createJavaType, createJavaParameterizedType, createJavaArrayType, isJavaParameterizedType, parseJavaType, JavaClassModelToCodeConverter, TypeScriptClassModelToCodeConverterConfigManager, typescriptClassModelToCodeConverterConfigManager, createTypeScriptType, createTypeScriptParameterizedType, createTypeScriptArrayType, isTypeScriptParameterizedType, parseTypeScriptType, TypeScriptClassModelToCodeConverter, EntityRelationshipModelToClassCodeConverter, ClassModelGeneratorConfigManager, classModelGeneratorConfigManager, ClassModelGenerator, NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, NomnomlEntityRelationshipModelToDiagramCodeConverter, NomnomlEntityRelationshipModelToDiagramConverter, PlantUmlEntityRelationshipModelToDiagramCodeConverterConfigManager, plantumlEntityRelationshipModelToDiagramCodeConverterConfigManager, PlantUmlEntityRelationshipModelToDiagramCodeConverter, PlantUmlEntityRelationshipModelToDiagramConverter, BaseEntityRelationshipModelToDiagramConverter */
+/*! exports provided: StandardCaseFormats, CaseConverter, StandardIdNamingStrategies, MysqlDatabaseModelToCodeConverterConfigManager, mysqlDatabaseModelToCodeConverterConfigManager, MysqlDatabaseModelToCodeConverter, OracleDatabaseModelToCodeConverterConfigManager, oracleDatabaseModelToCodeConverterConfigManager, OracleDatabaseModelToCodeConverter, SqlServerDatabaseModelToCodeConverterConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager, SqlServerDatabaseModelToCodeConverter, PostgresqlDatabaseModelToCodeConverterConfigManager, postgresqlDatabaseModelToCodeConverterConfigManager, PostgresqlDatabaseModelToCodeConverter, EntityRelationshipModelToDatabaseCodeConverter, DatabaseModelGeneratorConfigManager, databaseModelGeneratorConfigManager, DatabaseModelGenerator, JavaClassModelToCodeConverterConfigManager, javaClassModelToCodeConverterConfigManager, createJavaType, createJavaParameterizedType, createJavaArrayType, isJavaParameterizedType, parseJavaType, JavaClassModelToCodeConverter, TypeScriptClassModelToCodeConverterConfigManager, typescriptClassModelToCodeConverterConfigManager, createTypeScriptType, createTypeScriptParameterizedType, createTypeScriptArrayType, isTypeScriptParameterizedType, parseTypeScriptType, TypeScriptClassModelToCodeConverter, EntityRelationshipModelToClassCodeConverter, ClassModelGeneratorConfigManager, classModelGeneratorConfigManager, ClassModelGenerator, NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, NomnomlEntityRelationshipModelToDiagramCodeConverter, NomnomlEntityRelationshipModelToDiagramConverter, PlantUmlEntityRelationshipModelToDiagramCodeConverterConfigManager, plantumlEntityRelationshipModelToDiagramCodeConverterConfigManager, PlantUmlEntityRelationshipModelToDiagramCodeConverter, PlantUmlEntityRelationshipModelToDiagramConverter, BaseEntityRelationshipModelToDiagramConverter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6265,6 +6685,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDatabaseModelToCodeConverterConfigManager", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["sqlServerDatabaseModelToCodeConverterConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDatabaseModelToCodeConverter", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["SqlServerDatabaseModelToCodeConverter"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDatabaseModelToCodeConverterConfigManager", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["PostgresqlDatabaseModelToCodeConverterConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDatabaseModelToCodeConverterConfigManager", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["postgresqlDatabaseModelToCodeConverterConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDatabaseModelToCodeConverter", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["PostgresqlDatabaseModelToCodeConverter"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityRelationshipModelToDatabaseCodeConverter", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["EntityRelationshipModelToDatabaseCodeConverter"]; });
 
@@ -8262,7 +8688,7 @@ function removeNonEmptyStrings(strings) {
 /*!**********************************!*\
   !*** ./src/main/module-entry.ts ***!
   \**********************************/
-/*! exports provided: AbstractComponentConfigManager, StandardCaseFormats, CaseConverter, StandardIdNamingStrategies, MysqlDatabaseModelToCodeConverterConfigManager, mysqlDatabaseModelToCodeConverterConfigManager, MysqlDatabaseModelToCodeConverter, OracleDatabaseModelToCodeConverterConfigManager, oracleDatabaseModelToCodeConverterConfigManager, OracleDatabaseModelToCodeConverter, SqlServerDatabaseModelToCodeConverterConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager, SqlServerDatabaseModelToCodeConverter, EntityRelationshipModelToDatabaseCodeConverter, DatabaseModelGeneratorConfigManager, databaseModelGeneratorConfigManager, DatabaseModelGenerator, JavaClassModelToCodeConverterConfigManager, javaClassModelToCodeConverterConfigManager, createJavaType, createJavaParameterizedType, createJavaArrayType, isJavaParameterizedType, parseJavaType, JavaClassModelToCodeConverter, TypeScriptClassModelToCodeConverterConfigManager, typescriptClassModelToCodeConverterConfigManager, createTypeScriptType, createTypeScriptParameterizedType, createTypeScriptArrayType, isTypeScriptParameterizedType, parseTypeScriptType, TypeScriptClassModelToCodeConverter, EntityRelationshipModelToClassCodeConverter, ClassModelGeneratorConfigManager, classModelGeneratorConfigManager, ClassModelGenerator, NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, NomnomlEntityRelationshipModelToDiagramCodeConverter, NomnomlEntityRelationshipModelToDiagramConverter, PlantUmlEntityRelationshipModelToDiagramCodeConverterConfigManager, plantumlEntityRelationshipModelToDiagramCodeConverterConfigManager, PlantUmlEntityRelationshipModelToDiagramCodeConverter, PlantUmlEntityRelationshipModelToDiagramConverter, BaseEntityRelationshipModelToDiagramConverter, EntityRelationshipModelParserConfigManager, entityRelationshipModelParserConfigManager, EntityPropertyType, Cardinality, Direction, ERDiagramError, ERDiagramParseLineError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramRelationshipError, ERDiagramUnknownEntityError, ERDiagramEntityError, ERDiagramDuplicatedEntityNameError, ERDiagramEntityPropertyError, ERDiagramMultipleIdentifiersError, ERDiagramInvalidIdentifierDefinitionError, ERDiagramDuplicatedPropertyNameError, EntityRelationshipModelParser */
+/*! exports provided: AbstractComponentConfigManager, StandardCaseFormats, CaseConverter, StandardIdNamingStrategies, MysqlDatabaseModelToCodeConverterConfigManager, mysqlDatabaseModelToCodeConverterConfigManager, MysqlDatabaseModelToCodeConverter, OracleDatabaseModelToCodeConverterConfigManager, oracleDatabaseModelToCodeConverterConfigManager, OracleDatabaseModelToCodeConverter, SqlServerDatabaseModelToCodeConverterConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager, SqlServerDatabaseModelToCodeConverter, PostgresqlDatabaseModelToCodeConverterConfigManager, postgresqlDatabaseModelToCodeConverterConfigManager, PostgresqlDatabaseModelToCodeConverter, EntityRelationshipModelToDatabaseCodeConverter, DatabaseModelGeneratorConfigManager, databaseModelGeneratorConfigManager, DatabaseModelGenerator, JavaClassModelToCodeConverterConfigManager, javaClassModelToCodeConverterConfigManager, createJavaType, createJavaParameterizedType, createJavaArrayType, isJavaParameterizedType, parseJavaType, JavaClassModelToCodeConverter, TypeScriptClassModelToCodeConverterConfigManager, typescriptClassModelToCodeConverterConfigManager, createTypeScriptType, createTypeScriptParameterizedType, createTypeScriptArrayType, isTypeScriptParameterizedType, parseTypeScriptType, TypeScriptClassModelToCodeConverter, EntityRelationshipModelToClassCodeConverter, ClassModelGeneratorConfigManager, classModelGeneratorConfigManager, ClassModelGenerator, NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, NomnomlEntityRelationshipModelToDiagramCodeConverter, NomnomlEntityRelationshipModelToDiagramConverter, PlantUmlEntityRelationshipModelToDiagramCodeConverterConfigManager, plantumlEntityRelationshipModelToDiagramCodeConverterConfigManager, PlantUmlEntityRelationshipModelToDiagramCodeConverter, PlantUmlEntityRelationshipModelToDiagramConverter, BaseEntityRelationshipModelToDiagramConverter, EntityRelationshipModelParserConfigManager, entityRelationshipModelParserConfigManager, EntityPropertyType, Cardinality, Direction, ERDiagramError, ERDiagramParseLineError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramRelationshipError, ERDiagramUnknownEntityError, ERDiagramEntityError, ERDiagramDuplicatedEntityNameError, ERDiagramEntityPropertyError, ERDiagramMultipleIdentifiersError, ERDiagramInvalidIdentifierDefinitionError, ERDiagramDuplicatedPropertyNameError, EntityRelationshipModelParser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8293,6 +8719,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDatabaseModelToCodeConverterConfigManager", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["sqlServerDatabaseModelToCodeConverterConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDatabaseModelToCodeConverter", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["SqlServerDatabaseModelToCodeConverter"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDatabaseModelToCodeConverterConfigManager", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["PostgresqlDatabaseModelToCodeConverterConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDatabaseModelToCodeConverterConfigManager", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["postgresqlDatabaseModelToCodeConverterConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDatabaseModelToCodeConverter", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["PostgresqlDatabaseModelToCodeConverter"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityRelationshipModelToDatabaseCodeConverter", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["EntityRelationshipModelToDatabaseCodeConverter"]; });
 

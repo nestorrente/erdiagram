@@ -232,6 +232,29 @@ export declare class SqlServerDatabaseModelToCodeConverterConfigManager extends 
 	convertFromSerializableObject(serializableConfig: SqlServerDatabaseModelToCodeConverterSerializableConfig): SqlServerDatabaseModelToCodeConverterConfig;
 }
 export declare const sqlServerDatabaseModelToCodeConverterConfigManager: SqlServerDatabaseModelToCodeConverterConfigManager;
+export interface PostgresqlDatabaseModelToCodeConverterConfig extends DatabaseModelToCodeConverterConfig {
+}
+export declare class PostgresqlDatabaseModelToCodeConverter implements DatabaseModelToCodeConverter {
+	private readonly config;
+	private readonly tableNameCaseConverter;
+	private readonly columnCodeGenerator;
+	private readonly idColumnCodeGenerator;
+	private readonly foreignColumnCodeGenerator;
+	constructor(config?: Partial<PostgresqlDatabaseModelToCodeConverterConfig>);
+	convertToCode(databaseModel: DatabaseModel): string;
+	private generateTableCode;
+	private processColumns;
+	private processReferences;
+}
+export interface PostgresqlDatabaseModelToCodeConverterSerializableConfig extends DatabaseModelToCodeConverterSerializableConfig {
+}
+export declare class PostgresqlDatabaseModelToCodeConverterConfigManager extends AbstractComponentConfigManager<PostgresqlDatabaseModelToCodeConverterConfig, Partial<PostgresqlDatabaseModelToCodeConverterConfig>, PostgresqlDatabaseModelToCodeConverterSerializableConfig> {
+	getDefaultConfig(): PostgresqlDatabaseModelToCodeConverterConfig;
+	mergeConfigs(fullConfig: PostgresqlDatabaseModelToCodeConverterConfig, partialConfig?: Partial<PostgresqlDatabaseModelToCodeConverterConfig>): PostgresqlDatabaseModelToCodeConverterConfig;
+	convertToSerializableObject(fullConfig: PostgresqlDatabaseModelToCodeConverterConfig): PostgresqlDatabaseModelToCodeConverterSerializableConfig;
+	convertFromSerializableObject(serializableConfig: PostgresqlDatabaseModelToCodeConverterSerializableConfig): PostgresqlDatabaseModelToCodeConverterConfig;
+}
+export declare const postgresqlDatabaseModelToCodeConverterConfigManager: PostgresqlDatabaseModelToCodeConverterConfigManager;
 export interface DatabaseModelGeneratorSerializableConfig {
 	usePluralTableNames: boolean;
 	idNamingStrategy?: string;

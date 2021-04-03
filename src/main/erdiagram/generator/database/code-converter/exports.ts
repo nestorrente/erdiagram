@@ -6,6 +6,7 @@ import EntityRelationshipModelToDatabaseCodeConverter from './EntityRelationship
 export * from './mysql/exports';
 export * from './oracle/exports';
 export * from './sqlserver/exports';
+export * from './postgresql/exports';
 
 export {
 	DatabaseModelToCodeConverter,

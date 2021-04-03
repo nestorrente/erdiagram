@@ -276,6 +276,7 @@ describe('Config', () => {
 		}).convertToCode(fullDatabaseModel);
 
 		expect(result).toBe(`
+
 CREATE SEQUENCE "Modifiers_Table_the_id_of_modifiers_table_SEQ" START WITH 1;
 CREATE SEQUENCE "Modifiers_Table_autoincremental_column_SEQ" START WITH 1;
 CREATE TABLE "Modifiers_Table" (

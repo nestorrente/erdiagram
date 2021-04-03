@@ -49,10 +49,10 @@ Or, if you prefer, you can use any of the following CDN repositories:
 
 ```html
 <!-- Unpkg -->
-<script src="https://unpkg.com/@nestorrente/erdiagram@0.1.0-alpha.3"></script>
+<script src="https://unpkg.com/@nestorrente/erdiagram@0.1.0-beta.0"></script>
 
 <!-- JsDelivr -->
-<script src="https://cdn.jsdelivr.net/npm/@nestorrente/erdiagram@0.1.0-alpha.3"></script>
+<script src="https://cdn.jsdelivr.net/npm/@nestorrente/erdiagram@0.1.0-beta.0"></script>
 ```
 
 The script will create a global  `ERDiagram` object, which contains all the exported classes, objects and functions.
@@ -285,7 +285,7 @@ const databaseModelToCodeConverter = new MysqlDatabaseModelToCodeConverter({
 ```
 
 Although we are using `MysqlDatabaseModelToCodeConverter` in this example, there is also support for other database
-engines, like Oracle (using `OracleDatabaseModelToCodeConverter`) or SQL Server (using
+engines, like Oracle (using `PostgresqlDatabaseModelToCodeConverter`) or SQL Server (using
 `SqlServerDatabaseModelToCodeConverter`).
 
 ### Generate OOP classes from an EntityRelationshipModel object
