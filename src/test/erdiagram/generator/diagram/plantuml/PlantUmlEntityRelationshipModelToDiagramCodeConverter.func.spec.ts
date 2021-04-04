@@ -3,7 +3,7 @@ import {
 	Direction,
 	EntityPropertyType,
 	EntityRelationshipModel
-} from '@/erdiagram/parser/entity-relationship-model-types';
+} from '../../../../../main/erdiagram/parser/types/entity-relationship-model-types';
 import PlantUmlEntityRelationshipModelToDiagramCodeConverter
 	from '@/erdiagram/generator/diagram/plantuml/PlantUmlEntityRelationshipModelToDiagramCodeConverter';
 

@@ -1,9 +1,9 @@
-import {RelationshipMember} from '@/erdiagram/parser/entity-relationship-model-types';
+import {RelationshipMember} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {
 	ParsedEntityDescriptor,
 	ParsedEntityPropertyDescriptor,
 	ParsedRelationshipDescriptor
-} from '@/erdiagram/parser/parsed-entity-relationship-model-types';
+} from '@/erdiagram/parser/types/parsed-entity-relationship-model-types';
 
 export class ERDiagramError extends Error {
 

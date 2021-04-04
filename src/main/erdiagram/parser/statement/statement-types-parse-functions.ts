@@ -4,12 +4,12 @@ import {
 	ENTITY_PROPERTY_LINE_REGEX,
 	RELATIONSHIP_LINE_REGEX
 } from '@/erdiagram/parser/statement/statement-types-regexes';
-import {Cardinality, Direction, EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
+import {Cardinality, Direction, EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {
 	ParsedEntityPropertyDescriptor,
 	ParsedRelationshipDescriptor
-} from '@/erdiagram/parser/parsed-entity-relationship-model-types';
-import {ERDiagramSyntaxError, ERDiagramUnknownTypeError} from '@/erdiagram/parser/parse-errors';
+} from '@/erdiagram/parser/types/parsed-entity-relationship-model-types';
+import {ERDiagramSyntaxError, ERDiagramUnknownTypeError} from '@/erdiagram/parser/types/parse-errors';
 
 export function parseEntityNameStatement(line: string): string {
 

@@ -1,4 +1,4 @@
-import {Cardinality, RelationshipMember} from '@/erdiagram/parser/entity-relationship-model-types';
+import {Cardinality, RelationshipMember} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {ClassFieldDescriptor} from '@/erdiagram/generator/oop/model/class-model-types';
 import pluralize from 'pluralize';
 

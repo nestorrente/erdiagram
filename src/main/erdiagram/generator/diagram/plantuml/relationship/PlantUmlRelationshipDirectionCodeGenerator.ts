@@ -1,4 +1,4 @@
-import {Direction} from '@/erdiagram/parser/entity-relationship-model-types';
+import {Direction} from '@/erdiagram/parser/types/entity-relationship-model-types';
 
 export default class PlantUmlRelationshipDirectionCodeGenerator {
 

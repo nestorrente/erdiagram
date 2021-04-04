@@ -1,4 +1,13 @@
-import {Direction, EntityPropertyType, RelationshipMember} from '@/erdiagram/parser/entity-relationship-model-types';
+import {
+	Direction,
+	EntityPropertyType,
+	RelationshipMember
+} from '@/erdiagram/parser/types/entity-relationship-model-types';
+
+export interface EntityRelationshipModelParseResult {
+	model: ParsedEntityRelationshipModel;
+	statementResultToLineMap: Map<ParsedStatementResult, number>;
+}
 
 export type ParsedStatementResult =
 		ParsedEntityDescriptor

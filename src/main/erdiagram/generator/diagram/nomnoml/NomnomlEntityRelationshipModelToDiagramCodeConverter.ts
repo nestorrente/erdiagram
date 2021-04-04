@@ -1,4 +1,4 @@
-import {EntityRelationshipModel} from '@/erdiagram/parser/entity-relationship-model-types';
+import {EntityRelationshipModel} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import NomnomlEntityCodeGenerator from '@/erdiagram/generator/diagram/nomnoml/entity/NomnomlEntityCodeGenerator';
 import NomnomlRelationshipCodeGenerator
 	from '@/erdiagram/generator/diagram/nomnoml/relationship/NomnomlRelationshipCodeGenerator';

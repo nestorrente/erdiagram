@@ -1,8 +1,7 @@
 import EntityRelationshipModelParser from './EntityRelationshipModelParser';
 
 export * from './config/exports';
-export * from './entity-relationship-model-types';
-export * from './parse-errors';
+export * from './types/exports';
 
 export {
 	EntityRelationshipModelParser

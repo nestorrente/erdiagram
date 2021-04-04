@@ -1,22 +1,44 @@
-import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
+import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {
 	ERDiagramDuplicatedEntityNameError,
 	ERDiagramDuplicatedPropertyNameError,
 	ERDiagramInvalidIdentifierDefinitionError,
 	ERDiagramMultipleIdentifiersError,
 	ERDiagramUnknownEntityError
-} from '@/erdiagram/parser/parse-errors';
-import {ParsedEntityRelationshipModel} from '@/erdiagram/parser/parsed-entity-relationship-model-types';
+} from '@/erdiagram/parser/types/parse-errors';
+import {
+	EntityRelationshipModelParseResult,
+	ParsedEntityRelationshipModel
+} from '@/erdiagram/parser/types/parsed-entity-relationship-model-types';
+import EntityRelationshipModelParseResultValidatorErrorHandler
+	from '@/erdiagram/parser/validator/EntityRelationshipModelParseResultValidatorErrorHandler';
 
-export default class ParsedEntityRelationshipModelValidator {
+export default class EntityRelationshipModelParseResultValidator {
+
+	private readonly errorHandler: EntityRelationshipModelParseResultValidatorErrorHandler;
 
 	constructor(
 			private readonly allowUnknownEntities: boolean
 	) {
+		this.errorHandler = new EntityRelationshipModelParseResultValidatorErrorHandler();
+	}
+
+	public validateParseResult(parseResult: EntityRelationshipModelParseResult) {
+
+		const {
+			model,
+			statementResultToLineMap
+		} = parseResult;
+
+		try {
+			this.validateParsedModel(model);
+		} catch(error) {
+			this.errorHandler.handleValidationError(error, statementResultToLineMap);
+		}
 
 	}
 
-	public validateParsedModel(model: ParsedEntityRelationshipModel) {
+	private validateParsedModel(model: ParsedEntityRelationshipModel) {
 
 		this.validateNonRepeatedEntityNames(model);
 		this.validateNonRepeatedPropertyNames(model);

@@ -1,5 +1,5 @@
 import {ClassFieldDescriptor} from '@/erdiagram/generator/oop/model/class-model-types';
-import {EntityPropertyDescriptor} from '@/erdiagram/parser/entity-relationship-model-types';
+import {EntityPropertyDescriptor} from '@/erdiagram/parser/types/entity-relationship-model-types';
 
 export default class EntityPropertyToClassFieldMapper {
 

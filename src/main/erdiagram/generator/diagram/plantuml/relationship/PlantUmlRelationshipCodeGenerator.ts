@@ -1,4 +1,4 @@
-import {RelationshipDescriptor} from '@/erdiagram/parser/entity-relationship-model-types';
+import {RelationshipDescriptor} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import PlantUmlRelationshipDirectionCodeGenerator
 	from '@/erdiagram/generator/diagram/plantuml/relationship/PlantUmlRelationshipDirectionCodeGenerator';
 import PlantUmlRelationshipCardinalityCodeGenerator

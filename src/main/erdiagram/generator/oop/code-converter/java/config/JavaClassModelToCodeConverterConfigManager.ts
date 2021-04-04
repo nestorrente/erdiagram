@@ -1,4 +1,4 @@
-import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
+import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
 import JavaClassModelToCodeConverterConfig
 	from '@/erdiagram/generator/oop/code-converter/java/config/JavaClassModelToCodeConverterConfig';

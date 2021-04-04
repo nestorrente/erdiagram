@@ -14,7 +14,7 @@ import {
 	fullDatabaseModel
 } from '../common/test-database-models';
 import StandardCaseFormats from '@/erdiagram/generator/common/case-format/StandardCaseFormats';
-import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
+import {EntityPropertyType} from '../../../../../../main/erdiagram/parser/types/entity-relationship-model-types';
 
 const mysqlDatabaseModelToCodeConverter = new MysqlDatabaseModelToCodeConverter();
 

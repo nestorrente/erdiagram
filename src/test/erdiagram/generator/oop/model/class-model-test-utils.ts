@@ -1,4 +1,4 @@
-import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
+import {EntityPropertyType} from '../../../../../main/erdiagram/parser/types/entity-relationship-model-types';
 import {ClassFieldDescriptor} from '@/erdiagram/generator/oop/model/class-model-types';
 
 export function createIdClassField(name: string = 'id') {

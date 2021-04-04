@@ -5,8 +5,8 @@ import {
 	createIdClassField,
 	createPrimitiveClassField
 } from '#/erdiagram/generator/oop/model/class-model-test-utils';
-import {EntityPropertyType} from '../../../../../../main/erdiagram/parser/entity-relationship-model-types';
-import parseJavaType from '../../../../../../main/erdiagram/generator/oop/code-converter/java/type/parseJavaType';
+import {EntityPropertyType} from '../../../../../../main/erdiagram/parser/types/entity-relationship-model-types';
+import parseJavaType from '@/erdiagram/generator/oop/code-converter/java/type/parseJavaType';
 
 const javaClassModelToCodeConverter = new JavaClassModelToCodeConverter();
 

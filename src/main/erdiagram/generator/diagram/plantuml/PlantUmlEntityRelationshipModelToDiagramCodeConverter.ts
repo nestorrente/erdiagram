@@ -1,4 +1,4 @@
-import {EntityRelationshipModel} from '@/erdiagram/parser/entity-relationship-model-types';
+import {EntityRelationshipModel} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import EntityRelationshipModelToCodeConverter from '@/erdiagram/generator/EntityRelationshipModelToCodeConverter';
 import PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig
 	from '@/erdiagram/generator/diagram/plantuml/config/PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig';

@@ -9,7 +9,7 @@ import {
 	EntityPropertyDescriptor,
 	EntityPropertyType,
 	RelationshipDescriptor
-} from '@/erdiagram/parser/entity-relationship-model-types';
+} from '../../../../main/erdiagram/parser/types/entity-relationship-model-types';
 
 describe('Parse entity name statement', () => {
 

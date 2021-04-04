@@ -1,4 +1,4 @@
-import {EntityRelationshipModel} from '@/erdiagram/parser/entity-relationship-model-types';
+import {EntityRelationshipModel} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import NomnomlEntityRelationshipModelToDiagramCodeConverter
 	from '@/erdiagram/generator/diagram/nomnoml/NomnomlEntityRelationshipModelToDiagramCodeConverter';
 import {BaseEntityRelationshipModelToDiagramConverter} from '@/erdiagram/generator/EntityRelationshipModelToDiagramConverter';

@@ -1,4 +1,4 @@
-import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
+import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {TableColumnDescriptor} from '@/erdiagram/generator/database/model/database-model-types';
 import IdColumnCode from '@/erdiagram/generator/database/code-converter/oracle/column/types/IdColumnCode';
 import OracleColumnCodeGenerator

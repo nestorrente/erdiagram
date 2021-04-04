@@ -1,4 +1,4 @@
-import {EntityRelationshipModel} from '@/erdiagram/parser/entity-relationship-model-types';
+import {EntityRelationshipModel} from '@/erdiagram/parser/types/entity-relationship-model-types';
 
 export default interface EntityRelationshipModelToDiagramConverter {
 

@@ -1,4 +1,4 @@
-import {Cardinality} from '@/erdiagram/parser/entity-relationship-model-types';
+import {Cardinality} from '@/erdiagram/parser/types/entity-relationship-model-types';
 
 export default class PlantUmlRelationshipCardinalityCodeGenerator {
 

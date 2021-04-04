@@ -13,7 +13,7 @@ import {
 	EntityRelationshipModel,
 	RelationshipDescriptor,
 	RelationshipMember
-} from '@/erdiagram/parser/entity-relationship-model-types';
+} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import databaseModelGeneratorConfigManager
 	from '@/erdiagram/generator/database/model/config/DatabaseModelGeneratorConfigManager';
 import {classifyBy} from '@/erdiagram/util/map-utils';

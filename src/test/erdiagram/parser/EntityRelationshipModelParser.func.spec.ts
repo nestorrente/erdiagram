@@ -5,7 +5,7 @@ import {
 	EntityPropertyType,
 	EntityRelationshipModel,
 	RelationshipDescriptor
-} from '@/erdiagram/parser/entity-relationship-model-types';
+} from '../../../main/erdiagram/parser/types/entity-relationship-model-types';
 import {
 	createEntityWithoutProperties,
 	createSimpleEntityProperty

@@ -1,4 +1,4 @@
-import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
+import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {
 	TableColumnDescriptor,
 	TableReferenceDescriptor

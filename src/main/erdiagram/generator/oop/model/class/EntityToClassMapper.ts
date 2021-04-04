@@ -1,6 +1,10 @@
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
 import {ClassDescriptor, ClassFieldDescriptor} from '@/erdiagram/generator/oop/model/class-model-types';
-import {Direction, EntityDescriptor, RelationshipDescriptor} from '@/erdiagram/parser/entity-relationship-model-types';
+import {
+	Direction,
+	EntityDescriptor,
+	RelationshipDescriptor
+} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import ClassModelGeneratorConfig from '@/erdiagram/generator/oop/model/config/ClassModelGeneratorConfig';
 import RelationshipMemberToClassFieldMapper
 	from '@/erdiagram/generator/oop/model/class/field/RelationshipMemberToClassFieldMapper';

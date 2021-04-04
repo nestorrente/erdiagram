@@ -1,7 +1,7 @@
 import {ClassFieldDescriptor} from '@/erdiagram/generator/oop/model/class-model-types';
 import JavaType, {createJavaType} from '@/erdiagram/generator/oop/code-converter/java/type/JavaType';
 import JavaParameterizedType, {createJavaParameterizedType} from '@/erdiagram/generator/oop/code-converter/java/type/JavaParameterizedType';
-import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
+import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 
 export default class JavaFieldTypeResolver {
 

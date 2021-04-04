@@ -3,11 +3,11 @@ import {
 	EntityPropertyDescriptor,
 	EntityPropertyType,
 	EntityRelationshipModel
-} from '@/erdiagram/parser/entity-relationship-model-types';
+} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {
 	ParsedEntityDescriptor,
 	ParsedEntityRelationshipModel
-} from '@/erdiagram/parser/parsed-entity-relationship-model-types';
+} from '@/erdiagram/parser/types/parsed-entity-relationship-model-types';
 
 export default class ParsedModelToPublicModelConverter {
 

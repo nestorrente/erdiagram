@@ -1,4 +1,4 @@
-import {EntityRelationshipModel} from '@/erdiagram/parser/entity-relationship-model-types';
+import {EntityRelationshipModel} from '../../../../../main/erdiagram/parser/types/entity-relationship-model-types';
 import {DatabaseModel} from '@/erdiagram/generator/database/model/database-model-types';
 import DatabaseModelGenerator from '@/erdiagram/generator/database/model/DatabaseModelGenerator';
 import EntityRelationshipModelToDatabaseCodeConverter

@@ -1,7 +1,7 @@
 import {ClassFieldDescriptor} from '@/erdiagram/generator/oop/model/class-model-types';
 import TypeScriptType, {createTypeScriptType} from '@/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptType';
 import TypeScriptParameterizedType, {createTypeScriptArrayType} from '@/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptParameterizedType';
-import {EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
+import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 
 export default class TypeScriptTypeResolver {
 

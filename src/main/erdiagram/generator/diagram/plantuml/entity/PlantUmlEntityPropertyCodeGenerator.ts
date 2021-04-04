@@ -1,4 +1,4 @@
-import {EntityPropertyDescriptor, EntityPropertyType} from '@/erdiagram/parser/entity-relationship-model-types';
+import {EntityPropertyDescriptor, EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 
 export default class PlantUmlEntityPropertyCodeGenerator {
 
