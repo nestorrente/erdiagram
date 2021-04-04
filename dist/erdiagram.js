@@ -1,10 +1,10 @@
 /*!
- * Entity-Relationship Diagram Code Generator v0.1.0-alpha.3
+ * Entity-Relationship Diagram Code Generator v0.1.0-beta.0
  * https://github.com/nestorrente/erdiagram
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-04-03T09:08:20.033Z
+ * Build date: 2021-04-04T11:14:13.187Z
  */
 var ERDiagram =
 /******/ (function(modules) { // webpackBootstrap
@@ -3869,6 +3869,32 @@ class EntityRelationshipModelToDatabaseCodeConverter {
 
 /***/ }),
 
+/***/ "./src/main/erdiagram/generator/database/code-converter/common/SqlTypeResolver.ts":
+/*!****************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/database/code-converter/common/SqlTypeResolver.ts ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SqlTypeResolver; });
+class SqlTypeResolver {
+    constructor(typeBindings) {
+        this.typeBindings = typeBindings;
+    }
+    resolveSqlType(type) {
+        /* istanbul ignore next */
+        if (!this.typeBindings.hasOwnProperty(type)) {
+            throw new Error('Unsupported type: ' + type);
+        }
+        return this.typeBindings[type];
+    }
+}
+
+
+/***/ }),
+
 /***/ "./src/main/erdiagram/generator/database/code-converter/exports.ts":
 /*!*************************************************************************!*\
   !*** ./src/main/erdiagram/generator/database/code-converter/exports.ts ***!
@@ -3930,13 +3956,13 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MysqlDatabaseModelToCodeConverter; });
 /* harmony import */ var _erdiagram_generator_database_code_converter_mysql_column_MysqlColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/mysql/column/MysqlColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/mysql/column/MysqlColumnCodeGenerator.ts");
-/* harmony import */ var _erdiagram_generator_database_code_converter_mysql_type_MysqlTypeResolver__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/mysql/type/MysqlTypeResolver */ "./src/main/erdiagram/generator/database/code-converter/mysql/type/MysqlTypeResolver.ts");
-/* harmony import */ var _erdiagram_generator_database_code_converter_mysql_column_MysqlIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/mysql/column/MysqlIdColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/mysql/column/MysqlIdColumnCodeGenerator.ts");
-/* harmony import */ var _erdiagram_generator_database_code_converter_mysql_column_MysqlForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/mysql/column/MysqlForeignColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/mysql/column/MysqlForeignColumnCodeGenerator.ts");
-/* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
-/* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
-/* harmony import */ var _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/CaseConverter */ "./src/main/erdiagram/generator/common/case-format/CaseConverter.ts");
-/* harmony import */ var _erdiagram_generator_database_code_converter_mysql_config_MysqlDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/mysql/config/MysqlDatabaseModelToCodeConverterConfigManager */ "./src/main/erdiagram/generator/database/code-converter/mysql/config/MysqlDatabaseModelToCodeConverterConfigManager.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_mysql_column_MysqlIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/mysql/column/MysqlIdColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/mysql/column/MysqlIdColumnCodeGenerator.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_mysql_column_MysqlForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/mysql/column/MysqlForeignColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/mysql/column/MysqlForeignColumnCodeGenerator.ts");
+/* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
+/* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
+/* harmony import */ var _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/CaseConverter */ "./src/main/erdiagram/generator/common/case-format/CaseConverter.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_mysql_config_MysqlDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/mysql/config/MysqlDatabaseModelToCodeConverterConfigManager */ "./src/main/erdiagram/generator/database/code-converter/mysql/config/MysqlDatabaseModelToCodeConverterConfigManager.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_common_SqlTypeResolver__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/common/SqlTypeResolver */ "./src/main/erdiagram/generator/database/code-converter/common/SqlTypeResolver.ts");
 
 
 
@@ -3947,12 +3973,12 @@ __webpack_require__.r(__webpack_exports__);
 
 class MysqlDatabaseModelToCodeConverter {
     constructor(config) {
-        this.config = _erdiagram_generator_database_code_converter_mysql_config_MysqlDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_7__["default"].mergeWithDefaultConfig(config);
-        this.tableNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.tableNameCaseFormat);
-        const columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.columnNameCaseFormat);
-        this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_mysql_column_MysqlColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](new _erdiagram_generator_database_code_converter_mysql_type_MysqlTypeResolver__WEBPACK_IMPORTED_MODULE_1__["default"](this.config.typeBindings), columnNameCaseConverter);
-        this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_mysql_column_MysqlIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.columnCodeGenerator, columnNameCaseConverter);
-        this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_mysql_column_MysqlForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
+        this.config = _erdiagram_generator_database_code_converter_mysql_config_MysqlDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_6__["default"].mergeWithDefaultConfig(config);
+        this.tableNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_5__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_4__["default"].LOWER_CAMEL, this.config.tableNameCaseFormat);
+        const columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_5__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_4__["default"].LOWER_CAMEL, this.config.columnNameCaseFormat);
+        this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_mysql_column_MysqlColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](new _erdiagram_generator_database_code_converter_common_SqlTypeResolver__WEBPACK_IMPORTED_MODULE_7__["default"](this.config.typeBindings), columnNameCaseConverter);
+        this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_mysql_column_MysqlIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_1__["default"](this.columnCodeGenerator, columnNameCaseConverter);
+        this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_mysql_column_MysqlForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
     }
     convertToCode(databaseModel) {
         const allCreateTableStatements = [];
@@ -3989,7 +4015,7 @@ class MysqlDatabaseModelToCodeConverter {
         ];
         const createTableLines = [
             `CREATE TABLE \`${outputTableName}\` (`,
-            Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_4__["indentLines"])(createTableInnerLines).join(',\n'),
+            Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_3__["indentLines"])(createTableInnerLines).join(',\n'),
             ');'
         ];
         const createTableStatement = createTableLines.join('\n');
@@ -4062,7 +4088,7 @@ class MysqlColumnCodeGenerator {
         return lineParts.join(' ');
     }
     generateMysqlTypeDeclaration(type, length) {
-        const mysqlType = this.typeResolver.resolveMysqlType(type);
+        const mysqlType = this.typeResolver.resolveSqlType(type);
         const lengthCode = this.generateLengthCode(length);
         return mysqlType + lengthCode;
     }
@@ -4090,7 +4116,7 @@ class MysqlColumnCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MysqlForeignColumnCodeGenerator; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 
 class MysqlForeignColumnCodeGenerator {
     constructor(columnCodeGenerator, tableNameCaseConverter, columnNameCaseConverter) {
@@ -4111,7 +4137,7 @@ class MysqlForeignColumnCodeGenerator {
         const { columnName, notNull, unique } = reference;
         return {
             name: columnName,
-            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
+            type: _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
             length: [],
             notNull,
             unique,
@@ -4140,7 +4166,7 @@ class MysqlForeignColumnCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MysqlIdColumnCodeGenerator; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 
 class MysqlIdColumnCodeGenerator {
     constructor(columnCodeGenerator, columnNameCaseConverter) {
@@ -4159,7 +4185,7 @@ class MysqlIdColumnCodeGenerator {
     createIdColumnDescriptor(identifierColumnName) {
         return {
             name: identifierColumnName,
-            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
+            type: _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
             length: [],
             notNull: true,
             autoincremental: true,
@@ -4187,7 +4213,7 @@ class MysqlIdColumnCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MysqlDatabaseModelToCodeConverterConfigManager", function() { return MysqlDatabaseModelToCodeConverterConfigManager; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 /* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
 /* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
 /* harmony import */ var _erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/record-utils */ "./src/main/erdiagram/util/record-utils.ts");
@@ -4199,17 +4225,17 @@ class MysqlDatabaseModelToCodeConverterConfigManager extends _erdiagram_common_c
     getDefaultConfig() {
         return {
             typeBindings: {
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: 'BIGINT',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: 'VARCHAR',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: 'BIGINT',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: 'INT',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: 'SHORT',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: 'DECIMAL',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: 'BOOLEAN',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: 'DATE',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: 'TIME',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: 'TIMESTAMP',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: 'BLOB'
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: 'BIGINT',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: 'VARCHAR',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: 'BIGINT',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: 'INT',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: 'SHORT',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: 'DECIMAL',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: 'BOOLEAN',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: 'DATE',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: 'TIME',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: 'TIMESTAMP',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: 'BLOB'
             },
             tableNameCaseFormat: _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL,
             columnNameCaseFormat: _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].LOWER_CAMEL,
@@ -4275,32 +4301,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/generator/database/code-converter/mysql/type/MysqlTypeResolver.ts":
-/*!**********************************************************************************************!*\
-  !*** ./src/main/erdiagram/generator/database/code-converter/mysql/type/MysqlTypeResolver.ts ***!
-  \**********************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MysqlTypeResolver; });
-class MysqlTypeResolver {
-    constructor(typeBindings) {
-        this.typeBindings = typeBindings;
-    }
-    resolveMysqlType(type) {
-        /* istanbul ignore next */
-        if (!this.typeBindings.hasOwnProperty(type)) {
-            throw new Error('Unsupported type: ' + type);
-        }
-        return this.typeBindings[type];
-    }
-}
-
-
-/***/ }),
-
 /***/ "./src/main/erdiagram/generator/database/code-converter/oracle/OracleDatabaseModelToCodeConverter.ts":
 /*!***********************************************************************************************************!*\
   !*** ./src/main/erdiagram/generator/database/code-converter/oracle/OracleDatabaseModelToCodeConverter.ts ***!
@@ -4312,13 +4312,13 @@ class MysqlTypeResolver {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OracleDatabaseModelToCodeConverter; });
 /* harmony import */ var _erdiagram_generator_database_code_converter_oracle_column_OracleColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/oracle/column/OracleColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/oracle/column/OracleColumnCodeGenerator.ts");
-/* harmony import */ var _erdiagram_generator_database_code_converter_oracle_type_OracleTypeResolver__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/oracle/type/OracleTypeResolver */ "./src/main/erdiagram/generator/database/code-converter/oracle/type/OracleTypeResolver.ts");
-/* harmony import */ var _erdiagram_generator_database_code_converter_oracle_column_OracleIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/oracle/column/OracleIdColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/oracle/column/OracleIdColumnCodeGenerator.ts");
-/* harmony import */ var _erdiagram_generator_database_code_converter_oracle_column_OracleForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/oracle/column/OracleForeignColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/oracle/column/OracleForeignColumnCodeGenerator.ts");
-/* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
-/* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
-/* harmony import */ var _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/CaseConverter */ "./src/main/erdiagram/generator/common/case-format/CaseConverter.ts");
-/* harmony import */ var _erdiagram_generator_database_code_converter_oracle_config_OracleDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/oracle/config/OracleDatabaseModelToCodeConverterConfigManager */ "./src/main/erdiagram/generator/database/code-converter/oracle/config/OracleDatabaseModelToCodeConverterConfigManager.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_oracle_column_OracleIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/oracle/column/OracleIdColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/oracle/column/OracleIdColumnCodeGenerator.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_oracle_column_OracleForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/oracle/column/OracleForeignColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/oracle/column/OracleForeignColumnCodeGenerator.ts");
+/* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
+/* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
+/* harmony import */ var _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/CaseConverter */ "./src/main/erdiagram/generator/common/case-format/CaseConverter.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_oracle_config_OracleDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/oracle/config/OracleDatabaseModelToCodeConverterConfigManager */ "./src/main/erdiagram/generator/database/code-converter/oracle/config/OracleDatabaseModelToCodeConverterConfigManager.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_common_SqlTypeResolver__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/common/SqlTypeResolver */ "./src/main/erdiagram/generator/database/code-converter/common/SqlTypeResolver.ts");
 
 
 
@@ -4329,12 +4329,12 @@ __webpack_require__.r(__webpack_exports__);
 
 class OracleDatabaseModelToCodeConverter {
     constructor(config) {
-        this.config = _erdiagram_generator_database_code_converter_oracle_config_OracleDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_7__["default"].mergeWithDefaultConfig(config);
-        this.tableNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.tableNameCaseFormat);
-        const columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.columnNameCaseFormat);
-        this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_oracle_column_OracleColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](new _erdiagram_generator_database_code_converter_oracle_type_OracleTypeResolver__WEBPACK_IMPORTED_MODULE_1__["default"](this.config.typeBindings), columnNameCaseConverter);
-        this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_oracle_column_OracleIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.columnCodeGenerator, columnNameCaseConverter);
-        this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_oracle_column_OracleForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
+        this.config = _erdiagram_generator_database_code_converter_oracle_config_OracleDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_6__["default"].mergeWithDefaultConfig(config);
+        this.tableNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_5__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_4__["default"].LOWER_CAMEL, this.config.tableNameCaseFormat);
+        const columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_5__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_4__["default"].LOWER_CAMEL, this.config.columnNameCaseFormat);
+        this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_oracle_column_OracleColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](new _erdiagram_generator_database_code_converter_common_SqlTypeResolver__WEBPACK_IMPORTED_MODULE_7__["default"](this.config.typeBindings), columnNameCaseConverter);
+        this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_oracle_column_OracleIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_1__["default"](this.columnCodeGenerator, columnNameCaseConverter);
+        this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_oracle_column_OracleForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
     }
     convertToCode(databaseModel) {
         const allCreateTableStatements = [];
@@ -4374,7 +4374,7 @@ class OracleDatabaseModelToCodeConverter {
         const createTableLines = [
             ...lines.sequences,
             `CREATE TABLE "${outputTableName}" (`,
-            Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_4__["indentLines"])(createTableInnerLines).join(',\n'),
+            Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_3__["indentLines"])(createTableInnerLines).join(',\n'),
             ');'
         ];
         const createTableStatement = createTableLines.join('\n');
@@ -4458,7 +4458,7 @@ class OracleColumnCodeGenerator {
         return lineParts.join(' ');
     }
     generateOracleTypeDeclaration(type, length) {
-        const oracleType = this.typeResolver.resolveOracleType(type);
+        const oracleType = this.typeResolver.resolveSqlType(type);
         const lengthCode = this.generateLengthCode(length);
         return oracleType + lengthCode;
     }
@@ -4486,7 +4486,7 @@ class OracleColumnCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OracleForeignColumnCodeGenerator; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 
 class OracleForeignColumnCodeGenerator {
     constructor(columnCodeGenerator, tableNameCaseConverter, columnNameCaseConverter) {
@@ -4507,7 +4507,7 @@ class OracleForeignColumnCodeGenerator {
         const { columnName, notNull, unique } = reference;
         return {
             name: columnName,
-            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
+            type: _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
             length: [],
             notNull,
             unique,
@@ -4536,7 +4536,7 @@ class OracleForeignColumnCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OracleIdColumnCodeGenerator; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 
 class OracleIdColumnCodeGenerator {
     constructor(columnCodeGenerator, columnNameCaseConverter) {
@@ -4560,7 +4560,7 @@ class OracleIdColumnCodeGenerator {
     createIdColumnDescriptor(identifierColumnName) {
         return {
             name: identifierColumnName,
-            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
+            type: _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
             length: [],
             notNull: true,
             // FIXME when different IDENTITY strategies are supported, we must
@@ -4590,7 +4590,7 @@ class OracleIdColumnCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OracleDatabaseModelToCodeConverterConfigManager", function() { return OracleDatabaseModelToCodeConverterConfigManager; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 /* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
 /* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
 /* harmony import */ var _erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/record-utils */ "./src/main/erdiagram/util/record-utils.ts");
@@ -4602,17 +4602,17 @@ class OracleDatabaseModelToCodeConverterConfigManager extends _erdiagram_common_
     getDefaultConfig() {
         return {
             typeBindings: {
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: 'NUMBER',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: 'VARCHAR2',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: 'NUMBER',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: 'NUMBER',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: 'NUMBER',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: 'NUMBER',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: 'NUMBER(1, 0)',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: 'DATE',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: 'TIMESTAMP',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: 'TIMESTAMP',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: 'BLOB'
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: 'NUMBER',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: 'VARCHAR2',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: 'NUMBER',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: 'NUMBER',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: 'NUMBER',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: 'NUMBER',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: 'NUMBER(1, 0)',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: 'DATE',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: 'TIMESTAMP',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: 'TIMESTAMP',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: 'BLOB'
             },
             tableNameCaseFormat: _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_UNDERSCORE,
             columnNameCaseFormat: _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_UNDERSCORE,
@@ -4678,32 +4678,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/generator/database/code-converter/oracle/type/OracleTypeResolver.ts":
-/*!************************************************************************************************!*\
-  !*** ./src/main/erdiagram/generator/database/code-converter/oracle/type/OracleTypeResolver.ts ***!
-  \************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OracleTypeResolver; });
-class OracleTypeResolver {
-    constructor(typeBindings) {
-        this.typeBindings = typeBindings;
-    }
-    resolveOracleType(type) {
-        /* istanbul ignore next */
-        if (!this.typeBindings.hasOwnProperty(type)) {
-            throw new Error('Unsupported type: ' + type);
-        }
-        return this.typeBindings[type];
-    }
-}
-
-
-/***/ }),
-
 /***/ "./src/main/erdiagram/generator/database/code-converter/postgresql/PostgresqlDatabaseModelToCodeConverter.ts":
 /*!*******************************************************************************************************************!*\
   !*** ./src/main/erdiagram/generator/database/code-converter/postgresql/PostgresqlDatabaseModelToCodeConverter.ts ***!
@@ -4715,13 +4689,13 @@ class OracleTypeResolver {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PostgresqlDatabaseModelToCodeConverter; });
 /* harmony import */ var _erdiagram_generator_database_code_converter_postgresql_column_PostgresqlColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlColumnCodeGenerator.ts");
-/* harmony import */ var _erdiagram_generator_database_code_converter_postgresql_type_PostgresqlTypeResolver__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/postgresql/type/PostgresqlTypeResolver */ "./src/main/erdiagram/generator/database/code-converter/postgresql/type/PostgresqlTypeResolver.ts");
-/* harmony import */ var _erdiagram_generator_database_code_converter_postgresql_column_PostgresqlIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlIdColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlIdColumnCodeGenerator.ts");
-/* harmony import */ var _erdiagram_generator_database_code_converter_postgresql_column_PostgresqlForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlForeignColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlForeignColumnCodeGenerator.ts");
-/* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
-/* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
-/* harmony import */ var _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/CaseConverter */ "./src/main/erdiagram/generator/common/case-format/CaseConverter.ts");
-/* harmony import */ var _erdiagram_generator_database_code_converter_postgresql_config_PostgresqlDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/postgresql/config/PostgresqlDatabaseModelToCodeConverterConfigManager */ "./src/main/erdiagram/generator/database/code-converter/postgresql/config/PostgresqlDatabaseModelToCodeConverterConfigManager.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_postgresql_column_PostgresqlIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlIdColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlIdColumnCodeGenerator.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_postgresql_column_PostgresqlForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlForeignColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlForeignColumnCodeGenerator.ts");
+/* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
+/* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
+/* harmony import */ var _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/CaseConverter */ "./src/main/erdiagram/generator/common/case-format/CaseConverter.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_postgresql_config_PostgresqlDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/postgresql/config/PostgresqlDatabaseModelToCodeConverterConfigManager */ "./src/main/erdiagram/generator/database/code-converter/postgresql/config/PostgresqlDatabaseModelToCodeConverterConfigManager.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_common_SqlTypeResolver__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/common/SqlTypeResolver */ "./src/main/erdiagram/generator/database/code-converter/common/SqlTypeResolver.ts");
 
 
 
@@ -4732,12 +4706,12 @@ __webpack_require__.r(__webpack_exports__);
 
 class PostgresqlDatabaseModelToCodeConverter {
     constructor(config) {
-        this.config = _erdiagram_generator_database_code_converter_postgresql_config_PostgresqlDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_7__["default"].mergeWithDefaultConfig(config);
-        this.tableNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.tableNameCaseFormat);
-        const columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.columnNameCaseFormat);
-        this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_postgresql_column_PostgresqlColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](new _erdiagram_generator_database_code_converter_postgresql_type_PostgresqlTypeResolver__WEBPACK_IMPORTED_MODULE_1__["default"](this.config.typeBindings), columnNameCaseConverter);
-        this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_postgresql_column_PostgresqlIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.columnCodeGenerator, columnNameCaseConverter);
-        this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_postgresql_column_PostgresqlForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
+        this.config = _erdiagram_generator_database_code_converter_postgresql_config_PostgresqlDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_6__["default"].mergeWithDefaultConfig(config);
+        this.tableNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_5__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_4__["default"].LOWER_CAMEL, this.config.tableNameCaseFormat);
+        const columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_5__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_4__["default"].LOWER_CAMEL, this.config.columnNameCaseFormat);
+        this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_postgresql_column_PostgresqlColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](new _erdiagram_generator_database_code_converter_common_SqlTypeResolver__WEBPACK_IMPORTED_MODULE_7__["default"](this.config.typeBindings), columnNameCaseConverter);
+        this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_postgresql_column_PostgresqlIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_1__["default"](this.columnCodeGenerator, columnNameCaseConverter);
+        this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_postgresql_column_PostgresqlForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
     }
     convertToCode(databaseModel) {
         const allCreateTableStatements = [];
@@ -4776,7 +4750,7 @@ class PostgresqlDatabaseModelToCodeConverter {
         const createTableLines = [
             ...lines.sequences,
             `CREATE TABLE "${outputTableName}" (`,
-            Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_4__["indentLines"])(createTableInnerLines).join(',\n'),
+            Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_3__["indentLines"])(createTableInnerLines).join(',\n'),
             ');'
         ];
         const createTableStatement = createTableLines.join('\n');
@@ -4864,7 +4838,7 @@ class PostgresqlColumnCodeGenerator {
         return lineParts.join(' ');
     }
     generatePostgresqlTypeDeclaration(type, length) {
-        const postgresqlType = this.typeResolver.resolvePostgresqlType(type);
+        const postgresqlType = this.typeResolver.resolveSqlType(type);
         const lengthCode = this.generateLengthCode(length);
         return postgresqlType + lengthCode;
     }
@@ -4892,7 +4866,7 @@ class PostgresqlColumnCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PostgresqlForeignColumnCodeGenerator; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 
 class PostgresqlForeignColumnCodeGenerator {
     constructor(columnCodeGenerator, tableNameCaseConverter, columnNameCaseConverter) {
@@ -4913,7 +4887,7 @@ class PostgresqlForeignColumnCodeGenerator {
         const { columnName, notNull, unique } = reference;
         return {
             name: columnName,
-            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
+            type: _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
             length: [],
             notNull,
             unique,
@@ -4942,7 +4916,7 @@ class PostgresqlForeignColumnCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PostgresqlIdColumnCodeGenerator; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 
 class PostgresqlIdColumnCodeGenerator {
     constructor(columnCodeGenerator, columnNameCaseConverter) {
@@ -4961,7 +4935,7 @@ class PostgresqlIdColumnCodeGenerator {
     createIdColumnDescriptor(identifierColumnName) {
         return {
             name: identifierColumnName,
-            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
+            type: _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
             length: [],
             notNull: true,
             // Autoincrement of identity columns have to be achieved using serial types,
@@ -4991,7 +4965,7 @@ class PostgresqlIdColumnCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDatabaseModelToCodeConverterConfigManager", function() { return PostgresqlDatabaseModelToCodeConverterConfigManager; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 /* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
 /* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
 /* harmony import */ var _erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/record-utils */ "./src/main/erdiagram/util/record-utils.ts");
@@ -5003,17 +4977,17 @@ class PostgresqlDatabaseModelToCodeConverterConfigManager extends _erdiagram_com
     getDefaultConfig() {
         return {
             typeBindings: {
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: 'BIGINT',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: 'VARCHAR',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: 'BIGINT',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: 'INTEGER',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: 'SMALLINT',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: 'DECIMAL',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: 'BOOLEAN',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: 'DATE',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: 'TIME',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: 'TIMESTAMP',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: 'BYTEA'
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: 'BIGINT',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: 'VARCHAR',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: 'BIGINT',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: 'INTEGER',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: 'SMALLINT',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: 'DECIMAL',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: 'BOOLEAN',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: 'DATE',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: 'TIME',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: 'TIMESTAMP',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: 'BYTEA'
             },
             tableNameCaseFormat: _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].LOWER_UNDERSCORE,
             columnNameCaseFormat: _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].LOWER_UNDERSCORE,
@@ -5079,32 +5053,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/generator/database/code-converter/postgresql/type/PostgresqlTypeResolver.ts":
-/*!********************************************************************************************************!*\
-  !*** ./src/main/erdiagram/generator/database/code-converter/postgresql/type/PostgresqlTypeResolver.ts ***!
-  \********************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PostgresqlTypeResolver; });
-class PostgresqlTypeResolver {
-    constructor(typeBindings) {
-        this.typeBindings = typeBindings;
-    }
-    resolvePostgresqlType(type) {
-        /* istanbul ignore next */
-        if (!this.typeBindings.hasOwnProperty(type)) {
-            throw new Error('Unsupported type: ' + type);
-        }
-        return this.typeBindings[type];
-    }
-}
-
-
-/***/ }),
-
 /***/ "./src/main/erdiagram/generator/database/code-converter/sqlserver/SqlServerDatabaseModelToCodeConverter.ts":
 /*!*****************************************************************************************************************!*\
   !*** ./src/main/erdiagram/generator/database/code-converter/sqlserver/SqlServerDatabaseModelToCodeConverter.ts ***!
@@ -5116,13 +5064,13 @@ class PostgresqlTypeResolver {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SqlServerDatabaseModelToCodeConverter; });
 /* harmony import */ var _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/sqlserver/column/SqlServerColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/sqlserver/column/SqlServerColumnCodeGenerator.ts");
-/* harmony import */ var _erdiagram_generator_database_code_converter_sqlserver_type_SqlServerTypeResolver__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/sqlserver/type/SqlServerTypeResolver */ "./src/main/erdiagram/generator/database/code-converter/sqlserver/type/SqlServerTypeResolver.ts");
-/* harmony import */ var _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/sqlserver/column/SqlServerIdColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/sqlserver/column/SqlServerIdColumnCodeGenerator.ts");
-/* harmony import */ var _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/sqlserver/column/SqlServerForeignColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/sqlserver/column/SqlServerForeignColumnCodeGenerator.ts");
-/* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
-/* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
-/* harmony import */ var _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/CaseConverter */ "./src/main/erdiagram/generator/common/case-format/CaseConverter.ts");
-/* harmony import */ var _erdiagram_generator_database_code_converter_sqlserver_config_SqlServerDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/sqlserver/config/SqlServerDatabaseModelToCodeConverterConfigManager */ "./src/main/erdiagram/generator/database/code-converter/sqlserver/config/SqlServerDatabaseModelToCodeConverterConfigManager.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/sqlserver/column/SqlServerIdColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/sqlserver/column/SqlServerIdColumnCodeGenerator.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/sqlserver/column/SqlServerForeignColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/sqlserver/column/SqlServerForeignColumnCodeGenerator.ts");
+/* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
+/* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
+/* harmony import */ var _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/CaseConverter */ "./src/main/erdiagram/generator/common/case-format/CaseConverter.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_sqlserver_config_SqlServerDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/sqlserver/config/SqlServerDatabaseModelToCodeConverterConfigManager */ "./src/main/erdiagram/generator/database/code-converter/sqlserver/config/SqlServerDatabaseModelToCodeConverterConfigManager.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_common_SqlTypeResolver__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/common/SqlTypeResolver */ "./src/main/erdiagram/generator/database/code-converter/common/SqlTypeResolver.ts");
 
 
 
@@ -5133,12 +5081,12 @@ __webpack_require__.r(__webpack_exports__);
 
 class SqlServerDatabaseModelToCodeConverter {
     constructor(config) {
-        this.config = _erdiagram_generator_database_code_converter_sqlserver_config_SqlServerDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_7__["default"].mergeWithDefaultConfig(config);
-        this.tableNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.tableNameCaseFormat);
-        const columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_6__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_5__["default"].LOWER_CAMEL, this.config.columnNameCaseFormat);
-        this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](new _erdiagram_generator_database_code_converter_sqlserver_type_SqlServerTypeResolver__WEBPACK_IMPORTED_MODULE_1__["default"](this.config.typeBindings), columnNameCaseConverter);
-        this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.columnCodeGenerator, columnNameCaseConverter);
-        this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
+        this.config = _erdiagram_generator_database_code_converter_sqlserver_config_SqlServerDatabaseModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_6__["default"].mergeWithDefaultConfig(config);
+        this.tableNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_5__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_4__["default"].LOWER_CAMEL, this.config.tableNameCaseFormat);
+        const columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_5__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_4__["default"].LOWER_CAMEL, this.config.columnNameCaseFormat);
+        this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](new _erdiagram_generator_database_code_converter_common_SqlTypeResolver__WEBPACK_IMPORTED_MODULE_7__["default"](this.config.typeBindings), columnNameCaseConverter);
+        this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_1__["default"](this.columnCodeGenerator, columnNameCaseConverter);
+        this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sqlserver_column_SqlServerForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
     }
     convertToCode(databaseModel) {
         const allCreateTableStatements = [];
@@ -5177,7 +5125,7 @@ class SqlServerDatabaseModelToCodeConverter {
         const createTableLines = [
             ...lines.sequences,
             `CREATE TABLE "${outputTableName}" (`,
-            Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_4__["indentLines"])(createTableInnerLines).join(',\n'),
+            Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_3__["indentLines"])(createTableInnerLines).join(',\n'),
             ');'
         ];
         const createTableStatement = createTableLines.join('\n');
@@ -5266,7 +5214,7 @@ class SqlServerColumnCodeGenerator {
         return lineParts.join(' ');
     }
     generateSqlServerTypeDeclaration(type, length) {
-        const sqlServerType = this.typeResolver.resolveSqlServerType(type);
+        const sqlServerType = this.typeResolver.resolveSqlType(type);
         const lengthCode = this.generateLengthCode(length);
         return sqlServerType + lengthCode;
     }
@@ -5294,7 +5242,7 @@ class SqlServerColumnCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SqlServerForeignColumnCodeGenerator; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 
 class SqlServerForeignColumnCodeGenerator {
     constructor(columnCodeGenerator, tableNameCaseConverter, columnNameCaseConverter) {
@@ -5315,7 +5263,7 @@ class SqlServerForeignColumnCodeGenerator {
         const { columnName, notNull, unique } = reference;
         return {
             name: columnName,
-            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
+            type: _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
             length: [],
             notNull,
             unique,
@@ -5344,7 +5292,7 @@ class SqlServerForeignColumnCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SqlServerIdColumnCodeGenerator; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 
 class SqlServerIdColumnCodeGenerator {
     constructor(columnCodeGenerator, columnNameCaseConverter) {
@@ -5363,7 +5311,7 @@ class SqlServerIdColumnCodeGenerator {
     createIdColumnDescriptor(identifierColumnName) {
         return {
             name: identifierColumnName,
-            type: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
+            type: _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
             length: [],
             notNull: true,
             // Autoincrement of identity columns have to be achieved using IDENTITY,
@@ -5393,7 +5341,7 @@ class SqlServerIdColumnCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SqlServerDatabaseModelToCodeConverterConfigManager", function() { return SqlServerDatabaseModelToCodeConverterConfigManager; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 /* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
 /* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
 /* harmony import */ var _erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/record-utils */ "./src/main/erdiagram/util/record-utils.ts");
@@ -5405,17 +5353,17 @@ class SqlServerDatabaseModelToCodeConverterConfigManager extends _erdiagram_comm
     getDefaultConfig() {
         return {
             typeBindings: {
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: 'BIGINT',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: 'NVARCHAR',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: 'BIGINT',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: 'INT',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: 'SMALLINT',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: 'DECIMAL',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: 'BIT',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: 'DATE',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: 'TIME',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: 'DATETIME2',
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: 'VARBINARY(MAX)'
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: 'BIGINT',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: 'NVARCHAR',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: 'BIGINT',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: 'INT',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: 'SMALLINT',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: 'DECIMAL',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: 'BIT',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: 'DATE',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: 'TIME',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: 'DATETIME2',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: 'VARBINARY(MAX)'
             },
             tableNameCaseFormat: _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL,
             columnNameCaseFormat: _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL,
@@ -5481,32 +5429,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/generator/database/code-converter/sqlserver/type/SqlServerTypeResolver.ts":
-/*!******************************************************************************************************!*\
-  !*** ./src/main/erdiagram/generator/database/code-converter/sqlserver/type/SqlServerTypeResolver.ts ***!
-  \******************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SqlServerTypeResolver; });
-class SqlServerTypeResolver {
-    constructor(typeBindings) {
-        this.typeBindings = typeBindings;
-    }
-    resolveSqlServerType(type) {
-        /* istanbul ignore next */
-        if (!this.typeBindings.hasOwnProperty(type)) {
-            throw new Error('Unsupported type: ' + type);
-        }
-        return this.typeBindings[type];
-    }
-}
-
-
-/***/ }),
-
 /***/ "./src/main/erdiagram/generator/database/exports.ts":
 /*!**********************************************************!*\
   !*** ./src/main/erdiagram/generator/database/exports.ts ***!
@@ -5568,7 +5490,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DatabaseModelGenerator; });
 /* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pluralize */ "./node_modules/pluralize/pluralize.js");
 /* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(pluralize__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 /* harmony import */ var _erdiagram_generator_database_model_config_DatabaseModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/database/model/config/DatabaseModelGeneratorConfigManager */ "./src/main/erdiagram/generator/database/model/config/DatabaseModelGeneratorConfigManager.ts");
 /* harmony import */ var _erdiagram_util_map_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/map-utils */ "./src/main/erdiagram/util/map-utils.ts");
 /* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
@@ -5602,13 +5524,13 @@ class DatabaseModelGenerator {
             columns.push(this.mapPropertyToColumn(property));
         }
         for (const relationship of model.relationships) {
-            if (relationship.rightMember.cardinality !== _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY) {
+            if (relationship.rightMember.cardinality !== _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY) {
                 if (relationship.leftMember.entity === entity.name) {
-                    const isOneToOneRelationship = relationship.leftMember.cardinality !== _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY;
+                    const isOneToOneRelationship = relationship.leftMember.cardinality !== _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY;
                     references.push(this.createTableReference(relationship.rightMember, entityIdentifiersMap, isOneToOneRelationship));
                 }
             }
-            else if (relationship.leftMember.cardinality !== _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY) {
+            else if (relationship.leftMember.cardinality !== _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY) {
                 if (relationship.rightMember.entity === entity.name) {
                     references.push(this.createTableReference(relationship.leftMember, entityIdentifiersMap));
                 }
@@ -5661,7 +5583,7 @@ class DatabaseModelGenerator {
             columnName: `${entityAlias}Id`,
             targetTableName: this.pluralizeEntityNameIfApplies(entity),
             targetTableIdentifierColumnName: this.getIdentifierColumnName(entity, entityIdentifiersMap),
-            notNull: cardinality !== _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].ZERO_OR_ONE,
+            notNull: cardinality !== _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].ZERO_OR_ONE,
             unique
         };
     }
@@ -5698,7 +5620,7 @@ class DatabaseModelGenerator {
         return [
             relationship.leftMember,
             relationship.rightMember
-        ].every(member => member.cardinality === _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY);
+        ].every(member => member.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Cardinality"].MANY);
     }
 }
 
@@ -6054,11 +5976,11 @@ class NomnomlEntityCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NomnomlEntityIdentifierPropertyCodeGenerator; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 
 class NomnomlEntityIdentifierPropertyCodeGenerator {
     generateEntityIdentifierPropertyCode(identifierPropertyName) {
-        return `${identifierPropertyName}: ${_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER}`;
+        return `${identifierPropertyName}: ${_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER}`;
     }
 }
 
@@ -6169,16 +6091,16 @@ class NomnomlNamedRelationshipCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NomnomlRelationshipCardinalityCodeGenerator; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 
 class NomnomlRelationshipCardinalityCodeGenerator {
     generateCardinalityCode(cardinality) {
         switch (cardinality) {
-            case _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Cardinality"].ZERO_OR_ONE:
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Cardinality"].ZERO_OR_ONE:
                 return '0..1';
-            case _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Cardinality"].ONE:
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Cardinality"].ONE:
                 return '1';
-            case _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Cardinality"].MANY:
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Cardinality"].MANY:
                 return '*';
         }
     }
@@ -6235,24 +6157,24 @@ class NomnomlRelationshipCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NomnomlRelationshipDirectionCodeGenerator; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 
 class NomnomlRelationshipDirectionCodeGenerator {
     generateDirectionCode(direction) {
         switch (direction) {
-            case _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].LEFT_TO_RIGHT:
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].LEFT_TO_RIGHT:
                 return '->';
-            case _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].RIGHT_TO_LEFT:
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].RIGHT_TO_LEFT:
                 return '<-';
-            case _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].BIDIRECTIONAL:
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].BIDIRECTIONAL:
                 return '<->';
         }
     }
     generateLeftSideDirectionCode(direction) {
-        return [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].RIGHT_TO_LEFT, _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].BIDIRECTIONAL].includes(direction) ? '<-' : '-';
+        return [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].RIGHT_TO_LEFT, _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].BIDIRECTIONAL].includes(direction) ? '<-' : '-';
     }
     generateRightSideDirectionCode(direction) {
-        return [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].LEFT_TO_RIGHT, _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].BIDIRECTIONAL].includes(direction) ? '->' : '-';
+        return [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].LEFT_TO_RIGHT, _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].BIDIRECTIONAL].includes(direction) ? '->' : '-';
     }
 }
 
@@ -6473,11 +6395,11 @@ class PlantUmlEntityCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PlantUmlEntityIdentifierPropertyCodeGenerator; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 
 class PlantUmlEntityIdentifierPropertyCodeGenerator {
     generateEntityIdentifierPropertyCode(identifierPropertyName) {
-        return `{field} ${identifierPropertyName}: ${_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER}`;
+        return `{field} ${identifierPropertyName}: ${_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER}`;
     }
 }
 
@@ -6556,16 +6478,16 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PlantUmlRelationshipCardinalityCodeGenerator; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 
 class PlantUmlRelationshipCardinalityCodeGenerator {
     generateCardinalityCode(cardinality) {
         switch (cardinality) {
-            case _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Cardinality"].ZERO_OR_ONE:
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Cardinality"].ZERO_OR_ONE:
                 return '0..1';
-            case _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Cardinality"].ONE:
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Cardinality"].ONE:
                 return '1';
-            case _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Cardinality"].MANY:
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Cardinality"].MANY:
                 return '*';
         }
     }
@@ -6621,16 +6543,16 @@ class PlantUmlRelationshipCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PlantUmlRelationshipDirectionCodeGenerator; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 
 class PlantUmlRelationshipDirectionCodeGenerator {
     generateDirectionCode(direction) {
         switch (direction) {
-            case _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].LEFT_TO_RIGHT:
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].LEFT_TO_RIGHT:
                 return '-->';
-            case _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].RIGHT_TO_LEFT:
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].RIGHT_TO_LEFT:
                 return '<--';
-            case _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].BIDIRECTIONAL:
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"].BIDIRECTIONAL:
                 return '<-->';
         }
     }
@@ -6853,6 +6775,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_generator_oop_code_converter_java_type_JavaType__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/java/type/JavaType */ "./src/main/erdiagram/generator/oop/code-converter/java/type/JavaType.ts");
 /* harmony import */ var _erdiagram_util_array_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/util/array-utils */ "./src/main/erdiagram/util/array-utils.ts");
 /* harmony import */ var _erdiagram_generator_oop_code_converter_java_config_JavaClassModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/java/config/JavaClassModelToCodeConverterConfigManager */ "./src/main/erdiagram/generator/oop/code-converter/java/config/JavaClassModelToCodeConverterConfigManager.ts");
+/* harmony import */ var _erdiagram_generator_oop_code_converter_java_type_JavaFieldTypeResolver__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/java/type/JavaFieldTypeResolver */ "./src/main/erdiagram/generator/oop/code-converter/java/type/JavaFieldTypeResolver.ts");
+
 
 
 
@@ -6863,6 +6787,7 @@ const EMPTY_STRING = '';
 class JavaClassModelToCodeConverter {
     constructor(config) {
         this.config = _erdiagram_generator_oop_code_converter_java_config_JavaClassModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_5__["default"].mergeWithDefaultConfig(config);
+        this.typeResolver = new _erdiagram_generator_oop_code_converter_java_type_JavaFieldTypeResolver__WEBPACK_IMPORTED_MODULE_6__["default"](this.config.typeBindings, this.config.generatedClassesPackage);
     }
     convertToCode(classModel) {
         return classModel.classes
@@ -6918,7 +6843,7 @@ class JavaClassModelToCodeConverter {
                 usedTypes.push(Object(_erdiagram_generator_oop_code_converter_java_type_JavaType__WEBPACK_IMPORTED_MODULE_3__["createJavaType"])('NonNull', 'org.springframework.lang'));
             }
         }
-        const fieldType = this.mapFieldTypeToJavaType(field);
+        const fieldType = this.typeResolver.resolveFieldType(field);
         usedTypes.push(fieldType);
         const formattedJavaType = fieldType.formatSimple();
         fieldLines.push(`private ${formattedJavaType} ${fieldName};`);
@@ -6938,36 +6863,6 @@ class JavaClassModelToCodeConverter {
             getterLines,
             setterLines
         };
-    }
-    mapFieldTypeToJavaType(field) {
-        if (field.list) {
-            return this.mapListTypeToJavaType(field);
-        }
-        else {
-            return this.mapSingleTypeToJavaType(field);
-        }
-    }
-    mapListTypeToJavaType(field) {
-        return Object(_erdiagram_generator_oop_code_converter_java_type_JavaParameterizedType__WEBPACK_IMPORTED_MODULE_2__["createJavaParameterizedType"])('List', 'java.util', [
-            this.mapSingleTypeToJavaType(field)
-        ]);
-    }
-    mapSingleTypeToJavaType(field) {
-        const { entityType, primitiveType } = field;
-        if (entityType) {
-            if (primitiveType) {
-                throw new Error('Invalid field descriptor: provided both primitive and entity types');
-            }
-            return Object(_erdiagram_generator_oop_code_converter_java_type_JavaType__WEBPACK_IMPORTED_MODULE_3__["createJavaType"])(entityType, this.config.generatedClassesPackage);
-        }
-        if (!primitiveType) {
-            throw new Error('Invalid field descriptor: missing type');
-        }
-        /* istanbul ignore next */
-        if (!this.config.typeBindings.hasOwnProperty(primitiveType)) {
-            throw new Error('Unsupported type: ' + primitiveType);
-        }
-        return this.config.typeBindings[primitiveType];
     }
     createImportStatements(javaTypes, classFields) {
         const importStatements = this.unrollTypesRecursively(javaTypes)
@@ -7004,7 +6899,7 @@ class JavaClassModelToCodeConverter {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JavaClassModelToCodeConverterConfigManager", function() { return JavaClassModelToCodeConverterConfigManager; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 /* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
 /* harmony import */ var _erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/java/type/parseJavaType */ "./src/main/erdiagram/generator/oop/code-converter/java/type/parseJavaType.ts");
 /* harmony import */ var _erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/record-utils */ "./src/main/erdiagram/util/record-utils.ts");
@@ -7016,17 +6911,17 @@ class JavaClassModelToCodeConverterConfigManager extends _erdiagram_common_confi
     getDefaultConfig() {
         return {
             typeBindings: {
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Long'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.String'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Long'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Integer'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Short'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.math.BigDecimal'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Boolean'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.time.LocalDate'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.time.LocalTime'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.time.LocalDateTime'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('byte[]')
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Long'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.String'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Long'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Integer'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Short'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.math.BigDecimal'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Boolean'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.time.LocalDate'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.time.LocalTime'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.time.LocalDateTime'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: Object(_erdiagram_generator_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('byte[]')
             },
             useSpringNullabilityAnnotations: false
         };
@@ -7103,6 +6998,58 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/oop/code-converter/java/type/JavaFieldTypeResolver.ts":
+/*!********************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/oop/code-converter/java/type/JavaFieldTypeResolver.ts ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return JavaFieldTypeResolver; });
+/* harmony import */ var _erdiagram_generator_oop_code_converter_java_type_JavaType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/java/type/JavaType */ "./src/main/erdiagram/generator/oop/code-converter/java/type/JavaType.ts");
+/* harmony import */ var _erdiagram_generator_oop_code_converter_java_type_JavaParameterizedType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/java/type/JavaParameterizedType */ "./src/main/erdiagram/generator/oop/code-converter/java/type/JavaParameterizedType.ts");
+
+
+class JavaFieldTypeResolver {
+    constructor(typeBindings, generatedClassesPackage) {
+        this.typeBindings = typeBindings;
+        this.generatedClassesPackage = generatedClassesPackage;
+    }
+    resolveFieldType(field) {
+        if (field.list) {
+            return this.resolveListType(field);
+        }
+        else {
+            return this.resolveSingleType(field);
+        }
+    }
+    resolveListType(field) {
+        return Object(_erdiagram_generator_oop_code_converter_java_type_JavaParameterizedType__WEBPACK_IMPORTED_MODULE_1__["createJavaParameterizedType"])('List', 'java.util', [this.resolveSingleType(field)]);
+    }
+    resolveSingleType(field) {
+        const { entityType, primitiveType } = field;
+        if (entityType) {
+            if (primitiveType) {
+                throw new Error('Invalid field descriptor: provided both primitive and entity types');
+            }
+            return Object(_erdiagram_generator_oop_code_converter_java_type_JavaType__WEBPACK_IMPORTED_MODULE_0__["createJavaType"])(entityType, this.generatedClassesPackage);
+        }
+        if (!primitiveType) {
+            throw new Error('Invalid field descriptor: missing type');
+        }
+        /* istanbul ignore next */
+        if (!this.typeBindings.hasOwnProperty(primitiveType)) {
+            throw new Error('Unsupported type: ' + primitiveType);
+        }
+        return this.typeBindings[primitiveType];
+    }
+}
 
 
 /***/ }),
@@ -7298,17 +7245,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TypeScriptClassModelToCodeConverter; });
 /* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
 /* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
-/* harmony import */ var _erdiagram_generator_oop_code_converter_typescript_type_TypeScriptParameterizedType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptParameterizedType */ "./src/main/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptParameterizedType.ts");
-/* harmony import */ var _erdiagram_generator_oop_code_converter_typescript_type_TypeScriptType__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptType */ "./src/main/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptType.ts");
-/* harmony import */ var _erdiagram_generator_oop_code_converter_typescript_config_TypeScriptClassModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfigManager */ "./src/main/erdiagram/generator/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfigManager.ts");
-
+/* harmony import */ var _erdiagram_generator_oop_code_converter_typescript_config_TypeScriptClassModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfigManager */ "./src/main/erdiagram/generator/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfigManager.ts");
+/* harmony import */ var _erdiagram_generator_oop_code_converter_typescript_type_TypeScriptTypeResolver__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptTypeResolver */ "./src/main/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptTypeResolver.ts");
 
 
 
 
 class TypeScriptClassModelToCodeConverter {
     constructor(config) {
-        this.config = _erdiagram_generator_oop_code_converter_typescript_config_TypeScriptClassModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_4__["default"].mergeWithDefaultConfig(config);
+        this.config = _erdiagram_generator_oop_code_converter_typescript_config_TypeScriptClassModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_2__["default"].mergeWithDefaultConfig(config);
+        this.typeResolver = new _erdiagram_generator_oop_code_converter_typescript_type_TypeScriptTypeResolver__WEBPACK_IMPORTED_MODULE_3__["default"](this.config.typeBindings);
     }
     convertToCode(classModel) {
         return classModel.classes
@@ -7328,37 +7274,10 @@ class TypeScriptClassModelToCodeConverter {
     }
     createField(field) {
         const fieldName = field.name;
-        const typescriptType = this.mapFieldTypeToTypeScriptType(field);
+        const typescriptType = this.typeResolver.resolveFieldType(field);
         const formattedTypeScriptType = typescriptType.format();
         const optionalIndicatorChar = field.nullable ? '?' : '';
         return `${fieldName}${optionalIndicatorChar}: ${formattedTypeScriptType};`;
-    }
-    mapFieldTypeToTypeScriptType(field) {
-        if (field.list) {
-            return this.mapListTypeToTypeScriptType(field);
-        }
-        else {
-            return this.mapSingleTypeToTypeScriptType(field);
-        }
-    }
-    mapListTypeToTypeScriptType(field) {
-        return Object(_erdiagram_generator_oop_code_converter_typescript_type_TypeScriptParameterizedType__WEBPACK_IMPORTED_MODULE_2__["createTypeScriptArrayType"])(this.mapSingleTypeToTypeScriptType(field));
-    }
-    mapSingleTypeToTypeScriptType(field) {
-        const { entityType, primitiveType } = field;
-        if (entityType) {
-            if (primitiveType) {
-                throw new Error('Invalid field descriptor: provided both primitive and entity types');
-            }
-            return Object(_erdiagram_generator_oop_code_converter_typescript_type_TypeScriptType__WEBPACK_IMPORTED_MODULE_3__["createTypeScriptType"])(entityType);
-        }
-        if (!primitiveType) {
-            throw new Error('Invalid field descriptor: missing type');
-        }
-        if (!this.config.typeBindings.hasOwnProperty(primitiveType)) {
-            throw new Error('Unsupported type: ' + primitiveType);
-        }
-        return this.config.typeBindings[primitiveType];
     }
 }
 
@@ -7375,7 +7294,7 @@ class TypeScriptClassModelToCodeConverter {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TypeScriptClassModelToCodeConverterConfigManager", function() { return TypeScriptClassModelToCodeConverterConfigManager; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 /* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
 /* harmony import */ var _erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/typescript/type/parseTypeScriptType */ "./src/main/erdiagram/generator/oop/code-converter/typescript/type/parseTypeScriptType.ts");
 /* harmony import */ var _erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/record-utils */ "./src/main/erdiagram/util/record-utils.ts");
@@ -7387,17 +7306,17 @@ class TypeScriptClassModelToCodeConverterConfigManager extends _erdiagram_common
     getDefaultConfig() {
         return {
             typeBindings: {
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('string'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('boolean'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('Date'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('Date'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('Date'),
-                [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('Uint8Array'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('string'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('number'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('boolean'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('Date'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('Date'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('Date'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: Object(_erdiagram_generator_oop_code_converter_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__["default"])('Uint8Array'),
             }
         };
     }
@@ -7528,6 +7447,56 @@ function createTypeScriptType(name) {
         name,
         format: () => name
     };
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptTypeResolver.ts":
+/*!***************************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptTypeResolver.ts ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TypeScriptTypeResolver; });
+/* harmony import */ var _erdiagram_generator_oop_code_converter_typescript_type_TypeScriptType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptType */ "./src/main/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptType.ts");
+/* harmony import */ var _erdiagram_generator_oop_code_converter_typescript_type_TypeScriptParameterizedType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptParameterizedType */ "./src/main/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptParameterizedType.ts");
+
+
+class TypeScriptTypeResolver {
+    constructor(typeBindings) {
+        this.typeBindings = typeBindings;
+    }
+    resolveFieldType(field) {
+        if (field.list) {
+            return this.resolveListType(field);
+        }
+        else {
+            return this.resolveSingleType(field);
+        }
+    }
+    resolveListType(field) {
+        return Object(_erdiagram_generator_oop_code_converter_typescript_type_TypeScriptParameterizedType__WEBPACK_IMPORTED_MODULE_1__["createTypeScriptArrayType"])(this.resolveSingleType(field));
+    }
+    resolveSingleType(field) {
+        const { entityType, primitiveType } = field;
+        if (entityType) {
+            if (primitiveType) {
+                throw new Error('Invalid field descriptor: provided both primitive and entity types');
+            }
+            return Object(_erdiagram_generator_oop_code_converter_typescript_type_TypeScriptType__WEBPACK_IMPORTED_MODULE_0__["createTypeScriptType"])(entityType);
+        }
+        if (!primitiveType) {
+            throw new Error('Invalid field descriptor: missing type');
+        }
+        if (!this.typeBindings.hasOwnProperty(primitiveType)) {
+            throw new Error('Unsupported type: ' + primitiveType);
+        }
+        return this.typeBindings[primitiveType];
+    }
 }
 
 
@@ -7691,83 +7660,20 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClassModelGenerator; });
-/* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pluralize */ "./node_modules/pluralize/pluralize.js");
-/* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(pluralize__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
-/* harmony import */ var _erdiagram_generator_oop_model_config_ClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/generator/oop/model/config/ClassModelGeneratorConfigManager */ "./src/main/erdiagram/generator/oop/model/config/ClassModelGeneratorConfigManager.ts");
-
-
+/* harmony import */ var _erdiagram_generator_oop_model_config_ClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/oop/model/config/ClassModelGeneratorConfigManager */ "./src/main/erdiagram/generator/oop/model/config/ClassModelGeneratorConfigManager.ts");
+/* harmony import */ var _erdiagram_generator_oop_model_class_EntityToClassMapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/oop/model/class/EntityToClassMapper */ "./src/main/erdiagram/generator/oop/model/class/EntityToClassMapper.ts");
 
 
 class ClassModelGenerator {
     constructor(config) {
-        this.config = _erdiagram_generator_oop_model_config_ClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_3__["default"].mergeWithDefaultConfig(config);
+        this.config = _erdiagram_generator_oop_model_config_ClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"].mergeWithDefaultConfig(config);
+        this.entityToClassMapper = new _erdiagram_generator_oop_model_class_EntityToClassMapper__WEBPACK_IMPORTED_MODULE_1__["default"](this.config);
     }
     generateClassModel(model) {
-        const classes = [];
-        model.entities
-            .map(entity => this.generateEntityTable(entity, model))
-            .forEach(sentence => classes.push(sentence));
+        const { entities, relationships } = model;
+        const classes = entities.map(entity => this.entityToClassMapper.mapEntityToClass(entity, relationships));
         return {
             classes
-        };
-    }
-    generateEntityTable(entity, model) {
-        const name = Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__["capitalizeWord"])(entity.name);
-        const fields = [
-            this.createIdField(entity)
-        ];
-        for (const property of entity.properties) {
-            fields.push(this.mapPropertyToField(property));
-        }
-        for (const relationship of model.relationships) {
-            const { leftMember, rightMember, direction } = relationship;
-            if (leftMember.entity === entity.name && [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].LEFT_TO_RIGHT, _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].BIDIRECTIONAL].includes(direction)) {
-                fields.push(this.mapRelationshipMemberToField(rightMember));
-            }
-            if (rightMember.entity === entity.name && [_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].RIGHT_TO_LEFT, _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].BIDIRECTIONAL].includes(direction)) {
-                fields.push(this.mapRelationshipMemberToField(leftMember));
-            }
-        }
-        return {
-            name,
-            fields
-        };
-    }
-    createIdField(entity) {
-        return {
-            name: this.getIdentifierFieldName(entity),
-            primitiveType: _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["EntityPropertyType"].IDENTIFIER,
-            // ID field must be nullable, so NULL value can be used to represent an unsaved instance
-            nullable: true,
-            list: false
-        };
-    }
-    getIdentifierFieldName(entity) {
-        if (entity.identifierPropertyName) {
-            return entity.identifierPropertyName;
-        }
-        const { idNamingStrategy } = this.config;
-        return idNamingStrategy(entity.name);
-    }
-    mapRelationshipMemberToField(toMember) {
-        const list = toMember.cardinality === _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Cardinality"].MANY;
-        const name = list ? pluralize__WEBPACK_IMPORTED_MODULE_0___default()(toMember.entityAlias) : toMember.entityAlias;
-        return {
-            name,
-            nullable: toMember.cardinality === _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Cardinality"].ZERO_OR_ONE,
-            entityType: toMember.entity,
-            list
-        };
-    }
-    mapPropertyToField(property) {
-        const { name, optional, type } = property;
-        return {
-            name,
-            nullable: optional,
-            primitiveType: type,
-            list: false
         };
     }
 }
@@ -7786,6 +7692,156 @@ class ClassModelGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/oop/model/class/EntityToClassMapper.ts":
+/*!*****************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/oop/model/class/EntityToClassMapper.ts ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EntityToClassMapper; });
+/* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_generator_oop_model_class_field_RelationshipMemberToClassFieldMapper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/oop/model/class/field/RelationshipMemberToClassFieldMapper */ "./src/main/erdiagram/generator/oop/model/class/field/RelationshipMemberToClassFieldMapper.ts");
+/* harmony import */ var _erdiagram_generator_oop_model_class_field_EntityPropertyToClassFieldMapper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/generator/oop/model/class/field/EntityPropertyToClassFieldMapper */ "./src/main/erdiagram/generator/oop/model/class/field/EntityPropertyToClassFieldMapper.ts");
+/* harmony import */ var _erdiagram_generator_oop_model_class_field_EntityToIdClassFieldMapper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/generator/oop/model/class/field/EntityToIdClassFieldMapper */ "./src/main/erdiagram/generator/oop/model/class/field/EntityToIdClassFieldMapper.ts");
+
+
+
+
+
+class EntityToClassMapper {
+    constructor(config) {
+        this.config = config;
+        this.entityToIdClassFieldMapper = new _erdiagram_generator_oop_model_class_field_EntityToIdClassFieldMapper__WEBPACK_IMPORTED_MODULE_4__["default"](this.config.idNamingStrategy);
+        this.entityPropertyToClassFieldMapper = new _erdiagram_generator_oop_model_class_field_EntityPropertyToClassFieldMapper__WEBPACK_IMPORTED_MODULE_3__["default"]();
+        this.relationshipMemberToClassFieldMapper = new _erdiagram_generator_oop_model_class_field_RelationshipMemberToClassFieldMapper__WEBPACK_IMPORTED_MODULE_2__["default"]();
+    }
+    mapEntityToClass(entity, relationships) {
+        const name = Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(entity.name);
+        const fields = [
+            this.entityToIdClassFieldMapper.mapEntityToIdClassField(entity)
+        ];
+        for (const property of entity.properties) {
+            fields.push(this.entityPropertyToClassFieldMapper.mapPropertyToField(property));
+        }
+        for (const relationship of relationships) {
+            const { leftMember, rightMember, direction } = relationship;
+            if (leftMember.entity === entity.name && [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Direction"].LEFT_TO_RIGHT, _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Direction"].BIDIRECTIONAL].includes(direction)) {
+                fields.push(this.relationshipMemberToClassFieldMapper.mapRelationshipMemberToField(rightMember));
+            }
+            if (rightMember.entity === entity.name && [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Direction"].RIGHT_TO_LEFT, _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__["Direction"].BIDIRECTIONAL].includes(direction)) {
+                fields.push(this.relationshipMemberToClassFieldMapper.mapRelationshipMemberToField(leftMember));
+            }
+        }
+        return {
+            name,
+            fields
+        };
+    }
+}
+;
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/oop/model/class/field/EntityPropertyToClassFieldMapper.ts":
+/*!************************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/oop/model/class/field/EntityPropertyToClassFieldMapper.ts ***!
+  \************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EntityPropertyToClassFieldMapper; });
+class EntityPropertyToClassFieldMapper {
+    mapPropertyToField(property) {
+        const { name, optional, type } = property;
+        return {
+            name,
+            nullable: optional,
+            primitiveType: type,
+            list: false
+        };
+    }
+}
+;
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/oop/model/class/field/EntityToIdClassFieldMapper.ts":
+/*!******************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/oop/model/class/field/EntityToIdClassFieldMapper.ts ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EntityToIdClassFieldMapper; });
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
+
+class EntityToIdClassFieldMapper {
+    constructor(idNamingStrategy) {
+        this.idNamingStrategy = idNamingStrategy;
+    }
+    mapEntityToIdClassField(entity) {
+        return {
+            name: this.getIdentifierFieldName(entity),
+            primitiveType: _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
+            // ID field must be nullable, so NULL value can be used to represent an unsaved instance
+            nullable: true,
+            list: false
+        };
+    }
+    getIdentifierFieldName(entity) {
+        if (entity.identifierPropertyName) {
+            return entity.identifierPropertyName;
+        }
+        const { idNamingStrategy } = this;
+        return idNamingStrategy(entity.name);
+    }
+}
+;
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/oop/model/class/field/RelationshipMemberToClassFieldMapper.ts":
+/*!****************************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/oop/model/class/field/RelationshipMemberToClassFieldMapper.ts ***!
+  \****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RelationshipMemberToClassFieldMapper; });
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
+/* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pluralize */ "./node_modules/pluralize/pluralize.js");
+/* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(pluralize__WEBPACK_IMPORTED_MODULE_1__);
+
+
+class RelationshipMemberToClassFieldMapper {
+    mapRelationshipMemberToField(toMember) {
+        const list = toMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Cardinality"].MANY;
+        const name = list ? pluralize__WEBPACK_IMPORTED_MODULE_1___default()(toMember.entityAlias) : toMember.entityAlias;
+        return {
+            name,
+            nullable: toMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Cardinality"].ZERO_OR_ONE,
+            entityType: toMember.entity,
+            list
+        };
+    }
+}
 
 
 /***/ }),
@@ -7884,110 +7940,74 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EntityRelationshipModelParser; });
-/* harmony import */ var _erdiagram_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/statement/statement-types-parse-functions */ "./src/main/erdiagram/parser/statement/statement-types-parse-functions.ts");
-/* harmony import */ var _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/parser/statement/statement-type-guesser */ "./src/main/erdiagram/parser/statement/statement-type-guesser.ts");
-/* harmony import */ var _erdiagram_parser_validator_ParsedEntityRelationshipModelValidator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/parser/validator/ParsedEntityRelationshipModelValidator */ "./src/main/erdiagram/parser/validator/ParsedEntityRelationshipModelValidator.ts");
-/* harmony import */ var _erdiagram_parser_config_EntityRelationshipModelParserConfigManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/parser/config/EntityRelationshipModelParserConfigManager */ "./src/main/erdiagram/parser/config/EntityRelationshipModelParserConfigManager.ts");
-/* harmony import */ var _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/parser/parse-errors */ "./src/main/erdiagram/parser/parse-errors.ts");
-/* harmony import */ var _erdiagram_parser_ParsedModelToPublicModelConverter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/parser/ParsedModelToPublicModelConverter */ "./src/main/erdiagram/parser/ParsedModelToPublicModelConverter.ts");
-
-
+/* harmony import */ var _erdiagram_parser_validator_EntityRelationshipModelParseResultValidator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/validator/EntityRelationshipModelParseResultValidator */ "./src/main/erdiagram/parser/validator/EntityRelationshipModelParseResultValidator.ts");
+/* harmony import */ var _erdiagram_parser_config_EntityRelationshipModelParserConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/parser/config/EntityRelationshipModelParserConfigManager */ "./src/main/erdiagram/parser/config/EntityRelationshipModelParserConfigManager.ts");
+/* harmony import */ var _erdiagram_parser_ParsedModelToPublicModelConverter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/parser/ParsedModelToPublicModelConverter */ "./src/main/erdiagram/parser/ParsedModelToPublicModelConverter.ts");
+/* harmony import */ var _erdiagram_parser_EntityRelationshipModelParserWithoutValidation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/parser/EntityRelationshipModelParserWithoutValidation */ "./src/main/erdiagram/parser/EntityRelationshipModelParserWithoutValidation.ts");
 
 
 
 
 class EntityRelationshipModelParser {
     constructor(config) {
-        this.config = _erdiagram_parser_config_EntityRelationshipModelParserConfigManager__WEBPACK_IMPORTED_MODULE_3__["default"].mergeWithDefaultConfig(config);
-        this.validator = new _erdiagram_parser_validator_ParsedEntityRelationshipModelValidator__WEBPACK_IMPORTED_MODULE_2__["default"](this.config.allowUnknownEntities);
-        this.parsedModelToPublicModelConverter = new _erdiagram_parser_ParsedModelToPublicModelConverter__WEBPACK_IMPORTED_MODULE_5__["default"]();
+        this.config = _erdiagram_parser_config_EntityRelationshipModelParserConfigManager__WEBPACK_IMPORTED_MODULE_1__["default"].mergeWithDefaultConfig(config);
+        this.entityRelationshipModelParserWithoutValidation = new _erdiagram_parser_EntityRelationshipModelParserWithoutValidation__WEBPACK_IMPORTED_MODULE_3__["default"]();
+        this.validator = new _erdiagram_parser_validator_EntityRelationshipModelParseResultValidator__WEBPACK_IMPORTED_MODULE_0__["default"](this.config.allowUnknownEntities);
+        this.parsedModelToPublicModelConverter = new _erdiagram_parser_ParsedModelToPublicModelConverter__WEBPACK_IMPORTED_MODULE_2__["default"]();
     }
     parseModel(code) {
-        const { model, statementResultToLineMap } = this.parseModelWithoutValidation(code);
-        try {
-            this.validator.validateParsedModel(model);
-        }
-        catch (error) {
-            this.handleValidationError(error, statementResultToLineMap);
-        }
-        return this.parsedModelToPublicModelConverter.convertParsedModelToPublicModel(model);
+        const parseResult = this.entityRelationshipModelParserWithoutValidation.parseModelWithoutValidation(code);
+        this.validator.validateParseResult(parseResult);
+        return this.parsedModelToPublicModelConverter.convertParsedModelToPublicModel(parseResult.model);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/parser/EntityRelationshipModelParserWithoutValidation.ts":
+/*!*************************************************************************************!*\
+  !*** ./src/main/erdiagram/parser/EntityRelationshipModelParserWithoutValidation.ts ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EntityRelationshipModelParserWithoutValidation; });
+/* harmony import */ var _erdiagram_parser_line_EntityRelationshipModelLineParser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/line/EntityRelationshipModelLineParser */ "./src/main/erdiagram/parser/line/EntityRelationshipModelLineParser.ts");
+
+const LINE_SEPARATOR = '\n';
+class EntityRelationshipModelParserWithoutValidation {
+    constructor() {
+        this.lineParser = new _erdiagram_parser_line_EntityRelationshipModelLineParser__WEBPACK_IMPORTED_MODULE_0__["default"]();
     }
     parseModelWithoutValidation(code) {
-        const lines = code.split('\n');
-        const state = {
+        const state = this.createInitialParseState();
+        this.parseCode(code, state);
+        return this.mapParseStateToParseResult(state);
+    }
+    createInitialParseState() {
+        return {
             entities: [],
             relationships: [],
             entityBeingParsed: null,
             statementResultToLineMap: new Map()
         };
-        lines.forEach((line, lineIndex) => {
-            try {
-                this.parseLine(line, lineIndex, state);
-            }
-            catch (error) {
-                this.handleLineError(error, lineIndex);
-            }
-        });
+    }
+    parseCode(code, state) {
+        const lines = code.split(LINE_SEPARATOR);
+        this.lineParser.parseLines(lines, state);
+    }
+    mapParseStateToParseResult(state) {
+        const { entities, relationships, statementResultToLineMap } = state;
         return {
             model: {
-                entities: state.entities,
-                relationships: state.relationships
+                entities,
+                relationships
             },
-            statementResultToLineMap: state.statementResultToLineMap
+            statementResultToLineMap
         };
-    }
-    parseLine(line, lineIndex, state) {
-        const statementType = Object(_erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["guessStatementType"])(line);
-        switch (statementType) {
-            case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].ENTITY_NAME:
-                const entityDescriptor = {
-                    name: Object(_erdiagram_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["parseEntityNameStatement"])(line),
-                    properties: []
-                };
-                state.entities.push(entityDescriptor);
-                state.entityBeingParsed = entityDescriptor;
-                state.statementResultToLineMap.set(entityDescriptor, lineIndex);
-                break;
-            case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].ENTITY_PROPERTY:
-                if (state.entityBeingParsed == null) {
-                    throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramSyntaxError"]('Unexpected entity property statement');
-                }
-                const entityPropertyDescriptor = Object(_erdiagram_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["parseEntityPropertyStatement"])(line);
-                state.entityBeingParsed.properties.push(entityPropertyDescriptor);
-                state.statementResultToLineMap.set(entityPropertyDescriptor, lineIndex);
-                break;
-            case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].RELATIONSHIP:
-                const relationshipDescriptor = Object(_erdiagram_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["parseRelationshipStatement"])(line);
-                state.relationships.push(relationshipDescriptor);
-                state.entityBeingParsed = null;
-                state.statementResultToLineMap.set(relationshipDescriptor, lineIndex);
-                break;
-            case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].BLANK_LINE:
-                // Ignore
-                break;
-            default:
-                throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramSyntaxError"](`Unknown statement type`);
-        }
-    }
-    handleLineError(error, lineIndex) {
-        if (error instanceof _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramError"]) {
-            throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramParseLineError"](error, lineIndex);
-        }
-        /* istanbul ignore next */
-        throw error;
-    }
-    handleValidationError(error, statementResultToLineMap) {
-        if (error instanceof _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramEntityPropertyError"]) {
-            throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramParseLineError"](error, statementResultToLineMap.get(error.property));
-        }
-        if (error instanceof _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramEntityError"]) {
-            throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramParseLineError"](error, statementResultToLineMap.get(error.entity));
-        }
-        if (error instanceof _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramRelationshipError"]) {
-            throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_4__["ERDiagramParseLineError"](error, statementResultToLineMap.get(error.relationship));
-        }
-        /* istanbul ignore next */
-        throw error;
     }
 }
 
@@ -8004,7 +8024,7 @@ class EntityRelationshipModelParser {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ParsedModelToPublicModelConverter; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 
 class ParsedModelToPublicModelConverter {
     convertParsedModelToPublicModel(parsedModel) {
@@ -8022,7 +8042,7 @@ class ParsedModelToPublicModelConverter {
         };
     }
     getEntityIdentifierProperty(parsedEntity) {
-        return parsedEntity.properties.find(property => property.type === _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER);
+        return parsedEntity.properties.find(property => property.type === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER);
     }
 }
 
@@ -8083,10 +8103,340 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/parser/entity-relationship-model-types.ts":
-/*!**********************************************************************!*\
-  !*** ./src/main/erdiagram/parser/entity-relationship-model-types.ts ***!
-  \**********************************************************************/
+/***/ "./src/main/erdiagram/parser/exports.ts":
+/*!**********************************************!*\
+  !*** ./src/main/erdiagram/parser/exports.ts ***!
+  \**********************************************/
+/*! exports provided: EntityRelationshipModelParserConfigManager, entityRelationshipModelParserConfigManager, EntityPropertyType, Cardinality, Direction, ERDiagramError, ERDiagramParseLineError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramRelationshipError, ERDiagramUnknownEntityError, ERDiagramEntityError, ERDiagramDuplicatedEntityNameError, ERDiagramEntityPropertyError, ERDiagramMultipleIdentifiersError, ERDiagramInvalidIdentifierDefinitionError, ERDiagramDuplicatedPropertyNameError, EntityRelationshipModelParser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EntityRelationshipModelParser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EntityRelationshipModelParser */ "./src/main/erdiagram/parser/EntityRelationshipModelParser.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityRelationshipModelParser", function() { return _EntityRelationshipModelParser__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/parser/config/exports.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityRelationshipModelParserConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["EntityRelationshipModelParserConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "entityRelationshipModelParserConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["entityRelationshipModelParserConfigManager"]; });
+
+/* harmony import */ var _types_exports__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./types/exports */ "./src/main/erdiagram/parser/types/exports.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityPropertyType", function() { return _types_exports__WEBPACK_IMPORTED_MODULE_2__["EntityPropertyType"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Cardinality", function() { return _types_exports__WEBPACK_IMPORTED_MODULE_2__["Cardinality"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Direction", function() { return _types_exports__WEBPACK_IMPORTED_MODULE_2__["Direction"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramError", function() { return _types_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramParseLineError", function() { return _types_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramParseLineError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramSyntaxError", function() { return _types_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramSyntaxError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownTypeError", function() { return _types_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramUnknownTypeError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramRelationshipError", function() { return _types_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramRelationshipError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownEntityError", function() { return _types_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramUnknownEntityError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramEntityError", function() { return _types_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramEntityError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramDuplicatedEntityNameError", function() { return _types_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramDuplicatedEntityNameError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramEntityPropertyError", function() { return _types_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramEntityPropertyError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramMultipleIdentifiersError", function() { return _types_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramMultipleIdentifiersError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramInvalidIdentifierDefinitionError", function() { return _types_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramInvalidIdentifierDefinitionError"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramDuplicatedPropertyNameError", function() { return _types_exports__WEBPACK_IMPORTED_MODULE_2__["ERDiagramDuplicatedPropertyNameError"]; });
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/parser/line/EntityRelationshipModelLineParser.ts":
+/*!*****************************************************************************!*\
+  !*** ./src/main/erdiagram/parser/line/EntityRelationshipModelLineParser.ts ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EntityRelationshipModelLineParser; });
+/* harmony import */ var _erdiagram_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/statement/statement-types-parse-functions */ "./src/main/erdiagram/parser/statement/statement-types-parse-functions.ts");
+/* harmony import */ var _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/parser/statement/statement-type-guesser */ "./src/main/erdiagram/parser/statement/statement-type-guesser.ts");
+/* harmony import */ var _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/parser/types/parse-errors */ "./src/main/erdiagram/parser/types/parse-errors.ts");
+/* harmony import */ var _erdiagram_parser_line_EntityRelationshipModelLineParserErrorHandler__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/parser/line/EntityRelationshipModelLineParserErrorHandler */ "./src/main/erdiagram/parser/line/EntityRelationshipModelLineParserErrorHandler.ts");
+
+
+
+
+class EntityRelationshipModelLineParser {
+    constructor() {
+        this.errorHandler = new _erdiagram_parser_line_EntityRelationshipModelLineParserErrorHandler__WEBPACK_IMPORTED_MODULE_3__["default"]();
+    }
+    parseLines(lines, state) {
+        lines.forEach((line, lineIndex) => {
+            try {
+                this.parseLine(line, lineIndex, state);
+            }
+            catch (error) {
+                this.errorHandler.handleLineError(error, lineIndex);
+            }
+        });
+    }
+    parseLine(line, lineIndex, state) {
+        const statementType = Object(_erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["guessStatementType"])(line);
+        switch (statementType) {
+            case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].ENTITY_NAME:
+                this.parseEntityNameLine(line, state, lineIndex);
+                break;
+            case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].ENTITY_PROPERTY:
+                this.parseEntityPropertyLine(state, line, lineIndex);
+                break;
+            case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].RELATIONSHIP:
+                this.parseRelationshipLine(line, state, lineIndex);
+                break;
+            case _erdiagram_parser_statement_statement_type_guesser__WEBPACK_IMPORTED_MODULE_1__["StatementType"].BLANK_LINE:
+                // Ignore
+                break;
+            default:
+                throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_2__["ERDiagramSyntaxError"](`Unknown statement type`);
+        }
+    }
+    parseEntityNameLine(line, state, lineIndex) {
+        const entityDescriptor = {
+            name: Object(_erdiagram_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["parseEntityNameStatement"])(line),
+            properties: []
+        };
+        state.entities.push(entityDescriptor);
+        state.entityBeingParsed = entityDescriptor;
+        state.statementResultToLineMap.set(entityDescriptor, lineIndex);
+    }
+    parseEntityPropertyLine(state, line, lineIndex) {
+        if (state.entityBeingParsed == null) {
+            throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_2__["ERDiagramSyntaxError"]('Unexpected entity property statement');
+        }
+        const entityPropertyDescriptor = Object(_erdiagram_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["parseEntityPropertyStatement"])(line);
+        state.entityBeingParsed.properties.push(entityPropertyDescriptor);
+        state.statementResultToLineMap.set(entityPropertyDescriptor, lineIndex);
+    }
+    parseRelationshipLine(line, state, lineIndex) {
+        const relationshipDescriptor = Object(_erdiagram_parser_statement_statement_types_parse_functions__WEBPACK_IMPORTED_MODULE_0__["parseRelationshipStatement"])(line);
+        state.relationships.push(relationshipDescriptor);
+        state.entityBeingParsed = null;
+        state.statementResultToLineMap.set(relationshipDescriptor, lineIndex);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/parser/line/EntityRelationshipModelLineParserErrorHandler.ts":
+/*!*****************************************************************************************!*\
+  !*** ./src/main/erdiagram/parser/line/EntityRelationshipModelLineParserErrorHandler.ts ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EntityRelationshipModelLineParserErrorHandler; });
+/* harmony import */ var _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/parse-errors */ "./src/main/erdiagram/parser/types/parse-errors.ts");
+
+class EntityRelationshipModelLineParserErrorHandler {
+    handleLineError(error, lineIndex) {
+        /* istanbul ignore else */
+        if (error instanceof _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramError"]) {
+            throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramParseLineError"](error, lineIndex);
+        }
+        /* istanbul ignore next */
+        throw error;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/parser/statement/statement-type-guesser.ts":
+/*!***********************************************************************!*\
+  !*** ./src/main/erdiagram/parser/statement/statement-type-guesser.ts ***!
+  \***********************************************************************/
+/*! exports provided: StatementType, guessStatementType */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StatementType", function() { return StatementType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "guessStatementType", function() { return guessStatementType; });
+/* harmony import */ var _erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/statement/statement-types-regexes */ "./src/main/erdiagram/parser/statement/statement-types-regexes.ts");
+
+var StatementType;
+(function (StatementType) {
+    StatementType["ENTITY_NAME"] = "entityName";
+    StatementType["ENTITY_PROPERTY"] = "entityProperty";
+    StatementType["RELATIONSHIP"] = "relationship";
+    StatementType["BLANK_LINE"] = "blankLine";
+    StatementType["UNKNOWN"] = "unknown";
+})(StatementType || (StatementType = {}));
+function guessStatementType(line) {
+    if (_erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_0__["ENTITY_NAME_LINE_REGEX"].test(line)) {
+        return StatementType.ENTITY_NAME;
+    }
+    else if (_erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_0__["ENTITY_PROPERTY_LINE_REGEX"].test(line)) {
+        return StatementType.ENTITY_PROPERTY;
+    }
+    else if (_erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_0__["RELATIONSHIP_LINE_REGEX"].test(line)) {
+        return StatementType.RELATIONSHIP;
+    }
+    else if (isBlankLine(line)) {
+        return StatementType.BLANK_LINE;
+    }
+    else {
+        return StatementType.UNKNOWN;
+    }
+}
+function isBlankLine(line) {
+    return /^\s*(#.*)?$/.test(line);
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/parser/statement/statement-types-parse-functions.ts":
+/*!********************************************************************************!*\
+  !*** ./src/main/erdiagram/parser/statement/statement-types-parse-functions.ts ***!
+  \********************************************************************************/
+/*! exports provided: parseEntityNameStatement, parseEntityPropertyStatement, parseRelationshipStatement */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseEntityNameStatement", function() { return parseEntityNameStatement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseEntityPropertyStatement", function() { return parseEntityPropertyStatement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseRelationshipStatement", function() { return parseRelationshipStatement; });
+/* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
+/* harmony import */ var _erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/parser/statement/statement-types-regexes */ "./src/main/erdiagram/parser/statement/statement-types-regexes.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/parser/types/parse-errors */ "./src/main/erdiagram/parser/types/parse-errors.ts");
+
+
+
+
+function parseEntityNameStatement(line) {
+    const result = _erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_1__["ENTITY_NAME_LINE_REGEX"].exec(line);
+    if (result == null) {
+        throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramSyntaxError"]('Syntax error');
+    }
+    const [fullMatch, entityName] = result;
+    return Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(entityName);
+}
+function parseEntityPropertyStatement(line) {
+    const result = _erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_1__["ENTITY_PROPERTY_LINE_REGEX"].exec(line);
+    if (result == null) {
+        throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramSyntaxError"]('Syntax error');
+    }
+    const [fullMatch, name, modifiers, type, length] = result;
+    const mappedType = type.toLowerCase();
+    if (!Object.values(_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["EntityPropertyType"]).includes(mappedType)) {
+        throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramUnknownTypeError"]('Unknown type: ' + type);
+    }
+    return {
+        name: Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["uncapitalizeWord"])(name),
+        optional: modifiers.includes('?'),
+        autoincremental: modifiers.includes('+'),
+        unique: modifiers.includes('!'),
+        type: mappedType,
+        length: parsePropertyLength(length)
+    };
+}
+function parsePropertyLength(length) {
+    if (!length) {
+        return [];
+    }
+    return length.split(',')
+        .map(lengthNumber => parseInt(lengthNumber.trim(), 10));
+}
+function parseRelationshipStatement(line) {
+    const result = _erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_1__["RELATIONSHIP_LINE_REGEX"].exec(line);
+    if (result == null) {
+        throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramSyntaxError"]('Syntax error');
+    }
+    const [fullMatch, leftEntity, leftEntityAlias = leftEntity, leftCardinalityCharacter, direction, rightCardinalityCharacter, rightEntity, rightEntityAlias = rightEntity, relationshipName] = result;
+    return {
+        relationshipName: relationshipName ? Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(relationshipName) : undefined,
+        direction: direction === '->' ? _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].LEFT_TO_RIGHT : (direction === '<-' ? _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].RIGHT_TO_LEFT : _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].BIDIRECTIONAL),
+        leftMember: {
+            entity: Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(leftEntity),
+            entityAlias: Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["uncapitalizeWord"])(leftEntityAlias),
+            cardinality: parseRelationshipMemberCardinality(leftCardinalityCharacter)
+        },
+        rightMember: {
+            entity: Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(rightEntity),
+            entityAlias: Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["uncapitalizeWord"])(rightEntityAlias),
+            cardinality: parseRelationshipMemberCardinality(rightCardinalityCharacter)
+        }
+    };
+}
+function parseRelationshipMemberCardinality(leftCardinalityCharacter) {
+    switch (leftCardinalityCharacter) {
+        case '*':
+            return _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Cardinality"].MANY;
+        case '?':
+            return _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Cardinality"].ZERO_OR_ONE;
+        default:
+            return _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Cardinality"].ONE;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/parser/statement/statement-types-regexes.ts":
+/*!************************************************************************!*\
+  !*** ./src/main/erdiagram/parser/statement/statement-types-regexes.ts ***!
+  \************************************************************************/
+/*! exports provided: ENTITY_NAME_LINE_REGEX, ENTITY_PROPERTY_LINE_REGEX, RELATIONSHIP_LINE_REGEX */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ENTITY_NAME_LINE_REGEX", function() { return ENTITY_NAME_LINE_REGEX; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ENTITY_PROPERTY_LINE_REGEX", function() { return ENTITY_PROPERTY_LINE_REGEX; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RELATIONSHIP_LINE_REGEX", function() { return RELATIONSHIP_LINE_REGEX; });
+/* harmony import */ var _erdiagram_util_regex_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/regex-utils */ "./src/main/erdiagram/util/regex-utils.ts");
+
+const IDENTIFIER_REGEX = /[a-zA-Z_][a-zA-Z_0-9]*/;
+const OPTIONAL_TRAILING_SPACES_AND_COMMENT = /\s*(#.*)?$/;
+// Entity name
+const ENTITY_NAME_LINE_REGEX = new RegExp(`^(${IDENTIFIER_REGEX.source})${OPTIONAL_TRAILING_SPACES_AND_COMMENT.source}`);
+// Entity property
+const PROPERTY_NAME_REGEX = new RegExp(`(${IDENTIFIER_REGEX.source})`);
+const PROPERTY_MODIFIERS_REGEX = new RegExp(`([?!+]*)`);
+const PROPERTY_TYPE_NAME_REGEX = new RegExp(`(${IDENTIFIER_REGEX.source})`);
+const PROPERTY_TYPE_LENGTH_REGEX = new RegExp(`(?:\\((\\s*\\d+\\s*(?:,\\s*\\d+\\s*)*)\\))?`);
+const ENTITY_PROPERTY_REGEX = Object(_erdiagram_util_regex_utils__WEBPACK_IMPORTED_MODULE_0__["joinRegExps"])(PROPERTY_NAME_REGEX, PROPERTY_MODIFIERS_REGEX, /\s+/, PROPERTY_TYPE_NAME_REGEX, PROPERTY_TYPE_LENGTH_REGEX);
+const ENTITY_PROPERTY_LINE_REGEX = new RegExp(`^\\s+${ENTITY_PROPERTY_REGEX.source}${OPTIONAL_TRAILING_SPACES_AND_COMMENT.source}`);
+// Relationship
+const RELATIONSHIP_DIRECTION_REGEX = /(<-|->|<->)/;
+const RELATIONSHIP_CARDINALITY_REGEX = /([?1*])?/;
+const DIRECTION_AND_CARDINALITY_REGEX = Object(_erdiagram_util_regex_utils__WEBPACK_IMPORTED_MODULE_0__["joinRegExps"])(RELATIONSHIP_CARDINALITY_REGEX, RELATIONSHIP_DIRECTION_REGEX, RELATIONSHIP_CARDINALITY_REGEX);
+const ENTITY_AND_ALIAS_REGEX = new RegExp(`(${IDENTIFIER_REGEX.source})(?:\\s+(${IDENTIFIER_REGEX.source}))?`);
+const RELATIONSHIP_LINE_REGEX = new RegExp(`^${ENTITY_AND_ALIAS_REGEX.source}\\s*?${DIRECTION_AND_CARDINALITY_REGEX.source}\\s*?${ENTITY_AND_ALIAS_REGEX.source}(?:\\s+\\(\\s*(${IDENTIFIER_REGEX.source})\\s*\\))?${OPTIONAL_TRAILING_SPACES_AND_COMMENT.source}`);
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts":
+/*!****************************************************************************!*\
+  !*** ./src/main/erdiagram/parser/types/entity-relationship-model-types.ts ***!
+  \****************************************************************************/
 /*! exports provided: EntityPropertyType, Cardinality, Direction */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -8125,57 +8475,46 @@ var Direction;
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/parser/exports.ts":
-/*!**********************************************!*\
-  !*** ./src/main/erdiagram/parser/exports.ts ***!
-  \**********************************************/
-/*! exports provided: EntityRelationshipModelParserConfigManager, entityRelationshipModelParserConfigManager, EntityPropertyType, Cardinality, Direction, ERDiagramError, ERDiagramParseLineError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramRelationshipError, ERDiagramUnknownEntityError, ERDiagramEntityError, ERDiagramDuplicatedEntityNameError, ERDiagramEntityPropertyError, ERDiagramMultipleIdentifiersError, ERDiagramInvalidIdentifierDefinitionError, ERDiagramDuplicatedPropertyNameError, EntityRelationshipModelParser */
+/***/ "./src/main/erdiagram/parser/types/exports.ts":
+/*!****************************************************!*\
+  !*** ./src/main/erdiagram/parser/types/exports.ts ***!
+  \****************************************************/
+/*! exports provided: EntityPropertyType, Cardinality, Direction, ERDiagramError, ERDiagramParseLineError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramRelationshipError, ERDiagramUnknownEntityError, ERDiagramEntityError, ERDiagramDuplicatedEntityNameError, ERDiagramEntityPropertyError, ERDiagramMultipleIdentifiersError, ERDiagramInvalidIdentifierDefinitionError, ERDiagramDuplicatedPropertyNameError */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _EntityRelationshipModelParser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EntityRelationshipModelParser */ "./src/main/erdiagram/parser/EntityRelationshipModelParser.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityRelationshipModelParser", function() { return _EntityRelationshipModelParser__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+/* harmony import */ var _entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityPropertyType", function() { return _entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"]; });
 
-/* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/parser/config/exports.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityRelationshipModelParserConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["EntityRelationshipModelParserConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Cardinality", function() { return _entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Cardinality"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "entityRelationshipModelParserConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["entityRelationshipModelParserConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Direction", function() { return _entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["Direction"]; });
 
-/* harmony import */ var _entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EntityPropertyType", function() { return _entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["EntityPropertyType"]; });
+/* harmony import */ var _parse_errors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parse-errors */ "./src/main/erdiagram/parser/types/parse-errors.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramError"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Cardinality", function() { return _entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Cardinality"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramParseLineError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramParseLineError"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Direction", function() { return _entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramSyntaxError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramSyntaxError"]; });
 
-/* harmony import */ var _parse_errors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./parse-errors */ "./src/main/erdiagram/parser/parse-errors.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramError"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownTypeError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramUnknownTypeError"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramParseLineError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramParseLineError"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramRelationshipError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramRelationshipError"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramSyntaxError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramSyntaxError"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownEntityError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramUnknownEntityError"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownTypeError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramUnknownTypeError"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramEntityError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramEntityError"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramRelationshipError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramRelationshipError"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramDuplicatedEntityNameError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramDuplicatedEntityNameError"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramUnknownEntityError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramUnknownEntityError"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramEntityPropertyError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramEntityPropertyError"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramEntityError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramEntityError"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramMultipleIdentifiersError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramMultipleIdentifiersError"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramDuplicatedEntityNameError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramDuplicatedEntityNameError"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramInvalidIdentifierDefinitionError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramInvalidIdentifierDefinitionError"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramEntityPropertyError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramEntityPropertyError"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramMultipleIdentifiersError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramMultipleIdentifiersError"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramInvalidIdentifierDefinitionError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramInvalidIdentifierDefinitionError"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramDuplicatedPropertyNameError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramDuplicatedPropertyNameError"]; });
-
-
-
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ERDiagramDuplicatedPropertyNameError", function() { return _parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramDuplicatedPropertyNameError"]; });
 
 
 
@@ -8183,10 +8522,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/parser/parse-errors.ts":
-/*!***************************************************!*\
-  !*** ./src/main/erdiagram/parser/parse-errors.ts ***!
-  \***************************************************/
+/***/ "./src/main/erdiagram/parser/types/parse-errors.ts":
+/*!*********************************************************!*\
+  !*** ./src/main/erdiagram/parser/types/parse-errors.ts ***!
+  \*********************************************************/
 /*! exports provided: ERDiagramError, ERDiagramParseLineError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramRelationshipError, ERDiagramUnknownEntityError, ERDiagramEntityError, ERDiagramDuplicatedEntityNameError, ERDiagramEntityPropertyError, ERDiagramMultipleIdentifiersError, ERDiagramInvalidIdentifierDefinitionError, ERDiagramDuplicatedPropertyNameError */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -8261,192 +8600,35 @@ class ERDiagramDuplicatedPropertyNameError extends ERDiagramEntityPropertyError 
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/parser/statement/statement-type-guesser.ts":
-/*!***********************************************************************!*\
-  !*** ./src/main/erdiagram/parser/statement/statement-type-guesser.ts ***!
-  \***********************************************************************/
-/*! exports provided: StatementType, guessStatementType */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StatementType", function() { return StatementType; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "guessStatementType", function() { return guessStatementType; });
-/* harmony import */ var _erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/statement/statement-types-regexes */ "./src/main/erdiagram/parser/statement/statement-types-regexes.ts");
-
-var StatementType;
-(function (StatementType) {
-    StatementType["ENTITY_NAME"] = "entityName";
-    StatementType["ENTITY_PROPERTY"] = "entityProperty";
-    StatementType["RELATIONSHIP"] = "relationship";
-    StatementType["BLANK_LINE"] = "blankLine";
-    StatementType["UNKNOWN"] = "unknown";
-})(StatementType || (StatementType = {}));
-function guessStatementType(line) {
-    if (_erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_0__["ENTITY_NAME_LINE_REGEX"].test(line)) {
-        return StatementType.ENTITY_NAME;
-    }
-    else if (_erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_0__["ENTITY_PROPERTY_LINE_REGEX"].test(line)) {
-        return StatementType.ENTITY_PROPERTY;
-    }
-    else if (_erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_0__["RELATIONSHIP_LINE_REGEX"].test(line)) {
-        return StatementType.RELATIONSHIP;
-    }
-    else if (isBlankLine(line)) {
-        return StatementType.BLANK_LINE;
-    }
-    else {
-        return StatementType.UNKNOWN;
-    }
-}
-function isBlankLine(line) {
-    return /^\s*(#.*)?$/.test(line);
-}
-
-
-/***/ }),
-
-/***/ "./src/main/erdiagram/parser/statement/statement-types-parse-functions.ts":
-/*!********************************************************************************!*\
-  !*** ./src/main/erdiagram/parser/statement/statement-types-parse-functions.ts ***!
-  \********************************************************************************/
-/*! exports provided: parseEntityNameStatement, parseEntityPropertyStatement, parseRelationshipStatement */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseEntityNameStatement", function() { return parseEntityNameStatement; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseEntityPropertyStatement", function() { return parseEntityPropertyStatement; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseRelationshipStatement", function() { return parseRelationshipStatement; });
-/* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
-/* harmony import */ var _erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/parser/statement/statement-types-regexes */ "./src/main/erdiagram/parser/statement/statement-types-regexes.ts");
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
-/* harmony import */ var _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/parser/parse-errors */ "./src/main/erdiagram/parser/parse-errors.ts");
-
-
-
-
-function parseEntityNameStatement(line) {
-    const result = _erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_1__["ENTITY_NAME_LINE_REGEX"].exec(line);
-    if (result == null) {
-        throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramSyntaxError"]('Syntax error');
-    }
-    const [fullMatch, entityName] = result;
-    return Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(entityName);
-}
-function parseEntityPropertyStatement(line) {
-    const result = _erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_1__["ENTITY_PROPERTY_LINE_REGEX"].exec(line);
-    if (result == null) {
-        throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramSyntaxError"]('Syntax error');
-    }
-    const [fullMatch, name, modifiers, type, length] = result;
-    const mappedType = type.toLowerCase();
-    if (!Object.values(_erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["EntityPropertyType"]).includes(mappedType)) {
-        throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramUnknownTypeError"]('Unknown type: ' + type);
-    }
-    return {
-        name: Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["uncapitalizeWord"])(name),
-        optional: modifiers.includes('?'),
-        autoincremental: modifiers.includes('+'),
-        unique: modifiers.includes('!'),
-        type: mappedType,
-        length: parsePropertyLength(length)
-    };
-}
-function parsePropertyLength(length) {
-    if (!length) {
-        return [];
-    }
-    return length.split(',')
-        .map(lengthNumber => parseInt(lengthNumber.trim(), 10));
-}
-function parseRelationshipStatement(line) {
-    const result = _erdiagram_parser_statement_statement_types_regexes__WEBPACK_IMPORTED_MODULE_1__["RELATIONSHIP_LINE_REGEX"].exec(line);
-    if (result == null) {
-        throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_3__["ERDiagramSyntaxError"]('Syntax error');
-    }
-    const [fullMatch, leftEntity, leftEntityAlias = leftEntity, leftCardinalityCharacter, direction, rightCardinalityCharacter, rightEntity, rightEntityAlias = rightEntity, relationshipName] = result;
-    return {
-        relationshipName: relationshipName ? Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(relationshipName) : undefined,
-        direction: direction === '->' ? _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].LEFT_TO_RIGHT : (direction === '<-' ? _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].RIGHT_TO_LEFT : _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Direction"].BIDIRECTIONAL),
-        leftMember: {
-            entity: Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(leftEntity),
-            entityAlias: Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["uncapitalizeWord"])(leftEntityAlias),
-            cardinality: parseRelationshipMemberCardinality(leftCardinalityCharacter)
-        },
-        rightMember: {
-            entity: Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["capitalizeWord"])(rightEntity),
-            entityAlias: Object(_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__["uncapitalizeWord"])(rightEntityAlias),
-            cardinality: parseRelationshipMemberCardinality(rightCardinalityCharacter)
-        }
-    };
-}
-function parseRelationshipMemberCardinality(leftCardinalityCharacter) {
-    switch (leftCardinalityCharacter) {
-        case '*':
-            return _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Cardinality"].MANY;
-        case '?':
-            return _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Cardinality"].ZERO_OR_ONE;
-        default:
-            return _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__["Cardinality"].ONE;
-    }
-}
-
-
-/***/ }),
-
-/***/ "./src/main/erdiagram/parser/statement/statement-types-regexes.ts":
-/*!************************************************************************!*\
-  !*** ./src/main/erdiagram/parser/statement/statement-types-regexes.ts ***!
-  \************************************************************************/
-/*! exports provided: ENTITY_NAME_LINE_REGEX, ENTITY_PROPERTY_LINE_REGEX, RELATIONSHIP_LINE_REGEX */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ENTITY_NAME_LINE_REGEX", function() { return ENTITY_NAME_LINE_REGEX; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ENTITY_PROPERTY_LINE_REGEX", function() { return ENTITY_PROPERTY_LINE_REGEX; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RELATIONSHIP_LINE_REGEX", function() { return RELATIONSHIP_LINE_REGEX; });
-/* harmony import */ var _erdiagram_util_regex_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/regex-utils */ "./src/main/erdiagram/util/regex-utils.ts");
-
-const IDENTIFIER_REGEX = /[a-zA-Z_][a-zA-Z_0-9]*/;
-const OPTIONAL_TRAILING_SPACES_AND_COMMENT = /\s*(#.*)?$/;
-// Entity name
-const ENTITY_NAME_LINE_REGEX = new RegExp(`^(${IDENTIFIER_REGEX.source})${OPTIONAL_TRAILING_SPACES_AND_COMMENT.source}`);
-// Entity property
-const PROPERTY_NAME_REGEX = new RegExp(`(${IDENTIFIER_REGEX.source})`);
-const PROPERTY_MODIFIERS_REGEX = new RegExp(`([?!+]*)`);
-const PROPERTY_TYPE_NAME_REGEX = new RegExp(`(${IDENTIFIER_REGEX.source})`);
-const PROPERTY_TYPE_LENGTH_REGEX = new RegExp(`(?:\\((\\s*\\d+\\s*(?:,\\s*\\d+\\s*)*)\\))?`);
-const ENTITY_PROPERTY_REGEX = Object(_erdiagram_util_regex_utils__WEBPACK_IMPORTED_MODULE_0__["joinRegExps"])(PROPERTY_NAME_REGEX, PROPERTY_MODIFIERS_REGEX, /\s+/, PROPERTY_TYPE_NAME_REGEX, PROPERTY_TYPE_LENGTH_REGEX);
-const ENTITY_PROPERTY_LINE_REGEX = new RegExp(`^\\s+${ENTITY_PROPERTY_REGEX.source}${OPTIONAL_TRAILING_SPACES_AND_COMMENT.source}`);
-// Relationship
-const RELATIONSHIP_DIRECTION_REGEX = /(<-|->|<->)/;
-const RELATIONSHIP_CARDINALITY_REGEX = /([?1*])?/;
-const DIRECTION_AND_CARDINALITY_REGEX = Object(_erdiagram_util_regex_utils__WEBPACK_IMPORTED_MODULE_0__["joinRegExps"])(RELATIONSHIP_CARDINALITY_REGEX, RELATIONSHIP_DIRECTION_REGEX, RELATIONSHIP_CARDINALITY_REGEX);
-const ENTITY_AND_ALIAS_REGEX = new RegExp(`(${IDENTIFIER_REGEX.source})(?:\\s+(${IDENTIFIER_REGEX.source}))?`);
-const RELATIONSHIP_LINE_REGEX = new RegExp(`^${ENTITY_AND_ALIAS_REGEX.source}\\s*?${DIRECTION_AND_CARDINALITY_REGEX.source}\\s*?${ENTITY_AND_ALIAS_REGEX.source}(?:\\s+\\(\\s*(${IDENTIFIER_REGEX.source})\\s*\\))?${OPTIONAL_TRAILING_SPACES_AND_COMMENT.source}`);
-
-
-/***/ }),
-
-/***/ "./src/main/erdiagram/parser/validator/ParsedEntityRelationshipModelValidator.ts":
-/*!***************************************************************************************!*\
-  !*** ./src/main/erdiagram/parser/validator/ParsedEntityRelationshipModelValidator.ts ***!
-  \***************************************************************************************/
+/***/ "./src/main/erdiagram/parser/validator/EntityRelationshipModelParseResultValidator.ts":
+/*!********************************************************************************************!*\
+  !*** ./src/main/erdiagram/parser/validator/EntityRelationshipModelParseResultValidator.ts ***!
+  \********************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ParsedEntityRelationshipModelValidator; });
-/* harmony import */ var _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/entity-relationship-model-types */ "./src/main/erdiagram/parser/entity-relationship-model-types.ts");
-/* harmony import */ var _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/parser/parse-errors */ "./src/main/erdiagram/parser/parse-errors.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EntityRelationshipModelParseResultValidator; });
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/parser/types/parse-errors */ "./src/main/erdiagram/parser/types/parse-errors.ts");
+/* harmony import */ var _erdiagram_parser_validator_EntityRelationshipModelParseResultValidatorErrorHandler__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/parser/validator/EntityRelationshipModelParseResultValidatorErrorHandler */ "./src/main/erdiagram/parser/validator/EntityRelationshipModelParseResultValidatorErrorHandler.ts");
 
 
-class ParsedEntityRelationshipModelValidator {
+
+class EntityRelationshipModelParseResultValidator {
     constructor(allowUnknownEntities) {
         this.allowUnknownEntities = allowUnknownEntities;
+        this.errorHandler = new _erdiagram_parser_validator_EntityRelationshipModelParseResultValidatorErrorHandler__WEBPACK_IMPORTED_MODULE_2__["default"]();
+    }
+    validateParseResult(parseResult) {
+        const { model, statementResultToLineMap } = parseResult;
+        try {
+            this.validateParsedModel(model);
+        }
+        catch (error) {
+            this.errorHandler.handleValidationError(error, statementResultToLineMap);
+        }
     }
     validateParsedModel(model) {
         this.validateNonRepeatedEntityNames(model);
@@ -8461,7 +8643,7 @@ class ParsedEntityRelationshipModelValidator {
         model.entities.forEach(entity => {
             const entityName = entity.name;
             if (entityNames.has(entityName)) {
-                throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramDuplicatedEntityNameError"](`Repeated entity "${entityName}"`, entity);
+                throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramDuplicatedEntityNameError"](`Repeated entity "${entityName}"`, entity);
             }
             entityNames.add(entityName);
         });
@@ -8472,7 +8654,7 @@ class ParsedEntityRelationshipModelValidator {
             entity.properties.forEach(property => {
                 const propertyName = property.name;
                 if (entityPropertyNames.has(propertyName)) {
-                    throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramDuplicatedPropertyNameError"](`Repeated property "${propertyName}" in "${entity.name}" entity`, entity, property);
+                    throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramDuplicatedPropertyNameError"](`Repeated property "${propertyName}" in "${entity.name}" entity`, entity, property);
                 }
                 entityPropertyNames.add(propertyName);
             });
@@ -8480,23 +8662,23 @@ class ParsedEntityRelationshipModelValidator {
     }
     validateIdentifierProperties(model) {
         model.entities.forEach(entity => {
-            const identifierProperties = entity.properties.filter(property => property.type === _erdiagram_parser_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER);
+            const identifierProperties = entity.properties.filter(property => property.type === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER);
             if (identifierProperties.length > 1) {
-                throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramMultipleIdentifiersError"](`Entity ${entity.name} has more than one identifier property`, entity, identifierProperties);
+                throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramMultipleIdentifiersError"](`Entity ${entity.name} has more than one identifier property`, entity, identifierProperties);
             }
             const identifierProperty = identifierProperties[0];
             if (identifierProperty != null) {
                 if (identifierProperty.autoincremental) {
-                    throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramInvalidIdentifierDefinitionError"]('Autoincremental modifier (+) cannot be used in identifier properties', entity, identifierProperty);
+                    throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramInvalidIdentifierDefinitionError"]('Autoincremental modifier (+) cannot be used in identifier properties', entity, identifierProperty);
                 }
                 if (identifierProperty.optional) {
-                    throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramInvalidIdentifierDefinitionError"]('Optional modifier (?) cannot be used in identifier properties', entity, identifierProperty);
+                    throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramInvalidIdentifierDefinitionError"]('Optional modifier (?) cannot be used in identifier properties', entity, identifierProperty);
                 }
                 if (identifierProperty.unique) {
-                    throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramInvalidIdentifierDefinitionError"]('Unique modifier (!) cannot be used in identifier properties', entity, identifierProperty);
+                    throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramInvalidIdentifierDefinitionError"]('Unique modifier (!) cannot be used in identifier properties', entity, identifierProperty);
                 }
                 if (identifierProperty.length.length > 0) {
-                    throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramInvalidIdentifierDefinitionError"]('Identifier properties cannot have a length', entity, identifierProperty);
+                    throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramInvalidIdentifierDefinitionError"]('Identifier properties cannot have a length', entity, identifierProperty);
                 }
             }
         });
@@ -8505,12 +8687,44 @@ class ParsedEntityRelationshipModelValidator {
         const entityNames = model.entities.map(e => e.name);
         model.relationships.forEach(relationship => {
             if (!entityNames.includes(relationship.leftMember.entity)) {
-                throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramUnknownEntityError"](`Uknown entity "${relationship.leftMember.entity}" in relationship's left member`, relationship, relationship.leftMember);
+                throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramUnknownEntityError"](`Uknown entity "${relationship.leftMember.entity}" in relationship's left member`, relationship, relationship.leftMember);
             }
             if (!entityNames.includes(relationship.rightMember.entity)) {
-                throw new _erdiagram_parser_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramUnknownEntityError"](`Uknown entity "${relationship.rightMember.entity}" in relationship's right member`, relationship, relationship.rightMember);
+                throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_1__["ERDiagramUnknownEntityError"](`Uknown entity "${relationship.rightMember.entity}" in relationship's right member`, relationship, relationship.rightMember);
             }
         });
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/parser/validator/EntityRelationshipModelParseResultValidatorErrorHandler.ts":
+/*!********************************************************************************************************!*\
+  !*** ./src/main/erdiagram/parser/validator/EntityRelationshipModelParseResultValidatorErrorHandler.ts ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EntityRelationshipModelParseResultValidatorErrorHandler; });
+/* harmony import */ var _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/parse-errors */ "./src/main/erdiagram/parser/types/parse-errors.ts");
+
+class EntityRelationshipModelParseResultValidatorErrorHandler {
+    handleValidationError(error, statementResultToLineMap) {
+        if (error instanceof _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramEntityPropertyError"]) {
+            throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramParseLineError"](error, statementResultToLineMap.get(error.property));
+        }
+        if (error instanceof _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramEntityError"]) {
+            throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramParseLineError"](error, statementResultToLineMap.get(error.entity));
+        }
+        /* istanbul ignore else */
+        if (error instanceof _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramRelationshipError"]) {
+            throw new _erdiagram_parser_types_parse_errors__WEBPACK_IMPORTED_MODULE_0__["ERDiagramParseLineError"](error, statementResultToLineMap.get(error.relationship));
+        }
+        /* istanbul ignore next */
+        throw error;
     }
 }
 

@@ -294,13 +294,9 @@ export interface ClassModelGeneratorConfig {
 }
 export declare class ClassModelGenerator {
 	private readonly config;
+	private readonly entityToClassMapper;
 	constructor(config?: Partial<ClassModelGeneratorConfig>);
 	generateClassModel(model: EntityRelationshipModel): ClassModel;
-	private generateEntityTable;
-	private createIdField;
-	private getIdentifierFieldName;
-	private mapRelationshipMemberToField;
-	private mapPropertyToField;
 }
 export declare class EntityRelationshipModelToClassCodeConverter implements EntityRelationshipModelToCodeConverter {
 	private readonly classModelGenerator;
@@ -329,13 +325,11 @@ export interface JavaClassModelToCodeConverterConfig extends ClassModelToCodeCon
 }
 export declare class JavaClassModelToCodeConverter implements ClassModelToCodeConverter {
 	private readonly config;
+	private readonly typeResolver;
 	constructor(config?: Partial<JavaClassModelToCodeConverterConfig>);
 	convertToCode(classModel: ClassModel): string;
 	private generateClass;
 	private createField;
-	private mapFieldTypeToJavaType;
-	private mapListTypeToJavaType;
-	private mapSingleTypeToJavaType;
 	private createImportStatements;
 	private unrollTypesRecursively;
 	private isImportRequired;
@@ -367,13 +361,11 @@ export interface TypeScriptClassModelToCodeConverterConfig extends ClassModelToC
 }
 export declare class TypeScriptClassModelToCodeConverter implements ClassModelToCodeConverter {
 	private readonly config;
+	private readonly typeResolver;
 	constructor(config?: Partial<TypeScriptClassModelToCodeConverterConfig>);
 	convertToCode(classModel: ClassModel): string;
 	private generateClass;
 	private createField;
-	private mapFieldTypeToTypeScriptType;
-	private mapListTypeToTypeScriptType;
-	private mapSingleTypeToTypeScriptType;
 }
 export interface TypeScriptClassModelToCodeConverterSerializableConfig extends ClassModelToCodeConverterSerializableConfig {
 }
@@ -469,14 +461,11 @@ export interface EntityRelationshipModelParserConfig {
 }
 export declare class EntityRelationshipModelParser {
 	private readonly config;
+	private readonly entityRelationshipModelParserWithoutValidation;
 	private readonly validator;
 	private readonly parsedModelToPublicModelConverter;
 	constructor(config?: Partial<EntityRelationshipModelParserConfig>);
 	parseModel(code: string): EntityRelationshipModel;
-	private parseModelWithoutValidation;
-	private parseLine;
-	private handleLineError;
-	private handleValidationError;
 }
 export interface EntityRelationshipModelParserSerializableConfig {
 	allowUnknownEntities: boolean;
