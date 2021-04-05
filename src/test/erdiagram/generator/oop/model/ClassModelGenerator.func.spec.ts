@@ -3,7 +3,7 @@ import {
 	Direction,
 	EntityPropertyType,
 	RelationshipDescriptor
-} from '../../../../../main/erdiagram/parser/types/entity-relationship-model-types';
+} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import ClassModelGenerator from '@/erdiagram/generator/oop/model/ClassModelGenerator';
 import {ClassDescriptor, ClassFieldDescriptor, ClassModel} from '@/erdiagram/generator/oop/model/class-model-types';
 import {

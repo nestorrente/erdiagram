@@ -10,10 +10,14 @@ There you will find some code examples that are very useful for learning the _ER
 * Database (SQL)
     * MySQL
     * Oracle DB
+    * PostgreSQL
     * SQL Server
 * OOP classes
     * Java POJO (no JPA support so far)
     * TypeScript
+* Diagram
+    * PlantUML (code & SVG image)
+    * Nomnoml (code & SVG image)
 
 ## Documentation
 

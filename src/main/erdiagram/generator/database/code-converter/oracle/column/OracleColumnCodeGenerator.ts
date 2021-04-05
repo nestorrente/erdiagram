@@ -1,10 +1,11 @@
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {TableColumnDescriptor} from '@/erdiagram/generator/database/model/database-model-types';
-import RegularColumnCode from '@/erdiagram/generator/database/code-converter/oracle/column/types/RegularColumnCode';
 import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
 import SqlTypeResolver from '@/erdiagram/generator/database/code-converter/common/SqlTypeResolver';
+import {RegularColumnCode} from '@/erdiagram/generator/database/code-converter/common/sql-script-types';
+import SqlColumnCodeGenerator from '@/erdiagram/generator/database/code-converter/common/column/SqlColumnCodeGenerator';
 
-export default class OracleColumnCodeGenerator {
+export default class OracleColumnCodeGenerator implements SqlColumnCodeGenerator {
 
 	constructor(
 			private readonly typeResolver: SqlTypeResolver,

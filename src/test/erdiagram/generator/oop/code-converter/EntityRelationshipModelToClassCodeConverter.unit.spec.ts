@@ -1,5 +1,5 @@
 import ClassModelGenerator from '@/erdiagram/generator/oop/model/ClassModelGenerator';
-import {EntityRelationshipModel} from '../../../../../main/erdiagram/parser/types/entity-relationship-model-types';
+import {EntityRelationshipModel} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {ClassModel} from '@/erdiagram/generator/oop/model/class-model-types';
 import EntityRelationshipModelToClassCodeConverter
 	from '@/erdiagram/generator/oop/code-converter/EntityRelationshipModelToClassCodeConverter';

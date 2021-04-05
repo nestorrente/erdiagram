@@ -1,4 +1,4 @@
-import {findKeyFromValue, findValueFromNullableKey, mapValues} from '../../../main/erdiagram/util/record-utils';
+import {findKeyFromValue, findValueFromNullableKey, mapValues} from '@/erdiagram/util/record-utils';
 
 test('Map object values', () => {
 

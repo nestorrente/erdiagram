@@ -3,13 +3,14 @@ import {
 	TableColumnDescriptor,
 	TableReferenceDescriptor
 } from '@/erdiagram/generator/database/model/database-model-types';
-import ForeignKeyColumnCode
-	from '@/erdiagram/generator/database/code-converter/mysql/column/types/ForeignKeyColumnCode';
 import MysqlColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/mysql/column/MysqlColumnCodeGenerator';
 import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
+import {ForeignKeyColumnCode} from '@/erdiagram/generator/database/code-converter/common/sql-script-types';
+import SqlForeignColumnCodeGenerator
+	from '@/erdiagram/generator/database/code-converter/common/column/SqlForeignColumnCodeGenerator';
 
-export default class MysqlForeignColumnCodeGenerator {
+export default class MysqlForeignColumnCodeGenerator implements SqlForeignColumnCodeGenerator {
 
 	constructor(
 			private readonly columnCodeGenerator: MysqlColumnCodeGenerator,

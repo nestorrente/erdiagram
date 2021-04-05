@@ -4,11 +4,24 @@ export interface TableCreationStatements {
 }
 
 export interface CreateTableLines {
+	sequences: string[];
 	columns: string[];
 	fkConstraints: string[];
 	otherConstraints: string[];
 }
 
-export interface CreateTableLinesWithSequences extends CreateTableLines {
-	sequences: string[];
+export interface IdColumnCode {
+	createSequenceLine?: string;
+	columnLine: string;
+	pkConstraintLine: string;
+}
+
+export interface RegularColumnCode {
+	columnLine: string;
+	createSequenceLine?: string;
+	uniqueConstraintLine?: string;
+}
+
+export interface ForeignKeyColumnCode extends RegularColumnCode {
+	fkConstraintLine: string;
 }

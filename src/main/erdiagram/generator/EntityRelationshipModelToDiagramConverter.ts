@@ -23,4 +23,3 @@ export abstract class BaseEntityRelationshipModelToDiagramConverter implements E
 	protected abstract convertNonEmptyModelToDiagram(model: EntityRelationshipModel): Promise<string>;
 
 }
-

@@ -2,7 +2,7 @@ import {
 	EntityDescriptor,
 	EntityPropertyDescriptor,
 	EntityPropertyType
-} from '../../../main/erdiagram/parser/types/entity-relationship-model-types';
+} from '@/erdiagram/parser/types/entity-relationship-model-types';
 
 export function createEntityWithoutProperties(name: string): EntityDescriptor {
 	return {

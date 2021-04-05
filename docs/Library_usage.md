@@ -285,8 +285,8 @@ const databaseModelToCodeConverter = new MysqlDatabaseModelToCodeConverter({
 ```
 
 Although we are using `MysqlDatabaseModelToCodeConverter` in this example, there is also support for other database
-engines, like Oracle (using `PostgresqlDatabaseModelToCodeConverter`) or SQL Server (using
-`SqlServerDatabaseModelToCodeConverter`).
+engines, like Oracle (using `OracleDatabaseModelToCodeConverter`), PostgreSQL (using
+`PostgresqlDatabaseModelToCodeConverter`) or SQL Server (using `SqlServerDatabaseModelToCodeConverter`).
 
 ### Generate OOP classes from an EntityRelationshipModel object
 

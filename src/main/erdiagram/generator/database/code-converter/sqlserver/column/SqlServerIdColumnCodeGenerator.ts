@@ -1,11 +1,13 @@
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {TableColumnDescriptor} from '@/erdiagram/generator/database/model/database-model-types';
-import IdColumnCode from '@/erdiagram/generator/database/code-converter/sqlserver/column/types/IdColumnCode';
 import SqlServerColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/sqlserver/column/SqlServerColumnCodeGenerator';
 import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
+import {IdColumnCode} from '@/erdiagram/generator/database/code-converter/common/sql-script-types';
+import SqlIdColumnCodeGenerator
+	from '@/erdiagram/generator/database/code-converter/common/column/SqlIdColumnCodeGenerator';
 
-export default class SqlServerIdColumnCodeGenerator {
+export default class SqlServerIdColumnCodeGenerator implements SqlIdColumnCodeGenerator {
 
 	constructor(
 			private readonly columnCodeGenerator: SqlServerColumnCodeGenerator,

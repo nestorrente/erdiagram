@@ -1,12 +1,12 @@
 import TypeScriptClassModelToCodeConverter
-    from '@/erdiagram/generator/oop/code-converter/typescript/TypeScriptClassModelToCodeConverter';
+	from '@/erdiagram/generator/oop/code-converter/typescript/TypeScriptClassModelToCodeConverter';
 import {ClassModel} from '@/erdiagram/generator/oop/model/class-model-types';
 import {
-    createEntityClassField,
-    createIdClassField,
-    createPrimitiveClassField
+	createEntityClassField,
+	createIdClassField,
+	createPrimitiveClassField
 } from '#/erdiagram/generator/oop/model/class-model-test-utils';
-import {EntityPropertyType} from '../../../../../../main/erdiagram/parser/types/entity-relationship-model-types';
+import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import parseTypeScriptType from '@/erdiagram/generator/oop/code-converter/typescript/type/parseTypeScriptType';
 
 const typeScriptClassModelToCodeConverter = new TypeScriptClassModelToCodeConverter();

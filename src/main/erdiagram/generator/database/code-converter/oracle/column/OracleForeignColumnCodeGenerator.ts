@@ -3,13 +3,14 @@ import {
 	TableColumnDescriptor,
 	TableReferenceDescriptor
 } from '@/erdiagram/generator/database/model/database-model-types';
-import ForeignKeyColumnCode
-	from '@/erdiagram/generator/database/code-converter/oracle/column/types/ForeignKeyColumnCode';
 import OracleColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/oracle/column/OracleColumnCodeGenerator';
 import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
+import {ForeignKeyColumnCode} from '@/erdiagram/generator/database/code-converter/common/sql-script-types';
+import SqlForeignColumnCodeGenerator
+	from '@/erdiagram/generator/database/code-converter/common/column/SqlForeignColumnCodeGenerator';
 
-export default class OracleForeignColumnCodeGenerator {
+export default class OracleForeignColumnCodeGenerator implements SqlForeignColumnCodeGenerator {
 
 	constructor(
 			private readonly columnCodeGenerator: OracleColumnCodeGenerator,

@@ -3,13 +3,14 @@ import {
 	TableColumnDescriptor,
 	TableReferenceDescriptor
 } from '@/erdiagram/generator/database/model/database-model-types';
-import ForeignKeyColumnCode
-	from '@/erdiagram/generator/database/code-converter/postgresql/column/types/ForeignKeyColumnCode';
 import PostgresqlColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/postgresql/column/PostgresqlColumnCodeGenerator';
 import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
+import {ForeignKeyColumnCode} from '@/erdiagram/generator/database/code-converter/common/sql-script-types';
+import SqlForeignColumnCodeGenerator
+	from '@/erdiagram/generator/database/code-converter/common/column/SqlForeignColumnCodeGenerator';
 
-export default class PostgresqlForeignColumnCodeGenerator {
+export default class PostgresqlForeignColumnCodeGenerator implements SqlForeignColumnCodeGenerator {
 
 	constructor(
 			private readonly columnCodeGenerator: PostgresqlColumnCodeGenerator,

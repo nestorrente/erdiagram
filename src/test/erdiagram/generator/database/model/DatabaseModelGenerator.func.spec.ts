@@ -3,7 +3,7 @@ import {
 	Direction,
 	EntityPropertyType,
 	RelationshipDescriptor
-} from '../../../../../main/erdiagram/parser/types/entity-relationship-model-types';
+} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import DatabaseModelGenerator from '@/erdiagram/generator/database/model/DatabaseModelGenerator';
 import {
 	createEntityWithoutProperties,

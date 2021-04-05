@@ -3,7 +3,7 @@ import {
 	Direction,
 	EntityPropertyType,
 	EntityRelationshipModel
-} from '../../../../../main/erdiagram/parser/types/entity-relationship-model-types';
+} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import NomnomlEntityRelationshipModelToDiagramCodeConverter
 	from '@/erdiagram/generator/diagram/nomnoml/NomnomlEntityRelationshipModelToDiagramCodeConverter';
 import {createEntityProperty} from '../../../parser/entity-relationship-model-test-utils';

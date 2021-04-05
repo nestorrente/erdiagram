@@ -1,4 +1,4 @@
-import {EntityPropertyType} from '../../../../../../main/erdiagram/parser/types/entity-relationship-model-types';
+import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {createSimpleTableColumn, createTableReference} from '../../model/database-model-test-utils';
 import {DatabaseModel} from '@/erdiagram/generator/database/model/database-model-types';
 
