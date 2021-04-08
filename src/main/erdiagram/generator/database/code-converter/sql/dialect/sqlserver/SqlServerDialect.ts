@@ -8,7 +8,7 @@ import SqlServerForeignColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/sql/dialect/sqlserver/column/SqlServerForeignColumnCodeGenerator';
 import SqlServerDialectConfig
 	from '@/erdiagram/generator/database/code-converter/sql/dialect/sqlserver/config/SqlServerDialectConfig';
-import sqlServerDatabaseModelToCodeConverterConfigManager
+import sqlServerDialectConfigManager
 	from '@/erdiagram/generator/database/code-converter/sql/dialect/sqlserver/config/SqlServerDialectConfigManager';
 import StandardCaseFormats from '@/erdiagram/generator/common/case-format/StandardCaseFormats';
 import SqlTypeResolver from '@/erdiagram/generator/database/code-converter/sql/dialect/common/SqlTypeResolver';
@@ -32,7 +32,7 @@ export default class SqlServerDialect implements SqlDialect {
 
 	constructor(config?: Partial<SqlServerDialectConfig>) {
 
-		const fullConfig = sqlServerDatabaseModelToCodeConverterConfigManager.mergeWithDefaultConfig(config);
+		const fullConfig = sqlServerDialectConfigManager.mergeWithDefaultConfig(config);
 
 		this.tableNameCaseConverter = new CaseConverter(
 				StandardCaseFormats.LOWER_CAMEL,
@@ -62,6 +62,18 @@ export default class SqlServerDialect implements SqlDialect {
 				columnNameCaseConverter
 		);
 
+	}
+
+	getScriptStartCode() {
+		return '';
+	}
+
+	getScriptEndCode() {
+		return '';
+	}
+
+	mustUseAlterTableForForeignKeys(): boolean {
+		return true;
 	}
 
 	getCreateTableStartCode(tableName: string) {

@@ -1,10 +1,10 @@
 import MysqlDialectConfig from './MysqlDialectConfig';
 import MysqlDialectSerializableConfig from './MysqlDialectSerializableConfig';
-import mysqlDatabaseModelToCodeConverterConfigManager, {MysqlDialectConfigManager} from './MysqlDialectConfigManager';
+import mysqlDialectConfigManager, {MysqlDialectConfigManager} from './MysqlDialectConfigManager';
 
 export {
 	MysqlDialectConfig,
 	MysqlDialectSerializableConfig,
 	MysqlDialectConfigManager,
-	mysqlDatabaseModelToCodeConverterConfigManager
+	mysqlDialectConfigManager
 };

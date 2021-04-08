@@ -10,6 +10,12 @@ import {
 
 export default interface SqlDialect {
 
+	getScriptStartCode(): string;
+
+	getScriptEndCode(): string;
+
+	mustUseAlterTableForForeignKeys(): boolean;
+
 	getCreateTableStartCode(tableName: string): string;
 
 	getIdColumnCode(tableName: string, identifierColumnName: string): IdColumnCode;

@@ -19,7 +19,7 @@ import PostgresqlForeignColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/sql/dialect/postgresql/column/PostgresqlForeignColumnCodeGenerator';
 import PostgresqlDialectConfig
 	from '@/erdiagram/generator/database/code-converter/sql/dialect/postgresql/config/PostgresqlDialectConfig';
-import postgresqlDatabaseModelToCodeConverterConfigManager
+import postgresqlDialectConfigManager
 	from '@/erdiagram/generator/database/code-converter/sql/dialect/postgresql/config/PostgresqlDialectConfigManager';
 
 export default class PostgresqlDialect implements SqlDialect {
@@ -32,7 +32,7 @@ export default class PostgresqlDialect implements SqlDialect {
 
 	constructor(config?: Partial<PostgresqlDialectConfig>) {
 
-		const fullConfig = postgresqlDatabaseModelToCodeConverterConfigManager.mergeWithDefaultConfig(config);
+		const fullConfig = postgresqlDialectConfigManager.mergeWithDefaultConfig(config);
 
 		this.tableNameCaseConverter = new CaseConverter(
 				StandardCaseFormats.LOWER_CAMEL,
@@ -62,6 +62,18 @@ export default class PostgresqlDialect implements SqlDialect {
 				columnNameCaseConverter
 		);
 
+	}
+
+	getScriptStartCode() {
+		return '';
+	}
+
+	getScriptEndCode() {
+		return '';
+	}
+
+	mustUseAlterTableForForeignKeys(): boolean {
+		return true;
 	}
 
 	getCreateTableStartCode(tableName: string) {

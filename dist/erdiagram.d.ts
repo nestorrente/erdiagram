@@ -154,7 +154,7 @@ export declare class EntityRelationshipModelToDatabaseCodeConverter implements E
 export interface IdColumnCode {
 	createSequenceLine?: string;
 	columnLine: string;
-	pkConstraintLine: string;
+	pkConstraintLine?: string;
 }
 export interface RegularColumnCode {
 	columnLine: string;
@@ -164,6 +164,9 @@ export interface ForeignKeyColumnCode extends RegularColumnCode {
 	fkConstraintLine: string;
 }
 export interface SqlDialect {
+	getScriptStartCode(): string;
+	getScriptEndCode(): string;
+	mustUseAlterTableForForeignKeys(): boolean;
 	getCreateTableStartCode(tableName: string): string;
 	getIdColumnCode(tableName: string, identifierColumnName: string): IdColumnCode;
 	getColumnCode(tableName: string, column: TableColumnDescriptor): RegularColumnCode;
@@ -178,6 +181,8 @@ export declare class DatabaseModelToSqlCodeConverter implements DatabaseModelToC
 	private generateTableCode;
 	private processColumns;
 	private processReferences;
+	private getCreateTableInnerLines;
+	private getAlterTableLines;
 }
 export interface SqlDialectConfig {
 	typeBindings: Partial<Record<EntityPropertyType, string>>;
@@ -197,6 +202,9 @@ export declare class MysqlDialect implements SqlDialect {
 	private readonly idColumnCodeGenerator;
 	private readonly foreignColumnCodeGenerator;
 	constructor(config?: Partial<MysqlDialectConfig>);
+	getScriptStartCode(): string;
+	getScriptEndCode(): string;
+	mustUseAlterTableForForeignKeys(): boolean;
 	getCreateTableStartCode(tableName: string): string;
 	getCreateTableEndCode(): string;
 	getIdColumnCode(tableName: string, identifierColumnName: string): IdColumnCode;
@@ -212,7 +220,7 @@ export declare class MysqlDialectConfigManager extends AbstractComponentConfigMa
 	convertToSerializableObject(fullConfig: MysqlDialectConfig): MysqlDialectSerializableConfig;
 	convertFromSerializableObject(serializableConfig: MysqlDialectSerializableConfig): MysqlDialectConfig;
 }
-export declare const mysqlDatabaseModelToCodeConverterConfigManager: MysqlDialectConfigManager;
+export declare const mysqlDialectConfigManager: MysqlDialectConfigManager;
 export interface OracleDialectConfig extends SqlDialectConfig {
 }
 export declare class OracleDialect implements SqlDialect {
@@ -221,6 +229,9 @@ export declare class OracleDialect implements SqlDialect {
 	private readonly idColumnCodeGenerator;
 	private readonly foreignColumnCodeGenerator;
 	constructor(config?: Partial<OracleDialectConfig>);
+	getScriptStartCode(): string;
+	getScriptEndCode(): string;
+	mustUseAlterTableForForeignKeys(): boolean;
 	getCreateTableStartCode(tableName: string): string;
 	getCreateTableEndCode(): string;
 	getIdColumnCode(tableName: string, identifierColumnName: string): IdColumnCode;
@@ -236,7 +247,34 @@ export declare class OracleDialectConfigManager extends AbstractComponentConfigM
 	convertToSerializableObject(fullConfig: OracleDialectConfig): OracleDialectSerializableConfig;
 	convertFromSerializableObject(serializableConfig: OracleDialectSerializableConfig): OracleDialectConfig;
 }
-export declare const oracleDatabaseModelToCodeConverterConfigManager: OracleDialectConfigManager;
+export declare const oracleDialectConfigManager: OracleDialectConfigManager;
+export interface SqliteDialectConfig extends SqlDialectConfig {
+}
+export declare class SqliteDialect implements SqlDialect {
+	private readonly tableNameCaseConverter;
+	private readonly columnCodeGenerator;
+	private readonly idColumnCodeGenerator;
+	private readonly foreignColumnCodeGenerator;
+	constructor(config?: Partial<SqliteDialectConfig>);
+	getScriptStartCode(): string;
+	getScriptEndCode(): string;
+	mustUseAlterTableForForeignKeys(): boolean;
+	getCreateTableStartCode(tableName: string): string;
+	getCreateTableEndCode(): string;
+	getIdColumnCode(tableName: string, identifierColumnName: string): IdColumnCode;
+	getColumnCode(tableName: string, column: TableColumnDescriptor): RegularColumnCode;
+	getForeignColumnCode(tableName: string, reference: TableReferenceDescriptor): ForeignKeyColumnCode;
+	getAlterTableAddCode(tableName: string, constraintCode: string): string;
+}
+export interface SqliteDialectSerializableConfig extends SqlDialectSerializableConfig {
+}
+export declare class SqliteDialectConfigManager extends AbstractComponentConfigManager<SqliteDialectConfig, Partial<SqliteDialectConfig>, SqliteDialectSerializableConfig> {
+	getDefaultConfig(): SqliteDialectConfig;
+	mergeConfigs(fullConfig: SqliteDialectConfig, partialConfig?: Partial<SqliteDialectConfig>): SqliteDialectConfig;
+	convertToSerializableObject(fullConfig: SqliteDialectConfig): SqliteDialectSerializableConfig;
+	convertFromSerializableObject(serializableConfig: SqliteDialectSerializableConfig): SqliteDialectConfig;
+}
+export declare const sqliteDialectConfigManager: SqliteDialectConfigManager;
 export interface SqlServerDialectConfig extends SqlDialectConfig {
 }
 export declare class SqlServerDialect implements SqlDialect {
@@ -245,6 +283,9 @@ export declare class SqlServerDialect implements SqlDialect {
 	private readonly idColumnCodeGenerator;
 	private readonly foreignColumnCodeGenerator;
 	constructor(config?: Partial<SqlServerDialectConfig>);
+	getScriptStartCode(): string;
+	getScriptEndCode(): string;
+	mustUseAlterTableForForeignKeys(): boolean;
 	getCreateTableStartCode(tableName: string): string;
 	getCreateTableEndCode(): string;
 	getIdColumnCode(tableName: string, identifierColumnName: string): IdColumnCode;
@@ -260,7 +301,7 @@ export declare class SqlServerDialectConfigManager extends AbstractComponentConf
 	convertToSerializableObject(fullConfig: SqlServerDialectConfig): SqlServerDialectSerializableConfig;
 	convertFromSerializableObject(serializableConfig: SqlServerDialectSerializableConfig): SqlServerDialectConfig;
 }
-export declare const sqlServerDatabaseModelToCodeConverterConfigManager: SqlServerDialectConfigManager;
+export declare const sqlServerDialectConfigManager: SqlServerDialectConfigManager;
 export interface PostgresqlDialectConfig extends SqlDialectConfig {
 }
 export declare class PostgresqlDialect implements SqlDialect {
@@ -269,6 +310,9 @@ export declare class PostgresqlDialect implements SqlDialect {
 	private readonly idColumnCodeGenerator;
 	private readonly foreignColumnCodeGenerator;
 	constructor(config?: Partial<PostgresqlDialectConfig>);
+	getScriptStartCode(): string;
+	getScriptEndCode(): string;
+	mustUseAlterTableForForeignKeys(): boolean;
 	getCreateTableStartCode(tableName: string): string;
 	getCreateTableEndCode(): string;
 	getIdColumnCode(tableName: string, identifierColumnName: string): IdColumnCode;
@@ -284,7 +328,7 @@ export declare class PostgresqlDialectConfigManager extends AbstractComponentCon
 	convertToSerializableObject(fullConfig: PostgresqlDialectConfig): PostgresqlDialectSerializableConfig;
 	convertFromSerializableObject(serializableConfig: PostgresqlDialectSerializableConfig): PostgresqlDialectConfig;
 }
-export declare const postgresqlDatabaseModelToCodeConverterConfigManager: PostgresqlDialectConfigManager;
+export declare const postgresqlDialectConfigManager: PostgresqlDialectConfigManager;
 export interface DatabaseModelGeneratorSerializableConfig {
 	usePluralTableNames: boolean;
 	idNamingStrategy?: string;

@@ -16,7 +16,7 @@ import MysqlIdColumnCodeGenerator
 import MysqlForeignColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/sql/dialect/mysql/column/MysqlForeignColumnCodeGenerator';
 import SqlTypeResolver from '@/erdiagram/generator/database/code-converter/sql/dialect/common/SqlTypeResolver';
-import mysqlDatabaseModelToCodeConverterConfigManager
+import mysqlDialectConfigManager
 	from '@/erdiagram/generator/database/code-converter/sql/dialect/mysql/config/MysqlDialectConfigManager';
 import StandardCaseFormats from '@/erdiagram/generator/common/case-format/StandardCaseFormats';
 import MysqlDialectConfig
@@ -32,7 +32,7 @@ export default class MysqlDialect implements SqlDialect {
 
 	constructor(config?: Partial<MysqlDialectConfig>) {
 
-		const fullConfig = mysqlDatabaseModelToCodeConverterConfigManager.mergeWithDefaultConfig(config);
+		const fullConfig = mysqlDialectConfigManager.mergeWithDefaultConfig(config);
 
 		this.tableNameCaseConverter = new CaseConverter(
 				StandardCaseFormats.LOWER_CAMEL,
@@ -62,6 +62,18 @@ export default class MysqlDialect implements SqlDialect {
 				columnNameCaseConverter
 		);
 
+	}
+
+	getScriptStartCode() {
+		return '';
+	}
+
+	getScriptEndCode() {
+		return '';
+	}
+
+	mustUseAlterTableForForeignKeys(): boolean {
+		return true;
 	}
 
 	getCreateTableStartCode(tableName: string) {

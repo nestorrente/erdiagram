@@ -1,10 +1,10 @@
 import PostgresqlDialectConfig from './PostgresqlDialectConfig';
 import PostgresqlDialectSerializableConfig from './PostgresqlDialectSerializableConfig';
-import postgresqlDatabaseModelToCodeConverterConfigManager, {PostgresqlDialectConfigManager} from './PostgresqlDialectConfigManager';
+import postgresqlDialectConfigManager, {PostgresqlDialectConfigManager} from './PostgresqlDialectConfigManager';
 
 export {
 	PostgresqlDialectConfig,
 	PostgresqlDialectSerializableConfig,
 	PostgresqlDialectConfigManager,
-	postgresqlDatabaseModelToCodeConverterConfigManager
+	postgresqlDialectConfigManager
 };

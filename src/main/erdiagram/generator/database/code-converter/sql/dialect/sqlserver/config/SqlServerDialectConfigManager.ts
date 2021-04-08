@@ -59,5 +59,5 @@ export class SqlServerDialectConfigManager
 
 }
 
-const sqlServerDatabaseModelToCodeConverterConfigManager = new SqlServerDialectConfigManager();
-export default sqlServerDatabaseModelToCodeConverterConfigManager;
+const sqlServerDialectConfigManager = new SqlServerDialectConfigManager();
+export default sqlServerDialectConfigManager;

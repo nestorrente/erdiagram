@@ -1,8 +1,7 @@
 CREATE TABLE "test_table_1" (
     "id" BIGINT NOT NULL GENERATED ALWAYS AS IDENTITY,
-    "table_2_id" BIGINT NOT NULL,
-    CONSTRAINT "test_table_1_pk" PRIMARY KEY ("id"),
-    CONSTRAINT "test_table_1_table_2_id_unique" UNIQUE ("table_2_id")
+    "table_2_id" BIGINT,
+    CONSTRAINT "test_table_1_pk" PRIMARY KEY ("id")
 );
 
 CREATE TABLE "test_table_2" (

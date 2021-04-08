@@ -4,7 +4,7 @@
  * 
  * Released under the MIT License.
  * 
- * Build date: 2021-04-08T18:56:00.271Z
+ * Build date: 2021-04-08T20:13:53.755Z
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -3339,7 +3339,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************!*\
   !*** ./src/main/erdiagram/exports.ts ***!
   \***************************************/
-/*! exports provided: AbstractComponentConfigManager, StandardCaseFormats, CaseConverter, StandardIdNamingStrategies, MysqlDialectConfigManager, mysqlDatabaseModelToCodeConverterConfigManager, MysqlDialect, OracleDialectConfigManager, oracleDatabaseModelToCodeConverterConfigManager, OracleDialect, SqlServerDialectConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager, SqlServerDialect, PostgresqlDialectConfigManager, postgresqlDatabaseModelToCodeConverterConfigManager, PostgresqlDialect, DatabaseModelToSqlCodeConverter, EntityRelationshipModelToDatabaseCodeConverter, DatabaseModelGeneratorConfigManager, databaseModelGeneratorConfigManager, DatabaseModelGenerator, JavaClassModelToCodeConverterConfigManager, javaClassModelToCodeConverterConfigManager, createJavaType, createJavaParameterizedType, createJavaArrayType, isJavaParameterizedType, parseJavaType, JavaClassModelToCodeConverter, TypeScriptClassModelToCodeConverterConfigManager, typescriptClassModelToCodeConverterConfigManager, createTypeScriptType, createTypeScriptParameterizedType, createTypeScriptArrayType, isTypeScriptParameterizedType, parseTypeScriptType, TypeScriptClassModelToCodeConverter, EntityRelationshipModelToClassCodeConverter, ClassModelGeneratorConfigManager, classModelGeneratorConfigManager, ClassModelGenerator, NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, NomnomlEntityRelationshipModelToDiagramCodeConverter, NomnomlEntityRelationshipModelToDiagramConverter, PlantUmlEntityRelationshipModelToDiagramCodeConverterConfigManager, plantumlEntityRelationshipModelToDiagramCodeConverterConfigManager, PlantUmlEntityRelationshipModelToDiagramCodeConverter, PlantUmlEntityRelationshipModelToDiagramConverter, BaseEntityRelationshipModelToDiagramConverter, EntityRelationshipModelParserConfigManager, entityRelationshipModelParserConfigManager, EntityPropertyType, Cardinality, Direction, ERDiagramError, ERDiagramParseLineError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramRelationshipError, ERDiagramUnknownEntityError, ERDiagramEntityError, ERDiagramDuplicatedEntityNameError, ERDiagramEntityPropertyError, ERDiagramMultipleIdentifiersError, ERDiagramInvalidIdentifierDefinitionError, ERDiagramDuplicatedPropertyNameError, EntityRelationshipModelParser */
+/*! exports provided: AbstractComponentConfigManager, StandardCaseFormats, CaseConverter, StandardIdNamingStrategies, MysqlDialectConfigManager, mysqlDialectConfigManager, MysqlDialect, OracleDialectConfigManager, oracleDialectConfigManager, OracleDialect, SqliteDialectConfigManager, sqliteDialectConfigManager, SqliteDialect, SqlServerDialectConfigManager, sqlServerDialectConfigManager, SqlServerDialect, PostgresqlDialectConfigManager, postgresqlDialectConfigManager, PostgresqlDialect, DatabaseModelToSqlCodeConverter, EntityRelationshipModelToDatabaseCodeConverter, DatabaseModelGeneratorConfigManager, databaseModelGeneratorConfigManager, DatabaseModelGenerator, JavaClassModelToCodeConverterConfigManager, javaClassModelToCodeConverterConfigManager, createJavaType, createJavaParameterizedType, createJavaArrayType, isJavaParameterizedType, parseJavaType, JavaClassModelToCodeConverter, TypeScriptClassModelToCodeConverterConfigManager, typescriptClassModelToCodeConverterConfigManager, createTypeScriptType, createTypeScriptParameterizedType, createTypeScriptArrayType, isTypeScriptParameterizedType, parseTypeScriptType, TypeScriptClassModelToCodeConverter, EntityRelationshipModelToClassCodeConverter, ClassModelGeneratorConfigManager, classModelGeneratorConfigManager, ClassModelGenerator, NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, NomnomlEntityRelationshipModelToDiagramCodeConverter, NomnomlEntityRelationshipModelToDiagramConverter, PlantUmlEntityRelationshipModelToDiagramCodeConverterConfigManager, plantumlEntityRelationshipModelToDiagramCodeConverterConfigManager, PlantUmlEntityRelationshipModelToDiagramCodeConverter, PlantUmlEntityRelationshipModelToDiagramConverter, BaseEntityRelationshipModelToDiagramConverter, EntityRelationshipModelParserConfigManager, entityRelationshipModelParserConfigManager, EntityPropertyType, Cardinality, Direction, ERDiagramError, ERDiagramParseLineError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramRelationshipError, ERDiagramUnknownEntityError, ERDiagramEntityError, ERDiagramDuplicatedEntityNameError, ERDiagramEntityPropertyError, ERDiagramMultipleIdentifiersError, ERDiagramInvalidIdentifierDefinitionError, ERDiagramDuplicatedPropertyNameError, EntityRelationshipModelParser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3356,25 +3356,31 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MysqlDialectConfigManager", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["MysqlDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mysqlDatabaseModelToCodeConverterConfigManager", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["mysqlDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mysqlDialectConfigManager", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["mysqlDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MysqlDialect", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["MysqlDialect"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OracleDialectConfigManager", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["OracleDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "oracleDatabaseModelToCodeConverterConfigManager", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["oracleDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "oracleDialectConfigManager", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["oracleDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OracleDialect", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["OracleDialect"]; });
 
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqliteDialectConfigManager", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["SqliteDialectConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqliteDialectConfigManager", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["sqliteDialectConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqliteDialect", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["SqliteDialect"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDialectConfigManager", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["SqlServerDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDatabaseModelToCodeConverterConfigManager", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["sqlServerDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDialectConfigManager", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["sqlServerDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDialect", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["SqlServerDialect"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDialectConfigManager", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["PostgresqlDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDatabaseModelToCodeConverterConfigManager", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["postgresqlDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDialectConfigManager", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["postgresqlDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDialect", function() { return _generator_exports__WEBPACK_IMPORTED_MODULE_1__["PostgresqlDialect"]; });
 
@@ -3884,7 +3890,7 @@ class EntityRelationshipModelToDatabaseCodeConverter {
 /*!*************************************************************************!*\
   !*** ./src/main/erdiagram/generator/database/code-converter/exports.ts ***!
   \*************************************************************************/
-/*! exports provided: MysqlDialectConfigManager, mysqlDatabaseModelToCodeConverterConfigManager, MysqlDialect, OracleDialectConfigManager, oracleDatabaseModelToCodeConverterConfigManager, OracleDialect, SqlServerDialectConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager, SqlServerDialect, PostgresqlDialectConfigManager, postgresqlDatabaseModelToCodeConverterConfigManager, PostgresqlDialect, DatabaseModelToSqlCodeConverter, EntityRelationshipModelToDatabaseCodeConverter */
+/*! exports provided: MysqlDialectConfigManager, mysqlDialectConfigManager, MysqlDialect, OracleDialectConfigManager, oracleDialectConfigManager, OracleDialect, SqliteDialectConfigManager, sqliteDialectConfigManager, SqliteDialect, SqlServerDialectConfigManager, sqlServerDialectConfigManager, SqlServerDialect, PostgresqlDialectConfigManager, postgresqlDialectConfigManager, PostgresqlDialect, DatabaseModelToSqlCodeConverter, EntityRelationshipModelToDatabaseCodeConverter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3895,25 +3901,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sql_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sql/exports */ "./src/main/erdiagram/generator/database/code-converter/sql/exports.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MysqlDialectConfigManager", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["MysqlDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mysqlDatabaseModelToCodeConverterConfigManager", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["mysqlDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mysqlDialectConfigManager", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["mysqlDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MysqlDialect", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["MysqlDialect"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OracleDialectConfigManager", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["OracleDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "oracleDatabaseModelToCodeConverterConfigManager", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["oracleDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "oracleDialectConfigManager", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["oracleDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OracleDialect", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["OracleDialect"]; });
 
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqliteDialectConfigManager", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["SqliteDialectConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqliteDialectConfigManager", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["sqliteDialectConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqliteDialect", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["SqliteDialect"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDialectConfigManager", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["SqlServerDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDatabaseModelToCodeConverterConfigManager", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["sqlServerDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDialectConfigManager", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["sqlServerDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDialect", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["SqlServerDialect"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDialectConfigManager", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["PostgresqlDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDatabaseModelToCodeConverterConfigManager", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["postgresqlDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDialectConfigManager", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["postgresqlDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDialect", function() { return _sql_exports__WEBPACK_IMPORTED_MODULE_1__["PostgresqlDialect"]; });
 
@@ -3953,10 +3965,19 @@ class DatabaseModelToSqlCodeConverter {
                 allAlterTableStatements.push(alterTableStatements);
             }
         });
-        return [
+        const allScriptStatements = [
             ...allCreateTableStatements,
             ...allAlterTableStatements
-        ].join('\n\n');
+        ];
+        const scriptStartCode = this.sqlDialect.getScriptStartCode();
+        const scriptEndCode = this.sqlDialect.getScriptEndCode();
+        if (scriptStartCode) {
+            allScriptStatements.unshift(scriptStartCode);
+        }
+        if (scriptEndCode) {
+            allScriptStatements.push(scriptEndCode);
+        }
+        return allScriptStatements.join('\n\n');
     }
     // FIXME split this method
     generateTableCode(table) {
@@ -3971,26 +3992,22 @@ class DatabaseModelToSqlCodeConverter {
             lines.sequences.push(idCreateSequenceLine);
         }
         lines.columns.push(idColumnLine);
-        lines.otherConstraints.push(pkConstraintLine);
+        if (pkConstraintLine != null) {
+            lines.otherConstraints.push(pkConstraintLine);
+        }
         this.processColumns(table.name, table.columns, lines);
         this.processReferences(table.name, table.references, lines);
-        const createTableInnerLines = [
-            ...lines.columns,
-            ...lines.otherConstraints
-        ];
+        const createTableInnerLines = this.getCreateTableInnerLines(lines);
         const createTableLines = [
             ...lines.sequences,
             this.sqlDialect.getCreateTableStartCode(table.name),
             Object(_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_0__["indentLines"])(createTableInnerLines).join(',\n'),
             this.sqlDialect.getCreateTableEndCode()
         ];
-        const createTableStatement = createTableLines.join('\n');
-        const alterTableStatements = lines.fkConstraints.map(fkConstraintLine => {
-            return this.sqlDialect.getAlterTableAddCode(table.name, fkConstraintLine);
-        }).join('\n');
+        const alterTableLines = this.getAlterTableLines(table, lines);
         return {
-            createTableStatement,
-            alterTableStatements
+            createTableStatement: createTableLines.join('\n'),
+            alterTableStatements: alterTableLines.join('\n')
         };
     }
     processColumns(tableName, columns, lines) {
@@ -4011,6 +4028,24 @@ class DatabaseModelToSqlCodeConverter {
                 lines.otherConstraints.push(uniqueConstraintLine);
             }
         }
+    }
+    getCreateTableInnerLines(lines) {
+        const createTableInnerLines = [
+            ...lines.columns,
+            ...lines.otherConstraints
+        ];
+        if (!this.sqlDialect.mustUseAlterTableForForeignKeys()) {
+            createTableInnerLines.push(...lines.fkConstraints);
+        }
+        return createTableInnerLines;
+    }
+    getAlterTableLines(table, lines) {
+        if (!this.sqlDialect.mustUseAlterTableForForeignKeys()) {
+            return [];
+        }
+        return lines.fkConstraints.map(fkConstraintLine => {
+            return this.sqlDialect.getAlterTableAddCode(table.name, fkConstraintLine);
+        });
     }
 }
 
@@ -4061,7 +4096,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************************************************!*\
   !*** ./src/main/erdiagram/generator/database/code-converter/sql/dialect/exports.ts ***!
   \*************************************************************************************/
-/*! exports provided: MysqlDialectConfigManager, mysqlDatabaseModelToCodeConverterConfigManager, MysqlDialect, OracleDialectConfigManager, oracleDatabaseModelToCodeConverterConfigManager, OracleDialect, SqlServerDialectConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager, SqlServerDialect, PostgresqlDialectConfigManager, postgresqlDatabaseModelToCodeConverterConfigManager, PostgresqlDialect */
+/*! exports provided: MysqlDialectConfigManager, mysqlDialectConfigManager, MysqlDialect, OracleDialectConfigManager, oracleDialectConfigManager, OracleDialect, SqliteDialectConfigManager, sqliteDialectConfigManager, SqliteDialect, SqlServerDialectConfigManager, sqlServerDialectConfigManager, SqlServerDialect, PostgresqlDialectConfigManager, postgresqlDialectConfigManager, PostgresqlDialect */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4070,30 +4105,38 @@ __webpack_require__.r(__webpack_exports__);
 /* empty/unused harmony star reexport *//* harmony import */ var _mysql_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mysql/exports */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/mysql/exports.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MysqlDialectConfigManager", function() { return _mysql_exports__WEBPACK_IMPORTED_MODULE_1__["MysqlDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mysqlDatabaseModelToCodeConverterConfigManager", function() { return _mysql_exports__WEBPACK_IMPORTED_MODULE_1__["mysqlDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mysqlDialectConfigManager", function() { return _mysql_exports__WEBPACK_IMPORTED_MODULE_1__["mysqlDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MysqlDialect", function() { return _mysql_exports__WEBPACK_IMPORTED_MODULE_1__["MysqlDialect"]; });
 
 /* harmony import */ var _oracle_exports__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./oracle/exports */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/oracle/exports.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OracleDialectConfigManager", function() { return _oracle_exports__WEBPACK_IMPORTED_MODULE_2__["OracleDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "oracleDatabaseModelToCodeConverterConfigManager", function() { return _oracle_exports__WEBPACK_IMPORTED_MODULE_2__["oracleDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "oracleDialectConfigManager", function() { return _oracle_exports__WEBPACK_IMPORTED_MODULE_2__["oracleDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OracleDialect", function() { return _oracle_exports__WEBPACK_IMPORTED_MODULE_2__["OracleDialect"]; });
 
-/* harmony import */ var _sqlserver_exports__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sqlserver/exports */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlserver/exports.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDialectConfigManager", function() { return _sqlserver_exports__WEBPACK_IMPORTED_MODULE_3__["SqlServerDialectConfigManager"]; });
+/* harmony import */ var _sqlite_exports__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sqlite/exports */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/exports.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqliteDialectConfigManager", function() { return _sqlite_exports__WEBPACK_IMPORTED_MODULE_3__["SqliteDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDatabaseModelToCodeConverterConfigManager", function() { return _sqlserver_exports__WEBPACK_IMPORTED_MODULE_3__["sqlServerDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqliteDialectConfigManager", function() { return _sqlite_exports__WEBPACK_IMPORTED_MODULE_3__["sqliteDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDialect", function() { return _sqlserver_exports__WEBPACK_IMPORTED_MODULE_3__["SqlServerDialect"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqliteDialect", function() { return _sqlite_exports__WEBPACK_IMPORTED_MODULE_3__["SqliteDialect"]; });
 
-/* harmony import */ var _postgresql_exports__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./postgresql/exports */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/postgresql/exports.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDialectConfigManager", function() { return _postgresql_exports__WEBPACK_IMPORTED_MODULE_4__["PostgresqlDialectConfigManager"]; });
+/* harmony import */ var _sqlserver_exports__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sqlserver/exports */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlserver/exports.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDialectConfigManager", function() { return _sqlserver_exports__WEBPACK_IMPORTED_MODULE_4__["SqlServerDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDatabaseModelToCodeConverterConfigManager", function() { return _postgresql_exports__WEBPACK_IMPORTED_MODULE_4__["postgresqlDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDialectConfigManager", function() { return _sqlserver_exports__WEBPACK_IMPORTED_MODULE_4__["sqlServerDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDialect", function() { return _postgresql_exports__WEBPACK_IMPORTED_MODULE_4__["PostgresqlDialect"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDialect", function() { return _sqlserver_exports__WEBPACK_IMPORTED_MODULE_4__["SqlServerDialect"]; });
+
+/* harmony import */ var _postgresql_exports__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./postgresql/exports */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/postgresql/exports.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDialectConfigManager", function() { return _postgresql_exports__WEBPACK_IMPORTED_MODULE_5__["PostgresqlDialectConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDialectConfigManager", function() { return _postgresql_exports__WEBPACK_IMPORTED_MODULE_5__["postgresqlDialectConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDialect", function() { return _postgresql_exports__WEBPACK_IMPORTED_MODULE_5__["PostgresqlDialect"]; });
+
 
 
 
@@ -4137,6 +4180,15 @@ class MysqlDialect {
         this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_sql_dialect_mysql_column_MysqlColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_1__["default"](sqlTypeResolver, columnNameCaseConverter);
         this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sql_dialect_mysql_column_MysqlIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](sqlTypeResolver, columnNameCaseConverter);
         this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sql_dialect_mysql_column_MysqlForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
+    }
+    getScriptStartCode() {
+        return '';
+    }
+    getScriptEndCode() {
+        return '';
+    }
+    mustUseAlterTableForForeignKeys() {
+        return true;
     }
     getCreateTableStartCode(tableName) {
         const outputTableName = this.tableNameCaseConverter.convertCase(tableName);
@@ -4351,8 +4403,8 @@ class MysqlDialectConfigManager extends _erdiagram_common_config_AbstractCompone
         return Object.assign(Object.assign({}, serializableConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.tableNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.columnNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL) });
     }
 }
-const mysqlDatabaseModelToCodeConverterConfigManager = new MysqlDialectConfigManager();
-/* harmony default export */ __webpack_exports__["default"] = (mysqlDatabaseModelToCodeConverterConfigManager);
+const mysqlDialectConfigManager = new MysqlDialectConfigManager();
+/* harmony default export */ __webpack_exports__["default"] = (mysqlDialectConfigManager);
 
 
 /***/ }),
@@ -4361,7 +4413,7 @@ const mysqlDatabaseModelToCodeConverterConfigManager = new MysqlDialectConfigMan
 /*!**************************************************************************************************!*\
   !*** ./src/main/erdiagram/generator/database/code-converter/sql/dialect/mysql/config/exports.ts ***!
   \**************************************************************************************************/
-/*! exports provided: MysqlDialectConfigManager, mysqlDatabaseModelToCodeConverterConfigManager */
+/*! exports provided: MysqlDialectConfigManager, mysqlDialectConfigManager */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4369,7 +4421,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MysqlDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MysqlDialectConfigManager */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/mysql/config/MysqlDialectConfigManager.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MysqlDialectConfigManager", function() { return _MysqlDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__["MysqlDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mysqlDatabaseModelToCodeConverterConfigManager", function() { return _MysqlDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mysqlDialectConfigManager", function() { return _MysqlDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"]; });
 
 
 
@@ -4381,7 +4433,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************************************************************!*\
   !*** ./src/main/erdiagram/generator/database/code-converter/sql/dialect/mysql/exports.ts ***!
   \*******************************************************************************************/
-/*! exports provided: MysqlDialectConfigManager, mysqlDatabaseModelToCodeConverterConfigManager, MysqlDialect */
+/*! exports provided: MysqlDialectConfigManager, mysqlDialectConfigManager, MysqlDialect */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4392,7 +4444,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/mysql/config/exports.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MysqlDialectConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["MysqlDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mysqlDatabaseModelToCodeConverterConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["mysqlDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mysqlDialectConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["mysqlDialectConfigManager"]; });
 
 
 
@@ -4434,6 +4486,15 @@ class OracleDialect {
         this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_sql_dialect_oracle_column_OracleColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_1__["default"](sqlTypeResolver, columnNameCaseConverter);
         this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sql_dialect_oracle_column_OracleIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](sqlTypeResolver, columnNameCaseConverter);
         this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sql_dialect_oracle_column_OracleForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
+    }
+    getScriptStartCode() {
+        return '';
+    }
+    getScriptEndCode() {
+        return '';
+    }
+    mustUseAlterTableForForeignKeys() {
+        return true;
     }
     getCreateTableStartCode(tableName) {
         const outputTableName = this.tableNameCaseConverter.convertCase(tableName);
@@ -4656,8 +4717,8 @@ class OracleDialectConfigManager extends _erdiagram_common_config_AbstractCompon
         return Object.assign(Object.assign({}, serializableConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.tableNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.columnNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL) });
     }
 }
-const oracleDatabaseModelToCodeConverterConfigManager = new OracleDialectConfigManager();
-/* harmony default export */ __webpack_exports__["default"] = (oracleDatabaseModelToCodeConverterConfigManager);
+const oracleDialectConfigManager = new OracleDialectConfigManager();
+/* harmony default export */ __webpack_exports__["default"] = (oracleDialectConfigManager);
 
 
 /***/ }),
@@ -4666,7 +4727,7 @@ const oracleDatabaseModelToCodeConverterConfigManager = new OracleDialectConfigM
 /*!***************************************************************************************************!*\
   !*** ./src/main/erdiagram/generator/database/code-converter/sql/dialect/oracle/config/exports.ts ***!
   \***************************************************************************************************/
-/*! exports provided: OracleDialectConfigManager, oracleDatabaseModelToCodeConverterConfigManager */
+/*! exports provided: OracleDialectConfigManager, oracleDialectConfigManager */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4674,7 +4735,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _OracleDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OracleDialectConfigManager */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/oracle/config/OracleDialectConfigManager.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OracleDialectConfigManager", function() { return _OracleDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__["OracleDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "oracleDatabaseModelToCodeConverterConfigManager", function() { return _OracleDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "oracleDialectConfigManager", function() { return _OracleDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"]; });
 
 
 
@@ -4686,7 +4747,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!********************************************************************************************!*\
   !*** ./src/main/erdiagram/generator/database/code-converter/sql/dialect/oracle/exports.ts ***!
   \********************************************************************************************/
-/*! exports provided: OracleDialectConfigManager, oracleDatabaseModelToCodeConverterConfigManager, OracleDialect */
+/*! exports provided: OracleDialectConfigManager, oracleDialectConfigManager, OracleDialect */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4697,7 +4758,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/oracle/config/exports.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OracleDialectConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["OracleDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "oracleDatabaseModelToCodeConverterConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["oracleDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "oracleDialectConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["oracleDialectConfigManager"]; });
 
 
 
@@ -4739,6 +4800,15 @@ class PostgresqlDialect {
         this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_sql_dialect_postgresql_column_PostgresqlColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](sqlTypeResolver, columnNameCaseConverter);
         this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sql_dialect_postgresql_column_PostgresqlIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_4__["default"](sqlTypeResolver, columnNameCaseConverter);
         this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sql_dialect_postgresql_column_PostgresqlForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_5__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
+    }
+    getScriptStartCode() {
+        return '';
+    }
+    getScriptEndCode() {
+        return '';
+    }
+    mustUseAlterTableForForeignKeys() {
+        return true;
     }
     getCreateTableStartCode(tableName) {
         const outputTableName = this.tableNameCaseConverter.convertCase(tableName);
@@ -4953,8 +5023,8 @@ class PostgresqlDialectConfigManager extends _erdiagram_common_config_AbstractCo
         return Object.assign(Object.assign({}, serializableConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.tableNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.columnNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL) });
     }
 }
-const postgresqlDatabaseModelToCodeConverterConfigManager = new PostgresqlDialectConfigManager();
-/* harmony default export */ __webpack_exports__["default"] = (postgresqlDatabaseModelToCodeConverterConfigManager);
+const postgresqlDialectConfigManager = new PostgresqlDialectConfigManager();
+/* harmony default export */ __webpack_exports__["default"] = (postgresqlDialectConfigManager);
 
 
 /***/ }),
@@ -4963,7 +5033,7 @@ const postgresqlDatabaseModelToCodeConverterConfigManager = new PostgresqlDialec
 /*!*******************************************************************************************************!*\
   !*** ./src/main/erdiagram/generator/database/code-converter/sql/dialect/postgresql/config/exports.ts ***!
   \*******************************************************************************************************/
-/*! exports provided: PostgresqlDialectConfigManager, postgresqlDatabaseModelToCodeConverterConfigManager */
+/*! exports provided: PostgresqlDialectConfigManager, postgresqlDialectConfigManager */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4971,7 +5041,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PostgresqlDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PostgresqlDialectConfigManager */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/postgresql/config/PostgresqlDialectConfigManager.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDialectConfigManager", function() { return _PostgresqlDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__["PostgresqlDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDatabaseModelToCodeConverterConfigManager", function() { return _PostgresqlDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDialectConfigManager", function() { return _PostgresqlDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"]; });
 
 
 
@@ -4983,7 +5053,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************************************************************!*\
   !*** ./src/main/erdiagram/generator/database/code-converter/sql/dialect/postgresql/exports.ts ***!
   \************************************************************************************************/
-/*! exports provided: PostgresqlDialectConfigManager, postgresqlDatabaseModelToCodeConverterConfigManager, PostgresqlDialect */
+/*! exports provided: PostgresqlDialectConfigManager, postgresqlDialectConfigManager, PostgresqlDialect */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4994,7 +5064,309 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/postgresql/config/exports.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDialectConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["PostgresqlDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDatabaseModelToCodeConverterConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["postgresqlDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDialectConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["postgresqlDialectConfigManager"]; });
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/SqliteDialect.ts":
+/*!**************************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/SqliteDialect.ts ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SqliteDialect; });
+/* harmony import */ var _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/CaseConverter */ "./src/main/erdiagram/generator/common/case-format/CaseConverter.ts");
+/* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_sql_dialect_common_SqlTypeResolver__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/sql/dialect/common/SqlTypeResolver */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/common/SqlTypeResolver.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_sql_dialect_sqlite_column_SqliteColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/sql/dialect/sqlite/column/SqliteColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/column/SqliteColumnCodeGenerator.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_sql_dialect_sqlite_column_SqliteIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/sql/dialect/sqlite/column/SqliteIdColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/column/SqliteIdColumnCodeGenerator.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_sql_dialect_sqlite_column_SqliteForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/sql/dialect/sqlite/column/SqliteForeignColumnCodeGenerator */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/column/SqliteForeignColumnCodeGenerator.ts");
+/* harmony import */ var _erdiagram_generator_database_code_converter_sql_dialect_sqlite_config_SqliteDialectConfigManager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/sql/dialect/sqlite/config/SqliteDialectConfigManager */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/config/SqliteDialectConfigManager.ts");
+
+
+
+
+
+
+
+class SqliteDialect {
+    constructor(config) {
+        const fullConfig = _erdiagram_generator_database_code_converter_sql_dialect_sqlite_config_SqliteDialectConfigManager__WEBPACK_IMPORTED_MODULE_6__["default"].mergeWithDefaultConfig(config);
+        this.tableNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_0__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].LOWER_CAMEL, fullConfig.tableNameCaseFormat);
+        const columnNameCaseConverter = new _erdiagram_generator_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_0__["default"](_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].LOWER_CAMEL, fullConfig.columnNameCaseFormat);
+        const sqlTypeResolver = new _erdiagram_generator_database_code_converter_sql_dialect_common_SqlTypeResolver__WEBPACK_IMPORTED_MODULE_2__["default"](fullConfig.typeBindings);
+        this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_sql_dialect_sqlite_column_SqliteColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](sqlTypeResolver, columnNameCaseConverter);
+        this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sql_dialect_sqlite_column_SqliteIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_4__["default"](sqlTypeResolver, columnNameCaseConverter);
+        this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sql_dialect_sqlite_column_SqliteForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_5__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
+    }
+    getScriptStartCode() {
+        return 'PRAGMA foreign_keys = OFF;';
+    }
+    getScriptEndCode() {
+        return 'PRAGMA foreign_keys = ON;';
+    }
+    mustUseAlterTableForForeignKeys() {
+        return false;
+    }
+    getCreateTableStartCode(tableName) {
+        const outputTableName = this.tableNameCaseConverter.convertCase(tableName);
+        return `CREATE TABLE "${outputTableName}" (`;
+    }
+    getCreateTableEndCode() {
+        return ');';
+    }
+    getIdColumnCode(tableName, identifierColumnName) {
+        const outputTableName = this.tableNameCaseConverter.convertCase(tableName);
+        return this.idColumnCodeGenerator.generateIdColumnCode(outputTableName, identifierColumnName);
+    }
+    getColumnCode(tableName, column) {
+        const outputTableName = this.tableNameCaseConverter.convertCase(tableName);
+        return this.columnCodeGenerator.generateColumnCode(outputTableName, column);
+    }
+    getForeignColumnCode(tableName, reference) {
+        const outputTableName = this.tableNameCaseConverter.convertCase(tableName);
+        return this.foreignColumnCodeGenerator.generateForeignColumnCode(outputTableName, reference);
+    }
+    getAlterTableAddCode(tableName, constraintCode) {
+        const outputTableName = this.tableNameCaseConverter.convertCase(tableName);
+        return `ALTER TABLE "${outputTableName}" ADD ${constraintCode};`;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/column/SqliteColumnCodeGenerator.ts":
+/*!*********************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/column/SqliteColumnCodeGenerator.ts ***!
+  \*********************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SqliteColumnCodeGenerator; });
+class SqliteColumnCodeGenerator {
+    constructor(typeResolver, columnNameCaseConverter) {
+        this.typeResolver = typeResolver;
+        this.columnNameCaseConverter = columnNameCaseConverter;
+    }
+    generateColumnCode(outputTableName, column) {
+        const outputColumnName = this.columnNameCaseConverter.convertCase(column.name);
+        return {
+            columnLine: this.generateColumnDeclarationLine(outputColumnName, column),
+            uniqueConstraintLine: column.unique ? this.generateUniqueConstraintLine(outputTableName, outputColumnName) : undefined
+        };
+    }
+    generateColumnDeclarationLine(outputColumnName, column) {
+        const { notNull, type, length } = column;
+        const lineParts = [
+            `"${outputColumnName}"`,
+            this.generateSqliteTypeDeclaration(type, length)
+        ];
+        if (notNull) {
+            lineParts.push('NOT NULL');
+        }
+        return lineParts.join(' ');
+    }
+    generateSqliteTypeDeclaration(type, length) {
+        const sqliteType = this.typeResolver.resolveSqlType(type);
+        const lengthCode = this.generateLengthCode(length);
+        return sqliteType + lengthCode;
+    }
+    generateLengthCode(length) {
+        if (length.length === 0) {
+            return '';
+        }
+        return `(${length.join(', ')})`;
+    }
+    generateUniqueConstraintLine(outputTableName, outputColumnName) {
+        return `CONSTRAINT "${outputTableName}_${outputColumnName}_unique" UNIQUE ("${outputColumnName}")`;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/column/SqliteForeignColumnCodeGenerator.ts":
+/*!****************************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/column/SqliteForeignColumnCodeGenerator.ts ***!
+  \****************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SqliteForeignColumnCodeGenerator; });
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
+
+class SqliteForeignColumnCodeGenerator {
+    constructor(columnCodeGenerator, tableNameCaseConverter, columnNameCaseConverter) {
+        this.columnCodeGenerator = columnCodeGenerator;
+        this.tableNameCaseConverter = tableNameCaseConverter;
+        this.columnNameCaseConverter = columnNameCaseConverter;
+    }
+    generateForeignColumnCode(outputTableName, reference) {
+        const columnDescriptor = this.createForeignKeyColumnDescriptor(reference);
+        const { columnLine, uniqueConstraintLine } = this.columnCodeGenerator.generateColumnCode(outputTableName, columnDescriptor);
+        return {
+            columnLine,
+            uniqueConstraintLine,
+            fkConstraintLine: this.createForeignKeyConstraint(outputTableName, reference)
+        };
+    }
+    createForeignKeyColumnDescriptor(reference) {
+        const { columnName, notNull, unique } = reference;
+        return {
+            name: columnName,
+            type: _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER,
+            length: [],
+            notNull,
+            unique
+        };
+    }
+    createForeignKeyConstraint(outputTableName, reference) {
+        const outputColumnName = this.columnNameCaseConverter.convertCase(reference.columnName);
+        const outputTargetTableName = this.tableNameCaseConverter.convertCase(reference.targetTableName);
+        const outputTargetColumnName = this.columnNameCaseConverter.convertCase(reference.targetTableIdentifierColumnName);
+        return `CONSTRAINT "${outputTableName}_${outputColumnName}_fk" FOREIGN KEY ("${outputColumnName}")`
+            + ` REFERENCES "${outputTargetTableName}" ("${outputTargetColumnName}")`;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/column/SqliteIdColumnCodeGenerator.ts":
+/*!***********************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/column/SqliteIdColumnCodeGenerator.ts ***!
+  \***********************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SqliteIdColumnCodeGenerator; });
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
+
+class SqliteIdColumnCodeGenerator {
+    constructor(typeResolver, columnNameCaseConverter) {
+        this.typeResolver = typeResolver;
+        this.columnNameCaseConverter = columnNameCaseConverter;
+    }
+    generateIdColumnCode(outputTableName, identifierColumnName) {
+        const outputIdentifierColumnName = this.columnNameCaseConverter.convertCase(identifierColumnName);
+        return {
+            columnLine: this.generateIdColumnDeclarationLine(outputIdentifierColumnName)
+        };
+    }
+    generateIdColumnDeclarationLine(outputIdentifierColumnName) {
+        const sqlType = this.typeResolver.resolveSqlType(_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER);
+        return `"${outputIdentifierColumnName}" ${sqlType} NOT NULL PRIMARY KEY AUTOINCREMENT`;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/config/SqliteDialectConfigManager.ts":
+/*!**********************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/config/SqliteDialectConfigManager.ts ***!
+  \**********************************************************************************************************************/
+/*! exports provided: SqliteDialectConfigManager, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SqliteDialectConfigManager", function() { return SqliteDialectConfigManager; });
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/generator/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/generator/common/case-format/StandardCaseFormats.ts");
+/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var _erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/record-utils */ "./src/main/erdiagram/util/record-utils.ts");
+
+
+
+
+class SqliteDialectConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__["default"] {
+    getDefaultConfig() {
+        return {
+            typeBindings: {
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].IDENTIFIER]: 'INTEGER',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TEXT]: 'TEXT',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].LONG]: 'INTEGER',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].INT]: 'INTEGER',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].SHORT]: 'INTEGER',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DECIMAL]: 'REAL',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BOOLEAN]: 'INTEGER',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATE]: 'INTEGER',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].TIME]: 'INTEGER',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].DATETIME]: 'INTEGER',
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__["EntityPropertyType"].BLOB]: 'BLOB'
+            },
+            tableNameCaseFormat: _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].LOWER_UNDERSCORE,
+            columnNameCaseFormat: _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].LOWER_UNDERSCORE,
+        };
+    }
+    mergeConfigs(fullConfig, partialConfig) {
+        return Object.assign(Object.assign(Object.assign({}, fullConfig), partialConfig), { typeBindings: Object.assign(Object.assign({}, fullConfig.typeBindings), partialConfig === null || partialConfig === void 0 ? void 0 : partialConfig.typeBindings) });
+    }
+    convertToSerializableObject(fullConfig) {
+        return Object.assign(Object.assign({}, fullConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findKeyFromValue"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.tableNameCaseFormat), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findKeyFromValue"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], fullConfig.columnNameCaseFormat) });
+    }
+    convertFromSerializableObject(serializableConfig) {
+        return Object.assign(Object.assign({}, serializableConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.tableNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.columnNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL) });
+    }
+}
+const sqliteDialectConfigManager = new SqliteDialectConfigManager();
+/* harmony default export */ __webpack_exports__["default"] = (sqliteDialectConfigManager);
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/config/exports.ts":
+/*!***************************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/config/exports.ts ***!
+  \***************************************************************************************************/
+/*! exports provided: SqliteDialectConfigManager, sqliteDialectConfigManager */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SqliteDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SqliteDialectConfigManager */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/config/SqliteDialectConfigManager.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqliteDialectConfigManager", function() { return _SqliteDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__["SqliteDialectConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqliteDialectConfigManager", function() { return _SqliteDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/exports.ts":
+/*!********************************************************************************************!*\
+  !*** ./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/exports.ts ***!
+  \********************************************************************************************/
+/*! exports provided: SqliteDialectConfigManager, sqliteDialectConfigManager, SqliteDialect */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _erdiagram_generator_database_code_converter_sql_dialect_sqlite_SqliteDialect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/generator/database/code-converter/sql/dialect/sqlite/SqliteDialect */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/SqliteDialect.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqliteDialect", function() { return _erdiagram_generator_database_code_converter_sql_dialect_sqlite_SqliteDialect__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlite/config/exports.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqliteDialectConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["SqliteDialectConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqliteDialectConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["sqliteDialectConfigManager"]; });
 
 
 
@@ -5036,6 +5408,15 @@ class SqlServerDialect {
         this.columnCodeGenerator = new _erdiagram_generator_database_code_converter_sql_dialect_sqlserver_column_SqlServerColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_1__["default"](sqlTypeResolver, columnNameCaseConverter);
         this.idColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sql_dialect_sqlserver_column_SqlServerIdColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](sqlTypeResolver, columnNameCaseConverter);
         this.foreignColumnCodeGenerator = new _erdiagram_generator_database_code_converter_sql_dialect_sqlserver_column_SqlServerForeignColumnCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](this.columnCodeGenerator, this.tableNameCaseConverter, columnNameCaseConverter);
+    }
+    getScriptStartCode() {
+        return '';
+    }
+    getScriptEndCode() {
+        return '';
+    }
+    mustUseAlterTableForForeignKeys() {
+        return true;
     }
     getCreateTableStartCode(tableName) {
         const outputTableName = this.tableNameCaseConverter.convertCase(tableName);
@@ -5250,8 +5631,8 @@ class SqlServerDialectConfigManager extends _erdiagram_common_config_AbstractCom
         return Object.assign(Object.assign({}, serializableConfig), { tableNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.tableNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL), columnNameCaseFormat: Object(_erdiagram_util_record_utils__WEBPACK_IMPORTED_MODULE_3__["findValueFromNullableKey"])(_erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"], serializableConfig.columnNameCaseFormat, _erdiagram_generator_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__["default"].UPPER_CAMEL) });
     }
 }
-const sqlServerDatabaseModelToCodeConverterConfigManager = new SqlServerDialectConfigManager();
-/* harmony default export */ __webpack_exports__["default"] = (sqlServerDatabaseModelToCodeConverterConfigManager);
+const sqlServerDialectConfigManager = new SqlServerDialectConfigManager();
+/* harmony default export */ __webpack_exports__["default"] = (sqlServerDialectConfigManager);
 
 
 /***/ }),
@@ -5260,7 +5641,7 @@ const sqlServerDatabaseModelToCodeConverterConfigManager = new SqlServerDialectC
 /*!******************************************************************************************************!*\
   !*** ./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlserver/config/exports.ts ***!
   \******************************************************************************************************/
-/*! exports provided: SqlServerDialectConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager */
+/*! exports provided: SqlServerDialectConfigManager, sqlServerDialectConfigManager */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5268,7 +5649,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SqlServerDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SqlServerDialectConfigManager */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlserver/config/SqlServerDialectConfigManager.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDialectConfigManager", function() { return _SqlServerDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__["SqlServerDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDatabaseModelToCodeConverterConfigManager", function() { return _SqlServerDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDialectConfigManager", function() { return _SqlServerDialectConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"]; });
 
 
 
@@ -5280,7 +5661,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************************************************************!*\
   !*** ./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlserver/exports.ts ***!
   \***********************************************************************************************/
-/*! exports provided: SqlServerDialectConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager, SqlServerDialect */
+/*! exports provided: SqlServerDialectConfigManager, sqlServerDialectConfigManager, SqlServerDialect */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5291,7 +5672,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/sqlserver/config/exports.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDialectConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["SqlServerDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDatabaseModelToCodeConverterConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["sqlServerDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDialectConfigManager", function() { return _config_exports__WEBPACK_IMPORTED_MODULE_1__["sqlServerDialectConfigManager"]; });
 
 
 
@@ -5304,7 +5685,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************************************************!*\
   !*** ./src/main/erdiagram/generator/database/code-converter/sql/exports.ts ***!
   \*****************************************************************************/
-/*! exports provided: MysqlDialectConfigManager, mysqlDatabaseModelToCodeConverterConfigManager, MysqlDialect, OracleDialectConfigManager, oracleDatabaseModelToCodeConverterConfigManager, OracleDialect, SqlServerDialectConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager, SqlServerDialect, PostgresqlDialectConfigManager, postgresqlDatabaseModelToCodeConverterConfigManager, PostgresqlDialect, DatabaseModelToSqlCodeConverter */
+/*! exports provided: MysqlDialectConfigManager, mysqlDialectConfigManager, MysqlDialect, OracleDialectConfigManager, oracleDialectConfigManager, OracleDialect, SqliteDialectConfigManager, sqliteDialectConfigManager, SqliteDialect, SqlServerDialectConfigManager, sqlServerDialectConfigManager, SqlServerDialect, PostgresqlDialectConfigManager, postgresqlDialectConfigManager, PostgresqlDialect, DatabaseModelToSqlCodeConverter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5315,25 +5696,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dialect_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dialect/exports */ "./src/main/erdiagram/generator/database/code-converter/sql/dialect/exports.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MysqlDialectConfigManager", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["MysqlDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mysqlDatabaseModelToCodeConverterConfigManager", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["mysqlDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mysqlDialectConfigManager", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["mysqlDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MysqlDialect", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["MysqlDialect"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OracleDialectConfigManager", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["OracleDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "oracleDatabaseModelToCodeConverterConfigManager", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["oracleDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "oracleDialectConfigManager", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["oracleDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OracleDialect", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["OracleDialect"]; });
 
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqliteDialectConfigManager", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["SqliteDialectConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqliteDialectConfigManager", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["sqliteDialectConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqliteDialect", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["SqliteDialect"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDialectConfigManager", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["SqlServerDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDatabaseModelToCodeConverterConfigManager", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["sqlServerDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDialectConfigManager", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["sqlServerDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDialect", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["SqlServerDialect"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDialectConfigManager", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["PostgresqlDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDatabaseModelToCodeConverterConfigManager", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["postgresqlDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDialectConfigManager", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["postgresqlDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDialect", function() { return _dialect_exports__WEBPACK_IMPORTED_MODULE_1__["PostgresqlDialect"]; });
 
@@ -5348,7 +5735,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************************!*\
   !*** ./src/main/erdiagram/generator/database/exports.ts ***!
   \**********************************************************/
-/*! exports provided: MysqlDialectConfigManager, mysqlDatabaseModelToCodeConverterConfigManager, MysqlDialect, OracleDialectConfigManager, oracleDatabaseModelToCodeConverterConfigManager, OracleDialect, SqlServerDialectConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager, SqlServerDialect, PostgresqlDialectConfigManager, postgresqlDatabaseModelToCodeConverterConfigManager, PostgresqlDialect, DatabaseModelToSqlCodeConverter, EntityRelationshipModelToDatabaseCodeConverter, DatabaseModelGeneratorConfigManager, databaseModelGeneratorConfigManager, DatabaseModelGenerator */
+/*! exports provided: MysqlDialectConfigManager, mysqlDialectConfigManager, MysqlDialect, OracleDialectConfigManager, oracleDialectConfigManager, OracleDialect, SqliteDialectConfigManager, sqliteDialectConfigManager, SqliteDialect, SqlServerDialectConfigManager, sqlServerDialectConfigManager, SqlServerDialect, PostgresqlDialectConfigManager, postgresqlDialectConfigManager, PostgresqlDialect, DatabaseModelToSqlCodeConverter, EntityRelationshipModelToDatabaseCodeConverter, DatabaseModelGeneratorConfigManager, databaseModelGeneratorConfigManager, DatabaseModelGenerator */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5356,25 +5743,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./code-converter/exports */ "./src/main/erdiagram/generator/database/code-converter/exports.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MysqlDialectConfigManager", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["MysqlDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mysqlDatabaseModelToCodeConverterConfigManager", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["mysqlDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mysqlDialectConfigManager", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["mysqlDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MysqlDialect", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["MysqlDialect"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OracleDialectConfigManager", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["OracleDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "oracleDatabaseModelToCodeConverterConfigManager", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["oracleDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "oracleDialectConfigManager", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["oracleDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OracleDialect", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["OracleDialect"]; });
 
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqliteDialectConfigManager", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["SqliteDialectConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqliteDialectConfigManager", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["sqliteDialectConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqliteDialect", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["SqliteDialect"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDialectConfigManager", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["SqlServerDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDatabaseModelToCodeConverterConfigManager", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["sqlServerDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDialectConfigManager", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["sqlServerDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDialect", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["SqlServerDialect"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDialectConfigManager", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["PostgresqlDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDatabaseModelToCodeConverterConfigManager", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["postgresqlDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDialectConfigManager", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["postgresqlDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDialect", function() { return _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__["PostgresqlDialect"]; });
 
@@ -6479,7 +6872,7 @@ class PlantUmlRelationshipDirectionCodeGenerator {
 /*!*************************************************!*\
   !*** ./src/main/erdiagram/generator/exports.ts ***!
   \*************************************************/
-/*! exports provided: StandardCaseFormats, CaseConverter, StandardIdNamingStrategies, MysqlDialectConfigManager, mysqlDatabaseModelToCodeConverterConfigManager, MysqlDialect, OracleDialectConfigManager, oracleDatabaseModelToCodeConverterConfigManager, OracleDialect, SqlServerDialectConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager, SqlServerDialect, PostgresqlDialectConfigManager, postgresqlDatabaseModelToCodeConverterConfigManager, PostgresqlDialect, DatabaseModelToSqlCodeConverter, EntityRelationshipModelToDatabaseCodeConverter, DatabaseModelGeneratorConfigManager, databaseModelGeneratorConfigManager, DatabaseModelGenerator, JavaClassModelToCodeConverterConfigManager, javaClassModelToCodeConverterConfigManager, createJavaType, createJavaParameterizedType, createJavaArrayType, isJavaParameterizedType, parseJavaType, JavaClassModelToCodeConverter, TypeScriptClassModelToCodeConverterConfigManager, typescriptClassModelToCodeConverterConfigManager, createTypeScriptType, createTypeScriptParameterizedType, createTypeScriptArrayType, isTypeScriptParameterizedType, parseTypeScriptType, TypeScriptClassModelToCodeConverter, EntityRelationshipModelToClassCodeConverter, ClassModelGeneratorConfigManager, classModelGeneratorConfigManager, ClassModelGenerator, NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, NomnomlEntityRelationshipModelToDiagramCodeConverter, NomnomlEntityRelationshipModelToDiagramConverter, PlantUmlEntityRelationshipModelToDiagramCodeConverterConfigManager, plantumlEntityRelationshipModelToDiagramCodeConverterConfigManager, PlantUmlEntityRelationshipModelToDiagramCodeConverter, PlantUmlEntityRelationshipModelToDiagramConverter, BaseEntityRelationshipModelToDiagramConverter */
+/*! exports provided: StandardCaseFormats, CaseConverter, StandardIdNamingStrategies, MysqlDialectConfigManager, mysqlDialectConfigManager, MysqlDialect, OracleDialectConfigManager, oracleDialectConfigManager, OracleDialect, SqliteDialectConfigManager, sqliteDialectConfigManager, SqliteDialect, SqlServerDialectConfigManager, sqlServerDialectConfigManager, SqlServerDialect, PostgresqlDialectConfigManager, postgresqlDialectConfigManager, PostgresqlDialect, DatabaseModelToSqlCodeConverter, EntityRelationshipModelToDatabaseCodeConverter, DatabaseModelGeneratorConfigManager, databaseModelGeneratorConfigManager, DatabaseModelGenerator, JavaClassModelToCodeConverterConfigManager, javaClassModelToCodeConverterConfigManager, createJavaType, createJavaParameterizedType, createJavaArrayType, isJavaParameterizedType, parseJavaType, JavaClassModelToCodeConverter, TypeScriptClassModelToCodeConverterConfigManager, typescriptClassModelToCodeConverterConfigManager, createTypeScriptType, createTypeScriptParameterizedType, createTypeScriptArrayType, isTypeScriptParameterizedType, parseTypeScriptType, TypeScriptClassModelToCodeConverter, EntityRelationshipModelToClassCodeConverter, ClassModelGeneratorConfigManager, classModelGeneratorConfigManager, ClassModelGenerator, NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, NomnomlEntityRelationshipModelToDiagramCodeConverter, NomnomlEntityRelationshipModelToDiagramConverter, PlantUmlEntityRelationshipModelToDiagramCodeConverterConfigManager, plantumlEntityRelationshipModelToDiagramCodeConverterConfigManager, PlantUmlEntityRelationshipModelToDiagramCodeConverter, PlantUmlEntityRelationshipModelToDiagramConverter, BaseEntityRelationshipModelToDiagramConverter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6497,25 +6890,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _database_exports__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./database/exports */ "./src/main/erdiagram/generator/database/exports.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MysqlDialectConfigManager", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["MysqlDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mysqlDatabaseModelToCodeConverterConfigManager", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["mysqlDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mysqlDialectConfigManager", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["mysqlDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MysqlDialect", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["MysqlDialect"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OracleDialectConfigManager", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["OracleDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "oracleDatabaseModelToCodeConverterConfigManager", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["oracleDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "oracleDialectConfigManager", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["oracleDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OracleDialect", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["OracleDialect"]; });
 
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqliteDialectConfigManager", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["SqliteDialectConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqliteDialectConfigManager", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["sqliteDialectConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqliteDialect", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["SqliteDialect"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDialectConfigManager", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["SqlServerDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDatabaseModelToCodeConverterConfigManager", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["sqlServerDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDialectConfigManager", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["sqlServerDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDialect", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["SqlServerDialect"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDialectConfigManager", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["PostgresqlDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDatabaseModelToCodeConverterConfigManager", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["postgresqlDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDialectConfigManager", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["postgresqlDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDialect", function() { return _database_exports__WEBPACK_IMPORTED_MODULE_2__["PostgresqlDialect"]; });
 
@@ -8805,7 +9204,7 @@ function removeNonEmptyStrings(strings) {
 /*!**********************************!*\
   !*** ./src/main/module-entry.ts ***!
   \**********************************/
-/*! exports provided: AbstractComponentConfigManager, StandardCaseFormats, CaseConverter, StandardIdNamingStrategies, MysqlDialectConfigManager, mysqlDatabaseModelToCodeConverterConfigManager, MysqlDialect, OracleDialectConfigManager, oracleDatabaseModelToCodeConverterConfigManager, OracleDialect, SqlServerDialectConfigManager, sqlServerDatabaseModelToCodeConverterConfigManager, SqlServerDialect, PostgresqlDialectConfigManager, postgresqlDatabaseModelToCodeConverterConfigManager, PostgresqlDialect, DatabaseModelToSqlCodeConverter, EntityRelationshipModelToDatabaseCodeConverter, DatabaseModelGeneratorConfigManager, databaseModelGeneratorConfigManager, DatabaseModelGenerator, JavaClassModelToCodeConverterConfigManager, javaClassModelToCodeConverterConfigManager, createJavaType, createJavaParameterizedType, createJavaArrayType, isJavaParameterizedType, parseJavaType, JavaClassModelToCodeConverter, TypeScriptClassModelToCodeConverterConfigManager, typescriptClassModelToCodeConverterConfigManager, createTypeScriptType, createTypeScriptParameterizedType, createTypeScriptArrayType, isTypeScriptParameterizedType, parseTypeScriptType, TypeScriptClassModelToCodeConverter, EntityRelationshipModelToClassCodeConverter, ClassModelGeneratorConfigManager, classModelGeneratorConfigManager, ClassModelGenerator, NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, NomnomlEntityRelationshipModelToDiagramCodeConverter, NomnomlEntityRelationshipModelToDiagramConverter, PlantUmlEntityRelationshipModelToDiagramCodeConverterConfigManager, plantumlEntityRelationshipModelToDiagramCodeConverterConfigManager, PlantUmlEntityRelationshipModelToDiagramCodeConverter, PlantUmlEntityRelationshipModelToDiagramConverter, BaseEntityRelationshipModelToDiagramConverter, EntityRelationshipModelParserConfigManager, entityRelationshipModelParserConfigManager, EntityPropertyType, Cardinality, Direction, ERDiagramError, ERDiagramParseLineError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramRelationshipError, ERDiagramUnknownEntityError, ERDiagramEntityError, ERDiagramDuplicatedEntityNameError, ERDiagramEntityPropertyError, ERDiagramMultipleIdentifiersError, ERDiagramInvalidIdentifierDefinitionError, ERDiagramDuplicatedPropertyNameError, EntityRelationshipModelParser */
+/*! exports provided: AbstractComponentConfigManager, StandardCaseFormats, CaseConverter, StandardIdNamingStrategies, MysqlDialectConfigManager, mysqlDialectConfigManager, MysqlDialect, OracleDialectConfigManager, oracleDialectConfigManager, OracleDialect, SqliteDialectConfigManager, sqliteDialectConfigManager, SqliteDialect, SqlServerDialectConfigManager, sqlServerDialectConfigManager, SqlServerDialect, PostgresqlDialectConfigManager, postgresqlDialectConfigManager, PostgresqlDialect, DatabaseModelToSqlCodeConverter, EntityRelationshipModelToDatabaseCodeConverter, DatabaseModelGeneratorConfigManager, databaseModelGeneratorConfigManager, DatabaseModelGenerator, JavaClassModelToCodeConverterConfigManager, javaClassModelToCodeConverterConfigManager, createJavaType, createJavaParameterizedType, createJavaArrayType, isJavaParameterizedType, parseJavaType, JavaClassModelToCodeConverter, TypeScriptClassModelToCodeConverterConfigManager, typescriptClassModelToCodeConverterConfigManager, createTypeScriptType, createTypeScriptParameterizedType, createTypeScriptArrayType, isTypeScriptParameterizedType, parseTypeScriptType, TypeScriptClassModelToCodeConverter, EntityRelationshipModelToClassCodeConverter, ClassModelGeneratorConfigManager, classModelGeneratorConfigManager, ClassModelGenerator, NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, NomnomlEntityRelationshipModelToDiagramCodeConverter, NomnomlEntityRelationshipModelToDiagramConverter, PlantUmlEntityRelationshipModelToDiagramCodeConverterConfigManager, plantumlEntityRelationshipModelToDiagramCodeConverterConfigManager, PlantUmlEntityRelationshipModelToDiagramCodeConverter, PlantUmlEntityRelationshipModelToDiagramConverter, BaseEntityRelationshipModelToDiagramConverter, EntityRelationshipModelParserConfigManager, entityRelationshipModelParserConfigManager, EntityPropertyType, Cardinality, Direction, ERDiagramError, ERDiagramParseLineError, ERDiagramSyntaxError, ERDiagramUnknownTypeError, ERDiagramRelationshipError, ERDiagramUnknownEntityError, ERDiagramEntityError, ERDiagramDuplicatedEntityNameError, ERDiagramEntityPropertyError, ERDiagramMultipleIdentifiersError, ERDiagramInvalidIdentifierDefinitionError, ERDiagramDuplicatedPropertyNameError, EntityRelationshipModelParser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8821,25 +9220,31 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MysqlDialectConfigManager", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["MysqlDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mysqlDatabaseModelToCodeConverterConfigManager", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["mysqlDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mysqlDialectConfigManager", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["mysqlDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MysqlDialect", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["MysqlDialect"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OracleDialectConfigManager", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["OracleDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "oracleDatabaseModelToCodeConverterConfigManager", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["oracleDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "oracleDialectConfigManager", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["oracleDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OracleDialect", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["OracleDialect"]; });
 
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqliteDialectConfigManager", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["SqliteDialectConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqliteDialectConfigManager", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["sqliteDialectConfigManager"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqliteDialect", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["SqliteDialect"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDialectConfigManager", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["SqlServerDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDatabaseModelToCodeConverterConfigManager", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["sqlServerDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sqlServerDialectConfigManager", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["sqlServerDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SqlServerDialect", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["SqlServerDialect"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDialectConfigManager", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["PostgresqlDialectConfigManager"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDatabaseModelToCodeConverterConfigManager", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["postgresqlDatabaseModelToCodeConverterConfigManager"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "postgresqlDialectConfigManager", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["postgresqlDialectConfigManager"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostgresqlDialect", function() { return _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__["PostgresqlDialect"]; });
 

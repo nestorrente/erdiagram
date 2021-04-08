@@ -8,7 +8,7 @@ import OracleForeignColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/sql/dialect/oracle/column/OracleForeignColumnCodeGenerator';
 import OracleDialectConfig
 	from '@/erdiagram/generator/database/code-converter/sql/dialect/oracle/config/OracleDialectConfig';
-import oracleDatabaseModelToCodeConverterConfigManager
+import oracleDialectConfigManager
 	from '@/erdiagram/generator/database/code-converter/sql/dialect/oracle/config/OracleDialectConfigManager';
 import StandardCaseFormats from '@/erdiagram/generator/common/case-format/StandardCaseFormats';
 import SqlTypeResolver from '@/erdiagram/generator/database/code-converter/sql/dialect/common/SqlTypeResolver';
@@ -32,7 +32,7 @@ export default class OracleDialect implements SqlDialect {
 
 	constructor(config?: Partial<OracleDialectConfig>) {
 
-		const fullConfig = oracleDatabaseModelToCodeConverterConfigManager.mergeWithDefaultConfig(config);
+		const fullConfig = oracleDialectConfigManager.mergeWithDefaultConfig(config);
 
 		this.tableNameCaseConverter = new CaseConverter(
 				StandardCaseFormats.LOWER_CAMEL,
@@ -62,6 +62,18 @@ export default class OracleDialect implements SqlDialect {
 				columnNameCaseConverter
 		);
 
+	}
+
+	getScriptStartCode() {
+		return '';
+	}
+
+	getScriptEndCode() {
+		return '';
+	}
+
+	mustUseAlterTableForForeignKeys(): boolean {
+		return true;
 	}
 
 	getCreateTableStartCode(tableName: string) {

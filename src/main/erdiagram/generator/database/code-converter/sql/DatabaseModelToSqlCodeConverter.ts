@@ -37,10 +37,23 @@ export default class DatabaseModelToSqlCodeConverter implements DatabaseModelToC
 
 				});
 
-		return [
+		const allScriptStatements = [
 			...allCreateTableStatements,
 			...allAlterTableStatements
-		].join('\n\n');
+		];
+
+		const scriptStartCode = this.sqlDialect.getScriptStartCode();
+		const scriptEndCode = this.sqlDialect.getScriptEndCode();
+
+		if (scriptStartCode) {
+			allScriptStatements.unshift(scriptStartCode);
+		}
+
+		if (scriptEndCode) {
+			allScriptStatements.push(scriptEndCode);
+		}
+
+		return allScriptStatements.join('\n\n');
 
 	}
 
@@ -65,15 +78,15 @@ export default class DatabaseModelToSqlCodeConverter implements DatabaseModelToC
 		}
 
 		lines.columns.push(idColumnLine);
-		lines.otherConstraints.push(pkConstraintLine);
+
+		if (pkConstraintLine != null) {
+			lines.otherConstraints.push(pkConstraintLine);
+		}
 
 		this.processColumns(table.name, table.columns, lines);
 		this.processReferences(table.name, table.references, lines);
 
-		const createTableInnerLines = [
-			...lines.columns,
-			...lines.otherConstraints
-		];
+		const createTableInnerLines = this.getCreateTableInnerLines(lines);
 
 		const createTableLines = [
 			...lines.sequences,
@@ -82,14 +95,11 @@ export default class DatabaseModelToSqlCodeConverter implements DatabaseModelToC
 			this.sqlDialect.getCreateTableEndCode()
 		];
 
-		const createTableStatement = createTableLines.join('\n');
-		const alterTableStatements = lines.fkConstraints.map(fkConstraintLine => {
-			return this.sqlDialect.getAlterTableAddCode(table.name, fkConstraintLine);
-		}).join('\n');
+		const alterTableLines = this.getAlterTableLines(table, lines);
 
 		return {
-			createTableStatement,
-			alterTableStatements
+			createTableStatement: createTableLines.join('\n'),
+			alterTableStatements: alterTableLines.join('\n')
 		};
 
 	}
@@ -131,6 +141,33 @@ export default class DatabaseModelToSqlCodeConverter implements DatabaseModelToC
 			}
 
 		}
+
+	}
+
+	private getCreateTableInnerLines(lines: CreateTableLines): string[] {
+
+		const createTableInnerLines = [
+			...lines.columns,
+			...lines.otherConstraints
+		];
+
+		if (!this.sqlDialect.mustUseAlterTableForForeignKeys()) {
+			createTableInnerLines.push(...lines.fkConstraints);
+		}
+
+		return createTableInnerLines;
+
+	}
+
+	private getAlterTableLines(table: TableDescriptor, lines: CreateTableLines): string[] {
+
+		if (!this.sqlDialect.mustUseAlterTableForForeignKeys()) {
+			return [];
+		}
+
+		return lines.fkConstraints.map(fkConstraintLine => {
+			return this.sqlDialect.getAlterTableAddCode(table.name, fkConstraintLine);
+		});
 
 	}
 

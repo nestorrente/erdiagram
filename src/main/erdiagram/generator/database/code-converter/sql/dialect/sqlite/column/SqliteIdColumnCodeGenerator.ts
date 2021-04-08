@@ -19,19 +19,14 @@ export default class SqliteIdColumnCodeGenerator implements SqlIdColumnCodeGener
 		const outputIdentifierColumnName = this.columnNameCaseConverter.convertCase(identifierColumnName);
 
 		return {
-			columnLine: this.generateIdColumnDeclarationLine(outputIdentifierColumnName),
-			pkConstraintLine: this.createPrimaryKeyConstraint(outputTableName, outputIdentifierColumnName)
+			columnLine: this.generateIdColumnDeclarationLine(outputIdentifierColumnName)
 		};
 
 	}
 
 	private generateIdColumnDeclarationLine(outputIdentifierColumnName: string): string {
 		const sqlType = this.typeResolver.resolveSqlType(EntityPropertyType.IDENTIFIER);
-		return `"${outputIdentifierColumnName}" ${sqlType} NOT NULL`;
-	}
-
-	private createPrimaryKeyConstraint(outputTableName: string, outputIdentifierColumnName: string) {
-		return `CONSTRAINT "${outputTableName}_pk" PRIMARY KEY ("${outputIdentifierColumnName}")`;
+		return `"${outputIdentifierColumnName}" ${sqlType} NOT NULL PRIMARY KEY AUTOINCREMENT`;
 	}
 
 }

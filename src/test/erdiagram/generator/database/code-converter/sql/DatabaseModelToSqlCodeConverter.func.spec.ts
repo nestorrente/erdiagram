@@ -76,13 +76,13 @@ describe('Tables with references', () => {
 	executeTestCaseForAllDialects(
 			'Table with nullable reference to another table',
 			'table_with_nullable_reference_to_another_table.sql',
-			databaseModelWithTableWithUniqueReferenceToAnotherTable
+			databaseModelWithTableWithNullableReferenceToAnotherTable
 	);
 
 	executeTestCaseForAllDialects(
 			'Table with unique reference to another table',
 			'table_with_unique_reference_to_another_table.sql',
-			databaseModelWithTableWithNullableReferenceToAnotherTable
+			databaseModelWithTableWithUniqueReferenceToAnotherTable
 	);
 
 	executeTestCaseForAllDialects(

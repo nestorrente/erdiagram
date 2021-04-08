@@ -59,5 +59,5 @@ export class OracleDialectConfigManager
 
 }
 
-const oracleDatabaseModelToCodeConverterConfigManager = new OracleDialectConfigManager();
-export default oracleDatabaseModelToCodeConverterConfigManager;
+const oracleDialectConfigManager = new OracleDialectConfigManager();
+export default oracleDialectConfigManager;

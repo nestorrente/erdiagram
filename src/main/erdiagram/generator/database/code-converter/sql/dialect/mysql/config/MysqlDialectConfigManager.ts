@@ -59,5 +59,5 @@ export class MysqlDialectConfigManager
 
 }
 
-const mysqlDatabaseModelToCodeConverterConfigManager = new MysqlDialectConfigManager();
-export default mysqlDatabaseModelToCodeConverterConfigManager;
+const mysqlDialectConfigManager = new MysqlDialectConfigManager();
+export default mysqlDialectConfigManager;

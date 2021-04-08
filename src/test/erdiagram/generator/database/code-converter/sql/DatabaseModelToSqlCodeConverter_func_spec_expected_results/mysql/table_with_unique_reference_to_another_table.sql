@@ -1,7 +1,8 @@
 CREATE TABLE `TestTable1` (
     `id` BIGINT NOT NULL AUTO_INCREMENT,
-    `table2Id` BIGINT,
-    CONSTRAINT `TestTable1_pk` PRIMARY KEY (`id`)
+    `table2Id` BIGINT NOT NULL,
+    CONSTRAINT `TestTable1_pk` PRIMARY KEY (`id`),
+    CONSTRAINT `TestTable1_table2Id_unique` UNIQUE (`table2Id`)
 );
 
 CREATE TABLE `TestTable2` (

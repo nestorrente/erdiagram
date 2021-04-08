@@ -1,5 +1,7 @@
+PRAGMA foreign_keys = OFF;
+
 CREATE TABLE "test_table" (
-    "id" INTEGER NOT NULL,
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "boolean_column" INTEGER NOT NULL,
     "short_column" INTEGER NOT NULL,
     "int_column" INTEGER NOT NULL,
@@ -9,6 +11,7 @@ CREATE TABLE "test_table" (
     "date_column" INTEGER NOT NULL,
     "time_column" INTEGER NOT NULL,
     "datetime_column" INTEGER NOT NULL,
-    "blob_column" BLOB NOT NULL,
-    CONSTRAINT "test_table_pk" PRIMARY KEY ("id")
+    "blob_column" BLOB NOT NULL
 );
+
+PRAGMA foreign_keys = ON;

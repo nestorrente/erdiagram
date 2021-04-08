@@ -59,5 +59,5 @@ export class SqliteDialectConfigManager
 
 }
 
-const sqliteDatabaseModelToCodeConverterConfigManager = new SqliteDialectConfigManager();
-export default sqliteDatabaseModelToCodeConverterConfigManager;
+const sqliteDialectConfigManager = new SqliteDialectConfigManager();
+export default sqliteDialectConfigManager;

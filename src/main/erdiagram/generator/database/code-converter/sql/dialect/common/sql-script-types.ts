@@ -13,7 +13,7 @@ export interface CreateTableLines {
 export interface IdColumnCode {
 	createSequenceLine?: string;
 	columnLine: string;
-	pkConstraintLine: string;
+	pkConstraintLine?: string;
 }
 
 export interface RegularColumnCode {

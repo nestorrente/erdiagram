@@ -19,7 +19,7 @@ import SqliteForeignColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/sql/dialect/sqlite/column/SqliteForeignColumnCodeGenerator';
 import SqliteDialectConfig
 	from '@/erdiagram/generator/database/code-converter/sql/dialect/sqlite/config/SqliteDialectConfig';
-import sqliteDatabaseModelToCodeConverterConfigManager
+import sqliteDialectConfigManager
 	from '@/erdiagram/generator/database/code-converter/sql/dialect/sqlite/config/SqliteDialectConfigManager';
 
 export default class SqliteDialect implements SqlDialect {
@@ -32,7 +32,7 @@ export default class SqliteDialect implements SqlDialect {
 
 	constructor(config?: Partial<SqliteDialectConfig>) {
 
-		const fullConfig = sqliteDatabaseModelToCodeConverterConfigManager.mergeWithDefaultConfig(config);
+		const fullConfig = sqliteDialectConfigManager.mergeWithDefaultConfig(config);
 
 		this.tableNameCaseConverter = new CaseConverter(
 				StandardCaseFormats.LOWER_CAMEL,
@@ -62,6 +62,18 @@ export default class SqliteDialect implements SqlDialect {
 				columnNameCaseConverter
 		);
 
+	}
+
+	getScriptStartCode() {
+		return 'PRAGMA foreign_keys = OFF;';
+	}
+
+	getScriptEndCode() {
+		return 'PRAGMA foreign_keys = ON;';
+	}
+
+	mustUseAlterTableForForeignKeys(): boolean {
+		return false;
 	}
 
 	getCreateTableStartCode(tableName: string) {

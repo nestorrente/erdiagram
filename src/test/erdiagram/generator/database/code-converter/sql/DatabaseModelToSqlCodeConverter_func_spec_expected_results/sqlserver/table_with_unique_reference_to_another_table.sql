@@ -1,7 +1,8 @@
 CREATE TABLE "TestTable1" (
     "Id" BIGINT NOT NULL IDENTITY(1, 1),
-    "Table2Id" BIGINT,
-    CONSTRAINT "TestTable1_pk" PRIMARY KEY ("Id")
+    "Table2Id" BIGINT NOT NULL,
+    CONSTRAINT "TestTable1_pk" PRIMARY KEY ("Id"),
+    CONSTRAINT "TestTable1_Table2Id_unique" UNIQUE ("Table2Id")
 );
 
 CREATE TABLE "TestTable2" (

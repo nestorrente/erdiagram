@@ -59,5 +59,5 @@ export class PostgresqlDialectConfigManager
 
 }
 
-const postgresqlDatabaseModelToCodeConverterConfigManager = new PostgresqlDialectConfigManager();
-export default postgresqlDatabaseModelToCodeConverterConfigManager;
+const postgresqlDialectConfigManager = new PostgresqlDialectConfigManager();
+export default postgresqlDialectConfigManager;
