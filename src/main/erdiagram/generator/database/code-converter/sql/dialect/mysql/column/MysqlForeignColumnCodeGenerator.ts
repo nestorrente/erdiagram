@@ -50,8 +50,7 @@ export default class MysqlForeignColumnCodeGenerator implements SqlForeignColumn
 			type: EntityPropertyType.IDENTIFIER,
 			length: [],
 			notNull,
-			unique,
-			autoincremental: false
+			unique
 		};
 
 	}

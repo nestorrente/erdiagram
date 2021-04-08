@@ -10,7 +10,7 @@ export const ENTITY_NAME_LINE_REGEX = new RegExp(`^(${IDENTIFIER_REGEX.source})$
 // Entity property
 
 const PROPERTY_NAME_REGEX = new RegExp(`(${IDENTIFIER_REGEX.source})`);
-const PROPERTY_MODIFIERS_REGEX = new RegExp(`([?!+]*)`);
+const PROPERTY_MODIFIERS_REGEX = new RegExp(`([?!]*)`);
 
 const PROPERTY_TYPE_NAME_REGEX = new RegExp(`(${IDENTIFIER_REGEX.source})`);
 const PROPERTY_TYPE_LENGTH_REGEX = new RegExp(`(?:\\((\\s*\\d+\\s*(?:,\\s*\\d+\\s*)*)\\))?`);

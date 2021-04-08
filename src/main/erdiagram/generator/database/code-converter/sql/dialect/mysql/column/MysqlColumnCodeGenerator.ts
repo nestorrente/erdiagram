@@ -30,7 +30,6 @@ export default class MysqlColumnCodeGenerator implements SqlColumnCodeGenerator 
 
 		const {
 			notNull,
-			autoincremental,
 			type,
 			length
 		} = column;
@@ -42,10 +41,6 @@ export default class MysqlColumnCodeGenerator implements SqlColumnCodeGenerator 
 
 		if (notNull) {
 			lineParts.push('NOT NULL');
-		}
-
-		if (autoincremental) {
-			lineParts.push('AUTO_INCREMENT');
 		}
 
 		return lineParts.join(' ');

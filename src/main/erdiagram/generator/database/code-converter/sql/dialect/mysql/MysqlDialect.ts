@@ -52,7 +52,7 @@ export default class MysqlDialect implements SqlDialect {
 		);
 
 		this.idColumnCodeGenerator = new MysqlIdColumnCodeGenerator(
-				this.columnCodeGenerator,
+				sqlTypeResolver,
 				columnNameCaseConverter
 		);
 

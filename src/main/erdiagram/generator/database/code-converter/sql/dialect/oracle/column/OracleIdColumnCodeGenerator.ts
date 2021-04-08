@@ -1,16 +1,14 @@
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
-import {TableColumnDescriptor} from '@/erdiagram/generator/database/model/database-model-types';
-import OracleColumnCodeGenerator
-	from '@/erdiagram/generator/database/code-converter/sql/dialect/oracle/column/OracleColumnCodeGenerator';
 import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
 import {IdColumnCode} from '@/erdiagram/generator/database/code-converter/sql/dialect/common/sql-script-types';
 import SqlIdColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/sql/dialect/common/column/SqlIdColumnCodeGenerator';
+import SqlTypeResolver from '@/erdiagram/generator/database/code-converter/sql/dialect/common/SqlTypeResolver';
 
 export default class OracleIdColumnCodeGenerator implements SqlIdColumnCodeGenerator {
 
 	constructor(
-			private readonly columnCodeGenerator: OracleColumnCodeGenerator,
+			private readonly typeResolver: SqlTypeResolver,
 			private readonly columnNameCaseConverter: CaseConverter
 	) {
 
@@ -18,46 +16,33 @@ export default class OracleIdColumnCodeGenerator implements SqlIdColumnCodeGener
 
 	public generateIdColumnCode(outputTableName: string, identifierColumnName: string): IdColumnCode {
 
-		const column = this.createIdColumnDescriptor(identifierColumnName);
+		const outputIdentifierColumnName = this.columnNameCaseConverter.convertCase(identifierColumnName);
 
-		const {
-			createSequenceLine,
-			columnLine
-		} = this.columnCodeGenerator.generateColumnCode(outputTableName, column);
-
-		/* istanbul ignore next */
-		if (createSequenceLine == null) {
-			throw new Error('Unexpected error: missing sequence for primary key column');
-		}
-
-		const pkConstraintLine = this.createPrimaryKeyConstraint(outputTableName, column);
+		const sequenceName = this.getSequenceName(outputTableName, outputIdentifierColumnName);
 
 		return {
-			createSequenceLine,
-			columnLine,
-			pkConstraintLine
+			createSequenceLine: this.generateCreateSequenceLine(sequenceName),
+			columnLine: this.generateIdColumnDeclarationLine(outputIdentifierColumnName, sequenceName),
+			pkConstraintLine: this.createPrimaryKeyConstraint(outputTableName, outputIdentifierColumnName)
 		};
 
 	}
 
-	private createIdColumnDescriptor(identifierColumnName: string): TableColumnDescriptor {
-		return {
-			name: identifierColumnName,
-			type: EntityPropertyType.IDENTIFIER,
-			length: [],
-			notNull: true,
-			// FIXME when different IDENTITY strategies are supported, we must
-			//  change this to false and manage the IDENTITY generation manually.
-			autoincremental: true,
-			// As primary keys are unique by default, we don't
-			// need to manually define an UNIQUE KEY constraint
-			unique: false
-		};
+	private getSequenceName(outputTableName: string, outputColumnName: string): string {
+		return `${outputTableName}_${outputColumnName}_SEQ`;
 	}
 
-	private createPrimaryKeyConstraint(outputTableName: string, column: TableColumnDescriptor) {
-		const columnName = this.columnNameCaseConverter.convertCase(column.name);
-		return `CONSTRAINT "${outputTableName}_PK" PRIMARY KEY ("${columnName}")`;
+	private generateCreateSequenceLine(sequenceName: string): string {
+		return `CREATE SEQUENCE "${sequenceName}" START WITH 1;`;
+	}
+
+	private generateIdColumnDeclarationLine(outputIdentifierColumnName: string, sequenceName: string): string {
+		const sqlType = this.typeResolver.resolveSqlType(EntityPropertyType.IDENTIFIER);
+		return `"${outputIdentifierColumnName}" ${sqlType} NOT NULL DEFAULT "${sequenceName}".nextval`;
+	}
+
+	private createPrimaryKeyConstraint(outputTableName: string, outputIdentifierColumnName: string) {
+		return `CONSTRAINT "${outputTableName}_PK" PRIMARY KEY ("${outputIdentifierColumnName}")`;
 	}
 
 }

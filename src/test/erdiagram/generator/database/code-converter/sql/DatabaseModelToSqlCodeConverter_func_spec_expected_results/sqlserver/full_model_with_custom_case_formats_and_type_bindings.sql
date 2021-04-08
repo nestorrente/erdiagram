@@ -1,9 +1,7 @@
-CREATE SEQUENCE "Modifiers_Table_autoincremental_column_seq" START WITH 1;
 CREATE TABLE "Modifiers_Table" (
     "the_id_of_modifiers_table" CUSTOM_IDENTIFIER_TYPE NOT NULL IDENTITY(1, 1),
     "not_null_column" CUSTOM_INT_TYPE NOT NULL,
     "unique_column" CUSTOM_INT_TYPE,
-    "autoincremental_column" CUSTOM_INT_TYPE DEFAULT NEXT VALUE FOR "Modifiers_Table_autoincremental_column_seq",
     CONSTRAINT "Modifiers_Table_pk" PRIMARY KEY ("the_id_of_modifiers_table"),
     CONSTRAINT "Modifiers_Table_unique_column_unique" UNIQUE ("unique_column")
 );

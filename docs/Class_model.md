@@ -9,7 +9,6 @@ how _ERDiagram_ converts the input _entity-relationship model_ into a _class mod
     + [Property modifiers](#property-modifiers)
         + [Optional modifier](#optional-modifier)
         + [Unique modifier](#unique-modifier)
-        + [Auto-incremental modifier](#auto-incremental-modifier)
     + [Entity identifier property](#entity-identifier-property)
 * **[Relationships](#relationships)**
     + [Cardinalities](#cardinalities)
@@ -36,13 +35,6 @@ _The unique modifier is intended for database code generation, and it's not used
 This means that defining unique class fields is currently an unsupported feature. This may change in the future, so you
 can create an issue to discuss this if you need it :slightly_smiling_face:
 
-#### Auto-incremental modifier
-
-_The auto-incremental modifier is intended for database code generation, and it's not used in class model generation._
-
-This means that defining auto-incremental class fields is currently an unsupported feature. This may change in
-the future, so you can create an issue to discuss this if you need it :slightly_smiling_face:
-
 ### Entity identifier property
 
 The identifier property of the entity will be modeled just like any other field. Contrary to the
@@ -51,8 +43,8 @@ _nullable_, so a `null` value can be used to represent an _unsaved instance_ of 
 
 ## Relationships
 
-Relationships are modeled by adding new fields to the entity classes. In the following sections, we will explain in
-deep how the cardinalities, direction, and aliases of the relationship affect the final _class model_.
+Relationships are modeled by adding new fields to the entity classes. In the following sections, we will explain in deep
+how the cardinalities, direction, and aliases of the relationship affect the final _class model_.
 
 ### Cardinalities
 
@@ -61,13 +53,12 @@ _ERDiagram_ supports different types of relationships regarding the cardinality 
 
 Each member of a relationship can have 2 different cardinalities:
 
-* _one_ (`1`): members with this cardinality are modeled by using a field whose type is the
-  entity of that member.
+* _one_ (`1`): members with this cardinality are modeled by using a field whose type is the entity of that member.
 * _many_ (`*`): members with this cardinality are modeled by using a _list_ or _array_.
 
-Also, there is a special _zero-or-one_ cardinality (represented in _ERDiagram_ using a question mark `?`), which
-is modeled in the same way as the _one_ (`1`) cardinality, with the only difference that its corresponding field will
-be _nullable_.
+Also, there is a special _zero-or-one_ cardinality (represented in _ERDiagram_ using a question mark `?`), which is
+modeled in the same way as the _one_ (`1`) cardinality, with the only difference that its corresponding field will be _
+nullable_.
 
 ### Directions
 
@@ -106,9 +97,9 @@ User <-* Address
 Defining aliases for the members of a relationship is useful not only for semantic purposes but also for customizing the
 name of its corresponding fields.
 
-For example, imagine you want to model a _Travel_ entity that has 2 relationships to the same _City_ entity, one for the _origin
-city_ and the other for the _destination city_. If you define those relationships without specifying an alias for the _City_ member,
-you will end up with two identical `City city` fields in your `Travel` class.
+For example, imagine you want to model a _Travel_ entity that has 2 relationships to the same _City_ entity, one for
+the _origin city_ and the other for the _destination city_. If you define those relationships without specifying an
+alias for the _City_ member, you will end up with two identical `City city` fields in your `Travel` class.
 
 The way to handle this situation is by adding an alias to the _City_ member of both relationships:
 
@@ -125,8 +116,9 @@ You can also use _aliases_ in _self-referencing_ classes:
 Employee subordinates *<-> Employee boss
 ```
 
-This will be modeled by creating the `Employee boss` and `Employee[] subordinates` fields in the `Employee` class. If you don't
-use _aliases_, the fields would be `Employee employee` and `Employee[] employees` respectively, which are much less semantic.
+This will be modeled by creating the `Employee boss` and `Employee[] subordinates` fields in the `Employee` class. If
+you don't use _aliases_, the fields would be `Employee employee` and `Employee[] employees` respectively, which are much
+less semantic.
 
 ### Relationship's name
 

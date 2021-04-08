@@ -9,7 +9,6 @@ _ERDiagram_ converts the input _entity-relationship model_ into a _database mode
     + [Property modifiers](#property-modifiers)
         + [Optional modifier](#optional-modifier)
         + [Unique modifier](#unique-modifier)
-        + [Auto-incremental modifier](#auto-incremental-modifier)
     + [Entity identifier property](#entity-identifier-property)
 * **[Relationships](#relationships)**
     + [Cardinalities](#cardinalities)
@@ -37,17 +36,10 @@ modifier will be modeled as _nullable_ columns, so `NOT NULL` statement will not
 
 Properties defined using the unique modifier will be modeled by adding a `UNIQUE` constraint to that column.
 
-#### Auto-incremental modifier
-
-Properties defined using the auto-incremental modifier will be modeled as `AUTO_INCREMENTAL` columns.
-
-_Note: as some database engines don't support the `AUTO_INCREMENTAL` modifier, ERDiagram will try to emulate the same
-behavior using a combination of a `SEQUENCE` and a `DEFAULT` value in the database engines that support those features._
-
 ### Entity identifier property
 
-The identifier property of the entity will be modeled as a `NOT_NULL` and `AUTO_INCREMENTAL` column. Moreover, it will
-be also defined as the `PRIMARY KEY` (a.k.a. `IDENTIFIER`) of the table.
+The identifier property of the entity will be modeled as a `NOT_NULL` column. Moreover, it will be also defined as the
+`PRIMARY KEY` (a.k.a. `IDENTIFIER`) of the table.
 
 ## Relationships
 
@@ -91,15 +83,16 @@ User <->* Address
 
 #### Many to many
 
-Relationships whose cardinality is _many-to-many_ are modeled by creating an _intermediate_table_ which 2 _foreign columns_,
-one for each entity. Let's see an example:
+Relationships whose cardinality is _many-to-many_ are modeled by creating an _intermediate_table_ which 2 _foreign
+columns_, one for each entity. Let's see an example:
 
 ```erdiagram
 User *<->* Role
 ```
 
-The relationship above represents a _User_ that may have many _Roles_. At the same time, each _Role_ is related to many _Users_.
-This is modeled by creating a new table `UserRole` with the columns `userId` and `roleId`, including their corresponding
+The relationship above represents a _User_ that may have many _Roles_. At the same time, each _Role_ is related to
+many _Users_. This is modeled by creating a new table `UserRole` with the columns `userId` and `roleId`, including their
+corresponding
 `FOREIGN KEY` constraints referencing the `User` and `Role` tables respectively.
 
 You can learn how to customize the name of the _intermediate table_ and the _foreign columns_ in the
@@ -110,9 +103,9 @@ You can learn how to customize the name of the _intermediate table_ and the _for
 Defining aliases for the members of a relationship is useful not only for semantic purposes but also for customizing the
 _foreign columns_ names.
 
-For example, imagine you want to model a _Travel_ entity that has 2 relationships to the same _City_ entity, one for the _origin
-city_ and the other for the _destination city_. If you define those relationships without specifying an alias for the _City_ member,
-you will end up with two identical `cityId` columns in your `Travel` table.
+For example, imagine you want to model a _Travel_ entity that has 2 relationships to the same _City_ entity, one for
+the _origin city_ and the other for the _destination city_. If you define those relationships without specifying an
+alias for the _City_ member, you will end up with two identical `cityId` columns in your `Travel` table.
 
 The way to handle this situation is by adding an alias to the _City_ member of both relationships:
 
@@ -134,15 +127,15 @@ be named `employeeId`, which is much less semantic.
 
 ### Relationship's name
 
-When defining the name of a _many-to-many_ relationship, _ERDiagram_ will use it for naming the corresponding _intermediate
-table_. Let's see an example:
+When defining the name of a _many-to-many_ relationship, _ERDiagram_ will use it for naming the corresponding _
+intermediate table_. Let's see an example:
 
 ```erdiagram
 User *<->* Role
 ```
 
-The relationship above will be modeled by creating the `UserRole` table. If we want to customize this name, we can define a
-name for the relationship in this way:
+The relationship above will be modeled by creating the `UserRole` table. If we want to customize this name, we can
+define a name for the relationship in this way:
 
 ```erdiagram
 User *<->* Role (UserRoleMapping)
@@ -167,9 +160,10 @@ applying any transformation, so you can manually pluralize them in the right way
 
 ### Directions
 
-_The auto-incremental modifier is intended for OOP classes code generation, and it's not used in database model generation._
+_The direction of the relationships is intended for OOP classes code generation, and it's not used in database model
+generation._
 
-The main reason for ignoring the direction of the relationship in the database model is because it's used to define how the data
-can be accessed (i.e. it's possible to get the roles of a user, but it's not possible to get the users that have a specific
-role), which is out of the scope of the _database model_, as database data can be queried in any direction using `JOIN`
-statements.
+The main reason for ignoring the direction of the relationship in the database model is because it's used to define how
+the data can be accessed (i.e. it's possible to get the roles of a user, but it's not possible to get the users that
+have a specific role), which is out of the scope of the _database model_, as database data can be queried in any
+direction using `JOIN` statements.

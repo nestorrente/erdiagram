@@ -60,24 +60,14 @@ export const databaseModelWithTablesWithColumnsWithModifiers: DatabaseModel = {
 					type: EntityPropertyType.INT,
 					length: [],
 					notNull: true,
-					unique: false,
-					autoincremental: false
+					unique: false
 				},
 				{
 					name: 'uniqueColumn',
 					type: EntityPropertyType.INT,
 					length: [],
 					notNull: false,
-					unique: true,
-					autoincremental: false
-				},
-				{
-					name: 'autoincrementalColumn',
-					type: EntityPropertyType.INT,
-					length: [],
-					notNull: false,
-					unique: false,
-					autoincremental: true
+					unique: true
 				},
 			],
 			references: []
@@ -220,24 +210,14 @@ export const fullDatabaseModel: DatabaseModel = {
 					type: EntityPropertyType.INT,
 					length: [],
 					notNull: true,
-					unique: false,
-					autoincremental: false
+					unique: false
 				},
 				{
 					name: 'uniqueColumn',
 					type: EntityPropertyType.INT,
 					length: [],
 					notNull: false,
-					unique: true,
-					autoincremental: false
-				},
-				{
-					name: 'autoincrementalColumn',
-					type: EntityPropertyType.INT,
-					length: [],
-					notNull: false,
-					unique: false,
-					autoincremental: true
+					unique: true
 				},
 			],
 			references: []

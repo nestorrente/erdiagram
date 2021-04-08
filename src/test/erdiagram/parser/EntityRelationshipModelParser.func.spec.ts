@@ -148,8 +148,7 @@ Entity
 							type: EntityPropertyType.INT,
 							length: [],
 							optional: true,
-							unique: false,
-							autoincremental: false
+							unique: false
 						},
 					]
 				}
@@ -179,39 +178,7 @@ Entity
 							type: EntityPropertyType.INT,
 							length: [],
 							optional: false,
-							unique: true,
-							autoincremental: false
-						},
-					]
-				}
-			],
-			relationships: []
-		});
-
-	});
-
-	test('Autoincremental property', () => {
-
-		const model = entityRelationshipModelParser.parseModel(`
-
-Entity
-	num+ int
-
-		`);
-
-		expect(model).toStrictEqual<EntityRelationshipModel>({
-			entities: [
-				{
-					name: 'Entity',
-					identifierPropertyName: undefined,
-					properties: [
-						{
-							name: 'num',
-							type: EntityPropertyType.INT,
-							length: [],
-							optional: false,
-							unique: false,
-							autoincremental: true
+							unique: true
 						},
 					]
 				}
@@ -517,21 +484,6 @@ Entity
 });
 
 describe('Errors', () => {
-
-	test('Entity with autoincremental identifier property', () => {
-
-		expect(() => {
-
-			entityRelationshipModelParser.parseModel(`
-
-Entity
-	customEntityId+ identifier
-
-			`);
-
-		}).toThrow(Error);
-
-	});
 
 	test('Entity with optional identifier property', () => {
 

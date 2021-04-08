@@ -27,7 +27,6 @@ export interface ParsedEntityDescriptor {
 export interface ParsedEntityPropertyDescriptor {
 	name: string;
 	optional: boolean;
-	autoincremental: boolean;
 	unique: boolean;
 	type: EntityPropertyType;
 	length: number[];

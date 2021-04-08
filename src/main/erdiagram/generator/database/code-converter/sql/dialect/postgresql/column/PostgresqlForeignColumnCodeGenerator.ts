@@ -50,8 +50,7 @@ export default class PostgresqlForeignColumnCodeGenerator implements SqlForeignC
 			type: EntityPropertyType.IDENTIFIER,
 			length: [],
 			notNull,
-			unique,
-			autoincremental: false
+			unique
 		};
 
 	}

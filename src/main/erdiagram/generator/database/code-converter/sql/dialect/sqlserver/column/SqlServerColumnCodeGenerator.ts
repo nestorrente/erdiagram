@@ -15,34 +15,21 @@ export default class SqlServerColumnCodeGenerator implements SqlColumnCodeGenera
 
 	}
 
-	// FIXME refactor the way "identity" flag is used
-	public generateColumnCode(outputTableName: string, column: TableColumnDescriptor, identity: boolean = false): RegularColumnCode {
+	public generateColumnCode(outputTableName: string, column: TableColumnDescriptor): RegularColumnCode {
 
 		const outputColumnName = this.columnNameCaseConverter.convertCase(column.name);
-		const autoincrementalSequenceName = this.getAutoincrementalSequenceName(outputTableName, outputColumnName);
 
 		return {
-			createSequenceLine: column.autoincremental ? this.generateCreateSequenceLine(autoincrementalSequenceName) : undefined,
-			columnLine: this.generateColumnDeclarationLine(outputColumnName, column, identity, autoincrementalSequenceName),
+			columnLine: this.generateColumnDeclarationLine(outputColumnName, column),
 			uniqueConstraintLine: column.unique ? this.generateUniqueConstraintLine(outputTableName, outputColumnName) : undefined
 		};
 
 	}
 
-	private getAutoincrementalSequenceName(outputTableName: string, outputColumnName: string): string {
-		return `${outputTableName}_${outputColumnName}_seq`;
-	}
-
-	private generateCreateSequenceLine(autoincrementalSequenceName: string): string {
-		return `CREATE SEQUENCE "${autoincrementalSequenceName}" START WITH 1;`;
-	}
-
-	// FIXME refactor this methods - it receives too much arguments
-	private generateColumnDeclarationLine(outputColumnName: string, column: TableColumnDescriptor, identity: boolean, autoincrementalSequenceName: string): string {
+	private generateColumnDeclarationLine(outputColumnName: string, column: TableColumnDescriptor): string {
 
 		const {
 			notNull,
-			autoincremental,
 			type,
 			length
 		} = column;
@@ -54,14 +41,6 @@ export default class SqlServerColumnCodeGenerator implements SqlColumnCodeGenera
 
 		if (notNull) {
 			lineParts.push('NOT NULL');
-		}
-
-		if (identity) {
-			lineParts.push('IDENTITY(1, 1)');
-		}
-
-		if (autoincremental) {
-			lineParts.push(`DEFAULT NEXT VALUE FOR "${autoincrementalSequenceName}"`);
 		}
 
 		return lineParts.join(' ');

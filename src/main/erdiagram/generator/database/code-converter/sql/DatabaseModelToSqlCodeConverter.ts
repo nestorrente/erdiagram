@@ -100,15 +100,10 @@ export default class DatabaseModelToSqlCodeConverter implements DatabaseModelToC
 
 			const {
 				columnLine,
-				createSequenceLine,
 				uniqueConstraintLine
 			} = this.sqlDialect.getColumnCode(tableName, column);
 
 			lines.columns.push(columnLine);
-
-			if (createSequenceLine) {
-				lines.sequences.push(createSequenceLine);
-			}
 
 			if (uniqueConstraintLine) {
 				lines.otherConstraints.push(uniqueConstraintLine);

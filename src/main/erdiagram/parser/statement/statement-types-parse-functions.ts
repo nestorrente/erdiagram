@@ -53,7 +53,6 @@ export function parseEntityPropertyStatement(line: string): ParsedEntityProperty
 	return {
 		name: uncapitalizeWord(name),
 		optional: modifiers.includes('?'),
-		autoincremental: modifiers.includes('+'),
 		unique: modifiers.includes('!'),
 		type: mappedType,
 		length: parsePropertyLength(length)

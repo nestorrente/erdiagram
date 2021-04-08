@@ -18,7 +18,6 @@ export interface IdColumnCode {
 
 export interface RegularColumnCode {
 	columnLine: string;
-	createSequenceLine?: string;
 	uniqueConstraintLine?: string;
 }
 

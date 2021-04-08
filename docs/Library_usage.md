@@ -126,7 +126,6 @@ Output:
                 {
                     "name": "name",
                     "optional": false,
-                    "autoincremental": false,
                     "unique": false,
                     "type": "text",
                     "length": [
@@ -136,7 +135,6 @@ Output:
                 {
                     "name": "description",
                     "optional": false,
-                    "autoincremental": false,
                     "unique": false,
                     "type": "text",
                     "length": [
@@ -146,7 +144,6 @@ Output:
                 {
                     "name": "price",
                     "optional": false,
-                    "autoincremental": false,
                     "unique": false,
                     "type": "decimal",
                     "length": [
@@ -157,7 +154,6 @@ Output:
                 {
                     "name": "active",
                     "optional": false,
-                    "autoincremental": false,
                     "unique": false,
                     "type": "bool",
                     "length": []
@@ -170,7 +166,6 @@ Output:
                 {
                     "name": "creationDate",
                     "optional": false,
-                    "autoincremental": false,
                     "unique": false,
                     "type": "datetime",
                     "length": []
@@ -178,7 +173,6 @@ Output:
                 {
                     "name": "state",
                     "optional": false,
-                    "autoincremental": false,
                     "unique": false,
                     "type": "text",
                     "length": [

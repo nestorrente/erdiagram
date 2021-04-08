@@ -162,8 +162,7 @@ describe('Entity', () => {
 							type: EntityPropertyType.INT,
 							length: [],
 							optional: true,
-							unique: false,
-							autoincremental: false
+							unique: false
 						},
 					]
 				}
@@ -198,44 +197,7 @@ describe('Entity', () => {
 							type: EntityPropertyType.INT,
 							length: [],
 							optional: false,
-							unique: true,
-							autoincremental: false
-						},
-					]
-				}
-			],
-			relationships: []
-		});
-
-		expect(classModel).toStrictEqual<ClassModel>({
-			classes: [
-				{
-					name: 'Entity',
-					fields: [
-						createIdClassField(),
-						createPrimitiveClassField('num', EntityPropertyType.INT)
-					]
-				}
-			]
-		});
-
-	});
-
-	test('Autoincremental property', () => {
-
-		const classModel = classModelGenerator.generateClassModel({
-			entities: [
-				{
-					name: 'Entity',
-					identifierPropertyName: undefined,
-					properties: [
-						{
-							name: 'num',
-							type: EntityPropertyType.INT,
-							length: [],
-							optional: false,
-							unique: false,
-							autoincremental: true
+							unique: true
 						},
 					]
 				}
@@ -614,4 +576,4 @@ describe('Config', () => {
 
 	});
 
-})
+});

@@ -192,7 +192,6 @@ export default class DatabaseModelGenerator {
 		const {
 			name,
 			optional,
-			autoincremental,
 			unique,
 			type,
 			length
@@ -201,7 +200,6 @@ export default class DatabaseModelGenerator {
 		return {
 			name,
 			notNull: !optional,
-			autoincremental,
 			unique,
 			type,
 			length

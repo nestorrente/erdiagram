@@ -68,7 +68,6 @@ describe('Parse entity property statement', () => {
 			type: EntityPropertyType.BOOLEAN,
 			length: [],
 			optional: false,
-			autoincremental: false,
 			unique: false
 		};
 
@@ -85,7 +84,6 @@ describe('Parse entity property statement', () => {
 			type: EntityPropertyType.TEXT,
 			length: [40],
 			optional: false,
-			autoincremental: false,
 			unique: false
 		};
 
@@ -102,7 +100,6 @@ describe('Parse entity property statement', () => {
 			type: EntityPropertyType.DECIMAL,
 			length: [10, 2],
 			optional: false,
-			autoincremental: false,
 			unique: false
 		};
 
@@ -119,24 +116,6 @@ describe('Parse entity property statement', () => {
 			type: EntityPropertyType.SHORT,
 			length: [],
 			optional: true,
-			autoincremental: false,
-			unique: false
-		};
-
-		expect(result).toStrictEqual(expected);
-
-	});
-
-	test('Entity property line with autoincremental modifier', () => {
-
-		const result = parseEntityPropertyStatement(' num+ short');
-
-		const expected: EntityPropertyDescriptor = {
-			name: 'num',
-			type: EntityPropertyType.SHORT,
-			length: [],
-			optional: false,
-			autoincremental: true,
 			unique: false
 		};
 
@@ -153,7 +132,6 @@ describe('Parse entity property statement', () => {
 			type: EntityPropertyType.SHORT,
 			length: [],
 			optional: false,
-			autoincremental: false,
 			unique: true
 		};
 
@@ -161,16 +139,15 @@ describe('Parse entity property statement', () => {
 
 	});
 
-	test('Entity property line with optional, autoincremental and unique modifier', () => {
+	test('Entity property line with optional unique modifier', () => {
 
-		const result = parseEntityPropertyStatement(' num?+! short');
+		const result = parseEntityPropertyStatement(' num?! short');
 
 		const expected: EntityPropertyDescriptor = {
 			name: 'num',
 			type: EntityPropertyType.SHORT,
 			length: [],
 			optional: true,
-			autoincremental: true,
 			unique: true
 		};
 
@@ -207,7 +184,6 @@ describe('Parse entity property statement', () => {
 			type: EntityPropertyType.TEXT,
 			length: [50],
 			optional: false,
-			autoincremental: false,
 			unique: false
 		};
 
@@ -224,7 +200,6 @@ describe('Parse entity property statement', () => {
 			type: EntityPropertyType.TEXT,
 			length: [50],
 			optional: false,
-			autoincremental: false,
 			unique: false
 		};
 

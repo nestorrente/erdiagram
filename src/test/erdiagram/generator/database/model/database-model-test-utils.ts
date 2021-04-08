@@ -8,7 +8,6 @@ export function createSimpleTableColumn(name: string, type: EntityPropertyType, 
 	return {
 		name,
 		notNull: true,
-		autoincremental: false,
 		unique: false,
 		type,
 		length,

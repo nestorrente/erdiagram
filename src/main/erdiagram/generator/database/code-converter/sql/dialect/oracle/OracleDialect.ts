@@ -52,7 +52,7 @@ export default class OracleDialect implements SqlDialect {
 		);
 
 		this.idColumnCodeGenerator = new OracleIdColumnCodeGenerator(
-				this.columnCodeGenerator,
+				sqlTypeResolver,
 				columnNameCaseConverter
 		);
 

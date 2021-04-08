@@ -50,8 +50,6 @@ Also, it's possible to add some _modifier characters_ after a property's name. S
 * Optional modifier (`?`): indicates that the property may or may not have a value.
 * Unique modifier (`!`): indicates that each possible value of the property must be used by at most one of the instances
   of the entity.
-* Auto-incremental modifier (`+`): indicates the property is auto-incremental, so sequential values will be assigned
-  every time an instance of the entity is created.
 
 Here you can see an example of defining an optional unique property:
 
@@ -102,7 +100,8 @@ _ERDiagram_ supports 3 different direction values:
 ### Aliases
 
 It's possible to name the members of a relationship using _aliases_. Imagine you are modelling a `Travel` entity which
-has two `originCity` and `destinationCity` attributes, both referencing the `City` entity. You could write `Travel -> City`
+has two `originCity` and `destinationCity` attributes, both referencing the `City` entity. You could
+write `Travel -> City`
 in order to model one relationship from `Travel` to `City`, but how can you model both relationships at the same time?
 
 The way that _ERDiagram_ solves this is by using _aliases_:

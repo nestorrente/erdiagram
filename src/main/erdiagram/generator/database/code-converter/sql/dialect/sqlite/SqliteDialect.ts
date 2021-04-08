@@ -52,7 +52,7 @@ export default class SqliteDialect implements SqlDialect {
 		);
 
 		this.idColumnCodeGenerator = new SqliteIdColumnCodeGenerator(
-				this.columnCodeGenerator,
+				sqlTypeResolver,
 				columnNameCaseConverter
 		);
 

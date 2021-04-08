@@ -147,8 +147,7 @@ describe('Entities', () => {
 						createEntityProperty('realName', EntityPropertyType.TEXT, {length: [50], optional: true}),
 						createEntityProperty('order', EntityPropertyType.INT, {
 							optional: true,
-							unique: true,
-							autoincremental: true
+							unique: true
 						})
 					]
 				}
@@ -161,7 +160,7 @@ describe('Entities', () => {
 		expect(result).toBe(addDefaultDirectives(`[User|
     username!: text(20)
     realName?: text(50)
-    order?!+: int
+    order?!: int
 ]`));
 
 	});

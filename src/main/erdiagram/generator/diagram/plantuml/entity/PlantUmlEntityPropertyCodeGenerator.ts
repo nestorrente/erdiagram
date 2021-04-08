@@ -9,13 +9,12 @@ export default class PlantUmlEntityPropertyCodeGenerator {
 			type,
 			length,
 			optional,
-			unique,
-			autoincremental
+			unique
 		} = property;
 
 		const typeWithLengthCode = this.getTypeWithLengthCode(type, length);
 
-		const modifiersCode = this.getModifiersCode(optional, unique, autoincremental);
+		const modifiersCode = this.getModifiersCode(optional, unique);
 
 		return `{field} ${name}${modifiersCode}: ${typeWithLengthCode}`;
 
@@ -31,13 +30,12 @@ export default class PlantUmlEntityPropertyCodeGenerator {
 
 	}
 
-	private getModifiersCode(optional: boolean, unique: boolean, autoincremental: boolean) {
+	private getModifiersCode(optional: boolean, unique: boolean) {
 
 		const optionalModifierCode = optional ? '?' : '';
 		const uniqueModifierCode = unique ? '!' : '';
-		const autoincrementalModifierCode = autoincremental ? '+' : '';
 
-		return optionalModifierCode + uniqueModifierCode + autoincrementalModifierCode;
+		return optionalModifierCode + uniqueModifierCode;
 
 	}
 

@@ -15,33 +15,21 @@ export default class PostgresqlColumnCodeGenerator implements SqlColumnCodeGener
 
 	}
 
-	public generateColumnCode(outputTableName: string, column: TableColumnDescriptor, identity: boolean = false): RegularColumnCode {
+	public generateColumnCode(outputTableName: string, column: TableColumnDescriptor): RegularColumnCode {
 
 		const outputColumnName = this.columnNameCaseConverter.convertCase(column.name);
-		const autoincrementalSequenceName = this.getAutoincrementalSequenceName(outputTableName, outputColumnName);
 
 		return {
-			createSequenceLine: column.autoincremental ? this.generateCreateSequenceLine(autoincrementalSequenceName) : undefined,
-			columnLine: this.generateColumnDeclarationLine(outputColumnName, column, identity, autoincrementalSequenceName),
+			columnLine: this.generateColumnDeclarationLine(outputColumnName, column),
 			uniqueConstraintLine: column.unique ? this.generateUniqueConstraintLine(outputTableName, outputColumnName) : undefined
 		};
 
 	}
 
-	private getAutoincrementalSequenceName(outputTableName: string, outputColumnName: string): string {
-		return `${outputTableName}_${outputColumnName}_seq`;
-	}
-
-	private generateCreateSequenceLine(autoincrementalSequenceName: string): string {
-		return `CREATE SEQUENCE "${autoincrementalSequenceName}" START WITH 1;`;
-	}
-
-	// FIXME refactor this methods - it receives too much arguments
-	private generateColumnDeclarationLine(outputColumnName: string, column: TableColumnDescriptor, identity: boolean, autoincrementalSequenceName: string): string {
+	private generateColumnDeclarationLine(outputColumnName: string, column: TableColumnDescriptor): string {
 
 		const {
 			notNull,
-			autoincremental,
 			type,
 			length
 		} = column;
@@ -53,14 +41,6 @@ export default class PostgresqlColumnCodeGenerator implements SqlColumnCodeGener
 
 		if (notNull) {
 			lineParts.push('NOT NULL');
-		}
-
-		if (identity) {
-			lineParts.push('GENERATED ALWAYS AS IDENTITY');
-		}
-
-		if (autoincremental) {
-			lineParts.push(`DEFAULT nextval('"${autoincrementalSequenceName}"')`);
 		}
 
 		return lineParts.join(' ');

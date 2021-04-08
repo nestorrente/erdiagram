@@ -74,8 +74,7 @@ describe('Entities', () => {
 							type: EntityPropertyType.BOOLEAN,
 							length: [],
 							optional: false,
-							unique: false,
-							autoincremental: false
+							unique: false
 						}
 					]
 				}
@@ -104,8 +103,7 @@ describe('Entities', () => {
 							type: EntityPropertyType.TEXT,
 							length: [20],
 							optional: false,
-							unique: false,
-							autoincremental: false
+							unique: false
 						}
 					]
 				}
@@ -134,8 +132,7 @@ describe('Entities', () => {
 							type: EntityPropertyType.DECIMAL,
 							length: [10, 5],
 							optional: false,
-							unique: false,
-							autoincremental: false
+							unique: false
 						}
 					]
 				}
@@ -164,24 +161,21 @@ describe('Entities', () => {
 							type: EntityPropertyType.TEXT,
 							length: [20],
 							optional: false,
-							unique: true,
-							autoincremental: false
+							unique: true
 						},
 						{
 							name: 'realName',
 							type: EntityPropertyType.TEXT,
 							length: [50],
 							optional: true,
-							unique: false,
-							autoincremental: false
+							unique: false
 						},
 						{
 							name: 'order',
 							type: EntityPropertyType.INT,
 							length: [],
 							optional: true,
-							unique: true,
-							autoincremental: true
+							unique: true
 						}
 					]
 				}
@@ -194,7 +188,7 @@ describe('Entities', () => {
 		expect(result).toBe(addHeaderAndFooter(`class User {
     {field} username!: text(20)
     {field} realName?: text(50)
-    {field} order?!+: int
+    {field} order?!: int
 }`));
 
 	});
@@ -388,16 +382,14 @@ describe('Entities and relationships', () => {
 							type: EntityPropertyType.TEXT,
 							length: [20],
 							optional: false,
-							unique: true,
-							autoincremental: false
+							unique: true
 						},
 						{
 							name: 'active',
 							type: EntityPropertyType.BOOLEAN,
 							length: [],
 							optional: false,
-							unique: false,
-							autoincremental: false
+							unique: false
 						}
 					]
 				},
@@ -410,8 +402,7 @@ describe('Entities and relationships', () => {
 							type: EntityPropertyType.DATETIME,
 							length: [],
 							optional: false,
-							unique: false,
-							autoincremental: false
+							unique: false
 						}
 					]
 				}

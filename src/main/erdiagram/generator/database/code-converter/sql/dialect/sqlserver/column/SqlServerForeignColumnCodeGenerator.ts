@@ -50,8 +50,7 @@ export default class SqlServerForeignColumnCodeGenerator implements SqlForeignCo
 			type: EntityPropertyType.IDENTIFIER,
 			length: [],
 			notNull,
-			unique,
-			autoincremental: false
+			unique
 		};
 
 	}

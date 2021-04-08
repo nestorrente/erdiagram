@@ -20,8 +20,7 @@ export function createEntityProperty(name: string, type: EntityPropertyType, opt
 		type,
 		length: options?.length ?? [],
 		optional: options?.optional ?? false,
-		unique: options?.unique ?? false,
-		autoincremental: options?.autoincremental ?? false
+		unique: options?.unique ?? false
 	};
 }
 
@@ -31,7 +30,6 @@ export function createSimpleEntityProperty(name: string, type: EntityPropertyTyp
 		type,
 		length,
 		optional: false,
-		unique: false,
-		autoincremental: false
+		unique: false
 	};
 }

@@ -12,7 +12,6 @@ export interface EntityDescriptor {
 export interface EntityPropertyDescriptor {
 	name: string;
 	optional: boolean;
-	autoincremental: boolean;
 	unique: boolean;
 	type: EntityPropertyType;
 	length: number[];

@@ -14,7 +14,6 @@ export interface TableDescriptor {
 export interface TableColumnDescriptor {
 	name: string;
 	notNull: boolean;
-	autoincremental: boolean;
 	unique: boolean;
 	type: EntityPropertyType;
 	length: number[];

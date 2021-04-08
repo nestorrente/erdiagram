@@ -1,10 +1,8 @@
 CREATE SEQUENCE "Modifiers_Table_the_id_of_modifiers_table_SEQ" START WITH 1;
-CREATE SEQUENCE "Modifiers_Table_autoincremental_column_SEQ" START WITH 1;
 CREATE TABLE "Modifiers_Table" (
     "the_id_of_modifiers_table" CUSTOM_IDENTIFIER_TYPE NOT NULL DEFAULT "Modifiers_Table_the_id_of_modifiers_table_SEQ".nextval,
     "not_null_column" CUSTOM_INT_TYPE NOT NULL,
     "unique_column" CUSTOM_INT_TYPE,
-    "autoincremental_column" CUSTOM_INT_TYPE DEFAULT "Modifiers_Table_autoincremental_column_SEQ".nextval,
     CONSTRAINT "Modifiers_Table_PK" PRIMARY KEY ("the_id_of_modifiers_table"),
     CONSTRAINT "Modifiers_Table_unique_column_UNIQUE" UNIQUE ("unique_column")
 );

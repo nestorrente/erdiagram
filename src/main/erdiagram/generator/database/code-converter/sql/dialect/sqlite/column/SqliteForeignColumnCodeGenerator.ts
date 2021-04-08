@@ -50,8 +50,7 @@ export default class SqliteForeignColumnCodeGenerator implements SqlForeignColum
 			type: EntityPropertyType.IDENTIFIER,
 			length: [],
 			notNull,
-			unique,
-			autoincremental: false
+			unique
 		};
 
 	}

@@ -52,7 +52,7 @@ export default class PostgresqlDialect implements SqlDialect {
 		);
 
 		this.idColumnCodeGenerator = new PostgresqlIdColumnCodeGenerator(
-				this.columnCodeGenerator,
+				sqlTypeResolver,
 				columnNameCaseConverter
 		);
 

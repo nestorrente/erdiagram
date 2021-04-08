@@ -165,8 +165,7 @@ describe('Entity', () => {
 							type: EntityPropertyType.INT,
 							length: [],
 							optional: true,
-							unique: false,
-							autoincremental: false
+							unique: false
 						},
 					]
 				}
@@ -183,7 +182,6 @@ describe('Entity', () => {
 						{
 							name: 'num',
 							notNull: false,
-							autoincremental: false,
 							unique: false,
 							type: EntityPropertyType.INT,
 							length: []
@@ -209,8 +207,7 @@ describe('Entity', () => {
 							type: EntityPropertyType.INT,
 							length: [],
 							optional: false,
-							unique: true,
-							autoincremental: false
+							unique: true
 						}
 					]
 				}
@@ -227,52 +224,7 @@ describe('Entity', () => {
 						{
 							name: 'num',
 							notNull: true,
-							autoincremental: false,
 							unique: true,
-							type: EntityPropertyType.INT,
-							length: []
-						}
-					],
-					references: []
-				}
-			]
-		});
-
-	});
-
-	test('Autoincremental property', () => {
-
-		const databaseModel = databaseModelGenerator.generateDatabaseModel({
-			entities: [
-				{
-					name: 'Entity',
-					identifierPropertyName: undefined,
-					properties: [
-						{
-							name: 'num',
-							type: EntityPropertyType.INT,
-							length: [],
-							optional: false,
-							unique: false,
-							autoincremental: true
-						},
-					]
-				}
-			],
-			relationships: []
-		});
-
-		expect(databaseModel).toStrictEqual<DatabaseModel>({
-			tables: [
-				{
-					name: 'Entity',
-					identifierColumnName: 'id',
-					columns: [
-						{
-							name: 'num',
-							notNull: true,
-							autoincremental: true,
-							unique: false,
 							type: EntityPropertyType.INT,
 							length: []
 						}
@@ -573,8 +525,7 @@ describe('Relationship', () => {
 				{
 					name: 'B',
 					identifierColumnName: 'id',
-					columns: [
-					],
+					columns: [],
 					references: []
 				},
 				{
@@ -888,4 +839,4 @@ describe('Config', () => {
 
 	});
 
-})
+});

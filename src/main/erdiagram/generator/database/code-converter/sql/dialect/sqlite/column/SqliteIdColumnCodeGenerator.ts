@@ -1,16 +1,14 @@
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
-import {TableColumnDescriptor} from '@/erdiagram/generator/database/model/database-model-types';
 import CaseConverter from '@/erdiagram/generator/common/case-format/CaseConverter';
 import {IdColumnCode} from '@/erdiagram/generator/database/code-converter/sql/dialect/common/sql-script-types';
 import SqlIdColumnCodeGenerator
 	from '@/erdiagram/generator/database/code-converter/sql/dialect/common/column/SqlIdColumnCodeGenerator';
-import SqliteColumnCodeGenerator
-	from '@/erdiagram/generator/database/code-converter/sql/dialect/sqlite/column/SqliteColumnCodeGenerator';
+import SqlTypeResolver from '@/erdiagram/generator/database/code-converter/sql/dialect/common/SqlTypeResolver';
 
 export default class SqliteIdColumnCodeGenerator implements SqlIdColumnCodeGenerator {
 
 	constructor(
-			private readonly columnCodeGenerator: SqliteColumnCodeGenerator,
+			private readonly typeResolver: SqlTypeResolver,
 			private readonly columnNameCaseConverter: CaseConverter
 	) {
 
@@ -18,39 +16,22 @@ export default class SqliteIdColumnCodeGenerator implements SqlIdColumnCodeGener
 
 	public generateIdColumnCode(outputTableName: string, identifierColumnName: string): IdColumnCode {
 
-		const column = this.createIdColumnDescriptor(identifierColumnName);
-
-		const {
-			columnLine
-		} = this.columnCodeGenerator.generateColumnCode(outputTableName, column);
-
-		const pkConstraintLine = this.createPrimaryKeyConstraint(outputTableName, column);
+		const outputIdentifierColumnName = this.columnNameCaseConverter.convertCase(identifierColumnName);
 
 		return {
-			columnLine,
-			pkConstraintLine
+			columnLine: this.generateIdColumnDeclarationLine(outputIdentifierColumnName),
+			pkConstraintLine: this.createPrimaryKeyConstraint(outputTableName, outputIdentifierColumnName)
 		};
 
 	}
 
-	private createIdColumnDescriptor(identifierColumnName: string): TableColumnDescriptor {
-		return {
-			name: identifierColumnName,
-			type: EntityPropertyType.IDENTIFIER,
-			length: [],
-			notNull: true,
-			// Autoincrement of identity columns have to be achieved using serial types,
-			// while other autoincremental columns have to use a custom sequence.
-			autoincremental: false,
-			// As primary keys are unique by default, we don't
-			// need to manually define an UNIQUE KEY constraint
-			unique: false
-		};
+	private generateIdColumnDeclarationLine(outputIdentifierColumnName: string): string {
+		const sqlType = this.typeResolver.resolveSqlType(EntityPropertyType.IDENTIFIER);
+		return `"${outputIdentifierColumnName}" ${sqlType} NOT NULL`;
 	}
 
-	private createPrimaryKeyConstraint(outputTableName: string, column: TableColumnDescriptor) {
-		const columnName = this.columnNameCaseConverter.convertCase(column.name);
-		return `CONSTRAINT "${outputTableName}_pk" PRIMARY KEY ("${columnName}")`;
+	private createPrimaryKeyConstraint(outputTableName: string, outputIdentifierColumnName: string) {
+		return `CONSTRAINT "${outputTableName}_pk" PRIMARY KEY ("${outputIdentifierColumnName}")`;
 	}
 
 }

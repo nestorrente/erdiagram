@@ -18,29 +18,18 @@ export default class OracleColumnCodeGenerator implements SqlColumnCodeGenerator
 	public generateColumnCode(outputTableName: string, column: TableColumnDescriptor): RegularColumnCode {
 
 		const outputColumnName = this.columnNameCaseConverter.convertCase(column.name);
-		const autoincrementalSequenceName = this.getAutoincrementalSequenceName(outputTableName, outputColumnName);
 
 		return {
-			createSequenceLine: column.autoincremental ? this.generateCreateSequenceLine(autoincrementalSequenceName) : undefined,
-			columnLine: this.generateColumnDeclarationLine(outputColumnName, column, autoincrementalSequenceName),
+			columnLine: this.generateColumnDeclarationLine(outputColumnName, column),
 			uniqueConstraintLine: column.unique ? this.generateUniqueConstraintLine(outputTableName, outputColumnName) : undefined
 		};
 
 	}
 
-	private getAutoincrementalSequenceName(outputTableName: string, outputColumnName: string): string {
-		return `${outputTableName}_${outputColumnName}_SEQ`;
-	}
-
-	private generateCreateSequenceLine(autoincrementalSequenceName: string): string {
-		return `CREATE SEQUENCE "${autoincrementalSequenceName}" START WITH 1;`;
-	}
-
-	private generateColumnDeclarationLine(outputColumnName: string, column: TableColumnDescriptor, autoincrementalSequenceName: string): string {
+	private generateColumnDeclarationLine(outputColumnName: string, column: TableColumnDescriptor): string {
 
 		const {
 			notNull,
-			autoincremental,
 			type,
 			length
 		} = column;
@@ -52,10 +41,6 @@ export default class OracleColumnCodeGenerator implements SqlColumnCodeGenerator
 
 		if (notNull) {
 			lineParts.push('NOT NULL');
-		}
-
-		if (autoincremental) {
-			lineParts.push(`DEFAULT "${autoincrementalSequenceName}".nextval`);
 		}
 
 		return lineParts.join(' ');

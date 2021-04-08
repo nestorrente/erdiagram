@@ -52,7 +52,7 @@ export default class SqlServerDialect implements SqlDialect {
 		);
 
 		this.idColumnCodeGenerator = new SqlServerIdColumnCodeGenerator(
-				this.columnCodeGenerator,
+				sqlTypeResolver,
 				columnNameCaseConverter
 		);
 

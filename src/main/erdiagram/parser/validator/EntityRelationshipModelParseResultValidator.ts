@@ -32,7 +32,7 @@ export default class EntityRelationshipModelParseResultValidator {
 
 		try {
 			this.validateParsedModel(model);
-		} catch(error) {
+		} catch (error) {
 			this.errorHandler.handleValidationError(error, statementResultToLineMap);
 		}
 
@@ -114,14 +114,6 @@ export default class EntityRelationshipModelParseResultValidator {
 			const identifierProperty = identifierProperties[0];
 
 			if (identifierProperty != null) {
-
-				if (identifierProperty.autoincremental) {
-					throw new ERDiagramInvalidIdentifierDefinitionError(
-							'Autoincremental modifier (+) cannot be used in identifier properties',
-							entity,
-							identifierProperty
-					);
-				}
 
 				if (identifierProperty.optional) {
 					throw new ERDiagramInvalidIdentifierDefinitionError(
