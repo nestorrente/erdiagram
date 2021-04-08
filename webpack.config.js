@@ -29,13 +29,17 @@ const commonConfig = {
         plugins: [
             new TsconfigPathsPlugin()
         ],
+        fallback: {
+            fs: false,
+            path: false
+        }
     },
     plugins: [
         new webpack.BannerPlugin({banner: BUNDLE_HEADER})
     ],
-    node: {
-        fs: 'empty'
-    },
+    // node: {
+    //     fs: 'empty'
+    // },
     output: {
         path: path.resolve(__dirname, 'dist'),
     }
