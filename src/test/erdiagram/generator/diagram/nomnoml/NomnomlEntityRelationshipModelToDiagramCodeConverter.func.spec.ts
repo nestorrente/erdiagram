@@ -6,7 +6,7 @@ import {
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
 import NomnomlEntityRelationshipModelToDiagramCodeConverter
 	from '@/erdiagram/generator/diagram/nomnoml/NomnomlEntityRelationshipModelToDiagramCodeConverter';
-import {createEntityProperty} from '../../../parser/entity-relationship-model-test-utils';
+import {createEntityProperty} from '#/erdiagram/parser/entity-relationship-model-test-utils';
 
 const nomnomlERModelToDiagramCodeConverter = new NomnomlEntityRelationshipModelToDiagramCodeConverter();
 
@@ -145,7 +145,11 @@ describe('Entities', () => {
 					properties: [
 						createEntityProperty('username', EntityPropertyType.TEXT, {length: [20], unique: true}),
 						createEntityProperty('realName', EntityPropertyType.TEXT, {length: [50], optional: true}),
-						createEntityProperty('order', EntityPropertyType.INT, {optional: true, unique: true, autoincremental: true})
+						createEntityProperty('order', EntityPropertyType.INT, {
+							optional: true,
+							unique: true,
+							autoincremental: true
+						})
 					]
 				}
 			],

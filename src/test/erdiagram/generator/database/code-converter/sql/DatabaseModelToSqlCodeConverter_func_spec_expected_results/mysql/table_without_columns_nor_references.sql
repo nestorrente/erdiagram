@@ -1,0 +1,4 @@
+CREATE TABLE `TestTable` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT,
+    CONSTRAINT `TestTable_pk` PRIMARY KEY (`id`)
+);

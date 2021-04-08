@@ -1,5 +1,8 @@
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
-import {createSimpleTableColumn, createTableReference} from '../../model/database-model-test-utils';
+import {
+	createSimpleTableColumn,
+	createTableReference
+} from '#/erdiagram/generator/database/model/database-model-test-utils';
 import {DatabaseModel} from '@/erdiagram/generator/database/model/database-model-types';
 
 export const databaseModelWithTableWithoutColumnsNorReferences: DatabaseModel = {
