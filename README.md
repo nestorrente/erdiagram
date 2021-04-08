@@ -1,6 +1,6 @@
 # ERDiagram: Entity-Relationship diagram code generator
 
-## Online demo
+## Live demo
 
 You can try _ERDiagram_ online using the [ERDiagram playground](http://erdiagram.nestorrente.com/) application. There
 you will find some code examples that are very useful for learning the _ERDiagram_ language.
