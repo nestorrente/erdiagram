@@ -39,11 +39,9 @@ import {
 
 ### Using `<script>` tag
 
-You can [download the latest version from here](../dist/erdiagram.js). Then, you can use it as any other JavaScript
-file:
+You can [download the latest version from here](../dist/erdiagram.js). Then, you can use it as any other JavaScript file:
 
 ```html
-
 <script src="erdiagram.js"></script>
 ```
 
@@ -119,84 +117,75 @@ Output:
 
 ```json
 {
-    "entities": [
+  "entities": [
+    {
+      "name": "Product",
+      "properties": [
         {
-            "name": "Product",
-            "properties": [
-                {
-                    "name": "name",
-                    "optional": false,
-                    "unique": false,
-                    "type": "text",
-                    "length": [
-                        50
-                    ]
-                },
-                {
-                    "name": "description",
-                    "optional": false,
-                    "unique": false,
-                    "type": "text",
-                    "length": [
-                        1000
-                    ]
-                },
-                {
-                    "name": "price",
-                    "optional": false,
-                    "unique": false,
-                    "type": "decimal",
-                    "length": [
-                        10,
-                        3
-                    ]
-                },
-                {
-                    "name": "active",
-                    "optional": false,
-                    "unique": false,
-                    "type": "bool",
-                    "length": []
-                }
-            ]
+          "name": "name",
+          "optional": false,
+          "unique": false,
+          "type": "text",
+          "length": [50]
         },
         {
-            "name": "Order",
-            "properties": [
-                {
-                    "name": "creationDate",
-                    "optional": false,
-                    "unique": false,
-                    "type": "datetime",
-                    "length": []
-                },
-                {
-                    "name": "state",
-                    "optional": false,
-                    "unique": false,
-                    "type": "text",
-                    "length": [
-                        10
-                    ]
-                }
-            ]
-        }
-    ],
-    "relationships": [
+          "name": "description",
+          "optional": false,
+          "unique": false,
+          "type": "text",
+          "length": [1000]
+        },
         {
-            "direction": "left_to_right",
-            "leftMember": {
-                "entity": "Order",
-                "entityAlias": "order",
-                "cardinality": "one"
-            },
-            "rightMember": {
-                "entity": "Product",
-                "entityAlias": "product",
-                "cardinality": "many"
-            }
+          "name": "price",
+          "optional": false,
+          "unique": false,
+          "type": "decimal",
+          "length": [10, 3]
+        },
+        {
+          "name": "active",
+          "optional": false,
+          "unique": false,
+          "type": "bool",
+          "length": []
         }
-    ]
+      ]
+    },
+    {
+      "name": "Order",
+      "properties": [
+        {
+          "name": "creationDate",
+          "optional": false,
+          "unique": false,
+          "type": "datetime",
+          "length": []
+        },
+        {
+          "name": "state",
+          "optional": false,
+          "unique": false,
+          "type": "text",
+          "length": [10]
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "direction": "left_to_right",
+      "leftMember": {
+        "entity": "Order",
+        "entityAlias": "order",
+        "cardinality": "one"
+      },
+      "rightMember": {
+        "entity": "Product",
+        "entityAlias": "product",
+        "cardinality": "many"
+      }
+    }
+  ]
 }
 ```
 
@@ -256,27 +245,24 @@ console.log(outputCode);
 Output:
 
 ```mysql
-CREATE TABLE `Product`
-(
-    `id`          BIGINT         NOT NULL AUTO_INCREMENT,
-    `name`        VARCHAR(50)    NOT NULL,
-    `description` VARCHAR(1000)  NOT NULL,
-    `price`       DECIMAL(10, 3) NOT NULL,
-    `active`      BOOLEAN        NOT NULL,
-    `orderId`     BIGINT         NOT NULL,
+CREATE TABLE `Product` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(50) NOT NULL,
+    `description` VARCHAR(1000) NOT NULL,
+    `price` DECIMAL(10, 3) NOT NULL,
+    `active` BOOLEAN NOT NULL,
+    `orderId` BIGINT NOT NULL,
     CONSTRAINT `Product_pk` PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `Order`
-(
-    `id`           BIGINT      NOT NULL AUTO_INCREMENT,
-    `creationDate` TIMESTAMP   NOT NULL,
-    `state`        VARCHAR(10) NOT NULL,
+CREATE TABLE `Order` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT,
+    `creationDate` TIMESTAMP NOT NULL,
+    `state` VARCHAR(10) NOT NULL,
     CONSTRAINT `Order_pk` PRIMARY KEY (`id`)
 );
 
-ALTER TABLE `Product`
-    ADD CONSTRAINT `Product_orderId_fk` FOREIGN KEY (`orderId`) REFERENCES `Order` (`id`);
+ALTER TABLE `Product` ADD CONSTRAINT `Product_orderId_fk` FOREIGN KEY (`orderId`) REFERENCES `Order` (`id`);
 ```
 
 Both the `DatabaseModelGenerator` and the `MysqlDialect` could be also instantiated using custom config properties:
@@ -290,14 +276,14 @@ import {
 } from '@nestorrente/erdiagram';
 
 const databaseModelGenerator = new DatabaseModelGenerator({
-                                                              usePluralTableNames: true,
-                                                              // ... other config options...
-                                                          });
+    usePluralTableNames: true,
+    // ... other config options...
+});
 
 const sqlDialect = new MysqlDialect({
-                                        tableNameCaseFormat: LowerCamelCaseFormat.UPPER_UNDERSCORE,
-                                        // ... other config options...
-                                    });
+    tableNameCaseFormat: LowerCamelCaseFormat.UPPER_UNDERSCORE,
+    // ... other config options...
+});
 ```
 
 Although we are using `MysqlDialect` in this example, there is also support for other database engines. This is the full
@@ -340,8 +326,8 @@ console.log(outputCode);
 // It does the 2-step conversion under the hood.
 
 const erModelToCodeConverter = new EntityRelationshipModelToClassCodeConverter(
-    classModelGenerator,
-    classModelToCodeConverter
+        classModelGenerator,
+        classModelToCodeConverter
 );
 
 const outputCode = erModelToCodeConverter.convertToCode(model)
@@ -408,7 +394,7 @@ public class Product {
 /* ========== Order class ========== */
 
 import java.time.LocalDateTime;
-        import java.util.List;
+import java.util.List;
 
 public class Order {
 
@@ -464,14 +450,14 @@ import {
 } from '@nestorrente/erdiagram';
 
 const classModelGenerator = new ClassModelGenerator({
-                                                        idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX,
-                                                        // ... other config options...
-                                                    });
+    idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX,
+    // ... other config options...
+});
 
 const classModelToCodeConverter = new JavaClassModelToCodeConverter({
-                                                                        generatedClassesPackage: 'com.example.mypackage',
-                                                                        // ... other config options...
-                                                                    });
+    generatedClassesPackage: 'com.example.mypackage',
+    // ... other config options...
+});
 ```
 
 Although we are using `JavaClassModelToCodeConverter` in this example, there is also support for TypeScript (using the
@@ -479,5 +465,5 @@ Although we are using `JavaClassModelToCodeConverter` in this example, there is 
 
 ### Generate a diagram image from an EntityRelationshipModel object
 
-TODO: show an example using PlantUML and mention that Nomnoml diagram generation is also supported. TODO: mention that
-both PlantUML and Nomnoml diagram's code generation is also supported.
+TODO: show an example using PlantUML and mention that Nomnoml diagram generation is also supported.
+TODO: mention that both PlantUML and Nomnoml diagram's code generation is also supported.
