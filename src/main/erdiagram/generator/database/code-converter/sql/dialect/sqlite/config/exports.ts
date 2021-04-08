@@ -1,6 +1,6 @@
 import SqliteDialectConfig from './SqliteDialectConfig';
 import SqliteDialectSerializableConfig from './SqliteDialectSerializableConfig';
-import {SqliteDialectConfigManager} from './SqliteDialectConfigManager';
+import sqliteDatabaseModelToCodeConverterConfigManager, {SqliteDialectConfigManager} from './SqliteDialectConfigManager';
 
 export {
 	SqliteDialectConfig,
