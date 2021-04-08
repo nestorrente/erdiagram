@@ -2,8 +2,9 @@ import {ClassFieldDescriptor} from '@/erdiagram/generator/oop/model/class-model-
 import TypeScriptType, {createTypeScriptType} from '@/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptType';
 import TypeScriptParameterizedType, {createTypeScriptArrayType} from '@/erdiagram/generator/oop/code-converter/typescript/type/TypeScriptParameterizedType';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
+import FieldTypeResolver from '@/erdiagram/generator/oop/code-converter/common/type/FieldTypeResolver';
 
-export default class TypeScriptTypeResolver {
+export default class TypeScriptTypeResolver implements FieldTypeResolver<TypeScriptType> {
 
 	constructor(
 			private readonly typeBindings: Partial<Record<EntityPropertyType, TypeScriptType>>

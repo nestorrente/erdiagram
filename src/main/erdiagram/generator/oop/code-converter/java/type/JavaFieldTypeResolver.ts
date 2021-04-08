@@ -2,8 +2,9 @@ import {ClassFieldDescriptor} from '@/erdiagram/generator/oop/model/class-model-
 import JavaType, {createJavaType} from '@/erdiagram/generator/oop/code-converter/java/type/JavaType';
 import JavaParameterizedType, {createJavaParameterizedType} from '@/erdiagram/generator/oop/code-converter/java/type/JavaParameterizedType';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
+import FieldTypeResolver from '@/erdiagram/generator/oop/code-converter/common/type/FieldTypeResolver';
 
-export default class JavaFieldTypeResolver {
+export default class JavaFieldTypeResolver implements FieldTypeResolver<JavaType> {
 
 	constructor(
 			private readonly typeBindings: Partial<Record<EntityPropertyType, JavaType>>,

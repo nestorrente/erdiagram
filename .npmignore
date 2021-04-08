@@ -4,6 +4,7 @@
 /src
 /lib
 /coverage
+/docs
 *.iml
 package-lock.json
 jest.config.js
