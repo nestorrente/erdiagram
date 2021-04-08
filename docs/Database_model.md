@@ -127,8 +127,8 @@ be named `employeeId`, which is much less semantic.
 
 ### Relationship's name
 
-When defining the name of a _many-to-many_ relationship, _ERDiagram_ will use it for naming the corresponding _
-intermediate table_. Let's see an example:
+When defining the name of a _many-to-many_ relationship, _ERDiagram_ will use it for naming the corresponding
+_intermediate table_. Let's see an example:
 
 ```erdiagram
 User *<->* Role

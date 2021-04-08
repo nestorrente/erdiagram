@@ -57,8 +57,8 @@ Each member of a relationship can have 2 different cardinalities:
 * _many_ (`*`): members with this cardinality are modeled by using a _list_ or _array_.
 
 Also, there is a special _zero-or-one_ cardinality (represented in _ERDiagram_ using a question mark `?`), which is
-modeled in the same way as the _one_ (`1`) cardinality, with the only difference that its corresponding field will be _
-nullable_.
+modeled in the same way as the _one_ (`1`) cardinality, with the only difference that its corresponding field will be
+_nullable_.
 
 ### Directions
 
