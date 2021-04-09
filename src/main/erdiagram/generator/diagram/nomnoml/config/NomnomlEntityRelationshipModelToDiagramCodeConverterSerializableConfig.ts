@@ -1,6 +1,0 @@
-import NomnomlEntityRelationshipModelToDiagramCodeConverterConfig
-	from '@/erdiagram/generator/diagram/nomnoml/config/NomnomlEntityRelationshipModelToDiagramCodeConverterConfig';
-
-type NomnomlEntityRelationshipModelToDiagramCodeConverterSerializableConfig = NomnomlEntityRelationshipModelToDiagramCodeConverterConfig
-
-export default NomnomlEntityRelationshipModelToDiagramCodeConverterSerializableConfig;
