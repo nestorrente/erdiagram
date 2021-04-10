@@ -463,7 +463,27 @@ const classModelToCodeConverter = new JavaClassModelToCodeConverter({
 Although we are using `JavaClassModelToCodeConverter` in this example, there is also support for TypeScript (using the
 `TypeScriptClassModelToCodeConverter` class).
 
-### Generate a diagram image from an EntityRelationshipModel object
+### Generate diagram code from an EntityRelationshipModel object
 
-TODO: show an example using PlantUML and mention that Nomnoml diagram generation is also supported.
-TODO: mention that both PlantUML and Nomnoml diagram's code generation is also supported.
+_ERDiagram_ currently supports generating _PlantUML_ and _Nomnoml_ diagram code. This allows you to get a visual diagram
+of your entity-relationship model.
+
+**Note:** _ERDiagram_ generates only the code of the diagram. In order to generate the image, you must use the
+[Nomnoml](https://nomnoml.com/) and [PlantUML](http://www.plantuml.com/) online services.
+
+```javascript
+import {
+    PlantUmlEntityRelationshipModelToDiagramCodeConverter,
+    PlantUmlEntityRelationshipModelToDiagramImageConverter
+} from '@nestorrente/erdiagram';
+
+const model = { /* the model of the parsing example */};
+
+const plantUmlERModelToDiagramCodeConverter = new PlantUmlEntityRelationshipModelToDiagramCodeConverter();
+const plantUmlCode = erModelToDiagramCodeConverter.convertToCode(model);
+
+const nomnomlERModelToDiagramCodeConverter = new NomnomlEntityRelationshipModelToDiagramCodeConverter({
+    // Optional config options
+});
+const nomnomlCode = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+```

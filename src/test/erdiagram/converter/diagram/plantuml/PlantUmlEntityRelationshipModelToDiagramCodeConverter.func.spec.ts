@@ -7,7 +7,7 @@ import {
 import PlantUmlEntityRelationshipModelToDiagramCodeConverter
 	from '@/erdiagram/converter/diagram/plantuml/PlantUmlEntityRelationshipModelToDiagramCodeConverter';
 
-const plantumlERModelToDiagramCodeConverter = new PlantUmlEntityRelationshipModelToDiagramCodeConverter({});
+const plantumlERModelToDiagramCodeConverter = new PlantUmlEntityRelationshipModelToDiagramCodeConverter();
 
 function addHeaderAndFooter(expectedResult: string): string {
 	return [
@@ -306,6 +306,34 @@ describe('Relationships', () => {
 		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
 
 		expect(result).toBe(addHeaderAndFooter('A "*" <--> "1" B'));
+
+	});
+
+	test('Single right-to-left many-to-one relationship with an optional side', () => {
+
+		const model: EntityRelationshipModel = {
+			entities: [],
+			relationships: [
+				{
+					leftMember: {
+						entity: 'A',
+						entityAlias: 'a',
+						cardinality: Cardinality.MANY
+					},
+					rightMember: {
+						entity: 'B',
+						entityAlias: 'b',
+						cardinality: Cardinality.ZERO_OR_ONE
+					},
+					direction: Direction.RIGHT_TO_LEFT,
+					relationshipName: 'Rel'
+				}
+			]
+		};
+
+		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
+
+		expect(result).toBe(addHeaderAndFooter('A "*" <-- "0..1" B : Rel'));
 
 	});
 

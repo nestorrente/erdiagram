@@ -69,13 +69,6 @@ export declare enum Direction {
 export interface EntityRelationshipModelToCodeConverter {
 	convertToCode(model: EntityRelationshipModel): string;
 }
-export interface EntityRelationshipModelToDiagramConverter {
-	convertToDiagram(model: EntityRelationshipModel): Promise<string>;
-}
-export declare abstract class BaseEntityRelationshipModelToDiagramConverter implements EntityRelationshipModelToDiagramConverter {
-	convertToDiagram(model: EntityRelationshipModel): Promise<string>;
-	protected abstract convertNonEmptyModelToDiagram(model: EntityRelationshipModel): Promise<string>;
-}
 export interface CaseFormat {
 	splitWords(text: string): string[];
 	joinWords(words: string[]): string;
@@ -491,11 +484,6 @@ export declare class NomnomlEntityRelationshipModelToDiagramCodeConverter implem
 	constructor(config?: Partial<NomnomlEntityRelationshipModelToDiagramCodeConverterConfig>);
 	convertToCode(model: EntityRelationshipModel): string;
 }
-export declare class NomnomlEntityRelationshipModelToDiagramConverter extends BaseEntityRelationshipModelToDiagramConverter {
-	private readonly erModelToDiagramCodeConverter;
-	constructor(erModelToDiagramCodeConverter: NomnomlEntityRelationshipModelToDiagramCodeConverter);
-	protected convertNonEmptyModelToDiagram(model: EntityRelationshipModel): Promise<string>;
-}
 export declare type NomnomlEntityRelationshipModelToDiagramCodeConverterSerializableConfig = NomnomlEntityRelationshipModelToDiagramCodeConverterConfig;
 export declare class NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager extends AbstractComponentConfigManager<NomnomlEntityRelationshipModelToDiagramCodeConverterConfig, NomnomlEntityRelationshipModelToDiagramCodeConverterConfig, NomnomlEntityRelationshipModelToDiagramCodeConverterSerializableConfig> {
 	getDefaultConfig(): NomnomlEntityRelationshipModelToDiagramCodeConverterConfig;
@@ -504,32 +492,11 @@ export declare class NomnomlEntityRelationshipModelToDiagramCodeConverterConfigM
 	convertFromSerializableObject(serializableConfig: NomnomlEntityRelationshipModelToDiagramCodeConverterSerializableConfig): NomnomlEntityRelationshipModelToDiagramCodeConverterConfig;
 }
 export declare const nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager: NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager;
-export interface PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig {
-}
 export declare class PlantUmlEntityRelationshipModelToDiagramCodeConverter implements EntityRelationshipModelToCodeConverter {
-	private readonly config;
 	private readonly entityCodeGenerator;
 	private readonly relationshipCodeGenerator;
-	constructor(config?: Partial<PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig>);
 	convertToCode(model: EntityRelationshipModel): string;
 }
-export declare class PlantUmlEntityRelationshipModelToDiagramConverter extends BaseEntityRelationshipModelToDiagramConverter {
-	private readonly erModelToDiagramCodeConverter;
-	constructor(erModelToDiagramCodeConverter: PlantUmlEntityRelationshipModelToDiagramCodeConverter);
-	protected convertNonEmptyModelToDiagram(model: EntityRelationshipModel): Promise<string>;
-	private getDiagramUrl;
-	private convertToHexString;
-	private convertToHexChar;
-	private fetchDiagram;
-}
-export declare type PlantUmlEntityRelationshipModelToDiagramCodeConverterSerializableConfig = PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig;
-export declare class PlantUmlEntityRelationshipModelToDiagramCodeConverterConfigManager extends AbstractComponentConfigManager<PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig, PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig, PlantUmlEntityRelationshipModelToDiagramCodeConverterSerializableConfig> {
-	getDefaultConfig(): PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig;
-	mergeConfigs(fullConfig: PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig, partialConfig?: Partial<PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig>): PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig;
-	convertToSerializableObject(fullConfig: PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig): PlantUmlEntityRelationshipModelToDiagramCodeConverterSerializableConfig;
-	convertFromSerializableObject(serializableConfig: PlantUmlEntityRelationshipModelToDiagramCodeConverterSerializableConfig): PlantUmlEntityRelationshipModelToDiagramCodeConverterConfig;
-}
-export declare const plantumlEntityRelationshipModelToDiagramCodeConverterConfigManager: PlantUmlEntityRelationshipModelToDiagramCodeConverterConfigManager;
 export interface EntityRelationshipModelParserConfig {
 	allowUnknownEntities: boolean;
 }

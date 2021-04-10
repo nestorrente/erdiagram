@@ -18,7 +18,7 @@ export default class OracleIdColumnCodeGenerator implements SqlIdColumnCodeGener
 
 		const outputIdentifierColumnName = this.columnNameCaseConverter.convertCase(identifierColumnName);
 
-		const sequenceName = this.getSequenceName(outputTableName, outputIdentifierColumnName);
+		const sequenceName = this.getSequenceName(outputTableName);
 
 		return {
 			createSequenceLine: this.generateCreateSequenceLine(sequenceName),
@@ -28,8 +28,8 @@ export default class OracleIdColumnCodeGenerator implements SqlIdColumnCodeGener
 
 	}
 
-	private getSequenceName(outputTableName: string, outputColumnName: string): string {
-		return `${outputTableName}_${outputColumnName}_SEQ`;
+	private getSequenceName(outputTableName: string): string {
+		return `${outputTableName}_SEQ`;
 	}
 
 	private generateCreateSequenceLine(sequenceName: string): string {
