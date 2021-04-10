@@ -7,6 +7,7 @@ import {
 	IdColumnCode,
 	RegularColumnCode
 } from '@/erdiagram/converter/database/code-converter/sql/dialect/common/sql-script-types';
+import SqlScriptBuilder from '@/erdiagram/converter/database/code-converter/sql/dialect/common/SqlScriptBuilder';
 
 export default interface SqlDialect {
 
@@ -27,5 +28,7 @@ export default interface SqlDialect {
 	getCreateTableEndCode(): string
 
 	getAlterTableAddCode(tableName: string, constraintCode: string): string;
+
+	createScriptBuilder?: () => SqlScriptBuilder;
 
 }

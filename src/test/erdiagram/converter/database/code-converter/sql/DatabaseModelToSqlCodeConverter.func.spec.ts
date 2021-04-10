@@ -28,12 +28,15 @@ type SqlDialectId = 'mysql' | 'oracle' | 'postgresql' | 'sqlite' | 'sqlserver';
 type SqlDialectFactory = (config?: Partial<SqlDialectConfig>) => SqlDialect;
 type SqlDialectTuple = [SqlDialectId, SqlDialectFactory];
 
-const SQL_DIALECTS: SqlDialectTuple[] = [
+const SQL_DIALECTS_FULL: SqlDialectTuple[] = [
 	['mysql', config => new MysqlDialect(config)],
 	['oracle', config => new OracleDialect(config)],
 	['postgresql', config => new PostgresqlDialect(config)],
 	['sqlserver', config => new SqlServerDialect(config)],
 	['sqlite', config => new SqliteDialect(config)]
+];
+const SQL_DIALECTS: SqlDialectTuple[] = [
+	['mysql', config => new MysqlDialect(config)],
 ];
 
 describe('Tables without references', () => {

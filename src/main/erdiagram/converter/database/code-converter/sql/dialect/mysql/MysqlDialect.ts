@@ -21,8 +21,11 @@ import mysqlDialectConfigManager
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
 import MysqlDialectConfig
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/mysql/config/MysqlDialectConfig';
+import MysqlScriptBuilder from '@/erdiagram/converter/database/code-converter/sql/dialect/mysql/MysqlScriptBuilder';
 
 export default class MysqlDialect implements SqlDialect {
+
+	private readonly config: MysqlDialectConfig;
 
 	private readonly tableNameCaseConverter: CaseConverter;
 
@@ -33,6 +36,7 @@ export default class MysqlDialect implements SqlDialect {
 	constructor(config?: Partial<MysqlDialectConfig>) {
 
 		const fullConfig = mysqlDialectConfigManager.mergeWithDefaultConfig(config);
+		this.config = fullConfig;
 
 		this.tableNameCaseConverter = new CaseConverter(
 				StandardCaseFormats.LOWER_CAMEL,
@@ -103,6 +107,10 @@ export default class MysqlDialect implements SqlDialect {
 	getAlterTableAddCode(tableName: string, constraintCode: string) {
 		const outputTableName = this.tableNameCaseConverter.convertCase(tableName);
 		return `ALTER TABLE \`${outputTableName}\` ADD ${constraintCode};`;
+	}
+
+	createScriptBuilder() {
+		return new MysqlScriptBuilder(this.config);
 	}
 
 }

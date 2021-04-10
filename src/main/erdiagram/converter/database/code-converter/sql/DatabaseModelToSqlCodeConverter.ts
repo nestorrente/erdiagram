@@ -11,6 +11,7 @@ import {
 	TableCreationStatements
 } from '@/erdiagram/converter/database/code-converter/sql/dialect/common/sql-script-types';
 import SqlDialect from '@/erdiagram/converter/database/code-converter/sql/dialect/common/SqlDialect';
+import SqlScriptBuilder from '@/erdiagram/converter/database/code-converter/sql/dialect/common/SqlScriptBuilder';
 
 export default class DatabaseModelToSqlCodeConverter implements DatabaseModelToCodeConverter {
 
@@ -21,6 +22,32 @@ export default class DatabaseModelToSqlCodeConverter implements DatabaseModelToC
 	}
 
 	public convertToCode(databaseModel: DatabaseModel): string {
+		if (this.sqlDialect.createScriptBuilder) {
+			const scriptBuilder = this.sqlDialect.createScriptBuilder();
+			return this.convertToCodeUsingScriptBuilder(databaseModel, scriptBuilder);
+		} else {
+			return this.convertToCodeOldWay(databaseModel);
+		}
+	}
+
+	private convertToCodeUsingScriptBuilder(databaseModel: DatabaseModel, scriptBuilder: SqlScriptBuilder): string {
+
+		databaseModel.tables.forEach(table => {
+
+			const tableBuilder = scriptBuilder.startTable(table.name, table.identifierColumnName);
+
+			table.columns.forEach(column => tableBuilder.addColumn(column));
+			table.references.forEach(reference => tableBuilder.addReference(reference));
+
+			tableBuilder.endTable();
+
+		});
+
+		return scriptBuilder.toSql();
+
+	}
+
+	private convertToCodeOldWay(databaseModel: DatabaseModel): string {
 
 		const allCreateTableStatements: string[] = [];
 		const allAlterTableStatements: string[] = [];
