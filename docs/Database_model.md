@@ -146,9 +146,9 @@ By doing this, we are telling _ERDiagram_ to use the name `UserRoleMapping` for 
 _Note: defining the name of any other kind of relationship (one-to-one, one-to-many, or many-to-one) does not affect the
 database model._
 
-#### usePluralTableNames config option
+#### Relationship's name and `usePluralTableNames` option
 
-It's possible to configure _ERDiagram_ for using plural table names, so the entity `User` will be modeled by creating a
+It's possible to [configure _ERDiagram_ to use plural table names](), so the entity `User` will be modeled by creating a
 `Users` table. However, if you have specified the relationship's name explicitly, it will be used without applying any
 transformation, so you have to specify it in plural if you what that behavior.
 
