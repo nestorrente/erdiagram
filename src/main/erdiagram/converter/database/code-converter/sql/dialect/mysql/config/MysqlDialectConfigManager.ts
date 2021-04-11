@@ -13,7 +13,7 @@ export class MysqlDialectConfigManager
 	getDefaultConfig(): MysqlDialectConfig {
 		return {
 			typeBindings: {
-				[EntityPropertyType.IDENTIFIER]: 'BIGINT',
+				[EntityPropertyType.IDENTITY]: 'BIGINT',
 				[EntityPropertyType.TEXT]: 'VARCHAR',
 				[EntityPropertyType.LONG]: 'BIGINT',
 				[EntityPropertyType.INT]: 'INT',

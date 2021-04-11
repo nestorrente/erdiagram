@@ -107,7 +107,7 @@ describe('Tables with references', () => {
 describe('Config', () => {
 
 	const typeBindings = {
-		[EntityPropertyType.IDENTIFIER]: 'CUSTOM_IDENTIFIER_TYPE',
+		[EntityPropertyType.IDENTITY]: 'CUSTOM_IDENTITY_TYPE',
 		[EntityPropertyType.TEXT]: 'CUSTOM_TEXT_TYPE',
 		[EntityPropertyType.LONG]: 'CUSTOM_LONG_TYPE',
 		[EntityPropertyType.INT]: 'CUSTOM_INT_TYPE',

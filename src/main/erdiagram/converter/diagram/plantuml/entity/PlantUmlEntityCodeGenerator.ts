@@ -1,13 +1,13 @@
 import {EntityDescriptor} from '@/erdiagram/parser/types/entity-relationship-model-types';
-import PlantUmlEntityIdentifierPropertyCodeGenerator
-	from '@/erdiagram/converter/diagram/plantuml/entity/PlantUmlEntityIdentifierPropertyCodeGenerator';
+import PlantUmlEntityIdentityPropertyCodeGenerator
+	from '@/erdiagram/converter/diagram/plantuml/entity/PlantUmlEntityIdentityPropertyCodeGenerator';
 import PlantUmlEntityPropertyCodeGenerator
 	from '@/erdiagram/converter/diagram/plantuml/entity/PlantUmlEntityPropertyCodeGenerator';
 import {indentLines} from '@/erdiagram/util/indent-utils';
 
 export default class PlantUmlEntityCodeGenerator {
 
-	private readonly entityIdentifierPropertyCodeGenerator = new PlantUmlEntityIdentifierPropertyCodeGenerator();
+	private readonly entityIdentityPropertyCodeGenerator = new PlantUmlEntityIdentityPropertyCodeGenerator();
 	private readonly entityPropertyCodeGenerator = new PlantUmlEntityPropertyCodeGenerator();
 
 	public generateEntityCode(entity: EntityDescriptor): string {
@@ -29,14 +29,14 @@ export default class PlantUmlEntityCodeGenerator {
 	private generateEntityPropertiesCode(entity: EntityDescriptor): string {
 
 		const {
-			identifierPropertyName,
+			identityPropertyName,
 			properties
 		} = entity;
 
 		const propertiesCode = properties.map(property => this.entityPropertyCodeGenerator.generateEntityPropertyCode(property));
 
-		if (identifierPropertyName) {
-			propertiesCode.unshift(this.entityIdentifierPropertyCodeGenerator.generateEntityIdentifierPropertyCode(identifierPropertyName));
+		if (identityPropertyName) {
+			propertiesCode.unshift(this.entityIdentityPropertyCodeGenerator.generateEntityIdentityPropertyCode(identityPropertyName));
 		}
 
 		return indentLines(propertiesCode).join('\n');

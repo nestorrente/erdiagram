@@ -7,7 +7,7 @@ import {
 export function createEntityWithoutProperties(name: string): EntityDescriptor {
 	return {
 		name,
-		identifierPropertyName: undefined,
+		identityPropertyName: undefined,
 		properties: []
 	};
 }

@@ -7,6 +7,8 @@ import {
 } from '#/erdiagram/converter/oop/model/class-model-test-utils';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import parseJavaType from '@/erdiagram/converter/oop/code-converter/java/type/parseJavaType';
+import NotNullTextValidationStrategy
+	from '../../../../../../main/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullTextValidationStrategy';
 
 const javaClassModelToCodeConverter = new JavaClassModelToCodeConverter();
 
@@ -641,7 +643,7 @@ public class TestClass {
 
 	});
 
-	test('Use Spring nullability annotations', () => {
+	test('Use validation annotations', () => {
 
 		const classModel: ClassModel = {
 			classes: [
@@ -649,37 +651,28 @@ public class TestClass {
 					name: 'TestClass',
 					fields: [
 						createIdClassField(),
-						createPrimitiveClassField('primitiveField', EntityPropertyType.INT),
-						createPrimitiveClassField('primitiveNullableField', EntityPropertyType.INT, {nullable: true}),
-						createEntityClassField('entityField', 'AnotherClass'),
-						createEntityClassField('entityNullableField', 'AnotherClass', {nullable: true})
+						createPrimitiveClassField('field', EntityPropertyType.INT),
+						createPrimitiveClassField('nullableField', EntityPropertyType.INT, {nullable: true})
 					]
 				}
 			]
 		};
 
 		const result = new JavaClassModelToCodeConverter({
-			useSpringNullabilityAnnotations: true
+			useValidationAnnotations: true
 		}).convertToCode(classModel);
 
 		expect(result).toBe(`
 /* ========== TestClass class ========== */
 
-import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
+import javax.validation.constraints.NotNull;
 
 public class TestClass {
 
-    @Nullable
     private Long id;
-    @NonNull
-    private Integer primitiveField;
-    @Nullable
-    private Integer primitiveNullableField;
-    @NonNull
-    private AnotherClass entityField;
-    @Nullable
-    private AnotherClass entityNullableField;
+    @NotNull
+    private Integer field;
+    private Integer nullableField;
 
     public Long getId() {
         return id;
@@ -689,36 +682,20 @@ public class TestClass {
         this.id = id;
     }
 
-    public Integer getPrimitiveField() {
-        return primitiveField;
+    public Integer getField() {
+        return field;
     }
 
-    public void setPrimitiveField(Integer primitiveField) {
-        this.primitiveField = primitiveField;
+    public void setField(Integer field) {
+        this.field = field;
     }
 
-    public Integer getPrimitiveNullableField() {
-        return primitiveNullableField;
+    public Integer getNullableField() {
+        return nullableField;
     }
 
-    public void setPrimitiveNullableField(Integer primitiveNullableField) {
-        this.primitiveNullableField = primitiveNullableField;
-    }
-
-    public AnotherClass getEntityField() {
-        return entityField;
-    }
-
-    public void setEntityField(AnotherClass entityField) {
-        this.entityField = entityField;
-    }
-
-    public AnotherClass getEntityNullableField() {
-        return entityNullableField;
-    }
-
-    public void setEntityNullableField(AnotherClass entityNullableField) {
-        this.entityNullableField = entityNullableField;
+    public void setNullableField(Integer nullableField) {
+        this.nullableField = nullableField;
     }
 
 }
@@ -751,7 +728,7 @@ public class TestClass {
 
 		const result = new JavaClassModelToCodeConverter({
 			typeBindings: {
-				[EntityPropertyType.IDENTIFIER]: parseJavaType('CustomIdentifierType'),
+				[EntityPropertyType.IDENTITY]: parseJavaType('CustomIdentityType'),
 				[EntityPropertyType.TEXT]: parseJavaType('CustomTextType'),
 				[EntityPropertyType.LONG]: parseJavaType('CustomLongType'),
 				[EntityPropertyType.INT]: parseJavaType('CustomIntType'),
@@ -770,7 +747,7 @@ public class TestClass {
 
 public class TestClass {
 
-    private CustomIdentifierType id;
+    private CustomIdentityType id;
     private CustomBooleanType booleanField;
     private CustomShortType shortField;
     private CustomIntType intField;
@@ -782,11 +759,11 @@ public class TestClass {
     private CustomDatetimeType datetimeField;
     private CustomBlobType blobField;
 
-    public CustomIdentifierType getId() {
+    public CustomIdentityType getId() {
         return id;
     }
 
-    public void setId(CustomIdentifierType id) {
+    public void setId(CustomIdentityType id) {
         this.id = id;
     }
 
@@ -882,7 +859,8 @@ public class TestClass {
 				{
 					name: 'TestClass',
 					fields: [
-						createIdClassField()
+						createIdClassField(),
+						createPrimitiveClassField('num', EntityPropertyType.INT)
 					]
 				}
 			]
@@ -890,9 +868,10 @@ public class TestClass {
 
 		const result = new JavaClassModelToCodeConverter({
 			generatedClassesPackage: 'com.example.erdiagram',
-			useSpringNullabilityAnnotations: true,
+			useValidationAnnotations: true,
+			notNullTextValidationStrategy: NotNullTextValidationStrategy.NOT_EMPTY,
 			typeBindings: {
-				[EntityPropertyType.IDENTIFIER]: parseJavaType('com.example.custom.CustomMap<com.example.custom.CustomType, com.example.erdiagram.ERDiagramType>')
+				[EntityPropertyType.IDENTITY]: parseJavaType('com.example.custom.CustomMap<com.example.custom.CustomType, com.example.erdiagram.ERDiagramType>')
 			}
 		}).convertToCode(classModel);
 
@@ -903,12 +882,13 @@ package com.example.erdiagram;
 
 import com.example.custom.CustomMap;
 import com.example.custom.CustomType;
-import org.springframework.lang.Nullable;
+import javax.validation.constraints.NotNull;
 
 public class TestClass {
 
-    @Nullable
     private CustomMap<CustomType, ERDiagramType> id;
+    @NotNull
+    private Integer num;
 
     public CustomMap<CustomType, ERDiagramType> getId() {
         return id;
@@ -916,6 +896,14 @@ public class TestClass {
 
     public void setId(CustomMap<CustomType, ERDiagramType> id) {
         this.id = id;
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
     }
 
 }

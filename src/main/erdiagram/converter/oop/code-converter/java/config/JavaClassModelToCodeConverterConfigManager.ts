@@ -6,6 +6,10 @@ import parseJavaType from '@/erdiagram/converter/oop/code-converter/java/type/pa
 import {mapValues} from '@/erdiagram/util/record-utils';
 import JavaClassModelToCodeConverterSerializableConfig
 	from '@/erdiagram/converter/oop/code-converter/java/config/JavaClassModelToCodeConverterSerializableConfig';
+import NotNullTextValidationStrategy
+	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullTextValidationStrategy';
+import NotNullBlobValidationStrategy
+	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullBlobValidationStrategy';
 
 export class JavaClassModelToCodeConverterConfigManager
 		extends AbstractComponentConfigManager<JavaClassModelToCodeConverterConfig, Partial<JavaClassModelToCodeConverterConfig>, JavaClassModelToCodeConverterSerializableConfig> {
@@ -13,7 +17,7 @@ export class JavaClassModelToCodeConverterConfigManager
 	getDefaultConfig(): JavaClassModelToCodeConverterConfig {
 		return {
 			typeBindings: {
-				[EntityPropertyType.IDENTIFIER]: parseJavaType('java.lang.Long'),
+				[EntityPropertyType.IDENTITY]: parseJavaType('java.lang.Long'),
 				[EntityPropertyType.TEXT]: parseJavaType('java.lang.String'),
 				[EntityPropertyType.LONG]: parseJavaType('java.lang.Long'),
 				[EntityPropertyType.INT]: parseJavaType('java.lang.Integer'),
@@ -25,7 +29,9 @@ export class JavaClassModelToCodeConverterConfigManager
 				[EntityPropertyType.DATETIME]: parseJavaType('java.time.LocalDateTime'),
 				[EntityPropertyType.BLOB]: parseJavaType('byte[]')
 			},
-			useSpringNullabilityAnnotations: false
+			useValidationAnnotations: false,
+			notNullTextValidationStrategy: NotNullTextValidationStrategy.NOT_NULL,
+			notNullBlobValidationStrategy: NotNullBlobValidationStrategy.NOT_NULL
 		};
 	}
 

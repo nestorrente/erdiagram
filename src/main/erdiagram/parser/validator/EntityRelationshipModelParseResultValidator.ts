@@ -2,8 +2,8 @@ import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-m
 import {
 	ERDiagramDuplicatedEntityNameError,
 	ERDiagramDuplicatedPropertyNameError,
-	ERDiagramInvalidIdentifierDefinitionError,
-	ERDiagramMultipleIdentifiersError,
+	ERDiagramInvalidIdentityDefinitionError,
+	ERDiagramMultipleIdentitiesError,
 	ERDiagramUnknownEntityError
 } from '@/erdiagram/parser/types/parse-errors';
 import {
@@ -42,7 +42,7 @@ export default class EntityRelationshipModelParseResultValidator {
 
 		this.validateNonRepeatedEntityNames(model);
 		this.validateNonRepeatedPropertyNames(model);
-		this.validateIdentifierProperties(model);
+		this.validateIdentityProperties(model);
 
 		if (!this.allowUnknownEntities) {
 			this.validateRelationshipsHaveNoUnknownEntities(model);
@@ -97,45 +97,45 @@ export default class EntityRelationshipModelParseResultValidator {
 
 	}
 
-	private validateIdentifierProperties(model: ParsedEntityRelationshipModel) {
+	private validateIdentityProperties(model: ParsedEntityRelationshipModel) {
 
 		model.entities.forEach(entity => {
 
-			const identifierProperties = entity.properties.filter(property => property.type === EntityPropertyType.IDENTIFIER);
+			const identityProperties = entity.properties.filter(property => property.type === EntityPropertyType.IDENTITY);
 
-			if (identifierProperties.length > 1) {
-				throw new ERDiagramMultipleIdentifiersError(
-						`Entity ${entity.name} has more than one identifier property`,
+			if (identityProperties.length > 1) {
+				throw new ERDiagramMultipleIdentitiesError(
+						`Entity ${entity.name} has more than one identity property`,
 						entity,
-						identifierProperties
+						identityProperties
 				);
 			}
 
-			const identifierProperty = identifierProperties[0];
+			const identityProperty = identityProperties[0];
 
-			if (identifierProperty != null) {
+			if (identityProperty != null) {
 
-				if (identifierProperty.optional) {
-					throw new ERDiagramInvalidIdentifierDefinitionError(
-							'Optional modifier (?) cannot be used in identifier properties',
+				if (identityProperty.optional) {
+					throw new ERDiagramInvalidIdentityDefinitionError(
+							'Optional modifier (?) cannot be used in identity properties',
 							entity,
-							identifierProperty
+							identityProperty
 					);
 				}
 
-				if (identifierProperty.unique) {
-					throw new ERDiagramInvalidIdentifierDefinitionError(
-							'Unique modifier (!) cannot be used in identifier properties',
+				if (identityProperty.unique) {
+					throw new ERDiagramInvalidIdentityDefinitionError(
+							'Unique modifier (!) cannot be used in identity properties',
 							entity,
-							identifierProperty
+							identityProperty
 					);
 				}
 
-				if (identifierProperty.length.length > 0) {
-					throw new ERDiagramInvalidIdentifierDefinitionError(
-							'Identifier properties cannot have a length',
+				if (identityProperty.length.length > 0) {
+					throw new ERDiagramInvalidIdentityDefinitionError(
+							'Identity properties cannot have a length',
 							entity,
-							identifierProperty
+							identityProperty
 					);
 				}
 

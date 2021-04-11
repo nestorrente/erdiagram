@@ -9,6 +9,7 @@ how _ERDiagram_ converts the input _entity-relationship model_ into a _class mod
     + [Property modifiers](#property-modifiers)
         + [Optional modifier](#optional-modifier)
         + [Unique modifier](#unique-modifier)
+    + [Property's length](#propertys-length)
     + [Entity identifier property](#entity-identifier-property)
 * **[Relationships](#relationships)**
     + [Cardinalities](#cardinalities)
@@ -34,6 +35,14 @@ _The unique modifier is intended for database code generation, and it's not used
 
 This means that defining unique class fields is currently an unsupported feature. This may change in the future, so you
 can create an issue to discuss this if you need it :slightly_smiling_face:
+
+### Property's length
+
+As some OOP languages allow to define the max size of its fields (i.e. Java via validation constraints), the length of
+the entity properties is used for this purpose.
+
+Currently, only `text` and `blob` property types are taking into account. For example, a property `name text(50)`
+will be modelled as a property with `maxSize: 50`.
 
 ### Entity identifier property
 

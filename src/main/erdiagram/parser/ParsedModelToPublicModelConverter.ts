@@ -20,18 +20,18 @@ export default class ParsedModelToPublicModelConverter {
 
 	private convertParsedEntityToPublicEntity(parsedEntity: ParsedEntityDescriptor): EntityDescriptor {
 
-		const identifierProperty = this.getEntityIdentifierProperty(parsedEntity);
+		const identityProperty = this.getEntityIdentityProperty(parsedEntity);
 
 		return {
 			name: parsedEntity.name,
-			identifierPropertyName: identifierProperty?.name,
-			properties: parsedEntity.properties.filter(property => property != identifierProperty)
+			identityPropertyName: identityProperty?.name,
+			properties: parsedEntity.properties.filter(property => property != identityProperty)
 		};
 
 	}
 
-	private getEntityIdentifierProperty(parsedEntity: ParsedEntityDescriptor): EntityPropertyDescriptor | undefined {
-		return parsedEntity.properties.find(property => property.type === EntityPropertyType.IDENTIFIER);
+	private getEntityIdentityProperty(parsedEntity: ParsedEntityDescriptor): EntityPropertyDescriptor | undefined {
+		return parsedEntity.properties.find(property => property.type === EntityPropertyType.IDENTITY);
 	}
 
 }

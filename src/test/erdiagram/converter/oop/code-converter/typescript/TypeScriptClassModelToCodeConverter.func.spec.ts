@@ -13,120 +13,120 @@ const typeScriptClassModelToCodeConverter = new TypeScriptClassModelToCodeConver
 
 describe('Single class', () => {
 
-    test('Class with only ID field', () => {
+	test('Class with only ID field', () => {
 
-        const classModel: ClassModel = {
-            classes: [
-                {
-                    name: 'TestClass',
-                    fields: [
-                        createIdClassField()
-                    ]
-                }
-            ]
-        };
+		const classModel: ClassModel = {
+			classes: [
+				{
+					name: 'TestClass',
+					fields: [
+						createIdClassField()
+					]
+				}
+			]
+		};
 
-        const result = typeScriptClassModelToCodeConverter.convertToCode(classModel);
+		const result = typeScriptClassModelToCodeConverter.convertToCode(classModel);
 
-        expect(result).toBe(`
+		expect(result).toBe(`
 interface TestClass {
     id?: number;
 }
         `.trim());
 
-    });
+	});
 
-    test('Class with custom ID field', () => {
+	test('Class with custom ID field', () => {
 
-        const classModel: ClassModel = {
-            classes: [
-                {
-                    name: 'TestClass',
-                    fields: [
-                        createIdClassField('customId')
-                    ]
-                }
-            ]
-        };
+		const classModel: ClassModel = {
+			classes: [
+				{
+					name: 'TestClass',
+					fields: [
+						createIdClassField('customId')
+					]
+				}
+			]
+		};
 
-        const result = typeScriptClassModelToCodeConverter.convertToCode(classModel);
+		const result = typeScriptClassModelToCodeConverter.convertToCode(classModel);
 
-        expect(result).toBe(`
+		expect(result).toBe(`
 interface TestClass {
     customId?: number;
 }
         `.trim());
 
-    });
+	});
 
-    test('Class with one nullable field', () => {
+	test('Class with one nullable field', () => {
 
-        const classModel: ClassModel = {
-            classes: [
-                {
-                    name: 'TestClass',
-                    fields: [
-                        createIdClassField(),
-                        createPrimitiveClassField('nullableField', EntityPropertyType.TEXT, {nullable: true}),
-                    ]
-                }
-            ]
-        };
+		const classModel: ClassModel = {
+			classes: [
+				{
+					name: 'TestClass',
+					fields: [
+						createIdClassField(),
+						createPrimitiveClassField('nullableField', EntityPropertyType.TEXT, {nullable: true}),
+					]
+				}
+			]
+		};
 
-        const result = typeScriptClassModelToCodeConverter.convertToCode(classModel);
+		const result = typeScriptClassModelToCodeConverter.convertToCode(classModel);
 
-        expect(result).toBe(`
+		expect(result).toBe(`
 interface TestClass {
     id?: number;
     nullableField?: string;
 }
         `.trim());
 
-    });
+	});
 
-    test('Class with one entity field', () => {
+	test('Class with one entity field', () => {
 
-        const classModel: ClassModel = {
-            classes: [
-                {
-                    name: 'TestClass',
-                    fields: [
-                        createIdClassField(),
-                        createEntityClassField('entityField', 'UnknownClass'),
-                    ]
-                }
-            ]
-        };
+		const classModel: ClassModel = {
+			classes: [
+				{
+					name: 'TestClass',
+					fields: [
+						createIdClassField(),
+						createEntityClassField('entityField', 'UnknownClass'),
+					]
+				}
+			]
+		};
 
-        const result = typeScriptClassModelToCodeConverter.convertToCode(classModel);
+		const result = typeScriptClassModelToCodeConverter.convertToCode(classModel);
 
-        expect(result).toBe(`
+		expect(result).toBe(`
 interface TestClass {
     id?: number;
     entityField: UnknownClass;
 }
         `.trim());
 
-    });
+	});
 
-    test('Class with some list fields', () => {
+	test('Class with some list fields', () => {
 
-        const classModel: ClassModel = {
-            classes: [
-                {
-                    name: 'TestClass',
-                    fields: [
-                        createIdClassField(),
-                        createPrimitiveClassField('listOfTexts', EntityPropertyType.TEXT, {list: true}),
-                        createPrimitiveClassField('listOfShorts', EntityPropertyType.SHORT, {list: true}),
-                    ]
-                }
-            ]
-        };
+		const classModel: ClassModel = {
+			classes: [
+				{
+					name: 'TestClass',
+					fields: [
+						createIdClassField(),
+						createPrimitiveClassField('listOfTexts', EntityPropertyType.TEXT, {list: true}),
+						createPrimitiveClassField('listOfShorts', EntityPropertyType.SHORT, {list: true}),
+					]
+				}
+			]
+		};
 
-        const result = typeScriptClassModelToCodeConverter.convertToCode(classModel);
+		const result = typeScriptClassModelToCodeConverter.convertToCode(classModel);
 
-        expect(result).toBe(`
+		expect(result).toBe(`
 interface TestClass {
     id?: number;
     listOfTexts: string[];
@@ -134,34 +134,34 @@ interface TestClass {
 }
         `.trim());
 
-    });
+	});
 
-    test('Class with fields of all supported types', () => {
+	test('Class with fields of all supported types', () => {
 
-        const classModel: ClassModel = {
-            classes: [
-                {
-                    name: 'TestClass',
-                    fields: [
-                        createIdClassField(),
-                        createPrimitiveClassField('booleanField', EntityPropertyType.BOOLEAN),
-                        createPrimitiveClassField('shortField', EntityPropertyType.SHORT),
-                        createPrimitiveClassField('intField', EntityPropertyType.INT),
-                        createPrimitiveClassField('longField', EntityPropertyType.LONG),
-                        createPrimitiveClassField('decimalField', EntityPropertyType.DECIMAL),
-                        createPrimitiveClassField('textField', EntityPropertyType.TEXT),
-                        createPrimitiveClassField('dateField', EntityPropertyType.DATE),
-                        createPrimitiveClassField('timeField', EntityPropertyType.TIME),
-                        createPrimitiveClassField('datetimeField', EntityPropertyType.DATETIME),
-                        createPrimitiveClassField('blobField', EntityPropertyType.BLOB)
-                    ]
-                }
-            ]
-        };
+		const classModel: ClassModel = {
+			classes: [
+				{
+					name: 'TestClass',
+					fields: [
+						createIdClassField(),
+						createPrimitiveClassField('booleanField', EntityPropertyType.BOOLEAN),
+						createPrimitiveClassField('shortField', EntityPropertyType.SHORT),
+						createPrimitiveClassField('intField', EntityPropertyType.INT),
+						createPrimitiveClassField('longField', EntityPropertyType.LONG),
+						createPrimitiveClassField('decimalField', EntityPropertyType.DECIMAL),
+						createPrimitiveClassField('textField', EntityPropertyType.TEXT),
+						createPrimitiveClassField('dateField', EntityPropertyType.DATE),
+						createPrimitiveClassField('timeField', EntityPropertyType.TIME),
+						createPrimitiveClassField('datetimeField', EntityPropertyType.DATETIME),
+						createPrimitiveClassField('blobField', EntityPropertyType.BLOB)
+					]
+				}
+			]
+		};
 
-        const result = typeScriptClassModelToCodeConverter.convertToCode(classModel);
+		const result = typeScriptClassModelToCodeConverter.convertToCode(classModel);
 
-        expect(result).toBe(`
+		expect(result).toBe(`
 interface TestClass {
     id?: number;
     booleanField: boolean;
@@ -177,34 +177,34 @@ interface TestClass {
 }
         `.trim());
 
-    });
+	});
 
 });
 
 describe('Multiple classes', () => {
 
-    test('Two classes with only an ID field', () => {
+	test('Two classes with only an ID field', () => {
 
-        const classModel: ClassModel = {
-            classes: [
-                {
-                    name: 'TestClass1',
-                    fields: [
-                        createIdClassField()
-                    ]
-                },
-                {
-                    name: 'TestClass2',
-                    fields: [
-                        createIdClassField()
-                    ]
-                }
-            ]
-        };
+		const classModel: ClassModel = {
+			classes: [
+				{
+					name: 'TestClass1',
+					fields: [
+						createIdClassField()
+					]
+				},
+				{
+					name: 'TestClass2',
+					fields: [
+						createIdClassField()
+					]
+				}
+			]
+		};
 
-        const result = typeScriptClassModelToCodeConverter.convertToCode(classModel);
+		const result = typeScriptClassModelToCodeConverter.convertToCode(classModel);
 
-        expect(result).toBe(`
+		expect(result).toBe(`
 interface TestClass1 {
     id?: number;
 }
@@ -214,33 +214,33 @@ interface TestClass2 {
 }
         `.trim());
 
-    });
+	});
 
-    test('One class referencing to another', () => {
+	test('One class referencing to another', () => {
 
-        const classModel: ClassModel = {
-            classes: [
-                {
-                    name: 'TestClass1',
-                    fields: [
-                        createIdClassField(),
-                        createEntityClassField('testClass2Field', 'TestClass2'),
-                        createEntityClassField('testClass2NullableField', 'TestClass2', {nullable: true}),
-                        createEntityClassField('testClass2ListField', 'TestClass2', {list: true})
-                    ]
-                },
-                {
-                    name: 'TestClass2',
-                    fields: [
-                        createIdClassField()
-                    ]
-                }
-            ]
-        };
+		const classModel: ClassModel = {
+			classes: [
+				{
+					name: 'TestClass1',
+					fields: [
+						createIdClassField(),
+						createEntityClassField('testClass2Field', 'TestClass2'),
+						createEntityClassField('testClass2NullableField', 'TestClass2', {nullable: true}),
+						createEntityClassField('testClass2ListField', 'TestClass2', {list: true})
+					]
+				},
+				{
+					name: 'TestClass2',
+					fields: [
+						createIdClassField()
+					]
+				}
+			]
+		};
 
-        const result = typeScriptClassModelToCodeConverter.convertToCode(classModel);
+		const result = typeScriptClassModelToCodeConverter.convertToCode(classModel);
 
-        expect(result).toBe(`
+		expect(result).toBe(`
 interface TestClass1 {
     id?: number;
     testClass2Field: TestClass2;
@@ -253,32 +253,32 @@ interface TestClass2 {
 }
         `.trim());
 
-    });
+	});
 
-    test('Two classes referencing each other', () => {
+	test('Two classes referencing each other', () => {
 
-        const classModel: ClassModel = {
-            classes: [
-                {
-                    name: 'TestClass1',
-                    fields: [
-                        createIdClassField(),
-                        createEntityClassField('testClass2Field', 'TestClass2')
-                    ]
-                },
-                {
-                    name: 'TestClass2',
-                    fields: [
-                        createIdClassField(),
-                        createEntityClassField('testClass1ListField', 'TestClass1', {list: true})
-                    ]
-                }
-            ]
-        };
+		const classModel: ClassModel = {
+			classes: [
+				{
+					name: 'TestClass1',
+					fields: [
+						createIdClassField(),
+						createEntityClassField('testClass2Field', 'TestClass2')
+					]
+				},
+				{
+					name: 'TestClass2',
+					fields: [
+						createIdClassField(),
+						createEntityClassField('testClass1ListField', 'TestClass1', {list: true})
+					]
+				}
+			]
+		};
 
-        const result = typeScriptClassModelToCodeConverter.convertToCode(classModel);
+		const result = typeScriptClassModelToCodeConverter.convertToCode(classModel);
 
-        expect(result).toBe(`
+		expect(result).toBe(`
 interface TestClass1 {
     id?: number;
     testClass2Field: TestClass2;
@@ -290,54 +290,54 @@ interface TestClass2 {
 }
         `.trim());
 
-    });
+	});
 
 });
 
 describe('Config', () => {
 
-    test('Customize all type bindings', () => {
+	test('Customize all type bindings', () => {
 
-        const classModel: ClassModel = {
-            classes: [
-                {
-                    name: 'TestClass',
-                    fields: [
-                        createIdClassField(),
-                        createPrimitiveClassField('booleanField', EntityPropertyType.BOOLEAN),
-                        createPrimitiveClassField('shortField', EntityPropertyType.SHORT),
-                        createPrimitiveClassField('intField', EntityPropertyType.INT),
-                        createPrimitiveClassField('longField', EntityPropertyType.LONG),
-                        createPrimitiveClassField('decimalField', EntityPropertyType.DECIMAL),
-                        createPrimitiveClassField('textField', EntityPropertyType.TEXT),
-                        createPrimitiveClassField('dateField', EntityPropertyType.DATE),
-                        createPrimitiveClassField('timeField', EntityPropertyType.TIME),
-                        createPrimitiveClassField('datetimeField', EntityPropertyType.DATETIME),
-                        createPrimitiveClassField('blobField', EntityPropertyType.BLOB)
-                    ]
-                }
-            ]
-        };
+		const classModel: ClassModel = {
+			classes: [
+				{
+					name: 'TestClass',
+					fields: [
+						createIdClassField(),
+						createPrimitiveClassField('booleanField', EntityPropertyType.BOOLEAN),
+						createPrimitiveClassField('shortField', EntityPropertyType.SHORT),
+						createPrimitiveClassField('intField', EntityPropertyType.INT),
+						createPrimitiveClassField('longField', EntityPropertyType.LONG),
+						createPrimitiveClassField('decimalField', EntityPropertyType.DECIMAL),
+						createPrimitiveClassField('textField', EntityPropertyType.TEXT),
+						createPrimitiveClassField('dateField', EntityPropertyType.DATE),
+						createPrimitiveClassField('timeField', EntityPropertyType.TIME),
+						createPrimitiveClassField('datetimeField', EntityPropertyType.DATETIME),
+						createPrimitiveClassField('blobField', EntityPropertyType.BLOB)
+					]
+				}
+			]
+		};
 
-        const result = new TypeScriptClassModelToCodeConverter({
-            typeBindings: {
-                [EntityPropertyType.IDENTIFIER]: parseTypeScriptType('CustomIdentifierType'),
-                [EntityPropertyType.TEXT]: parseTypeScriptType('CustomTextType'),
-                [EntityPropertyType.LONG]: parseTypeScriptType('CustomLongType'),
-                [EntityPropertyType.INT]: parseTypeScriptType('CustomIntType'),
-                [EntityPropertyType.SHORT]: parseTypeScriptType('CustomShortType'),
-                [EntityPropertyType.DECIMAL]: parseTypeScriptType('CustomDecimalType'),
-                [EntityPropertyType.BOOLEAN]: parseTypeScriptType('CustomBooleanType'),
-                [EntityPropertyType.DATE]: parseTypeScriptType('CustomDateType'),
-                [EntityPropertyType.TIME]: parseTypeScriptType('CustomTimeType'),
-                [EntityPropertyType.DATETIME]: parseTypeScriptType('CustomDatetimeType'),
-                [EntityPropertyType.BLOB]: parseTypeScriptType('CustomBlobType')
-            }
-        }).convertToCode(classModel);
+		const result = new TypeScriptClassModelToCodeConverter({
+			typeBindings: {
+				[EntityPropertyType.IDENTITY]: parseTypeScriptType('CustomIdentityType'),
+				[EntityPropertyType.TEXT]: parseTypeScriptType('CustomTextType'),
+				[EntityPropertyType.LONG]: parseTypeScriptType('CustomLongType'),
+				[EntityPropertyType.INT]: parseTypeScriptType('CustomIntType'),
+				[EntityPropertyType.SHORT]: parseTypeScriptType('CustomShortType'),
+				[EntityPropertyType.DECIMAL]: parseTypeScriptType('CustomDecimalType'),
+				[EntityPropertyType.BOOLEAN]: parseTypeScriptType('CustomBooleanType'),
+				[EntityPropertyType.DATE]: parseTypeScriptType('CustomDateType'),
+				[EntityPropertyType.TIME]: parseTypeScriptType('CustomTimeType'),
+				[EntityPropertyType.DATETIME]: parseTypeScriptType('CustomDatetimeType'),
+				[EntityPropertyType.BLOB]: parseTypeScriptType('CustomBlobType')
+			}
+		}).convertToCode(classModel);
 
-        expect(result).toBe(`
+		expect(result).toBe(`
 interface TestClass {
-    id?: CustomIdentifierType;
+    id?: CustomIdentityType;
     booleanField: CustomBooleanType;
     shortField: CustomShortType;
     intField: CustomIntType;
@@ -351,60 +351,60 @@ interface TestClass {
 }
         `.trim());
 
-    });
+	});
 
 });
 
 describe('Errors', () => {
 
-    test('Field without primitive nor entity type defined', () => {
+	test('Field without primitive nor entity type defined', () => {
 
-        const classModel: ClassModel = {
-            classes: [
-                {
-                    name: 'TestClass',
-                    fields: [
-                        {
-                            name: 'invalidField',
-                            nullable: false,
-                            list: false,
-                            primitiveType: undefined,
-                            entityType: undefined
-                        }
-                    ]
-                }
-            ]
-        };
+		const classModel: ClassModel = {
+			classes: [
+				{
+					name: 'TestClass',
+					fields: [
+						{
+							name: 'invalidField',
+							nullable: false,
+							list: false,
+							primitiveType: undefined,
+							entityType: undefined
+						}
+					]
+				}
+			]
+		};
 
-        expect(() => {
-            typeScriptClassModelToCodeConverter.convertToCode(classModel);
-        }).toThrow(Error);
+		expect(() => {
+			typeScriptClassModelToCodeConverter.convertToCode(classModel);
+		}).toThrow(Error);
 
-    });
+	});
 
-    test('Field with both primitive and entity types defined', () => {
+	test('Field with both primitive and entity types defined', () => {
 
-        const classModel: ClassModel = {
-            classes: [
-                {
-                    name: 'TestClass',
-                    fields: [
-                        {
-                            name: 'invalidField',
-                            nullable: false,
-                            list: false,
-                            primitiveType: EntityPropertyType.INT,
-                            entityType: 'AnotherClass'
-                        }
-                    ]
-                }
-            ]
-        };
+		const classModel: ClassModel = {
+			classes: [
+				{
+					name: 'TestClass',
+					fields: [
+						{
+							name: 'invalidField',
+							nullable: false,
+							list: false,
+							primitiveType: EntityPropertyType.INT,
+							entityType: 'AnotherClass'
+						}
+					]
+				}
+			]
+		};
 
-        expect(() => {
-            typeScriptClassModelToCodeConverter.convertToCode(classModel);
-        }).toThrow(Error);
+		expect(() => {
+			typeScriptClassModelToCodeConverter.convertToCode(classModel);
+		}).toThrow(Error);
 
-    });
+	});
 
 });

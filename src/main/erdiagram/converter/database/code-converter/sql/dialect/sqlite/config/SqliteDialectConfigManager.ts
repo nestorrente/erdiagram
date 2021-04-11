@@ -13,7 +13,7 @@ export class SqliteDialectConfigManager
 	getDefaultConfig(): SqliteDialectConfig {
 		return {
 			typeBindings: {
-				[EntityPropertyType.IDENTIFIER]: 'INTEGER',
+				[EntityPropertyType.IDENTITY]: 'INTEGER',
 				[EntityPropertyType.TEXT]: 'TEXT',
 				[EntityPropertyType.LONG]: 'INTEGER',
 				[EntityPropertyType.INT]: 'INTEGER',

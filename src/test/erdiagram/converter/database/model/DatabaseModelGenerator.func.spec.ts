@@ -24,7 +24,7 @@ describe('Entity', () => {
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						createSimpleEntityProperty('name', EntityPropertyType.TEXT, [10]),
 					]
@@ -37,7 +37,7 @@ describe('Entity', () => {
 			tables: [
 				{
 					name: 'Entity',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [
 						createSimpleTableColumn('name', EntityPropertyType.TEXT, [10])
 					],
@@ -48,13 +48,13 @@ describe('Entity', () => {
 
 	});
 
-	test('Entity with explicit identifier property', () => {
+	test('Entity with explicit identity property', () => {
 
 		const databaseModel = databaseModelGenerator.generateDatabaseModel({
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: 'customEntityId',
+					identityPropertyName: 'customEntityId',
 					properties: []
 				}
 			],
@@ -65,7 +65,7 @@ describe('Entity', () => {
 			tables: [
 				{
 					name: 'Entity',
-					identifierColumnName: 'customEntityId',
+					identityColumnName: 'customEntityId',
 					columns: [],
 					references: []
 				}
@@ -74,13 +74,13 @@ describe('Entity', () => {
 
 	});
 
-	test('Entity with explicit identifier property defined as the last property', () => {
+	test('Entity with explicit identity property defined as the last property', () => {
 
 		const databaseModel = databaseModelGenerator.generateDatabaseModel({
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: 'customEntityId',
+					identityPropertyName: 'customEntityId',
 					properties: [
 						createSimpleEntityProperty('name', EntityPropertyType.TEXT, [10])
 					]
@@ -93,7 +93,7 @@ describe('Entity', () => {
 			tables: [
 				{
 					name: 'Entity',
-					identifierColumnName: 'customEntityId',
+					identityColumnName: 'customEntityId',
 					columns: [
 						createSimpleTableColumn('name', EntityPropertyType.TEXT, [10])
 					],
@@ -110,7 +110,7 @@ describe('Entity', () => {
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						createSimpleEntityProperty('a', EntityPropertyType.BOOLEAN),
 						createSimpleEntityProperty('b', EntityPropertyType.SHORT),
@@ -132,7 +132,7 @@ describe('Entity', () => {
 			tables: [
 				{
 					name: 'Entity',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [
 						createSimpleTableColumn('a', EntityPropertyType.BOOLEAN),
 						createSimpleTableColumn('b', EntityPropertyType.SHORT),
@@ -158,7 +158,7 @@ describe('Entity', () => {
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						{
 							name: 'num',
@@ -177,7 +177,7 @@ describe('Entity', () => {
 			tables: [
 				{
 					name: 'Entity',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [
 						{
 							name: 'num',
@@ -200,7 +200,7 @@ describe('Entity', () => {
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						{
 							name: 'num',
@@ -219,7 +219,7 @@ describe('Entity', () => {
 			tables: [
 				{
 					name: 'Entity',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [
 						{
 							name: 'num',
@@ -294,7 +294,7 @@ describe('Relationship', () => {
 			tables: [
 				{
 					name: 'A',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: [
 						createTableReference('bId', 'B', {unique: true}),
@@ -304,19 +304,19 @@ describe('Relationship', () => {
 				},
 				{
 					name: 'B',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'C',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'D',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: []
 				}
@@ -363,7 +363,7 @@ describe('Relationship', () => {
 			tables: [
 				{
 					name: 'A',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: [
 						createTableReference('bId', 'B', {unique: true, notNull: false}),
@@ -376,19 +376,19 @@ describe('Relationship', () => {
 				},
 				{
 					name: 'B',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'C',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'D',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: [
 						createTableReference('aId', 'A', {notNull: false})
@@ -396,19 +396,19 @@ describe('Relationship', () => {
 				},
 				{
 					name: 'E',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'F',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'G',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: [
 						createTableReference('aId', 'A')
@@ -416,25 +416,25 @@ describe('Relationship', () => {
 				},
 				{
 					name: 'H',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'I',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'J',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'AJ',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: [
 						createTableReference('aId', 'A'),
@@ -514,7 +514,7 @@ describe('Relationship', () => {
 			tables: [
 				{
 					name: 'A',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: [
 						createTableReference('bId', 'B', {unique: true}),
@@ -524,31 +524,31 @@ describe('Relationship', () => {
 				},
 				{
 					name: 'B',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'C',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'D',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'E',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'AToE',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: [
 						createTableReference('aAliasId', 'A'),
@@ -609,7 +609,7 @@ describe('Config', () => {
 			tables: [
 				{
 					name: 'As',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: [
 						createTableReference('bId', 'Bs', {unique: true}),
@@ -617,13 +617,13 @@ describe('Config', () => {
 				},
 				{
 					name: 'Bs',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'AsToBs',
-					identifierColumnName: 'id',
+					identityColumnName: 'id',
 					columns: [],
 					references: [
 						createTableReference('aId', 'As'),
@@ -666,32 +666,32 @@ describe('Config', () => {
 			tables: [
 				{
 					name: 'A',
-					identifierColumnName: 'aId',
+					identityColumnName: 'aId',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'B',
-					identifierColumnName: 'bId',
+					identityColumnName: 'bId',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'AToB',
-					identifierColumnName: 'aToBId',
+					identityColumnName: 'aToBId',
 					columns: [],
 					references: [
 						{
 							columnName: 'aId',
 							targetTableName: 'A',
-							targetTableIdentifierColumnName: 'aId',
+							targetTableIdentityColumnName: 'aId',
 							notNull: true,
 							unique: false
 						},
 						{
 							columnName: 'bId',
 							targetTableName: 'B',
-							targetTableIdentifierColumnName: 'bId',
+							targetTableIdentityColumnName: 'bId',
 							notNull: true,
 							unique: false
 						}
@@ -733,32 +733,32 @@ describe('Config', () => {
 			tables: [
 				{
 					name: 'A',
-					identifierColumnName: 'theAId',
+					identityColumnName: 'theAId',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'B',
-					identifierColumnName: 'theBId',
+					identityColumnName: 'theBId',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'AToB',
-					identifierColumnName: 'theAToBId',
+					identityColumnName: 'theAToBId',
 					columns: [],
 					references: [
 						{
 							columnName: 'aId',
 							targetTableName: 'A',
-							targetTableIdentifierColumnName: 'theAId',
+							targetTableIdentityColumnName: 'theAId',
 							notNull: true,
 							unique: false
 						},
 						{
 							columnName: 'bId',
 							targetTableName: 'B',
-							targetTableIdentifierColumnName: 'theBId',
+							targetTableIdentityColumnName: 'theBId',
 							notNull: true,
 							unique: false
 						}
@@ -801,34 +801,34 @@ describe('Config', () => {
 			tables: [
 				{
 					name: 'As',
-					identifierColumnName: 'aId',
+					identityColumnName: 'aId',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'Bs',
-					identifierColumnName: 'bId',
+					identityColumnName: 'bId',
 					columns: [],
 					references: []
 				},
 				{
 					name: 'AsToBs',
 					// TODO this may not be the expected behaviour, but we have to find the right way to solve it
-					identifierColumnName: 'asToBsId',
-					// identifierColumnName: 'aToBId',
+					identityColumnName: 'asToBsId',
+					// identityColumnName: 'aToBId',
 					columns: [],
 					references: [
 						{
 							columnName: 'aId',
 							targetTableName: 'As',
-							targetTableIdentifierColumnName: 'aId',
+							targetTableIdentityColumnName: 'aId',
 							notNull: true,
 							unique: false
 						},
 						{
 							columnName: 'bId',
 							targetTableName: 'Bs',
-							targetTableIdentifierColumnName: 'bId',
+							targetTableIdentityColumnName: 'bId',
 							notNull: true,
 							unique: false
 						}

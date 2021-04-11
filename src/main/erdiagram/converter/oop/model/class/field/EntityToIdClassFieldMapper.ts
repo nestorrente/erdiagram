@@ -12,18 +12,18 @@ export default class EntityToIdClassFieldMapper {
 
 	public mapEntityToIdClassField(entity: EntityDescriptor): ClassFieldDescriptor {
 		return {
-			name: this.getIdentifierFieldName(entity),
-			primitiveType: EntityPropertyType.IDENTIFIER,
+			name: this.getIdentityFieldName(entity),
+			primitiveType: EntityPropertyType.IDENTITY,
 			// ID field must be nullable, so NULL value can be used to represent an unsaved instance
 			nullable: true,
 			list: false
 		};
 	}
 
-	private getIdentifierFieldName(entity: EntityDescriptor) {
+	private getIdentityFieldName(entity: EntityDescriptor) {
 
-		if (entity.identifierPropertyName) {
-			return entity.identifierPropertyName;
+		if (entity.identityPropertyName) {
+			return entity.identityPropertyName;
 		}
 
 		const {idNamingStrategy} = this;

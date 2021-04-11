@@ -14,24 +14,24 @@ export default class PostgresqlIdColumnCodeGenerator implements SqlIdColumnCodeG
 
 	}
 
-	public generateIdColumnCode(outputTableName: string, identifierColumnName: string): IdColumnCode {
+	public generateIdColumnCode(outputTableName: string, identityColumnName: string): IdColumnCode {
 
-		const outputIdentifierColumnName = this.columnNameCaseConverter.convertCase(identifierColumnName);
+		const outputIdentityColumnName = this.columnNameCaseConverter.convertCase(identityColumnName);
 
 		return {
-			columnLine: this.generateIdColumnDeclarationLine(outputIdentifierColumnName),
-			pkConstraintLine: this.createPrimaryKeyConstraint(outputTableName, outputIdentifierColumnName)
+			columnLine: this.generateIdColumnDeclarationLine(outputIdentityColumnName),
+			pkConstraintLine: this.createPrimaryKeyConstraint(outputTableName, outputIdentityColumnName)
 		};
 
 	}
 
-	private generateIdColumnDeclarationLine(outputIdentifierColumnName: string): string {
-		const sqlType = this.typeResolver.resolveSqlType(EntityPropertyType.IDENTIFIER);
-		return `"${outputIdentifierColumnName}" ${sqlType} NOT NULL GENERATED ALWAYS AS IDENTITY`;
+	private generateIdColumnDeclarationLine(outputIdentityColumnName: string): string {
+		const sqlType = this.typeResolver.resolveSqlType(EntityPropertyType.IDENTITY);
+		return `"${outputIdentityColumnName}" ${sqlType} NOT NULL GENERATED ALWAYS AS IDENTITY`;
 	}
 
-	private createPrimaryKeyConstraint(outputTableName: string, outputIdentifierColumnName: string) {
-		return `CONSTRAINT "${outputTableName}_pk" PRIMARY KEY ("${outputIdentifierColumnName}")`;
+	private createPrimaryKeyConstraint(outputTableName: string, outputIdentityColumnName: string) {
+		return `CONSTRAINT "${outputTableName}_pk" PRIMARY KEY ("${outputIdentityColumnName}")`;
 	}
 
 }

@@ -71,7 +71,7 @@ export default class DatabaseModelToSqlCodeConverter implements DatabaseModelToC
 			createSequenceLine: idCreateSequenceLine,
 			columnLine: idColumnLine,
 			pkConstraintLine
-		} = this.sqlDialect.getIdColumnCode(table.name, table.identifierColumnName);
+		} = this.sqlDialect.getIdColumnCode(table.name, table.identityColumnName);
 
 		if (idCreateSequenceLine) {
 			lines.sequences.push(idCreateSequenceLine);

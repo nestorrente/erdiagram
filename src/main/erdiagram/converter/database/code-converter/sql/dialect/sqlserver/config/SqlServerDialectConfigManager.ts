@@ -13,7 +13,7 @@ export class SqlServerDialectConfigManager
 	getDefaultConfig(): SqlServerDialectConfig {
 		return {
 			typeBindings: {
-				[EntityPropertyType.IDENTIFIER]: 'BIGINT',
+				[EntityPropertyType.IDENTITY]: 'BIGINT',
 				[EntityPropertyType.TEXT]: 'NVARCHAR',
 				[EntityPropertyType.LONG]: 'BIGINT',
 				[EntityPropertyType.INT]: 'INT',

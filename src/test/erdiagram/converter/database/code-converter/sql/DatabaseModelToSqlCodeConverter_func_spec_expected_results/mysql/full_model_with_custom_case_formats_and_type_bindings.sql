@@ -1,5 +1,5 @@
 CREATE TABLE `Modifiers_Table` (
-    `the_id_of_modifiers_table` CUSTOM_IDENTIFIER_TYPE NOT NULL AUTO_INCREMENT,
+    `the_id_of_modifiers_table` CUSTOM_IDENTITY_TYPE NOT NULL AUTO_INCREMENT,
     `not_null_column` CUSTOM_INT_TYPE NOT NULL,
     `unique_column` CUSTOM_INT_TYPE,
     CONSTRAINT `Modifiers_Table_pk` PRIMARY KEY (`the_id_of_modifiers_table`),
@@ -7,7 +7,7 @@ CREATE TABLE `Modifiers_Table` (
 );
 
 CREATE TABLE `Types_Table` (
-    `the_id_of_types_table` CUSTOM_IDENTIFIER_TYPE NOT NULL AUTO_INCREMENT,
+    `the_id_of_types_table` CUSTOM_IDENTITY_TYPE NOT NULL AUTO_INCREMENT,
     `boolean_column` CUSTOM_BOOLEAN_TYPE NOT NULL,
     `short_column` CUSTOM_SHORT_TYPE NOT NULL,
     `int_column` CUSTOM_INT_TYPE NOT NULL,
@@ -22,10 +22,10 @@ CREATE TABLE `Types_Table` (
 );
 
 CREATE TABLE `References_Table` (
-    `the_id_of_references_table` CUSTOM_IDENTIFIER_TYPE NOT NULL AUTO_INCREMENT,
-    `modifiers_id` CUSTOM_IDENTIFIER_TYPE NOT NULL,
-    `types_id` CUSTOM_IDENTIFIER_TYPE,
-    `references_id` CUSTOM_IDENTIFIER_TYPE NOT NULL,
+    `the_id_of_references_table` CUSTOM_IDENTITY_TYPE NOT NULL AUTO_INCREMENT,
+    `modifiers_id` CUSTOM_IDENTITY_TYPE NOT NULL,
+    `types_id` CUSTOM_IDENTITY_TYPE,
+    `references_id` CUSTOM_IDENTITY_TYPE NOT NULL,
     CONSTRAINT `References_Table_pk` PRIMARY KEY (`the_id_of_references_table`),
     CONSTRAINT `References_Table_references_id_unique` UNIQUE (`references_id`)
 );

@@ -27,7 +27,7 @@ describe('Entities', () => {
 			entities: [
 				{
 					name: 'User',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: []
 				}
 			],
@@ -40,13 +40,13 @@ describe('Entities', () => {
 
 	});
 
-	test('Single entity with custom identifier property name', () => {
+	test('Single entity with custom identity property name', () => {
 
 		const model: EntityRelationshipModel = {
 			entities: [
 				{
 					name: 'User',
-					identifierPropertyName: 'userId',
+					identityPropertyName: 'userId',
 					properties: []
 				}
 			],
@@ -56,7 +56,7 @@ describe('Entities', () => {
 		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
 
 		expect(result).toBe(addHeaderAndFooter(`class User {
-    {field} userId: identifier
+    {field} userId: identity
 }`));
 
 	});
@@ -67,7 +67,7 @@ describe('Entities', () => {
 			entities: [
 				{
 					name: 'User',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						{
 							name: 'active',
@@ -96,7 +96,7 @@ describe('Entities', () => {
 			entities: [
 				{
 					name: 'User',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						{
 							name: 'username',
@@ -125,7 +125,7 @@ describe('Entities', () => {
 			entities: [
 				{
 					name: 'User',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						{
 							name: 'score',
@@ -154,7 +154,7 @@ describe('Entities', () => {
 			entities: [
 				{
 					name: 'User',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						{
 							name: 'username',
@@ -403,7 +403,7 @@ describe('Entities and relationships', () => {
 			entities: [
 				{
 					name: 'User',
-					identifierPropertyName: 'uuid',
+					identityPropertyName: 'uuid',
 					properties: [
 						{
 							name: 'username',
@@ -423,7 +423,7 @@ describe('Entities and relationships', () => {
 				},
 				{
 					name: 'Order',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						{
 							name: 'date',
@@ -456,7 +456,7 @@ describe('Entities and relationships', () => {
 		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
 
 		expect(result).toBe(addHeaderAndFooter(`class User {
-    {field} uuid: identifier
+    {field} uuid: identity
     {field} username!: text(20)
     {field} active: bool
 }

@@ -18,7 +18,7 @@ export default interface SqlDialect {
 
 	getCreateTableStartCode(tableName: string): string;
 
-	getIdColumnCode(tableName: string, identifierColumnName: string): IdColumnCode;
+	getIdColumnCode(tableName: string, identityColumnName: string): IdColumnCode;
 
 	getColumnCode(tableName: string, column: TableColumnDescriptor): RegularColumnCode;
 

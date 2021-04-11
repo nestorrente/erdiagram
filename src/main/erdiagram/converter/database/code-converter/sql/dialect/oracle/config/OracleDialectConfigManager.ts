@@ -13,7 +13,7 @@ export class OracleDialectConfigManager
 	getDefaultConfig(): OracleDialectConfig {
 		return {
 			typeBindings: {
-				[EntityPropertyType.IDENTIFIER]: 'NUMBER',
+				[EntityPropertyType.IDENTITY]: 'NUMBER',
 				[EntityPropertyType.TEXT]: 'VARCHAR2',
 				[EntityPropertyType.LONG]: 'NUMBER',
 				[EntityPropertyType.INT]: 'NUMBER',

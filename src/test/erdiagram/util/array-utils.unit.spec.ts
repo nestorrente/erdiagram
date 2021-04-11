@@ -1,4 +1,4 @@
-import {removeDuplicates} from '@/erdiagram/util/array-utils';
+import {removeDuplicates, removeNullableValues} from '@/erdiagram/util/array-utils';
 
 describe('Remove duplicates', () => {
 
@@ -25,5 +25,15 @@ describe('Remove duplicates', () => {
 		expect(result).toStrictEqual([objectA, objectB, objectC]);
 
 	});
+
+});
+
+test('Remove nullable values', () => {
+
+	const array = [undefined, 1, 2, null, 3, undefined, null, 4, null, 5, undefined];
+
+	const result = removeNullableValues(array);
+
+	expect(result).toStrictEqual([1, 2, 3, 4, 5]);
 
 });

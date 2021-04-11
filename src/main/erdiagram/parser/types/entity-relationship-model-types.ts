@@ -5,7 +5,7 @@ export interface EntityRelationshipModel {
 
 export interface EntityDescriptor {
 	name: string;
-	identifierPropertyName?: string;
+	identityPropertyName?: string;
 	properties: EntityPropertyDescriptor[];
 }
 
@@ -18,7 +18,7 @@ export interface EntityPropertyDescriptor {
 }
 
 export enum EntityPropertyType {
-	IDENTIFIER = 'identifier',
+	IDENTITY = 'identity',
 	BOOLEAN = 'bool',
 	SHORT = 'short',
 	INT = 'int',

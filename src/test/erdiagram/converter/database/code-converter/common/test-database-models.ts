@@ -9,7 +9,7 @@ export const databaseModelWithTableWithoutColumnsNorReferences: DatabaseModel = 
 	tables: [
 		{
 			name: 'TestTable',
-			identifierColumnName: 'id',
+			identityColumnName: 'id',
 			columns: [],
 			references: []
 		},
@@ -20,7 +20,7 @@ export const databaseModelWithTableWithColumnsOfAllTypes: DatabaseModel = {
 	tables: [
 		{
 			name: 'TestTable',
-			identifierColumnName: 'id',
+			identityColumnName: 'id',
 			columns: [
 				createSimpleTableColumn('booleanColumn', EntityPropertyType.BOOLEAN),
 				createSimpleTableColumn('shortColumn', EntityPropertyType.SHORT),
@@ -42,7 +42,7 @@ export const databaseModelWithTableWithCustomId: DatabaseModel = {
 	tables: [
 		{
 			name: 'TestTable',
-			identifierColumnName: 'theCustomIdentifierOfTestTable',
+			identityColumnName: 'theCustomIdentityOfTestTable',
 			columns: [],
 			references: []
 		},
@@ -53,7 +53,7 @@ export const databaseModelWithTablesWithColumnsWithModifiers: DatabaseModel = {
 	tables: [
 		{
 			name: 'TestTable',
-			identifierColumnName: 'id',
+			identityColumnName: 'id',
 			columns: [
 				{
 					name: 'notNullColumn',
@@ -79,17 +79,17 @@ export const databaseModelWithTableWithReferenceToAnotherTable: DatabaseModel = 
 	tables: [
 		{
 			name: 'TestTable1',
-			identifierColumnName: 'id',
+			identityColumnName: 'id',
 			columns: [],
 			references: [
 				createTableReference('table2Id', 'TestTable2', {
-					targetTableIdentifierColumnName: 'id'
+					targetTableIdentityColumnName: 'id'
 				})
 			]
 		},
 		{
 			name: 'TestTable2',
-			identifierColumnName: 'id',
+			identityColumnName: 'id',
 			columns: [],
 			references: []
 		},
@@ -100,7 +100,7 @@ export const databaseModelWithTableWithUniqueReferenceToAnotherTable: DatabaseMo
 	tables: [
 		{
 			name: 'TestTable1',
-			identifierColumnName: 'id',
+			identityColumnName: 'id',
 			columns: [],
 			references: [
 				createTableReference('table2Id', 'TestTable2', {
@@ -110,7 +110,7 @@ export const databaseModelWithTableWithUniqueReferenceToAnotherTable: DatabaseMo
 		},
 		{
 			name: 'TestTable2',
-			identifierColumnName: 'id',
+			identityColumnName: 'id',
 			columns: [],
 			references: []
 		},
@@ -121,7 +121,7 @@ export const databaseModelWithTableWithNullableReferenceToAnotherTable: Database
 	tables: [
 		{
 			name: 'TestTable1',
-			identifierColumnName: 'id',
+			identityColumnName: 'id',
 			columns: [],
 			references: [
 				createTableReference('table2Id', 'TestTable2', {
@@ -131,7 +131,7 @@ export const databaseModelWithTableWithNullableReferenceToAnotherTable: Database
 		},
 		{
 			name: 'TestTable2',
-			identifierColumnName: 'id',
+			identityColumnName: 'id',
 			columns: [],
 			references: []
 		},
@@ -142,17 +142,17 @@ export const databaseModelWithTableWithReferenceToAnotherTableWithCustomId: Data
 	tables: [
 		{
 			name: 'TestTable1',
-			identifierColumnName: 'id',
+			identityColumnName: 'id',
 			columns: [],
 			references: [
 				createTableReference('table2Id', 'TestTable2', {
-					targetTableIdentifierColumnName: 'customId'
+					targetTableIdentityColumnName: 'customId'
 				})
 			]
 		},
 		{
 			name: 'TestTable2',
-			identifierColumnName: 'customId',
+			identityColumnName: 'customId',
 			columns: [],
 			references: []
 		},
@@ -163,21 +163,21 @@ export const databaseModelWithTablesReferencingEachOther: DatabaseModel = {
 	tables: [
 		{
 			name: 'TestTable1',
-			identifierColumnName: 'id',
+			identityColumnName: 'id',
 			columns: [],
 			references: [
 				createTableReference('table2Id', 'TestTable2', {
-					targetTableIdentifierColumnName: 'id'
+					targetTableIdentityColumnName: 'id'
 				})
 			]
 		},
 		{
 			name: 'TestTable2',
-			identifierColumnName: 'id',
+			identityColumnName: 'id',
 			columns: [],
 			references: [
 				createTableReference('table1Id', 'TestTable1', {
-					targetTableIdentifierColumnName: 'id'
+					targetTableIdentityColumnName: 'id'
 				})
 			]
 		},
@@ -188,11 +188,11 @@ export const databaseModelWithTableReferencingItself: DatabaseModel = {
 	tables: [
 		{
 			name: 'TestTable',
-			identifierColumnName: 'id',
+			identityColumnName: 'id',
 			columns: [],
 			references: [
 				createTableReference('selfReferenceId', 'TestTable', {
-					targetTableIdentifierColumnName: 'id'
+					targetTableIdentityColumnName: 'id'
 				})
 			]
 		},
@@ -203,7 +203,7 @@ export const fullDatabaseModel: DatabaseModel = {
 	tables: [
 		{
 			name: 'ModifiersTable',
-			identifierColumnName: 'theIdOfModifiersTable',
+			identityColumnName: 'theIdOfModifiersTable',
 			columns: [
 				{
 					name: 'notNullColumn',
@@ -224,7 +224,7 @@ export const fullDatabaseModel: DatabaseModel = {
 		},
 		{
 			name: 'TypesTable',
-			identifierColumnName: 'theIdOfTypesTable',
+			identityColumnName: 'theIdOfTypesTable',
 			columns: [
 				createSimpleTableColumn('booleanColumn', EntityPropertyType.BOOLEAN),
 				createSimpleTableColumn('shortColumn', EntityPropertyType.SHORT),
@@ -241,18 +241,18 @@ export const fullDatabaseModel: DatabaseModel = {
 		},
 		{
 			name: 'ReferencesTable',
-			identifierColumnName: 'theIdOfReferencesTable',
+			identityColumnName: 'theIdOfReferencesTable',
 			columns: [],
 			references: [
 				createTableReference('modifiersId', 'ModifiersTable', {
-					targetTableIdentifierColumnName: 'theIdOfModifiersTable'
+					targetTableIdentityColumnName: 'theIdOfModifiersTable'
 				}),
 				createTableReference('typesId', 'TypesTable', {
-					targetTableIdentifierColumnName: 'theIdOfTypesTable',
+					targetTableIdentityColumnName: 'theIdOfTypesTable',
 					notNull: false
 				}),
 				createTableReference('referencesId', 'ReferencesTable', {
-					targetTableIdentifierColumnName: 'theIdOfReferencesTable',
+					targetTableIdentityColumnName: 'theIdOfReferencesTable',
 					unique: true
 				})
 			]

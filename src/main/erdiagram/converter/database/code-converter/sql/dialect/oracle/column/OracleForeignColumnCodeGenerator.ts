@@ -47,7 +47,7 @@ export default class OracleForeignColumnCodeGenerator implements SqlForeignColum
 
 		return {
 			name: columnName,
-			type: EntityPropertyType.IDENTIFIER,
+			type: EntityPropertyType.IDENTITY,
 			length: [],
 			notNull,
 			unique
@@ -60,7 +60,7 @@ export default class OracleForeignColumnCodeGenerator implements SqlForeignColum
 		const outputColumnName = this.columnNameCaseConverter.convertCase(reference.columnName);
 
 		const outputTargetTableName = this.tableNameCaseConverter.convertCase(reference.targetTableName);
-		const outputTargetColumnName = this.columnNameCaseConverter.convertCase(reference.targetTableIdentifierColumnName);
+		const outputTargetColumnName = this.columnNameCaseConverter.convertCase(reference.targetTableIdentityColumnName);
 
 		return `CONSTRAINT "${outputTableName}_${outputColumnName}_FK" FOREIGN KEY ("${outputColumnName}")`
 				+ ` REFERENCES "${outputTargetTableName}" ("${outputTargetColumnName}")`;

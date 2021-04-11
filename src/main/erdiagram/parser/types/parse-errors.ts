@@ -82,23 +82,23 @@ export class ERDiagramEntityPropertyError extends ERDiagramEntityError {
 
 }
 
-export class ERDiagramMultipleIdentifiersError extends ERDiagramEntityPropertyError {
+export class ERDiagramMultipleIdentitiesError extends ERDiagramEntityPropertyError {
 
-	public readonly identifierProperties: ParsedEntityPropertyDescriptor[];
+	public readonly identityProperties: ParsedEntityPropertyDescriptor[];
 
 	constructor(
 			message: string,
 			entity: ParsedEntityDescriptor,
-			identifierProperties: ParsedEntityPropertyDescriptor[]
+			identityProperties: ParsedEntityPropertyDescriptor[]
 	) {
-		const firstDuplicateApparition = identifierProperties[1];
+		const firstDuplicateApparition = identityProperties[1];
 		super(message, entity, firstDuplicateApparition);
-		this.identifierProperties = identifierProperties;
+		this.identityProperties = identityProperties;
 	}
 
 }
 
-export class ERDiagramInvalidIdentifierDefinitionError extends ERDiagramEntityPropertyError {
+export class ERDiagramInvalidIdentityDefinitionError extends ERDiagramEntityPropertyError {
 
 }
 

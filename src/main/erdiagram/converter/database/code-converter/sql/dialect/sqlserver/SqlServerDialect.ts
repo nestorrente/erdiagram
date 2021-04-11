@@ -85,9 +85,9 @@ export default class SqlServerDialect implements SqlDialect {
 		return ');';
 	}
 
-	getIdColumnCode(tableName: string, identifierColumnName: string): IdColumnCode {
+	getIdColumnCode(tableName: string, identityColumnName: string): IdColumnCode {
 		const outputTableName = this.tableNameCaseConverter.convertCase(tableName);
-		return this.idColumnCodeGenerator.generateIdColumnCode(outputTableName, identifierColumnName);
+		return this.idColumnCodeGenerator.generateIdColumnCode(outputTableName, identityColumnName);
 	}
 
 	getColumnCode(tableName: string, column: TableColumnDescriptor): RegularColumnCode {

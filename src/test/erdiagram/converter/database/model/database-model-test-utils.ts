@@ -20,7 +20,7 @@ export function createTableReference(columnName: string, targetTableName: string
 	return {
 		columnName,
 		targetTableName,
-		targetTableIdentifierColumnName: options?.targetTableIdentifierColumnName ?? 'id',
+		targetTableIdentityColumnName: options?.targetTableIdentityColumnName ?? 'id',
 		notNull: options?.notNull ?? true,
 		unique: options?.unique ?? false
 	};

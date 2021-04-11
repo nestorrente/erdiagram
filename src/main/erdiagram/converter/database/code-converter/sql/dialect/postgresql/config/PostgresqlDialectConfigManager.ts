@@ -13,7 +13,7 @@ export class PostgresqlDialectConfigManager
 	getDefaultConfig(): PostgresqlDialectConfig {
 		return {
 			typeBindings: {
-				[EntityPropertyType.IDENTIFIER]: 'BIGINT',
+				[EntityPropertyType.IDENTITY]: 'BIGINT',
 				[EntityPropertyType.TEXT]: 'VARCHAR',
 				[EntityPropertyType.LONG]: 'BIGINT',
 				[EntityPropertyType.INT]: 'INTEGER',

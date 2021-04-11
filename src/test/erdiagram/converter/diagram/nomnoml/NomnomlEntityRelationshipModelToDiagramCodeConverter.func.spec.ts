@@ -32,7 +32,7 @@ describe('Entities', () => {
 			entities: [
 				{
 					name: 'User',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: []
 				}
 			],
@@ -45,13 +45,13 @@ describe('Entities', () => {
 
 	});
 
-	test('Single entity with custom identifier property name', () => {
+	test('Single entity with custom identity property name', () => {
 
 		const model: EntityRelationshipModel = {
 			entities: [
 				{
 					name: 'User',
-					identifierPropertyName: 'userId',
+					identityPropertyName: 'userId',
 					properties: []
 				}
 			],
@@ -61,7 +61,7 @@ describe('Entities', () => {
 		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
 
 		expect(result).toBe(addDefaultDirectives(`[User|
-    userId: identifier
+    userId: identity
 ]`));
 
 	});
@@ -72,7 +72,7 @@ describe('Entities', () => {
 			entities: [
 				{
 					name: 'User',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						createEntityProperty('active', EntityPropertyType.BOOLEAN)
 					]
@@ -95,7 +95,7 @@ describe('Entities', () => {
 			entities: [
 				{
 					name: 'User',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						createEntityProperty('username', EntityPropertyType.TEXT, {length: [20]})
 					]
@@ -118,7 +118,7 @@ describe('Entities', () => {
 			entities: [
 				{
 					name: 'User',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						createEntityProperty('score', EntityPropertyType.DECIMAL, {length: [10, 5]})
 					]
@@ -141,7 +141,7 @@ describe('Entities', () => {
 			entities: [
 				{
 					name: 'User',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						createEntityProperty('username', EntityPropertyType.TEXT, {length: [20], unique: true}),
 						createEntityProperty('realName', EntityPropertyType.TEXT, {length: [50], optional: true}),
@@ -381,7 +381,7 @@ describe('Entities and relationships', () => {
 			entities: [
 				{
 					name: 'User',
-					identifierPropertyName: 'uuid',
+					identityPropertyName: 'uuid',
 					properties: [
 						createEntityProperty('username', EntityPropertyType.TEXT, {length: [20], unique: true}),
 						createEntityProperty('active', EntityPropertyType.BOOLEAN)
@@ -389,7 +389,7 @@ describe('Entities and relationships', () => {
 				},
 				{
 					name: 'Order',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						createEntityProperty('date', EntityPropertyType.DATETIME)
 					]
@@ -416,7 +416,7 @@ describe('Entities and relationships', () => {
 		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
 
 		expect(result).toBe(addDefaultDirectives(`[User|
-    uuid: identifier
+    uuid: identity
     username!: text(20)
     active: bool
 ]

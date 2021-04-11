@@ -13,6 +13,7 @@ export interface ClassFieldDescriptor {
 	name: string;
 	nullable: boolean;
 	list: boolean;
+	maxSize?: number;
 	// Find a better way to represent when a field is an entity or a built-in type
 	primitiveType?: EntityPropertyType;
 	entityType?: string;

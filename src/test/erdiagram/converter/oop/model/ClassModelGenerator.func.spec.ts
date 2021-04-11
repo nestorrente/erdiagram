@@ -24,7 +24,7 @@ describe('Entity', () => {
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						createSimpleEntityProperty('name', EntityPropertyType.TEXT, [10]),
 					]
@@ -39,7 +39,7 @@ describe('Entity', () => {
 					name: 'Entity',
 					fields: [
 						createIdClassField(),
-						createPrimitiveClassField('name', EntityPropertyType.TEXT)
+						createPrimitiveClassField('name', EntityPropertyType.TEXT, {maxSize: 10})
 					]
 				}
 			]
@@ -47,13 +47,13 @@ describe('Entity', () => {
 
 	});
 
-	test('Entity with explicit identifier property', () => {
+	test('Entity with explicit identity property', () => {
 
 		const classModel = classModelGenerator.generateClassModel({
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: 'customEntityId',
+					identityPropertyName: 'customEntityId',
 					properties: []
 				}
 			],
@@ -73,13 +73,13 @@ describe('Entity', () => {
 
 	});
 
-	test('Entity with explicit identifier property defined as the last property', () => {
+	test('Entity with explicit identity property defined as the last property', () => {
 
 		const classModel = classModelGenerator.generateClassModel({
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: 'customEntityId',
+					identityPropertyName: 'customEntityId',
 					properties: [
 						createSimpleEntityProperty('name', EntityPropertyType.TEXT, [10])
 					]
@@ -94,7 +94,7 @@ describe('Entity', () => {
 					name: 'Entity',
 					fields: [
 						createIdClassField('customEntityId'),
-						createPrimitiveClassField('name', EntityPropertyType.TEXT)
+						createPrimitiveClassField('name', EntityPropertyType.TEXT, {maxSize: 10})
 					]
 				}
 			]
@@ -108,7 +108,7 @@ describe('Entity', () => {
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						createSimpleEntityProperty('a', EntityPropertyType.BOOLEAN),
 						createSimpleEntityProperty('b', EntityPropertyType.SHORT),
@@ -119,7 +119,7 @@ describe('Entity', () => {
 						createSimpleEntityProperty('g', EntityPropertyType.DATE),
 						createSimpleEntityProperty('h', EntityPropertyType.TIME),
 						createSimpleEntityProperty('i', EntityPropertyType.DATETIME),
-						createSimpleEntityProperty('j', EntityPropertyType.BLOB),
+						createSimpleEntityProperty('j', EntityPropertyType.BLOB, [1024]),
 					]
 				}
 			],
@@ -137,11 +137,11 @@ describe('Entity', () => {
 						createPrimitiveClassField('c', EntityPropertyType.INT),
 						createPrimitiveClassField('d', EntityPropertyType.LONG),
 						createPrimitiveClassField('e', EntityPropertyType.DECIMAL),
-						createPrimitiveClassField('f', EntityPropertyType.TEXT),
+						createPrimitiveClassField('f', EntityPropertyType.TEXT, {maxSize: 50}),
 						createPrimitiveClassField('g', EntityPropertyType.DATE),
 						createPrimitiveClassField('h', EntityPropertyType.TIME),
 						createPrimitiveClassField('i', EntityPropertyType.DATETIME),
-						createPrimitiveClassField('j', EntityPropertyType.BLOB),
+						createPrimitiveClassField('j', EntityPropertyType.BLOB, {maxSize: 1024}),
 					]
 				}
 			]
@@ -155,7 +155,7 @@ describe('Entity', () => {
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						{
 							name: 'num',
@@ -190,7 +190,7 @@ describe('Entity', () => {
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						{
 							name: 'num',

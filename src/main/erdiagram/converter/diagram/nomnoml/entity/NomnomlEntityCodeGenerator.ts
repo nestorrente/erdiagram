@@ -1,13 +1,13 @@
 import {EntityDescriptor} from '@/erdiagram/parser/types/entity-relationship-model-types';
-import NomnomlEntityIdentifierPropertyCodeGenerator
-	from '@/erdiagram/converter/diagram/nomnoml/entity/NomnomlEntityIdentifierPropertyCodeGenerator';
+import NomnomlEntityIdentityPropertyCodeGenerator
+	from '@/erdiagram/converter/diagram/nomnoml/entity/NomnomlEntityIdentityPropertyCodeGenerator';
 import NomnomlEntityPropertyCodeGenerator
 	from '@/erdiagram/converter/diagram/nomnoml/entity/NomnomlEntityPropertyCodeGenerator';
 import {indentLines} from '@/erdiagram/util/indent-utils';
 
 export default class NomnomlEntityCodeGenerator {
 
-	private readonly entityIdentifierPropertyCodeGenerator = new NomnomlEntityIdentifierPropertyCodeGenerator();
+	private readonly entityIdentityPropertyCodeGenerator = new NomnomlEntityIdentityPropertyCodeGenerator();
 	private readonly entityPropertyCodeGenerator = new NomnomlEntityPropertyCodeGenerator();
 
 	public generateEntityCode(entity: EntityDescriptor): string {
@@ -29,14 +29,14 @@ export default class NomnomlEntityCodeGenerator {
 	private generateEntityPropertiesCode(entity: EntityDescriptor): string {
 
 		const {
-			identifierPropertyName,
+			identityPropertyName,
 			properties
 		} = entity;
 
 		const propertiesCode = properties.map(property => this.entityPropertyCodeGenerator.generateEntityPropertyCode(property));
 
-		if (identifierPropertyName) {
-			propertiesCode.unshift(this.entityIdentifierPropertyCodeGenerator.generateEntityIdentifierPropertyCode(identifierPropertyName));
+		if (identityPropertyName) {
+			propertiesCode.unshift(this.entityIdentityPropertyCodeGenerator.generateEntityIdentityPropertyCode(identityPropertyName));
 		}
 
 		return indentLines(propertiesCode).join('\n');

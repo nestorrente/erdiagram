@@ -1,12 +1,12 @@
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {ClassFieldDescriptor} from '@/erdiagram/converter/oop/model/class-model-types';
 
-export function createIdClassField(name: string = 'id') {
+export function createIdClassField(name: string = 'id'): ClassFieldDescriptor {
 	return {
 		name,
 		list: false,
 		nullable: true,
-		primitiveType: EntityPropertyType.IDENTIFIER
+		primitiveType: EntityPropertyType.IDENTITY
 	};
 }
 
@@ -17,6 +17,7 @@ export function createPrimitiveClassField(name: string, type: EntityPropertyType
 		name,
 		list: options?.list ?? false,
 		nullable: options?.nullable ?? false,
+		maxSize: options?.maxSize,
 		primitiveType: type
 	};
 }

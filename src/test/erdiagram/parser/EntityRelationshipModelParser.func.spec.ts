@@ -28,7 +28,7 @@ Entity
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						createSimpleEntityProperty('name', EntityPropertyType.TEXT, [10]),
 					]
@@ -39,12 +39,12 @@ Entity
 
 	});
 
-	test('Entity with explicit identifier property', () => {
+	test('Entity with explicit identity property', () => {
 
 		const model = entityRelationshipModelParser.parseModel(`
 
 Entity
-	customEntityId identifier
+	customEntityId identity
 
 		`);
 
@@ -52,7 +52,7 @@ Entity
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: 'customEntityId',
+					identityPropertyName: 'customEntityId',
 					properties: []
 				}
 			],
@@ -61,13 +61,13 @@ Entity
 
 	});
 
-	test('Entity with explicit identifier property defined as the last property', () => {
+	test('Entity with explicit identity property defined as the last property', () => {
 
 		const model = entityRelationshipModelParser.parseModel(`
 
 Entity
 	name text(10)
-	customEntityId identifier
+	customEntityId identity
 
 		`);
 
@@ -75,7 +75,7 @@ Entity
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: 'customEntityId',
+					identityPropertyName: 'customEntityId',
 					properties: [
 						createSimpleEntityProperty('name', EntityPropertyType.TEXT, [10])
 					]
@@ -108,7 +108,7 @@ Entity
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						createSimpleEntityProperty('a', EntityPropertyType.BOOLEAN),
 						createSimpleEntityProperty('b', EntityPropertyType.SHORT),
@@ -141,7 +141,7 @@ Entity
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						{
 							name: 'num',
@@ -171,7 +171,7 @@ Entity
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						{
 							name: 'num',
@@ -470,7 +470,7 @@ Entity
 			entities: [
 				{
 					name: 'Entity',
-					identifierPropertyName: undefined,
+					identityPropertyName: undefined,
 					properties: [
 						createSimpleEntityProperty('name', EntityPropertyType.TEXT, [10]),
 					]
@@ -485,14 +485,14 @@ Entity
 
 describe('Errors', () => {
 
-	test('Entity with optional identifier property', () => {
+	test('Entity with optional identity property', () => {
 
 		expect(() => {
 
 			entityRelationshipModelParser.parseModel(`
 
 Entity
-	customEntityId? identifier
+	customEntityId? identity
 
 			`);
 
@@ -500,14 +500,14 @@ Entity
 
 	});
 
-	test('Entity with unique identifier property', () => {
+	test('Entity with unique identity property', () => {
 
 		expect(() => {
 
 			entityRelationshipModelParser.parseModel(`
 
 Entity
-	customEntityId! identifier
+	customEntityId! identity
 
 			`);
 
@@ -515,14 +515,14 @@ Entity
 
 	});
 
-	test('Entity with identifier property with length', () => {
+	test('Entity with identity property with length', () => {
 
 		expect(() => {
 
 			entityRelationshipModelParser.parseModel(`
 
 Entity
-	customEntityId identifier(10)
+	customEntityId identity(10)
 
 			`);
 
@@ -530,15 +530,15 @@ Entity
 
 	});
 
-	test('Entity with more than one identifier property', () => {
+	test('Entity with more than one identity property', () => {
 
 		expect(() => {
 
 			entityRelationshipModelParser.parseModel(`
 
 Entity
-	customEntityId1 identifier
-	customEntityId2 identifier
+	customEntityId1 identity
+	customEntityId2 identity
 
 			`);
 
@@ -562,14 +562,14 @@ Entity
 
 	});
 
-	test('Entity with property name equals to its explicit identifier', () => {
+	test('Entity with property name equals to its explicit identity', () => {
 
 		expect(() => {
 
 			entityRelationshipModelParser.parseModel(`
 
 Entity
-	prop identifier
+	prop identity
 	prop bool
 
 			`);

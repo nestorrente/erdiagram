@@ -1,15 +1,17 @@
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
 import {ClassDescriptor, ClassFieldDescriptor, ClassModel} from '@/erdiagram/converter/oop/model/class-model-types';
 import {indentLine, indentLines} from '@/erdiagram/util/indent-utils';
-import {isJavaParameterizedType} from '@/erdiagram/converter/oop/code-converter/java/type/JavaParameterizedType';
-import JavaType, {createJavaType} from '@/erdiagram/converter/oop/code-converter/java/type/JavaType';
-import {removeDuplicates} from '@/erdiagram/util/array-utils';
+import JavaType from '@/erdiagram/converter/oop/code-converter/java/type/JavaType';
 import ClassModelToCodeConverter from '@/erdiagram/converter/oop/code-converter/ClassModelToCodeConverter';
 import JavaClassModelToCodeConverterConfig
 	from '@/erdiagram/converter/oop/code-converter/java/config/JavaClassModelToCodeConverterConfig';
 import javaClassModelToCodeConverterConfigManager
 	from '@/erdiagram/converter/oop/code-converter/java/config/JavaClassModelToCodeConverterConfigManager';
 import JavaFieldTypeResolver from '@/erdiagram/converter/oop/code-converter/java/type/JavaFieldTypeResolver';
+import JavaImportStatementsGenerator
+	from '@/erdiagram/converter/oop/code-converter/java/type/import/JavaImportStatementsGenerator';
+import JavaValidationAnnotationsGenerator
+	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/JavaValidationAnnotationsGenerator';
 
 const EMPTY_STRING: string = '';
 
@@ -17,10 +19,22 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 
 	private readonly config: JavaClassModelToCodeConverterConfig;
 	private readonly typeResolver: JavaFieldTypeResolver;
+	private readonly validationAnnotationsGenerator: JavaValidationAnnotationsGenerator;
+	private readonly importStatementsGenerator: JavaImportStatementsGenerator;
 
 	constructor(config?: Partial<JavaClassModelToCodeConverterConfig>) {
+
 		this.config = javaClassModelToCodeConverterConfigManager.mergeWithDefaultConfig(config);
+
 		this.typeResolver = new JavaFieldTypeResolver(this.config.typeBindings, this.config.generatedClassesPackage);
+
+		this.validationAnnotationsGenerator = new JavaValidationAnnotationsGenerator(
+				this.config.notNullTextValidationStrategy,
+				this.config.notNullBlobValidationStrategy
+		);
+
+		this.importStatementsGenerator = new JavaImportStatementsGenerator(this.config.generatedClassesPackage);
+
 	}
 
 	public convertToCode(classModel: ClassModel): string {
@@ -61,7 +75,7 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 			classOuterLines.push(`package ${this.config.generatedClassesPackage};`, EMPTY_STRING);
 		}
 
-		const importLines = this.createImportStatements(usedTypes, classDescriptor.fields);
+		const importLines = this.importStatementsGenerator.generateImportStatements(usedTypes);
 
 		if (importLines.length !== 0) {
 			classOuterLines.push(...importLines, EMPTY_STRING);
@@ -92,17 +106,7 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 		const fieldLines: string[] = [];
 		const usedTypes: JavaType[] = [];
 
-		// TODO use length for validation annotations?
-
-		if (this.config.useSpringNullabilityAnnotations) {
-			if (field.nullable) {
-				fieldLines.push('@Nullable');
-				usedTypes.push(createJavaType('Nullable', 'org.springframework.lang'));
-			} else {
-				fieldLines.push('@NonNull');
-				usedTypes.push(createJavaType('NonNull', 'org.springframework.lang'));
-			}
-		}
+		this.addValidationAnnotationsIfApply(field, fieldLines, usedTypes);
 
 		const fieldType = this.typeResolver.resolveFieldType(field);
 		usedTypes.push(fieldType);
@@ -132,36 +136,17 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 
 	}
 
-	private createImportStatements(javaTypes: JavaType[], classFields: ClassFieldDescriptor[]): string[] {
+	private addValidationAnnotationsIfApply(field: ClassFieldDescriptor, fieldLines: string[], usedTypes: JavaType[]) {
 
-		const importStatements = this.unrollTypesRecursively(javaTypes)
-				.filter(javaType => this.isImportRequired(javaType))
-				.map(javaType => `import ${javaType.canonicalName};`);
-
-		return removeDuplicates(importStatements).sort();
-
-	}
-
-	private unrollTypesRecursively(javaTypes: JavaType[], appendTo: JavaType[] = []): JavaType[] {
-
-		for (const javaType of javaTypes) {
-
-			appendTo.push(javaType);
-
-			if (isJavaParameterizedType(javaType)) {
-				this.unrollTypesRecursively(javaType.parameterTypes, appendTo);
-			}
-
+		if (!this.config.useValidationAnnotations) {
+			return;
 		}
 
-		return appendTo;
+		this.validationAnnotationsGenerator.getValidationAnnotations(field)
+				.forEach(({annotationType, codeLine}) => {
+					fieldLines.push(codeLine);
+					usedTypes.push(annotationType);
+				});
 
 	}
-
-	private isImportRequired(javaType: JavaType): boolean {
-		return !!javaType.packageName
-				&& javaType.packageName !== 'java.lang'
-				&& this.config.generatedClassesPackage !== javaType.packageName;
-	}
-
 }
