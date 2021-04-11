@@ -26,9 +26,24 @@ export default class JavaValidationAnnotationsGenerator {
 
 	public getValidationAnnotations(field: ClassFieldDescriptor): FieldAnnotation[] {
 		return removeNullableValues([
-			this.getSizeAnnotation(field),
-			this.getNotNullAnnotation(field)
+			this.getNotNullAnnotation(field),
+			this.getSizeAnnotation(field)
 		]);
+	}
+
+	private getNotNullAnnotation(field: ClassFieldDescriptor): FieldAnnotation | null {
+
+		if (field.nullable) {
+			return null;
+		}
+
+		const annotationType = this.getNotNullAnnotationForField(field);
+
+		return {
+			annotationType,
+			codeLine: this.formatAnnotation(annotationType)
+		};
+
 	}
 
 	private getSizeAnnotation(field: ClassFieldDescriptor): FieldAnnotation | null {
@@ -44,21 +59,6 @@ export default class JavaValidationAnnotationsGenerator {
 		return {
 			annotationType,
 			codeLine: this.formatAnnotation(annotationType, {max: maxSize})
-		};
-
-	}
-
-	private getNotNullAnnotation(field: ClassFieldDescriptor): FieldAnnotation | null {
-
-		if (field.nullable) {
-			return null;
-		}
-
-		const annotationType = this.getNotNullAnnotationForField(field);
-
-		return {
-			annotationType,
-			codeLine: this.formatAnnotation(annotationType)
 		};
 
 	}

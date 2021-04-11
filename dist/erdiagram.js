@@ -1,10 +1,10 @@
 /*!
- * Entity-Relationship Diagram Code Generator v1.0.0-beta.2
+ * Entity-Relationship Diagram Code Generator v1.0.0-beta.3
  * https://github.com/nestorrente/erdiagram
  *
  * Released under the MIT License.
  *
- * Build date: 2021-04-11T22:33:01.669Z
+ * Build date: 2021-04-11T22:45:00.787Z
  */
 var ERDiagram;
 /******/ (() => { // webpackBootstrap
@@ -4017,9 +4017,19 @@ class JavaValidationAnnotationsGenerator {
     }
     getValidationAnnotations(field) {
         return (0,_erdiagram_util_array_utils__WEBPACK_IMPORTED_MODULE_3__.removeNullableValues)([
-            this.getSizeAnnotation(field),
-            this.getNotNullAnnotation(field)
+            this.getNotNullAnnotation(field),
+            this.getSizeAnnotation(field)
         ]);
+    }
+    getNotNullAnnotation(field) {
+        if (field.nullable) {
+            return null;
+        }
+        const annotationType = this.getNotNullAnnotationForField(field);
+        return {
+            annotationType,
+            codeLine: this.formatAnnotation(annotationType)
+        };
     }
     getSizeAnnotation(field) {
         const { maxSize } = field;
@@ -4030,16 +4040,6 @@ class JavaValidationAnnotationsGenerator {
         return {
             annotationType,
             codeLine: this.formatAnnotation(annotationType, { max: maxSize })
-        };
-    }
-    getNotNullAnnotation(field) {
-        if (field.nullable) {
-            return null;
-        }
-        const annotationType = this.getNotNullAnnotationForField(field);
-        return {
-            annotationType,
-            codeLine: this.formatAnnotation(annotationType)
         };
     }
     getNotNullAnnotationForField(field) {
