@@ -4,14 +4,14 @@ DISCLAIMER: This documentation is still work in progress.
 
 ## Table of contents
 
-* **[Installation](#installation)**
-    + **[Using NPM](#using-npm)**
-    + **[Using `<script>` tag](#using-script-tag)**
-* **[Concepts](#concepts)**
+* [Installation](#installation)
+    + [Using NPM](#using-npm)
+    + [Using `<script>` tag](#using-script-tag)
+* [Concepts](#concepts)
     + [EntityRelationshipModel](#entityrelationshipmodel)
     + [DatabaseModel](#databasemodel)
     + [ClassModel](#classmodel)
-* **[Usage examples](#usage-examples)**
+* [Usage examples](#usage-examples)
     + [Parsing the ERDiagram language into a EntityRelationshipModel object](#parsing-the-erdiagram-language-into-a-entityrelationshipmodel-object)
     + [Generate a database creation script from an EntityRelationshipModel object](#generate-a-database-creation-script-from-an-entityrelationshipmodel-object)
     + [Generate OOP classes from an EntityRelationshipModel object](#generate-oop-classes-from-an-entityrelationshipmodel-object)

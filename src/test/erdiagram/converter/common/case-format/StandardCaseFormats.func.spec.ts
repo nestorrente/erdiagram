@@ -13,7 +13,7 @@ describe('Split words', () => {
 
 		});
 
-	})
+	});
 
 	type SplitWordsTestCase = [keyof typeof StandardCaseFormats, string, string[]];
 
@@ -23,7 +23,6 @@ describe('Split words', () => {
 		['LOWER_UNDERSCORE', 'lorem_ipsum_dolor_sit_amet_0', ['lorem', 'ipsum', 'dolor', 'sit', 'amet', '0']],
 		['CAPITALIZED_UNDERSCORE', 'Lorem_Ipsum_Dolor_Sit_Amet_0', ['Lorem', 'Ipsum', 'Dolor', 'Sit', 'Amet', '0']],
 		['UPPER_UNDERSCORE', 'LOREM_IPSUM_DOLOR_SIT_AMET_0', ['LOREM', 'IPSUM', 'DOLOR', 'SIT', 'AMET', '0']],
-		['CASE_INSENSITIVE_UNDERSCORE', 'LOREM_ipsum_Dolor_sIT_aMeT_0', ['LOREM', 'ipsum', 'Dolor', 'sIT', 'aMeT', '0']],
 	];
 
 	testCases.forEach(([caseFormatName, inputText, expectedResult]) => {
@@ -38,7 +37,7 @@ describe('Split words', () => {
 
 		});
 
-	})
+	});
 
 });
 
@@ -54,7 +53,7 @@ describe('Join words', () => {
 
 		});
 
-	})
+	});
 
 	type JoinWordsTestCase = [keyof typeof StandardCaseFormats, string];
 
@@ -66,7 +65,6 @@ describe('Join words', () => {
 		['LOWER_UNDERSCORE', 'lorem_ipsum_dolor_sit_amet_0'],
 		['CAPITALIZED_UNDERSCORE', 'Lorem_Ipsum_Dolor_Sit_Amet_0'],
 		['UPPER_UNDERSCORE', 'LOREM_IPSUM_DOLOR_SIT_AMET_0'],
-		['CASE_INSENSITIVE_UNDERSCORE', 'LOREM_ipsum_Dolor_sIT_aMeT_0'],
 	];
 
 	testCases.forEach(([caseFormatName, expectedResult]) => {
@@ -81,6 +79,6 @@ describe('Join words', () => {
 
 		});
 
-	})
+	});
 
 });

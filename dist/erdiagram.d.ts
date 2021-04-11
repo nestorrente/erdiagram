@@ -22,7 +22,7 @@ export interface EntityRelationshipModel {
 }
 export interface EntityDescriptor {
 	name: string;
-	identifierPropertyName?: string;
+	identityPropertyName?: string;
 	properties: EntityPropertyDescriptor[];
 }
 export interface EntityPropertyDescriptor {
@@ -33,7 +33,7 @@ export interface EntityPropertyDescriptor {
 	length: number[];
 }
 export declare enum EntityPropertyType {
-	IDENTIFIER = "identifier",
+	IDENTITY = "identity",
 	BOOLEAN = "bool",
 	SHORT = "short",
 	INT = "int",
@@ -85,7 +85,6 @@ export declare const StandardCaseFormats: {
 	LOWER_UNDERSCORE: CaseFormat;
 	CAPITALIZED_UNDERSCORE: CaseFormat;
 	UPPER_UNDERSCORE: CaseFormat;
-	CASE_INSENSITIVE_UNDERSCORE: CaseFormat;
 };
 export declare type IdNamingStrategy = (entityName: string) => string;
 export declare const StandardIdNamingStrategies: {
@@ -97,7 +96,7 @@ export interface DatabaseModel {
 }
 export interface TableDescriptor {
 	name: string;
-	identifierColumnName: string;
+	identityColumnName: string;
 	columns: TableColumnDescriptor[];
 	references: TableReferenceDescriptor[];
 }
@@ -111,7 +110,7 @@ export interface TableColumnDescriptor {
 export interface TableReferenceDescriptor {
 	columnName: string;
 	targetTableName: string;
-	targetTableIdentifierColumnName: string;
+	targetTableIdentityColumnName: string;
 	notNull: boolean;
 	unique: boolean;
 }
@@ -131,10 +130,10 @@ export declare class DatabaseModelGenerator {
 	private generateRelationshipTables;
 	private generateRelationshipTable;
 	private getRelationshipTableName;
-	private getRelationshipTableIdentifierColumnName;
+	private getRelationshipTableIdentityColumnName;
 	private createTableReference;
 	private pluralizeEntityNameIfApplies;
-	private getIdentifierColumnName;
+	private getIdentityColumnName;
 	private mapPropertyToColumn;
 	private isManyToManyRelationship;
 }
@@ -161,7 +160,7 @@ export interface SqlDialect {
 	getScriptEndCode(): string;
 	mustUseAlterTableForForeignKeys(): boolean;
 	getCreateTableStartCode(tableName: string): string;
-	getIdColumnCode(tableName: string, identifierColumnName: string): IdColumnCode;
+	getIdColumnCode(tableName: string, identityColumnName: string): IdColumnCode;
 	getColumnCode(tableName: string, column: TableColumnDescriptor): RegularColumnCode;
 	getForeignColumnCode(tableName: string, reference: TableReferenceDescriptor): ForeignKeyColumnCode;
 	getCreateTableEndCode(): string;
@@ -200,7 +199,7 @@ export declare class MysqlDialect implements SqlDialect {
 	mustUseAlterTableForForeignKeys(): boolean;
 	getCreateTableStartCode(tableName: string): string;
 	getCreateTableEndCode(): string;
-	getIdColumnCode(tableName: string, identifierColumnName: string): IdColumnCode;
+	getIdColumnCode(tableName: string, identityColumnName: string): IdColumnCode;
 	getColumnCode(tableName: string, column: TableColumnDescriptor): RegularColumnCode;
 	getForeignColumnCode(tableName: string, reference: TableReferenceDescriptor): ForeignKeyColumnCode;
 	getAlterTableAddCode(tableName: string, constraintCode: string): string;
@@ -227,7 +226,7 @@ export declare class OracleDialect implements SqlDialect {
 	mustUseAlterTableForForeignKeys(): boolean;
 	getCreateTableStartCode(tableName: string): string;
 	getCreateTableEndCode(): string;
-	getIdColumnCode(tableName: string, identifierColumnName: string): IdColumnCode;
+	getIdColumnCode(tableName: string, identityColumnName: string): IdColumnCode;
 	getColumnCode(tableName: string, column: TableColumnDescriptor): RegularColumnCode;
 	getForeignColumnCode(tableName: string, reference: TableReferenceDescriptor): ForeignKeyColumnCode;
 	getAlterTableAddCode(tableName: string, constraintCode: string): string;
@@ -254,7 +253,7 @@ export declare class SqliteDialect implements SqlDialect {
 	mustUseAlterTableForForeignKeys(): boolean;
 	getCreateTableStartCode(tableName: string): string;
 	getCreateTableEndCode(): string;
-	getIdColumnCode(tableName: string, identifierColumnName: string): IdColumnCode;
+	getIdColumnCode(tableName: string, identityColumnName: string): IdColumnCode;
 	getColumnCode(tableName: string, column: TableColumnDescriptor): RegularColumnCode;
 	getForeignColumnCode(tableName: string, reference: TableReferenceDescriptor): ForeignKeyColumnCode;
 	getAlterTableAddCode(tableName: string, constraintCode: string): string;
@@ -281,7 +280,7 @@ export declare class SqlServerDialect implements SqlDialect {
 	mustUseAlterTableForForeignKeys(): boolean;
 	getCreateTableStartCode(tableName: string): string;
 	getCreateTableEndCode(): string;
-	getIdColumnCode(tableName: string, identifierColumnName: string): IdColumnCode;
+	getIdColumnCode(tableName: string, identityColumnName: string): IdColumnCode;
 	getColumnCode(tableName: string, column: TableColumnDescriptor): RegularColumnCode;
 	getForeignColumnCode(tableName: string, reference: TableReferenceDescriptor): ForeignKeyColumnCode;
 	getAlterTableAddCode(tableName: string, constraintCode: string): string;
@@ -308,7 +307,7 @@ export declare class PostgresqlDialect implements SqlDialect {
 	mustUseAlterTableForForeignKeys(): boolean;
 	getCreateTableStartCode(tableName: string): string;
 	getCreateTableEndCode(): string;
-	getIdColumnCode(tableName: string, identifierColumnName: string): IdColumnCode;
+	getIdColumnCode(tableName: string, identityColumnName: string): IdColumnCode;
 	getColumnCode(tableName: string, column: TableColumnDescriptor): RegularColumnCode;
 	getForeignColumnCode(tableName: string, reference: TableReferenceDescriptor): ForeignKeyColumnCode;
 	getAlterTableAddCode(tableName: string, constraintCode: string): string;
@@ -350,6 +349,7 @@ export interface ClassFieldDescriptor {
 	name: string;
 	nullable: boolean;
 	list: boolean;
+	maxSize?: number;
 	primitiveType?: EntityPropertyType;
 	entityType?: string;
 }
@@ -386,24 +386,37 @@ export declare function createJavaParameterizedType(name: string, packageName: s
 export declare function createJavaArrayType(parameterType: JavaType): JavaParameterizedType;
 export declare function isJavaParameterizedType(javaType: JavaType): javaType is JavaParameterizedType;
 export function parseJavaType(text: string): JavaType;
+declare enum NotNullTextValidationStrategy {
+	NOT_NULL = "not_null",
+	NOT_EMPTY = "not_empty",
+	NOT_BLANK = "not_blank"
+}
+declare enum NotNullBlobValidationStrategy {
+	NOT_NULL = "not_null",
+	NOT_EMPTY = "not_empty"
+}
 export interface JavaClassModelToCodeConverterConfig extends ClassModelToCodeConverterConfig<JavaType> {
 	generatedClassesPackage?: string;
-	useSpringNullabilityAnnotations: boolean;
+	useValidationAnnotations: boolean;
+	notNullTextValidationStrategy: NotNullTextValidationStrategy;
+	notNullBlobValidationStrategy: NotNullBlobValidationStrategy;
 }
 export declare class JavaClassModelToCodeConverter implements ClassModelToCodeConverter {
 	private readonly config;
 	private readonly typeResolver;
+	private readonly validationAnnotationsGenerator;
+	private readonly importStatementsGenerator;
 	constructor(config?: Partial<JavaClassModelToCodeConverterConfig>);
 	convertToCode(classModel: ClassModel): string;
 	private generateClass;
 	private createField;
-	private createImportStatements;
-	private unrollTypesRecursively;
-	private isImportRequired;
+	private addValidationAnnotationsIfApply;
 }
 export interface JavaClassModelToCodeConverterSerializableConfig extends ClassModelToCodeConverterSerializableConfig {
 	generatedClassesPackage?: string;
-	useSpringNullabilityAnnotations: boolean;
+	useValidationAnnotations: boolean;
+	notNullTextValidationStrategy: NotNullTextValidationStrategy;
+	notNullBlobValidationStrategy: NotNullBlobValidationStrategy;
 }
 export declare class JavaClassModelToCodeConverterConfigManager extends AbstractComponentConfigManager<JavaClassModelToCodeConverterConfig, Partial<JavaClassModelToCodeConverterConfig>, JavaClassModelToCodeConverterSerializableConfig> {
 	getDefaultConfig(): JavaClassModelToCodeConverterConfig;
@@ -565,11 +578,11 @@ export declare class ERDiagramEntityPropertyError extends ERDiagramEntityError {
 	readonly property: ParsedEntityPropertyDescriptor;
 	constructor(message: string, entity: ParsedEntityDescriptor, property: ParsedEntityPropertyDescriptor);
 }
-export declare class ERDiagramMultipleIdentifiersError extends ERDiagramEntityPropertyError {
-	readonly identifierProperties: ParsedEntityPropertyDescriptor[];
-	constructor(message: string, entity: ParsedEntityDescriptor, identifierProperties: ParsedEntityPropertyDescriptor[]);
+export declare class ERDiagramMultipleIdentitiesError extends ERDiagramEntityPropertyError {
+	readonly identityProperties: ParsedEntityPropertyDescriptor[];
+	constructor(message: string, entity: ParsedEntityDescriptor, identityProperties: ParsedEntityPropertyDescriptor[]);
 }
-export declare class ERDiagramInvalidIdentifierDefinitionError extends ERDiagramEntityPropertyError {
+export declare class ERDiagramInvalidIdentityDefinitionError extends ERDiagramEntityPropertyError {
 }
 export declare class ERDiagramDuplicatedPropertyNameError extends ERDiagramEntityPropertyError {
 }

@@ -5,13 +5,13 @@ how _ERDiagram_ converts the input _entity-relationship model_ into a _class mod
 
 ## Table of contents
 
-* **[Entities](#entities)**
+* [Entities](#entities)
     + [Property modifiers](#property-modifiers)
         + [Optional modifier](#optional-modifier)
         + [Unique modifier](#unique-modifier)
     + [Property's length](#propertys-length)
     + [Entity identifier property](#entity-identifier-property)
-* **[Relationships](#relationships)**
+* [Relationships](#relationships)
     + [Cardinalities](#cardinalities)
     + [Directions](#directions)
     + [Aliases](#aliases)

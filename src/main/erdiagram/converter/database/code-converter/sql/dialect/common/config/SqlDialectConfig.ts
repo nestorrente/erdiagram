@@ -5,6 +5,4 @@ export default interface SqlDialectConfig {
 	typeBindings: Partial<Record<EntityPropertyType, string>>;
 	tableNameCaseFormat: CaseFormat;
 	columnNameCaseFormat: CaseFormat;
-	// FIXME quizás para las constraint, más que un CaseFormat, tenga sentido un strategy de cómo generar su nombre
-	// constraintNameCaseFormat: CaseFormat;
 }

@@ -5,12 +5,12 @@ _ERDiagram_ converts the input _entity-relationship model_ into a _database mode
 
 ## Table of contents
 
-* **[Entities](#entities)**
+* [Entities](#entities)
     + [Property modifiers](#property-modifiers)
         + [Optional modifier](#optional-modifier)
         + [Unique modifier](#unique-modifier)
     + [Entity identifier property](#entity-identifier-property)
-* **[Relationships](#relationships)**
+* [Relationships](#relationships)
     + [Cardinalities](#cardinalities)
         + [One to one](#one-to-one)
         + [One to many](#one-to-many)
@@ -148,7 +148,7 @@ database model._
 
 #### Relationship's name and `usePluralTableNames` option
 
-It's possible to [configure _ERDiagram_ to use plural table names](), so the entity `User` will be modeled by creating a
+It's possible to [configure _ERDiagram_ to use plural table names](Configurable_options.md#databasemodelgenerator), so the entity `User` will be modeled by creating a
 `Users` table. However, if you have specified the relationship's name explicitly, it will be used without applying any
 transformation, so you have to specify it in plural if you what that behavior.
 

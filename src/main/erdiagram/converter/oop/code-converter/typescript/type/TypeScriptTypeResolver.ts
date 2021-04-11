@@ -45,6 +45,7 @@ export default class TypeScriptTypeResolver implements FieldTypeResolver<TypeScr
 			throw new Error('Invalid field descriptor: missing type');
 		}
 
+		/* istanbul ignore next */
 		if (!this.typeBindings.hasOwnProperty(primitiveType)) {
 			throw new Error('Unsupported type: ' + primitiveType);
 		}

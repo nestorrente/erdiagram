@@ -813,7 +813,7 @@ describe('Config', () => {
 				},
 				{
 					name: 'AsToBs',
-					// TODO this may not be the expected behaviour, but we have to find the right way to solve it
+					// FIXME this may not be the expected behaviour, but we have to find the right way to solve it
 					identityColumnName: 'asToBsId',
 					// identityColumnName: 'aToBId',
 					columns: [],

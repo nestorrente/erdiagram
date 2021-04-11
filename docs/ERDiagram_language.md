@@ -5,17 +5,17 @@ how to define an entity, its properties and its relationships.
 
 ## Table of contents
 
-* **[Defining an entity](#defining-an-entity)**
+* [Defining an entity](#defining-an-entity)
     + [Supported property types](#supported-property-types)
     + [Property modifiers](#property-modifiers)
     + [Entity identifier property](#entity-identifier-property)
-* **[Relationships](#relationships)**
+* [Relationships](#relationships)
     + [Directions](#directions)
     + [Aliases](#aliases)
     + [Cardinalities](#cardinalities)
     + [Relationship's name](#relationships-name)
     + [Relationship examples](#relationship-examples)
-* **[Comments](#comments)**
+* [Comments](#comments)
 
 ## Defining an entity
 

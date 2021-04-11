@@ -1,8 +1,5 @@
-- Analyze the pros and cons of creating a SQLDialect interface that allows us to reuse the same implementation of SqlCodeGenerator for the different DB engines/versions.
-
 - Type bindings improvement:
 	- Allow adding custom types.
-	- Allow to specify the type of the PK/ID columns.
 
 - Add support for different Oracle IDENTITY strategies:
 	- CREATE SEQUENCE + DEFAULT calling nextval (default)

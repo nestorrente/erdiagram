@@ -17,9 +17,9 @@ function addDefaultDirectives(expectedResult: string): string {
 		'#arrowSize: 1',
 		'#gravity: 1.5',
 		'#background: transparent',
-		'#fill: #eef6ff',
+		'#fill: #fefece',
 		'#lineWidth: 1',
-		'#stroke: #555',
+		'#stroke: #333333',
 		'#ranker: longest-path',
 	].join('\n');
 }
