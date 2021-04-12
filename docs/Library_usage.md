@@ -11,6 +11,7 @@ DISCLAIMER: This documentation is still work in progress.
     + [EntityRelationshipModel](#entityrelationshipmodel)
     + [DatabaseModel](#databasemodel)
     + [ClassModel](#classmodel)
+* [Configuration options](#configuration-options)
 * [Usage examples](#usage-examples)
     + [Parsing the ERDiagram language into a EntityRelationshipModel object](#parsing-the-erdiagram-language-into-a-entityrelationshipmodel-object)
     + [Generate a database creation script from an EntityRelationshipModel object](#generate-a-database-creation-script-from-an-entityrelationshipmodel-object)
@@ -78,6 +79,11 @@ This interface represents the OOP classes that represent the input entity-relati
 `EntityRelationshipModel` object is transformed into a `ClassModel` in order to generate the code of the classes.
 
 You can learn more about how the class model is generated [here](Class_model.md).
+
+## Configuration options
+
+You can read the [Configuration options](Configuration_options.md) document in order to get further
+information about the configuration options of the different components of _ERDiagram_. 
 
 ## Usage examples
 

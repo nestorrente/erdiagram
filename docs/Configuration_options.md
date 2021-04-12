@@ -1,7 +1,6 @@
-# Configurable options
+# Configuration options
 
-In this page you will find informationg about the configurable properties of the different components of the
-_ERDiagram_ library.
+In this page you will find information about the configuration options of the different components of the _ERDiagram_ library.
 
 ## Table of contents
 

@@ -148,7 +148,7 @@ database model._
 
 #### Relationship's name and `usePluralTableNames` option
 
-It's possible to [configure _ERDiagram_ to use plural table names](Configurable_options.md#databasemodelgenerator), so the entity `User` will be modeled by creating a
+It's possible to [configure _ERDiagram_ to use plural table names](docs/Configuration_options.md#databasemodelgenerator), so the entity `User` will be modeled by creating a
 `Users` table. However, if you have specified the relationship's name explicitly, it will be used without applying any
 transformation, so you have to specify it in plural if you what that behavior.
 
