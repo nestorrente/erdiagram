@@ -386,12 +386,12 @@ export declare function createJavaParameterizedType(name: string, packageName: s
 export declare function createJavaArrayType(parameterType: JavaType): JavaParameterizedType;
 export declare function isJavaParameterizedType(javaType: JavaType): javaType is JavaParameterizedType;
 export function parseJavaType(text: string): JavaType;
-declare enum NotNullTextValidationStrategy {
+export declare enum NotNullTextValidationStrategy {
 	NOT_NULL = "not_null",
 	NOT_EMPTY = "not_empty",
 	NOT_BLANK = "not_blank"
 }
-declare enum NotNullBlobValidationStrategy {
+export declare enum NotNullBlobValidationStrategy {
 	NOT_NULL = "not_null",
 	NOT_EMPTY = "not_empty"
 }
