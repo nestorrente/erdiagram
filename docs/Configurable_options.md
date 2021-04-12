@@ -9,10 +9,14 @@ _ERDiagram_ library.
 * [Database](#database)
     + [DatabaseModelGenerator](#databasemodelgenerator)
     + [MysqlDialect, OracleDialect, PostgresqlDialect, SqliteDialect, and SqlServerDialect](#mysqldialect-oracledialect-postgresqldialect-sqlitedialect-and-sqlserverdialect)
+        + [Type bindings (SQL)](#type-bindings-sql)
+        + [Case formats](#case-formats)
 * [OOP classes](#oop-classes)
     + [ClassModelGenerator](#classmodelgenerator)
     + [JavaClassModelToCodeConverter](#javaclassmodeltocodeconverter)
+        + [Type bindings (Java)](#type-bindings-java)
     + [TypeScriptClassModelToCodeConverter](#typescriptclassmodeltocodeconverter)
+        + [Type bindings (TypeScript)](#type-bindings-typescript)
 * [Diagram](#diagram)
     + [NomnomlEntityRelationshipModelToDiagramCodeConverter](#nomnomlentityrelationshipmodeltodiagramcodeconverter)
 
@@ -161,11 +165,11 @@ Here is the full list of directives that are supported by _ERDiagram_:
 |-------------------|------|----------------|---------------------------------------|
 | arrowSize | `number` | _many_ | `1` |
 | bendSize | `number` | _many_ | `undefined` |
-| direction | `enum` | `'down'`, `'right'` | `undefined` |
+| direction | `string` | `'down'`, `'right'` | `undefined` |
 | gutter | `number` | _many_ | `undefined` |
 | edgeMargin | `number` | _many_ | `undefined` |
 | gravity | `number` | _many_ | `1.5` |
-| edges | `enum` | `'hard'`, `'rounded'` | `undefined` |
+| edges | `string` | `'hard'`, `'rounded'` | `undefined` |
 | background | `string` | _many_ | `'transparent'` |
 | fill | `string` | _many_ | `'#eef6ff'` |
 | fillArrows | `boolean` | _many_ | `undefined` |
@@ -178,5 +182,5 @@ Here is the full list of directives that are supported by _ERDiagram_:
 | stroke | `string` | _many_ | `'#333333'` |
 | title | `string` | _many_ | `undefined` |
 | zoom | `number` | _many_ | `undefined` |
-| acyclicer | `enum` | `'greedy'` | `undefined` |
-| ranker | `enum` | `'network-simplex'`, `'tight-tree'`, `'longest-path'` | `'longest-path'` |
+| acyclicer | `string` | `'greedy'` | `undefined` |
+| ranker | `string` | `'network-simplex'`, `'tight-tree'`, `'longest-path'` | `'longest-path'` |
