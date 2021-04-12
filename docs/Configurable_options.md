@@ -103,8 +103,8 @@ These are the default case formats for each dialect:
 | `typeBindings` | `Record<EntityPropertyType, JavaType>` | _many_ | See below | Allows to customize the corresponding Java type for each _ERDiagram_ type |
 | `generatedClassesPackage` | <code>string &#124; undefined</code> | _many_ | `undefined` | Allows to define the package name of the generated classes |
 | `useValidationAnnotations` | `boolean` | `true`, `false` | `false` | Uses annotations from Java Validation API (JSR-303). Only `@NotNull`, `@NotEmpty`, `@NotBlank` and `@Size` are supported so far. |
-| `notNullTextValidationStrategy` | `enum` | `NotNullTextValidationStrategy.NOT_NULL`, `NotNullTextValidationStrategy.NOT_EMPTY`, `NotNullTextValidationStrategy.NOT_BLANK` | `not_null` | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull`, `@NotEmpty` or `@NotBlank`) to use for _not-null_ `text` fields |
-| `notNullBlobValidationStrategy` | `enum` | `NotNullBlobValidationStrategy.NOT_NULL`, `NotNullBlobValidationStrategy.NOT_EMPTY` | `not_null` | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull` or `@NotEmpty`) to use for _not-null_ `blob` fields |
+| `notNullTextValidationStrategy` | `enum` | `NotNullTextValidationStrategy.NOT_NULL`, `NotNullTextValidationStrategy.NOT_EMPTY`, `NotNullTextValidationStrategy.NOT_BLANK` | `NotNullTextValidationStrategy.NOT_NULL` | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull`, `@NotEmpty` or `@NotBlank`) to use for _not-null_ `text` fields |
+| `notNullBlobValidationStrategy` | `enum` | `NotNullBlobValidationStrategy.NOT_NULL`, `NotNullBlobValidationStrategy.NOT_EMPTY` | `NotNullBlobValidationStrategy.NOT_NULL` | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull` or `@NotEmpty`) to use for _not-null_ `blob` fields |
 
 #### Type bindings (Java)
 
