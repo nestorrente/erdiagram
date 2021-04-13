@@ -7,7 +7,7 @@ In this page you will find information about the configuration options of the di
 * [EntityRelationshipModelParser](#entityrelationshipmodelparser)
 * [Database](#database)
     + [DatabaseModelGenerator](#databasemodelgenerator)
-    + [MysqlDialect, OracleDialect, PostgresqlDialect, SqliteDialect, and SqlServerDialect](#mysqldialect-oracledialect-postgresqldialect-sqlitedialect-and-sqlserverdialect)
+    + [SqlDialect (MysqlDialect, OracleDialect, PostgresqlDialect, SqliteDialect, and SqlServerDialect)](#sqldialect-mysqldialect-oracledialect-postgresqldialect-sqlitedialect-and-sqlserverdialect)
         + [Type bindings (SQL)](#type-bindings-sql)
         + [Case formats](#case-formats)
 * [OOP classes](#oop-classes)
@@ -34,7 +34,7 @@ In this page you will find information about the configuration options of the di
 | `usePluralTableNames` | `boolean` | `true`, `false` | `false` | When `true`, _ERDiagram_ will name the database tables using the plural of the entities' names. For example, the entity `User` will be modelled using the `Users` table. |
 | `idNamingStrategy` | `function` | _many_ | `StandardIdNamingStrategies.DEFAULT` | Allows to customize the naming strategy for the identity column of the table. You can use any of the standard values (defined in the `StandardIdNamingStrategies` object) or write your own function `(entityName: string) => string`. |
 
-### MysqlDialect, OracleDialect, PostgresqlDialect, SqliteDialect, and SqlServerDialect
+### SqlDialect (MysqlDialect, OracleDialect, PostgresqlDialect, SqliteDialect, and SqlServerDialect)
 
 | Property | Type | Allowed values | Default value | description |
 |----------|------|----------------|---------------|-------------|

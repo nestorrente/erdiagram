@@ -199,9 +199,14 @@ The `EntityRelationshipModelParser` could be also instantiated using custom conf
 
 ```javascript
 const parser = new EntityRelationshipModelParser({
-                                                     allowUnknownEntities: true
-                                                 });
+    allowUnknownEntities: true
+});
 ```
+
+#### See also
+
+Configurable options of the mentioned components:
+* [`EntityRelationshipModelParser`](Configuration_options.md#entityrelationshipmodelparser)
 
 ### Generate a database creation script from an EntityRelationshipModel object
 
@@ -302,6 +307,12 @@ list of the supported engines:
 | PostgreSQL      | `PostgresqlDialect` |
 | SQLite          | `SqliteDialect`     |
 | SQL Server      | `SqlServerDialect`  |
+
+#### See also
+
+Configurable options of the mentioned components:
+* [`DatabaseModelGenerator`](Configuration_options.md#databasemodelgenerator)
+* [`SqlDialect` (`MysqlDialect`, `OracleDialect`, `PostgresqlDialect`, `SqliteDialect`, and `SqlServerDialect`)](Configuration_options.md#sqldialect-mysqldialect-oracledialect-postgresqldialect-sqlitedialect-and-sqlserverdialect)
 
 ### Generate OOP classes from an EntityRelationshipModel object
 
@@ -468,6 +479,13 @@ const classModelToCodeConverter = new JavaClassModelToCodeConverter({
 
 Although we are using `JavaClassModelToCodeConverter` in this example, there is also support for TypeScript (using the
 `TypeScriptClassModelToCodeConverter` class).
+
+#### See also
+
+Configurable options of the mentioned components:
+* [`ClassModelGenerator`](Configuration_options.md#classmodelgenerator)
+* [`JavaClassModelToCodeConverter`](Configuration_options.md#javaclassmodeltocodeconverter)
+* [`TypeScriptClassModelToCodeConverter`](Configuration_options.md#typescriptclassmodeltocodeconverter)
 
 ### Generate diagram code from an EntityRelationshipModel object
 
