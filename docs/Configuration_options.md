@@ -127,6 +127,40 @@ These are the default values for the `typeBindings` property:
 | `datetime`       | `java.time.LocalDateTime` |
 | `blob`           | `byte[]`                  |
 
+_ERDiagram_ exports some functions that you can use to create `JavaType` instances:
+
+```javascript
+import {
+    createJavaType,
+    createJavaArrayType,
+    createJavaParameterizedType,
+    parseJavaType
+} from '@nestorrente/erdiagram';
+
+// createJavaType(name: string, packageName?: string): JavaType
+
+const intType = createJavaType('int'); // int
+const integerType = createJavaType('Integer', 'java.lang'); // Integer
+const myClassType = createJavaType('MyClass', 'com.example'); // MyClass
+
+// createJavaArrayType(parameterType: JavaType): JavaParameterizedType
+
+const intArrayType = createJavaArrayType(intType); // int[]
+
+// createJavaParameterizedType(name: string, packageName: string | undefined, parameterTypes: JavaType[]): JavaParameterizedType
+
+const listOfMyClassType = createJavaParameterizedType('List', 'java.util', [myClassType]); // List<MyClass>
+const mapFromIntegerToMyClassType = createJavaParameterizedType('Map', 'java.util', [integerType, myClassType]) // Map<Integer, MyClass>
+
+// ... or you can just write the formatted version of the Java type and let ERDiagram parse for you
+
+// parseJavaType(text: string): JavaType
+
+parseJavaType('long') // long
+parseJavaType('java.lang.Long') // Long
+parseJavaType('java.util.Map<java.lang.Long, java.util.List<com.example.MyClass>>') // Map<Long, List<MyClass>>
+```
+
 ### TypeScriptClassModelToCodeConverter
 
 | Property | Type | Allowed values | Default value | description |
@@ -150,6 +184,40 @@ These are the default values for the `typeBindings` property:
 | `time`           | `Date`          |
 | `datetime`       | `Date`          |
 | `blob`           | `Uint8Array`    |
+
+_ERDiagram_ exports some functions that you can use to create your own `TypeScriptType` instances:
+
+```javascript
+import {
+    createTypeScriptType,
+    createTypeScriptArrayType,
+    createTypeScriptParameterizedType,
+    parseTypeScriptType
+} from '@nestorrente/erdiagram';
+
+// createTypeScriptType(name: string): TypeScriptType
+
+const numberType = createTypeScriptType('number'); // number
+const dateType = createTypeScriptType('Date'); // Date
+const myClassType = createTypeScriptType('MyClass'); // MyClass
+
+// createTypeScriptArrayType(parameterType: TypeScriptType): TypeScriptParameterizedType
+
+const numberArrayType = createTypeScriptArrayType(numberType); // number[] a.k.a. Array<number>
+
+// createTypeScriptParameterizedType(name: string, parameterTypes: TypeScriptType[]): TypeScriptParameterizedType
+
+const setOfMyDateType = createJavaParameterizedType('Set', [dateType]); // Set<MyDate>
+const mapFromIntegerToMyClassType = createJavaParameterizedType('Map', [numberType, myClassType]) // Map<number, MyClass>
+
+// ... or you can just write the formatted version of the Java type and let ERDiagram parse for you
+
+// parseTypeScriptTypeInternal(text: string): TypeScriptType
+
+parseJavaType('boolean') // boolean
+parseJavaType('Array<string>') // string[] a.k.a. Array<string>
+parseJavaType('Map<number, Date[]>') // Map<number, Date[]> a.k.a. Map<number, Array<Date>>
+```
 
 ## Diagram
 
