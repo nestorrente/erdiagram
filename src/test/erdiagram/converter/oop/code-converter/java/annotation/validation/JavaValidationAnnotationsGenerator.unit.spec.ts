@@ -72,23 +72,46 @@ describe('Not-null text validation strategies', () => {
 
 	testCaseParams.forEach(([notNullTextValidationStrategy, annotationType, codeLine]) => {
 
+		const customizedJavaValidationAnnotationsGenerator = new JavaValidationAnnotationsGenerator(
+				notNullTextValidationStrategy,
+				NotNullBlobValidationStrategy.NOT_NULL
+		);
+
 		test(`Not-null text should be annotated with @${annotationType.formatSimple()}`, () => {
 
-			const fieldAnnotations = new JavaValidationAnnotationsGenerator(
-					notNullTextValidationStrategy,
-					NotNullBlobValidationStrategy.NOT_NULL
-			)
-					.getValidationAnnotations({
-						name: 'field',
-						nullable: false,
-						list: false,
-						primitiveType: EntityPropertyType.TEXT
-					});
+			const fieldAnnotations = customizedJavaValidationAnnotationsGenerator.getValidationAnnotations({
+				name: 'field',
+				nullable: false,
+				list: false,
+				primitiveType: EntityPropertyType.TEXT
+			});
 
 			expect(fieldAnnotations.length).toBe(1);
 			expect(fieldAnnotations[0]).toStrictEqual({
 				annotationType,
 				codeLine
+			});
+
+		});
+
+		test(`@${annotationType.formatSimple()} annotation should appear before @Size`, () => {
+
+			const fieldAnnotations = customizedJavaValidationAnnotationsGenerator.getValidationAnnotations({
+				name: 'field',
+				nullable: false,
+				list: false,
+				primitiveType: EntityPropertyType.TEXT,
+				maxSize: 50
+			});
+
+			expect(fieldAnnotations.length).toBe(2);
+			expect(fieldAnnotations[0]).toStrictEqual({
+				annotationType,
+				codeLine
+			});
+			expect(fieldAnnotations[1]).toStrictEqual({
+				annotationType: JavaValidationAnnotationTypes.Size,
+				codeLine: '@Size(max = 50)'
 			});
 
 		});
@@ -106,12 +129,14 @@ describe('Not-null blob validation strategies', () => {
 
 	testCaseParams.forEach(([notNullBlobValidationStrategy, annotationType, codeLine]) => {
 
+		const customizedJavaValidationAnnotationsGenerator = new JavaValidationAnnotationsGenerator(
+				NotNullTextValidationStrategy.NOT_NULL,
+				notNullBlobValidationStrategy
+		);
+
 		test(`Not-null blob should be annotated with @${annotationType.formatSimple()}`, () => {
 
-			const fieldAnnotations = new JavaValidationAnnotationsGenerator(
-					NotNullTextValidationStrategy.NOT_NULL,
-					notNullBlobValidationStrategy
-			)
+			const fieldAnnotations = customizedJavaValidationAnnotationsGenerator
 					.getValidationAnnotations({
 						name: 'field',
 						nullable: false,
@@ -123,6 +148,28 @@ describe('Not-null blob validation strategies', () => {
 			expect(fieldAnnotations[0]).toStrictEqual({
 				annotationType,
 				codeLine
+			});
+
+		});
+
+		test(`@${annotationType.formatSimple()} annotation should appear before @Size`, () => {
+
+			const fieldAnnotations = customizedJavaValidationAnnotationsGenerator.getValidationAnnotations({
+				name: 'field',
+				nullable: false,
+				list: false,
+				primitiveType: EntityPropertyType.BLOB,
+				maxSize: 2048
+			});
+
+			expect(fieldAnnotations.length).toBe(2);
+			expect(fieldAnnotations[0]).toStrictEqual({
+				annotationType,
+				codeLine
+			});
+			expect(fieldAnnotations[1]).toStrictEqual({
+				annotationType: JavaValidationAnnotationTypes.Size,
+				codeLine: '@Size(max = 2048)'
 			});
 
 		});
