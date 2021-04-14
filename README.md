@@ -1,9 +1,16 @@
-# ERDiagram: Entity-Relationship diagram code generator
+# ERDiagram
+
+_ERDiagram_ is a library
 
 ## Live demo
 
 You can try _ERDiagram_ online using the [ERDiagram playground](http://erdiagram.nestorrente.com/) application. There
 you will find some code examples that are very useful for learning the _ERDiagram_ language.
+
+## CLI
+
+There is also a _work-in-progress_ [CLI version of _ERDiagram_](https://github.com/nestorrente/erdiagram-cli). Check it
+out! :slightly_smiling_face:
 
 ## Supported output formats
 
@@ -41,9 +48,9 @@ If you want to get in touch, you can find me on LinkedIn: [@nestorpglez](https:/
 
 This is a small list of features/tools that I'll be very happy to have:
 
-* More database engines support (i.e. DB2).
-* More OOP languages support (i.e. C#).
-* Syntax highlight for some text editors or IDEs (i.e. Sublime Text, Atom, IntelliJ IDEA, VS Code...).
-* XSD / JSON Schema generation.
+* More database engines support.
+* More OOP languages support.
+* Syntax highlight for some text editors or IDEs (Sublime Text, Atom, IntelliJ IDEA, VS Code, ...).
+* XSD / JSON schema generation.
 * Liquibase files generation.
 * Any other cool stuff :stuck_out_tongue:
