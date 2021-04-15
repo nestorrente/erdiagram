@@ -8,6 +8,7 @@ generate the database creation script, OOP classes, and more.
 * [Live demo & CLI](#live-demo--cli)
 * [Documentation](#documentation)
 * [Supported output formats](#supported-output-formats)
+* [Reliability](#reliability)
 * [Contributing](#contributing)
   + [Wish list](#wish-list)
 
@@ -43,6 +44,16 @@ out! :slightly_smiling_face:
 * Diagram
   * PlantUML (code & SVG image)
   * Nomnoml (code & SVG image)
+
+## Reliability
+
+_ERDiagram_ is _almost fully_ tested, so you don't have to worry about upgrading or not when a new version is released.
+
+Following you can see the code coverage statistics for the current version:
+
+| Statements | Branches | Functions | Lines   |
+|------------|----------|-----------|---------|
+|    98.00 % |  99.40 % |   93.62 % | 97.97 % |
 
 ## Contributing
 
