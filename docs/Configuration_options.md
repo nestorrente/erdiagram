@@ -21,26 +21,26 @@ In this page you will find information about the configuration options of the di
 
 ## EntityRelationshipModelParser
 
-| Property | Type | Allowed values | Default value | description |
-|----------|------|----------------|---------------|-------------|
-| `allowUnknownEntities` | `boolean` | `true`, `false` | `false` | Allows to define relationships using undefined entities. This is very useful when you are modelling new entities for an existing project and you need to define relationships between the new entities and the existing ones. |
+| Property               | Type      | Default value | description |
+|------------------------|-----------|---------------|-------------|
+| `allowUnknownEntities` | `boolean` | `false`       | Allows to define relationships using undefined entities. This is very useful when you are modelling new entities for an existing project and you need to define relationships between the new entities and the existing ones. |
 
 ## Database
 
 ### DatabaseModelGenerator
 
-| Property | Type | Allowed values | Default value | description |
-|----------|------|----------------|---------------|-------------|
-| `usePluralTableNames` | `boolean` | `true`, `false` | `false` | When `true`, _ERDiagram_ will name the database tables using the plural of the entities' names. For example, the entity `User` will be modelled using the `Users` table. |
-| `idNamingStrategy` | `function` | _many_ | `StandardIdNamingStrategies.DEFAULT` | Allows to customize the naming strategy for the identity column of the table. You can use any of the standard values (defined in the `StandardIdNamingStrategies` object) or write your own function `(entityName: string) => string`. |
+| Property              | Type                             | Default value                        | description |
+|-----------------------|----------------------------------|--------------------------------------|-------------|
+| `usePluralTableNames` | `boolean`                        | `false`                              | When `true`, _ERDiagram_ will name the database tables using the plural of the entities' names. For example, the entity `User` will be modelled using the `Users` table. |
+| `idNamingStrategy`    | `(entityName: string) => string` | `StandardIdNamingStrategies.DEFAULT` | Allows to customize the naming strategy for the identity column of the table. You can use any of the standard values (defined in the `StandardIdNamingStrategies` object) or write your own. |
 
 ### SqlDialect (MysqlDialect, OracleDialect, PostgresqlDialect, SqliteDialect, and SqlServerDialect)
 
-| Property | Type | Allowed values | Default value | description |
-|----------|------|----------------|---------------|-------------|
-| `typeBindings` | `Record<EntityPropertyType, TypeScriptType>` | _many_ | See below | Allows to customize the corresponding SQL type for each _ERDiagram_ type |
-| `tableNameCaseFormat` | `CaseFormat` | _many_ | See below | Allows to customize the case of the database tables |
-| `columnNameCaseFormat` | `CaseFormat` | _many_ | See below | Allows to customize the case of the database columns |
+| Property               | Type                                         | Default value                           | description |
+|------------------------|----------------------------------------------|-----------------------------------------|-------------|
+| `typeBindings`         | `Record<EntityPropertyType, TypeScriptType>` | See [type bindings](#type-bindings-sql) | Allows to customize the corresponding SQL type for each _ERDiagram_ type |
+| `tableNameCaseFormat`  | `CaseFormat`                                 | See [case formats](#case-formats)       | Allows to customize the case of the database tables |
+| `columnNameCaseFormat` | `CaseFormat`                                 | See [case formats](#case-formats)       | Allows to customize the case of the database columns |
 
 #### Type bindings (SQL)
 
@@ -95,19 +95,19 @@ These are the default case formats for each dialect:
 
 ### ClassModelGenerator
 
-| Property | Type | Allowed values | Default value | description |
-|----------|------|----------------|---------------|-------------|
-| `idNamingStrategy` | `function` | _many_ | `StandardIdNamingStrategies.DEFAULT` | Allows to customize the naming strategy for the identity property of the table. You can use any of the standard values (defined in the `StandardIdNamingStrategies` object) or write your own function `(entityName: string) => string`. |
+| Property           | Type       | Default value                        | description |
+|--------------------|------------|--------------------------------------|-------------|
+| `idNamingStrategy` | `function` | `StandardIdNamingStrategies.DEFAULT` | Allows to customize the naming strategy for the identity property of the table. You can use any of the standard values (defined in the `StandardIdNamingStrategies` object) or write your own function `(entityName: string) => string`. |
 
 ### JavaClassModelToCodeConverter
 
-| Property | Type | Allowed values | Default value | description |
-|----------|------|----------------|---------------|-------------|
-| `typeBindings` | `Record<EntityPropertyType, JavaType>` | _many_ | See below | Allows to customize the corresponding Java type for each _ERDiagram_ type |
-| `generatedClassesPackage` | <code>string &#124; undefined</code> | _many_ | `undefined` | Allows to define the package name of the generated classes |
-| `useValidationAnnotations` | `boolean` | `true`, `false` | `false` | Uses annotations from Java Validation API (JSR-303). Only `@NotNull`, `@NotEmpty`, `@NotBlank` and `@Size` are supported so far. |
-| `notNullTextValidationStrategy` | `enum` | `NotNullTextValidationStrategy.NOT_NULL`, `NotNullTextValidationStrategy.NOT_EMPTY`, `NotNullTextValidationStrategy.NOT_BLANK` | `NotNullTextValidationStrategy.NOT_NULL` | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull`, `@NotEmpty` or `@NotBlank`) to use for _not-null_ `text` fields |
-| `notNullBlobValidationStrategy` | `enum` | `NotNullBlobValidationStrategy.NOT_NULL`, `NotNullBlobValidationStrategy.NOT_EMPTY` | `NotNullBlobValidationStrategy.NOT_NULL` | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull` or `@NotEmpty`) to use for _not-null_ `blob` fields |
+| Property                        | Type                                   | Default value                            | description |
+|---------------------------------|----------------------------------------|------------------------------------------|-------------|
+| `typeBindings`                  | `Record<EntityPropertyType, JavaType>` | See [type bindings](#type-bindings-java) | Allows to customize the corresponding Java type for each _ERDiagram_ type |
+| `generatedClassesPackage`       | <code>string &#124; undefined</code>   | `undefined`                              | Allows to define the package name of the generated classes |
+| `useValidationAnnotations`      | `boolean`                              | `false`                                  | Uses annotations from Java Validation API (JSR-303). Only `@NotNull`, `@NotEmpty`, `@NotBlank` and `@Size` are supported so far. |
+| `notNullTextValidationStrategy` | `enum NotNullTextValidationStrategy`   | `NOT_NULL`                               | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull`, `@NotEmpty` or `@NotBlank`) to use for _not-null_ `text` fields |
+| `notNullBlobValidationStrategy` | `enum NotNullBlobValidationStrategy`   | `NOT_NULL`                               | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull` or `@NotEmpty`) to use for _not-null_ `blob` fields |
 
 #### Type bindings (Java)
 
@@ -163,9 +163,9 @@ parseJavaType('java.util.Map<java.lang.Long, java.util.List<com.example.MyClass>
 
 ### TypeScriptClassModelToCodeConverter
 
-| Property | Type | Allowed values | Default value | description |
-|----------|------|----------------|---------------|-------------|
-| `typeBindings` | `Record<EntityPropertyType, TypeScriptType>` | _many_ | (see table below) | Allows to customize the corresponding TypeScript type for each _ERDiagram_ type |
+| Property       | Type                                         | Default value                                  | description |
+|----------------|----------------------------------------------|------------------------------------------------|-------------|
+| `typeBindings` | `Record<EntityPropertyType, TypeScriptType>` | See [type bindings](#type-bindings-typescript) | Allows to customize the corresponding TypeScript type for each _ERDiagram_ type |
 
 #### Type bindings (TypeScript)
 
@@ -228,26 +228,26 @@ _ERDiagram_ allows customizing the values of some Nomnoml directives. You can le
 
 Here is the full list of directives that are supported by _ERDiagram_:
 
-| Nomnoml directive | Type | Allowed values | _ERDiagram_ opinionated default value |
-|-------------------|------|----------------|---------------------------------------|
-| arrowSize | `number` | _many_ | `1` |
-| bendSize | `number` | _many_ | `undefined` |
-| direction | `string` | `'down'`, `'right'` | `undefined` |
-| gutter | `number` | _many_ | `undefined` |
-| edgeMargin | `number` | _many_ | `undefined` |
-| gravity | `number` | _many_ | `1.5` |
-| edges | `string` | `'hard'`, `'rounded'` | `undefined` |
-| background | `string` | _many_ | `'transparent'` |
-| fill | `string` | _many_ | `'#eef6ff'` |
-| fillArrows | `boolean` | _many_ | `undefined` |
-| font | `string` | _many_ | `undefined` |
-| fontSize | `number` | _many_ | `undefined` |
-| leading | `number` | _many_ | `undefined` |
-| lineWidth | `number` | _many_ | `1` |
-| padding | `number` | _many_ | `undefined` |
-| spacing | `number` | _many_ | `undefined` |
-| stroke | `string` | _many_ | `'#333333'` |
-| title | `string` | _many_ | `undefined` |
-| zoom | `number` | _many_ | `undefined` |
-| acyclicer | `string` | `'greedy'` | `undefined` |
-| ranker | `string` | `'network-simplex'`, `'tight-tree'`, `'longest-path'` | `'longest-path'` |
+| Nomnoml directive | Type                                                                     | _ERDiagram_ opinionated default value |
+|-------------------|--------------------------------------------------------------------------|---------------------------------------|
+| arrowSize         | `number`                                                                 | `1`                                   |
+| bendSize          | `number`                                                                 | `undefined`                           |
+| direction         | <code>'down' &#124; 'right'</code>                                       | `undefined`                           |
+| gutter            | `number`                                                                 | `undefined`                           |
+| edgeMargin        | `number`                                                                 | `undefined`                           |
+| gravity           | `number`                                                                 | `1.5`                                 |
+| edges             | <code>'hard' &#124; 'rounded'</code>                                     | `undefined`                           |
+| background        | `string`                                                                 | `'transparent'`                       |
+| fill              | `string`                                                                 | `'#eef6ff'`                           |
+| fillArrows        | `boolean`                                                                | `undefined`                           |
+| font              | `string`                                                                 | `undefined`                           |
+| fontSize          | `number`                                                                 | `undefined`                           |
+| leading           | `number`                                                                 | `undefined`                           |
+| lineWidth         | `number`                                                                 | `1`                                   |
+| padding           | `number`                                                                 | `undefined`                           |
+| spacing           | `number`                                                                 | `undefined`                           |
+| stroke            | `string`                                                                 | `'#333333'`                           |
+| title             | `string`                                                                 | `undefined`                           |
+| zoom              | `number`                                                                 | `undefined`                           |
+| acyclicer         | `'greedy'`                                                               | `undefined`                           |
+| ranker            | <code>'network-simplex' &#124; 'tight-tree' &#124; 'longest-path'</code> | `'longest-path'`                      |
