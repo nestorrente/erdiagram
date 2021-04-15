@@ -29,6 +29,8 @@
         "java",
         "typescript",
         "ts",
+        "javascript",
+        "js",
         "nomnoml",
         "plantuml",
         "code",
