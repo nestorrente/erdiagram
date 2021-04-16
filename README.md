@@ -1,14 +1,20 @@
 # ERDiagram
 
-_ERDiagram_ is a library that allows to define an _entity-relationship diagram_ using the _ERDiagram_ language, and then
-generate the database creation script, OOP classes, and more.
+> Define an _entity-relationship diagram_, then generate the database creation script, OOP classes, and much more!
+
+[![License](https://img.shields.io/npm/l/make-coverage-badge.svg)](https://opensource.org/licenses/MIT)
+[![npm](https://img.shields.io/npm/dw/@nestorrente/erdiagram.svg)](https://www.npmjs.com/package/@nestorrente/erdiagram)
+
+![Coverage statements](coverage/badge-statements.svg)
+![Coverage branches](coverage/badge-branches.svg)
+![Coverage functions](coverage/badge-functions.svg)
+![Coverage lines](coverage/badge-lines.svg)
 
 ## Table of contents
 
 * [Live demo & CLI](#live-demo--cli)
 * [Documentation](#documentation)
 * [Supported output formats](#supported-output-formats)
-* [Reliability](#reliability)
 * [Contributing](#contributing)
   + [Wish list](#wish-list)
 
@@ -44,16 +50,6 @@ out! :slightly_smiling_face:
 * Diagram
   * PlantUML (code & SVG image)
   * Nomnoml (code & SVG image)
-
-## Reliability
-
-_ERDiagram_ is _almost fully_ tested, so you don't have to worry about upgrading or not when a new version is released.
-
-Following you can see the code coverage statistics for the current version:
-
-| Statements | Branches | Functions | Lines   |
-|------------|----------|-----------|---------|
-|    98.00 % |  99.40 % |   93.62 % | 97.97 % |
 
 ## Contributing
 

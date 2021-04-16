@@ -9,6 +9,11 @@ module.exports = {
         '!src/main/standalone-entry.js'
     ],
     coverageDirectory: 'coverage',
+    coverageReporters: [
+        'json-summary',
+        'text',
+        'lcov'
+    ],
     testPathIgnorePatterns: [
         '/node_modules/'
     ],
