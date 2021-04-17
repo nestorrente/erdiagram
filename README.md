@@ -3,14 +3,13 @@
 > Define an _entity-relationship diagram_, then generate the database creation script, OOP classes, and much more!
 
 [![License](https://img.shields.io/npm/l/make-coverage-badge.svg)](https://opensource.org/licenses/MIT)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 [![npm](https://img.shields.io/npm/dw/@nestorrente/erdiagram.svg)](https://www.npmjs.com/package/@nestorrente/erdiagram)
 
 ![Coverage statements](coverage/badge-statements.svg)
 ![Coverage branches](coverage/badge-branches.svg)
 ![Coverage functions](coverage/badge-functions.svg)
 ![Coverage lines](coverage/badge-lines.svg)
-
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
 ## Table of contents
 
