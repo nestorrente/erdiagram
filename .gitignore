@@ -1,4 +1,6 @@
 node_modules
 /lib
+/coverage/**
+!/coverage/badge-**.svg
 .idea
 *.iml
