@@ -1,6 +1,7 @@
 import {ClassFieldDescriptor} from '@/erdiagram/converter/oop/model/class-model-types';
 import {EntityDescriptor, EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import IdNamingStrategy from '@/erdiagram/converter/common/id-naming-strategy/IdNamingStrategy';
+import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata-types';
 
 export default class EntityToIdClassFieldMapper {
 
@@ -16,7 +17,11 @@ export default class EntityToIdClassFieldMapper {
 			primitiveType: EntityPropertyType.IDENTITY,
 			// ID field must be nullable, so NULL value can be used to represent an unsaved instance
 			nullable: true,
-			list: false
+			list: false,
+			sourceMetadata: {
+				sourceType: SourceType.ENTITY_IDENTITY,
+				entity
+			}
 		};
 	}
 

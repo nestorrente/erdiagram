@@ -5,6 +5,7 @@ import SqlTypeResolver from '@/erdiagram/converter/database/code-converter/sql/d
 import {RegularColumnCode} from '@/erdiagram/converter/database/code-converter/sql/dialect/common/sql-script-types';
 import SqlColumnCodeGenerator
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/common/column/SqlColumnCodeGenerator';
+import {OmitSource} from '@/erdiagram/converter/oop/model/source-metadata-types';
 
 export default class SqlServerColumnCodeGenerator implements SqlColumnCodeGenerator {
 
@@ -15,7 +16,7 @@ export default class SqlServerColumnCodeGenerator implements SqlColumnCodeGenera
 
 	}
 
-	public generateColumnCode(outputTableName: string, column: TableColumnDescriptor): RegularColumnCode {
+	public generateColumnCode(outputTableName: string, column: OmitSource<TableColumnDescriptor>): RegularColumnCode {
 
 		const outputColumnName = this.columnNameCaseConverter.convertCase(column.name);
 
@@ -26,7 +27,7 @@ export default class SqlServerColumnCodeGenerator implements SqlColumnCodeGenera
 
 	}
 
-	private generateColumnDeclarationLine(outputColumnName: string, column: TableColumnDescriptor): string {
+	private generateColumnDeclarationLine(outputColumnName: string, column: OmitSource<TableColumnDescriptor>): string {
 
 		const {
 			notNull,

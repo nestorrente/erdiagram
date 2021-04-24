@@ -11,6 +11,7 @@ import RelationshipMemberToClassFieldMapper
 import EntityPropertyToClassFieldMapper
 	from '@/erdiagram/converter/oop/model/class/field/EntityPropertyToClassFieldMapper';
 import EntityToIdClassFieldMapper from '@/erdiagram/converter/oop/model/class/field/EntityToIdClassFieldMapper';
+import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata-types';
 
 export default class EntityToClassMapper {
 
@@ -35,7 +36,7 @@ export default class EntityToClassMapper {
 		];
 
 		for (const property of entity.properties) {
-			fields.push(this.entityPropertyToClassFieldMapper.mapPropertyToField(property));
+			fields.push(this.entityPropertyToClassFieldMapper.mapPropertyToField(entity, property));
 		}
 
 		for (const relationship of relationships) {
@@ -47,18 +48,22 @@ export default class EntityToClassMapper {
 			} = relationship;
 
 			if (leftMember.entity === entity.name && [Direction.LEFT_TO_RIGHT, Direction.BIDIRECTIONAL].includes(direction)) {
-				fields.push(this.relationshipMemberToClassFieldMapper.mapRelationshipMemberToField(rightMember));
+				fields.push(this.relationshipMemberToClassFieldMapper.mapRelationshipMemberToField(relationship, rightMember));
 			}
 
 			if (rightMember.entity === entity.name && [Direction.RIGHT_TO_LEFT, Direction.BIDIRECTIONAL].includes(direction)) {
-				fields.push(this.relationshipMemberToClassFieldMapper.mapRelationshipMemberToField(leftMember));
+				fields.push(this.relationshipMemberToClassFieldMapper.mapRelationshipMemberToField(relationship, leftMember));
 			}
 
 		}
 
 		return {
 			name,
-			fields
+			fields,
+			sourceMetadata: {
+				sourceType: SourceType.ENTITY,
+				entity
+			}
 		};
 
 	}

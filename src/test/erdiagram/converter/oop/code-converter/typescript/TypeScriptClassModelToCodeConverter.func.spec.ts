@@ -2,12 +2,15 @@ import TypeScriptClassModelToCodeConverter
 	from '@/erdiagram/converter/oop/code-converter/typescript/TypeScriptClassModelToCodeConverter';
 import {ClassModel} from '@/erdiagram/converter/oop/model/class-model-types';
 import {
+	createClass,
 	createEntityClassField,
 	createIdClassField,
 	createPrimitiveClassField
 } from '#/erdiagram/converter/oop/model/class-model-test-utils';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import parseTypeScriptType from '@/erdiagram/converter/oop/code-converter/typescript/type/parseTypeScriptType';
+import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata-types';
+import {dummySourceEntity, dummySourceProperty} from '#/erdiagram/converter/common/source-metadata-test-utils';
 
 const typeScriptClassModelToCodeConverter = new TypeScriptClassModelToCodeConverter();
 
@@ -17,12 +20,11 @@ describe('Single class', () => {
 
 		const classModel: ClassModel = {
 			classes: [
-				{
-					name: 'TestClass',
+				createClass('TestClass', {
 					fields: [
 						createIdClassField()
 					]
-				}
+				})
 			]
 		};
 
@@ -40,12 +42,11 @@ interface TestClass {
 
 		const classModel: ClassModel = {
 			classes: [
-				{
-					name: 'TestClass',
+				createClass('TestClass', {
 					fields: [
-						createIdClassField('customId')
+						createIdClassField({name: 'customId'})
 					]
-				}
+				})
 			]
 		};
 
@@ -63,13 +64,12 @@ interface TestClass {
 
 		const classModel: ClassModel = {
 			classes: [
-				{
-					name: 'TestClass',
+				createClass('TestClass', {
 					fields: [
 						createIdClassField(),
 						createPrimitiveClassField('nullableField', EntityPropertyType.TEXT, {nullable: true}),
 					]
-				}
+				})
 			]
 		};
 
@@ -88,13 +88,12 @@ interface TestClass {
 
 		const classModel: ClassModel = {
 			classes: [
-				{
-					name: 'TestClass',
+				createClass('TestClass', {
 					fields: [
 						createIdClassField(),
 						createEntityClassField('entityField', 'UnknownClass'),
 					]
-				}
+				})
 			]
 		};
 
@@ -113,14 +112,13 @@ interface TestClass {
 
 		const classModel: ClassModel = {
 			classes: [
-				{
-					name: 'TestClass',
+				createClass('TestClass', {
 					fields: [
 						createIdClassField(),
 						createPrimitiveClassField('listOfTexts', EntityPropertyType.TEXT, {list: true}),
 						createPrimitiveClassField('listOfShorts', EntityPropertyType.SHORT, {list: true}),
 					]
-				}
+				})
 			]
 		};
 
@@ -140,8 +138,7 @@ interface TestClass {
 
 		const classModel: ClassModel = {
 			classes: [
-				{
-					name: 'TestClass',
+				createClass('TestClass', {
 					fields: [
 						createIdClassField(),
 						createPrimitiveClassField('booleanField', EntityPropertyType.BOOLEAN),
@@ -155,7 +152,7 @@ interface TestClass {
 						createPrimitiveClassField('datetimeField', EntityPropertyType.DATETIME),
 						createPrimitiveClassField('blobField', EntityPropertyType.BLOB)
 					]
-				}
+				})
 			]
 		};
 
@@ -187,18 +184,16 @@ describe('Multiple classes', () => {
 
 		const classModel: ClassModel = {
 			classes: [
-				{
-					name: 'TestClass1',
+				createClass('TestClass1', {
 					fields: [
 						createIdClassField()
 					]
-				},
-				{
-					name: 'TestClass2',
+				}),
+				createClass('TestClass2', {
 					fields: [
 						createIdClassField()
 					]
-				}
+				})
 			]
 		};
 
@@ -220,21 +215,19 @@ interface TestClass2 {
 
 		const classModel: ClassModel = {
 			classes: [
-				{
-					name: 'TestClass1',
+				createClass('TestClass1', {
 					fields: [
 						createIdClassField(),
 						createEntityClassField('testClass2Field', 'TestClass2'),
 						createEntityClassField('testClass2NullableField', 'TestClass2', {nullable: true}),
 						createEntityClassField('testClass2ListField', 'TestClass2', {list: true})
 					]
-				},
-				{
-					name: 'TestClass2',
+				}),
+				createClass('TestClass2', {
 					fields: [
 						createIdClassField()
 					]
-				}
+				})
 			]
 		};
 
@@ -259,20 +252,18 @@ interface TestClass2 {
 
 		const classModel: ClassModel = {
 			classes: [
-				{
-					name: 'TestClass1',
+				createClass('TestClass1', {
 					fields: [
 						createIdClassField(),
 						createEntityClassField('testClass2Field', 'TestClass2')
 					]
-				},
-				{
-					name: 'TestClass2',
+				}),
+				createClass('TestClass2', {
 					fields: [
 						createIdClassField(),
 						createEntityClassField('testClass1ListField', 'TestClass1', {list: true})
 					]
-				}
+				})
 			]
 		};
 
@@ -300,8 +291,7 @@ describe('Config', () => {
 
 		const classModel: ClassModel = {
 			classes: [
-				{
-					name: 'TestClass',
+				createClass('TestClass', {
 					fields: [
 						createIdClassField(),
 						createPrimitiveClassField('booleanField', EntityPropertyType.BOOLEAN),
@@ -315,7 +305,7 @@ describe('Config', () => {
 						createPrimitiveClassField('datetimeField', EntityPropertyType.DATETIME),
 						createPrimitiveClassField('blobField', EntityPropertyType.BLOB)
 					]
-				}
+				})
 			]
 		};
 
@@ -361,18 +351,22 @@ describe('Errors', () => {
 
 		const classModel: ClassModel = {
 			classes: [
-				{
-					name: 'TestClass',
+				createClass('TestClass', {
 					fields: [
 						{
 							name: 'invalidField',
 							nullable: false,
 							list: false,
 							primitiveType: undefined,
-							entityType: undefined
+							entityType: undefined,
+							sourceMetadata: {
+								sourceType: SourceType.ENTITY_PROPERTY,
+								entity: dummySourceEntity,
+								property: dummySourceProperty
+							}
 						}
 					]
-				}
+				})
 			]
 		};
 
@@ -386,18 +380,22 @@ describe('Errors', () => {
 
 		const classModel: ClassModel = {
 			classes: [
-				{
-					name: 'TestClass',
+				createClass('TestClass', {
 					fields: [
 						{
 							name: 'invalidField',
 							nullable: false,
 							list: false,
 							primitiveType: EntityPropertyType.INT,
-							entityType: 'AnotherClass'
+							entityType: 'AnotherClass',
+							sourceMetadata: {
+								sourceType: SourceType.ENTITY_PROPERTY,
+								entity: dummySourceEntity,
+								property: dummySourceProperty
+							}
 						}
 					]
-				}
+				})
 			]
 		};
 

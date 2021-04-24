@@ -1,6 +1,7 @@
 import {
 	Cardinality,
 	Direction,
+	EntityDescriptor,
 	EntityPropertyType,
 	RelationshipDescriptor
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
@@ -12,7 +13,12 @@ import {
 import {DatabaseModel} from '@/erdiagram/converter/database/model/database-model-types';
 import StandardIdNamingStrategies from '@/erdiagram/converter/common/id-naming-strategy/StandardIdNamingStrategies';
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
-import {createSimpleTableColumn, createTableReference} from './database-model-test-utils';
+import {
+	createEntityTable,
+	createRelationshipTable,
+	createTableColumn,
+	createTableReference
+} from './database-model-test-utils';
 
 const databaseModelGenerator = new DatabaseModelGenerator();
 
@@ -20,29 +26,31 @@ describe('Entity', () => {
 
 	test('Basic entity', () => {
 
+		const entity: EntityDescriptor = {
+			name: 'Entity',
+			identityPropertyName: undefined,
+			properties: [
+				createSimpleEntityProperty('name', EntityPropertyType.TEXT, [10]),
+			]
+		};
+
 		const databaseModel = databaseModelGenerator.generateDatabaseModel({
-			entities: [
-				{
-					name: 'Entity',
-					identityPropertyName: undefined,
-					properties: [
-						createSimpleEntityProperty('name', EntityPropertyType.TEXT, [10]),
-					]
-				}
-			],
+			entities: [entity],
 			relationships: []
 		});
 
 		expect(databaseModel).toStrictEqual<DatabaseModel>({
 			tables: [
-				{
-					name: 'Entity',
-					identityColumnName: 'id',
+				createEntityTable('Entity', {
 					columns: [
-						createSimpleTableColumn('name', EntityPropertyType.TEXT, [10])
+						createTableColumn('name', EntityPropertyType.TEXT, {
+							length: [10],
+							sourceEntity: entity,
+							sourceProperty: entity.properties[0]
+						})
 					],
-					references: []
-				}
+					sourceEntity: entity
+				})
 			]
 		});
 
@@ -50,25 +58,23 @@ describe('Entity', () => {
 
 	test('Entity with explicit identity property', () => {
 
+		const entity: EntityDescriptor = {
+			name: 'Entity',
+			identityPropertyName: 'customEntityId',
+			properties: []
+		};
+
 		const databaseModel = databaseModelGenerator.generateDatabaseModel({
-			entities: [
-				{
-					name: 'Entity',
-					identityPropertyName: 'customEntityId',
-					properties: []
-				}
-			],
+			entities: [entity],
 			relationships: []
 		});
 
 		expect(databaseModel).toStrictEqual<DatabaseModel>({
 			tables: [
-				{
-					name: 'Entity',
+				createEntityTable('Entity', {
 					identityColumnName: 'customEntityId',
-					columns: [],
-					references: []
-				}
+					sourceEntity: entity
+				})
 			]
 		});
 
@@ -76,29 +82,32 @@ describe('Entity', () => {
 
 	test('Entity with explicit identity property defined as the last property', () => {
 
+		const entity: EntityDescriptor = {
+			name: 'Entity',
+			identityPropertyName: 'customEntityId',
+			properties: [
+				createSimpleEntityProperty('name', EntityPropertyType.TEXT, [10])
+			]
+		};
+
 		const databaseModel = databaseModelGenerator.generateDatabaseModel({
-			entities: [
-				{
-					name: 'Entity',
-					identityPropertyName: 'customEntityId',
-					properties: [
-						createSimpleEntityProperty('name', EntityPropertyType.TEXT, [10])
-					]
-				}
-			],
+			entities: [entity],
 			relationships: []
 		});
 
 		expect(databaseModel).toStrictEqual<DatabaseModel>({
 			tables: [
-				{
-					name: 'Entity',
+				createEntityTable('Entity', {
 					identityColumnName: 'customEntityId',
 					columns: [
-						createSimpleTableColumn('name', EntityPropertyType.TEXT, [10])
+						createTableColumn('name', EntityPropertyType.TEXT, {
+							length: [10],
+							sourceEntity: entity,
+							sourceProperty: entity.properties[0]
+						})
 					],
-					references: []
-				}
+					sourceEntity: entity
+				})
 			]
 		});
 
@@ -106,47 +115,77 @@ describe('Entity', () => {
 
 	test('Supported types', () => {
 
+		const entity: EntityDescriptor = {
+			name: 'Entity',
+			identityPropertyName: undefined,
+			properties: [
+				createSimpleEntityProperty('a', EntityPropertyType.BOOLEAN),
+				createSimpleEntityProperty('b', EntityPropertyType.SHORT),
+				createSimpleEntityProperty('c', EntityPropertyType.INT),
+				createSimpleEntityProperty('d', EntityPropertyType.LONG),
+				createSimpleEntityProperty('e', EntityPropertyType.DECIMAL, [10, 2]),
+				createSimpleEntityProperty('f', EntityPropertyType.TEXT, [50]),
+				createSimpleEntityProperty('g', EntityPropertyType.DATE),
+				createSimpleEntityProperty('h', EntityPropertyType.TIME),
+				createSimpleEntityProperty('i', EntityPropertyType.DATETIME),
+				createSimpleEntityProperty('j', EntityPropertyType.BLOB),
+			]
+		};
+
 		const databaseModel = databaseModelGenerator.generateDatabaseModel({
-			entities: [
-				{
-					name: 'Entity',
-					identityPropertyName: undefined,
-					properties: [
-						createSimpleEntityProperty('a', EntityPropertyType.BOOLEAN),
-						createSimpleEntityProperty('b', EntityPropertyType.SHORT),
-						createSimpleEntityProperty('c', EntityPropertyType.INT),
-						createSimpleEntityProperty('d', EntityPropertyType.LONG),
-						createSimpleEntityProperty('e', EntityPropertyType.DECIMAL, [10, 2]),
-						createSimpleEntityProperty('f', EntityPropertyType.TEXT, [50]),
-						createSimpleEntityProperty('g', EntityPropertyType.DATE),
-						createSimpleEntityProperty('h', EntityPropertyType.TIME),
-						createSimpleEntityProperty('i', EntityPropertyType.DATETIME),
-						createSimpleEntityProperty('j', EntityPropertyType.BLOB),
-					]
-				}
-			],
+			entities: [entity],
 			relationships: []
 		});
 
 		expect(databaseModel).toStrictEqual<DatabaseModel>({
 			tables: [
-				{
-					name: 'Entity',
-					identityColumnName: 'id',
+				createEntityTable('Entity', {
 					columns: [
-						createSimpleTableColumn('a', EntityPropertyType.BOOLEAN),
-						createSimpleTableColumn('b', EntityPropertyType.SHORT),
-						createSimpleTableColumn('c', EntityPropertyType.INT),
-						createSimpleTableColumn('d', EntityPropertyType.LONG),
-						createSimpleTableColumn('e', EntityPropertyType.DECIMAL, [10, 2]),
-						createSimpleTableColumn('f', EntityPropertyType.TEXT, [50]),
-						createSimpleTableColumn('g', EntityPropertyType.DATE),
-						createSimpleTableColumn('h', EntityPropertyType.TIME),
-						createSimpleTableColumn('i', EntityPropertyType.DATETIME),
-						createSimpleTableColumn('j', EntityPropertyType.BLOB),
+						createTableColumn('a', EntityPropertyType.BOOLEAN, {
+							sourceEntity: entity,
+							sourceProperty: entity.properties[0]
+						}),
+						createTableColumn('b', EntityPropertyType.SHORT, {
+							sourceEntity: entity,
+							sourceProperty: entity.properties[1]
+						}),
+						createTableColumn('c', EntityPropertyType.INT, {
+							sourceEntity: entity,
+							sourceProperty: entity.properties[2]
+						}),
+						createTableColumn('d', EntityPropertyType.LONG, {
+							sourceEntity: entity,
+							sourceProperty: entity.properties[3]
+						}),
+						createTableColumn('e', EntityPropertyType.DECIMAL, {
+							length: [10, 2],
+							sourceEntity: entity,
+							sourceProperty: entity.properties[4]
+						}),
+						createTableColumn('f', EntityPropertyType.TEXT, {
+							length: [50],
+							sourceEntity: entity,
+							sourceProperty: entity.properties[5]
+						}),
+						createTableColumn('g', EntityPropertyType.DATE, {
+							sourceEntity: entity,
+							sourceProperty: entity.properties[6]
+						}),
+						createTableColumn('h', EntityPropertyType.TIME, {
+							sourceEntity: entity,
+							sourceProperty: entity.properties[7]
+						}),
+						createTableColumn('i', EntityPropertyType.DATETIME, {
+							sourceEntity: entity,
+							sourceProperty: entity.properties[8]
+						}),
+						createTableColumn('j', EntityPropertyType.BLOB, {
+							sourceEntity: entity,
+							sourceProperty: entity.properties[9]
+						}),
 					],
-					references: []
-				}
+					sourceEntity: entity
+				})
 			]
 		});
 
@@ -154,41 +193,37 @@ describe('Entity', () => {
 
 	test('Optional property', () => {
 
-		const databaseModel = databaseModelGenerator.generateDatabaseModel({
-			entities: [
+		const entity: EntityDescriptor = {
+			name: 'Entity',
+			identityPropertyName: undefined,
+			properties: [
 				{
-					name: 'Entity',
-					identityPropertyName: undefined,
-					properties: [
-						{
-							name: 'num',
-							type: EntityPropertyType.INT,
-							length: [],
-							optional: true,
-							unique: false
-						},
-					]
-				}
-			],
+					name: 'num',
+					type: EntityPropertyType.INT,
+					length: [],
+					optional: true,
+					unique: false
+				},
+			]
+		};
+
+		const databaseModel = databaseModelGenerator.generateDatabaseModel({
+			entities: [entity],
 			relationships: []
 		});
 
 		expect(databaseModel).toStrictEqual<DatabaseModel>({
 			tables: [
-				{
-					name: 'Entity',
-					identityColumnName: 'id',
+				createEntityTable('Entity', {
 					columns: [
-						{
-							name: 'num',
+						createTableColumn('num', EntityPropertyType.INT, {
 							notNull: false,
-							unique: false,
-							type: EntityPropertyType.INT,
-							length: []
-						}
+							sourceEntity: entity,
+							sourceProperty: entity.properties[0]
+						})
 					],
-					references: []
-				}
+					sourceEntity: entity
+				})
 			]
 		});
 
@@ -196,41 +231,37 @@ describe('Entity', () => {
 
 	test('Unique property', () => {
 
-		const databaseModel = databaseModelGenerator.generateDatabaseModel({
-			entities: [
+		const entity: EntityDescriptor = {
+			name: 'Entity',
+			identityPropertyName: undefined,
+			properties: [
 				{
-					name: 'Entity',
-					identityPropertyName: undefined,
-					properties: [
-						{
-							name: 'num',
-							type: EntityPropertyType.INT,
-							length: [],
-							optional: false,
-							unique: true
-						}
-					]
+					name: 'num',
+					type: EntityPropertyType.INT,
+					length: [],
+					optional: false,
+					unique: true
 				}
-			],
+			]
+		};
+
+		const databaseModel = databaseModelGenerator.generateDatabaseModel({
+			entities: [entity],
 			relationships: []
 		});
 
 		expect(databaseModel).toStrictEqual<DatabaseModel>({
 			tables: [
-				{
-					name: 'Entity',
-					identityColumnName: 'id',
+				createEntityTable('Entity', {
 					columns: [
-						{
-							name: 'num',
-							notNull: true,
+						createTableColumn('num', EntityPropertyType.INT, {
 							unique: true,
-							type: EntityPropertyType.INT,
-							length: []
-						}
+							sourceEntity: entity,
+							sourceProperty: entity.properties[0]
+						})
 					],
-					references: []
-				}
+					sourceEntity: entity
+				})
 			]
 		});
 
@@ -242,84 +273,89 @@ describe('Relationship', () => {
 
 	test('Directions', () => {
 
-		const databaseModel = databaseModelGenerator.generateDatabaseModel({
-			entities: [...'ABCD'].map(createEntityWithoutProperties),
-			relationships: [
-				{
-					relationshipName: undefined,
-					direction: Direction.LEFT_TO_RIGHT,
-					leftMember: {
-						entity: 'A',
-						entityAlias: 'a',
-						cardinality: Cardinality.ONE
-					},
-					rightMember: {
-						entity: 'B',
-						entityAlias: 'b',
-						cardinality: Cardinality.ONE
-					}
+		const entities = [...'ABCD'].map(createEntityWithoutProperties);
+
+		const relationships: RelationshipDescriptor[] = [
+			{
+				relationshipName: undefined,
+				direction: Direction.LEFT_TO_RIGHT,
+				leftMember: {
+					entity: 'A',
+					entityAlias: 'a',
+					cardinality: Cardinality.ONE
 				},
-				{
-					relationshipName: undefined,
-					direction: Direction.RIGHT_TO_LEFT,
-					leftMember: {
-						entity: 'A',
-						entityAlias: 'a',
-						cardinality: Cardinality.ONE
-					},
-					rightMember: {
-						entity: 'C',
-						entityAlias: 'c',
-						cardinality: Cardinality.ONE
-					}
-				},
-				{
-					relationshipName: undefined,
-					direction: Direction.BIDIRECTIONAL,
-					leftMember: {
-						entity: 'A',
-						entityAlias: 'a',
-						cardinality: Cardinality.ONE
-					},
-					rightMember: {
-						entity: 'D',
-						entityAlias: 'd',
-						cardinality: Cardinality.ONE
-					}
+				rightMember: {
+					entity: 'B',
+					entityAlias: 'b',
+					cardinality: Cardinality.ONE
 				}
-			]
+			},
+			{
+				relationshipName: undefined,
+				direction: Direction.RIGHT_TO_LEFT,
+				leftMember: {
+					entity: 'A',
+					entityAlias: 'a',
+					cardinality: Cardinality.ONE
+				},
+				rightMember: {
+					entity: 'C',
+					entityAlias: 'c',
+					cardinality: Cardinality.ONE
+				}
+			},
+			{
+				relationshipName: undefined,
+				direction: Direction.BIDIRECTIONAL,
+				leftMember: {
+					entity: 'A',
+					entityAlias: 'a',
+					cardinality: Cardinality.ONE
+				},
+				rightMember: {
+					entity: 'D',
+					entityAlias: 'd',
+					cardinality: Cardinality.ONE
+				}
+			}
+		];
+
+		const databaseModel = databaseModelGenerator.generateDatabaseModel({
+			entities,
+			relationships
 		});
 
 		expect(databaseModel).toStrictEqual<DatabaseModel>({
 			tables: [
-				{
-					name: 'A',
-					identityColumnName: 'id',
-					columns: [],
+				createEntityTable('A', {
 					references: [
-						createTableReference('bId', 'B', {unique: true}),
-						createTableReference('cId', 'C', {unique: true}),
-						createTableReference('dId', 'D', {unique: true})
-					]
-				},
-				{
-					name: 'B',
-					identityColumnName: 'id',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'C',
-					identityColumnName: 'id',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'D',
-					identityColumnName: 'id',
-					columns: [],
-					references: []
-				}
+						createTableReference('bId', 'B', {
+							unique: true,
+							sourceRelationship: relationships[0],
+							sourceTargetMember: relationships[0].rightMember
+						}),
+						createTableReference('cId', 'C', {
+							unique: true,
+							sourceRelationship: relationships[1],
+							sourceTargetMember: relationships[1].rightMember
+						}),
+						createTableReference('dId', 'D', {
+							unique: true,
+							sourceRelationship: relationships[2],
+							sourceTargetMember: relationships[2].rightMember
+						})
+					],
+					sourceEntity: entities[0]
+				}),
+				createEntityTable('B', {
+					sourceEntity: entities[1]
+				}),
+				createEntityTable('C', {
+					sourceEntity: entities[2]
+				}),
+				createEntityTable('D', {
+					sourceEntity: entities[3]
+				})
 			]
 		});
 
@@ -327,120 +363,134 @@ describe('Relationship', () => {
 
 	test('Cardinalities', () => {
 
+		const entities = [...'ABCDEFGHIJ'].map(createEntityWithoutProperties);
+
+		const relationships = (
+				[
+					[Cardinality.ZERO_OR_ONE, Cardinality.ZERO_OR_ONE, 'B'],
+					[Cardinality.ZERO_OR_ONE, Cardinality.ONE, 'C'],
+					[Cardinality.ZERO_OR_ONE, Cardinality.MANY, 'D'],
+					[Cardinality.ONE, Cardinality.ZERO_OR_ONE, 'E'],
+					[Cardinality.ONE, Cardinality.ONE, 'F'],
+					[Cardinality.ONE, Cardinality.MANY, 'G'],
+					[Cardinality.MANY, Cardinality.ZERO_OR_ONE, 'H'],
+					[Cardinality.MANY, Cardinality.ONE, 'I'],
+					[Cardinality.MANY, Cardinality.MANY, 'J'],
+				] as [Cardinality, Cardinality, string][]
+		).map(([leftCardinality, rightCardinality, rightEntity]): RelationshipDescriptor => {
+			return {
+				relationshipName: undefined,
+				direction: Direction.BIDIRECTIONAL,
+				leftMember: {
+					entity: 'A',
+					entityAlias: 'a',
+					cardinality: leftCardinality
+				},
+				rightMember: {
+					entity: rightEntity,
+					entityAlias: rightEntity.toLowerCase(),
+					cardinality: rightCardinality
+				}
+			};
+		});
+
 		const databaseModel = databaseModelGenerator.generateDatabaseModel({
-			entities: [...'ABCDEFGHIJ'].map(createEntityWithoutProperties),
-			relationships: (
-					[
-						[Cardinality.ZERO_OR_ONE, Cardinality.ZERO_OR_ONE, 'B'],
-						[Cardinality.ZERO_OR_ONE, Cardinality.ONE, 'C'],
-						[Cardinality.ZERO_OR_ONE, Cardinality.MANY, 'D'],
-						[Cardinality.ONE, Cardinality.ZERO_OR_ONE, 'E'],
-						[Cardinality.ONE, Cardinality.ONE, 'F'],
-						[Cardinality.ONE, Cardinality.MANY, 'G'],
-						[Cardinality.MANY, Cardinality.ZERO_OR_ONE, 'H'],
-						[Cardinality.MANY, Cardinality.ONE, 'I'],
-						[Cardinality.MANY, Cardinality.MANY, 'J'],
-					] as [Cardinality, Cardinality, string][]
-			).map(([leftCardinality, rightCardinality, rightEntity]): RelationshipDescriptor => {
-				return {
-					relationshipName: undefined,
-					direction: Direction.BIDIRECTIONAL,
-					leftMember: {
-						entity: 'A',
-						entityAlias: 'a',
-						cardinality: leftCardinality
-					},
-					rightMember: {
-						entity: rightEntity,
-						entityAlias: rightEntity.toLowerCase(),
-						cardinality: rightCardinality
-					}
-				};
-			})
+			entities,
+			relationships
 		});
 
 		expect(databaseModel).toStrictEqual<DatabaseModel>({
 			tables: [
-				{
-					name: 'A',
-					identityColumnName: 'id',
+				createEntityTable('A', {
 					columns: [],
 					references: [
-						createTableReference('bId', 'B', {unique: true, notNull: false}),
-						createTableReference('cId', 'C', {unique: true}),
-						createTableReference('eId', 'E', {unique: true, notNull: false}),
-						createTableReference('fId', 'F', {unique: true}),
-						createTableReference('hId', 'H', {notNull: false}),
-						createTableReference('iId', 'I'),
-					]
-				},
-				{
-					name: 'B',
-					identityColumnName: 'id',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'C',
-					identityColumnName: 'id',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'D',
-					identityColumnName: 'id',
-					columns: [],
+						createTableReference('bId', 'B', {
+							unique: true,
+							notNull: false,
+							sourceRelationship: relationships[0],
+							sourceTargetMember: relationships[0].rightMember
+						}),
+						createTableReference('cId', 'C', {
+							unique: true,
+							sourceRelationship: relationships[1],
+							sourceTargetMember: relationships[1].rightMember
+						}),
+						createTableReference('eId', 'E', {
+							unique: true,
+							notNull: false,
+							sourceRelationship: relationships[3],
+							sourceTargetMember: relationships[3].rightMember
+						}),
+						createTableReference('fId', 'F', {
+							unique: true,
+							sourceRelationship: relationships[4],
+							sourceTargetMember: relationships[4].rightMember
+						}),
+						createTableReference('hId', 'H', {
+							notNull: false,
+							sourceRelationship: relationships[6],
+							sourceTargetMember: relationships[6].rightMember
+						}),
+						createTableReference('iId', 'I', {
+							sourceRelationship: relationships[7],
+							sourceTargetMember: relationships[7].rightMember
+						}),
+					],
+					sourceEntity: entities[0]
+				}),
+				createEntityTable('B', {
+					sourceEntity: entities[1]
+				}),
+				createEntityTable('C', {
+					sourceEntity: entities[2]
+				}),
+				createEntityTable('D', {
 					references: [
-						createTableReference('aId', 'A', {notNull: false})
-					]
-				},
-				{
-					name: 'E',
-					identityColumnName: 'id',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'F',
-					identityColumnName: 'id',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'G',
-					identityColumnName: 'id',
-					columns: [],
+						createTableReference('aId', 'A', {
+							notNull: false,
+							sourceRelationship: relationships[2],
+							sourceTargetMember: relationships[2].leftMember
+						})
+					],
+					sourceEntity: entities[3]
+				}),
+				createEntityTable('E', {
+					sourceEntity: entities[4]
+				}),
+				createEntityTable('F', {
+					sourceEntity: entities[5]
+				}),
+				createEntityTable('G', {
 					references: [
-						createTableReference('aId', 'A')
-					]
-				},
-				{
-					name: 'H',
-					identityColumnName: 'id',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'I',
-					identityColumnName: 'id',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'J',
-					identityColumnName: 'id',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'AJ',
-					identityColumnName: 'id',
-					columns: [],
+						createTableReference('aId', 'A', {
+							sourceRelationship: relationships[5],
+							sourceTargetMember: relationships[5].leftMember
+						})
+					],
+					sourceEntity: entities[6]
+				}),
+				createEntityTable('H', {
+					sourceEntity: entities[7]
+				}),
+				createEntityTable('I', {
+					sourceEntity: entities[8]
+				}),
+				createEntityTable('J', {
+					sourceEntity: entities[9]
+				}),
+				createRelationshipTable('AJ', {
 					references: [
-						createTableReference('aId', 'A'),
-						createTableReference('jId', 'J'),
-					]
-				},
+						createTableReference('aId', 'A', {
+							sourceRelationship: relationships[8],
+							sourceTargetMember: relationships[8].leftMember
+						}),
+						createTableReference('jId', 'J', {
+							sourceRelationship: relationships[8],
+							sourceTargetMember: relationships[8].rightMember
+						}),
+					],
+					sourceRelationship: relationships[8]
+				}),
 			]
 		});
 
@@ -448,113 +498,119 @@ describe('Relationship', () => {
 
 	test('Aliases and relationship name', () => {
 
-		const databaseModel = databaseModelGenerator.generateDatabaseModel({
-			entities: [...'ABCDE'].map(createEntityWithoutProperties),
-			relationships: [
-				{
-					relationshipName: undefined,
-					direction: Direction.BIDIRECTIONAL,
-					leftMember: {
-						entity: 'A',
-						entityAlias: 'aAlias',
-						cardinality: Cardinality.ONE
-					},
-					rightMember: {
-						entity: 'B',
-						entityAlias: 'b',
-						cardinality: Cardinality.ONE
-					}
+		const entities = [...'ABCDE'].map(createEntityWithoutProperties);
+
+		const relationships: RelationshipDescriptor[] = [
+			{
+				relationshipName: undefined,
+				direction: Direction.BIDIRECTIONAL,
+				leftMember: {
+					entity: 'A',
+					entityAlias: 'aAlias',
+					cardinality: Cardinality.ONE
 				},
-				{
-					relationshipName: undefined,
-					direction: Direction.BIDIRECTIONAL,
-					leftMember: {
-						entity: 'A',
-						entityAlias: 'a',
-						cardinality: Cardinality.ONE
-					},
-					rightMember: {
-						entity: 'C',
-						entityAlias: 'cAlias',
-						cardinality: Cardinality.ONE
-					}
-				},
-				{
-					relationshipName: 'AToD',
-					direction: Direction.BIDIRECTIONAL,
-					leftMember: {
-						entity: 'A',
-						entityAlias: 'a',
-						cardinality: Cardinality.ONE
-					},
-					rightMember: {
-						entity: 'D',
-						entityAlias: 'd',
-						cardinality: Cardinality.ONE
-					}
-				},
-				{
-					relationshipName: 'AToE',
-					direction: Direction.BIDIRECTIONAL,
-					leftMember: {
-						entity: 'A',
-						entityAlias: 'aAlias',
-						cardinality: Cardinality.MANY
-					},
-					rightMember: {
-						entity: 'E',
-						entityAlias: 'eAlias',
-						cardinality: Cardinality.MANY
-					}
+				rightMember: {
+					entity: 'B',
+					entityAlias: 'b',
+					cardinality: Cardinality.ONE
 				}
-			]
+			},
+			{
+				relationshipName: undefined,
+				direction: Direction.BIDIRECTIONAL,
+				leftMember: {
+					entity: 'A',
+					entityAlias: 'a',
+					cardinality: Cardinality.ONE
+				},
+				rightMember: {
+					entity: 'C',
+					entityAlias: 'cAlias',
+					cardinality: Cardinality.ONE
+				}
+			},
+			{
+				relationshipName: 'AToD',
+				direction: Direction.BIDIRECTIONAL,
+				leftMember: {
+					entity: 'A',
+					entityAlias: 'a',
+					cardinality: Cardinality.ONE
+				},
+				rightMember: {
+					entity: 'D',
+					entityAlias: 'd',
+					cardinality: Cardinality.ONE
+				}
+			},
+			{
+				relationshipName: 'AToE',
+				direction: Direction.BIDIRECTIONAL,
+				leftMember: {
+					entity: 'A',
+					entityAlias: 'aAlias',
+					cardinality: Cardinality.MANY
+				},
+				rightMember: {
+					entity: 'E',
+					entityAlias: 'eAlias',
+					cardinality: Cardinality.MANY
+				}
+			}
+		];
+
+		const databaseModel = databaseModelGenerator.generateDatabaseModel({
+			entities,
+			relationships
 		});
 
 		expect(databaseModel).toStrictEqual<DatabaseModel>({
 			tables: [
-				{
-					name: 'A',
-					identityColumnName: 'id',
-					columns: [],
+				createEntityTable('A', {
 					references: [
-						createTableReference('bId', 'B', {unique: true}),
-						createTableReference('cAliasId', 'C', {unique: true}),
-						createTableReference('dId', 'D', {unique: true}),
-					]
-				},
-				{
-					name: 'B',
-					identityColumnName: 'id',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'C',
-					identityColumnName: 'id',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'D',
-					identityColumnName: 'id',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'E',
-					identityColumnName: 'id',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'AToE',
-					identityColumnName: 'id',
-					columns: [],
+						createTableReference('bId', 'B', {
+							unique: true,
+							sourceRelationship: relationships[0],
+							sourceTargetMember: relationships[0].rightMember
+						}),
+						createTableReference('cAliasId', 'C', {
+							unique: true,
+							sourceRelationship: relationships[1],
+							sourceTargetMember: relationships[1].rightMember
+						}),
+						createTableReference('dId', 'D', {
+							unique: true,
+							sourceRelationship: relationships[2],
+							sourceTargetMember: relationships[2].rightMember
+						}),
+					],
+					sourceEntity: entities[0]
+				}),
+				createEntityTable('B', {
+					sourceEntity: entities[1]
+				}),
+				createEntityTable('C', {
+					sourceEntity: entities[2]
+				}),
+				createEntityTable('D', {
+					sourceEntity: entities[3]
+				}),
+				createEntityTable('E', {
+					sourceEntity: entities[4]
+				}),
+				createRelationshipTable('AToE', {
 					references: [
-						createTableReference('aAliasId', 'A'),
-						createTableReference('eAliasId', 'E'),
-					]
-				}
+						createTableReference('aAliasId', 'A', {
+							sourceRelationship: relationships[3],
+							sourceTargetMember: relationships[3].leftMember
+						}),
+						createTableReference('eAliasId', 'E', {
+							sourceRelationship: relationships[3],
+							sourceTargetMember: relationships[3].rightMember
+						}),
+					],
+					sourceRelationship: relationships[3]
+				})
 			]
 		});
 
@@ -566,70 +622,79 @@ describe('Config', () => {
 
 	test('Use plural table names', () => {
 
-		const databaseModel = new DatabaseModelGenerator({
+		const customDatabaseModelGenerator = new DatabaseModelGenerator({
 			usePluralTableNames: true
-		}).generateDatabaseModel({
-			entities: [
-				createEntityWithoutProperties('A'),
-				createEntityWithoutProperties('B'),
-			],
-			relationships: [
-				{
-					relationshipName: undefined,
-					direction: Direction.BIDIRECTIONAL,
-					leftMember: {
-						entity: 'A',
-						entityAlias: 'aAlias',
-						cardinality: Cardinality.ONE
-					},
-					rightMember: {
-						entity: 'B',
-						entityAlias: 'b',
-						cardinality: Cardinality.ONE
-					}
+		});
+
+		const entities = [
+			createEntityWithoutProperties('A'),
+			createEntityWithoutProperties('B'),
+		];
+
+		const relationships: RelationshipDescriptor[] = [
+			{
+				relationshipName: undefined,
+				direction: Direction.BIDIRECTIONAL,
+				leftMember: {
+					entity: 'A',
+					entityAlias: 'aAlias',
+					cardinality: Cardinality.ONE
 				},
-				{
-					relationshipName: 'AsToBs',
-					direction: Direction.BIDIRECTIONAL,
-					leftMember: {
-						entity: 'A',
-						entityAlias: 'a',
-						cardinality: Cardinality.MANY
-					},
-					rightMember: {
-						entity: 'B',
-						entityAlias: 'b',
-						cardinality: Cardinality.MANY
-					}
+				rightMember: {
+					entity: 'B',
+					entityAlias: 'b',
+					cardinality: Cardinality.ONE
 				}
-			]
+			},
+			{
+				relationshipName: 'AsToBs',
+				direction: Direction.BIDIRECTIONAL,
+				leftMember: {
+					entity: 'A',
+					entityAlias: 'a',
+					cardinality: Cardinality.MANY
+				},
+				rightMember: {
+					entity: 'B',
+					entityAlias: 'b',
+					cardinality: Cardinality.MANY
+				}
+			}
+		];
+
+		const databaseModel = customDatabaseModelGenerator.generateDatabaseModel({
+			entities,
+			relationships
 		});
 
 		expect(databaseModel).toStrictEqual<DatabaseModel>({
 			tables: [
-				{
-					name: 'As',
-					identityColumnName: 'id',
-					columns: [],
+				createEntityTable('As', {
 					references: [
-						createTableReference('bId', 'Bs', {unique: true}),
-					]
-				},
-				{
-					name: 'Bs',
-					identityColumnName: 'id',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'AsToBs',
-					identityColumnName: 'id',
-					columns: [],
+						createTableReference('bId', 'Bs', {
+							unique: true,
+							sourceRelationship: relationships[0],
+							sourceTargetMember: relationships[0].rightMember,
+						}),
+					],
+					sourceEntity: entities[0]
+				}),
+				createEntityTable('Bs', {
+					sourceEntity: entities[1]
+				}),
+				createRelationshipTable('AsToBs', {
 					references: [
-						createTableReference('aId', 'As'),
-						createTableReference('bId', 'Bs'),
-					]
-				}
+						createTableReference('aId', 'As', {
+							sourceRelationship: relationships[1],
+							sourceTargetMember: relationships[1].leftMember,
+						}),
+						createTableReference('bId', 'Bs', {
+							sourceRelationship: relationships[1],
+							sourceTargetMember: relationships[1].rightMember,
+						}),
+					],
+					sourceRelationship: relationships[1]
+				})
 			]
 		});
 
@@ -637,66 +702,63 @@ describe('Config', () => {
 
 	test('Use another standard ID naming strategy', () => {
 
-		const databaseModel = new DatabaseModelGenerator({
+		const customDatabaseModelGenerator = new DatabaseModelGenerator({
 			idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX
-		}).generateDatabaseModel({
-			entities: [
-				createEntityWithoutProperties('A'),
-				createEntityWithoutProperties('B'),
-			],
-			relationships: [
-				{
-					relationshipName: 'AToB',
-					direction: Direction.BIDIRECTIONAL,
-					leftMember: {
-						entity: 'A',
-						entityAlias: 'a',
-						cardinality: Cardinality.MANY
-					},
-					rightMember: {
-						entity: 'B',
-						entityAlias: 'b',
-						cardinality: Cardinality.MANY
-					}
+		});
+
+		const entities = [
+			createEntityWithoutProperties('A'),
+			createEntityWithoutProperties('B'),
+		];
+
+		const relationships: RelationshipDescriptor[] = [
+			{
+				relationshipName: 'AToB',
+				direction: Direction.BIDIRECTIONAL,
+				leftMember: {
+					entity: 'A',
+					entityAlias: 'a',
+					cardinality: Cardinality.MANY
+				},
+				rightMember: {
+					entity: 'B',
+					entityAlias: 'b',
+					cardinality: Cardinality.MANY
 				}
-			]
+			}
+		];
+
+		const databaseModel = customDatabaseModelGenerator.generateDatabaseModel({
+			entities,
+			relationships
 		});
 
 		expect(databaseModel).toStrictEqual<DatabaseModel>({
 			tables: [
-				{
-					name: 'A',
+				createEntityTable('A', {
 					identityColumnName: 'aId',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'B',
+					sourceEntity: entities[0]
+				}),
+				createEntityTable('B', {
 					identityColumnName: 'bId',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'AToB',
+					sourceEntity: entities[1]
+				}),
+				createRelationshipTable('AToB', {
 					identityColumnName: 'aToBId',
-					columns: [],
 					references: [
-						{
-							columnName: 'aId',
-							targetTableName: 'A',
+						createTableReference('aId', 'A', {
 							targetTableIdentityColumnName: 'aId',
-							notNull: true,
-							unique: false
-						},
-						{
-							columnName: 'bId',
-							targetTableName: 'B',
+							sourceRelationship: relationships[0],
+							sourceTargetMember: relationships[0].leftMember
+						}),
+						createTableReference('bId', 'B', {
 							targetTableIdentityColumnName: 'bId',
-							notNull: true,
-							unique: false
-						}
-					]
-				}
+							sourceRelationship: relationships[0],
+							sourceTargetMember: relationships[0].rightMember
+						})
+					],
+					sourceRelationship: relationships[0]
+				})
 			]
 		});
 
@@ -704,66 +766,63 @@ describe('Config', () => {
 
 	test('Use a custom ID naming strategy', () => {
 
-		const databaseModel = new DatabaseModelGenerator({
+		const customDatabaseModelGenerator = new DatabaseModelGenerator({
 			idNamingStrategy: entityName => `the${capitalizeWord(entityName)}Id`,
-		}).generateDatabaseModel({
-			entities: [
-				createEntityWithoutProperties('A'),
-				createEntityWithoutProperties('B'),
-			],
-			relationships: [
-				{
-					relationshipName: 'AToB',
-					direction: Direction.BIDIRECTIONAL,
-					leftMember: {
-						entity: 'A',
-						entityAlias: 'a',
-						cardinality: Cardinality.MANY
-					},
-					rightMember: {
-						entity: 'B',
-						entityAlias: 'b',
-						cardinality: Cardinality.MANY
-					}
+		});
+
+		const entities = [
+			createEntityWithoutProperties('A'),
+			createEntityWithoutProperties('B'),
+		];
+
+		const relationships: RelationshipDescriptor[] = [
+			{
+				relationshipName: 'AToB',
+				direction: Direction.BIDIRECTIONAL,
+				leftMember: {
+					entity: 'A',
+					entityAlias: 'a',
+					cardinality: Cardinality.MANY
+				},
+				rightMember: {
+					entity: 'B',
+					entityAlias: 'b',
+					cardinality: Cardinality.MANY
 				}
-			]
+			}
+		];
+
+		const databaseModel = customDatabaseModelGenerator.generateDatabaseModel({
+			entities,
+			relationships
 		});
 
 		expect(databaseModel).toStrictEqual<DatabaseModel>({
 			tables: [
-				{
-					name: 'A',
+				createEntityTable('A', {
 					identityColumnName: 'theAId',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'B',
+					sourceEntity: entities[0]
+				}),
+				createEntityTable('B', {
 					identityColumnName: 'theBId',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'AToB',
+					sourceEntity: entities[1]
+				}),
+				createRelationshipTable('AToB', {
 					identityColumnName: 'theAToBId',
-					columns: [],
 					references: [
-						{
-							columnName: 'aId',
-							targetTableName: 'A',
+						createTableReference('aId', 'A', {
 							targetTableIdentityColumnName: 'theAId',
-							notNull: true,
-							unique: false
-						},
-						{
-							columnName: 'bId',
-							targetTableName: 'B',
+							sourceRelationship: relationships[0],
+							sourceTargetMember: relationships[0].leftMember
+						}),
+						createTableReference('bId', 'B', {
 							targetTableIdentityColumnName: 'theBId',
-							notNull: true,
-							unique: false
-						}
-					]
-				}
+							sourceRelationship: relationships[0],
+							sourceTargetMember: relationships[0].rightMember
+						})
+					],
+					sourceRelationship: relationships[0]
+				})
 			]
 		});
 
@@ -771,69 +830,66 @@ describe('Config', () => {
 
 	test('Combine all', () => {
 
-		const databaseModel = new DatabaseModelGenerator({
+		const customDatabaseModelGenerator = new DatabaseModelGenerator({
 			usePluralTableNames: true,
 			idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX
-		}).generateDatabaseModel({
-			entities: [
-				createEntityWithoutProperties('A'),
-				createEntityWithoutProperties('B'),
-			],
-			relationships: [
-				{
-					relationshipName: 'AsToBs',
-					direction: Direction.BIDIRECTIONAL,
-					leftMember: {
-						entity: 'A',
-						entityAlias: 'a',
-						cardinality: Cardinality.MANY
-					},
-					rightMember: {
-						entity: 'B',
-						entityAlias: 'b',
-						cardinality: Cardinality.MANY
-					}
+		});
+
+		const entities = [
+			createEntityWithoutProperties('A'),
+			createEntityWithoutProperties('B'),
+		];
+
+		const relationships: RelationshipDescriptor[] = [
+			{
+				relationshipName: 'AsToBs',
+				direction: Direction.BIDIRECTIONAL,
+				leftMember: {
+					entity: 'A',
+					entityAlias: 'a',
+					cardinality: Cardinality.MANY
+				},
+				rightMember: {
+					entity: 'B',
+					entityAlias: 'b',
+					cardinality: Cardinality.MANY
 				}
-			]
+			}
+		];
+
+		const databaseModel = customDatabaseModelGenerator.generateDatabaseModel({
+			entities,
+			relationships
 		});
 
 		expect(databaseModel).toStrictEqual<DatabaseModel>({
 			tables: [
-				{
-					name: 'As',
+				createEntityTable('As', {
 					identityColumnName: 'aId',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'Bs',
+					sourceEntity: entities[0]
+				}),
+				createEntityTable('Bs', {
 					identityColumnName: 'bId',
-					columns: [],
-					references: []
-				},
-				{
-					name: 'AsToBs',
+					sourceEntity: entities[1]
+				}),
+				createRelationshipTable('AsToBs', {
 					// FIXME this may not be the expected behaviour, but we have to find the right way to solve it
 					identityColumnName: 'asToBsId',
 					// identityColumnName: 'aToBId',
-					columns: [],
 					references: [
-						{
-							columnName: 'aId',
-							targetTableName: 'As',
+						createTableReference('aId', 'As', {
 							targetTableIdentityColumnName: 'aId',
-							notNull: true,
-							unique: false
-						},
-						{
-							columnName: 'bId',
-							targetTableName: 'Bs',
+							sourceRelationship: relationships[0],
+							sourceTargetMember: relationships[0].leftMember
+						}),
+						createTableReference('bId', 'Bs', {
 							targetTableIdentityColumnName: 'bId',
-							notNull: true,
-							unique: false
-						}
-					]
-				}
+							sourceRelationship: relationships[0],
+							sourceTargetMember: relationships[0].rightMember
+						})
+					],
+					sourceRelationship: relationships[0]
+				})
 			]
 		});
 

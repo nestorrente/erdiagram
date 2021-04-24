@@ -18,6 +18,7 @@ import databaseModelGeneratorConfigManager
 	from '@/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfigManager';
 import {classifyBy} from '@/erdiagram/util/map-utils';
 import {capitalizeWord, uncapitalizeWord} from '@/erdiagram/util/string-utils';
+import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata-types';
 
 export default class DatabaseModelGenerator {
 
@@ -59,18 +60,18 @@ export default class DatabaseModelGenerator {
 		const references: TableReferenceDescriptor[] = [];
 
 		for (const property of entity.properties) {
-			columns.push(this.mapPropertyToColumn(property));
+			columns.push(this.mapPropertyToColumn(entity, property));
 		}
 
 		for (const relationship of model.relationships) {
 			if (relationship.rightMember.cardinality !== Cardinality.MANY) {
 				if (relationship.leftMember.entity === entity.name) {
 					const isOneToOneRelationship = relationship.leftMember.cardinality !== Cardinality.MANY;
-					references.push(this.createTableReference(relationship.rightMember, entityIdentitiesMap, isOneToOneRelationship));
+					references.push(this.createTableReference(relationship, relationship.rightMember, entityIdentitiesMap, isOneToOneRelationship));
 				}
 			} else if (relationship.leftMember.cardinality !== Cardinality.MANY) {
 				if (relationship.rightMember.entity === entity.name) {
-					references.push(this.createTableReference(relationship.leftMember, entityIdentitiesMap));
+					references.push(this.createTableReference(relationship, relationship.leftMember, entityIdentitiesMap, false));
 				}
 			}
 		}
@@ -79,7 +80,11 @@ export default class DatabaseModelGenerator {
 			name: this.pluralizeEntityNameIfApplies(entity.name),
 			identityColumnName: this.getIdentityColumnName(entity.name, entityIdentitiesMap),
 			columns,
-			references
+			references,
+			sourceMetadata: {
+				sourceType: SourceType.ENTITY,
+				entity
+			}
 		};
 
 	}
@@ -101,9 +106,13 @@ export default class DatabaseModelGenerator {
 			identityColumnName: identityColumnName,
 			columns: [],
 			references: [
-				this.createTableReference(relationship.leftMember, entityIdentitiesMap),
-				this.createTableReference(relationship.rightMember, entityIdentitiesMap)
-			]
+				this.createTableReference(relationship, relationship.leftMember, entityIdentitiesMap, false),
+				this.createTableReference(relationship, relationship.rightMember, entityIdentitiesMap, false)
+			],
+			sourceMetadata: {
+				sourceType: SourceType.RELATIONSHIP,
+				relationship
+			}
 		};
 
 	}
@@ -141,7 +150,7 @@ export default class DatabaseModelGenerator {
 
 	}
 
-	private createTableReference(toMember: RelationshipMember, entityIdentitiesMap: Map<string, string>, unique: boolean = false): TableReferenceDescriptor {
+	private createTableReference(relationship: RelationshipDescriptor, toMember: RelationshipMember, entityIdentitiesMap: Map<string, string>, unique: boolean = false): TableReferenceDescriptor {
 
 		const {
 			entityAlias,
@@ -154,7 +163,12 @@ export default class DatabaseModelGenerator {
 			targetTableName: this.pluralizeEntityNameIfApplies(entity),
 			targetTableIdentityColumnName: this.getIdentityColumnName(entity, entityIdentitiesMap),
 			notNull: cardinality !== Cardinality.ZERO_OR_ONE,
-			unique
+			unique,
+			sourceMetadata: {
+				sourceType: SourceType.RELATIONSHIP_TARGET,
+				relationship,
+				targetMember: toMember
+			}
 		};
 
 	}
@@ -187,7 +201,7 @@ export default class DatabaseModelGenerator {
 
 	}
 
-	private mapPropertyToColumn(property: EntityPropertyDescriptor): TableColumnDescriptor {
+	private mapPropertyToColumn(entity: EntityDescriptor, property: EntityPropertyDescriptor): TableColumnDescriptor {
 
 		const {
 			name,
@@ -202,7 +216,12 @@ export default class DatabaseModelGenerator {
 			notNull: !optional,
 			unique,
 			type,
-			length
+			length,
+			sourceMetadata: {
+				sourceType: SourceType.ENTITY_PROPERTY,
+				entity,
+				property
+			}
 		};
 
 	}

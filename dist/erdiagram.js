@@ -1,10 +1,10 @@
 /*!
- * Entity-Relationship Diagram Code Generator v1.0.0-beta.3
+ * Entity-Relationship Diagram Code Generator v1.0.0-rc1
  * https://github.com/nestorrente/erdiagram
  *
  * Released under the MIT License.
  *
- * Build date: 2021-04-14T23:03:07.138Z
+ * Build date: 2021-04-23T19:45:20.640Z
  */
 var ERDiagram;
 /******/ (() => { // webpackBootstrap
@@ -2795,6 +2795,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_database_model_config_DatabaseModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfigManager */ "./src/main/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfigManager.ts");
 /* harmony import */ var _erdiagram_util_map_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/map-utils */ "./src/main/erdiagram/util/map-utils.ts");
 /* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
+/* harmony import */ var _erdiagram_converter_oop_model_origin_metadata_types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/origin-metadata-types */ "./src/main/erdiagram/converter/oop/model/origin-metadata-types.ts");
+
 
 
 
@@ -2822,18 +2824,18 @@ class DatabaseModelGenerator {
         const columns = [];
         const references = [];
         for (const property of entity.properties) {
-            columns.push(this.mapPropertyToColumn(property));
+            columns.push(this.mapPropertyToColumn(entity, property));
         }
         for (const relationship of model.relationships) {
             if (relationship.rightMember.cardinality !== _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__.Cardinality.MANY) {
                 if (relationship.leftMember.entity === entity.name) {
                     const isOneToOneRelationship = relationship.leftMember.cardinality !== _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__.Cardinality.MANY;
-                    references.push(this.createTableReference(relationship.rightMember, entityIdentitiesMap, isOneToOneRelationship));
+                    references.push(this.createTableReference(relationship, relationship.rightMember, entityIdentitiesMap, isOneToOneRelationship));
                 }
             }
             else if (relationship.leftMember.cardinality !== _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__.Cardinality.MANY) {
                 if (relationship.rightMember.entity === entity.name) {
-                    references.push(this.createTableReference(relationship.leftMember, entityIdentitiesMap));
+                    references.push(this.createTableReference(relationship, relationship.leftMember, entityIdentitiesMap, false));
                 }
             }
         }
@@ -2858,8 +2860,8 @@ class DatabaseModelGenerator {
             identityColumnName: identityColumnName,
             columns: [],
             references: [
-                this.createTableReference(relationship.leftMember, entityIdentitiesMap),
-                this.createTableReference(relationship.rightMember, entityIdentitiesMap)
+                this.createTableReference(relationship, relationship.leftMember, entityIdentitiesMap, false),
+                this.createTableReference(relationship, relationship.rightMember, entityIdentitiesMap, false)
             ]
         };
     }
@@ -2878,14 +2880,19 @@ class DatabaseModelGenerator {
         }
         return this.getIdentityColumnName(leftMember.entity + rightMember.entity, entityIdentitiesMap);
     }
-    createTableReference(toMember, entityIdentitiesMap, unique = false) {
+    createTableReference(relationship, toMember, entityIdentitiesMap, unique = false) {
         const { entityAlias, entity, cardinality } = toMember;
         return {
             columnName: `${entityAlias}Id`,
             targetTableName: this.pluralizeEntityNameIfApplies(entity),
             targetTableIdentityColumnName: this.getIdentityColumnName(entity, entityIdentitiesMap),
             notNull: cardinality !== _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__.Cardinality.ZERO_OR_ONE,
-            unique
+            unique,
+            originMetadata: {
+                originType: _erdiagram_converter_oop_model_origin_metadata_types__WEBPACK_IMPORTED_MODULE_5__.OriginType.RELATIONSHIP_MEMBER,
+                relationship,
+                member: toMember
+            }
         };
     }
     pluralizeEntityNameIfApplies(entityName) {
@@ -2906,14 +2913,19 @@ class DatabaseModelGenerator {
         const { idNamingStrategy } = this.config;
         return idNamingStrategy(entityName);
     }
-    mapPropertyToColumn(property) {
+    mapPropertyToColumn(entity, property) {
         const { name, optional, unique, type, length } = property;
         return {
             name,
             notNull: !optional,
             unique,
             type,
-            length
+            length,
+            originMetadata: {
+                originType: _erdiagram_converter_oop_model_origin_metadata_types__WEBPACK_IMPORTED_MODULE_5__.OriginType.ENTITY_PROPERTY,
+                entity,
+                property
+            }
         };
     }
     isManyToManyRelationship(relationship) {
@@ -5261,6 +5273,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/model/origin-metadata-types.ts":
+/*!*************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/model/origin-metadata-types.ts ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "OriginType": () => (/* binding */ OriginType)
+/* harmony export */ });
+var OriginType;
+(function (OriginType) {
+    OriginType["ENTITY"] = "entity";
+    OriginType["ENTITY_PROPERTY"] = "entity_property";
+    OriginType["RELATIONSHIP"] = "relationship";
+    OriginType["RELATIONSHIP_MEMBER"] = "relationship_member";
+})(OriginType || (OriginType = {}));
 
 
 /***/ }),

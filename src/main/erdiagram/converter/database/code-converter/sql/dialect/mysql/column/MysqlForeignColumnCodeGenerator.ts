@@ -9,6 +9,7 @@ import CaseConverter from '@/erdiagram/converter/common/case-format/CaseConverte
 import {ForeignKeyColumnCode} from '@/erdiagram/converter/database/code-converter/sql/dialect/common/sql-script-types';
 import SqlForeignColumnCodeGenerator
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/common/column/SqlForeignColumnCodeGenerator';
+import {OmitSource} from '@/erdiagram/converter/oop/model/source-metadata-types';
 
 export default class MysqlForeignColumnCodeGenerator implements SqlForeignColumnCodeGenerator {
 
@@ -20,7 +21,7 @@ export default class MysqlForeignColumnCodeGenerator implements SqlForeignColumn
 
 	}
 
-	public generateForeignColumnCode(outputTableName: string, reference: TableReferenceDescriptor): ForeignKeyColumnCode {
+	public generateForeignColumnCode(outputTableName: string, reference: OmitSource<TableReferenceDescriptor>): ForeignKeyColumnCode {
 
 		const columnDescriptor = this.createForeignKeyColumnDescriptor(reference);
 
@@ -37,7 +38,7 @@ export default class MysqlForeignColumnCodeGenerator implements SqlForeignColumn
 
 	}
 
-	private createForeignKeyColumnDescriptor(reference: TableReferenceDescriptor): TableColumnDescriptor {
+	private createForeignKeyColumnDescriptor(reference: OmitSource<TableReferenceDescriptor>): OmitSource<TableColumnDescriptor> {
 
 		const {
 			columnName,
@@ -55,7 +56,7 @@ export default class MysqlForeignColumnCodeGenerator implements SqlForeignColumn
 
 	}
 
-	private createForeignKeyConstraint(outputTableName: string, reference: TableReferenceDescriptor) {
+	private createForeignKeyConstraint(outputTableName: string, reference: OmitSource<TableReferenceDescriptor>) {
 
 		const outputColumnName = this.columnNameCaseConverter.convertCase(reference.columnName);
 

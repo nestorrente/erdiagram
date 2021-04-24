@@ -1,248 +1,159 @@
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {
-	createSimpleTableColumn,
+	createEntityTable,
+	createRelationshipTable,
+	createTableColumn,
 	createTableReference
 } from '#/erdiagram/converter/database/model/database-model-test-utils';
 import {DatabaseModel} from '@/erdiagram/converter/database/model/database-model-types';
 
 export const databaseModelWithTableWithoutColumnsNorReferences: DatabaseModel = {
 	tables: [
-		{
-			name: 'TestTable',
-			identityColumnName: 'id',
-			columns: [],
-			references: []
-		},
+		createEntityTable('TestTable')
 	]
 };
 
 export const databaseModelWithTableWithColumnsOfAllTypes: DatabaseModel = {
 	tables: [
-		{
-			name: 'TestTable',
-			identityColumnName: 'id',
+		createEntityTable('TestTable', {
 			columns: [
-				createSimpleTableColumn('booleanColumn', EntityPropertyType.BOOLEAN),
-				createSimpleTableColumn('shortColumn', EntityPropertyType.SHORT),
-				createSimpleTableColumn('intColumn', EntityPropertyType.INT),
-				createSimpleTableColumn('longColumn', EntityPropertyType.LONG),
-				createSimpleTableColumn('decimalColumn', EntityPropertyType.DECIMAL, [10, 3]),
-				createSimpleTableColumn('textColumn', EntityPropertyType.TEXT, [50]),
-				createSimpleTableColumn('dateColumn', EntityPropertyType.DATE),
-				createSimpleTableColumn('timeColumn', EntityPropertyType.TIME),
-				createSimpleTableColumn('datetimeColumn', EntityPropertyType.DATETIME),
-				createSimpleTableColumn('blobColumn', EntityPropertyType.BLOB)
-			],
-			references: []
-		},
+				createTableColumn('booleanColumn', EntityPropertyType.BOOLEAN),
+				createTableColumn('shortColumn', EntityPropertyType.SHORT),
+				createTableColumn('intColumn', EntityPropertyType.INT),
+				createTableColumn('longColumn', EntityPropertyType.LONG),
+				createTableColumn('decimalColumn', EntityPropertyType.DECIMAL, {length: [10, 3]}),
+				createTableColumn('textColumn', EntityPropertyType.TEXT, {length: [50]}),
+				createTableColumn('dateColumn', EntityPropertyType.DATE),
+				createTableColumn('timeColumn', EntityPropertyType.TIME),
+				createTableColumn('datetimeColumn', EntityPropertyType.DATETIME),
+				createTableColumn('blobColumn', EntityPropertyType.BLOB)
+			]
+		})
 	]
 };
 
 export const databaseModelWithTableWithCustomId: DatabaseModel = {
 	tables: [
-		{
-			name: 'TestTable',
-			identityColumnName: 'theCustomIdentityOfTestTable',
-			columns: [],
-			references: []
-		},
+		createEntityTable('TestTable', {
+			identityColumnName: 'theCustomIdentityOfTestTable'
+		})
 	]
 };
 
 export const databaseModelWithTablesWithColumnsWithModifiers: DatabaseModel = {
 	tables: [
-		{
-			name: 'TestTable',
-			identityColumnName: 'id',
+		createEntityTable('TestTable', {
 			columns: [
-				{
-					name: 'notNullColumn',
-					type: EntityPropertyType.INT,
-					length: [],
-					notNull: true,
-					unique: false
-				},
-				{
-					name: 'uniqueColumn',
-					type: EntityPropertyType.INT,
-					length: [],
-					notNull: false,
-					unique: true
-				},
-			],
-			references: []
-		},
+				createTableColumn('nullableColumn', EntityPropertyType.INT, {notNull: false}),
+				createTableColumn('uniqueColumn', EntityPropertyType.INT, {unique: true})
+			]
+		}),
 	]
 };
 
 export const databaseModelWithTableWithReferenceToAnotherTable: DatabaseModel = {
 	tables: [
-		{
-			name: 'TestTable1',
-			identityColumnName: 'id',
-			columns: [],
+		createEntityTable('TestTable1', {
 			references: [
-				createTableReference('table2Id', 'TestTable2', {
-					targetTableIdentityColumnName: 'id'
-				})
+				createTableReference('table2Id', 'TestTable2')
 			]
-		},
-		{
-			name: 'TestTable2',
-			identityColumnName: 'id',
-			columns: [],
-			references: []
-		},
+		}),
+		createEntityTable('TestTable2')
 	]
 };
 
 export const databaseModelWithTableWithUniqueReferenceToAnotherTable: DatabaseModel = {
 	tables: [
-		{
-			name: 'TestTable1',
-			identityColumnName: 'id',
-			columns: [],
+		createEntityTable('TestTable1', {
 			references: [
 				createTableReference('table2Id', 'TestTable2', {
 					unique: true
 				})
 			]
-		},
-		{
-			name: 'TestTable2',
-			identityColumnName: 'id',
-			columns: [],
-			references: []
-		},
+		}),
+		createEntityTable('TestTable2')
 	]
 };
 
 export const databaseModelWithTableWithNullableReferenceToAnotherTable: DatabaseModel = {
 	tables: [
-		{
-			name: 'TestTable1',
-			identityColumnName: 'id',
-			columns: [],
+		createEntityTable('TestTable1', {
 			references: [
 				createTableReference('table2Id', 'TestTable2', {
 					notNull: false
 				})
 			]
-		},
-		{
-			name: 'TestTable2',
-			identityColumnName: 'id',
-			columns: [],
-			references: []
-		},
+		}),
+		createEntityTable('TestTable2')
 	]
 };
 
 export const databaseModelWithTableWithReferenceToAnotherTableWithCustomId: DatabaseModel = {
 	tables: [
-		{
-			name: 'TestTable1',
-			identityColumnName: 'id',
-			columns: [],
+		createEntityTable('TestTable1', {
 			references: [
 				createTableReference('table2Id', 'TestTable2', {
 					targetTableIdentityColumnName: 'customId'
 				})
 			]
-		},
-		{
-			name: 'TestTable2',
-			identityColumnName: 'customId',
-			columns: [],
-			references: []
-		},
+		}),
+		createEntityTable('TestTable2', {
+			identityColumnName: 'customId'
+		})
 	]
 };
 
 export const databaseModelWithTablesReferencingEachOther: DatabaseModel = {
 	tables: [
-		{
-			name: 'TestTable1',
-			identityColumnName: 'id',
-			columns: [],
+		createEntityTable('TestTable1', {
 			references: [
-				createTableReference('table2Id', 'TestTable2', {
-					targetTableIdentityColumnName: 'id'
-				})
+				createTableReference('table2Id', 'TestTable2')
 			]
-		},
-		{
-			name: 'TestTable2',
-			identityColumnName: 'id',
-			columns: [],
+		}),
+		createEntityTable('TestTable2', {
 			references: [
-				createTableReference('table1Id', 'TestTable1', {
-					targetTableIdentityColumnName: 'id'
-				})
+				createTableReference('table1Id', 'TestTable1')
 			]
-		},
+		})
 	]
 };
 
 export const databaseModelWithTableReferencingItself: DatabaseModel = {
 	tables: [
-		{
-			name: 'TestTable',
-			identityColumnName: 'id',
-			columns: [],
+		createEntityTable('TestTable', {
 			references: [
-				createTableReference('selfReferenceId', 'TestTable', {
-					targetTableIdentityColumnName: 'id'
-				})
+				createTableReference('selfReferenceId', 'TestTable')
 			]
-		},
+		})
 	]
 };
 
 export const fullDatabaseModel: DatabaseModel = {
 	tables: [
-		{
-			name: 'ModifiersTable',
+		createEntityTable('ModifiersTable', {
 			identityColumnName: 'theIdOfModifiersTable',
 			columns: [
-				{
-					name: 'notNullColumn',
-					type: EntityPropertyType.INT,
-					length: [],
-					notNull: true,
-					unique: false
-				},
-				{
-					name: 'uniqueColumn',
-					type: EntityPropertyType.INT,
-					length: [],
-					notNull: false,
-					unique: true
-				},
-			],
-			references: []
-		},
-		{
-			name: 'TypesTable',
+				createTableColumn('nullableColumn', EntityPropertyType.INT, {notNull: false}),
+				createTableColumn('uniqueColumn', EntityPropertyType.INT, {unique: true})
+			]
+		}),
+		createEntityTable('TypesTable', {
 			identityColumnName: 'theIdOfTypesTable',
 			columns: [
-				createSimpleTableColumn('booleanColumn', EntityPropertyType.BOOLEAN),
-				createSimpleTableColumn('shortColumn', EntityPropertyType.SHORT),
-				createSimpleTableColumn('intColumn', EntityPropertyType.INT),
-				createSimpleTableColumn('longColumn', EntityPropertyType.LONG),
-				createSimpleTableColumn('decimalColumn', EntityPropertyType.DECIMAL, [10, 3]),
-				createSimpleTableColumn('textColumn', EntityPropertyType.TEXT, [50]),
-				createSimpleTableColumn('dateColumn', EntityPropertyType.DATE),
-				createSimpleTableColumn('timeColumn', EntityPropertyType.TIME),
-				createSimpleTableColumn('datetimeColumn', EntityPropertyType.DATETIME),
-				createSimpleTableColumn('blobColumn', EntityPropertyType.BLOB)
-			],
-			references: []
-		},
-		{
-			name: 'ReferencesTable',
+				createTableColumn('booleanColumn', EntityPropertyType.BOOLEAN),
+				createTableColumn('shortColumn', EntityPropertyType.SHORT),
+				createTableColumn('intColumn', EntityPropertyType.INT),
+				createTableColumn('longColumn', EntityPropertyType.LONG),
+				createTableColumn('decimalColumn', EntityPropertyType.DECIMAL, {length: [10, 3]}),
+				createTableColumn('textColumn', EntityPropertyType.TEXT, {length: [50]}),
+				createTableColumn('dateColumn', EntityPropertyType.DATE),
+				createTableColumn('timeColumn', EntityPropertyType.TIME),
+				createTableColumn('datetimeColumn', EntityPropertyType.DATETIME),
+				createTableColumn('blobColumn', EntityPropertyType.BLOB)
+			]
+		}),
+		createRelationshipTable('ReferencesTable', {
 			identityColumnName: 'theIdOfReferencesTable',
-			columns: [],
 			references: [
 				createTableReference('modifiersId', 'ModifiersTable', {
 					targetTableIdentityColumnName: 'theIdOfModifiersTable'
@@ -256,6 +167,6 @@ export const fullDatabaseModel: DatabaseModel = {
 					unique: true
 				})
 			]
-		},
+		}),
 	]
 };

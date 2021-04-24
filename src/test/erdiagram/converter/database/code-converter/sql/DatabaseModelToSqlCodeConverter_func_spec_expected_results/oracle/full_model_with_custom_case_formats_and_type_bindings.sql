@@ -1,8 +1,8 @@
 CREATE SEQUENCE "Modifiers_Table_SEQ" START WITH 1;
 CREATE TABLE "Modifiers_Table" (
     "the_id_of_modifiers_table" CUSTOM_IDENTITY_TYPE NOT NULL DEFAULT "Modifiers_Table_SEQ".nextval,
-    "not_null_column" CUSTOM_INT_TYPE NOT NULL,
-    "unique_column" CUSTOM_INT_TYPE,
+    "nullable_column" CUSTOM_INT_TYPE,
+    "unique_column" CUSTOM_INT_TYPE NOT NULL,
     CONSTRAINT "Modifiers_Table_PK" PRIMARY KEY ("the_id_of_modifiers_table"),
     CONSTRAINT "Modifiers_Table_unique_column_UNIQUE" UNIQUE ("unique_column")
 );

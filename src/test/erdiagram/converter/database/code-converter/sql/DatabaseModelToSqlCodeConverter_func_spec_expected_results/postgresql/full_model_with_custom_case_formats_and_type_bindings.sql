@@ -1,7 +1,7 @@
 CREATE TABLE "MODIFIERS_TABLE" (
     "The_Id_Of_Modifiers_Table" CUSTOM_IDENTITY_TYPE NOT NULL GENERATED ALWAYS AS IDENTITY,
-    "Not_Null_Column" CUSTOM_INT_TYPE NOT NULL,
-    "Unique_Column" CUSTOM_INT_TYPE,
+    "Nullable_Column" CUSTOM_INT_TYPE,
+    "Unique_Column" CUSTOM_INT_TYPE NOT NULL,
     CONSTRAINT "MODIFIERS_TABLE_pk" PRIMARY KEY ("The_Id_Of_Modifiers_Table"),
     CONSTRAINT "MODIFIERS_TABLE_Unique_Column_unique" UNIQUE ("Unique_Column")
 );

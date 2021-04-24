@@ -2,8 +2,8 @@ PRAGMA foreign_keys = OFF;
 
 CREATE TABLE "test_table" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "not_null_column" INTEGER NOT NULL,
-    "unique_column" INTEGER,
+    "nullable_column" INTEGER,
+    "unique_column" INTEGER NOT NULL,
     CONSTRAINT "test_table_unique_column_unique" UNIQUE ("unique_column")
 );
 

@@ -9,6 +9,7 @@ import SqlForeignColumnCodeGenerator
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/common/column/SqlForeignColumnCodeGenerator';
 import SqliteColumnCodeGenerator
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlite/column/SqliteColumnCodeGenerator';
+import {OmitSource} from '@/erdiagram/converter/oop/model/source-metadata-types';
 
 export default class SqliteForeignColumnCodeGenerator implements SqlForeignColumnCodeGenerator {
 
@@ -20,7 +21,7 @@ export default class SqliteForeignColumnCodeGenerator implements SqlForeignColum
 
 	}
 
-	public generateForeignColumnCode(outputTableName: string, reference: TableReferenceDescriptor): ForeignKeyColumnCode {
+	public generateForeignColumnCode(outputTableName: string, reference: OmitSource<TableReferenceDescriptor>): ForeignKeyColumnCode {
 
 		const columnDescriptor = this.createForeignKeyColumnDescriptor(reference);
 
@@ -37,7 +38,7 @@ export default class SqliteForeignColumnCodeGenerator implements SqlForeignColum
 
 	}
 
-	private createForeignKeyColumnDescriptor(reference: TableReferenceDescriptor): TableColumnDescriptor {
+	private createForeignKeyColumnDescriptor(reference: OmitSource<TableReferenceDescriptor>): OmitSource<TableColumnDescriptor> {
 
 		const {
 			columnName,
@@ -55,7 +56,7 @@ export default class SqliteForeignColumnCodeGenerator implements SqlForeignColum
 
 	}
 
-	private createForeignKeyConstraint(outputTableName: string, reference: TableReferenceDescriptor) {
+	private createForeignKeyConstraint(outputTableName: string, reference: OmitSource<TableReferenceDescriptor>) {
 
 		const outputColumnName = this.columnNameCaseConverter.convertCase(reference.columnName);
 
