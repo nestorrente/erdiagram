@@ -1,6 +1,6 @@
 import {ClassModel} from '@/erdiagram/converter/oop/model/class-model-types';
 import {EntityRelationshipModel} from '@/erdiagram/parser/types/entity-relationship-model-types';
-import ClassModelGeneratorConfig from '@/erdiagram/converter/oop/model/config/ClassModelGeneratorConfig';
+import ClassModelGeneratorConfig, {PartialClassModelGeneratorConfig} from '@/erdiagram/converter/oop/model/config/ClassModelGeneratorConfig';
 import classModelGeneratorConfigManager from '@/erdiagram/converter/oop/model/config/ClassModelGeneratorConfigManager';
 import EntityToClassMapper from '@/erdiagram/converter/oop/model/class/EntityToClassMapper';
 
@@ -9,7 +9,7 @@ export default class ClassModelGenerator {
 	private readonly config: ClassModelGeneratorConfig;
 	private readonly entityToClassMapper: EntityToClassMapper;
 
-	constructor(config?: Partial<ClassModelGeneratorConfig>) {
+	constructor(config?: PartialClassModelGeneratorConfig) {
 		this.config = classModelGeneratorConfigManager.mergeWithDefaultConfig(config);
 		this.entityToClassMapper = new EntityToClassMapper(this.config);
 	}

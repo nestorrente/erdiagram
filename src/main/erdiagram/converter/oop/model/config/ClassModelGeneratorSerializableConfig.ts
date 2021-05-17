@@ -1,3 +1,5 @@
+import StandardIdNamingStrategies from '@/erdiagram/converter/common/id-naming-strategy/StandardIdNamingStrategies';
+
 export default interface ClassModelGeneratorSerializableConfig {
-	idNamingStrategy?: string;
+	idNamingStrategy: keyof typeof StandardIdNamingStrategies;
 }

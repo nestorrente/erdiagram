@@ -7,6 +7,7 @@
 /docs
 *.iml
 package-lock.json
+tsconfig.json
+tslint.json
 jest.config.js
 webpack.config.js
-TODO.txt

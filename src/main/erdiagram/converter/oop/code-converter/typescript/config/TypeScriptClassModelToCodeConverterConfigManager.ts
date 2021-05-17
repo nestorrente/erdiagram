@@ -1,14 +1,13 @@
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
-import TypeScriptClassModelToCodeConverterConfig
-	from '@/erdiagram/converter/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfig';
+import TypeScriptClassModelToCodeConverterConfig, {PartialTypeScriptClassModelToCodeConverterConfig} from '@/erdiagram/converter/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfig';
 import parseTypeScriptType from '@/erdiagram/converter/oop/code-converter/typescript/type/parseTypeScriptType';
 import TypeScriptClassModelToCodeConverterSerializableConfig
 	from '@/erdiagram/converter/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterSerializableConfig';
 import {mapValues} from '@/erdiagram/util/record-utils';
 
 export class TypeScriptClassModelToCodeConverterConfigManager
-		extends AbstractComponentConfigManager<TypeScriptClassModelToCodeConverterConfig, Partial<TypeScriptClassModelToCodeConverterConfig>, TypeScriptClassModelToCodeConverterSerializableConfig> {
+		extends AbstractComponentConfigManager<TypeScriptClassModelToCodeConverterConfig, PartialTypeScriptClassModelToCodeConverterConfig, TypeScriptClassModelToCodeConverterSerializableConfig> {
 
 	getDefaultConfig(): TypeScriptClassModelToCodeConverterConfig {
 		return {
@@ -28,7 +27,7 @@ export class TypeScriptClassModelToCodeConverterConfigManager
 		};
 	}
 
-	mergeConfigs(fullConfig: TypeScriptClassModelToCodeConverterConfig, partialConfig?: Partial<TypeScriptClassModelToCodeConverterConfig>): TypeScriptClassModelToCodeConverterConfig {
+	mergeConfigs(fullConfig: TypeScriptClassModelToCodeConverterConfig, partialConfig?: PartialTypeScriptClassModelToCodeConverterConfig): TypeScriptClassModelToCodeConverterConfig {
 		return {
 			...fullConfig,
 			...partialConfig,

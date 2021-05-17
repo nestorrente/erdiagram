@@ -1,9 +1,10 @@
-import JavaClassModelToCodeConverterConfig from './JavaClassModelToCodeConverterConfig';
+import JavaClassModelToCodeConverterConfig, {PartialJavaClassModelToCodeConverterConfig} from './JavaClassModelToCodeConverterConfig';
 import JavaClassModelToCodeConverterSerializableConfig from './JavaClassModelToCodeConverterSerializableConfig';
 import javaClassModelToCodeConverterConfigManager, {JavaClassModelToCodeConverterConfigManager} from './JavaClassModelToCodeConverterConfigManager';
 
 export {
 	JavaClassModelToCodeConverterConfig,
+	PartialJavaClassModelToCodeConverterConfig,
 	JavaClassModelToCodeConverterSerializableConfig,
 	JavaClassModelToCodeConverterConfigManager,
 	javaClassModelToCodeConverterConfigManager

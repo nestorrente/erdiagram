@@ -2,8 +2,7 @@ import {capitalizeWord} from '@/erdiagram/util/string-utils';
 import {ClassDescriptor, ClassFieldDescriptor, ClassModel} from '@/erdiagram/converter/oop/model/class-model-types';
 import {indentLines} from '@/erdiagram/util/indent-utils';
 import ClassModelToCodeConverter from '@/erdiagram/converter/oop/code-converter/ClassModelToCodeConverter';
-import TypeScriptClassModelToCodeConverterConfig
-	from '@/erdiagram/converter/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfig';
+import TypeScriptClassModelToCodeConverterConfig, {PartialTypeScriptClassModelToCodeConverterConfig} from '@/erdiagram/converter/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfig';
 import typescriptClassModelToCodeConverterConfigManager
 	from '@/erdiagram/converter/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfigManager';
 import TypeScriptTypeResolver from '@/erdiagram/converter/oop/code-converter/typescript/type/TypeScriptTypeResolver';
@@ -13,7 +12,7 @@ export default class TypeScriptClassModelToCodeConverter implements ClassModelTo
 	private readonly config: TypeScriptClassModelToCodeConverterConfig;
 	private readonly typeResolver: TypeScriptTypeResolver;
 
-	constructor(config?: Partial<TypeScriptClassModelToCodeConverterConfig>) {
+	constructor(config?: PartialTypeScriptClassModelToCodeConverterConfig) {
 		this.config = typescriptClassModelToCodeConverterConfigManager.mergeWithDefaultConfig(config);
 		this.typeResolver = new TypeScriptTypeResolver(this.config.typeBindings);
 	}

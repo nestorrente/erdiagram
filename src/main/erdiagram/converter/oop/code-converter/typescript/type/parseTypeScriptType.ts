@@ -82,6 +82,7 @@ function splitParameterTypes(parameterTypesText: string): string[] {
 				nestedLevelsCount++;
 				break;
 			case '>':
+				/* istanbul ignore next */
 				if (nestedLevelsCount === 0) {
 					throw new Error('Unexpected character ">"');
 				}

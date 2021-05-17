@@ -1,5 +1,4 @@
 import {ClassFieldDescriptor} from '@/erdiagram/converter/oop/model/class-model-types';
-import JavaType from '@/erdiagram/converter/oop/code-converter/java/type/JavaType';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {ERDiagramSyntaxError} from '@/erdiagram/parser/types/parse-errors';
 import NotNullTextValidationStrategy
@@ -9,11 +8,7 @@ import JavaValidationAnnotationTypes
 	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/JavaValidationAnnotationTypes';
 import NotNullBlobValidationStrategy
 	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullBlobValidationStrategy';
-
-export interface FieldAnnotation {
-	codeLine: string;
-	annotationType: JavaType;
-}
+import JavaAnnotation from '@/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation';
 
 export default class JavaValidationAnnotationsGenerator {
 
@@ -24,14 +19,14 @@ export default class JavaValidationAnnotationsGenerator {
 
 	}
 
-	public getValidationAnnotations(field: ClassFieldDescriptor): FieldAnnotation[] {
+	public getValidationAnnotations(field: ClassFieldDescriptor): JavaAnnotation[] {
 		return removeNullableValues([
 			this.getNotNullAnnotation(field),
 			this.getSizeAnnotation(field)
 		]);
 	}
 
-	private getNotNullAnnotation(field: ClassFieldDescriptor): FieldAnnotation | null {
+	private getNotNullAnnotation(field: ClassFieldDescriptor): JavaAnnotation | null {
 
 		if (field.nullable) {
 			return null;
@@ -39,14 +34,11 @@ export default class JavaValidationAnnotationsGenerator {
 
 		const annotationType = this.getNotNullAnnotationForField(field);
 
-		return {
-			annotationType,
-			codeLine: this.formatAnnotation(annotationType)
-		};
+		return new JavaAnnotation(annotationType);
 
 	}
 
-	private getSizeAnnotation(field: ClassFieldDescriptor): FieldAnnotation | null {
+	private getSizeAnnotation(field: ClassFieldDescriptor): JavaAnnotation | null {
 
 		const {maxSize} = field;
 
@@ -54,12 +46,10 @@ export default class JavaValidationAnnotationsGenerator {
 			return null;
 		}
 
-		const annotationType = JavaValidationAnnotationTypes.Size;
-
-		return {
-			annotationType,
-			codeLine: this.formatAnnotation(annotationType, {max: maxSize})
-		};
+		return new JavaAnnotation(
+				JavaValidationAnnotationTypes.Size,
+				{max: maxSize}
+		);
 
 	}
 
@@ -100,29 +90,6 @@ export default class JavaValidationAnnotationsGenerator {
 				/* istanbul ignore next */
 				throw new ERDiagramSyntaxError(`Unknown statement type`);
 		}
-	}
-
-	private formatAnnotation(type: JavaType, params: Record<string, any> = {}): string {
-
-		const simpleName = type.formatSimple();
-		const formattedParams = this.formatAnnotationParams(params);
-
-		return `@${simpleName}${formattedParams}`;
-
-	}
-
-	private formatAnnotationParams(annotationParams: Record<string, any>) {
-
-		const annotationParamsEntries = Object.entries(annotationParams);
-
-		if (annotationParamsEntries.length === 0) {
-			return '';
-		}
-
-		const formattedParams = annotationParamsEntries.map(([paramName, paramValue]) => `${paramName} = ${paramValue}`);
-
-		return `(${formattedParams.join(', ')})`;
-
 	}
 
 }

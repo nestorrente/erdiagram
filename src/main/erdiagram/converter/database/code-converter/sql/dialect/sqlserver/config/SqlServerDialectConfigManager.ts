@@ -1,14 +1,13 @@
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
-import SqlServerDialectConfig
-	from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlserver/config/SqlServerDialectConfig';
+import SqlServerDialectConfig, {PartialSqlServerDialectConfig} from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlserver/config/SqlServerDialectConfig';
 import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
 import SqlServerDialectSerializableConfig
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlserver/config/SqlServerDialectSerializableConfig';
 
 export class SqlServerDialectConfigManager
-		extends AbstractComponentConfigManager<SqlServerDialectConfig, Partial<SqlServerDialectConfig>, SqlServerDialectSerializableConfig> {
+		extends AbstractComponentConfigManager<SqlServerDialectConfig, PartialSqlServerDialectConfig, SqlServerDialectSerializableConfig> {
 
 	getDefaultConfig(): SqlServerDialectConfig {
 		return {
@@ -30,7 +29,7 @@ export class SqlServerDialectConfigManager
 		};
 	}
 
-	mergeConfigs(fullConfig: SqlServerDialectConfig, partialConfig?: Partial<SqlServerDialectConfig>): SqlServerDialectConfig {
+	mergeConfigs(fullConfig: SqlServerDialectConfig, partialConfig?: PartialSqlServerDialectConfig): SqlServerDialectConfig {
 		return {
 			...fullConfig,
 			...partialConfig,
@@ -44,8 +43,8 @@ export class SqlServerDialectConfigManager
 	convertToSerializableObject(fullConfig: SqlServerDialectConfig): SqlServerDialectSerializableConfig {
 		return {
 			...fullConfig,
-			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat),
-			columnNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.columnNameCaseFormat),
+			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat, 'UPPER_CAMEL'),
+			columnNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.columnNameCaseFormat, 'UPPER_CAMEL'),
 		};
 	}
 

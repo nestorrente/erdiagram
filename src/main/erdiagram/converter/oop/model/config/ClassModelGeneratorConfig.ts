@@ -3,3 +3,5 @@ import IdNamingStrategy from '@/erdiagram/converter/common/id-naming-strategy/Id
 export default interface ClassModelGeneratorConfig {
 	idNamingStrategy: IdNamingStrategy;
 }
+
+export type PartialClassModelGeneratorConfig = Partial<ClassModelGeneratorConfig>;

@@ -4,3 +4,5 @@ export default interface DatabaseModelGeneratorConfig {
 	usePluralTableNames: boolean;
 	idNamingStrategy: IdNamingStrategy;
 }
+
+export type PartialDatabaseModelGeneratorConfig = Partial<DatabaseModelGeneratorConfig>;

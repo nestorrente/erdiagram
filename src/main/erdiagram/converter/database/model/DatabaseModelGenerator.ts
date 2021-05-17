@@ -5,7 +5,7 @@ import {
 	TableDescriptor,
 	TableReferenceDescriptor
 } from '@/erdiagram/converter/database/model/database-model-types';
-import DatabaseModelGeneratorConfig from '@/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfig';
+import DatabaseModelGeneratorConfig, {PartialDatabaseModelGeneratorConfig} from '@/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfig';
 import {
 	Cardinality,
 	EntityDescriptor,
@@ -24,7 +24,7 @@ export default class DatabaseModelGenerator {
 
 	private readonly config: DatabaseModelGeneratorConfig;
 
-	constructor(config?: Partial<DatabaseModelGeneratorConfig>) {
+	constructor(config?: PartialDatabaseModelGeneratorConfig) {
 		this.config = databaseModelGeneratorConfigManager.mergeWithDefaultConfig(config);
 	}
 
@@ -71,7 +71,7 @@ export default class DatabaseModelGenerator {
 				}
 			} else if (relationship.leftMember.cardinality !== Cardinality.MANY) {
 				if (relationship.rightMember.entity === entity.name) {
-					references.push(this.createTableReference(relationship, relationship.leftMember, entityIdentitiesMap, false));
+					references.push(this.createTableReference(relationship, relationship.leftMember, entityIdentitiesMap));
 				}
 			}
 		}
@@ -106,8 +106,8 @@ export default class DatabaseModelGenerator {
 			identityColumnName: identityColumnName,
 			columns: [],
 			references: [
-				this.createTableReference(relationship, relationship.leftMember, entityIdentitiesMap, false),
-				this.createTableReference(relationship, relationship.rightMember, entityIdentitiesMap, false)
+				this.createTableReference(relationship, relationship.leftMember, entityIdentitiesMap),
+				this.createTableReference(relationship, relationship.rightMember, entityIdentitiesMap)
 			],
 			sourceMetadata: {
 				sourceType: SourceType.RELATIONSHIP,

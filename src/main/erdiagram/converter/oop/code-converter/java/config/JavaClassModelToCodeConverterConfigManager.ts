@@ -1,7 +1,6 @@
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
-import JavaClassModelToCodeConverterConfig
-	from '@/erdiagram/converter/oop/code-converter/java/config/JavaClassModelToCodeConverterConfig';
+import JavaClassModelToCodeConverterConfig, {PartialJavaClassModelToCodeConverterConfig} from '@/erdiagram/converter/oop/code-converter/java/config/JavaClassModelToCodeConverterConfig';
 import parseJavaType from '@/erdiagram/converter/oop/code-converter/java/type/parseJavaType';
 import {mapValues} from '@/erdiagram/util/record-utils';
 import JavaClassModelToCodeConverterSerializableConfig
@@ -12,7 +11,7 @@ import NotNullBlobValidationStrategy
 	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullBlobValidationStrategy';
 
 export class JavaClassModelToCodeConverterConfigManager
-		extends AbstractComponentConfigManager<JavaClassModelToCodeConverterConfig, Partial<JavaClassModelToCodeConverterConfig>, JavaClassModelToCodeConverterSerializableConfig> {
+		extends AbstractComponentConfigManager<JavaClassModelToCodeConverterConfig, PartialJavaClassModelToCodeConverterConfig, JavaClassModelToCodeConverterSerializableConfig> {
 
 	getDefaultConfig(): JavaClassModelToCodeConverterConfig {
 		return {
@@ -35,7 +34,7 @@ export class JavaClassModelToCodeConverterConfigManager
 		};
 	}
 
-	mergeConfigs(fullConfig: JavaClassModelToCodeConverterConfig, partialConfig?: Partial<JavaClassModelToCodeConverterConfig>): JavaClassModelToCodeConverterConfig {
+	mergeConfigs(fullConfig: JavaClassModelToCodeConverterConfig, partialConfig?: PartialJavaClassModelToCodeConverterConfig): JavaClassModelToCodeConverterConfig {
 		return {
 			...fullConfig,
 			...partialConfig,
@@ -59,6 +58,19 @@ export class JavaClassModelToCodeConverterConfigManager
 			typeBindings: mapValues(serializableConfig.typeBindings, parseJavaType),
 		};
 	}
+
+	// protected getJsonAdapter(): NullishAwareJsonAdapter<JavaClassModelToCodeConverterConfig> {
+	// 	return JsonAdapters.object<JavaClassModelToCodeConverterConfig>({
+	// 		typeBindings: JsonAdapters.record(JsonAdapters.custom<JavaType, string>({
+	// 			adaptToJson(value) {
+	// 				return value.formatCanonical();
+	// 			},
+	// 			recoverFromJson(value) {
+	// 				return parseJavaType(value);
+	// 			}
+	// 		}))
+	// 	});
+	// }
 
 }
 

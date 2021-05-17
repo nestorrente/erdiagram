@@ -19,7 +19,7 @@ test('convertToCode() calls dependencies', () => {
 
 		outputCode: 'Output_code'
 
-	}
+	};
 
 	const classModelGeneratorMock = {
 		generateClassModel: jest.fn(() => mockValues.classModel)
@@ -41,13 +41,13 @@ test('convertToCode() calls dependencies', () => {
 	expect(result).toBe(mockValues.outputCode);
 
 	const generateClassModelCalls = classModelGeneratorMock.generateClassModel.mock.calls;
-	expect(generateClassModelCalls.length).toBe(1);
+	expect(generateClassModelCalls).toHaveLength(1);
 
 	const generateClassModelCallArgs = generateClassModelCalls[0] as any[];
 	expect(generateClassModelCallArgs[0]).toBe(mockValues.entityRelationshipModel);
 
 	const convertToCodeCalls = classModelToCodeConverterMock.convertToCode.mock.calls;
-	expect(convertToCodeCalls.length).toBe(1);
+	expect(convertToCodeCalls).toHaveLength(1);
 
 	const convertToCodeCallArgs = convertToCodeCalls[0] as any[];
 	expect(convertToCodeCallArgs[0]).toBe(mockValues.classModel);

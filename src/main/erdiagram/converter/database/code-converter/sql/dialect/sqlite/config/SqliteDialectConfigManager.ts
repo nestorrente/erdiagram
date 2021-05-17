@@ -2,13 +2,12 @@ import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-m
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
 import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
-import SqliteDialectConfig
-	from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlite/config/SqliteDialectConfig';
+import SqliteDialectConfig, {PartialSqliteDialectConfig} from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlite/config/SqliteDialectConfig';
 import SqliteDialectSerializableConfig
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlite/config/SqliteDialectSerializableConfig';
 
 export class SqliteDialectConfigManager
-		extends AbstractComponentConfigManager<SqliteDialectConfig, Partial<SqliteDialectConfig>, SqliteDialectSerializableConfig> {
+		extends AbstractComponentConfigManager<SqliteDialectConfig, PartialSqliteDialectConfig, SqliteDialectSerializableConfig> {
 
 	getDefaultConfig(): SqliteDialectConfig {
 		return {
@@ -30,7 +29,7 @@ export class SqliteDialectConfigManager
 		};
 	}
 
-	mergeConfigs(fullConfig: SqliteDialectConfig, partialConfig?: Partial<SqliteDialectConfig>): SqliteDialectConfig {
+	mergeConfigs(fullConfig: SqliteDialectConfig, partialConfig?: PartialSqliteDialectConfig): SqliteDialectConfig {
 		return {
 			...fullConfig,
 			...partialConfig,
@@ -44,8 +43,8 @@ export class SqliteDialectConfigManager
 	convertToSerializableObject(fullConfig: SqliteDialectConfig): SqliteDialectSerializableConfig {
 		return {
 			...fullConfig,
-			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat),
-			columnNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.columnNameCaseFormat),
+			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat, 'LOWER_UNDERSCORE'),
+			columnNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.columnNameCaseFormat, 'LOWER_UNDERSCORE'),
 		};
 	}
 

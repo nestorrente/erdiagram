@@ -1,5 +1,5 @@
 import {EntityRelationshipModel} from '@/erdiagram/parser/types/entity-relationship-model-types';
-import EntityRelationshipModelParserConfig from '@/erdiagram/parser/config/EntityRelationshipModelParserConfig';
+import EntityRelationshipModelParserConfig, {PartialEntityRelationshipModelParserConfig} from '@/erdiagram/parser/config/EntityRelationshipModelParserConfig';
 import EntityRelationshipModelParseResultValidator
 	from '@/erdiagram/parser/validator/EntityRelationshipModelParseResultValidator';
 import entityRelationshipModelParserConfigManager
@@ -15,7 +15,7 @@ export default class EntityRelationshipModelParser {
 	private readonly validator: EntityRelationshipModelParseResultValidator;
 	private readonly parsedModelToPublicModelConverter: ParsedModelToPublicModelConverter;
 
-	constructor(config?: Partial<EntityRelationshipModelParserConfig>) {
+	constructor(config?: PartialEntityRelationshipModelParserConfig) {
 		this.config = entityRelationshipModelParserConfigManager.mergeWithDefaultConfig(config);
 		this.entityRelationshipModelParserWithoutValidation = new EntityRelationshipModelParserWithoutValidation();
 		this.validator = new EntityRelationshipModelParseResultValidator(this.config.allowUnknownEntities);

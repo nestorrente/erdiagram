@@ -1,14 +1,13 @@
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
-import OracleDialectConfig
-	from '@/erdiagram/converter/database/code-converter/sql/dialect/oracle/config/OracleDialectConfig';
+import OracleDialectConfig, {PartialOracleDialectConfig} from '@/erdiagram/converter/database/code-converter/sql/dialect/oracle/config/OracleDialectConfig';
 import OracleDialectSerializableConfig
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/oracle/config/OracleDialectSerializableConfig';
 import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
 
 export class OracleDialectConfigManager
-		extends AbstractComponentConfigManager<OracleDialectConfig, Partial<OracleDialectConfig>, OracleDialectSerializableConfig> {
+		extends AbstractComponentConfigManager<OracleDialectConfig, PartialOracleDialectConfig, OracleDialectSerializableConfig> {
 
 	getDefaultConfig(): OracleDialectConfig {
 		return {
@@ -30,7 +29,7 @@ export class OracleDialectConfigManager
 		};
 	}
 
-	mergeConfigs(fullConfig: OracleDialectConfig, partialConfig?: Partial<OracleDialectConfig>): OracleDialectConfig {
+	mergeConfigs(fullConfig: OracleDialectConfig, partialConfig?: PartialOracleDialectConfig): OracleDialectConfig {
 		return {
 			...fullConfig,
 			...partialConfig,
@@ -44,8 +43,8 @@ export class OracleDialectConfigManager
 	convertToSerializableObject(fullConfig: OracleDialectConfig): OracleDialectSerializableConfig {
 		return {
 			...fullConfig,
-			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat),
-			columnNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.columnNameCaseFormat),
+			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat, 'UPPER_UNDERSCORE'),
+			columnNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.columnNameCaseFormat, 'UPPER_UNDERSCORE'),
 		};
 	}
 

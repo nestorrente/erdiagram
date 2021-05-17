@@ -1,14 +1,13 @@
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
-import MysqlDialectConfig
-	from '@/erdiagram/converter/database/code-converter/sql/dialect/mysql/config/MysqlDialectConfig';
+import MysqlDialectConfig, {PartialMysqlDialectConfig} from '@/erdiagram/converter/database/code-converter/sql/dialect/mysql/config/MysqlDialectConfig';
 import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
 import MysqlDialectSerializableConfig
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/mysql/config/MysqlDialectSerializableConfig';
 
 export class MysqlDialectConfigManager
-		extends AbstractComponentConfigManager<MysqlDialectConfig, Partial<MysqlDialectConfig>, MysqlDialectSerializableConfig> {
+		extends AbstractComponentConfigManager<MysqlDialectConfig, PartialMysqlDialectConfig, MysqlDialectSerializableConfig> {
 
 	getDefaultConfig(): MysqlDialectConfig {
 		return {
@@ -30,7 +29,7 @@ export class MysqlDialectConfigManager
 		};
 	}
 
-	mergeConfigs(fullConfig: MysqlDialectConfig, partialConfig?: Partial<MysqlDialectConfig>): MysqlDialectConfig {
+	mergeConfigs(fullConfig: MysqlDialectConfig, partialConfig?: PartialMysqlDialectConfig): MysqlDialectConfig {
 		return {
 			...fullConfig,
 			...partialConfig,
@@ -44,8 +43,8 @@ export class MysqlDialectConfigManager
 	convertToSerializableObject(fullConfig: MysqlDialectConfig): MysqlDialectSerializableConfig {
 		return {
 			...fullConfig,
-			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat),
-			columnNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.columnNameCaseFormat),
+			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat, 'UPPER_CAMEL'),
+			columnNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.columnNameCaseFormat, 'LOWER_CAMEL'),
 		};
 	}
 

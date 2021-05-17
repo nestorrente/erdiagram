@@ -19,7 +19,7 @@ test('convertToCode() calls dependencies', () => {
 
 		outputCode: 'Output_code'
 
-	}
+	};
 
 	const databaseModelGeneratorMock = {
 		generateDatabaseModel: jest.fn(() => mockValues.databaseModel)
@@ -41,13 +41,13 @@ test('convertToCode() calls dependencies', () => {
 	expect(result).toBe(mockValues.outputCode);
 
 	const generateDatabaseModelCalls = databaseModelGeneratorMock.generateDatabaseModel.mock.calls;
-	expect(generateDatabaseModelCalls.length).toBe(1);
+	expect(generateDatabaseModelCalls).toHaveLength(1);
 
 	const generateDatabaseModelCallArgs = generateDatabaseModelCalls[0] as any[];
 	expect(generateDatabaseModelCallArgs[0]).toBe(mockValues.entityRelationshipModel);
 
 	const convertToCodeCalls = databaseModelToCodeConverterMock.convertToCode.mock.calls;
-	expect(convertToCodeCalls.length).toBe(1);
+	expect(convertToCodeCalls).toHaveLength(1);
 
 	const convertToCodeCallArgs = convertToCodeCalls[0] as any[];
 	expect(convertToCodeCallArgs[0]).toBe(mockValues.databaseModel);

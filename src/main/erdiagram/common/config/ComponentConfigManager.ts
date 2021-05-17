@@ -6,8 +6,6 @@ export default interface ComponentConfigManager<C, P, S> {
 
 	mergeWithDefaultConfig(partialConfig: P): C;
 
-	cloneConfig(fullConfig: C): C;
-
 	convertToSerializableObject(fullConfig: C): S;
 
 	convertFromSerializableObject(serializableConfig: S): C;

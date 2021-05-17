@@ -1,5 +1,4 @@
-import EntityRelationshipModelParserConfig from './EntityRelationshipModelParserConfig';
-import EntityRelationshipModelParserSerializableConfig from './EntityRelationshipModelParserSerializableConfig';
+import EntityRelationshipModelParserConfig, {EntityRelationshipModelParserSerializableConfig} from './EntityRelationshipModelParserConfig';
 import entityRelationshipModelParserConfigManager, {EntityRelationshipModelParserConfigManager} from './EntityRelationshipModelParserConfigManager';
 
 export {

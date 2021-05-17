@@ -1,10 +1,11 @@
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
-import EntityRelationshipModelParserConfig from '@/erdiagram/parser/config/EntityRelationshipModelParserConfig';
-import EntityRelationshipModelParserSerializableConfig
-	from '@/erdiagram/parser/config/EntityRelationshipModelParserSerializableConfig';
+import EntityRelationshipModelParserConfig, {
+	EntityRelationshipModelParserSerializableConfig,
+	PartialEntityRelationshipModelParserConfig
+} from '@/erdiagram/parser/config/EntityRelationshipModelParserConfig';
 
 export class EntityRelationshipModelParserConfigManager
-		extends AbstractComponentConfigManager<EntityRelationshipModelParserConfig, Partial<EntityRelationshipModelParserConfig>, EntityRelationshipModelParserSerializableConfig> {
+		extends AbstractComponentConfigManager<EntityRelationshipModelParserConfig, PartialEntityRelationshipModelParserConfig, EntityRelationshipModelParserSerializableConfig> {
 
 	getDefaultConfig(): EntityRelationshipModelParserConfig {
 		return {
@@ -12,7 +13,7 @@ export class EntityRelationshipModelParserConfigManager
 		};
 	}
 
-	mergeConfigs(fullConfig: EntityRelationshipModelParserConfig, partialConfig?: Partial<EntityRelationshipModelParserConfig>): EntityRelationshipModelParserConfig {
+	mergeConfigs(fullConfig: EntityRelationshipModelParserConfig, partialConfig?: PartialEntityRelationshipModelParserConfig): EntityRelationshipModelParserConfig {
 		return {
 			...fullConfig,
 			...partialConfig

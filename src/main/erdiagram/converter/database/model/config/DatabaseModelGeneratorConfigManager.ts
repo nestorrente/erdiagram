@@ -1,12 +1,12 @@
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
-import DatabaseModelGeneratorConfig from '@/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfig';
+import DatabaseModelGeneratorConfig, {PartialDatabaseModelGeneratorConfig} from '@/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfig';
 import StandardIdNamingStrategies from '@/erdiagram/converter/common/id-naming-strategy/StandardIdNamingStrategies';
 import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
 import DatabaseModelGeneratorSerializableConfig
 	from '@/erdiagram/converter/database/model/config/DatabaseModelGeneratorSerializableConfig';
 
 export class DatabaseModelGeneratorConfigManager
-		extends AbstractComponentConfigManager<DatabaseModelGeneratorConfig, Partial<DatabaseModelGeneratorConfig>, DatabaseModelGeneratorSerializableConfig> {
+		extends AbstractComponentConfigManager<DatabaseModelGeneratorConfig, PartialDatabaseModelGeneratorConfig, DatabaseModelGeneratorSerializableConfig> {
 
 	getDefaultConfig(): DatabaseModelGeneratorConfig {
 		return {
@@ -15,7 +15,7 @@ export class DatabaseModelGeneratorConfigManager
 		};
 	}
 
-	mergeConfigs(fullConfig: DatabaseModelGeneratorConfig, partialConfig?: Partial<DatabaseModelGeneratorConfig>): DatabaseModelGeneratorConfig {
+	mergeConfigs(fullConfig: DatabaseModelGeneratorConfig, partialConfig?: PartialDatabaseModelGeneratorConfig): DatabaseModelGeneratorConfig {
 		return {
 			...fullConfig,
 			...partialConfig
@@ -25,7 +25,7 @@ export class DatabaseModelGeneratorConfigManager
 	convertToSerializableObject(fullConfig: DatabaseModelGeneratorConfig): DatabaseModelGeneratorSerializableConfig {
 		return {
 			...fullConfig,
-			idNamingStrategy: findKeyFromValue(StandardIdNamingStrategies, fullConfig.idNamingStrategy)
+			idNamingStrategy: findKeyFromValue(StandardIdNamingStrategies, fullConfig.idNamingStrategy, 'DEFAULT')
 		};
 	}
 

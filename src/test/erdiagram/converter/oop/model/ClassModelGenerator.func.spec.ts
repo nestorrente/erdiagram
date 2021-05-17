@@ -519,29 +519,24 @@ describe('Relationship', () => {
 							['I', true, false],
 							['J', true, false],
 						] as [string, boolean, boolean][]
-				).map(([entityName, list, nullable], index): ClassDescriptor => {
-					if (entityName === 'J') {
-						console.log({index, relationship: relationships[index], relCount: relationships.length});
+				).map(([entityName, list, nullable], index): ClassDescriptor => ({
+					name: entityName,
+					fields: [
+						createIdClassField({
+							sourceEntity: entities[index + 1]
+						}),
+						createEntityClassField(list ? 'as' : 'a', 'A', {
+							list,
+							nullable,
+							sourceRelationship: relationships[index],
+							sourceTargetMember: relationships[index].leftMember
+						})
+					],
+					sourceMetadata: {
+						sourceType: SourceType.ENTITY,
+						entity: entities[index + 1]
 					}
-					return {
-						name: entityName,
-						fields: [
-							createIdClassField({
-								sourceEntity: entities[index + 1]
-							}),
-							createEntityClassField(list ? 'as' : 'a', 'A', {
-								list,
-								nullable,
-								sourceRelationship: relationships[index],
-								sourceTargetMember: relationships[index].leftMember
-							})
-						],
-						sourceMetadata: {
-							sourceType: SourceType.ENTITY,
-							entity: entities[index + 1]
-						}
-					};
-				})
+				}))
 			]
 		});
 
