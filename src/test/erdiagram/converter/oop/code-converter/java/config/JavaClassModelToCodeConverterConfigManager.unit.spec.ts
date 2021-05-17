@@ -5,11 +5,10 @@ import NotNullTextValidationStrategy
 	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullTextValidationStrategy';
 import NotNullBlobValidationStrategy
 	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullBlobValidationStrategy';
-import JavaClassModelToCodeConverterSerializableConfig
-	from '@/erdiagram/converter/oop/code-converter/java/config/JavaClassModelToCodeConverterSerializableConfig';
 import JavaClassModelToCodeConverterConfig
 	from '@/erdiagram/converter/oop/code-converter/java/config/JavaClassModelToCodeConverterConfig';
 import {assertSameRecords} from '#/erdiagram/util/jest-utils';
+import {JsonValue} from 'true-json';
 
 const configManager = new JavaClassModelToCodeConverterConfigManager();
 
@@ -34,7 +33,7 @@ describe('Serialization', () => {
 		notNullBlobValidationStrategy: NotNullBlobValidationStrategy.NOT_NULL
 	};
 
-	const serializableConfig: JavaClassModelToCodeConverterSerializableConfig = {
+	const serializableConfig: JsonValue = {
 		typeBindings: {
 			[EntityPropertyType.IDENTITY]: 'java.lang.Long',
 			[EntityPropertyType.TEXT]: 'java.lang.String',

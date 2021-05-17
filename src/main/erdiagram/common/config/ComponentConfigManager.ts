@@ -1,4 +1,6 @@
-export default interface ComponentConfigManager<C, P, S> {
+import {JsonValue} from 'true-json';
+
+export default interface ComponentConfigManager<C, P> {
 
 	getDefaultConfig(): C;
 
@@ -6,8 +8,8 @@ export default interface ComponentConfigManager<C, P, S> {
 
 	mergeWithDefaultConfig(partialConfig: P): C;
 
-	convertToSerializableObject(fullConfig: C): S;
+	convertToSerializableObject(fullConfig: C): JsonValue;
 
-	convertFromSerializableObject(serializableConfig: S): C;
+	convertFromSerializableObject(serializableConfig: JsonValue): C;
 
 }

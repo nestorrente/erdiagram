@@ -1,14 +1,14 @@
 import ComponentConfigManager from '@/erdiagram/common/config/ComponentConfigManager';
-// import {JsonAdapters, JsonConverter, Nullable, NullishAwareJsonAdapter} from 'true-json';
+import {JsonAdapter, JsonAdapters, JsonValue} from 'true-json';
 
-export default abstract class AbstractComponentConfigManager<C, P = Partial<C>, S = C>
-		implements ComponentConfigManager<C, P, S> {
+export default abstract class AbstractComponentConfigManager<C, P = Partial<C>>
+		implements ComponentConfigManager<C, P> {
 
-	// readonly #jsonConverter: JsonConverter<Nullable<C>>;
-	//
-	// constructor() {
-	// 	this.#jsonConverter = new JsonConverter(this.getJsonAdapter());
-	// }
+	readonly #jsonAdapter: JsonAdapter<C>;
+
+	constructor() {
+		this.#jsonAdapter = this.getJsonAdapter();
+	}
 
 	abstract getDefaultConfig(): C;
 
@@ -18,22 +18,16 @@ export default abstract class AbstractComponentConfigManager<C, P = Partial<C>, 
 		return this.mergeConfigs(this.getDefaultConfig(), partialConfig);
 	}
 
-	/** @deprecated use {@link serialize} instead */
-	abstract convertToSerializableObject(fullConfig: C): S;
+	convertToSerializableObject(fullConfig: C): JsonValue {
+		return this.#jsonAdapter.adaptToJson(fullConfig);
+	}
 
-	/** @deprecated use {@link deserialize} instead */
-	abstract convertFromSerializableObject(serializableConfig: S): C;
+	convertFromSerializableObject(serializableConfig: JsonValue): C {
+		return this.#jsonAdapter.recoverFromJson(serializableConfig);
+	}
 
-	// serialize(fullConfig: C, pretty: boolean = false): string {
-	// 	return this.#jsonConverter.stringify(fullConfig, pretty ? 2 : undefined);
-	// }
-	//
-	// deserialize(text: string): C {
-	// 	return this.#jsonConverter.parse(text)!;
-	// }
-	//
-	// protected getJsonAdapter(): NullishAwareJsonAdapter<C> {
-	// 	return JsonAdapters.identity<any>();
-	// }
+	protected getJsonAdapter(): JsonAdapter<C> {
+		return JsonAdapters.identity<any>();
+	}
 
 }

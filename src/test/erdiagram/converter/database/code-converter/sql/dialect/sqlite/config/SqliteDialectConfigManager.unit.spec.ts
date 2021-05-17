@@ -1,11 +1,10 @@
 import {SqliteDialectConfigManager} from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlite/config/SqliteDialectConfigManager';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
-import SqliteDialectSerializableConfig
-	from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlite/config/SqliteDialectSerializableConfig';
 import SqliteDialectConfig
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlite/config/SqliteDialectConfig';
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
 import CaseFormat from '@/erdiagram/converter/common/case-format/CaseFormat';
+import {JsonValue} from 'true-json';
 
 const configManager = new SqliteDialectConfigManager();
 
@@ -34,7 +33,7 @@ describe('Serialization', () => {
 		columnNameCaseFormat: StandardCaseFormats[defaultColumnNameCaseFormatKey],
 	};
 
-	const serializableConfig: SqliteDialectSerializableConfig = {
+	const serializableConfig: JsonValue = {
 		typeBindings: defaultTypeBindings,
 		tableNameCaseFormat: defaultTableNameCaseFormatKey,
 		columnNameCaseFormat: defaultColumnNameCaseFormatKey,
@@ -88,7 +87,7 @@ describe('Serialization of other case formats', () => {
 				columnNameCaseFormat: caseFormat,
 			});
 
-			expect(result).toStrictEqual<SqliteDialectSerializableConfig>({
+			expect(result).toStrictEqual({
 				typeBindings: defaultTypeBindings,
 				tableNameCaseFormat: serializedTableNameCaseFormat,
 				columnNameCaseFormat: serializedColumnNameCaseFormat,

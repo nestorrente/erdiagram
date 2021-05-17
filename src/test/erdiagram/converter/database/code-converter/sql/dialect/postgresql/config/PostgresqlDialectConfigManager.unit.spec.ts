@@ -1,7 +1,5 @@
 import {PostgresqlDialectConfigManager} from '@/erdiagram/converter/database/code-converter/sql/dialect/postgresql/config/PostgresqlDialectConfigManager';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
-import PostgresqlDialectSerializableConfig
-	from '@/erdiagram/converter/database/code-converter/sql/dialect/postgresql/config/PostgresqlDialectSerializableConfig';
 import PostgresqlDialectConfig
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/postgresql/config/PostgresqlDialectConfig';
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
@@ -34,7 +32,7 @@ describe('Serialization', () => {
 		columnNameCaseFormat: StandardCaseFormats[defaultColumnNameCaseFormatKey],
 	};
 
-	const serializableConfig: PostgresqlDialectSerializableConfig = {
+	const serializableConfig = {
 		typeBindings: defaultTypeBindings,
 		tableNameCaseFormat: defaultTableNameCaseFormatKey,
 		columnNameCaseFormat: defaultColumnNameCaseFormatKey,
@@ -88,7 +86,7 @@ describe('Serialization of other case formats', () => {
 				columnNameCaseFormat: caseFormat,
 			});
 
-			expect(result).toStrictEqual<PostgresqlDialectSerializableConfig>({
+			expect(result).toStrictEqual({
 				typeBindings: defaultTypeBindings,
 				tableNameCaseFormat: serializedTableNameCaseFormat,
 				columnNameCaseFormat: serializedColumnNameCaseFormat,

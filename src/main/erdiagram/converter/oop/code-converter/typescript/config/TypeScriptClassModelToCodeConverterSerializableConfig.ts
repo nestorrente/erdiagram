@@ -1,6 +1,0 @@
-import ClassModelToCodeConverterSerializableConfig
-	from '@/erdiagram/converter/oop/code-converter/ClassModelToCodeConverterSerializableConfig';
-
-export default interface TypeScriptClassModelToCodeConverterSerializableConfig extends ClassModelToCodeConverterSerializableConfig {
-
-}

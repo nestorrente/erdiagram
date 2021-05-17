@@ -2,12 +2,10 @@ import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-m
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
 import MysqlDialectConfig, {PartialMysqlDialectConfig} from '@/erdiagram/converter/database/code-converter/sql/dialect/mysql/config/MysqlDialectConfig';
-import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
-import MysqlDialectSerializableConfig
-	from '@/erdiagram/converter/database/code-converter/sql/dialect/mysql/config/MysqlDialectSerializableConfig';
+import {JsonAdapter, JsonAdapters} from 'true-json';
 
 export class MysqlDialectConfigManager
-		extends AbstractComponentConfigManager<MysqlDialectConfig, PartialMysqlDialectConfig, MysqlDialectSerializableConfig> {
+		extends AbstractComponentConfigManager<MysqlDialectConfig, PartialMysqlDialectConfig> {
 
 	getDefaultConfig(): MysqlDialectConfig {
 		return {
@@ -40,20 +38,11 @@ export class MysqlDialectConfigManager
 		};
 	}
 
-	convertToSerializableObject(fullConfig: MysqlDialectConfig): MysqlDialectSerializableConfig {
-		return {
-			...fullConfig,
-			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat, 'UPPER_CAMEL'),
-			columnNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.columnNameCaseFormat, 'LOWER_CAMEL'),
-		};
-	}
-
-	convertFromSerializableObject(serializableConfig: MysqlDialectSerializableConfig): MysqlDialectConfig {
-		return {
-			...serializableConfig,
-			tableNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializableConfig.tableNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
-			columnNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializableConfig.columnNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
-		};
+	protected getJsonAdapter(): JsonAdapter<MysqlDialectConfig> {
+		return JsonAdapters.object<MysqlDialectConfig>({
+			tableNameCaseFormat: JsonAdapters.byKeyLenient(StandardCaseFormats, 'UPPER_CAMEL'),
+			columnNameCaseFormat: JsonAdapters.byKeyLenient(StandardCaseFormats, 'LOWER_CAMEL')
+		});
 	}
 
 }

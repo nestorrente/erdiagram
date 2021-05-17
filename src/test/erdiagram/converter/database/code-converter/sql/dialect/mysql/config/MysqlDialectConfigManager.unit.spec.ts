@@ -1,11 +1,10 @@
 import {MysqlDialectConfigManager} from '@/erdiagram/converter/database/code-converter/sql/dialect/mysql/config/MysqlDialectConfigManager';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
-import MysqlDialectSerializableConfig
-	from '@/erdiagram/converter/database/code-converter/sql/dialect/mysql/config/MysqlDialectSerializableConfig';
 import MysqlDialectConfig
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/mysql/config/MysqlDialectConfig';
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
 import CaseFormat from '@/erdiagram/converter/common/case-format/CaseFormat';
+import {JsonValue} from 'true-json';
 
 const configManager = new MysqlDialectConfigManager();
 
@@ -34,7 +33,7 @@ describe('Serialization', () => {
 		columnNameCaseFormat: StandardCaseFormats[defaultColumnNameCaseFormatKey],
 	};
 
-	const serializableConfig: MysqlDialectSerializableConfig = {
+	const serializableConfig: JsonValue = {
 		typeBindings: defaultTypeBindings,
 		tableNameCaseFormat: defaultTableNameCaseFormatKey,
 		columnNameCaseFormat: defaultColumnNameCaseFormatKey,
@@ -88,7 +87,7 @@ describe('Serialization of other case formats', () => {
 				columnNameCaseFormat: caseFormat,
 			});
 
-			expect(result).toStrictEqual<MysqlDialectSerializableConfig>({
+			expect(result).toStrictEqual({
 				typeBindings: defaultTypeBindings,
 				tableNameCaseFormat: serializedTableNameCaseFormat,
 				columnNameCaseFormat: serializedColumnNameCaseFormat,

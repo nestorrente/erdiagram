@@ -1,5 +1,6 @@
 import {EntityRelationshipModelParserConfigManager} from '@/erdiagram/parser/config/EntityRelationshipModelParserConfigManager';
-import EntityRelationshipModelParserConfig, {EntityRelationshipModelParserSerializableConfig} from '../../../../main/erdiagram/parser/config/EntityRelationshipModelParserConfig';
+import EntityRelationshipModelParserConfig from '@/erdiagram/parser/config/EntityRelationshipModelParserConfig';
+import {JsonValue} from 'true-json';
 
 const configManager = new EntityRelationshipModelParserConfigManager();
 
@@ -11,7 +12,7 @@ describe('Serialization', () => {
 			allowUnknownEntities
 		};
 
-		const serializableConfig: EntityRelationshipModelParserSerializableConfig = {
+		const serializableConfig: JsonValue = {
 			allowUnknownEntities
 		};
 

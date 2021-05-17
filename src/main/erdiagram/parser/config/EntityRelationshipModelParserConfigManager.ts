@@ -1,11 +1,8 @@
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
-import EntityRelationshipModelParserConfig, {
-	EntityRelationshipModelParserSerializableConfig,
-	PartialEntityRelationshipModelParserConfig
-} from '@/erdiagram/parser/config/EntityRelationshipModelParserConfig';
+import EntityRelationshipModelParserConfig, {PartialEntityRelationshipModelParserConfig} from '@/erdiagram/parser/config/EntityRelationshipModelParserConfig';
 
 export class EntityRelationshipModelParserConfigManager
-		extends AbstractComponentConfigManager<EntityRelationshipModelParserConfig, PartialEntityRelationshipModelParserConfig, EntityRelationshipModelParserSerializableConfig> {
+		extends AbstractComponentConfigManager<EntityRelationshipModelParserConfig, PartialEntityRelationshipModelParserConfig> {
 
 	getDefaultConfig(): EntityRelationshipModelParserConfig {
 		return {
@@ -17,18 +14,6 @@ export class EntityRelationshipModelParserConfigManager
 		return {
 			...fullConfig,
 			...partialConfig
-		};
-	}
-
-	convertToSerializableObject(fullConfig: EntityRelationshipModelParserConfig): EntityRelationshipModelParserSerializableConfig {
-		return {
-			...fullConfig
-		};
-	}
-
-	convertFromSerializableObject(serializableConfig: EntityRelationshipModelParserSerializableConfig): EntityRelationshipModelParserConfig {
-		return {
-			...serializableConfig
 		};
 	}
 

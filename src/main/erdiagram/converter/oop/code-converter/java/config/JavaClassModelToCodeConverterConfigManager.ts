@@ -2,16 +2,15 @@ import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-m
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
 import JavaClassModelToCodeConverterConfig, {PartialJavaClassModelToCodeConverterConfig} from '@/erdiagram/converter/oop/code-converter/java/config/JavaClassModelToCodeConverterConfig';
 import parseJavaType from '@/erdiagram/converter/oop/code-converter/java/type/parseJavaType';
-import {mapValues} from '@/erdiagram/util/record-utils';
-import JavaClassModelToCodeConverterSerializableConfig
-	from '@/erdiagram/converter/oop/code-converter/java/config/JavaClassModelToCodeConverterSerializableConfig';
 import NotNullTextValidationStrategy
 	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullTextValidationStrategy';
 import NotNullBlobValidationStrategy
 	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullBlobValidationStrategy';
+import {JsonAdapter, JsonAdapters} from 'true-json';
+import JavaType from '@/erdiagram/converter/oop/code-converter/java/type/JavaType';
 
 export class JavaClassModelToCodeConverterConfigManager
-		extends AbstractComponentConfigManager<JavaClassModelToCodeConverterConfig, PartialJavaClassModelToCodeConverterConfig, JavaClassModelToCodeConverterSerializableConfig> {
+		extends AbstractComponentConfigManager<JavaClassModelToCodeConverterConfig, PartialJavaClassModelToCodeConverterConfig> {
 
 	getDefaultConfig(): JavaClassModelToCodeConverterConfig {
 		return {
@@ -45,32 +44,18 @@ export class JavaClassModelToCodeConverterConfigManager
 		};
 	}
 
-	convertToSerializableObject(fullConfig: JavaClassModelToCodeConverterConfig): JavaClassModelToCodeConverterSerializableConfig {
-		return {
-			...fullConfig,
-			typeBindings: mapValues(fullConfig.typeBindings, javaType => javaType!.formatCanonical()),
-		};
+	protected getJsonAdapter(): JsonAdapter<JavaClassModelToCodeConverterConfig> {
+		return JsonAdapters.object<JavaClassModelToCodeConverterConfig>({
+			typeBindings: JsonAdapters.record(JsonAdapters.custom<JavaType, string>({
+				adaptToJson(value) {
+					return value.formatCanonical();
+				},
+				recoverFromJson(value) {
+					return parseJavaType(value);
+				}
+			}))
+		});
 	}
-
-	convertFromSerializableObject(serializableConfig: JavaClassModelToCodeConverterSerializableConfig): JavaClassModelToCodeConverterConfig {
-		return {
-			...serializableConfig,
-			typeBindings: mapValues(serializableConfig.typeBindings, parseJavaType),
-		};
-	}
-
-	// protected getJsonAdapter(): NullishAwareJsonAdapter<JavaClassModelToCodeConverterConfig> {
-	// 	return JsonAdapters.object<JavaClassModelToCodeConverterConfig>({
-	// 		typeBindings: JsonAdapters.record(JsonAdapters.custom<JavaType, string>({
-	// 			adaptToJson(value) {
-	// 				return value.formatCanonical();
-	// 			},
-	// 			recoverFromJson(value) {
-	// 				return parseJavaType(value);
-	// 			}
-	// 		}))
-	// 	});
-	// }
 
 }
 

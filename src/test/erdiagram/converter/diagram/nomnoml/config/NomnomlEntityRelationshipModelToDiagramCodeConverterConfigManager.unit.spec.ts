@@ -1,8 +1,7 @@
 import {NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager} from '@/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager';
-import NomnomlEntityRelationshipModelToDiagramCodeConverterSerializableConfig
-	from '@/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelToDiagramCodeConverterSerializableConfig';
 import NomnomlEntityRelationshipModelToDiagramCodeConverterConfig
 	from '@/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelToDiagramCodeConverterConfig';
+import {JsonValue} from 'true-json';
 
 const configManager = new NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager();
 
@@ -32,7 +31,7 @@ describe('Serialization', () => {
 		ranker: 'longest-path'
 	};
 
-	const serializableConfig: NomnomlEntityRelationshipModelToDiagramCodeConverterSerializableConfig = {
+	const serializableConfig: JsonValue = {
 		arrowSize: 1,
 		bendSize: undefined,
 		direction: undefined,

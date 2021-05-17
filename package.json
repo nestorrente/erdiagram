@@ -73,6 +73,7 @@
         "url": "https://github.com/nestorrente/erdiagram.git"
     },
     "dependencies": {
-        "pluralize": "^8.0.0"
+        "pluralize": "^8.0.0",
+        "true-json": "file:true-json.tgz"
     }
 }

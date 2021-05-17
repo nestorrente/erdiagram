@@ -1,11 +1,9 @@
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
 import NomnomlEntityRelationshipModelToDiagramCodeConverterConfig
 	from '@/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelToDiagramCodeConverterConfig';
-import NomnomlEntityRelationshipModelToDiagramCodeConverterSerializableConfig
-	from '@/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelToDiagramCodeConverterSerializableConfig';
 
 export class NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager
-		extends AbstractComponentConfigManager<NomnomlEntityRelationshipModelToDiagramCodeConverterConfig, NomnomlEntityRelationshipModelToDiagramCodeConverterConfig, NomnomlEntityRelationshipModelToDiagramCodeConverterSerializableConfig> {
+		extends AbstractComponentConfigManager<NomnomlEntityRelationshipModelToDiagramCodeConverterConfig, NomnomlEntityRelationshipModelToDiagramCodeConverterConfig> {
 
 	getDefaultConfig(): NomnomlEntityRelationshipModelToDiagramCodeConverterConfig {
 		return {
@@ -37,18 +35,6 @@ export class NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager
 		return {
 			...fullConfig,
 			...partialConfig
-		};
-	}
-
-	convertToSerializableObject(fullConfig: NomnomlEntityRelationshipModelToDiagramCodeConverterConfig): NomnomlEntityRelationshipModelToDiagramCodeConverterSerializableConfig {
-		return {
-			...fullConfig
-		};
-	}
-
-	convertFromSerializableObject(serializableConfig: NomnomlEntityRelationshipModelToDiagramCodeConverterSerializableConfig): NomnomlEntityRelationshipModelToDiagramCodeConverterConfig {
-		return {
-			...serializableConfig
 		};
 	}
 

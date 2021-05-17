@@ -1,10 +1,9 @@
 import {DatabaseModelGeneratorConfigManager} from '@/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfigManager';
 import DatabaseModelGeneratorConfig from '@/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfig';
-import DatabaseModelGeneratorSerializableConfig
-	from '@/erdiagram/converter/database/model/config/DatabaseModelGeneratorSerializableConfig';
 import StandardIdNamingStrategies from '@/erdiagram/converter/common/id-naming-strategy/StandardIdNamingStrategies';
 import IdNamingStrategy from '@/erdiagram/converter/common/id-naming-strategy/IdNamingStrategy';
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
+import {JsonValue} from 'true-json';
 
 const configManager = new DatabaseModelGeneratorConfigManager();
 
@@ -15,7 +14,7 @@ describe('Serialization', () => {
 		idNamingStrategy: StandardIdNamingStrategies.DEFAULT
 	};
 
-	const serializableConfig: DatabaseModelGeneratorSerializableConfig = {
+	const serializableConfig: JsonValue = {
 		usePluralTableNames: false,
 		idNamingStrategy: 'DEFAULT'
 	};
@@ -54,7 +53,7 @@ describe('Serialization of different ID naming strategies', () => {
 				idNamingStrategy
 			});
 
-			expect(result).toStrictEqual<DatabaseModelGeneratorSerializableConfig>({
+			expect(result).toStrictEqual({
 				usePluralTableNames: false,
 				idNamingStrategy: serializedIdNamingStrategy
 			});

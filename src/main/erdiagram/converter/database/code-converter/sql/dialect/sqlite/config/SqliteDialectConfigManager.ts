@@ -1,13 +1,11 @@
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
-import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
 import SqliteDialectConfig, {PartialSqliteDialectConfig} from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlite/config/SqliteDialectConfig';
-import SqliteDialectSerializableConfig
-	from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlite/config/SqliteDialectSerializableConfig';
+import {JsonAdapter, JsonAdapters} from 'true-json';
 
 export class SqliteDialectConfigManager
-		extends AbstractComponentConfigManager<SqliteDialectConfig, PartialSqliteDialectConfig, SqliteDialectSerializableConfig> {
+		extends AbstractComponentConfigManager<SqliteDialectConfig, PartialSqliteDialectConfig> {
 
 	getDefaultConfig(): SqliteDialectConfig {
 		return {
@@ -40,20 +38,11 @@ export class SqliteDialectConfigManager
 		};
 	}
 
-	convertToSerializableObject(fullConfig: SqliteDialectConfig): SqliteDialectSerializableConfig {
-		return {
-			...fullConfig,
-			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat, 'LOWER_UNDERSCORE'),
-			columnNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.columnNameCaseFormat, 'LOWER_UNDERSCORE'),
-		};
-	}
-
-	convertFromSerializableObject(serializableConfig: SqliteDialectSerializableConfig): SqliteDialectConfig {
-		return {
-			...serializableConfig,
-			tableNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializableConfig.tableNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
-			columnNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializableConfig.columnNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
-		};
+	protected getJsonAdapter(): JsonAdapter<SqliteDialectConfig> {
+		return JsonAdapters.object<SqliteDialectConfig>({
+			tableNameCaseFormat: JsonAdapters.byKeyLenient(StandardCaseFormats, 'LOWER_UNDERSCORE'),
+			columnNameCaseFormat: JsonAdapters.byKeyLenient(StandardCaseFormats, 'LOWER_UNDERSCORE')
+		});
 	}
 
 }

@@ -1,11 +1,10 @@
 import {TypeScriptClassModelToCodeConverterConfigManager} from '@/erdiagram/converter/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfigManager';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import parseTypeScriptType from '@/erdiagram/converter/oop/code-converter/typescript/type/parseTypeScriptType';
-import TypeScriptClassModelToCodeConverterSerializableConfig
-	from '@/erdiagram/converter/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterSerializableConfig';
 import TypeScriptClassModelToCodeConverterConfig
 	from '@/erdiagram/converter/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfig';
 import {assertSameRecords} from '#/erdiagram/util/jest-utils';
+import {JsonValue} from 'true-json';
 
 const configManager = new TypeScriptClassModelToCodeConverterConfigManager();
 
@@ -27,7 +26,7 @@ describe('Serialization', () => {
 		}
 	};
 
-	const serializableConfig: TypeScriptClassModelToCodeConverterSerializableConfig = {
+	const serializableConfig: JsonValue = {
 		typeBindings: {
 			[EntityPropertyType.IDENTITY]: 'number',
 			[EntityPropertyType.TEXT]: 'string',

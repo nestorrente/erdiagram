@@ -3,4 +3,3 @@ export default interface EntityRelationshipModelParserConfig {
 }
 
 export type PartialEntityRelationshipModelParserConfig = Partial<EntityRelationshipModelParserConfig>;
-export type EntityRelationshipModelParserSerializableConfig = EntityRelationshipModelParserConfig;

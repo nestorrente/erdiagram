@@ -2,12 +2,10 @@ import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-m
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
 import OracleDialectConfig, {PartialOracleDialectConfig} from '@/erdiagram/converter/database/code-converter/sql/dialect/oracle/config/OracleDialectConfig';
-import OracleDialectSerializableConfig
-	from '@/erdiagram/converter/database/code-converter/sql/dialect/oracle/config/OracleDialectSerializableConfig';
-import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
+import {JsonAdapter, JsonAdapters} from 'true-json';
 
 export class OracleDialectConfigManager
-		extends AbstractComponentConfigManager<OracleDialectConfig, PartialOracleDialectConfig, OracleDialectSerializableConfig> {
+		extends AbstractComponentConfigManager<OracleDialectConfig, PartialOracleDialectConfig> {
 
 	getDefaultConfig(): OracleDialectConfig {
 		return {
@@ -40,20 +38,11 @@ export class OracleDialectConfigManager
 		};
 	}
 
-	convertToSerializableObject(fullConfig: OracleDialectConfig): OracleDialectSerializableConfig {
-		return {
-			...fullConfig,
-			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat, 'UPPER_UNDERSCORE'),
-			columnNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.columnNameCaseFormat, 'UPPER_UNDERSCORE'),
-		};
-	}
-
-	convertFromSerializableObject(serializableConfig: OracleDialectSerializableConfig): OracleDialectConfig {
-		return {
-			...serializableConfig,
-			tableNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializableConfig.tableNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
-			columnNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializableConfig.columnNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
-		};
+	protected getJsonAdapter(): JsonAdapter<OracleDialectConfig> {
+		return JsonAdapters.object<OracleDialectConfig>({
+			tableNameCaseFormat: JsonAdapters.byKeyLenient(StandardCaseFormats, 'UPPER_UNDERSCORE'),
+			columnNameCaseFormat: JsonAdapters.byKeyLenient(StandardCaseFormats, 'UPPER_UNDERSCORE')
+		});
 	}
 
 }

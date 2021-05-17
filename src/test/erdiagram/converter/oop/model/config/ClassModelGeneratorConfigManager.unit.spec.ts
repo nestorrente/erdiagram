@@ -1,7 +1,5 @@
 import {ClassModelGeneratorConfigManager} from '@/erdiagram/converter/oop/model/config/ClassModelGeneratorConfigManager';
 import ClassModelGeneratorConfig from '@/erdiagram/converter/oop/model/config/ClassModelGeneratorConfig';
-import ClassModelGeneratorSerializableConfig
-	from '@/erdiagram/converter/oop/model/config/ClassModelGeneratorSerializableConfig';
 import IdNamingStrategy from '@/erdiagram/converter/common/id-naming-strategy/IdNamingStrategy';
 import StandardIdNamingStrategies from '@/erdiagram/converter/common/id-naming-strategy/StandardIdNamingStrategies';
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
@@ -16,7 +14,7 @@ describe('Serialization', () => {
 			idNamingStrategy: StandardIdNamingStrategies.DEFAULT
 		});
 
-		expect(result).toStrictEqual<ClassModelGeneratorSerializableConfig>({
+		expect(result).toStrictEqual({
 			idNamingStrategy: 'DEFAULT'
 		});
 
@@ -51,7 +49,7 @@ describe('Serialization of different ID naming strategies', () => {
 				idNamingStrategy
 			});
 
-			expect(result).toStrictEqual<ClassModelGeneratorSerializableConfig>({
+			expect(result).toStrictEqual({
 				idNamingStrategy: serializedIdNamingStrategy
 			});
 

@@ -2,12 +2,10 @@ import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-m
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
 import PostgresqlDialectConfig, {PartialPostgresqlDialectConfig} from '@/erdiagram/converter/database/code-converter/sql/dialect/postgresql/config/PostgresqlDialectConfig';
-import PostgresqlDialectSerializableConfig
-	from '@/erdiagram/converter/database/code-converter/sql/dialect/postgresql/config/PostgresqlDialectSerializableConfig';
-import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
+import {JsonAdapter, JsonAdapters} from 'true-json';
 
 export class PostgresqlDialectConfigManager
-		extends AbstractComponentConfigManager<PostgresqlDialectConfig, PartialPostgresqlDialectConfig, PostgresqlDialectSerializableConfig> {
+		extends AbstractComponentConfigManager<PostgresqlDialectConfig, PartialPostgresqlDialectConfig> {
 
 	getDefaultConfig(): PostgresqlDialectConfig {
 		return {
@@ -40,20 +38,11 @@ export class PostgresqlDialectConfigManager
 		};
 	}
 
-	convertToSerializableObject(fullConfig: PostgresqlDialectConfig): PostgresqlDialectSerializableConfig {
-		return {
-			...fullConfig,
-			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat, 'LOWER_UNDERSCORE'),
-			columnNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.columnNameCaseFormat, 'LOWER_UNDERSCORE'),
-		};
-	}
-
-	convertFromSerializableObject(serializableConfig: PostgresqlDialectSerializableConfig): PostgresqlDialectConfig {
-		return {
-			...serializableConfig,
-			tableNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializableConfig.tableNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
-			columnNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializableConfig.columnNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
-		};
+	protected getJsonAdapter(): JsonAdapter<PostgresqlDialectConfig> {
+		return JsonAdapters.object<PostgresqlDialectConfig>({
+			tableNameCaseFormat: JsonAdapters.byKeyLenient(StandardCaseFormats, 'LOWER_UNDERSCORE'),
+			columnNameCaseFormat: JsonAdapters.byKeyLenient(StandardCaseFormats, 'LOWER_UNDERSCORE')
+		});
 	}
 
 }

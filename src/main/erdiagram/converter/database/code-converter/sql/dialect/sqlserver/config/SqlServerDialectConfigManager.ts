@@ -2,12 +2,12 @@ import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-m
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
 import SqlServerDialectConfig, {PartialSqlServerDialectConfig} from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlserver/config/SqlServerDialectConfig';
-import {findKeyFromValue, findValueFromNullableKey} from '@/erdiagram/util/record-utils';
-import SqlServerDialectSerializableConfig
-	from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlserver/config/SqlServerDialectSerializableConfig';
+import {JsonAdapter, JsonAdapters} from 'true-json';
+import OracleDialectConfig
+	from '@/erdiagram/converter/database/code-converter/sql/dialect/oracle/config/OracleDialectConfig';
 
 export class SqlServerDialectConfigManager
-		extends AbstractComponentConfigManager<SqlServerDialectConfig, PartialSqlServerDialectConfig, SqlServerDialectSerializableConfig> {
+		extends AbstractComponentConfigManager<SqlServerDialectConfig, PartialSqlServerDialectConfig> {
 
 	getDefaultConfig(): SqlServerDialectConfig {
 		return {
@@ -40,20 +40,11 @@ export class SqlServerDialectConfigManager
 		};
 	}
 
-	convertToSerializableObject(fullConfig: SqlServerDialectConfig): SqlServerDialectSerializableConfig {
-		return {
-			...fullConfig,
-			tableNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.tableNameCaseFormat, 'UPPER_CAMEL'),
-			columnNameCaseFormat: findKeyFromValue(StandardCaseFormats, fullConfig.columnNameCaseFormat, 'UPPER_CAMEL'),
-		};
-	}
-
-	convertFromSerializableObject(serializableConfig: SqlServerDialectSerializableConfig): SqlServerDialectConfig {
-		return {
-			...serializableConfig,
-			tableNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializableConfig.tableNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
-			columnNameCaseFormat: findValueFromNullableKey(StandardCaseFormats, serializableConfig.columnNameCaseFormat, StandardCaseFormats.UPPER_CAMEL),
-		};
+	protected getJsonAdapter(): JsonAdapter<SqlServerDialectConfig> {
+		return JsonAdapters.object<OracleDialectConfig>({
+			tableNameCaseFormat: JsonAdapters.byKeyLenient(StandardCaseFormats, 'UPPER_CAMEL'),
+			columnNameCaseFormat: JsonAdapters.byKeyLenient(StandardCaseFormats, 'UPPER_CAMEL')
+		});
 	}
 
 }

@@ -2,12 +2,11 @@ import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-m
 import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
 import TypeScriptClassModelToCodeConverterConfig, {PartialTypeScriptClassModelToCodeConverterConfig} from '@/erdiagram/converter/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfig';
 import parseTypeScriptType from '@/erdiagram/converter/oop/code-converter/typescript/type/parseTypeScriptType';
-import TypeScriptClassModelToCodeConverterSerializableConfig
-	from '@/erdiagram/converter/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterSerializableConfig';
-import {mapValues} from '@/erdiagram/util/record-utils';
+import {JsonAdapter, JsonAdapters} from 'true-json';
+import TypeScriptType from '@/erdiagram/converter/oop/code-converter/typescript/type/TypeScriptType';
 
 export class TypeScriptClassModelToCodeConverterConfigManager
-		extends AbstractComponentConfigManager<TypeScriptClassModelToCodeConverterConfig, PartialTypeScriptClassModelToCodeConverterConfig, TypeScriptClassModelToCodeConverterSerializableConfig> {
+		extends AbstractComponentConfigManager<TypeScriptClassModelToCodeConverterConfig, PartialTypeScriptClassModelToCodeConverterConfig> {
 
 	getDefaultConfig(): TypeScriptClassModelToCodeConverterConfig {
 		return {
@@ -38,18 +37,17 @@ export class TypeScriptClassModelToCodeConverterConfigManager
 		};
 	}
 
-	convertToSerializableObject(fullConfig: TypeScriptClassModelToCodeConverterConfig): TypeScriptClassModelToCodeConverterSerializableConfig {
-		return {
-			...fullConfig,
-			typeBindings: mapValues(fullConfig.typeBindings, typeScriptType => typeScriptType!.format()),
-		};
-	}
-
-	convertFromSerializableObject(serializableConfig: TypeScriptClassModelToCodeConverterSerializableConfig): TypeScriptClassModelToCodeConverterConfig {
-		return {
-			...serializableConfig,
-			typeBindings: mapValues(serializableConfig.typeBindings, parseTypeScriptType),
-		};
+	protected getJsonAdapter(): JsonAdapter<TypeScriptClassModelToCodeConverterConfig> {
+		return JsonAdapters.object<TypeScriptClassModelToCodeConverterConfig>({
+			typeBindings: JsonAdapters.record(JsonAdapters.custom<TypeScriptType, string>({
+				adaptToJson(value) {
+					return value.format();
+				},
+				recoverFromJson(value) {
+					return parseTypeScriptType(value);
+				}
+			}))
+		});
 	}
 
 }

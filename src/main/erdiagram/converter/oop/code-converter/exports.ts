@@ -1,5 +1,4 @@
 import ClassModelToCodeConverterConfig from './ClassModelToCodeConverterConfig';
-import ClassModelToCodeConverterSerializableConfig from './ClassModelToCodeConverterSerializableConfig';
 import ClassModelToCodeConverter from './ClassModelToCodeConverter';
 import EntityRelationshipModelToClassCodeConverter from './EntityRelationshipModelToClassCodeConverter';
 
@@ -9,6 +8,5 @@ export * from './typescript/exports';
 export {
 	ClassModelToCodeConverter,
 	ClassModelToCodeConverterConfig,
-	ClassModelToCodeConverterSerializableConfig,
 	EntityRelationshipModelToClassCodeConverter
 };
