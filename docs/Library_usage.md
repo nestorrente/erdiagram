@@ -50,10 +50,10 @@ Or, if you prefer, you can use any of the following CDN repositories:
 
 ```html
 <!-- Unpkg -->
-<script src="https://unpkg.com/@nestorrente/erdiagram@1.0.0-beta.2"></script>
+<script src="https://unpkg.com/@nestorrente/erdiagram@1.0.0-rc2"></script>
 
 <!-- JsDelivr -->
-<script src="https://cdn.jsdelivr.net/npm/@nestorrente/erdiagram@1.0.0-beta.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@nestorrente/erdiagram@1.0.0-rc2"></script>
 ```
 
 The script will create a global  `ERDiagram` object, which contains all the exported classes, objects and functions.

@@ -59,7 +59,7 @@ const moduleConfig = {
     entry: './src/main/module-entry.ts',
     output: {
         ...commonConfig.output,
-        filename: 'erdiagram.esm.js',
+        filename: 'erdiagram.umd.js',
         libraryTarget: 'umd',
         globalObject: 'typeof self !== \'undefined\' ? self : this'
     }

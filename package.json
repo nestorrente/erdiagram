@@ -1,9 +1,9 @@
 {
     "name": "@nestorrente/erdiagram",
-    "version": "1.0.0-rc1",
+    "version": "1.0.0-rc2",
     "description": "Entity-Relationship Diagram Code Generator",
-    "main": "dist/erdiagram.js",
-    "module": "dist/erdiagram.esm.js",
+    "main": "dist/erdiagram.umd.js",
+    "module": "dist/erdiagram.umd.js",
     "types": "dist/erdiagram.d.ts",
     "scripts": {
         "test": "jest --config jest.config.js --coverage && jest-coverage-badges",
