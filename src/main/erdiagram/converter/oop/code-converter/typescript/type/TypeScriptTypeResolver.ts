@@ -1,8 +1,13 @@
 import {ClassFieldDescriptor} from '@/erdiagram/converter/oop/model/class-model-types';
-import TypeScriptType, {createTypeScriptType} from '@/erdiagram/converter/oop/code-converter/typescript/type/TypeScriptType';
-import TypeScriptParameterizedType, {createTypeScriptArrayType} from '@/erdiagram/converter/oop/code-converter/typescript/type/TypeScriptParameterizedType';
+import TypeScriptType from '@/erdiagram/converter/oop/code-converter/typescript/type/TypeScriptType';
+import TypeScriptParameterizedType
+	from '@/erdiagram/converter/oop/code-converter/typescript/type/parameterized/TypeScriptParameterizedType';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import FieldTypeResolver from '@/erdiagram/converter/oop/code-converter/common/type/FieldTypeResolver';
+import createTypeScriptArrayType
+	from '@/erdiagram/converter/oop/code-converter/typescript/type/parameterized/createTypeScriptArrayType';
+import createTypeScriptSimpleType
+	from '@/erdiagram/converter/oop/code-converter/typescript/type/createTypeScriptSimpleType';
 
 export default class TypeScriptTypeResolver implements FieldTypeResolver<TypeScriptType> {
 
@@ -37,7 +42,7 @@ export default class TypeScriptTypeResolver implements FieldTypeResolver<TypeScr
 				throw new Error('Invalid field descriptor: provided both primitive and entity types');
 			}
 
-			return createTypeScriptType(entityType);
+			return createTypeScriptSimpleType(entityType);
 
 		}
 

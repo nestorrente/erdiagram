@@ -1,8 +1,8 @@
-import {
-	createJavaArrayType,
-	createJavaParameterizedType
-} from '@/erdiagram/converter/oop/code-converter/java/type/JavaParameterizedType';
-import JavaType, {createJavaType} from '@/erdiagram/converter/oop/code-converter/java/type/JavaType';
+import JavaType from '@/erdiagram/converter/oop/code-converter/java/type/JavaType';
+import createJavaSimpleType from '@/erdiagram/converter/oop/code-converter/java/type/createJavaSimpleType';
+import createJavaParameterizedType
+	from '@/erdiagram/converter/oop/code-converter/java/type/parameterized/createJavaParameterizedType';
+import createJavaArrayType from '@/erdiagram/converter/oop/code-converter/java/type/parameterized/createJavaArrayType';
 
 const RAW_TYPE_REGEX = /^(?:[a-zA-Z_$][a-zA-Z_$\d]*\.)*[a-zA-Z_$][a-zA-Z_$\d]*$/;
 const ARRAY_TYPE_REGEX = /^(.*)\[\s*]\s*$/;
@@ -61,13 +61,13 @@ function parseJavaRawType(text: string): JavaType {
 	const lastDotIndex = trimmedText.lastIndexOf(PACKAGE_SEPARATOR);
 
 	if (lastDotIndex === -1) {
-		return createJavaType(trimmedText);
+		return createJavaSimpleType(trimmedText);
 	}
 
 	const packageName = trimmedText.substring(0, lastDotIndex);
 	const className = trimmedText.substring(lastDotIndex + 1);
 
-	return createJavaType(className, packageName);
+	return createJavaSimpleType(className, packageName);
 
 }
 

@@ -9,7 +9,8 @@ import {
 	ParsedEntityPropertyDescriptor,
 	ParsedRelationshipDescriptor
 } from '@/erdiagram/parser/types/parsed-entity-relationship-model-types';
-import {ERDiagramSyntaxError, ERDiagramUnknownTypeError} from '@/erdiagram/parser/types/parse-errors';
+import ERDiagramSyntaxError from '@/erdiagram/parser/types/error/ERDiagramSyntaxError';
+import ERDiagramUnknownTypeError from '@/erdiagram/parser/types/error/ERDiagramUnknownTypeError';
 
 export function parseEntityNameStatement(line: string): string {
 

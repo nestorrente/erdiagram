@@ -131,17 +131,17 @@ _ERDiagram_ exports some functions that you can use to create `JavaType` instanc
 
 ```javascript
 import {
-    createJavaType,
+    createJavaSimpleType,
     createJavaArrayType,
     createJavaParameterizedType,
     parseJavaType
 } from '@nestorrente/erdiagram';
 
-// createJavaType(name: string, packageName?: string): JavaType
+// createJavaSimpleType(name: string, packageName?: string): JavaType
 
-const intType = createJavaType('int'); // int
-const integerType = createJavaType('Integer', 'java.lang'); // Integer
-const myClassType = createJavaType('MyClass', 'com.example'); // MyClass
+const intType = createJavaSimpleType('int'); // int
+const integerType = createJavaSimpleType('Integer', 'java.lang'); // Integer
+const myClassType = createJavaSimpleType('MyClass', 'com.example'); // MyClass
 
 // createJavaArrayType(parameterType: JavaType): JavaParameterizedType
 
@@ -189,17 +189,17 @@ _ERDiagram_ exports some functions that you can use to create your own `TypeScri
 
 ```javascript
 import {
-    createTypeScriptType,
+    createTypeScriptSimpleType,
     createTypeScriptArrayType,
     createTypeScriptParameterizedType,
     parseTypeScriptType
 } from '@nestorrente/erdiagram';
 
-// createTypeScriptType(name: string): TypeScriptType
+// createTypeScriptSimpleType(name: string): TypeScriptType
 
-const numberType = createTypeScriptType('number'); // number
-const dateType = createTypeScriptType('Date'); // Date
-const myClassType = createTypeScriptType('MyClass'); // MyClass
+const numberType = createTypeScriptSimpleType('number'); // number
+const dateType = createTypeScriptSimpleType('Date'); // Date
+const myClassType = createTypeScriptSimpleType('MyClass'); // MyClass
 
 // createTypeScriptArrayType(parameterType: TypeScriptType): TypeScriptParameterizedType
 

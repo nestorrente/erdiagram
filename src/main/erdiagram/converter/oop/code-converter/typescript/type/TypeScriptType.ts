@@ -5,10 +5,3 @@ export default interface TypeScriptType {
 	format(): string;
 
 }
-
-export function createTypeScriptType(name: string): TypeScriptType {
-	return {
-		name,
-		format: () => name
-	};
-}

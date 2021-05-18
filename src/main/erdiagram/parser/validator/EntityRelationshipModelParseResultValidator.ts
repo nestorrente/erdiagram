@@ -1,17 +1,16 @@
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {
-	ERDiagramDuplicatedEntityNameError,
-	ERDiagramDuplicatedPropertyNameError,
-	ERDiagramInvalidIdentityDefinitionError,
-	ERDiagramMultipleIdentitiesError,
-	ERDiagramUnknownEntityError
-} from '@/erdiagram/parser/types/parse-errors';
-import {
 	EntityRelationshipModelParseResult,
 	ParsedEntityRelationshipModel
 } from '@/erdiagram/parser/types/parsed-entity-relationship-model-types';
 import EntityRelationshipModelParseResultValidatorErrorHandler
 	from '@/erdiagram/parser/validator/EntityRelationshipModelParseResultValidatorErrorHandler';
+import ERDiagramUnknownEntityError from '@/erdiagram/parser/types/error/ERDiagramUnknownEntityError';
+import ERDiagramDuplicatedEntityNameError from '@/erdiagram/parser/types/error/ERDiagramDuplicatedEntityNameError';
+import ERDiagramMultipleIdentitiesError from '@/erdiagram/parser/types/error/ERDiagramMultipleIdentitiesError';
+import ERDiagramInvalidIdentityDefinitionError
+	from '@/erdiagram/parser/types/error/ERDiagramInvalidIdentityDefinitionError';
+import ERDiagramDuplicatedPropertyNameError from '@/erdiagram/parser/types/error/ERDiagramDuplicatedPropertyNameError';
 
 export default class EntityRelationshipModelParseResultValidator {
 

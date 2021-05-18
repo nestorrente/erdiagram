@@ -1,8 +1,10 @@
-import TypeScriptType, {createTypeScriptType} from '@/erdiagram/converter/oop/code-converter/typescript/type/TypeScriptType';
-import {
-	createTypeScriptArrayType,
-	createTypeScriptParameterizedType
-} from '@/erdiagram/converter/oop/code-converter/typescript/type/TypeScriptParameterizedType';
+import TypeScriptType from '@/erdiagram/converter/oop/code-converter/typescript/type/TypeScriptType';
+import createTypeScriptParameterizedType
+	from '@/erdiagram/converter/oop/code-converter/typescript/type/parameterized/createTypeScriptParameterizedType';
+import createTypeScriptArrayType
+	from '@/erdiagram/converter/oop/code-converter/typescript/type/parameterized/createTypeScriptArrayType';
+import createTypeScriptSimpleType
+	from '@/erdiagram/converter/oop/code-converter/typescript/type/createTypeScriptSimpleType';
 
 const RAW_TYPE_REGEX = /^[a-zA-Z_$][a-zA-Z_$\d]*$/;
 const ARRAY_TYPE_REGEX = /^(.*)\[\s*]\s*$/;
@@ -57,7 +59,7 @@ function parseTypeScriptRawType(text: string): TypeScriptType {
 		throw new Error(`Illegal TypeScript type format: ${text}`);
 	}
 
-	return createTypeScriptType(trimmedText);
+	return createTypeScriptSimpleType(trimmedText);
 
 }
 

@@ -11,8 +11,6 @@ import JavaImportStatementsGenerator
 	from '@/erdiagram/converter/oop/code-converter/java/type/import/JavaImportStatementsGenerator';
 import JavaValidationAnnotationsGenerator
 	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/JavaValidationAnnotationsGenerator';
-import JpaAnnotationsGenerator
-	from '@/erdiagram/converter/oop/code-converter/java/annotation/jpa/JpaAnnotationsGenerator';
 import JavaAnnotation from '@/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation';
 
 const EMPTY_STRING: string = '';
@@ -21,7 +19,6 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 
 	private readonly config: JavaClassModelToCodeConverterConfig;
 	private readonly typeResolver: JavaFieldTypeResolver;
-	private readonly jpaAnnotationsGenerator: JpaAnnotationsGenerator;
 	private readonly validationAnnotationsGenerator: JavaValidationAnnotationsGenerator;
 	private readonly importStatementsGenerator: JavaImportStatementsGenerator;
 
@@ -30,8 +27,6 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 		this.config = javaClassModelToCodeConverterConfigManager.mergeWithDefaultConfig(config);
 
 		this.typeResolver = new JavaFieldTypeResolver(this.config.typeBindings, this.config.generatedClassesPackage);
-
-		this.jpaAnnotationsGenerator = new JpaAnnotationsGenerator();
 
 		this.validationAnnotationsGenerator = new JavaValidationAnnotationsGenerator(
 				this.config.notNullTextValidationStrategy,
@@ -112,7 +107,6 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 		const usedTypes: JavaType[] = [];
 
 		this.addValidationAnnotationsToFieldIfApply(field, fieldLines, usedTypes);
-		this.addJpaAnnotationsToFieldIfApply(field, fieldLines, usedTypes);
 
 		const fieldType = this.typeResolver.resolveFieldType(field);
 		usedTypes.push(fieldType);
@@ -140,23 +134,6 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 			setterLines
 		};
 
-	}
-
-	// FIXME use this method
-	private addJpaAnnotationsToClassIfApply(classDescriptor: ClassDescriptor, classLines: string[], usedTypes: JavaType[]) {
-		// FIXME add JPA config
-		// if (this.config.useJpaAnnotations) {
-		const annotations = this.jpaAnnotationsGenerator.getJpaAnnotationsForClass(classDescriptor);
-		this.addAnnotations(annotations, classLines, usedTypes);
-		// }
-	}
-
-	private addJpaAnnotationsToFieldIfApply(field: ClassFieldDescriptor, fieldLines: string[], usedTypes: JavaType[]) {
-		// FIXME add JPA config
-		// if (this.config.useJpaAnnotations) {
-		const annotations = this.jpaAnnotationsGenerator.getJpaAnnotationsForField(field);
-		this.addAnnotations(annotations, fieldLines, usedTypes);
-		// }
 	}
 
 	private addValidationAnnotationsToFieldIfApply(field: ClassFieldDescriptor, fieldLines: string[], usedTypes: JavaType[]) {

@@ -1,6 +1,7 @@
-import {isJavaParameterizedType} from '@/erdiagram/converter/oop/code-converter/java/type/JavaParameterizedType';
 import JavaType from '@/erdiagram/converter/oop/code-converter/java/type/JavaType';
 import {removeDuplicates} from '@/erdiagram/util/array-utils';
+import isJavaParameterizedType
+	from '@/erdiagram/converter/oop/code-converter/java/type/parameterized/isJavaParameterizedType';
 
 export default class JavaImportStatementsGenerator {
 

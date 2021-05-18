@@ -4,11 +4,11 @@ import {
 	parseRelationshipStatement
 } from '@/erdiagram/parser/statement/statement-types-parse-functions';
 import {guessStatementType, StatementType} from '@/erdiagram/parser/statement/statement-type-guesser';
-import {ERDiagramSyntaxError} from '@/erdiagram/parser/types/parse-errors';
 import {ParsedEntityDescriptor} from '@/erdiagram/parser/types/parsed-entity-relationship-model-types';
 import ParseState from '@/erdiagram/parser/types/ParseState';
 import EntityRelationshipModelLineParserErrorHandler
 	from '@/erdiagram/parser/line/EntityRelationshipModelLineParserErrorHandler';
+import ERDiagramSyntaxError from '@/erdiagram/parser/types/error/ERDiagramSyntaxError';
 
 export default class EntityRelationshipModelLineParser {
 

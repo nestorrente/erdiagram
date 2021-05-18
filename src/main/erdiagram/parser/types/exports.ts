@@ -1,2 +1,2 @@
 export * from './entity-relationship-model-types';
-export * from './parse-errors';
+export * from './error/exports';

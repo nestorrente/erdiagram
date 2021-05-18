@@ -9,21 +9,3 @@ export default interface JavaType {
 	formatCanonical(): string;
 
 }
-
-export function createJavaType(name: string, packageName?: string): JavaType {
-
-	const canonicalName = packageName ? `${packageName}.${name}` : name;
-
-	return {
-		packageName,
-		name,
-		canonicalName,
-		formatSimple() {
-			return name;
-		},
-		formatCanonical() {
-			return canonicalName;
-		}
-	};
-
-}

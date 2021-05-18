@@ -1,10 +1,8 @@
-import {
-	ERDiagramEntityError,
-	ERDiagramEntityPropertyError,
-	ERDiagramParseLineError,
-	ERDiagramRelationshipError
-} from '@/erdiagram/parser/types/parse-errors';
 import {ParsedStatementResult} from '@/erdiagram/parser/types/parsed-entity-relationship-model-types';
+import ERDiagramParseLineError from '@/erdiagram/parser/types/error/ERDiagramParseLineError';
+import ERDiagramRelationshipError from '@/erdiagram/parser/types/error/ERDiagramRelationshipError';
+import ERDiagramEntityError from '@/erdiagram/parser/types/error/ERDiagramEntityError';
+import ERDiagramEntityPropertyError from '@/erdiagram/parser/types/error/ERDiagramEntityPropertyError';
 
 export default class EntityRelationshipModelParseResultValidatorErrorHandler {
 

@@ -1,8 +1,12 @@
 import {ClassFieldDescriptor} from '@/erdiagram/converter/oop/model/class-model-types';
-import JavaType, {createJavaType} from '@/erdiagram/converter/oop/code-converter/java/type/JavaType';
-import JavaParameterizedType, {createJavaParameterizedType} from '@/erdiagram/converter/oop/code-converter/java/type/JavaParameterizedType';
+import JavaType from '@/erdiagram/converter/oop/code-converter/java/type/JavaType';
+import JavaParameterizedType
+	from '@/erdiagram/converter/oop/code-converter/java/type/parameterized/JavaParameterizedType';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import FieldTypeResolver from '@/erdiagram/converter/oop/code-converter/common/type/FieldTypeResolver';
+import createJavaSimpleType from '@/erdiagram/converter/oop/code-converter/java/type/createJavaSimpleType';
+import createJavaParameterizedType
+	from '@/erdiagram/converter/oop/code-converter/java/type/parameterized/createJavaParameterizedType';
 
 export default class JavaFieldTypeResolver implements FieldTypeResolver<JavaType> {
 
@@ -42,7 +46,7 @@ export default class JavaFieldTypeResolver implements FieldTypeResolver<JavaType
 				throw new Error('Invalid field descriptor: provided both primitive and entity types');
 			}
 
-			return createJavaType(entityType, this.generatedClassesPackage);
+			return createJavaSimpleType(entityType, this.generatedClassesPackage);
 
 		}
 

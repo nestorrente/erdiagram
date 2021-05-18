@@ -1,6 +1,5 @@
 import {ClassFieldDescriptor} from '@/erdiagram/converter/oop/model/class-model-types';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
-import {ERDiagramSyntaxError} from '@/erdiagram/parser/types/parse-errors';
 import NotNullTextValidationStrategy
 	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullTextValidationStrategy';
 import {removeNullableValues} from '@/erdiagram/util/array-utils';
@@ -9,6 +8,7 @@ import JavaValidationAnnotationTypes
 import NotNullBlobValidationStrategy
 	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullBlobValidationStrategy';
 import JavaAnnotation from '@/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation';
+import ERDiagramSyntaxError from '@/erdiagram/parser/types/error/ERDiagramSyntaxError';
 
 export default class JavaValidationAnnotationsGenerator {
 

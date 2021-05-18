@@ -1,4 +1,5 @@
-import {ERDiagramError, ERDiagramParseLineError} from '@/erdiagram/parser/types/parse-errors';
+import ERDiagramError from '@/erdiagram/parser/types/error/ERDiagramError';
+import ERDiagramParseLineError from '@/erdiagram/parser/types/error/ERDiagramParseLineError';
 
 export default class EntityRelationshipModelLineParserErrorHandler {
 

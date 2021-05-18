@@ -1,8 +1,9 @@
 import JavaAnnotation from '@/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation';
-import {createJavaType} from '@/erdiagram/converter/oop/code-converter/java/type/JavaType';
+import createJavaSimpleType
+	from '../../../../../../../main/erdiagram/converter/oop/code-converter/java/type/createJavaSimpleType';
 
-const ANNOTATION_TYPE = createJavaType('MyAnnotation');
-const PARAMETER_ANNOTATION_TYPE = createJavaType('MyParamAnnotation');
+const ANNOTATION_TYPE = createJavaSimpleType('MyAnnotation');
+const PARAMETER_ANNOTATION_TYPE = createJavaSimpleType('MyParamAnnotation');
 
 test('Annotation without parameters', () => {
 
