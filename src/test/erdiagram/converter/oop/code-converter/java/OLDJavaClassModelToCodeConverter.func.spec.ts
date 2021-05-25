@@ -1,19 +1,20 @@
-import JavaClassModelToCodeConverter from '@/erdiagram/converter/oop/code-converter/java/JavaClassModelToCodeConverter';
+import OLDJavaClassModelToCodeConverter
+	from '@/erdiagram/converter/oop/code-converter/java/OLDJavaClassModelToCodeConverter';
 import {ClassModel} from '@/erdiagram/converter/oop/model/class-model-types';
 import {
 	createClass,
 	createEntityClassField,
 	createIdClassField,
 	createPrimitiveClassField
-} from '#/erdiagram/converter/oop/model/class-model-test-utils';
+} from '../../model/class-model-mothers';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import parseJavaType from '@/erdiagram/converter/oop/code-converter/java/type/parseJavaType';
 import NotNullTextValidationStrategy
 	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullTextValidationStrategy';
 import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata-types';
-import {dummySourceEntity, dummySourceProperty} from '#/erdiagram/converter/common/source-metadata-test-utils';
+import {dummySourceEntity, dummySourceProperty} from '../../../common/source-metadata-instances';
 
-const javaClassModelToCodeConverter = new JavaClassModelToCodeConverter();
+const javaClassModelToCodeConverter = new OLDJavaClassModelToCodeConverter();
 
 describe('Single class', () => {
 
@@ -607,7 +608,7 @@ describe('Config', () => {
 			]
 		};
 
-		const result = new JavaClassModelToCodeConverter({
+		const result = new OLDJavaClassModelToCodeConverter({
 			generatedClassesPackage: 'com.example.erdiagram'
 		}).convertToCode(classModel);
 
@@ -647,7 +648,7 @@ public class TestClass {
 			]
 		};
 
-		const result = new JavaClassModelToCodeConverter({
+		const result = new OLDJavaClassModelToCodeConverter({
 			useValidationAnnotations: true
 		}).convertToCode(classModel);
 
@@ -714,7 +715,7 @@ public class TestClass {
 			]
 		};
 
-		const result = new JavaClassModelToCodeConverter({
+		const result = new OLDJavaClassModelToCodeConverter({
 			typeBindings: {
 				[EntityPropertyType.IDENTITY]: parseJavaType('CustomIdentityType'),
 				[EntityPropertyType.TEXT]: parseJavaType('CustomTextType'),
@@ -853,7 +854,7 @@ public class TestClass {
 			]
 		};
 
-		const result = new JavaClassModelToCodeConverter({
+		const result = new OLDJavaClassModelToCodeConverter({
 			generatedClassesPackage: 'com.example.erdiagram',
 			useValidationAnnotations: true,
 			notNullTextValidationStrategy: NotNullTextValidationStrategy.NOT_EMPTY,

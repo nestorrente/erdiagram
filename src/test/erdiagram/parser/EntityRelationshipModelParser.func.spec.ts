@@ -6,10 +6,7 @@ import {
 	EntityRelationshipModel,
 	RelationshipDescriptor
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
-import {
-	createEntityWithoutProperties,
-	createSimpleEntityProperty
-} from '#/erdiagram/parser/entity-relationship-model-test-utils';
+import {createEntityWithoutProperties, createSimpleEntityProperty} from './entity-relationship-model-mothers';
 
 const entityRelationshipModelParser = new EntityRelationshipModelParser();
 

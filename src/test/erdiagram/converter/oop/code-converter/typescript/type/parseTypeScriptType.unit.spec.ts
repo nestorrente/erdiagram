@@ -1,6 +1,6 @@
 import parseTypeScriptType from '@/erdiagram/converter/oop/code-converter/typescript/type/parseTypeScriptType';
 import isTypeScriptParameterizedType
-	from '../../../../../../../main/erdiagram/converter/oop/code-converter/typescript/type/parameterized/isTypeScriptParameterizedType';
+	from '@/erdiagram/converter/oop/code-converter/typescript/type/parameterized/isTypeScriptParameterizedType';
 
 describe('Well formatted types', () => {
 	it.each([

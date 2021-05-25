@@ -1,13 +1,30 @@
 import JavaAnnotation from '@/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation';
-import createJavaSimpleType
-	from '../../../../../../../main/erdiagram/converter/oop/code-converter/java/type/createJavaSimpleType';
+import createJavaSimpleType from '@/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType';
 
 const ANNOTATION_TYPE = createJavaSimpleType('MyAnnotation');
 const PARAMETER_ANNOTATION_TYPE = createJavaSimpleType('MyParamAnnotation');
 
+test('Annotation with string type', () => {
+
+	const annotation = new JavaAnnotation(ANNOTATION_TYPE);
+
+	expect(annotation.format()).toBe('@MyAnnotation');
+
+});
+
 test('Annotation without parameters', () => {
 
 	const annotation = new JavaAnnotation(ANNOTATION_TYPE);
+
+	expect(annotation.format()).toBe('@MyAnnotation');
+
+});
+
+test('Annotation with one undefined parameter', () => {
+
+	const annotation = new JavaAnnotation(ANNOTATION_TYPE, {
+		myParam: undefined
+	});
 
 	expect(annotation.format()).toBe('@MyAnnotation');
 
@@ -23,6 +40,17 @@ test('Annotation with one numeric parameter', () => {
 
 });
 
+test('Annotation with boolean parameters', () => {
+
+	const annotation = new JavaAnnotation(ANNOTATION_TYPE, {
+		myTrueParam: true,
+		myFalseParam: false
+	});
+
+	expect(annotation.format()).toBe('@MyAnnotation(myTrueParam = true, myFalseParam = false)');
+
+});
+
 test('Annotation with one text parameter', () => {
 
 	const annotation = new JavaAnnotation(ANNOTATION_TYPE, {
@@ -30,6 +58,16 @@ test('Annotation with one text parameter', () => {
 	});
 
 	expect(annotation.format()).toBe('@MyAnnotation(myParam = "my param value")');
+
+});
+
+test('Annotation with one raw parameter', () => {
+
+	const annotation = new JavaAnnotation(ANNOTATION_TYPE, {
+		myParam: JavaAnnotation.createRawParameterValue('MY_CONSTANT_VALUE')
+	});
+
+	expect(annotation.format()).toBe('@MyAnnotation(myParam = MY_CONSTANT_VALUE)');
 
 });
 
@@ -68,13 +106,15 @@ test('Annotation with one array parameter', () => {
 test('Complex annotation', () => {
 
 	const annotation = new JavaAnnotation(ANNOTATION_TYPE, {
+		myUndefinedParam: undefined,
 		myNumberParam: 2020,
+		myBooleanParam: true,
 		myTextArrayParam: ['hello', 'world'],
 		myAnnotationParam: new JavaAnnotation(PARAMETER_ANNOTATION_TYPE, {
-			myInnerParam: 2038
+			myInnerRawParam: JavaAnnotation.createRawParameterValue('MY_CONSTANT')
 		})
 	});
 
-	expect(annotation.format()).toBe('@MyAnnotation(myNumberParam = 2020, myTextArrayParam = {"hello", "world"}, myAnnotationParam = @MyParamAnnotation(myInnerParam = 2038))');
+	expect(annotation.format()).toBe('@MyAnnotation(myNumberParam = 2020, myBooleanParam = true, myTextArrayParam = {"hello", "world"}, myAnnotationParam = @MyParamAnnotation(myInnerRawParam = MY_CONSTANT))');
 
 });

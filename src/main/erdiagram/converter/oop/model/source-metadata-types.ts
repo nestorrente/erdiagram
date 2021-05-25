@@ -1,11 +1,13 @@
 import {
 	EntityDescriptor,
 	EntityPropertyDescriptor,
+	EntityRelationshipModel,
 	RelationshipDescriptor,
 	RelationshipMember
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
 
 export enum SourceType {
+	ENTITY_RELATIONSHIP_MODEL = 'entity_relationship_model',
 	ENTITY = 'entity',
 	ENTITY_IDENTITY = 'entity_identity',
 	ENTITY_PROPERTY = 'entity_property',
@@ -15,6 +17,10 @@ export enum SourceType {
 
 export interface SourceMetadata<T extends SourceType = SourceType> {
 	readonly sourceType: T;
+}
+
+export interface EntityRelationshipModelSourceMetadata extends SourceMetadata<SourceType.ENTITY_RELATIONSHIP_MODEL> {
+	entityRelationshipModel: EntityRelationshipModel;
 }
 
 export interface EntitySourceMetadata extends SourceMetadata<SourceType.ENTITY> {

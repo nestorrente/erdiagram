@@ -4,6 +4,7 @@ import {
 	EntityDescriptor,
 	EntityPropertyDescriptor,
 	EntityPropertyType,
+	EntityRelationshipModel,
 	RelationshipDescriptor,
 	RelationshipMember
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
@@ -33,4 +34,9 @@ export const dummySourceRelationship: RelationshipDescriptor = {
 	direction: Direction.BIDIRECTIONAL,
 	leftMember: dummySourceRelationshipMember,
 	rightMember: dummySourceRelationshipMember
+};
+
+export const dummySourceEntityRelationshipModel: EntityRelationshipModel = {
+	entities: [dummySourceEntity],
+	relationships: [dummySourceRelationship]
 };

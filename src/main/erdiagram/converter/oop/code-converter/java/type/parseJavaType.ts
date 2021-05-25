@@ -1,5 +1,5 @@
 import JavaType from '@/erdiagram/converter/oop/code-converter/java/type/JavaType';
-import createJavaSimpleType from '@/erdiagram/converter/oop/code-converter/java/type/createJavaSimpleType';
+import createJavaSimpleType from '@/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType';
 import createJavaParameterizedType
 	from '@/erdiagram/converter/oop/code-converter/java/type/parameterized/createJavaParameterizedType';
 import createJavaArrayType from '@/erdiagram/converter/oop/code-converter/java/type/parameterized/createJavaArrayType';

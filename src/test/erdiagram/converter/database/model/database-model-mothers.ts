@@ -16,7 +16,7 @@ import {
 	dummySourceProperty,
 	dummySourceRelationship,
 	dummySourceRelationshipMember
-} from '#/erdiagram/converter/common/source-metadata-test-utils';
+} from '../../common/source-metadata-instances';
 
 export type PartialEntityTableDescriptor = Partial<Omit<TableDescriptor, 'name' | 'sourceMetadata'> & {
 	sourceEntity: EntityDescriptor;

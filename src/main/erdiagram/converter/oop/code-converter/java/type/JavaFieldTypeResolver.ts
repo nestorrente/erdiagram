@@ -4,7 +4,7 @@ import JavaParameterizedType
 	from '@/erdiagram/converter/oop/code-converter/java/type/parameterized/JavaParameterizedType';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import FieldTypeResolver from '@/erdiagram/converter/oop/code-converter/common/type/FieldTypeResolver';
-import createJavaSimpleType from '@/erdiagram/converter/oop/code-converter/java/type/createJavaSimpleType';
+import createJavaSimpleType from '@/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType';
 import createJavaParameterizedType
 	from '@/erdiagram/converter/oop/code-converter/java/type/parameterized/createJavaParameterizedType';
 

@@ -74,6 +74,6 @@
     },
     "dependencies": {
         "pluralize": "^8.0.0",
-        "true-json": "^1.0.0-alpha.3"
+        "true-json": "file:true-json.tgz"
     }
 }

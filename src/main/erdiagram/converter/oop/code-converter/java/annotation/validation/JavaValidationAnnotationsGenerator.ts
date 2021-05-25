@@ -19,7 +19,7 @@ export default class JavaValidationAnnotationsGenerator {
 
 	}
 
-	public getValidationAnnotations(field: ClassFieldDescriptor): JavaAnnotation[] {
+	public getAnnotations(field: ClassFieldDescriptor): JavaAnnotation[] {
 		return removeNullableValues([
 			this.getNotNullAnnotation(field),
 			this.getSizeAnnotation(field)

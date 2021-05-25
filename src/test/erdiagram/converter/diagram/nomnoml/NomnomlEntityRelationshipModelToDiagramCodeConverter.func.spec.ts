@@ -6,7 +6,7 @@ import {
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
 import NomnomlEntityRelationshipModelToDiagramCodeConverter
 	from '@/erdiagram/converter/diagram/nomnoml/NomnomlEntityRelationshipModelToDiagramCodeConverter';
-import {createEntityProperty} from '#/erdiagram/parser/entity-relationship-model-test-utils';
+import {createEntityProperty} from '../../../parser/entity-relationship-model-mothers';
 
 const nomnomlERModelToDiagramCodeConverter = new NomnomlEntityRelationshipModelToDiagramCodeConverter();
 

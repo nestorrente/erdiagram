@@ -1,4 +1,4 @@
-import createJavaSimpleType from '@/erdiagram/converter/oop/code-converter/java/type/createJavaSimpleType';
+import createJavaSimpleType from '@/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType';
 
 const VALIDATION_ANNOTATIONS_PACKAGE = 'javax.validation.constraints';
 

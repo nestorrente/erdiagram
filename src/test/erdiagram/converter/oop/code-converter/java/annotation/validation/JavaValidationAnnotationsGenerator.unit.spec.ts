@@ -8,7 +8,7 @@ import JavaValidationAnnotationTypes
 import JavaType from '@/erdiagram/converter/oop/code-converter/java/type/JavaType';
 import NotNullBlobValidationStrategy
 	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullBlobValidationStrategy';
-import {createPrimitiveClassField} from '#/erdiagram/converter/oop/model/class-model-test-utils';
+import {createPrimitiveClassField} from '../../../../model/class-model-mothers';
 import JavaAnnotation from '@/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation';
 
 const validationAnnotationsGenerator = new JavaValidationAnnotationsGenerator(
@@ -22,7 +22,7 @@ test('Nullable field should not be annotated', () => {
 		nullable: true
 	});
 
-	const fieldAnnotations = validationAnnotationsGenerator.getValidationAnnotations(field);
+	const fieldAnnotations = validationAnnotationsGenerator.getAnnotations(field);
 
 	expect(fieldAnnotations).toHaveLength(0);
 
@@ -32,7 +32,7 @@ test('Not-null field should be annotated with @NotNull', () => {
 
 	const field = createPrimitiveClassField('field', EntityPropertyType.INT);
 
-	const fieldAnnotations = validationAnnotationsGenerator.getValidationAnnotations(field);
+	const fieldAnnotations = validationAnnotationsGenerator.getAnnotations(field);
 
 	expect(fieldAnnotations).toHaveLength(1);
 	expectAnnotationToBe(fieldAnnotations[0], {
@@ -48,7 +48,7 @@ test('Field with max-size should be annotated with @Size', () => {
 		maxSize: 2048
 	});
 
-	const fieldAnnotations = validationAnnotationsGenerator.getValidationAnnotations(field);
+	const fieldAnnotations = validationAnnotationsGenerator.getAnnotations(field);
 
 	expect(fieldAnnotations).toHaveLength(1);
 	expectAnnotationToBe(fieldAnnotations[0], {
@@ -79,7 +79,7 @@ describe('Not-null text validation strategies', () => {
 
 			const field = createPrimitiveClassField('field', EntityPropertyType.TEXT);
 
-			const fieldAnnotations = customizedJavaValidationAnnotationsGenerator.getValidationAnnotations(field);
+			const fieldAnnotations = customizedJavaValidationAnnotationsGenerator.getAnnotations(field);
 
 			expect(fieldAnnotations).toHaveLength(1);
 			expectAnnotationToBe(fieldAnnotations[0], {
@@ -94,7 +94,7 @@ describe('Not-null text validation strategies', () => {
 				maxSize: 50
 			});
 
-			const fieldAnnotations = customizedJavaValidationAnnotationsGenerator.getValidationAnnotations(field);
+			const fieldAnnotations = customizedJavaValidationAnnotationsGenerator.getAnnotations(field);
 
 			expect(fieldAnnotations).toHaveLength(2);
 			expectAnnotationToBe(fieldAnnotations[0], {
@@ -132,7 +132,7 @@ describe('Not-null blob validation strategies', () => {
 			const field = createPrimitiveClassField('field', EntityPropertyType.BLOB);
 
 			const fieldAnnotations = customizedJavaValidationAnnotationsGenerator
-					.getValidationAnnotations(field);
+					.getAnnotations(field);
 
 			expect(fieldAnnotations).toHaveLength(1);
 			expectAnnotationToBe(fieldAnnotations[0], {
@@ -147,7 +147,7 @@ describe('Not-null blob validation strategies', () => {
 				maxSize: 2048
 			});
 
-			const fieldAnnotations = customizedJavaValidationAnnotationsGenerator.getValidationAnnotations(field);
+			const fieldAnnotations = customizedJavaValidationAnnotationsGenerator.getAnnotations(field);
 
 			expect(fieldAnnotations).toHaveLength(2);
 			expectAnnotationToBe(fieldAnnotations[0], {

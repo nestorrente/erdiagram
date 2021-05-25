@@ -1,6 +1,7 @@
 import {
 	EntityIdentitySourceMetadata,
 	EntityPropertySourceMetadata,
+	EntityRelationshipModelSourceMetadata,
 	EntitySourceMetadata,
 	RelationshipSourceMetadata,
 	RelationshipTargetSourceMetadata,
@@ -9,17 +10,24 @@ import {
 } from '@/erdiagram/converter/oop/model/source-metadata-types';
 import {
 	dummySourceEntity,
+	dummySourceEntityRelationshipModel,
 	dummySourceProperty,
 	dummySourceRelationship,
 	dummySourceRelationshipMember
-} from '#/erdiagram/converter/common/source-metadata-test-utils';
+} from '../../common/source-metadata-instances';
 import {
 	isEntityIdentitySourceMetadata,
 	isEntityPropertySourceMetadata,
+	isEntityRelationshipModelSourceMetadata,
 	isEntitySourceMetadata,
-	isRelationshipMemberSourceMetadata,
-	isRelationshipSourceMetadata
+	isRelationshipSourceMetadata,
+	isRelationshipTargetSourceMetadata
 } from '@/erdiagram/converter/oop/model/source-metadata-utils';
+
+const ENTITY_RELATIONSHIP_MODEL_SOURCE_METADATA: EntityRelationshipModelSourceMetadata = {
+	sourceType: SourceType.ENTITY_RELATIONSHIP_MODEL,
+	entityRelationshipModel: dummySourceEntityRelationshipModel
+};
 
 const ENTITY_SOURCE_METADATA: EntitySourceMetadata = {
 	sourceType: SourceType.ENTITY,
@@ -50,17 +58,19 @@ const RELATIONSHIP_TARGET_SOURCE_METADATA: RelationshipTargetSourceMetadata = {
 
 describe('is{SourceType}SourceMetadata() methods', () => {
 
-	const testsData: [SourceMetadata, [boolean, boolean, boolean, boolean, boolean]][] = [
-		[ENTITY_SOURCE_METADATA, [true, false, false, false, false]],
-		[ENTITY_IDENTITY_SOURCE_METADATA, [false, true, false, false, false]],
-		[ENTITY_PROPERTY_SOURCE_METADATA, [false, false, true, false, false]],
-		[RELATIONSHIP_SOURCE_METADATA, [false, false, false, true, false]],
-		[RELATIONSHIP_TARGET_SOURCE_METADATA, [false, false, false, false, true]],
+	const testsData: [SourceMetadata, [boolean, boolean, boolean, boolean, boolean, boolean]][] = [
+		[ENTITY_RELATIONSHIP_MODEL_SOURCE_METADATA, [true, false, false, false, false, false]],
+		[ENTITY_SOURCE_METADATA, [false, true, false, false, false, false]],
+		[ENTITY_IDENTITY_SOURCE_METADATA, [false, false, true, false, false, false]],
+		[ENTITY_PROPERTY_SOURCE_METADATA, [false, false, false, true, false, false]],
+		[RELATIONSHIP_SOURCE_METADATA, [false, false, false, false, true, false]],
+		[RELATIONSHIP_TARGET_SOURCE_METADATA, [false, false, false, false, false, true]],
 	];
 
 	testsData.forEach(([sourceMetadata, expectedResults]) => {
 
 		const [
+			isEntityRelationshipModelSourceMetadataExpectedResult,
 			isEntitySourceMetadataExpectedResult,
 			isEntityIdentitySourceMetadataExpectedResult,
 			isEntityPropertySourceMetadataExpectedResult,
@@ -69,13 +79,12 @@ describe('is{SourceType}SourceMetadata() methods', () => {
 		] = expectedResults;
 
 		test(`Source metadata of type "${sourceMetadata.sourceType}"`, () => {
-
+			expect(isEntityRelationshipModelSourceMetadata(sourceMetadata)).toBe(isEntityRelationshipModelSourceMetadataExpectedResult);
 			expect(isEntitySourceMetadata(sourceMetadata)).toBe(isEntitySourceMetadataExpectedResult);
 			expect(isEntityIdentitySourceMetadata(sourceMetadata)).toBe(isEntityIdentitySourceMetadataExpectedResult);
 			expect(isEntityPropertySourceMetadata(sourceMetadata)).toBe(isEntityPropertySourceMetadataExpectedResult);
 			expect(isRelationshipSourceMetadata(sourceMetadata)).toBe(isRelationshipSourceMetadataExpectedResult);
-			expect(isRelationshipMemberSourceMetadata(sourceMetadata)).toBe(isRelationshipMemberSourceMetadataExpectedResult);
-
+			expect(isRelationshipTargetSourceMetadata(sourceMetadata)).toBe(isRelationshipMemberSourceMetadataExpectedResult);
 		});
 
 	});

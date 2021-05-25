@@ -1,87 +1,71 @@
-import {capitalizeWord} from '@/erdiagram/util/string-utils';
-import {ClassDescriptor, ClassFieldDescriptor, ClassModel} from '@/erdiagram/converter/oop/model/class-model-types';
 import {indentLine, indentLines} from '@/erdiagram/util/indent-utils';
-import JavaType from '@/erdiagram/converter/oop/code-converter/java/type/JavaType';
-import ClassModelToCodeConverter from '@/erdiagram/converter/oop/code-converter/ClassModelToCodeConverter';
-import JavaClassModelToCodeConverterConfig, {PartialJavaClassModelToCodeConverterConfig} from '@/erdiagram/converter/oop/code-converter/java/config/JavaClassModelToCodeConverterConfig';
-import javaClassModelToCodeConverterConfigManager
-	from '@/erdiagram/converter/oop/code-converter/java/config/JavaClassModelToCodeConverterConfigManager';
-import JavaFieldTypeResolver from '@/erdiagram/converter/oop/code-converter/java/type/JavaFieldTypeResolver';
 import JavaImportStatementsGenerator
 	from '@/erdiagram/converter/oop/code-converter/java/type/import/JavaImportStatementsGenerator';
-import JavaValidationAnnotationsGenerator
-	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/JavaValidationAnnotationsGenerator';
+import {
+	JavaClass,
+	JavaClassModel,
+	JavaField,
+	JavaFieldGetter,
+	JavaFieldSetter,
+	JavaVisibility
+} from '@/erdiagram/converter/oop/code-converter/java/model/java-class-model-types';
 import JavaAnnotation from '@/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation';
+import JavaClassUsedTypesCompiler
+	from '@/erdiagram/converter/oop/code-converter/java/type/import/JavaClassUsedTypesCompiler';
 
 const EMPTY_STRING: string = '';
 
-export default class JavaClassModelToCodeConverter implements ClassModelToCodeConverter {
+export default class JavaClassModelToCodeConverter {
 
-	private readonly config: JavaClassModelToCodeConverterConfig;
-	private readonly typeResolver: JavaFieldTypeResolver;
-	private readonly validationAnnotationsGenerator: JavaValidationAnnotationsGenerator;
-	private readonly importStatementsGenerator: JavaImportStatementsGenerator;
+	readonly #importStatementsGenerator: JavaImportStatementsGenerator;
+	readonly #javaUsedTypesCompiler: JavaClassUsedTypesCompiler;
 
-	constructor(config?: PartialJavaClassModelToCodeConverterConfig) {
-
-		this.config = javaClassModelToCodeConverterConfigManager.mergeWithDefaultConfig(config);
-
-		this.typeResolver = new JavaFieldTypeResolver(this.config.typeBindings, this.config.generatedClassesPackage);
-
-		this.validationAnnotationsGenerator = new JavaValidationAnnotationsGenerator(
-				this.config.notNullTextValidationStrategy,
-				this.config.notNullBlobValidationStrategy
-		);
-
-		this.importStatementsGenerator = new JavaImportStatementsGenerator(this.config.generatedClassesPackage);
-
+	constructor(generatedClassesPackage?: string) {
+		this.#javaUsedTypesCompiler = new JavaClassUsedTypesCompiler();
+		this.#importStatementsGenerator = new JavaImportStatementsGenerator(generatedClassesPackage);
 	}
 
-	public convertToCode(classModel: ClassModel): string {
-		return classModel.classes
-				.map(classDescriptor => this.generateClass(classDescriptor))
+	public convertToCode(javaClassModel: JavaClassModel): string {
+		return javaClassModel.classes
+				.map(javaClass => this.generateClassCode(javaClass))
 				.join('\n\n');
 	}
 
-	private generateClass(classDescriptor: ClassDescriptor): string {
+	private generateClassCode(javaClass: JavaClass): string {
 
-		const className = capitalizeWord(classDescriptor.name);
-
-		const usedTypes: JavaType[] = [];
 		const fieldsLines: string[] = [];
 		const methodsLines: string[] = [];
 
-		for (const field of classDescriptor.fields) {
+		for (const javaField of javaClass.properties) {
 
 			const {
-				usedTypes: fieldUsedTypes,
 				fieldLines,
 				getterLines,
 				setterLines
-			} = this.createField(field);
+			} = this.createField(javaField);
 
-			usedTypes.push(...fieldUsedTypes);
 			fieldsLines.push(...fieldLines);
-			methodsLines.push(...getterLines, EMPTY_STRING, ...setterLines, EMPTY_STRING);
+			methodsLines.push(...getterLines, ...setterLines);
 
 		}
 
 		const classOuterLines = [
-			`/* ========== ${className} class ========== */`,
+			`/* ========== ${javaClass.name} class ========== */`,
 			EMPTY_STRING
 		];
 
-		if (this.config.generatedClassesPackage) {
-			classOuterLines.push(`package ${this.config.generatedClassesPackage};`, EMPTY_STRING);
+		if (javaClass.packageName) {
+			classOuterLines.push(`package ${javaClass.packageName};`, EMPTY_STRING);
 		}
-
-		const importLines = this.importStatementsGenerator.generateImportStatements(usedTypes);
+		const importLines = this.generateImportLines(javaClass);
 
 		if (importLines.length !== 0) {
 			classOuterLines.push(...importLines, EMPTY_STRING);
 		}
 
-		classOuterLines.push(`public class ${className} {`);
+		classOuterLines.push(...this.getAnnotationsLines(javaClass.annotations));
+
+		classOuterLines.push(this.prependVisibility(`class ${javaClass.name} {`, javaClass.visibility));
 
 		const classContentLines: string[] = [
 			EMPTY_STRING,
@@ -98,37 +82,22 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 
 	}
 
-	private createField(field: ClassFieldDescriptor) {
+	// TODO move the field generator to a separate class
 
-		const fieldName = field.name;
-		const capitalizedFieldName = capitalizeWord(fieldName);
+	private createField(javaField: JavaField) {
 
 		const fieldLines: string[] = [];
-		const usedTypes: JavaType[] = [];
 
-		this.addValidationAnnotationsToFieldIfApply(field, fieldLines, usedTypes);
+		const fieldName = javaField.name;
+		const formattedJavaType = javaField.type.formatSimple();
 
-		const fieldType = this.typeResolver.resolveFieldType(field);
-		usedTypes.push(fieldType);
+		fieldLines.push(...this.getAnnotationsLines(javaField.annotations));
+		fieldLines.push(this.prependVisibility(`${formattedJavaType} ${fieldName};`, javaField.visibility));
 
-		const formattedJavaType = fieldType.formatSimple();
-
-		fieldLines.push(`private ${formattedJavaType} ${fieldName};`);
-
-		const getterLines: string[] = [
-			`public ${formattedJavaType} get${capitalizedFieldName}() {`,
-			indentLine(`return ${fieldName};`),
-			'}',
-		];
-
-		const setterLines: string[] = [
-			`public void set${capitalizedFieldName}(${formattedJavaType} ${fieldName}) {`,
-			indentLine(`this.${fieldName} = ${fieldName};`),
-			'}',
-		];
+		const getterLines: string[] = this.createGetterLines(fieldName, formattedJavaType, javaField.getter);
+		const setterLines: string[] = this.createSetterLines(fieldName, formattedJavaType, javaField.setter);
 
 		return {
-			usedTypes,
 			fieldLines,
 			getterLines,
 			setterLines
@@ -136,18 +105,52 @@ export default class JavaClassModelToCodeConverter implements ClassModelToCodeCo
 
 	}
 
-	private addValidationAnnotationsToFieldIfApply(field: ClassFieldDescriptor, fieldLines: string[], usedTypes: JavaType[]) {
-		if (this.config.useValidationAnnotations) {
-			const annotations = this.validationAnnotationsGenerator.getValidationAnnotations(field);
-			this.addAnnotations(annotations, fieldLines, usedTypes);
+	private createGetterLines(fieldName: string, formattedJavaType: string, getter: JavaFieldGetter | undefined) {
+
+		if (getter == null) {
+			return [];
 		}
+
+		return [
+			...this.getAnnotationsLines(getter.annotations),
+			this.prependVisibility(`${formattedJavaType} ${getter.name}() {`, getter.visibility),
+			indentLine(`return ${fieldName};`),
+			'}',
+			EMPTY_STRING
+		];
+
 	}
 
-	private addAnnotations(annotations: JavaAnnotation[], lines: string[], usedTypes: JavaType[]) {
-		annotations.forEach(annotation => {
-			usedTypes.push(annotation.type);
-			lines.push(annotation.format());
-		});
+	private createSetterLines(fieldName: string, formattedJavaType: string, setter: JavaFieldSetter | undefined) {
+
+		if (setter == null) {
+			return [];
+		}
+
+		return [
+			...this.getAnnotationsLines(setter.annotations),
+			this.prependVisibility(`void ${setter.name}(${formattedJavaType} ${fieldName}) {`, setter.visibility),
+			indentLine(`this.${fieldName} = ${fieldName};`),
+			'}',
+			EMPTY_STRING
+		];
+
+	}
+
+	private getAnnotationsLines(annotations: JavaAnnotation[]) {
+		return annotations.map(annotation => annotation.format());
+	}
+
+	private prependVisibility(text: string, visibility: JavaVisibility): string {
+		if (visibility === JavaVisibility.PACKAGE_PRIVATE) {
+			return text;
+		}
+		return visibility + ' ' + text;
+	}
+
+	private generateImportLines(javaClass: JavaClass) {
+		const usedTypes = this.#javaUsedTypesCompiler.getUsedTypes(javaClass);
+		return this.#importStatementsGenerator.generateImportStatements(usedTypes);
 	}
 
 }

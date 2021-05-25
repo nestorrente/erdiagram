@@ -3,12 +3,15 @@ import {removeDuplicates} from '@/erdiagram/util/array-utils';
 import isJavaParameterizedType
 	from '@/erdiagram/converter/oop/code-converter/java/type/parameterized/isJavaParameterizedType';
 
+const JAVA_LANG_PACKAGE = 'java.lang';
+
+// TODO add unit tests
 export default class JavaImportStatementsGenerator {
 
-	constructor(
-			private readonly generatedClassesPackage?: string
-	) {
+	readonly #currentPackage?: string;
 
+	constructor(currentPackage?: string) {
+		this.#currentPackage = currentPackage;
 	}
 
 	public generateImportStatements(javaTypes: JavaType[]): string[] {
@@ -39,8 +42,8 @@ export default class JavaImportStatementsGenerator {
 
 	private isImportRequired(javaType: JavaType): boolean {
 		return !!javaType.packageName
-				&& javaType.packageName !== 'java.lang'
-				&& this.generatedClassesPackage !== javaType.packageName;
+				&& javaType.packageName !== JAVA_LANG_PACKAGE
+				&& javaType.packageName !== this.#currentPackage;
 	}
 
 }
