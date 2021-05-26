@@ -34,11 +34,11 @@ export default class ApplyTransformersCommand {
 
 			const classDescriptor = this.#javaClassModelDescriptorsRepository.getClassDescriptor(javaClass)!;
 
-			javaClass.properties.forEach(initialProperty => {
+			javaClass.fields.forEach(javaField => {
 
-				const fieldDescriptor = this.#javaClassModelDescriptorsRepository.getFieldDescriptor(initialProperty)!;
+				const fieldDescriptor = this.#javaClassModelDescriptorsRepository.getFieldDescriptor(javaField)!;
 
-				return transformer.visitField(initialProperty, {
+				return transformer.visitField(javaField, {
 					...this.#setupContext,
 					setupData,
 					javaClass: javaClass,

@@ -52,7 +52,7 @@ export default class JavaClassModelGenerator {
 			visibility: JavaVisibility.PUBLIC,
 			name: classDescriptor.name,
 			annotations: [],
-			properties: classDescriptor.fields.map(fieldDescriptor => {
+			fields: classDescriptor.fields.map(fieldDescriptor => {
 				const javaField = this.#javaFieldGenerator.generateJavaField(fieldDescriptor);
 				descriptorsRepositoryBuilder.addField(javaField, fieldDescriptor);
 				return javaField;

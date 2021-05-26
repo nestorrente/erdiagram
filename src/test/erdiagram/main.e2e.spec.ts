@@ -8,10 +8,9 @@ import * as fs from 'fs';
 import JavaClassModelTransformer
 	from '../../main/erdiagram/converter/oop/code-converter/java/model/transformer/JavaClassModelTransformer';
 import {JavaVisibility} from '../../main/erdiagram/converter/oop/code-converter/java/model/java-class-model-types';
-import createJavaSimpleType
-	from '../../main/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType';
+import createJavaSimpleType from '@/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType';
 
-const usePublicPropertiesTransformer: JavaClassModelTransformer<{}> = {
+const usePublicFieldsTransformer: JavaClassModelTransformer<{}> = {
 	setup(context) {
 		return {};
 	},
@@ -21,7 +20,7 @@ const usePublicPropertiesTransformer: JavaClassModelTransformer<{}> = {
 		javaField.setter = undefined;
 	},
 	visitClass(javaClass, context) {
-		javaClass.properties.push({
+		javaClass.fields.push({
 			annotations: [],
 			visibility: JavaVisibility.PRIVATE,
 			name: 'version',
@@ -49,7 +48,7 @@ test('Main', () => {
 	const entityRelationshipModelToJavaCodeConverter = EntityRelationshipModelToJavaCodeConverter.builder()
 			.addJavaClassModelTransformers(
 					jpaTransformer,
-					usePublicPropertiesTransformer
+					usePublicFieldsTransformer
 			)
 			.build();
 

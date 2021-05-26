@@ -22,7 +22,7 @@ const idJavaField = createJavaField('id', 'long');
 const nameJavaField = createJavaField('name', 'java.lang.String');
 
 const javaClass = createJavaClass('MyClass', {
-	properties: [
+	fields: [
 		idJavaField,
 		nameJavaField
 	]

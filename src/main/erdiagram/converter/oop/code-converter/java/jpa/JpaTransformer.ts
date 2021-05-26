@@ -118,7 +118,8 @@ export class JpaTransformer implements JavaClassModelTransformer<JpaTransformerS
 				new JavaAnnotation(JpaAnnotationTypes.Column, {
 					name: this.formatColumnName(
 							this.findTableFromEntity(sourceMetadata.entity, databaseModel).identityColumnName
-					)
+					),
+					nullable: fieldDescriptor.nullable ? undefined : false
 				})
 			];
 
@@ -131,7 +132,8 @@ export class JpaTransformer implements JavaClassModelTransformer<JpaTransformerS
 
 			return [
 				new JavaAnnotation(JpaAnnotationTypes.Column, {
-					name: this.formatColumnName(column.name)
+					name: this.formatColumnName(column.name),
+					nullable: fieldDescriptor.nullable ? undefined : false
 				})
 			];
 
@@ -225,12 +227,15 @@ export class JpaTransformer implements JavaClassModelTransformer<JpaTransformerS
 			reference: referenceDescriptor
 		} = this.findTableAndReferenceFromTargetMember(databaseModel, targetMember);
 
+		const optionalRelationship = targetMember.cardinality === Cardinality.ZERO_OR_ONE;
+
 		return [
 			new JavaAnnotation(JpaAnnotationTypes.OneToOne, {
-				optional: targetMember.cardinality === Cardinality.ZERO_OR_ONE ? undefined : false
+				optional: optionalRelationship ? undefined : false
 			}),
 			new JavaAnnotation(JpaAnnotationTypes.JoinColumn, {
-				name: this.formatColumnName(referenceDescriptor.columnName)
+				name: this.formatColumnName(referenceDescriptor.columnName),
+				nullable: optionalRelationship ? undefined : false
 			}),
 		];
 
@@ -243,8 +248,8 @@ export class JpaTransformer implements JavaClassModelTransformer<JpaTransformerS
 
 		return [
 			new JavaAnnotation(JpaAnnotationTypes.OneToOne, {
-				optional: targetMember.cardinality === Cardinality.ZERO_OR_ONE ? undefined : false,
-				mappedBy: targetField.name
+				mappedBy: targetField.name,
+				optional: targetMember.cardinality === Cardinality.ZERO_OR_ONE ? undefined : false
 			}),
 		];
 	}

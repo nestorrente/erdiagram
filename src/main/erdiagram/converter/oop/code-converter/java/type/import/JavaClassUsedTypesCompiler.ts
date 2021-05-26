@@ -15,7 +15,7 @@ export default class JavaClassUsedTypesCompiler {
 
 		usedTypes.push(...this.getAnnotationsUsedTypes(javaClass.annotations));
 
-		javaClass.properties.forEach(javaField => {
+		javaClass.fields.forEach(javaField => {
 
 			usedTypes.push(javaField.type);
 

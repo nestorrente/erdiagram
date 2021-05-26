@@ -13,7 +13,7 @@ export function createJavaClass(name: string, options?: PartialJavaClass): JavaC
 		annotations: options?.annotations ?? [],
 		visibility: options?.visibility ?? JavaVisibility.PUBLIC,
 		name,
-		properties: options?.properties ?? []
+		fields: options?.fields ?? []
 	};
 }
 

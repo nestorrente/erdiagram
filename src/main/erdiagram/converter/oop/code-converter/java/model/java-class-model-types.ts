@@ -23,7 +23,7 @@ export enum JavaVisibility {
 export interface JavaClass extends JavaAnnotatedElement, JavaAccessibleElement {
 	packageName?: string;
 	name: string;
-	properties: JavaField[];
+	fields: JavaField[];
 }
 
 export interface JavaField extends JavaAnnotatedElement, JavaAccessibleElement {

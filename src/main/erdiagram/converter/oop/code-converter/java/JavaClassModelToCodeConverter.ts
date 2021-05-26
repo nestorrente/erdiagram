@@ -36,7 +36,7 @@ export default class JavaClassModelToCodeConverter {
 		const fieldsLines: string[] = [];
 		const methodsLines: string[] = [];
 
-		for (const javaField of javaClass.properties) {
+		for (const javaField of javaClass.fields) {
 
 			const {
 				fieldLines,
