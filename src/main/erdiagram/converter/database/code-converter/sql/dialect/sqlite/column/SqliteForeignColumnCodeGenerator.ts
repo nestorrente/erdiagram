@@ -9,7 +9,7 @@ import SqlForeignColumnCodeGenerator
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/common/column/SqlForeignColumnCodeGenerator';
 import SqliteColumnCodeGenerator
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlite/column/SqliteColumnCodeGenerator';
-import {OmitSource} from '@/erdiagram/converter/oop/model/source-metadata-types';
+import {OmitSource} from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
 
 export default class SqliteForeignColumnCodeGenerator implements SqlForeignColumnCodeGenerator {
 

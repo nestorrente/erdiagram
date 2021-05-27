@@ -4,7 +4,7 @@ import {
 	EntityPropertyDescriptor,
 	EntityPropertyType
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
-import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata-types';
+import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
 
 const TYPES_WITH_MAX_SIZE_SUPPORT = [EntityPropertyType.TEXT, EntityPropertyType.BLOB];
 

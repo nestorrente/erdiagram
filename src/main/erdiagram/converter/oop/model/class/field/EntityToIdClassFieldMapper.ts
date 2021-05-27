@@ -1,7 +1,7 @@
 import {ClassFieldDescriptor} from '@/erdiagram/converter/oop/model/class-model-types';
 import {EntityDescriptor, EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import IdNamingStrategy from '@/erdiagram/converter/common/id-naming-strategy/IdNamingStrategy';
-import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata-types';
+import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
 
 export default class EntityToIdClassFieldMapper {
 

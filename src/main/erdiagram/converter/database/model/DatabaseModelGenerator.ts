@@ -18,7 +18,7 @@ import databaseModelGeneratorConfigManager
 	from '@/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfigManager';
 import {classifyBy} from '@/erdiagram/util/map-utils';
 import {capitalizeWord, uncapitalizeWord} from '@/erdiagram/util/string-utils';
-import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata-types';
+import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
 
 export default class DatabaseModelGenerator {
 
@@ -150,7 +150,12 @@ export default class DatabaseModelGenerator {
 
 	}
 
-	private createTableReference(relationship: RelationshipDescriptor, toMember: RelationshipMember, entityIdentitiesMap: Map<string, string>, unique: boolean = false): TableReferenceDescriptor {
+	private createTableReference(
+			relationship: RelationshipDescriptor,
+			toMember: RelationshipMember,
+			entityIdentitiesMap: Map<string, string>,
+			unique: boolean = false
+	): TableReferenceDescriptor {
 
 		const {
 			entityAlias,
@@ -165,9 +170,9 @@ export default class DatabaseModelGenerator {
 			notNull: cardinality !== Cardinality.ZERO_OR_ONE,
 			unique,
 			sourceMetadata: {
-				sourceType: SourceType.RELATIONSHIP_TARGET,
+				sourceType: SourceType.RELATIONSHIP_MEMBER,
 				relationship,
-				targetMember: toMember
+				referencedMember: toMember
 			}
 		};
 

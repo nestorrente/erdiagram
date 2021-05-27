@@ -6,7 +6,7 @@ import {
 	RelationshipMember
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {ClassDescriptor, ClassFieldDescriptor} from '@/erdiagram/converter/oop/model/class-model-types';
-import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata-types';
+import {SourceType} from '../../../../../main/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
 import {
 	dummySourceEntity,
 	dummySourceProperty,
@@ -79,9 +79,9 @@ export function createEntityClassField(name: string, type: string, options?: Par
 		nullable: options?.nullable ?? false,
 		entityType: type,
 		sourceMetadata: {
-			sourceType: SourceType.RELATIONSHIP_TARGET,
+			sourceType: SourceType.RELATIONSHIP_MEMBER,
 			relationship: options?.sourceRelationship ?? dummySourceRelationship,
-			targetMember: options?.sourceTargetMember ?? dummySourceRelationshipMember
+			referencedMember: options?.sourceTargetMember ?? dummySourceRelationshipMember
 		}
 	};
 }

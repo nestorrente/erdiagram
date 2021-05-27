@@ -1,16 +1,16 @@
 import {ClassFieldDescriptor} from '@/erdiagram/converter/oop/model/class-model-types';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import NotNullTextValidationStrategy
-	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullTextValidationStrategy';
+	from '@/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullTextValidationStrategy';
 import {removeNullableValues} from '@/erdiagram/util/array-utils';
 import JavaValidationAnnotationTypes
-	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/JavaValidationAnnotationTypes';
+	from '@/erdiagram/converter/oop/code-converter/java/validation/JavaValidationAnnotationTypes';
 import NotNullBlobValidationStrategy
-	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullBlobValidationStrategy';
+	from '@/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullBlobValidationStrategy';
 import JavaAnnotation from '@/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation';
 import ERDiagramSyntaxError from '@/erdiagram/parser/types/error/ERDiagramSyntaxError';
 
-export default class JavaValidationAnnotationsGenerator {
+export default class JavaxValidationAnnotationsSupplier {
 
 	constructor(
 			private readonly notNullTextValidationStrategy: NotNullTextValidationStrategy,

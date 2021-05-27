@@ -9,8 +9,8 @@ import javaClassModelToCodeConverterConfigManager
 import JavaFieldTypeResolver from '@/erdiagram/converter/oop/code-converter/java/type/JavaFieldTypeResolver';
 import JavaImportStatementsGenerator
 	from '@/erdiagram/converter/oop/code-converter/java/type/import/JavaImportStatementsGenerator';
-import JavaValidationAnnotationsGenerator
-	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/JavaValidationAnnotationsGenerator';
+import JavaxValidationAnnotationsSupplier
+	from '@/erdiagram/converter/oop/code-converter/java/validation/visitor/JavaxValidationAnnotationsSupplier';
 import JavaAnnotation from '@/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation';
 
 const EMPTY_STRING: string = '';
@@ -19,7 +19,7 @@ export default class OLDJavaClassModelToCodeConverter implements ClassModelToCod
 
 	private readonly config: JavaClassModelToCodeConverterConfig;
 	private readonly typeResolver: JavaFieldTypeResolver;
-	private readonly validationAnnotationsGenerator: JavaValidationAnnotationsGenerator;
+	private readonly validationAnnotationsGenerator: JavaxValidationAnnotationsSupplier;
 	private readonly importStatementsGenerator: JavaImportStatementsGenerator;
 
 	constructor(config?: PartialJavaClassModelToCodeConverterConfig) {
@@ -28,7 +28,7 @@ export default class OLDJavaClassModelToCodeConverter implements ClassModelToCod
 
 		this.typeResolver = new JavaFieldTypeResolver(this.config.typeBindings, this.config.generatedClassesPackage);
 
-		this.validationAnnotationsGenerator = new JavaValidationAnnotationsGenerator(
+		this.validationAnnotationsGenerator = new JavaxValidationAnnotationsSupplier(
 				this.config.notNullTextValidationStrategy,
 				this.config.notNullBlobValidationStrategy
 		);

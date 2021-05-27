@@ -1,18 +1,12 @@
 import JavaType from '@/erdiagram/converter/oop/code-converter/java/type/JavaType';
 import formatJavaAnnotation from '@/erdiagram/converter/oop/code-converter/java/annotation/utils/formatJavaAnnotation';
-import RawAnnotationParameterValue, {
+import {
 	createRawParameterValue,
 	isRawParameterValue
 } from '@/erdiagram/converter/oop/code-converter/java/annotation/utils/RawAnnotationParameterValue';
+import {JavaAnnotationParameterValue} from '@/erdiagram/converter/oop/code-converter/java/annotation/annotation-parameter-types';
 
 export type JavaAnnotationParametersRecord = Record<string, JavaAnnotationParameterValue | undefined>;
-export type JavaAnnotationParameterValue = JavaAnnotationParameterSingleValue | JavaAnnotationParameterSingleValue[];
-export type JavaAnnotationParameterSingleValue =
-		number
-		| boolean
-		| string
-		| RawAnnotationParameterValue
-		| JavaAnnotation;
 
 export default class JavaAnnotation {
 

@@ -3,26 +3,26 @@ import {
 	EntityPropertySourceMetadata,
 	EntityRelationshipModelSourceMetadata,
 	EntitySourceMetadata,
+	RelationshipMemberSourceMetadata,
 	RelationshipSourceMetadata,
-	RelationshipTargetSourceMetadata,
 	SourceMetadata,
 	SourceType
-} from '@/erdiagram/converter/oop/model/source-metadata-types';
+} from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
 import {
 	dummySourceEntity,
 	dummySourceEntityRelationshipModel,
 	dummySourceProperty,
 	dummySourceRelationship,
 	dummySourceRelationshipMember
-} from '../../common/source-metadata-instances';
+} from '#/erdiagram/converter/common/source-metadata-instances';
 import {
 	isEntityIdentitySourceMetadata,
 	isEntityPropertySourceMetadata,
 	isEntityRelationshipModelSourceMetadata,
 	isEntitySourceMetadata,
-	isRelationshipSourceMetadata,
-	isRelationshipTargetSourceMetadata
-} from '@/erdiagram/converter/oop/model/source-metadata-utils';
+	isRelationshipMemberSourceMetadata,
+	isRelationshipSourceMetadata
+} from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-utils';
 
 const ENTITY_RELATIONSHIP_MODEL_SOURCE_METADATA: EntityRelationshipModelSourceMetadata = {
 	sourceType: SourceType.ENTITY_RELATIONSHIP_MODEL,
@@ -50,10 +50,10 @@ const RELATIONSHIP_SOURCE_METADATA: RelationshipSourceMetadata = {
 	relationship: dummySourceRelationship
 };
 
-const RELATIONSHIP_TARGET_SOURCE_METADATA: RelationshipTargetSourceMetadata = {
-	sourceType: SourceType.RELATIONSHIP_TARGET,
+const RELATIONSHIP_MEMBER_SOURCE_METADATA: RelationshipMemberSourceMetadata = {
+	sourceType: SourceType.RELATIONSHIP_MEMBER,
 	relationship: dummySourceRelationship,
-	targetMember: dummySourceRelationshipMember
+	referencedMember: dummySourceRelationshipMember
 };
 
 describe('is{SourceType}SourceMetadata() methods', () => {
@@ -64,7 +64,7 @@ describe('is{SourceType}SourceMetadata() methods', () => {
 		[ENTITY_IDENTITY_SOURCE_METADATA, [false, false, true, false, false, false]],
 		[ENTITY_PROPERTY_SOURCE_METADATA, [false, false, false, true, false, false]],
 		[RELATIONSHIP_SOURCE_METADATA, [false, false, false, false, true, false]],
-		[RELATIONSHIP_TARGET_SOURCE_METADATA, [false, false, false, false, false, true]],
+		[RELATIONSHIP_MEMBER_SOURCE_METADATA, [false, false, false, false, false, true]],
 	];
 
 	testsData.forEach(([sourceMetadata, expectedResults]) => {
@@ -84,7 +84,7 @@ describe('is{SourceType}SourceMetadata() methods', () => {
 			expect(isEntityIdentitySourceMetadata(sourceMetadata)).toBe(isEntityIdentitySourceMetadataExpectedResult);
 			expect(isEntityPropertySourceMetadata(sourceMetadata)).toBe(isEntityPropertySourceMetadataExpectedResult);
 			expect(isRelationshipSourceMetadata(sourceMetadata)).toBe(isRelationshipSourceMetadataExpectedResult);
-			expect(isRelationshipTargetSourceMetadata(sourceMetadata)).toBe(isRelationshipMemberSourceMetadataExpectedResult);
+			expect(isRelationshipMemberSourceMetadata(sourceMetadata)).toBe(isRelationshipMemberSourceMetadataExpectedResult);
 		});
 
 	});

@@ -2,7 +2,7 @@ import EntityRelationshipModelParser from '@/erdiagram/parser/EntityRelationship
 import ClassModelGenerator from '@/erdiagram/converter/oop/model/ClassModelGenerator';
 import JavaClassModelGenerator
 	from '@/erdiagram/converter/oop/code-converter/java/model/generator/JavaClassModelGenerator';
-import {JpaTransformer} from '@/erdiagram/converter/oop/code-converter/java/jpa/JpaTransformer';
+import {JpaTransformer} from '@/erdiagram/converter/oop/code-converter/java/jpa/transformer/JpaTransformer';
 import DatabaseModelGenerator from '@/erdiagram/converter/database/model/DatabaseModelGenerator';
 import ApplyTransformersCommand
 	from '@/erdiagram/converter/oop/code-converter/java/model/transformer/ApplyTransformersCommand';

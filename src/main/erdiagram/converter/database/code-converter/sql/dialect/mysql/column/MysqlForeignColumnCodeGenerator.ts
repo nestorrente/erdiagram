@@ -9,7 +9,7 @@ import CaseConverter from '@/erdiagram/converter/common/case-format/CaseConverte
 import {ForeignKeyColumnCode} from '@/erdiagram/converter/database/code-converter/sql/dialect/common/sql-script-types';
 import SqlForeignColumnCodeGenerator
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/common/column/SqlForeignColumnCodeGenerator';
-import {OmitSource} from '@/erdiagram/converter/oop/model/source-metadata-types';
+import {OmitSource} from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
 
 export default class MysqlForeignColumnCodeGenerator implements SqlForeignColumnCodeGenerator {
 

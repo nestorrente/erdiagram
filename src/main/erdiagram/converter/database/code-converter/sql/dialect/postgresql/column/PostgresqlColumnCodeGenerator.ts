@@ -5,7 +5,7 @@ import SqlTypeResolver from '@/erdiagram/converter/database/code-converter/sql/d
 import {RegularColumnCode} from '@/erdiagram/converter/database/code-converter/sql/dialect/common/sql-script-types';
 import SqlColumnCodeGenerator
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/common/column/SqlColumnCodeGenerator';
-import {OmitSource} from '@/erdiagram/converter/oop/model/source-metadata-types';
+import {OmitSource} from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
 
 export default class PostgresqlColumnCodeGenerator implements SqlColumnCodeGenerator {
 

@@ -12,7 +12,7 @@ export enum SourceType {
 	ENTITY_IDENTITY = 'entity_identity',
 	ENTITY_PROPERTY = 'entity_property',
 	RELATIONSHIP = 'relationship',
-	RELATIONSHIP_TARGET = 'relationship_target'
+	RELATIONSHIP_MEMBER = 'relationship_member'
 }
 
 export interface SourceMetadata<T extends SourceType = SourceType> {
@@ -40,9 +40,9 @@ export interface RelationshipSourceMetadata extends SourceMetadata<SourceType.RE
 	relationship: RelationshipDescriptor;
 }
 
-export interface RelationshipTargetSourceMetadata extends SourceMetadata<SourceType.RELATIONSHIP_TARGET> {
+export interface RelationshipMemberSourceMetadata extends SourceMetadata<SourceType.RELATIONSHIP_MEMBER> {
 	relationship: RelationshipDescriptor;
-	targetMember: RelationshipMember;
+	referencedMember: RelationshipMember;
 }
 
 export type OmitSource<T> = Omit<T, 'sourceMetadata'>;

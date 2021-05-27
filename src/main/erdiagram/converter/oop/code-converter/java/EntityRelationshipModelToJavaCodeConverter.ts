@@ -5,31 +5,30 @@ import JavaClassModelTransformer
 	from '@/erdiagram/converter/oop/code-converter/java/model/transformer/JavaClassModelTransformer';
 import JavaClassModelGenerator
 	from '@/erdiagram/converter/oop/code-converter/java/model/generator/JavaClassModelGenerator';
-import JavaClassModelToCodeConverter from '@/erdiagram/converter/oop/code-converter/java/JavaClassModelToCodeConverter';
+import JavaClassModelCodeGenerator
+	from '@/erdiagram/converter/oop/code-converter/java/code/JavaClassModelCodeGenerator';
 import ApplyTransformersCommand
 	from '@/erdiagram/converter/oop/code-converter/java/model/transformer/ApplyTransformersCommand';
-import {PartialClassModelGeneratorConfig} from '@/erdiagram/converter/oop/model/config/ClassModelGeneratorConfig';
-import {PartialJavaClassModelGeneratorConfig} from '@/erdiagram/converter/oop/code-converter/java/model/generator/config/JavaClassModelGeneratorConfig';
 import {SetupContext} from '@/erdiagram/converter/oop/code-converter/java/model/transformer/java-class-model-transformer-context-types';
+import EntityRelationshipModelToJavaCodeConverterBuilder
+	from '@/erdiagram/converter/oop/code-converter/java/EntityRelationshipModelToJavaCodeConverterBuilder';
 
-// TODO make a builder that allows to specify the config for the different dependencies, then create this object
 export default class EntityRelationshipModelToJavaCodeConverter implements EntityRelationshipModelToCodeConverter {
 
 	readonly #classModelGenerator: ClassModelGenerator;
 	readonly #javaClassModelGenerator: JavaClassModelGenerator;
 	readonly #javaClassModelTransformers: JavaClassModelTransformer[];
-	readonly #javaClassModelToCodeConverter: JavaClassModelToCodeConverter;
+	readonly #javaClassModelCodeGenerator: JavaClassModelCodeGenerator;
 
 	constructor(
 			classModelGenerator: ClassModelGenerator,
 			javaClassModelGenerator: JavaClassModelGenerator,
-			javaClassModelTransformers: JavaClassModelTransformer[],
-			javaClassModelToCodeConverter: JavaClassModelToCodeConverter
+			javaClassModelTransformers: JavaClassModelTransformer[]
 	) {
 		this.#classModelGenerator = classModelGenerator;
 		this.#javaClassModelGenerator = javaClassModelGenerator;
 		this.#javaClassModelTransformers = javaClassModelTransformers;
-		this.#javaClassModelToCodeConverter = javaClassModelToCodeConverter;
+		this.#javaClassModelCodeGenerator = new JavaClassModelCodeGenerator();
 	}
 
 	convertToCode(entityRelationshipModel: EntityRelationshipModel): string {
@@ -53,7 +52,7 @@ export default class EntityRelationshipModelToJavaCodeConverter implements Entit
 				this.#javaClassModelTransformers
 		).execute();
 
-		return this.#javaClassModelToCodeConverter.convertToCode(javaClassModel);
+		return this.#javaClassModelCodeGenerator.generateCode(javaClassModel);
 
 	}
 
@@ -63,46 +62,6 @@ export default class EntityRelationshipModelToJavaCodeConverter implements Entit
 
 	static builder() {
 		return new EntityRelationshipModelToJavaCodeConverterBuilder();
-	}
-
-}
-
-export class EntityRelationshipModelToJavaCodeConverterBuilder {
-
-	#classModelGeneratorConfig: PartialClassModelGeneratorConfig = {};
-	#javaClassModelGeneratorConfig: PartialJavaClassModelGeneratorConfig = {};
-	#javaClassModelTransformers: JavaClassModelTransformer[] = [];
-	// FIXME create a config for this component?
-	// #javaClassModelToCodeConverter: PartialJavaClassModelToCodeConverterConfig;
-	#generatedClassesPackage?: string;
-
-	public withClassModelGeneratorConfig(config: PartialClassModelGeneratorConfig): this {
-		this.#classModelGeneratorConfig = config;
-		return this;
-	}
-
-	public withJavaClassModelGeneratorConfig(config: PartialJavaClassModelGeneratorConfig): this {
-		this.#javaClassModelGeneratorConfig = config;
-		return this;
-	}
-
-	public withGeneratedClassesPackage(generatedClassesPackage: string): this {
-		this.#generatedClassesPackage = generatedClassesPackage;
-		return this;
-	}
-
-	public addJavaClassModelTransformers(...javaClassModelTransformers: JavaClassModelTransformer[]): this {
-		this.#javaClassModelTransformers.push(...javaClassModelTransformers);
-		return this;
-	}
-
-	public build() {
-		return new EntityRelationshipModelToJavaCodeConverter(
-				new ClassModelGenerator(this.#classModelGeneratorConfig),
-				new JavaClassModelGenerator(this.#javaClassModelGeneratorConfig),
-				[...this.#javaClassModelTransformers],
-				new JavaClassModelToCodeConverter(this.#generatedClassesPackage)
-		);
 	}
 
 }

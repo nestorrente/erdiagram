@@ -3,11 +3,11 @@ import {
 	EntityPropertySourceMetadata,
 	EntityRelationshipModelSourceMetadata,
 	EntitySourceMetadata,
+	RelationshipMemberSourceMetadata,
 	RelationshipSourceMetadata,
-	RelationshipTargetSourceMetadata,
 	SourceMetadata,
 	SourceType
-} from '@/erdiagram/converter/oop/model/source-metadata-types';
+} from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
 
 export function isEntityRelationshipModelSourceMetadata(sourceMetadata: SourceMetadata): sourceMetadata is EntityRelationshipModelSourceMetadata {
 	return sourceMetadata.sourceType === SourceType.ENTITY_RELATIONSHIP_MODEL;
@@ -29,6 +29,6 @@ export function isRelationshipSourceMetadata(sourceMetadata: SourceMetadata): so
 	return sourceMetadata.sourceType === SourceType.RELATIONSHIP;
 }
 
-export function isRelationshipTargetSourceMetadata(sourceMetadata: SourceMetadata): sourceMetadata is RelationshipTargetSourceMetadata {
-	return sourceMetadata.sourceType === SourceType.RELATIONSHIP_TARGET;
+export function isRelationshipMemberSourceMetadata(sourceMetadata: SourceMetadata): sourceMetadata is RelationshipMemberSourceMetadata {
+	return sourceMetadata.sourceType === SourceType.RELATIONSHIP_MEMBER;
 }

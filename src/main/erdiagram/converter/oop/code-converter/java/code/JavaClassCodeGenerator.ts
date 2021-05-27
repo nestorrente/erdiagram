@@ -3,7 +3,6 @@ import JavaImportStatementsGenerator
 	from '@/erdiagram/converter/oop/code-converter/java/type/import/JavaImportStatementsGenerator';
 import {
 	JavaClass,
-	JavaClassModel,
 	JavaField,
 	JavaFieldGetter,
 	JavaFieldSetter,
@@ -15,23 +14,15 @@ import JavaClassUsedTypesCompiler
 
 const EMPTY_STRING: string = '';
 
-export default class JavaClassModelToCodeConverter {
+export default class JavaClassCodeGenerator {
 
-	readonly #importStatementsGenerator: JavaImportStatementsGenerator;
 	readonly #javaUsedTypesCompiler: JavaClassUsedTypesCompiler;
 
-	constructor(generatedClassesPackage?: string) {
+	constructor() {
 		this.#javaUsedTypesCompiler = new JavaClassUsedTypesCompiler();
-		this.#importStatementsGenerator = new JavaImportStatementsGenerator(generatedClassesPackage);
 	}
 
-	public convertToCode(javaClassModel: JavaClassModel): string {
-		return javaClassModel.classes
-				.map(javaClass => this.generateClassCode(javaClass))
-				.join('\n\n');
-	}
-
-	private generateClassCode(javaClass: JavaClass): string {
+	public generateCode(javaClass: JavaClass): string {
 
 		const fieldsLines: string[] = [];
 		const methodsLines: string[] = [];
@@ -49,32 +40,31 @@ export default class JavaClassModelToCodeConverter {
 
 		}
 
-		const classOuterLines = [
-			`/* ========== ${javaClass.name} class ========== */`,
-			EMPTY_STRING
-		];
+		const classOuterLines = [];
 
 		if (javaClass.packageName) {
 			classOuterLines.push(`package ${javaClass.packageName};`, EMPTY_STRING);
 		}
+
 		const importLines = this.generateImportLines(javaClass);
 
-		if (importLines.length !== 0) {
+		if (importLines.length > 0) {
 			classOuterLines.push(...importLines, EMPTY_STRING);
 		}
 
-		classOuterLines.push(...this.getAnnotationsLines(javaClass.annotations));
+		classOuterLines.push(
+				...this.getAnnotationsLines(javaClass.annotations),
+				this.prependVisibility(`class ${javaClass.name} {`, javaClass.visibility),
+				EMPTY_STRING
+		);
 
-		classOuterLines.push(this.prependVisibility(`class ${javaClass.name} {`, javaClass.visibility));
+		if (fieldsLines.length > 0) {
+			classOuterLines.push(...indentLines(fieldsLines), EMPTY_STRING);
+		}
 
-		const classContentLines: string[] = [
-			EMPTY_STRING,
-			...fieldsLines,
-			EMPTY_STRING,
-			...methodsLines
-		];
-
-		classOuterLines.push(...indentLines(classContentLines));
+		if (methodsLines.length > 0) {
+			classOuterLines.push(...indentLines(methodsLines));
+		}
 
 		classOuterLines.push(`}`);
 
@@ -149,8 +139,12 @@ export default class JavaClassModelToCodeConverter {
 	}
 
 	private generateImportLines(javaClass: JavaClass) {
+
 		const usedTypes = this.#javaUsedTypesCompiler.getUsedTypes(javaClass);
-		return this.#importStatementsGenerator.generateImportStatements(usedTypes);
+
+		const javaImportStatementsGenerator = new JavaImportStatementsGenerator(javaClass.packageName);
+		return javaImportStatementsGenerator.generateImportStatements(usedTypes);
+
 	}
 
 }

@@ -11,7 +11,7 @@ import RelationshipMemberToClassFieldMapper
 import EntityPropertyToClassFieldMapper
 	from '@/erdiagram/converter/oop/model/class/field/EntityPropertyToClassFieldMapper';
 import EntityToIdClassFieldMapper from '@/erdiagram/converter/oop/model/class/field/EntityToIdClassFieldMapper';
-import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata-types';
+import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
 
 export default class EntityToClassMapper {
 

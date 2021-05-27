@@ -1,6 +1,8 @@
 import {
 	JavaClass,
 	JavaField,
+	JavaFieldGetter,
+	JavaFieldSetter,
 	JavaVisibility
 } from '../../../../../../../../../main/erdiagram/converter/oop/code-converter/java/model/java-class-model-types';
 import parseJavaType from '@/erdiagram/converter/oop/code-converter/java/type/parseJavaType';
@@ -27,5 +29,25 @@ export function createJavaField(name: string, type: string, options?: PartialJav
 		name,
 		getter: options?.getter,
 		setter: options?.setter
+	};
+}
+
+export type PartialJavaFieldGetter = Partial<Omit<JavaFieldGetter, 'name' | 'type'>>
+
+export function createJavaGetter(name: string, options?: PartialJavaFieldGetter): JavaFieldGetter {
+	return {
+		annotations: options?.annotations ?? [],
+		visibility: options?.visibility ?? JavaVisibility.PUBLIC,
+		name
+	};
+}
+
+export type PartialJavaFieldSetter = Partial<Omit<JavaFieldSetter, 'name' | 'type'>>
+
+export function createJavaSetter(name: string, options?: PartialJavaFieldSetter): JavaFieldSetter {
+	return {
+		annotations: options?.annotations ?? [],
+		visibility: options?.visibility ?? JavaVisibility.PUBLIC,
+		name
 	};
 }

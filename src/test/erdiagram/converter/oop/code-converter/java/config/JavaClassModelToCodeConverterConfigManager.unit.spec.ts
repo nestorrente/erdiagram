@@ -2,9 +2,9 @@ import {JavaClassModelToCodeConverterConfigManager} from '@/erdiagram/converter/
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import parseJavaType from '@/erdiagram/converter/oop/code-converter/java/type/parseJavaType';
 import NotNullTextValidationStrategy
-	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullTextValidationStrategy';
+	from '../../../../../../../main/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullTextValidationStrategy';
 import NotNullBlobValidationStrategy
-	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullBlobValidationStrategy';
+	from '../../../../../../../main/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullBlobValidationStrategy';
 import JavaClassModelToCodeConverterConfig
 	from '@/erdiagram/converter/oop/code-converter/java/config/JavaClassModelToCodeConverterConfig';
 import {assertSameRecords} from '#/erdiagram/util/jest-utils';

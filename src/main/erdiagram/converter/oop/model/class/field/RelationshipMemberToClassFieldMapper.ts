@@ -5,7 +5,7 @@ import {
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {ClassFieldDescriptor} from '@/erdiagram/converter/oop/model/class-model-types';
 import pluralize from 'pluralize';
-import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata-types';
+import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
 
 export default class RelationshipMemberToClassFieldMapper {
 
@@ -20,9 +20,9 @@ export default class RelationshipMemberToClassFieldMapper {
 			entityType: toMember.entity,
 			list,
 			sourceMetadata: {
-				sourceType: SourceType.RELATIONSHIP_TARGET,
+				sourceType: SourceType.RELATIONSHIP_MEMBER,
 				relationship,
-				targetMember: toMember
+				referencedMember: toMember
 			}
 		};
 

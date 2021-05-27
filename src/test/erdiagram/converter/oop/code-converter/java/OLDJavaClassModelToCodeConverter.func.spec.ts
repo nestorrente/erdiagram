@@ -6,13 +6,13 @@ import {
 	createEntityClassField,
 	createIdClassField,
 	createPrimitiveClassField
-} from '../../model/class-model-mothers';
+} from '#/erdiagram/converter/oop/model/class-model-mothers';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import parseJavaType from '@/erdiagram/converter/oop/code-converter/java/type/parseJavaType';
 import NotNullTextValidationStrategy
-	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullTextValidationStrategy';
-import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata-types';
-import {dummySourceEntity, dummySourceProperty} from '../../../common/source-metadata-instances';
+	from '@/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullTextValidationStrategy';
+import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
+import {dummySourceEntity, dummySourceProperty} from '#/erdiagram/converter/common/source-metadata-instances';
 
 const javaClassModelToCodeConverter = new OLDJavaClassModelToCodeConverter();
 

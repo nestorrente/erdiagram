@@ -3,8 +3,8 @@ import {
 	EntityIdentitySourceMetadata,
 	EntityPropertySourceMetadata,
 	EntitySourceMetadata,
-	RelationshipTargetSourceMetadata
-} from '@/erdiagram/converter/oop/model/source-metadata-types';
+	RelationshipMemberSourceMetadata
+} from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
 
 export interface ClassModel {
 	classes: ClassDescriptor[];
@@ -24,5 +24,5 @@ export interface ClassFieldDescriptor {
 	// Find a better way to represent when a field is an entity or a built-in type
 	primitiveType?: EntityPropertyType;
 	entityType?: string;
-	sourceMetadata: EntityIdentitySourceMetadata | EntityPropertySourceMetadata | RelationshipTargetSourceMetadata;
+	sourceMetadata: EntityIdentitySourceMetadata | EntityPropertySourceMetadata | RelationshipMemberSourceMetadata;
 }

@@ -2,9 +2,9 @@ import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-m
 import {
 	EntityPropertySourceMetadata,
 	EntitySourceMetadata,
-	RelationshipSourceMetadata,
-	RelationshipTargetSourceMetadata
-} from '@/erdiagram/converter/oop/model/source-metadata-types';
+	RelationshipMemberSourceMetadata,
+	RelationshipSourceMetadata
+} from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
 
 export interface DatabaseModel {
 	tables: TableDescriptor[];
@@ -33,5 +33,5 @@ export interface TableReferenceDescriptor {
 	targetTableIdentityColumnName: string;
 	notNull: boolean;
 	unique: boolean;
-	sourceMetadata: RelationshipTargetSourceMetadata;
+	sourceMetadata: RelationshipMemberSourceMetadata;
 }

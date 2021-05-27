@@ -1,0 +1,9 @@
+import JavaxValidationTransformerConfig, {PartialJavaxValidationTransformerConfig} from './JavaxValidationTransformerConfig';
+import javaClassModelToCodeConverterConfigManager, {JavaxValidationTransformerConfigManager} from './JavaxValidationTransformerConfigManager';
+
+export {
+	JavaxValidationTransformerConfig,
+	PartialJavaxValidationTransformerConfig,
+	JavaxValidationTransformerConfigManager,
+	javaClassModelToCodeConverterConfigManager
+};

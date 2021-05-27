@@ -3,9 +3,9 @@ import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractCo
 import JavaClassModelToCodeConverterConfig, {PartialJavaClassModelToCodeConverterConfig} from '@/erdiagram/converter/oop/code-converter/java/config/JavaClassModelToCodeConverterConfig';
 import parseJavaType from '@/erdiagram/converter/oop/code-converter/java/type/parseJavaType';
 import NotNullTextValidationStrategy
-	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullTextValidationStrategy';
+	from '@/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullTextValidationStrategy';
 import NotNullBlobValidationStrategy
-	from '@/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullBlobValidationStrategy';
+	from '@/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullBlobValidationStrategy';
 import {JsonAdapter, JsonAdapters} from 'true-json';
 import JavaType from '@/erdiagram/converter/oop/code-converter/java/type/JavaType';
 
