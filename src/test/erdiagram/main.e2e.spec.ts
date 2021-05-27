@@ -48,7 +48,7 @@ test('Main', () => {
 	const entityRelationshipModelToJavaCodeConverter = EntityRelationshipModelToJavaCodeConverter.builder()
 			.addJavaClassModelTransformers(
 					jpaTransformer,
-					usePublicFieldsTransformer
+					// usePublicFieldsTransformer
 			)
 			.build();
 

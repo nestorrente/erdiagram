@@ -154,8 +154,8 @@ A a2 *<-? B b2 (AB2)
 		expect(bClass.name).toBe('B');
 		checkClassFieldsAnnotations(bClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)', '@Column(name = "id")'],
-			a1: ['@OneToMany', '@JoinTable(name = "A", inverseJoinColumns = @JoinColumn(name = "b1Id", nullable = false))'],
-			a2: ['@OneToMany', '@JoinTable(name = "A", inverseJoinColumns = @JoinColumn(name = "b2Id"))'],
+			a1s: ['@OneToMany', '@JoinTable(name = "A", inverseJoinColumns = @JoinColumn(name = "b1Id", nullable = false))'],
+			a2s: ['@OneToMany', '@JoinTable(name = "A", inverseJoinColumns = @JoinColumn(name = "b2Id"))'],
 		});
 
 	});
@@ -181,8 +181,8 @@ A a2 *<->? B b2 (AB2)
 		expect(bClass.name).toBe('B');
 		checkClassFieldsAnnotations(bClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)', '@Column(name = "id")'],
-			a1: ['@OneToMany(mappedBy = "b1")'],
-			a2: ['@OneToMany(mappedBy = "b2")'],
+			a1s: ['@OneToMany(mappedBy = "b1")'],
+			a2s: ['@OneToMany(mappedBy = "b2")'],
 		});
 
 	});
@@ -204,8 +204,8 @@ A a2 ?->* B b2 (AB2)
 		expect(aClass.name).toBe('A');
 		checkClassFieldsAnnotations(aClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)', '@Column(name = "id")'],
-			b1: ['@OneToMany', '@JoinTable(name = "B", inverseJoinColumns = @JoinColumn(name = "a1Id", nullable = false))'],
-			b2: ['@OneToMany', '@JoinTable(name = "B", inverseJoinColumns = @JoinColumn(name = "a2Id"))'],
+			b1s: ['@OneToMany', '@JoinTable(name = "B", inverseJoinColumns = @JoinColumn(name = "a1Id", nullable = false))'],
+			b2s: ['@OneToMany', '@JoinTable(name = "B", inverseJoinColumns = @JoinColumn(name = "a2Id"))'],
 		});
 
 		const bClass = javaClassModel.classes[1];
@@ -254,8 +254,8 @@ A a2 ?<->* B b2 (AB2)
 		expect(aClass.name).toBe('A');
 		checkClassFieldsAnnotations(aClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)', '@Column(name = "id")'],
-			b1: ['@OneToMany(mappedBy = "a1")'],
-			b2: ['@OneToMany(mappedBy = "a2")'],
+			b1s: ['@OneToMany(mappedBy = "a1")'],
+			b2s: ['@OneToMany(mappedBy = "a2")'],
 		});
 
 		const bClass = javaClassModel.classes[1];
@@ -284,7 +284,7 @@ A *->* B
 		expect(aClass.name).toBe('A');
 		checkClassFieldsAnnotations(aClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)', '@Column(name = "id")'],
-			b: ['@ManyToMany', '@JoinTable(name = "AB", joinColumns = @JoinColumn(name = "aId", nullable = false), inverseJoinColumns = @JoinColumn(name = "bId", nullable = false))'],
+			bs: ['@ManyToMany', '@JoinTable(name = "Ab", joinColumns = @JoinColumn(name = "aId", nullable = false), inverseJoinColumns = @JoinColumn(name = "bId", nullable = false))'],
 		});
 
 		const bClass = javaClassModel.classes[1];
@@ -313,7 +313,7 @@ A *<-* B
 		expect(bClass.name).toBe('B');
 		checkClassFieldsAnnotations(bClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)', '@Column(name = "id")'],
-			a: ['@ManyToMany', '@JoinTable(name = "AB", joinColumns = @JoinColumn(name = "bId", nullable = false), inverseJoinColumns = @JoinColumn(name = "aId", nullable = false))'],
+			as: ['@ManyToMany', '@JoinTable(name = "Ab", joinColumns = @JoinColumn(name = "bId", nullable = false), inverseJoinColumns = @JoinColumn(name = "aId", nullable = false))'],
 		});
 
 	});
@@ -330,14 +330,14 @@ A *<->* B
 		expect(aClass.name).toBe('A');
 		checkClassFieldsAnnotations(aClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)', '@Column(name = "id")'],
-			b: ['@ManyToMany', '@JoinTable(name = "AB", joinColumns = @JoinColumn(name = "aId", nullable = false), inverseJoinColumns = @JoinColumn(name = "bId", nullable = false))'],
+			bs: ['@ManyToMany', '@JoinTable(name = "Ab", joinColumns = @JoinColumn(name = "aId", nullable = false), inverseJoinColumns = @JoinColumn(name = "bId", nullable = false))'],
 		});
 
 		const bClass = javaClassModel.classes[1];
 		expect(bClass.name).toBe('B');
 		checkClassFieldsAnnotations(bClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)', '@Column(name = "id")'],
-			a1: ['@ManyToMany(mappedBy = "b")'],
+			as: ['@ManyToMany(mappedBy = "bs")'],
 		});
 
 	});
