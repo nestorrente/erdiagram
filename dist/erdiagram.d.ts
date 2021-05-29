@@ -69,9 +69,18 @@ export declare enum Direction {
 	RIGHT_TO_LEFT = "right_to_left",
 	BIDIRECTIONAL = "bidirectional"
 }
-export interface EntityRelationshipModelToCodeConverter {
-	convertToCode(model: EntityRelationshipModel): string;
+export interface EntityRelationshipModelSourceCodeGenerator {
+	generateSourceCode(model: EntityRelationshipModel): string;
 }
+export interface SourceFileInfo {
+	folder: string[];
+	filename: string;
+	contents: string;
+}
+export interface MultipleFileEntityRelationshipModelSourceCodeGenerator extends EntityRelationshipModelSourceCodeGenerator {
+	generateSourceFiles(model: EntityRelationshipModel): SourceFileInfo[];
+}
+export declare function isMultipleFileEntityRelationshipModelSourceCodeGenerator(generator: EntityRelationshipModelSourceCodeGenerator): generator is MultipleFileEntityRelationshipModelSourceCodeGenerator;
 export interface CaseFormat {
 	splitWords(text: string): string[];
 	joinWords(words: string[]): string;
@@ -95,11 +104,12 @@ export declare const StandardIdNamingStrategies: {
 	ENTITY_NAME_PREFIX: IdNamingStrategy;
 };
 declare enum SourceType {
+	ENTITY_RELATIONSHIP_MODEL = "entity_relationship_model",
 	ENTITY = "entity",
 	ENTITY_IDENTITY = "entity_identity",
 	ENTITY_PROPERTY = "entity_property",
 	RELATIONSHIP = "relationship",
-	RELATIONSHIP_TARGET = "relationship_target"
+	RELATIONSHIP_MEMBER = "relationship_member"
 }
 export interface SourceMetadata<T extends SourceType = SourceType> {
 	readonly sourceType: T;
@@ -117,9 +127,9 @@ export interface EntityPropertySourceMetadata extends SourceMetadata<SourceType.
 export interface RelationshipSourceMetadata extends SourceMetadata<SourceType.RELATIONSHIP> {
 	relationship: RelationshipDescriptor;
 }
-export interface RelationshipTargetSourceMetadata extends SourceMetadata<SourceType.RELATIONSHIP_TARGET> {
+export interface RelationshipMemberSourceMetadata extends SourceMetadata<SourceType.RELATIONSHIP_MEMBER> {
 	relationship: RelationshipDescriptor;
-	targetMember: RelationshipMember;
+	referencedMember: RelationshipMember;
 }
 export interface DatabaseModel {
 	tables: TableDescriptor[];
@@ -145,10 +155,7 @@ export interface TableReferenceDescriptor {
 	targetTableIdentityColumnName: string;
 	notNull: boolean;
 	unique: boolean;
-	sourceMetadata: RelationshipTargetSourceMetadata;
-}
-export interface DatabaseModelToCodeConverter {
-	convertToCode(databaseModel: DatabaseModel): string;
+	sourceMetadata: RelationshipMemberSourceMetadata;
 }
 export interface DatabaseModelGeneratorConfig {
 	usePluralTableNames: boolean;
@@ -170,12 +177,6 @@ export declare class DatabaseModelGenerator {
 	private getIdentityColumnName;
 	private mapPropertyToColumn;
 	private isManyToManyRelationship;
-}
-export declare class EntityRelationshipModelToDatabaseCodeConverter implements EntityRelationshipModelToCodeConverter {
-	private readonly databaseModelGenerator;
-	private readonly databaseModelToCodeConverter;
-	constructor(databaseModelGenerator: DatabaseModelGenerator, databaseModelToCodeConverter: DatabaseModelToCodeConverter);
-	convertToCode(entityRelationshipModel: EntityRelationshipModel): string;
 }
 export interface IdColumnCode {
 	createSequenceLine?: string;
@@ -200,7 +201,7 @@ export interface SqlDialect {
 	getCreateTableEndCode(): string;
 	getAlterTableAddCode(tableName: string, constraintCode: string): string;
 }
-export declare class DatabaseModelToSqlCodeConverter implements DatabaseModelToCodeConverter {
+export declare class DatabaseModelToSqlCodeConverter {
 	private readonly sqlDialect;
 	constructor(sqlDialect: SqlDialect);
 	convertToCode(databaseModel: DatabaseModel): string;
@@ -210,13 +211,19 @@ export declare class DatabaseModelToSqlCodeConverter implements DatabaseModelToC
 	private getCreateTableInnerLines;
 	private getAlterTableLines;
 }
+export declare class SqlEntityRelationshipModelSourceCodeGenerator implements EntityRelationshipModelSourceCodeGenerator {
+	private readonly databaseModelGenerator;
+	private readonly databaseModelToSqlCodeConverter;
+	constructor(databaseModelGenerator: DatabaseModelGenerator, databaseModelToSqlCodeConverter: DatabaseModelToSqlCodeConverter);
+	generateSourceCode(entityRelationshipModel: EntityRelationshipModel): string;
+}
 export interface SqlDialectConfig {
 	typeBindings: Record<EntityPropertyType, string>;
 	tableNameCaseFormat: CaseFormat;
 	columnNameCaseFormat: CaseFormat;
 }
 export declare type WithPartial<T, K extends keyof T> = Omit<T, K> & {
-	[P in K]: Partial<T[K]>;
+	[P in K]: Partial<T[P]>;
 };
 export interface MysqlDialectConfig extends SqlDialectConfig {
 }
@@ -226,7 +233,7 @@ export declare class MysqlDialect implements SqlDialect {
 	private readonly columnCodeGenerator;
 	private readonly idColumnCodeGenerator;
 	private readonly foreignColumnCodeGenerator;
-	constructor(config?: Partial<MysqlDialectConfig>);
+	constructor(config?: PartialMysqlDialectConfig);
 	getScriptStartCode(): string;
 	getScriptEndCode(): string;
 	mustUseAlterTableForForeignKeys(): boolean;
@@ -251,7 +258,7 @@ export declare class OracleDialect implements SqlDialect {
 	private readonly columnCodeGenerator;
 	private readonly idColumnCodeGenerator;
 	private readonly foreignColumnCodeGenerator;
-	constructor(config?: Partial<OracleDialectConfig>);
+	constructor(config?: PartialOracleDialectConfig);
 	getScriptStartCode(): string;
 	getScriptEndCode(): string;
 	mustUseAlterTableForForeignKeys(): boolean;
@@ -276,7 +283,7 @@ export declare class SqliteDialect implements SqlDialect {
 	private readonly columnCodeGenerator;
 	private readonly idColumnCodeGenerator;
 	private readonly foreignColumnCodeGenerator;
-	constructor(config?: Partial<SqliteDialectConfig>);
+	constructor(config?: PartialSqliteDialectConfig);
 	getScriptStartCode(): string;
 	getScriptEndCode(): string;
 	mustUseAlterTableForForeignKeys(): boolean;
@@ -301,7 +308,7 @@ export declare class SqlServerDialect implements SqlDialect {
 	private readonly columnCodeGenerator;
 	private readonly idColumnCodeGenerator;
 	private readonly foreignColumnCodeGenerator;
-	constructor(config?: Partial<SqlServerDialectConfig>);
+	constructor(config?: PartialSqlServerDialectConfig);
 	getScriptStartCode(): string;
 	getScriptEndCode(): string;
 	mustUseAlterTableForForeignKeys(): boolean;
@@ -326,7 +333,7 @@ export declare class PostgresqlDialect implements SqlDialect {
 	private readonly columnCodeGenerator;
 	private readonly idColumnCodeGenerator;
 	private readonly foreignColumnCodeGenerator;
-	constructor(config?: Partial<PostgresqlDialectConfig>);
+	constructor(config?: PartialPostgresqlDialectConfig);
 	getScriptStartCode(): string;
 	getScriptEndCode(): string;
 	mustUseAlterTableForForeignKeys(): boolean;
@@ -367,7 +374,7 @@ export interface ClassFieldDescriptor {
 	maxSize?: number;
 	primitiveType?: EntityPropertyType;
 	entityType?: string;
-	sourceMetadata: EntityIdentitySourceMetadata | EntityPropertySourceMetadata | RelationshipTargetSourceMetadata;
+	sourceMetadata: EntityIdentitySourceMetadata | EntityPropertySourceMetadata | RelationshipMemberSourceMetadata;
 }
 export interface ClassModelToCodeConverter {
 	convertToCode(classModel: ClassModel): string;
@@ -382,18 +389,156 @@ export declare class ClassModelGenerator {
 	constructor(config?: PartialClassModelGeneratorConfig);
 	generateClassModel(model: EntityRelationshipModel): ClassModel;
 }
-export declare class EntityRelationshipModelToClassCodeConverter implements EntityRelationshipModelToCodeConverter {
-	private readonly classModelGenerator;
-	private readonly classModelToCodeConverter;
-	constructor(classModelGenerator: ClassModelGenerator, classModelToCodeConverter: ClassModelToCodeConverter);
-	convertToCode(entityRelationshipModel: EntityRelationshipModel): string;
-}
 export interface JavaType {
-	packageName?: string;
-	name: string;
-	canonicalName: string;
+	readonly packageName?: string;
+	readonly name: string;
+	readonly canonicalName: string;
 	formatSimple(): string;
 	formatCanonical(): string;
+}
+export declare type JavaAnnotationParameterValue = JavaAnnotationParameterSingleValue | JavaAnnotationParameterSingleValue[];
+export declare type JavaAnnotationParameterSingleValue = number | boolean | string | RawAnnotationParameterValue | JavaAnnotation;
+declare const RAW_ANNOTATION_PARAMETER_VALUE_SYMBOL: unique symbol;
+export interface RawAnnotationParameterValue {
+	[RAW_ANNOTATION_PARAMETER_VALUE_SYMBOL]: true;
+	code: string;
+	usedTypes: JavaType[];
+}
+declare function createRawParameterValue(code: string, ...usedTypes: JavaType[]): RawAnnotationParameterValue;
+declare function isRawParameterValue(value: JavaAnnotationParameterValue): value is RawAnnotationParameterValue;
+export declare type JavaAnnotationParametersRecord = Record<string, JavaAnnotationParameterValue | undefined>;
+export declare class JavaAnnotation {
+	#private;
+	constructor(annotationType: JavaType, parameters?: JavaAnnotationParametersRecord);
+	get type(): JavaType;
+	get parameters(): JavaAnnotationParametersRecord;
+	format(): string;
+	static createRawParameterValue: typeof createRawParameterValue;
+	static isRawParameterValue: typeof isRawParameterValue;
+}
+export interface JavaClassModel {
+	classes: JavaClass[];
+}
+export interface JavaAnnotatedElement {
+	annotations: JavaAnnotation[];
+}
+export interface JavaAccessibleElement {
+	visibility: JavaVisibility;
+}
+declare enum JavaVisibility {
+	PRIVATE = "private",
+	PROTECTED = "protected",
+	PUBLIC = "public",
+	PACKAGE_PRIVATE = "package-private"
+}
+export interface JavaClass extends JavaAnnotatedElement, JavaAccessibleElement {
+	packageName?: string;
+	name: string;
+	fields: JavaField[];
+}
+export interface JavaField extends JavaAnnotatedElement, JavaAccessibleElement {
+	name: string;
+	type: JavaType;
+	getter?: JavaFieldGetter;
+	setter?: JavaFieldSetter;
+}
+export interface JavaFieldGetter extends JavaAnnotatedElement, JavaAccessibleElement {
+	name: string;
+}
+export interface JavaFieldSetter extends JavaAnnotatedElement, JavaAccessibleElement {
+	name: string;
+}
+export interface BaseContext {
+	entityRelationshipModel: EntityRelationshipModel;
+	classModel: ClassModel;
+	javaClassModel: JavaClassModel;
+}
+export interface SetupContext extends BaseContext {
+}
+export interface JavaClassModelTransformContext<T> extends BaseContext {
+	setupData: T;
+}
+export interface JavaClassTransformContext<T> extends JavaClassModelTransformContext<T> {
+	classDescriptor: ClassDescriptor;
+}
+export interface JavaFieldTransformContext<T> extends JavaClassTransformContext<T> {
+	javaClass: JavaClass;
+	fieldDescriptor: ClassFieldDescriptor;
+}
+export interface JavaClassModelTransformer<T = unknown> {
+	setup(context: SetupContext): T;
+	visitField(javaField: JavaField, context: JavaFieldTransformContext<T>): void;
+	visitClass(javaClass: JavaClass, context: JavaClassTransformContext<T>): void;
+	visitModel(javaClassModel: JavaClassModel, context: JavaClassModelTransformContext<T>): void;
+}
+declare class JavaClassModelDescriptorsRepositoryBuilder {
+	#private;
+	addClass(javaClass: JavaClass, classDescriptor: ClassDescriptor): this;
+	addField(javaField: JavaField, fieldDescriptor: ClassFieldDescriptor): this;
+	build(): JavaClassModelDescriptorsRepository;
+}
+declare class JavaClassModelDescriptorsRepository {
+	#private;
+	constructor(classDescriptorsMap: Map<JavaClass, ClassDescriptor>, fieldDescriptorsMap: Map<JavaField, ClassFieldDescriptor>);
+	getClassDescriptor(javaClass: JavaClass): ClassDescriptor;
+	getFieldDescriptor(javaField: JavaField): ClassFieldDescriptor;
+	static builder(): JavaClassModelDescriptorsRepositoryBuilder;
+}
+export interface JavaClassModelGenerationResult {
+	javaClassModel: JavaClassModel;
+	javaClassModelDescriptorsRepository: JavaClassModelDescriptorsRepository;
+}
+export interface JavaClassModelGeneratorConfig {
+	typeBindings: Record<EntityPropertyType, JavaType>;
+	generatedClassesPackage?: string;
+}
+export declare type PartialJavaClassModelGeneratorConfig = Partial<WithPartial<JavaClassModelGeneratorConfig, "typeBindings">>;
+declare class JavaClassModelGenerator {
+	#private;
+	constructor(config?: PartialJavaClassModelGeneratorConfig);
+	generateJavaClassModel(classModel: ClassModel): JavaClassModelGenerationResult;
+}
+declare class JavaClassCodeGenerator {
+	#private;
+	constructor();
+	generateCode(javaClass: JavaClass): string;
+	private createField;
+	private createGetterLines;
+	private createSetterLines;
+	private getAnnotationsLines;
+	private prependVisibility;
+	private generateImportLines;
+}
+declare class JavaClassModelCodeGenerator {
+	#private;
+	constructor(javaClassCodeGenerator: JavaClassCodeGenerator);
+	generateCode(javaClassModel: JavaClassModel): string;
+	private generateClassCode;
+	private generateClassHeaderComment;
+}
+export declare class JavaEntityRelationshipModelSourceCodeGeneratorBuilder {
+	#private;
+	withClassModelGeneratorConfig(config: PartialClassModelGeneratorConfig): this;
+	withJavaClassModelGeneratorConfig(config: PartialJavaClassModelGeneratorConfig): this;
+	addJavaClassModelTransformers(...javaClassModelTransformers: JavaClassModelTransformer[]): this;
+	build(): JavaEntityRelationshipModelSourceCodeGenerator;
+}
+declare class JavaClassModelSourceFilesGenerator {
+	#private;
+	constructor(javaClassCodeGenerator: JavaClassCodeGenerator);
+	generateSourceFiles(javaClassModel: JavaClassModel): SourceFileInfo[];
+	private generateClassSourceFile;
+	private generateClassSourceFileFolder;
+	private generateClassSourceFileName;
+}
+export declare class JavaEntityRelationshipModelSourceCodeGenerator implements MultipleFileEntityRelationshipModelSourceCodeGenerator {
+	#private;
+	constructor(classModelGenerator: ClassModelGenerator, javaClassModelGenerator: JavaClassModelGenerator, javaClassModelTransformers: JavaClassModelTransformer[], javaClassModelCodeGenerator: JavaClassModelCodeGenerator, javaClassModelSourceFilesGenerator: JavaClassModelSourceFilesGenerator);
+	generateSourceCode(entityRelationshipModel: EntityRelationshipModel): string;
+	generateSourceFiles(entityRelationshipModel: EntityRelationshipModel): SourceFileInfo[];
+	private getJavaClassModel;
+	static withDefaultConfig(): JavaEntityRelationshipModelSourceCodeGenerator;
+	static builder(): JavaEntityRelationshipModelSourceCodeGeneratorBuilder;
 }
 export declare enum NotNullTextValidationStrategy {
 	NOT_NULL = "not_null",
@@ -411,26 +556,65 @@ export interface JavaClassModelToCodeConverterConfig extends ClassModelToCodeCon
 	notNullBlobValidationStrategy: NotNullBlobValidationStrategy;
 }
 export declare type PartialJavaClassModelToCodeConverterConfig = Partial<WithPartial<JavaClassModelToCodeConverterConfig, "typeBindings">>;
-export declare class JavaClassModelToCodeConverter implements ClassModelToCodeConverter {
-	private readonly config;
-	private readonly typeResolver;
-	private readonly validationAnnotationsGenerator;
-	private readonly importStatementsGenerator;
-	constructor(config?: PartialJavaClassModelToCodeConverterConfig);
-	convertToCode(classModel: ClassModel): string;
-	private generateClass;
-	private createField;
-	private addValidationAnnotationsToFieldIfApply;
-	private addAnnotations;
-}
 export declare class JavaClassModelToCodeConverterConfigManager extends AbstractComponentConfigManager<JavaClassModelToCodeConverterConfig, PartialJavaClassModelToCodeConverterConfig> {
 	getDefaultConfig(): JavaClassModelToCodeConverterConfig;
 	mergeConfigs(fullConfig: JavaClassModelToCodeConverterConfig, partialConfig?: PartialJavaClassModelToCodeConverterConfig): JavaClassModelToCodeConverterConfig;
 	protected getJsonAdapter(): JsonAdapter<JavaClassModelToCodeConverterConfig>;
 }
 export declare const javaClassModelToCodeConverterConfigManager: JavaClassModelToCodeConverterConfigManager;
+export interface JpaTransformerConfig {
+	tableNameCaseFormat: CaseFormat;
+	columnNameCaseFormat: CaseFormat;
+	annotateGetters: boolean;
+}
+export declare type PartialJpaTransformerConfig = Partial<JpaTransformerConfig>;
+export interface JpaTransformerSetupData {
+	databaseModel: DatabaseModel;
+}
+declare class JpaTransformerBuilder {
+	#private;
+	withDatabaseModelGeneratorConfig(config: PartialDatabaseModelGeneratorConfig): this;
+	withConfig(config: PartialJpaTransformerConfig): this;
+	build(): JpaTransformer;
+}
+export declare class JpaTransformer implements JavaClassModelTransformer<JpaTransformerSetupData> {
+	#private;
+	constructor(databaseModelGenerator: DatabaseModelGenerator, config?: Partial<JpaTransformerConfig>);
+	setup(context: SetupContext): JpaTransformerSetupData;
+	visitField(javaField: JavaField, context: JavaFieldTransformContext<JpaTransformerSetupData>): void;
+	visitClass(javaClass: JavaClass, context: JavaClassTransformContext<JpaTransformerSetupData>): void;
+	visitModel(javaClassModel: JavaClassModel, context: JavaClassModelTransformContext<JpaTransformerSetupData>): void;
+	static withDefaultConfig(): JpaTransformer;
+	static builder(): JpaTransformerBuilder;
+}
+export declare class JpaTransformerConfigManager extends AbstractComponentConfigManager<JpaTransformerConfig, PartialJpaTransformerConfig> {
+	getDefaultConfig(): JpaTransformerConfig;
+	mergeConfigs(fullConfig: JpaTransformerConfig, partialConfig?: PartialJpaTransformerConfig): JpaTransformerConfig;
+	protected getJsonAdapter(): JsonAdapter<JpaTransformerConfig>;
+}
+export declare const jpaTransformerConfigManager: JpaTransformerConfigManager;
+export interface JavaxValidationTransformerConfig {
+	notNullTextValidationStrategy: NotNullTextValidationStrategy;
+	notNullBlobValidationStrategy: NotNullBlobValidationStrategy;
+	annotateGetters: boolean;
+}
+export declare type PartialJavaxValidationTransformerConfig = Partial<JavaxValidationTransformerConfig>;
+export declare class JavaxValidationTransformer implements JavaClassModelTransformer {
+	#private;
+	constructor(config?: PartialJavaxValidationTransformerConfig);
+	setup(context: SetupContext): unknown;
+	visitField(javaField: JavaField, context: JavaFieldTransformContext<unknown>): void;
+	visitClass(javaClass: JavaClass, context: JavaClassTransformContext<unknown>): void;
+	visitModel(javaClassModel: JavaClassModel, context: JavaClassModelTransformContext<unknown>): void;
+}
+export declare class JavaxValidationTransformerConfigManager extends AbstractComponentConfigManager<JavaxValidationTransformerConfig, PartialJavaxValidationTransformerConfig> {
+	getDefaultConfig(): JavaxValidationTransformerConfig;
+	mergeConfigs(fullConfig: JavaxValidationTransformerConfig, partialConfig?: PartialJavaxValidationTransformerConfig): JavaxValidationTransformerConfig;
+	protected getJsonAdapter(): JsonAdapter<JavaxValidationTransformerConfig>;
+}
+export declare const javaxValidationTransformerConfigManager: JavaxValidationTransformerConfigManager;
 export interface JavaParameterizedType extends JavaType {
-	parameterTypes: JavaType[];
+	readonly parameterTypes: ReadonlyArray<JavaType>;
 }
 export function parseJavaType(text: string): JavaType;
 export function createJavaSimpleType(name: string, packageName?: string): JavaType;
@@ -472,7 +656,7 @@ export declare class ClassModelGeneratorConfigManager extends AbstractComponentC
 	protected getJsonAdapter(): JsonAdapter<ClassModelGeneratorConfig>;
 }
 export declare const classModelGeneratorConfigManager: ClassModelGeneratorConfigManager;
-export interface NomnomlEntityRelationshipModelToDiagramCodeConverterConfig {
+export interface NomnomlEntityRelationshipModelSourceCodeGeneratorConfig {
 	arrowSize?: number;
 	bendSize?: number;
 	direction?: "down" | "right";
@@ -495,23 +679,23 @@ export interface NomnomlEntityRelationshipModelToDiagramCodeConverterConfig {
 	acyclicer?: "greedy";
 	ranker?: "network-simplex" | "tight-tree" | "longest-path";
 }
-export declare class NomnomlEntityRelationshipModelToDiagramCodeConverter implements EntityRelationshipModelToCodeConverter {
+export declare class NomnomlEntityRelationshipModelSourceCodeGenerator implements EntityRelationshipModelSourceCodeGenerator {
 	private readonly config;
 	private readonly entityCodeGenerator;
 	private readonly relationshipCodeGenerator;
 	private readonly directivesCodeGenerator;
-	constructor(config?: Partial<NomnomlEntityRelationshipModelToDiagramCodeConverterConfig>);
-	convertToCode(model: EntityRelationshipModel): string;
+	constructor(config?: NomnomlEntityRelationshipModelSourceCodeGeneratorConfig);
+	generateSourceCode(model: EntityRelationshipModel): string;
 }
-export declare class NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager extends AbstractComponentConfigManager<NomnomlEntityRelationshipModelToDiagramCodeConverterConfig, NomnomlEntityRelationshipModelToDiagramCodeConverterConfig> {
-	getDefaultConfig(): NomnomlEntityRelationshipModelToDiagramCodeConverterConfig;
-	mergeConfigs(fullConfig: NomnomlEntityRelationshipModelToDiagramCodeConverterConfig, partialConfig?: Partial<NomnomlEntityRelationshipModelToDiagramCodeConverterConfig>): NomnomlEntityRelationshipModelToDiagramCodeConverterConfig;
+export declare class NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager extends AbstractComponentConfigManager<NomnomlEntityRelationshipModelSourceCodeGeneratorConfig, NomnomlEntityRelationshipModelSourceCodeGeneratorConfig> {
+	getDefaultConfig(): NomnomlEntityRelationshipModelSourceCodeGeneratorConfig;
+	mergeConfigs(fullConfig: NomnomlEntityRelationshipModelSourceCodeGeneratorConfig, partialConfig?: Partial<NomnomlEntityRelationshipModelSourceCodeGeneratorConfig>): NomnomlEntityRelationshipModelSourceCodeGeneratorConfig;
 }
-export declare const nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager: NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager;
-export declare class PlantUmlEntityRelationshipModelToDiagramCodeConverter implements EntityRelationshipModelToCodeConverter {
+export declare const nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager: NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager;
+export declare class PlantUmlEntityRelationshipModelSourceCodeGenerator implements EntityRelationshipModelSourceCodeGenerator {
 	private readonly entityCodeGenerator;
 	private readonly relationshipCodeGenerator;
-	convertToCode(model: EntityRelationshipModel): string;
+	generateSourceCode(model: EntityRelationshipModel): string;
 }
 export interface EntityRelationshipModelParserConfig {
 	allowUnknownEntities: boolean;

@@ -1,4 +1,4 @@
-export default interface NomnomlEntityRelationshipModelToDiagramCodeConverterConfig {
+export default interface NomnomlEntityRelationshipModelSourceCodeGeneratorConfig {
 	arrowSize?: number;
 	bendSize?: number;
 	direction?: 'down' | 'right';

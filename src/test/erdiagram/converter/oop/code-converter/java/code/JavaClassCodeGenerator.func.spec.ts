@@ -4,12 +4,10 @@ import {
 	createJavaField,
 	createJavaGetter,
 	createJavaSetter
-} from '../model/generator/source/java-class-model-mothers';
-import {JavaVisibility} from '../../../../../../../main/erdiagram/converter/oop/code-converter/java/model/java-class-model-types';
-import JavaAnnotation
-	from '../../../../../../../main/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation';
-import createJavaSimpleType
-	from '../../../../../../../main/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType';
+} from '#/erdiagram/converter/oop/code-converter/java/model/generator/source/java-class-model-mothers';
+import {JavaVisibility} from '@/erdiagram/converter/oop/code-converter/java/model/java-class-model-types';
+import JavaAnnotation from '@/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation';
+import createJavaSimpleType from '@/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType';
 
 const javaClassModelToCodeConverter = new JavaClassCodeGenerator();
 

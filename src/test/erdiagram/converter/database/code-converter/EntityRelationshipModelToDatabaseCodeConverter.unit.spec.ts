@@ -1,8 +1,10 @@
 import {EntityRelationshipModel} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {DatabaseModel} from '@/erdiagram/converter/database/model/database-model-types';
 import DatabaseModelGenerator from '@/erdiagram/converter/database/model/DatabaseModelGenerator';
-import EntityRelationshipModelToDatabaseCodeConverter
-	from '@/erdiagram/converter/database/code-converter/EntityRelationshipModelToDatabaseCodeConverter';
+import SqlEntityRelationshipModelSourceCodeGenerator
+	from '@/erdiagram/converter/database/code-converter/SqlEntityRelationshipModelSourceCodeGenerator';
+import DatabaseModelToSqlCodeConverter
+	from '@/erdiagram/converter/database/code-converter/sql/DatabaseModelToSqlCodeConverter';
 
 test('convertToCode() calls dependencies', () => {
 
@@ -27,16 +29,16 @@ test('convertToCode() calls dependencies', () => {
 
 	const convertToCodeMockFunction = jest.fn(() => mockValues.outputCode);
 
-	const databaseModelToCodeConverterMock = {
+	const databaseModelToSqlCodeConverterMock = {
 		convertToCode: convertToCodeMockFunction
 	};
 
-	const entityRelationshipModelToDatabaseCodeConverter = new EntityRelationshipModelToDatabaseCodeConverter(
+	const entityRelationshipModelToDatabaseCodeConverter = new SqlEntityRelationshipModelSourceCodeGenerator(
 			databaseModelGeneratorMock as unknown as DatabaseModelGenerator,
-			databaseModelToCodeConverterMock
+			databaseModelToSqlCodeConverterMock as unknown as DatabaseModelToSqlCodeConverter
 	);
 
-	const result = entityRelationshipModelToDatabaseCodeConverter.convertToCode(mockValues.entityRelationshipModel);
+	const result = entityRelationshipModelToDatabaseCodeConverter.generateSourceCode(mockValues.entityRelationshipModel);
 
 	expect(result).toBe(mockValues.outputCode);
 
@@ -46,7 +48,7 @@ test('convertToCode() calls dependencies', () => {
 	const generateDatabaseModelCallArgs = generateDatabaseModelCalls[0] as any[];
 	expect(generateDatabaseModelCallArgs[0]).toBe(mockValues.entityRelationshipModel);
 
-	const convertToCodeCalls = databaseModelToCodeConverterMock.convertToCode.mock.calls;
+	const convertToCodeCalls = databaseModelToSqlCodeConverterMock.convertToCode.mock.calls;
 	expect(convertToCodeCalls).toHaveLength(1);
 
 	const convertToCodeCallArgs = convertToCodeCalls[0] as any[];

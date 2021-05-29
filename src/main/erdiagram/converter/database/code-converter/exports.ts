@@ -1,9 +1,7 @@
-import DatabaseModelToCodeConverter from './DatabaseModelToCodeConverter';
-import EntityRelationshipModelToDatabaseCodeConverter from './EntityRelationshipModelToDatabaseCodeConverter';
+import SqlEntityRelationshipModelSourceCodeGenerator from './SqlEntityRelationshipModelSourceCodeGenerator';
 
 export * from './sql/exports';
 
 export {
-	DatabaseModelToCodeConverter,
-	EntityRelationshipModelToDatabaseCodeConverter
+	SqlEntityRelationshipModelSourceCodeGenerator
 };

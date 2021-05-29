@@ -4,10 +4,10 @@ import {
 	EntityPropertyType,
 	EntityRelationshipModel
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
-import PlantUmlEntityRelationshipModelToDiagramCodeConverter
-	from '@/erdiagram/converter/diagram/plantuml/PlantUmlEntityRelationshipModelToDiagramCodeConverter';
+import PlantUmlEntityRelationshipModelSourceCodeGenerator
+	from '@/erdiagram/converter/diagram/plantuml/PlantUmlEntityRelationshipModelSourceCodeGenerator';
 
-const plantumlERModelToDiagramCodeConverter = new PlantUmlEntityRelationshipModelToDiagramCodeConverter();
+const plantumlERModelToDiagramCodeConverter = new PlantUmlEntityRelationshipModelSourceCodeGenerator();
 
 function addHeaderAndFooter(expectedResult: string): string {
 	return [
@@ -34,7 +34,7 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.generateSourceCode(model);
 
 		expect(result).toBe(addHeaderAndFooter(`class User {}`));
 
@@ -53,7 +53,7 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.generateSourceCode(model);
 
 		expect(result).toBe(addHeaderAndFooter(`class User {
     {field} userId: identity
@@ -82,7 +82,7 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.generateSourceCode(model);
 
 		expect(result).toBe(addHeaderAndFooter(`class User {
     {field} active: bool
@@ -111,7 +111,7 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.generateSourceCode(model);
 
 		expect(result).toBe(addHeaderAndFooter(`class User {
     {field} username: text(20)
@@ -140,7 +140,7 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.generateSourceCode(model);
 
 		expect(result).toBe(addHeaderAndFooter(`class User {
     {field} score: decimal(10, 5)
@@ -183,7 +183,7 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.generateSourceCode(model);
 
 		expect(result).toBe(addHeaderAndFooter(`class User {
     {field} username!: text(20)
@@ -219,7 +219,7 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.generateSourceCode(model);
 
 		expect(result).toBe(addHeaderAndFooter('A "1" <--> "1" B'));
 
@@ -247,7 +247,7 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.generateSourceCode(model);
 
 		expect(result).toBe(addHeaderAndFooter('A "1" --> "*" B'));
 
@@ -275,7 +275,7 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.generateSourceCode(model);
 
 		expect(result).toBe(addHeaderAndFooter('A "*" <-- "*" B'));
 
@@ -303,7 +303,7 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.generateSourceCode(model);
 
 		expect(result).toBe(addHeaderAndFooter('A "*" <--> "1" B'));
 
@@ -331,7 +331,7 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.generateSourceCode(model);
 
 		expect(result).toBe(addHeaderAndFooter('A "*" <-- "0..1" B : Rel'));
 
@@ -359,7 +359,7 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.generateSourceCode(model);
 
 		expect(result).toBe(addHeaderAndFooter('A "*" --> "1" B : Rel'));
 
@@ -387,7 +387,7 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.generateSourceCode(model);
 
 		expect(result).toBe(addHeaderAndFooter('A "*" <--> "*" B : Rel'));
 
@@ -453,7 +453,7 @@ describe('Entities and relationships', () => {
 			]
 		};
 
-		const result = plantumlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = plantumlERModelToDiagramCodeConverter.generateSourceCode(model);
 
 		expect(result).toBe(addHeaderAndFooter(`class User {
     {field} uuid: identity

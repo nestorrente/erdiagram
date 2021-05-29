@@ -4,7 +4,7 @@ import {
 	JavaFieldGetter,
 	JavaFieldSetter,
 	JavaVisibility
-} from '../../../../../../../../../main/erdiagram/converter/oop/code-converter/java/model/java-class-model-types';
+} from '@/erdiagram/converter/oop/code-converter/java/model/java-class-model-types';
 import parseJavaType from '@/erdiagram/converter/oop/code-converter/java/type/parseJavaType';
 
 export type PartialJavaClass = Partial<Omit<JavaClass, 'name'>>

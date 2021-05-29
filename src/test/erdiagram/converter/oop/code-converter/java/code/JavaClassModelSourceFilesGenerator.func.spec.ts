@@ -3,7 +3,7 @@ import JavaClassCodeGenerator from '@/erdiagram/converter/oop/code-converter/jav
 import JavaClassModelSourceFilesGenerator
 	from '@/erdiagram/converter/oop/code-converter/java/code/JavaClassModelSourceFilesGenerator';
 import SourceFileInfo from '@/erdiagram/converter/common/SourceFileInfo';
-import {createJavaClass} from '../model/generator/source/java-class-model-mothers';
+import {createJavaClass} from '#/erdiagram/converter/oop/code-converter/java/model/generator/source/java-class-model-mothers';
 
 const javaClassCodeGeneratorMock = {
 	generateCode: jest.fn((javaClass: JavaClass): string => {

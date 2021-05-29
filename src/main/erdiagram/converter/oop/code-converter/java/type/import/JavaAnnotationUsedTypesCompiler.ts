@@ -1,8 +1,9 @@
 import JavaType from '@/erdiagram/converter/oop/code-converter/java/type/JavaType';
-import JavaAnnotation, {
+import JavaAnnotation from '@/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation';
+import {
 	JavaAnnotationParameterSingleValue,
 	JavaAnnotationParameterValue
-} from '@/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation';
+} from '@/erdiagram/converter/oop/code-converter/java/annotation/annotation-parameter-types';
 
 // TODO add unit tests
 export default class JavaAnnotationUsedTypesCompiler {

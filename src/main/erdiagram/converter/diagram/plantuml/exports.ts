@@ -1,6 +1,6 @@
-import PlantUmlEntityRelationshipModelToDiagramCodeConverter
-	from './PlantUmlEntityRelationshipModelToDiagramCodeConverter';
+import PlantUmlEntityRelationshipModelSourceCodeGenerator
+	from './PlantUmlEntityRelationshipModelSourceCodeGenerator';
 
 export {
-	PlantUmlEntityRelationshipModelToDiagramCodeConverter
+	PlantUmlEntityRelationshipModelSourceCodeGenerator
 };

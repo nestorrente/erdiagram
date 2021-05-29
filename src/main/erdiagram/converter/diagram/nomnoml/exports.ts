@@ -1,8 +1,8 @@
-import NomnomlEntityRelationshipModelToDiagramCodeConverter
-	from './NomnomlEntityRelationshipModelToDiagramCodeConverter';
+import NomnomlEntityRelationshipModelSourceCodeGenerator
+	from './NomnomlEntityRelationshipModelSourceCodeGenerator';
 
 export * from './config/exports';
 
 export {
-	NomnomlEntityRelationshipModelToDiagramCodeConverter
+	NomnomlEntityRelationshipModelSourceCodeGenerator
 };

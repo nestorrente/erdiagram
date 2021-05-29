@@ -10,11 +10,11 @@ import {ClassDescriptor, ClassFieldDescriptor, ClassModel} from '@/erdiagram/con
 import {
 	createEntityWithoutProperties,
 	createSimpleEntityProperty
-} from '../../../parser/entity-relationship-model-mothers';
+} from '#/erdiagram/parser/entity-relationship-model-mothers';
 import StandardIdNamingStrategies from '@/erdiagram/converter/common/id-naming-strategy/StandardIdNamingStrategies';
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
 import {createEntityClassField, createIdClassField, createPrimitiveClassField} from './class-model-mothers';
-import {SourceType} from '../../../../../main/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
+import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
 
 const classModelGenerator = new ClassModelGenerator();
 

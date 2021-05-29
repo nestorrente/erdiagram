@@ -4,7 +4,6 @@ import {
 	TableDescriptor,
 	TableReferenceDescriptor
 } from '@/erdiagram/converter/database/model/database-model-types';
-import DatabaseModelToCodeConverter from '@/erdiagram/converter/database/code-converter/DatabaseModelToCodeConverter';
 import {indentLines} from '@/erdiagram/util/indent-utils';
 import {
 	CreateTableLines,
@@ -12,7 +11,7 @@ import {
 } from '@/erdiagram/converter/database/code-converter/sql/dialect/common/sql-script-types';
 import SqlDialect from '@/erdiagram/converter/database/code-converter/sql/dialect/common/SqlDialect';
 
-export default class DatabaseModelToSqlCodeConverter implements DatabaseModelToCodeConverter {
+export default class DatabaseModelToSqlCodeConverter {
 
 	constructor(
 			private readonly sqlDialect: SqlDialect

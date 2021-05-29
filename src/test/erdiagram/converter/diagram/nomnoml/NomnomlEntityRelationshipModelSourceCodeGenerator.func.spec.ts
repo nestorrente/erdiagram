@@ -4,11 +4,11 @@ import {
 	EntityPropertyType,
 	EntityRelationshipModel
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
-import NomnomlEntityRelationshipModelToDiagramCodeConverter
-	from '@/erdiagram/converter/diagram/nomnoml/NomnomlEntityRelationshipModelToDiagramCodeConverter';
-import {createEntityProperty} from '../../../parser/entity-relationship-model-mothers';
+import NomnomlEntityRelationshipModelSourceCodeGenerator
+	from '@/erdiagram/converter/diagram/nomnoml/NomnomlEntityRelationshipModelSourceCodeGenerator';
+import {createEntityProperty} from '#/erdiagram/parser/entity-relationship-model-mothers';
 
-const nomnomlERModelToDiagramCodeConverter = new NomnomlEntityRelationshipModelToDiagramCodeConverter();
+const nomnomlERModelSourceCodeGenerator = new NomnomlEntityRelationshipModelSourceCodeGenerator();
 
 function addDefaultDirectives(expectedResult: string): string {
 	return [
@@ -39,7 +39,7 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = nomnomlERModelSourceCodeGenerator.generateSourceCode(model);
 
 		expect(result).toBe(addDefaultDirectives('[User]'));
 
@@ -58,7 +58,7 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = nomnomlERModelSourceCodeGenerator.generateSourceCode(model);
 
 		expect(result).toBe(addDefaultDirectives(`[User|
     userId: identity
@@ -81,7 +81,7 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = nomnomlERModelSourceCodeGenerator.generateSourceCode(model);
 
 		expect(result).toBe(addDefaultDirectives(`[User|
     active: bool
@@ -104,7 +104,7 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = nomnomlERModelSourceCodeGenerator.generateSourceCode(model);
 
 		expect(result).toBe(addDefaultDirectives(`[User|
     username: text(20)
@@ -127,7 +127,7 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = nomnomlERModelSourceCodeGenerator.generateSourceCode(model);
 
 		expect(result).toBe(addDefaultDirectives(`[User|
     score: decimal(10, 5)
@@ -155,7 +155,7 @@ describe('Entities', () => {
 			relationships: []
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = nomnomlERModelSourceCodeGenerator.generateSourceCode(model);
 
 		expect(result).toBe(addDefaultDirectives(`[User|
     username!: text(20)
@@ -191,7 +191,7 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = nomnomlERModelSourceCodeGenerator.generateSourceCode(model);
 
 		expect(result).toBe(addDefaultDirectives('[A] 1<->1 [B]'));
 
@@ -219,7 +219,7 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = nomnomlERModelSourceCodeGenerator.generateSourceCode(model);
 
 		expect(result).toBe(addDefaultDirectives('[A] 1->* [B]'));
 
@@ -247,7 +247,7 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = nomnomlERModelSourceCodeGenerator.generateSourceCode(model);
 
 		expect(result).toBe(addDefaultDirectives('[A] *<-* [B]'));
 
@@ -275,7 +275,7 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = nomnomlERModelSourceCodeGenerator.generateSourceCode(model);
 
 		expect(result).toBe(addDefaultDirectives('[A] *<->1 [B]'));
 
@@ -303,7 +303,7 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = nomnomlERModelSourceCodeGenerator.generateSourceCode(model);
 
 		expect(result).toBe(addDefaultDirectives(`[<label>Rel]
 [A] *<- [Rel]
@@ -333,7 +333,7 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = nomnomlERModelSourceCodeGenerator.generateSourceCode(model);
 
 		expect(result).toBe(addDefaultDirectives(`[<label>Rel]
 [A] *- [Rel]
@@ -363,7 +363,7 @@ describe('Relationships', () => {
 			]
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = nomnomlERModelSourceCodeGenerator.generateSourceCode(model);
 
 		expect(result).toBe(addDefaultDirectives(`[<label>Rel]
 [A] *<- [Rel]
@@ -413,7 +413,7 @@ describe('Entities and relationships', () => {
 			]
 		};
 
-		const result = nomnomlERModelToDiagramCodeConverter.convertToCode(model);
+		const result = nomnomlERModelSourceCodeGenerator.generateSourceCode(model);
 
 		expect(result).toBe(addDefaultDirectives(`[User|
     uuid: identity

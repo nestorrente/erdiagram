@@ -6,8 +6,7 @@ import SqlServerIdColumnCodeGenerator
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlserver/column/SqlServerIdColumnCodeGenerator';
 import SqlServerForeignColumnCodeGenerator
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlserver/column/SqlServerForeignColumnCodeGenerator';
-import SqlServerDialectConfig
-	from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlserver/config/SqlServerDialectConfig';
+import {PartialSqlServerDialectConfig} from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlserver/config/SqlServerDialectConfig';
 import sqlServerDialectConfigManager
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlserver/config/SqlServerDialectConfigManager';
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
@@ -30,7 +29,7 @@ export default class SqlServerDialect implements SqlDialect {
 	private readonly idColumnCodeGenerator: SqlServerIdColumnCodeGenerator;
 	private readonly foreignColumnCodeGenerator: SqlServerForeignColumnCodeGenerator;
 
-	constructor(config?: Partial<SqlServerDialectConfig>) {
+	constructor(config?: PartialSqlServerDialectConfig) {
 
 		const fullConfig = sqlServerDialectConfigManager.mergeWithDefaultConfig(config);
 

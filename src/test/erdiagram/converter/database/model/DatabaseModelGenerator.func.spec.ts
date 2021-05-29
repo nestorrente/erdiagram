@@ -9,7 +9,7 @@ import DatabaseModelGenerator from '@/erdiagram/converter/database/model/Databas
 import {
 	createEntityWithoutProperties,
 	createSimpleEntityProperty
-} from '../../../parser/entity-relationship-model-mothers';
+} from '#/erdiagram/parser/entity-relationship-model-mothers';
 import {DatabaseModel} from '@/erdiagram/converter/database/model/database-model-types';
 import StandardIdNamingStrategies from '@/erdiagram/converter/common/id-naming-strategy/StandardIdNamingStrategies';
 import {capitalizeWord} from '@/erdiagram/util/string-utils';

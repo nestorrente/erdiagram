@@ -17,8 +17,7 @@ import PostgresqlIdColumnCodeGenerator
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/postgresql/column/PostgresqlIdColumnCodeGenerator';
 import PostgresqlForeignColumnCodeGenerator
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/postgresql/column/PostgresqlForeignColumnCodeGenerator';
-import PostgresqlDialectConfig
-	from '@/erdiagram/converter/database/code-converter/sql/dialect/postgresql/config/PostgresqlDialectConfig';
+import {PartialPostgresqlDialectConfig} from '@/erdiagram/converter/database/code-converter/sql/dialect/postgresql/config/PostgresqlDialectConfig';
 import postgresqlDialectConfigManager
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/postgresql/config/PostgresqlDialectConfigManager';
 
@@ -30,7 +29,7 @@ export default class PostgresqlDialect implements SqlDialect {
 	private readonly idColumnCodeGenerator: PostgresqlIdColumnCodeGenerator;
 	private readonly foreignColumnCodeGenerator: PostgresqlForeignColumnCodeGenerator;
 
-	constructor(config?: Partial<PostgresqlDialectConfig>) {
+	constructor(config?: PartialPostgresqlDialectConfig) {
 
 		const fullConfig = postgresqlDialectConfigManager.mergeWithDefaultConfig(config);
 

@@ -4,7 +4,7 @@ import {
 	createRelationshipTable,
 	createTableColumn,
 	createTableReference
-} from '../../model/database-model-mothers';
+} from '#/erdiagram/converter/database/model/database-model-mothers';
 import {DatabaseModel} from '@/erdiagram/converter/database/model/database-model-types';
 
 export const databaseModelWithTableWithoutColumnsNorReferences: DatabaseModel = {

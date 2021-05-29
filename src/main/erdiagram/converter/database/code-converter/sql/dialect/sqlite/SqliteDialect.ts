@@ -17,8 +17,7 @@ import SqliteIdColumnCodeGenerator
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlite/column/SqliteIdColumnCodeGenerator';
 import SqliteForeignColumnCodeGenerator
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlite/column/SqliteForeignColumnCodeGenerator';
-import SqliteDialectConfig
-	from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlite/config/SqliteDialectConfig';
+import {PartialSqliteDialectConfig} from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlite/config/SqliteDialectConfig';
 import sqliteDialectConfigManager
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/sqlite/config/SqliteDialectConfigManager';
 
@@ -30,7 +29,7 @@ export default class SqliteDialect implements SqlDialect {
 	private readonly idColumnCodeGenerator: SqliteIdColumnCodeGenerator;
 	private readonly foreignColumnCodeGenerator: SqliteForeignColumnCodeGenerator;
 
-	constructor(config?: Partial<SqliteDialectConfig>) {
+	constructor(config?: PartialSqliteDialectConfig) {
 
 		const fullConfig = sqliteDialectConfigManager.mergeWithDefaultConfig(config);
 

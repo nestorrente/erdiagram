@@ -6,13 +6,13 @@ import {
 	RelationshipMember
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {ClassDescriptor, ClassFieldDescriptor} from '@/erdiagram/converter/oop/model/class-model-types';
-import {SourceType} from '../../../../../main/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
+import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
 import {
 	dummySourceEntity,
 	dummySourceProperty,
 	dummySourceRelationship,
 	dummySourceRelationshipMember
-} from '../../common/source-metadata-instances';
+} from '#/erdiagram/converter/common/source-metadata-instances';
 
 export type PartialClassDescriptor = Partial<Omit<ClassDescriptor, 'name' | 'sourceMetadata'> & {
 	sourceEntity: EntityDescriptor;

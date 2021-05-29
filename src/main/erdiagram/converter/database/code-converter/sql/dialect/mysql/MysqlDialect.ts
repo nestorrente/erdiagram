@@ -19,8 +19,7 @@ import SqlTypeResolver from '@/erdiagram/converter/database/code-converter/sql/d
 import mysqlDialectConfigManager
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/mysql/config/MysqlDialectConfigManager';
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
-import MysqlDialectConfig
-	from '@/erdiagram/converter/database/code-converter/sql/dialect/mysql/config/MysqlDialectConfig';
+import {PartialMysqlDialectConfig} from '@/erdiagram/converter/database/code-converter/sql/dialect/mysql/config/MysqlDialectConfig';
 
 export default class MysqlDialect implements SqlDialect {
 
@@ -30,7 +29,7 @@ export default class MysqlDialect implements SqlDialect {
 	private readonly idColumnCodeGenerator: MysqlIdColumnCodeGenerator;
 	private readonly foreignColumnCodeGenerator: MysqlForeignColumnCodeGenerator;
 
-	constructor(config?: Partial<MysqlDialectConfig>) {
+	constructor(config?: PartialMysqlDialectConfig) {
 
 		const fullConfig = mysqlDialectConfigManager.mergeWithDefaultConfig(config);
 

@@ -6,11 +6,11 @@ import {
 	createEntityClassField,
 	createIdClassField,
 	createPrimitiveClassField
-} from '../../model/class-model-mothers';
+} from '#/erdiagram/converter/oop/model/class-model-mothers';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import parseTypeScriptType from '@/erdiagram/converter/oop/code-converter/typescript/type/parseTypeScriptType';
-import {SourceType} from '../../../../../../main/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
-import {dummySourceEntity, dummySourceProperty} from '../../../common/source-metadata-instances';
+import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
+import {dummySourceEntity, dummySourceProperty} from '#/erdiagram/converter/common/source-metadata-instances';
 
 const typeScriptClassModelToCodeConverter = new TypeScriptClassModelToCodeConverter();
 

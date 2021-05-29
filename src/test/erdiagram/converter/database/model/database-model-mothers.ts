@@ -10,13 +10,13 @@ import {
 	TableDescriptor,
 	TableReferenceDescriptor
 } from '@/erdiagram/converter/database/model/database-model-types';
-import {SourceType} from '../../../../../main/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
+import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-types';
 import {
 	dummySourceEntity,
 	dummySourceProperty,
 	dummySourceRelationship,
 	dummySourceRelationshipMember
-} from '../../common/source-metadata-instances';
+} from '#/erdiagram/converter/common/source-metadata-instances';
 
 export type PartialEntityTableDescriptor = Partial<Omit<TableDescriptor, 'name' | 'sourceMetadata'> & {
 	sourceEntity: EntityDescriptor;

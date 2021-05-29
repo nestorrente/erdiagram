@@ -4,7 +4,7 @@
  *
  * Released under the MIT License.
  *
- * Build date: 2021-05-18T20:04:21.532Z
+ * Build date: 2021-05-29T20:43:51.831Z
  */
 var ERDiagram;
 /******/ (() => { // webpackBootstrap
@@ -523,15 +523,15 @@ var ERDiagram;
 
 /*!
  * TrueJSON: respectful JSON serialization & deserialization for JavaScript
- * v1.0.0-alpha.3
+ * v1.0.0-alpha.4
  *
  * https://github.com/nestorrente/true-json
  *
  * Released under the MIT License.
  *
- * Build date: 2021-05-17T21:50:00.856Z
+ * Build date: 2021-05-22T18:22:58.182Z
  */
-!function(o,e){ true?module.exports=e():0}("undefined"!=typeof self?self:this,(function(){return(()=>{"use strict";var o={d:(e,r)=>{for(var n in r)o.o(r,n)&&!o.o(e,n)&&Object.defineProperty(e,n,{enumerable:!0,get:r[n]})},o:(o,e)=>Object.prototype.hasOwnProperty.call(o,e),r:o=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(o,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(o,"__esModule",{value:!0})}},e={};o.r(e),o.d(e,{JsonAdapters:()=>d,JsonConverter:()=>s});var r,n=function(o,e,r){if(!e.has(o))throw new TypeError("attempted to set private field on non-instance");return e.set(o,r),r},t=function(o,e){if(!e.has(o))throw new TypeError("attempted to get private field on non-instance");return e.get(o)};class s{constructor(o){r.set(this,void 0),n(this,r,o)}stringify(o,e){return JSON.stringify(t(this,r).adaptToJson(o),void 0,e)}parse(o){return t(this,r).recoverFromJson(JSON.parse(o))}}function a(){return{adaptToJson:o=>o,recoverFromJson:o=>o}}function i(o){return{adaptToJson:e=>e.map((e=>o.adaptToJson(e))),recoverFromJson:e=>e.map((e=>o.recoverFromJson(e)))}}function c(o){var e,r;const n=null!==(e=null==o?void 0:o.keyAdapter)&&void 0!==e?e:{adaptToJson:o=>o,recoverFromJson:o=>o},t=null!==(r=null==o?void 0:o.valueAdapter)&&void 0!==r?r:{adaptToJson:o=>o,recoverFromJson:o=>o},s=i({adaptToJson(o){const[e,r]=o;return[n.adaptToJson(e),t.adaptToJson(r)]},recoverFromJson(o){const[e,r]=o;return[n.recoverFromJson(e),t.recoverFromJson(r)]}});return{adaptToJson:o=>s.adaptToJson([...o]),recoverFromJson:o=>new Map(s.recoverFromJson(o))}}function u(o,e,r){const{omitUnmappedProperties:n,omittedProperties:t}=r,s=Object.entries(o);return n||0!==t.length?s.filter((([o])=>!function(o,e,r){return function(o,e){const{omittedProperties:r}=e;return r.includes(o)}(o,r)||r.omitUnmappedProperties&&function(o,e){return!e.hasOwnProperty(o)}(o,e)}(o,e,r))):s}r=new WeakMap;const d={identity:a,isoDate:function(){return{adaptToJson:o=>o.toJSON(),recoverFromJson:o=>new Date(o)}},dateTimestamp:function(){return{adaptToJson:o=>o.getTime(),recoverFromJson:o=>new Date(o)}},array:i,set:function(o={adaptToJson:o=>o,recoverFromJson:o=>o}){const e=i(o);return{adaptToJson:o=>e.adaptToJson([...o]),recoverFromJson:o=>new Set(e.recoverFromJson(o))}},record:function(o){return{adaptToJson(e){const r=Object.entries(e).map((([e,r])=>[e,o.adaptToJson(r)]));return Object.fromEntries(r)},recoverFromJson(e){const r=Object.entries(e).map((([e,r])=>[e,o.recoverFromJson(r)]));return Object.fromEntries(r)}}},mapAsEntries:c,mapAsRecord:function(o){const e=c(o);return{adaptToJson(o){const r=e.adaptToJson(o);return Object.fromEntries(r)},recoverFromJson(o){const r=Object.entries(o);return e.recoverFromJson(r)}}},object:function(o,e){const r=(n=e,Object.assign({omitUnmappedProperties:!1,omittedProperties:[]},n));var n;return{adaptToJson(e){const n=u(e,o,r).map((([e,r])=>{const n=o[e];return[e,n?n.adaptToJson(r):r]}));return Object.fromEntries(n)},recoverFromJson(e){const n=u(e,o,r).map((([e,r])=>{const n=o[e];return[e,n?n.recoverFromJson(r):r]}));return Object.fromEntries(n)}}},byKey:function(o){return{adaptToJson(e){const r=Object.entries(o).find((([,o])=>e===o));if(!r)throw new Error("Provided value is not associated with any key");const[n]=r;return n},recoverFromJson(e){if(null==e||!o.hasOwnProperty(e))throw new Error("Provided key is not associated with any value");return o[e]}}},byKeyLenient:function(o,e){return{adaptToJson(r){const n=Object.entries(o).find((([,o])=>r===o));if(!n)return e;const[t]=n;return t},recoverFromJson:r=>null!=r&&o.hasOwnProperty(r)?o[r]:null!=e?o[e]:void 0}},custom:function(o){return o},nullAware:function(o){return{adaptToJson:e=>null===e?null:o.adaptToJson(e),recoverFromJson:e=>null===e?null:o.recoverFromJson(e)}},undefinedAware:function(o){return{adaptToJson:e=>void 0===e?void 0:o.adaptToJson(e),recoverFromJson:e=>void 0===e?void 0:o.recoverFromJson(e)}},nullishAware:function(o){return{adaptToJson:e=>null===e?null:void 0===e?void 0:o.adaptToJson(e),recoverFromJson:e=>null===e?null:void 0===e?void 0:o.recoverFromJson(e)}}};return e})()}));
+!function(o,e){ true?module.exports=e():0}("undefined"!=typeof self?self:this,(function(){return(()=>{"use strict";var o={d:(e,r)=>{for(var n in r)o.o(r,n)&&!o.o(e,n)&&Object.defineProperty(e,n,{enumerable:!0,get:r[n]})},o:(o,e)=>Object.prototype.hasOwnProperty.call(o,e),r:o=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(o,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(o,"__esModule",{value:!0})}},e={};o.r(e),o.d(e,{JsonAdapters:()=>p,JsonConverter:()=>a});var r,n,t=function(o,e,r){if(!e.has(o))throw new TypeError("attempted to set private field on non-instance");return e.set(o,r),r},s=function(o,e){if(!e.has(o))throw new TypeError("attempted to get private field on non-instance");return e.get(o)};class a{constructor(o,e=JSON){r.set(this,void 0),n.set(this,void 0),t(this,r,e),t(this,n,o)}stringify(o,e){return s(this,r).stringify(s(this,n).adaptToJson(o),void 0,e)}parse(o){return s(this,n).recoverFromJson(s(this,r).parse(o))}}function i(){return{adaptToJson:o=>o,recoverFromJson:o=>o}}function c(o){return{adaptToJson:e=>e.map((e=>o.adaptToJson(e))),recoverFromJson:e=>e.map((e=>o.recoverFromJson(e)))}}function u(o){var e,r;const n=null!==(e=null==o?void 0:o.keyAdapter)&&void 0!==e?e:{adaptToJson:o=>o,recoverFromJson:o=>o},t=null!==(r=null==o?void 0:o.valueAdapter)&&void 0!==r?r:{adaptToJson:o=>o,recoverFromJson:o=>o},s=c({adaptToJson(o){const[e,r]=o;return[n.adaptToJson(e),t.adaptToJson(r)]},recoverFromJson(o){const[e,r]=o;return[n.recoverFromJson(e),t.recoverFromJson(r)]}});return{adaptToJson:o=>s.adaptToJson([...o]),recoverFromJson:o=>new Map(s.recoverFromJson(o))}}function d(o,e,r){const{omitUnmappedProperties:n,omittedProperties:t}=r,s=Object.entries(o);return n||0!==t.length?s.filter((([o])=>!function(o,e,r){return function(o,e){const{omittedProperties:r}=e;return r.includes(o)}(o,r)||r.omitUnmappedProperties&&function(o,e){return!e.hasOwnProperty(o)}(o,e)}(o,e,r))):s}r=new WeakMap,n=new WeakMap;const p={identity:i,isoDate:function(){return{adaptToJson:o=>o.toJSON(),recoverFromJson:o=>new Date(o)}},dateTimestamp:function(){return{adaptToJson:o=>o.getTime(),recoverFromJson:o=>new Date(o)}},array:c,set:function(o={adaptToJson:o=>o,recoverFromJson:o=>o}){const e=c(o);return{adaptToJson:o=>e.adaptToJson([...o]),recoverFromJson:o=>new Set(e.recoverFromJson(o))}},record:function(o){return{adaptToJson(e){const r=Object.entries(e).map((([e,r])=>[e,o.adaptToJson(r)]));return Object.fromEntries(r)},recoverFromJson(e){const r=Object.entries(e).map((([e,r])=>[e,o.recoverFromJson(r)]));return Object.fromEntries(r)}}},mapAsEntries:u,mapAsRecord:function(o){const e=u(o);return{adaptToJson(o){const r=e.adaptToJson(o);return Object.fromEntries(r)},recoverFromJson(o){const r=Object.entries(o);return e.recoverFromJson(r)}}},object:function(o,e){const r=(n=e,Object.assign({omitUnmappedProperties:!1,omittedProperties:[]},n));var n;return{adaptToJson(e){const n=d(e,o,r).map((([e,r])=>{const n=o[e];return[e,n?n.adaptToJson(r):r]}));return Object.fromEntries(n)},recoverFromJson(e){const n=d(e,o,r).map((([e,r])=>{const n=o[e];return[e,n?n.recoverFromJson(r):r]}));return Object.fromEntries(n)}}},byKey:function(o){return{adaptToJson(e){const r=Object.entries(o).find((([,o])=>e===o));if(!r)throw new Error("Provided value is not associated with any key");const[n]=r;return n},recoverFromJson(e){if(null==e||!o.hasOwnProperty(e))throw new Error("Provided key is not associated with any value");return o[e]}}},byKeyLenient:function(o,e){return{adaptToJson(r){const n=Object.entries(o).find((([,o])=>r===o));if(!n)return e;const[t]=n;return t},recoverFromJson:r=>null!=r&&o.hasOwnProperty(r)?o[r]:null!=e?o[e]:void 0}},custom:function(o){return o},nullAware:function(o){return{adaptToJson:e=>null===e?null:o.adaptToJson(e),recoverFromJson:e=>null===e?null:o.recoverFromJson(e)}},undefinedAware:function(o){return{adaptToJson:e=>void 0===e?void 0:o.adaptToJson(e),recoverFromJson:e=>void 0===e?void 0:o.recoverFromJson(e)}},nullishAware:function(o){return{adaptToJson:e=>null===e?null:void 0===e?void 0:o.adaptToJson(e),recoverFromJson:e=>null===e?null:void 0===e?void 0:o.recoverFromJson(e)}}};return e})()}));
 //# sourceMappingURL=true-json.umd.js.map
 
 /***/ }),
@@ -618,6 +618,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/common/config/exports.ts");
 
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/MultipleFileEntityRelationshipModelSourceCodeGenerator.ts":
+/*!************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/MultipleFileEntityRelationshipModelSourceCodeGenerator.ts ***!
+  \************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isMultipleFileEntityRelationshipModelSourceCodeGenerator": () => (/* binding */ isMultipleFileEntityRelationshipModelSourceCodeGenerator)
+/* harmony export */ });
+function isMultipleFileEntityRelationshipModelSourceCodeGenerator(generator) {
+    const uncheckedCastedGenerator = generator;
+    return typeof uncheckedCastedGenerator.generateSourceFiles === 'function';
+}
 
 
 /***/ }),
@@ -711,6 +730,9 @@ class CaseConverter {
         this.targetCaseFormat = targetCaseFormat;
     }
     convertCase(text) {
+        if (this.sourceCaseFormat === this.targetCaseFormat) {
+            return text;
+        }
         const words = this.sourceCaseFormat.splitWords(text);
         return this.targetCaseFormat.joinWords(words);
     }
@@ -948,25 +970,25 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/database/code-converter/EntityRelationshipModelToDatabaseCodeConverter.ts":
-/*!****************************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/database/code-converter/EntityRelationshipModelToDatabaseCodeConverter.ts ***!
-  \****************************************************************************************************************/
+/***/ "./src/main/erdiagram/converter/database/code-converter/SqlEntityRelationshipModelSourceCodeGenerator.ts":
+/*!***************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/database/code-converter/SqlEntityRelationshipModelSourceCodeGenerator.ts ***!
+  \***************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ EntityRelationshipModelToDatabaseCodeConverter)
+/* harmony export */   "default": () => (/* binding */ SqlEntityRelationshipModelSourceCodeGenerator)
 /* harmony export */ });
-class EntityRelationshipModelToDatabaseCodeConverter {
-    constructor(databaseModelGenerator, databaseModelToCodeConverter) {
+class SqlEntityRelationshipModelSourceCodeGenerator {
+    constructor(databaseModelGenerator, databaseModelToSqlCodeConverter) {
         this.databaseModelGenerator = databaseModelGenerator;
-        this.databaseModelToCodeConverter = databaseModelToCodeConverter;
+        this.databaseModelToSqlCodeConverter = databaseModelToSqlCodeConverter;
     }
-    convertToCode(entityRelationshipModel) {
+    generateSourceCode(entityRelationshipModel) {
         const databaseModel = this.databaseModelGenerator.generateDatabaseModel(entityRelationshipModel);
-        return this.databaseModelToCodeConverter.convertToCode(databaseModel);
+        return this.databaseModelToSqlCodeConverter.convertToCode(databaseModel);
     }
 }
 
@@ -998,9 +1020,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "postgresqlDialectConfigManager": () => (/* reexport safe */ _sql_exports__WEBPACK_IMPORTED_MODULE_1__.postgresqlDialectConfigManager),
 /* harmony export */   "sqlServerDialectConfigManager": () => (/* reexport safe */ _sql_exports__WEBPACK_IMPORTED_MODULE_1__.sqlServerDialectConfigManager),
 /* harmony export */   "sqliteDialectConfigManager": () => (/* reexport safe */ _sql_exports__WEBPACK_IMPORTED_MODULE_1__.sqliteDialectConfigManager),
-/* harmony export */   "EntityRelationshipModelToDatabaseCodeConverter": () => (/* reexport safe */ _EntityRelationshipModelToDatabaseCodeConverter__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */   "SqlEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _SqlEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_0__.default)
 /* harmony export */ });
-/* harmony import */ var _EntityRelationshipModelToDatabaseCodeConverter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EntityRelationshipModelToDatabaseCodeConverter */ "./src/main/erdiagram/converter/database/code-converter/EntityRelationshipModelToDatabaseCodeConverter.ts");
+/* harmony import */ var _SqlEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SqlEntityRelationshipModelSourceCodeGenerator */ "./src/main/erdiagram/converter/database/code-converter/SqlEntityRelationshipModelSourceCodeGenerator.ts");
 /* harmony import */ var _sql_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sql/exports */ "./src/main/erdiagram/converter/database/code-converter/sql/exports.ts");
 
 
@@ -2804,13 +2826,13 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DatabaseModelToSqlCodeConverter": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.DatabaseModelToSqlCodeConverter),
-/* harmony export */   "EntityRelationshipModelToDatabaseCodeConverter": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.EntityRelationshipModelToDatabaseCodeConverter),
 /* harmony export */   "MysqlDialect": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.MysqlDialect),
 /* harmony export */   "MysqlDialectConfigManager": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.MysqlDialectConfigManager),
 /* harmony export */   "OracleDialect": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.OracleDialect),
 /* harmony export */   "OracleDialectConfigManager": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.OracleDialectConfigManager),
 /* harmony export */   "PostgresqlDialect": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.PostgresqlDialect),
 /* harmony export */   "PostgresqlDialectConfigManager": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.PostgresqlDialectConfigManager),
+/* harmony export */   "SqlEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.SqlEntityRelationshipModelSourceCodeGenerator),
 /* harmony export */   "SqlServerDialect": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.SqlServerDialect),
 /* harmony export */   "SqlServerDialectConfigManager": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.SqlServerDialectConfigManager),
 /* harmony export */   "SqliteDialect": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.SqliteDialect),
@@ -2849,7 +2871,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_database_model_config_DatabaseModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfigManager */ "./src/main/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfigManager.ts");
 /* harmony import */ var _erdiagram_util_map_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/map-utils */ "./src/main/erdiagram/util/map-utils.ts");
 /* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
-/* harmony import */ var _erdiagram_converter_oop_model_source_metadata_types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata-types */ "./src/main/erdiagram/converter/oop/model/source-metadata-types.ts");
+/* harmony import */ var _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata/source-metadata-types */ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-types.ts");
 
 
 
@@ -2899,7 +2921,7 @@ class DatabaseModelGenerator {
             columns,
             references,
             sourceMetadata: {
-                sourceType: _erdiagram_converter_oop_model_source_metadata_types__WEBPACK_IMPORTED_MODULE_5__.SourceType.ENTITY,
+                sourceType: _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_5__.SourceType.ENTITY,
                 entity
             }
         };
@@ -2922,7 +2944,7 @@ class DatabaseModelGenerator {
                 this.createTableReference(relationship, relationship.rightMember, entityIdentitiesMap)
             ],
             sourceMetadata: {
-                sourceType: _erdiagram_converter_oop_model_source_metadata_types__WEBPACK_IMPORTED_MODULE_5__.SourceType.RELATIONSHIP,
+                sourceType: _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_5__.SourceType.RELATIONSHIP,
                 relationship
             }
         };
@@ -2951,9 +2973,9 @@ class DatabaseModelGenerator {
             notNull: cardinality !== _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__.Cardinality.ZERO_OR_ONE,
             unique,
             sourceMetadata: {
-                sourceType: _erdiagram_converter_oop_model_source_metadata_types__WEBPACK_IMPORTED_MODULE_5__.SourceType.RELATIONSHIP_TARGET,
+                sourceType: _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_5__.SourceType.RELATIONSHIP_MEMBER,
                 relationship,
-                targetMember: toMember
+                referencedMember: toMember
             }
         };
     }
@@ -2984,7 +3006,7 @@ class DatabaseModelGenerator {
             type,
             length,
             sourceMetadata: {
-                sourceType: _erdiagram_converter_oop_model_source_metadata_types__WEBPACK_IMPORTED_MODULE_5__.SourceType.ENTITY_PROPERTY,
+                sourceType: _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_5__.SourceType.ENTITY_PROPERTY,
                 entity,
                 property
             }
@@ -3107,10 +3129,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "NomnomlEntityRelationshipModelToDiagramCodeConverter": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__.NomnomlEntityRelationshipModelToDiagramCodeConverter),
-/* harmony export */   "NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__.NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager),
+/* harmony export */   "NomnomlEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__.NomnomlEntityRelationshipModelSourceCodeGenerator),
+/* harmony export */   "NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__.NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager),
 /* harmony export */   "nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__.nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager),
-/* harmony export */   "PlantUmlEntityRelationshipModelToDiagramCodeConverter": () => (/* reexport safe */ _plantuml_exports__WEBPACK_IMPORTED_MODULE_1__.PlantUmlEntityRelationshipModelToDiagramCodeConverter)
+/* harmony export */   "PlantUmlEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _plantuml_exports__WEBPACK_IMPORTED_MODULE_1__.PlantUmlEntityRelationshipModelSourceCodeGenerator)
 /* harmony export */ });
 /* harmony import */ var _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nomnoml/exports */ "./src/main/erdiagram/converter/diagram/nomnoml/exports.ts");
 /* harmony import */ var _plantuml_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./plantuml/exports */ "./src/main/erdiagram/converter/diagram/plantuml/exports.ts");
@@ -3120,33 +3142,33 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/diagram/nomnoml/NomnomlEntityRelationshipModelToDiagramCodeConverter.ts":
-/*!**************************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/diagram/nomnoml/NomnomlEntityRelationshipModelToDiagramCodeConverter.ts ***!
-  \**************************************************************************************************************/
+/***/ "./src/main/erdiagram/converter/diagram/nomnoml/NomnomlEntityRelationshipModelSourceCodeGenerator.ts":
+/*!***********************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/diagram/nomnoml/NomnomlEntityRelationshipModelSourceCodeGenerator.ts ***!
+  \***********************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ NomnomlEntityRelationshipModelToDiagramCodeConverter)
+/* harmony export */   "default": () => (/* binding */ NomnomlEntityRelationshipModelSourceCodeGenerator)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_diagram_nomnoml_entity_NomnomlEntityCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/diagram/nomnoml/entity/NomnomlEntityCodeGenerator */ "./src/main/erdiagram/converter/diagram/nomnoml/entity/NomnomlEntityCodeGenerator.ts");
 /* harmony import */ var _erdiagram_converter_diagram_nomnoml_relationship_NomnomlRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/diagram/nomnoml/relationship/NomnomlRelationshipCodeGenerator */ "./src/main/erdiagram/converter/diagram/nomnoml/relationship/NomnomlRelationshipCodeGenerator.ts");
-/* harmony import */ var _erdiagram_converter_diagram_nomnoml_config_NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager */ "./src/main/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager.ts");
+/* harmony import */ var _erdiagram_converter_diagram_nomnoml_config_NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager */ "./src/main/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager.ts");
 /* harmony import */ var _erdiagram_converter_diagram_nomnoml_directive_NomnomlDirectivesCodeGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/diagram/nomnoml/directive/NomnomlDirectivesCodeGenerator */ "./src/main/erdiagram/converter/diagram/nomnoml/directive/NomnomlDirectivesCodeGenerator.ts");
 
 
 
 
-class NomnomlEntityRelationshipModelToDiagramCodeConverter {
+class NomnomlEntityRelationshipModelSourceCodeGenerator {
     constructor(config) {
         this.entityCodeGenerator = new _erdiagram_converter_diagram_nomnoml_entity_NomnomlEntityCodeGenerator__WEBPACK_IMPORTED_MODULE_0__.default();
         this.relationshipCodeGenerator = new _erdiagram_converter_diagram_nomnoml_relationship_NomnomlRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_1__.default();
         this.directivesCodeGenerator = new _erdiagram_converter_diagram_nomnoml_directive_NomnomlDirectivesCodeGenerator__WEBPACK_IMPORTED_MODULE_3__.default();
-        this.config = _erdiagram_converter_diagram_nomnoml_config_NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_2__.default.mergeWithDefaultConfig(config);
+        this.config = _erdiagram_converter_diagram_nomnoml_config_NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_2__.default.mergeWithDefaultConfig(config);
     }
-    convertToCode(model) {
+    generateSourceCode(model) {
         return [
             ...model.entities.map(entity => this.entityCodeGenerator.generateEntityCode(entity)),
             ...model.relationships.map(relationship => this.relationshipCodeGenerator.generateRelationshipCode(relationship)),
@@ -3158,21 +3180,21 @@ class NomnomlEntityRelationshipModelToDiagramCodeConverter {
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager.ts":
-/*!**********************************************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager.ts ***!
-  \**********************************************************************************************************************************/
+/***/ "./src/main/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager.ts":
+/*!*******************************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager.ts ***!
+  \*******************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager": () => (/* binding */ NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager),
+/* harmony export */   "NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager": () => (/* binding */ NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
 
-class NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__.default {
+class NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__.default {
     getDefaultConfig() {
         return {
             arrowSize: 1,
@@ -3202,7 +3224,7 @@ class NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager extends 
         return Object.assign(Object.assign({}, fullConfig), partialConfig);
     }
 }
-const nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager = new NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager();
+const nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager = new NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager();
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager);
 
 
@@ -3217,10 +3239,10 @@ const nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager = new No
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager": () => (/* reexport safe */ _NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_0__.NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager),
-/* harmony export */   "nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager": () => (/* reexport safe */ _NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */   "NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager": () => (/* reexport safe */ _NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__.NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager),
+/* harmony export */   "nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager": () => (/* reexport safe */ _NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
 /* harmony export */ });
-/* harmony import */ var _NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager */ "./src/main/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager.ts");
+/* harmony import */ var _NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager */ "./src/main/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager.ts");
 
 
 
@@ -3361,11 +3383,11 @@ class NomnomlEntityPropertyCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_1__.NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager),
+/* harmony export */   "NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_1__.NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager),
 /* harmony export */   "nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_1__.nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager),
-/* harmony export */   "NomnomlEntityRelationshipModelToDiagramCodeConverter": () => (/* reexport safe */ _NomnomlEntityRelationshipModelToDiagramCodeConverter__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */   "NomnomlEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _NomnomlEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_0__.default)
 /* harmony export */ });
-/* harmony import */ var _NomnomlEntityRelationshipModelToDiagramCodeConverter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NomnomlEntityRelationshipModelToDiagramCodeConverter */ "./src/main/erdiagram/converter/diagram/nomnoml/NomnomlEntityRelationshipModelToDiagramCodeConverter.ts");
+/* harmony import */ var _NomnomlEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NomnomlEntityRelationshipModelSourceCodeGenerator */ "./src/main/erdiagram/converter/diagram/nomnoml/NomnomlEntityRelationshipModelSourceCodeGenerator.ts");
 /* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/converter/diagram/nomnoml/config/exports.ts");
 
 
@@ -3538,27 +3560,27 @@ class NomnomlUnnamedRelationshipCodeGenerator {
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/diagram/plantuml/PlantUmlEntityRelationshipModelToDiagramCodeConverter.ts":
-/*!****************************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/diagram/plantuml/PlantUmlEntityRelationshipModelToDiagramCodeConverter.ts ***!
-  \****************************************************************************************************************/
+/***/ "./src/main/erdiagram/converter/diagram/plantuml/PlantUmlEntityRelationshipModelSourceCodeGenerator.ts":
+/*!*************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/diagram/plantuml/PlantUmlEntityRelationshipModelSourceCodeGenerator.ts ***!
+  \*************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ PlantUmlEntityRelationshipModelToDiagramCodeConverter)
+/* harmony export */   "default": () => (/* binding */ PlantUmlEntityRelationshipModelSourceCodeGenerator)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_diagram_plantuml_entity_PlantUmlEntityCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/diagram/plantuml/entity/PlantUmlEntityCodeGenerator */ "./src/main/erdiagram/converter/diagram/plantuml/entity/PlantUmlEntityCodeGenerator.ts");
 /* harmony import */ var _erdiagram_converter_diagram_plantuml_relationship_PlantUmlRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/diagram/plantuml/relationship/PlantUmlRelationshipCodeGenerator */ "./src/main/erdiagram/converter/diagram/plantuml/relationship/PlantUmlRelationshipCodeGenerator.ts");
 
 
-class PlantUmlEntityRelationshipModelToDiagramCodeConverter {
+class PlantUmlEntityRelationshipModelSourceCodeGenerator {
     constructor() {
         this.entityCodeGenerator = new _erdiagram_converter_diagram_plantuml_entity_PlantUmlEntityCodeGenerator__WEBPACK_IMPORTED_MODULE_0__.default();
         this.relationshipCodeGenerator = new _erdiagram_converter_diagram_plantuml_relationship_PlantUmlRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_1__.default();
     }
-    convertToCode(model) {
+    generateSourceCode(model) {
         return [
             '@startuml',
             ...model.entities.map(entity => this.entityCodeGenerator.generateEntityCode(entity)),
@@ -3682,9 +3704,9 @@ class PlantUmlEntityPropertyCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "PlantUmlEntityRelationshipModelToDiagramCodeConverter": () => (/* reexport safe */ _PlantUmlEntityRelationshipModelToDiagramCodeConverter__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */   "PlantUmlEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _PlantUmlEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_0__.default)
 /* harmony export */ });
-/* harmony import */ var _PlantUmlEntityRelationshipModelToDiagramCodeConverter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PlantUmlEntityRelationshipModelToDiagramCodeConverter */ "./src/main/erdiagram/converter/diagram/plantuml/PlantUmlEntityRelationshipModelToDiagramCodeConverter.ts");
+/* harmony import */ var _PlantUmlEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PlantUmlEntityRelationshipModelSourceCodeGenerator */ "./src/main/erdiagram/converter/diagram/plantuml/PlantUmlEntityRelationshipModelSourceCodeGenerator.ts");
 
 
 
@@ -3796,89 +3818,75 @@ class PlantUmlRelationshipDirectionCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "CaseConverter": () => (/* reexport safe */ _common_exports__WEBPACK_IMPORTED_MODULE_0__.CaseConverter),
-/* harmony export */   "StandardCaseFormats": () => (/* reexport safe */ _common_exports__WEBPACK_IMPORTED_MODULE_0__.StandardCaseFormats),
-/* harmony export */   "StandardIdNamingStrategies": () => (/* reexport safe */ _common_exports__WEBPACK_IMPORTED_MODULE_0__.StandardIdNamingStrategies),
-/* harmony export */   "DatabaseModelGenerator": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.DatabaseModelGenerator),
-/* harmony export */   "DatabaseModelGeneratorConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.DatabaseModelGeneratorConfigManager),
-/* harmony export */   "DatabaseModelToSqlCodeConverter": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.DatabaseModelToSqlCodeConverter),
-/* harmony export */   "EntityRelationshipModelToDatabaseCodeConverter": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.EntityRelationshipModelToDatabaseCodeConverter),
-/* harmony export */   "MysqlDialect": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.MysqlDialect),
-/* harmony export */   "MysqlDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.MysqlDialectConfigManager),
-/* harmony export */   "OracleDialect": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.OracleDialect),
-/* harmony export */   "OracleDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.OracleDialectConfigManager),
-/* harmony export */   "PostgresqlDialect": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.PostgresqlDialect),
-/* harmony export */   "PostgresqlDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.PostgresqlDialectConfigManager),
-/* harmony export */   "SqlServerDialect": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.SqlServerDialect),
-/* harmony export */   "SqlServerDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.SqlServerDialectConfigManager),
-/* harmony export */   "SqliteDialect": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.SqliteDialect),
-/* harmony export */   "SqliteDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.SqliteDialectConfigManager),
-/* harmony export */   "databaseModelGeneratorConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.databaseModelGeneratorConfigManager),
-/* harmony export */   "mysqlDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.mysqlDialectConfigManager),
-/* harmony export */   "oracleDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.oracleDialectConfigManager),
-/* harmony export */   "postgresqlDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.postgresqlDialectConfigManager),
-/* harmony export */   "sqlServerDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.sqlServerDialectConfigManager),
-/* harmony export */   "sqliteDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_1__.sqliteDialectConfigManager),
-/* harmony export */   "ClassModelGenerator": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.ClassModelGenerator),
-/* harmony export */   "ClassModelGeneratorConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.ClassModelGeneratorConfigManager),
-/* harmony export */   "EntityRelationshipModelToClassCodeConverter": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.EntityRelationshipModelToClassCodeConverter),
-/* harmony export */   "JavaClassModelToCodeConverter": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.JavaClassModelToCodeConverter),
-/* harmony export */   "JavaClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.JavaClassModelToCodeConverterConfigManager),
-/* harmony export */   "NotNullBlobValidationStrategy": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.NotNullBlobValidationStrategy),
-/* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.NotNullTextValidationStrategy),
-/* harmony export */   "TypeScriptClassModelToCodeConverter": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.TypeScriptClassModelToCodeConverter),
-/* harmony export */   "TypeScriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.TypeScriptClassModelToCodeConverterConfigManager),
-/* harmony export */   "classModelGeneratorConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.classModelGeneratorConfigManager),
-/* harmony export */   "createJavaArrayType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.createJavaArrayType),
-/* harmony export */   "createJavaParameterizedType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.createJavaParameterizedType),
-/* harmony export */   "createJavaSimpleType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.createJavaSimpleType),
-/* harmony export */   "createTypeScriptArrayType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.createTypeScriptArrayType),
-/* harmony export */   "createTypeScriptParameterizedType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.createTypeScriptParameterizedType),
-/* harmony export */   "createTypeScriptSimpleType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.createTypeScriptSimpleType),
-/* harmony export */   "isJavaParameterizedType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.isJavaParameterizedType),
-/* harmony export */   "isTypeScriptParameterizedType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.isTypeScriptParameterizedType),
-/* harmony export */   "javaClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.javaClassModelToCodeConverterConfigManager),
-/* harmony export */   "parseJavaType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.parseJavaType),
-/* harmony export */   "parseTypeScriptType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.parseTypeScriptType),
-/* harmony export */   "typescriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_2__.typescriptClassModelToCodeConverterConfigManager),
-/* harmony export */   "NomnomlEntityRelationshipModelToDiagramCodeConverter": () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_3__.NomnomlEntityRelationshipModelToDiagramCodeConverter),
-/* harmony export */   "NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager": () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_3__.NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager),
-/* harmony export */   "PlantUmlEntityRelationshipModelToDiagramCodeConverter": () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_3__.PlantUmlEntityRelationshipModelToDiagramCodeConverter),
-/* harmony export */   "nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager": () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_3__.nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager)
+/* harmony export */   "CaseConverter": () => (/* reexport safe */ _common_exports__WEBPACK_IMPORTED_MODULE_1__.CaseConverter),
+/* harmony export */   "StandardCaseFormats": () => (/* reexport safe */ _common_exports__WEBPACK_IMPORTED_MODULE_1__.StandardCaseFormats),
+/* harmony export */   "StandardIdNamingStrategies": () => (/* reexport safe */ _common_exports__WEBPACK_IMPORTED_MODULE_1__.StandardIdNamingStrategies),
+/* harmony export */   "DatabaseModelGenerator": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.DatabaseModelGenerator),
+/* harmony export */   "DatabaseModelGeneratorConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.DatabaseModelGeneratorConfigManager),
+/* harmony export */   "DatabaseModelToSqlCodeConverter": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.DatabaseModelToSqlCodeConverter),
+/* harmony export */   "MysqlDialect": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.MysqlDialect),
+/* harmony export */   "MysqlDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.MysqlDialectConfigManager),
+/* harmony export */   "OracleDialect": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.OracleDialect),
+/* harmony export */   "OracleDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.OracleDialectConfigManager),
+/* harmony export */   "PostgresqlDialect": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.PostgresqlDialect),
+/* harmony export */   "PostgresqlDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.PostgresqlDialectConfigManager),
+/* harmony export */   "SqlEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.SqlEntityRelationshipModelSourceCodeGenerator),
+/* harmony export */   "SqlServerDialect": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.SqlServerDialect),
+/* harmony export */   "SqlServerDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.SqlServerDialectConfigManager),
+/* harmony export */   "SqliteDialect": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.SqliteDialect),
+/* harmony export */   "SqliteDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.SqliteDialectConfigManager),
+/* harmony export */   "databaseModelGeneratorConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.databaseModelGeneratorConfigManager),
+/* harmony export */   "mysqlDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.mysqlDialectConfigManager),
+/* harmony export */   "oracleDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.oracleDialectConfigManager),
+/* harmony export */   "postgresqlDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.postgresqlDialectConfigManager),
+/* harmony export */   "sqlServerDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.sqlServerDialectConfigManager),
+/* harmony export */   "sqliteDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.sqliteDialectConfigManager),
+/* harmony export */   "ClassModelGenerator": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.ClassModelGenerator),
+/* harmony export */   "ClassModelGeneratorConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.ClassModelGeneratorConfigManager),
+/* harmony export */   "JavaAnnotation": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JavaAnnotation),
+/* harmony export */   "JavaClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JavaClassModelToCodeConverterConfigManager),
+/* harmony export */   "JavaEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JavaEntityRelationshipModelSourceCodeGenerator),
+/* harmony export */   "JavaEntityRelationshipModelSourceCodeGeneratorBuilder": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JavaEntityRelationshipModelSourceCodeGeneratorBuilder),
+/* harmony export */   "JavaxValidationTransformer": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JavaxValidationTransformer),
+/* harmony export */   "JavaxValidationTransformerConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JavaxValidationTransformerConfigManager),
+/* harmony export */   "JpaTransformer": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JpaTransformer),
+/* harmony export */   "JpaTransformerConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JpaTransformerConfigManager),
+/* harmony export */   "NotNullBlobValidationStrategy": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.NotNullBlobValidationStrategy),
+/* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.NotNullTextValidationStrategy),
+/* harmony export */   "TypeScriptClassModelToCodeConverter": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.TypeScriptClassModelToCodeConverter),
+/* harmony export */   "TypeScriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.TypeScriptClassModelToCodeConverterConfigManager),
+/* harmony export */   "classModelGeneratorConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.classModelGeneratorConfigManager),
+/* harmony export */   "createJavaArrayType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.createJavaArrayType),
+/* harmony export */   "createJavaParameterizedType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.createJavaParameterizedType),
+/* harmony export */   "createJavaSimpleType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.createJavaSimpleType),
+/* harmony export */   "createTypeScriptArrayType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.createTypeScriptArrayType),
+/* harmony export */   "createTypeScriptParameterizedType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.createTypeScriptParameterizedType),
+/* harmony export */   "createTypeScriptSimpleType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.createTypeScriptSimpleType),
+/* harmony export */   "isJavaParameterizedType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.isJavaParameterizedType),
+/* harmony export */   "isTypeScriptParameterizedType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.isTypeScriptParameterizedType),
+/* harmony export */   "javaClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.javaClassModelToCodeConverterConfigManager),
+/* harmony export */   "javaxValidationTransformerConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.javaxValidationTransformerConfigManager),
+/* harmony export */   "jpaTransformerConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.jpaTransformerConfigManager),
+/* harmony export */   "parseJavaType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.parseJavaType),
+/* harmony export */   "parseTypeScriptType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.parseTypeScriptType),
+/* harmony export */   "typescriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.typescriptClassModelToCodeConverterConfigManager),
+/* harmony export */   "NomnomlEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_4__.NomnomlEntityRelationshipModelSourceCodeGenerator),
+/* harmony export */   "NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager": () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_4__.NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager),
+/* harmony export */   "PlantUmlEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_4__.PlantUmlEntityRelationshipModelSourceCodeGenerator),
+/* harmony export */   "nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager": () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_4__.nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager),
+/* harmony export */   "isMultipleFileEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _erdiagram_converter_MultipleFileEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_0__.isMultipleFileEntityRelationshipModelSourceCodeGenerator)
 /* harmony export */ });
-/* harmony import */ var _common_exports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common/exports */ "./src/main/erdiagram/converter/common/exports.ts");
-/* harmony import */ var _database_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./database/exports */ "./src/main/erdiagram/converter/database/exports.ts");
-/* harmony import */ var _oop_exports__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./oop/exports */ "./src/main/erdiagram/converter/oop/exports.ts");
-/* harmony import */ var _diagram_exports__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./diagram/exports */ "./src/main/erdiagram/converter/diagram/exports.ts");
+/* harmony import */ var _erdiagram_converter_MultipleFileEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/MultipleFileEntityRelationshipModelSourceCodeGenerator */ "./src/main/erdiagram/converter/MultipleFileEntityRelationshipModelSourceCodeGenerator.ts");
+/* harmony import */ var _common_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common/exports */ "./src/main/erdiagram/converter/common/exports.ts");
+/* harmony import */ var _database_exports__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./database/exports */ "./src/main/erdiagram/converter/database/exports.ts");
+/* harmony import */ var _oop_exports__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./oop/exports */ "./src/main/erdiagram/converter/oop/exports.ts");
+/* harmony import */ var _diagram_exports__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./diagram/exports */ "./src/main/erdiagram/converter/diagram/exports.ts");
 
 
 
 
 
 
-/***/ }),
-
-/***/ "./src/main/erdiagram/converter/oop/code-converter/EntityRelationshipModelToClassCodeConverter.ts":
-/*!********************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/oop/code-converter/EntityRelationshipModelToClassCodeConverter.ts ***!
-  \********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ EntityRelationshipModelToClassCodeConverter)
-/* harmony export */ });
-class EntityRelationshipModelToClassCodeConverter {
-    constructor(classModelGenerator, classModelToCodeConverter) {
-        this.classModelGenerator = classModelGenerator;
-        this.classModelToCodeConverter = classModelToCodeConverter;
-    }
-    convertToCode(entityRelationshipModel) {
-        const classModel = this.classModelGenerator.generateClassModel(entityRelationshipModel);
-        return this.classModelToCodeConverter.convertToCode(classModel);
-    }
-}
 
 
 /***/ }),
@@ -3892,146 +3900,180 @@ class EntityRelationshipModelToClassCodeConverter {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "JavaClassModelToCodeConverter": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_1__.JavaClassModelToCodeConverter),
-/* harmony export */   "JavaClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_1__.JavaClassModelToCodeConverterConfigManager),
-/* harmony export */   "NotNullBlobValidationStrategy": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_1__.NotNullBlobValidationStrategy),
-/* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_1__.NotNullTextValidationStrategy),
-/* harmony export */   "createJavaArrayType": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_1__.createJavaArrayType),
-/* harmony export */   "createJavaParameterizedType": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_1__.createJavaParameterizedType),
-/* harmony export */   "createJavaSimpleType": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_1__.createJavaSimpleType),
-/* harmony export */   "isJavaParameterizedType": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_1__.isJavaParameterizedType),
-/* harmony export */   "javaClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_1__.javaClassModelToCodeConverterConfigManager),
-/* harmony export */   "parseJavaType": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_1__.parseJavaType),
-/* harmony export */   "TypeScriptClassModelToCodeConverter": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_2__.TypeScriptClassModelToCodeConverter),
-/* harmony export */   "TypeScriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_2__.TypeScriptClassModelToCodeConverterConfigManager),
-/* harmony export */   "createTypeScriptArrayType": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_2__.createTypeScriptArrayType),
-/* harmony export */   "createTypeScriptParameterizedType": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_2__.createTypeScriptParameterizedType),
-/* harmony export */   "createTypeScriptSimpleType": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_2__.createTypeScriptSimpleType),
-/* harmony export */   "isTypeScriptParameterizedType": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_2__.isTypeScriptParameterizedType),
-/* harmony export */   "parseTypeScriptType": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_2__.parseTypeScriptType),
-/* harmony export */   "typescriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_2__.typescriptClassModelToCodeConverterConfigManager),
-/* harmony export */   "EntityRelationshipModelToClassCodeConverter": () => (/* reexport safe */ _EntityRelationshipModelToClassCodeConverter__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */   "JavaAnnotation": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JavaAnnotation),
+/* harmony export */   "JavaClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JavaClassModelToCodeConverterConfigManager),
+/* harmony export */   "JavaEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JavaEntityRelationshipModelSourceCodeGenerator),
+/* harmony export */   "JavaEntityRelationshipModelSourceCodeGeneratorBuilder": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JavaEntityRelationshipModelSourceCodeGeneratorBuilder),
+/* harmony export */   "JavaxValidationTransformer": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JavaxValidationTransformer),
+/* harmony export */   "JavaxValidationTransformerConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JavaxValidationTransformerConfigManager),
+/* harmony export */   "JpaTransformer": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JpaTransformer),
+/* harmony export */   "JpaTransformerConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JpaTransformerConfigManager),
+/* harmony export */   "NotNullBlobValidationStrategy": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.NotNullBlobValidationStrategy),
+/* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.NotNullTextValidationStrategy),
+/* harmony export */   "createJavaArrayType": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.createJavaArrayType),
+/* harmony export */   "createJavaParameterizedType": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.createJavaParameterizedType),
+/* harmony export */   "createJavaSimpleType": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.createJavaSimpleType),
+/* harmony export */   "isJavaParameterizedType": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.isJavaParameterizedType),
+/* harmony export */   "javaClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.javaClassModelToCodeConverterConfigManager),
+/* harmony export */   "javaxValidationTransformerConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.javaxValidationTransformerConfigManager),
+/* harmony export */   "jpaTransformerConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.jpaTransformerConfigManager),
+/* harmony export */   "parseJavaType": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.parseJavaType),
+/* harmony export */   "TypeScriptClassModelToCodeConverter": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.TypeScriptClassModelToCodeConverter),
+/* harmony export */   "TypeScriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.TypeScriptClassModelToCodeConverterConfigManager),
+/* harmony export */   "createTypeScriptArrayType": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.createTypeScriptArrayType),
+/* harmony export */   "createTypeScriptParameterizedType": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.createTypeScriptParameterizedType),
+/* harmony export */   "createTypeScriptSimpleType": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.createTypeScriptSimpleType),
+/* harmony export */   "isTypeScriptParameterizedType": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.isTypeScriptParameterizedType),
+/* harmony export */   "parseTypeScriptType": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.parseTypeScriptType),
+/* harmony export */   "typescriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.typescriptClassModelToCodeConverterConfigManager)
 /* harmony export */ });
-/* harmony import */ var _EntityRelationshipModelToClassCodeConverter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EntityRelationshipModelToClassCodeConverter */ "./src/main/erdiagram/converter/oop/code-converter/EntityRelationshipModelToClassCodeConverter.ts");
-/* harmony import */ var _java_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./java/exports */ "./src/main/erdiagram/converter/oop/code-converter/java/exports.ts");
-/* harmony import */ var _typescript_exports__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./typescript/exports */ "./src/main/erdiagram/converter/oop/code-converter/typescript/exports.ts");
-
-
+/* harmony import */ var _java_exports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./java/exports */ "./src/main/erdiagram/converter/oop/code-converter/java/exports.ts");
+/* harmony import */ var _typescript_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./typescript/exports */ "./src/main/erdiagram/converter/oop/code-converter/typescript/exports.ts");
 
 
 
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/oop/code-converter/java/JavaClassModelToCodeConverter.ts":
-/*!***********************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/oop/code-converter/java/JavaClassModelToCodeConverter.ts ***!
-  \***********************************************************************************************/
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/JavaEntityRelationshipModelSourceCodeGenerator.ts":
+/*!****************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/JavaEntityRelationshipModelSourceCodeGenerator.ts ***!
+  \****************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ JavaClassModelToCodeConverter)
+/* harmony export */   "default": () => (/* binding */ JavaEntityRelationshipModelSourceCodeGenerator)
 /* harmony export */ });
-/* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
-/* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
-/* harmony import */ var _erdiagram_converter_oop_code_converter_java_config_JavaClassModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/config/JavaClassModelToCodeConverterConfigManager */ "./src/main/erdiagram/converter/oop/code-converter/java/config/JavaClassModelToCodeConverterConfigManager.ts");
-/* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_JavaFieldTypeResolver__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/JavaFieldTypeResolver */ "./src/main/erdiagram/converter/oop/code-converter/java/type/JavaFieldTypeResolver.ts");
-/* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_import_JavaImportStatementsGenerator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/import/JavaImportStatementsGenerator */ "./src/main/erdiagram/converter/oop/code-converter/java/type/import/JavaImportStatementsGenerator.ts");
-/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_validation_JavaValidationAnnotationsGenerator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/validation/JavaValidationAnnotationsGenerator */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/JavaValidationAnnotationsGenerator.ts");
-
-
-
-
-
-
-const EMPTY_STRING = '';
-class JavaClassModelToCodeConverter {
-    constructor(config) {
-        this.config = _erdiagram_converter_oop_code_converter_java_config_JavaClassModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_2__.default.mergeWithDefaultConfig(config);
-        this.typeResolver = new _erdiagram_converter_oop_code_converter_java_type_JavaFieldTypeResolver__WEBPACK_IMPORTED_MODULE_3__.default(this.config.typeBindings, this.config.generatedClassesPackage);
-        this.validationAnnotationsGenerator = new _erdiagram_converter_oop_code_converter_java_annotation_validation_JavaValidationAnnotationsGenerator__WEBPACK_IMPORTED_MODULE_5__.default(this.config.notNullTextValidationStrategy, this.config.notNullBlobValidationStrategy);
-        this.importStatementsGenerator = new _erdiagram_converter_oop_code_converter_java_type_import_JavaImportStatementsGenerator__WEBPACK_IMPORTED_MODULE_4__.default(this.config.generatedClassesPackage);
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_model_transformer_ApplyTransformersCommand__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/model/transformer/ApplyTransformersCommand */ "./src/main/erdiagram/converter/oop/code-converter/java/model/transformer/ApplyTransformersCommand.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_JavaEntityRelationshipModelSourceCodeGeneratorBuilder__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/JavaEntityRelationshipModelSourceCodeGeneratorBuilder */ "./src/main/erdiagram/converter/oop/code-converter/java/JavaEntityRelationshipModelSourceCodeGeneratorBuilder.ts");
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
     }
-    convertToCode(classModel) {
-        return classModel.classes
-            .map(classDescriptor => this.generateClass(classDescriptor))
-            .join('\n\n');
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
     }
-    generateClass(classDescriptor) {
-        const className = (0,_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__.capitalizeWord)(classDescriptor.name);
-        const usedTypes = [];
-        const fieldsLines = [];
-        const methodsLines = [];
-        for (const field of classDescriptor.fields) {
-            const { usedTypes: fieldUsedTypes, fieldLines, getterLines, setterLines } = this.createField(field);
-            usedTypes.push(...fieldUsedTypes);
-            fieldsLines.push(...fieldLines);
-            methodsLines.push(...getterLines, EMPTY_STRING, ...setterLines, EMPTY_STRING);
-        }
-        const classOuterLines = [
-            `/* ========== ${className} class ========== */`,
-            EMPTY_STRING
-        ];
-        if (this.config.generatedClassesPackage) {
-            classOuterLines.push(`package ${this.config.generatedClassesPackage};`, EMPTY_STRING);
-        }
-        const importLines = this.importStatementsGenerator.generateImportStatements(usedTypes);
-        if (importLines.length !== 0) {
-            classOuterLines.push(...importLines, EMPTY_STRING);
-        }
-        classOuterLines.push(`public class ${className} {`);
-        const classContentLines = [
-            EMPTY_STRING,
-            ...fieldsLines,
-            EMPTY_STRING,
-            ...methodsLines
-        ];
-        classOuterLines.push(...(0,_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_1__.indentLines)(classContentLines));
-        classOuterLines.push(`}`);
-        return classOuterLines.join('\n');
+    return privateMap.get(receiver);
+};
+var _classModelGenerator, _javaClassModelGenerator, _javaClassModelTransformers, _javaClassModelCodeGenerator, _javaClassModelSourceFilesGenerator;
+
+
+class JavaEntityRelationshipModelSourceCodeGenerator {
+    constructor(classModelGenerator, javaClassModelGenerator, javaClassModelTransformers, javaClassModelCodeGenerator, javaClassModelSourceFilesGenerator) {
+        _classModelGenerator.set(this, void 0);
+        _javaClassModelGenerator.set(this, void 0);
+        _javaClassModelTransformers.set(this, void 0);
+        _javaClassModelCodeGenerator.set(this, void 0);
+        _javaClassModelSourceFilesGenerator.set(this, void 0);
+        __classPrivateFieldSet(this, _classModelGenerator, classModelGenerator);
+        __classPrivateFieldSet(this, _javaClassModelGenerator, javaClassModelGenerator);
+        __classPrivateFieldSet(this, _javaClassModelTransformers, javaClassModelTransformers);
+        __classPrivateFieldSet(this, _javaClassModelCodeGenerator, javaClassModelCodeGenerator);
+        __classPrivateFieldSet(this, _javaClassModelSourceFilesGenerator, javaClassModelSourceFilesGenerator);
     }
-    createField(field) {
-        const fieldName = field.name;
-        const capitalizedFieldName = (0,_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__.capitalizeWord)(fieldName);
-        const fieldLines = [];
-        const usedTypes = [];
-        this.addValidationAnnotationsToFieldIfApply(field, fieldLines, usedTypes);
-        const fieldType = this.typeResolver.resolveFieldType(field);
-        usedTypes.push(fieldType);
-        const formattedJavaType = fieldType.formatSimple();
-        fieldLines.push(`private ${formattedJavaType} ${fieldName};`);
-        const getterLines = [
-            `public ${formattedJavaType} get${capitalizedFieldName}() {`,
-            (0,_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_1__.indentLine)(`return ${fieldName};`),
-            '}',
-        ];
-        const setterLines = [
-            `public void set${capitalizedFieldName}(${formattedJavaType} ${fieldName}) {`,
-            (0,_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_1__.indentLine)(`this.${fieldName} = ${fieldName};`),
-            '}',
-        ];
-        return {
-            usedTypes,
-            fieldLines,
-            getterLines,
-            setterLines
+    generateSourceCode(entityRelationshipModel) {
+        const javaClassModel = this.getJavaClassModel(entityRelationshipModel);
+        return __classPrivateFieldGet(this, _javaClassModelCodeGenerator).generateCode(javaClassModel);
+    }
+    generateSourceFiles(entityRelationshipModel) {
+        const javaClassModel = this.getJavaClassModel(entityRelationshipModel);
+        return __classPrivateFieldGet(this, _javaClassModelSourceFilesGenerator).generateSourceFiles(javaClassModel);
+    }
+    getJavaClassModel(entityRelationshipModel) {
+        const classModel = __classPrivateFieldGet(this, _classModelGenerator).generateClassModel(entityRelationshipModel);
+        const { javaClassModel, javaClassModelDescriptorsRepository } = __classPrivateFieldGet(this, _javaClassModelGenerator).generateJavaClassModel(classModel);
+        // FIXME too much dependencies?
+        const applyTransformersCommandContext = {
+            entityRelationshipModel,
+            classModel,
+            javaClassModel
         };
+        new _erdiagram_converter_oop_code_converter_java_model_transformer_ApplyTransformersCommand__WEBPACK_IMPORTED_MODULE_0__.default(applyTransformersCommandContext, javaClassModelDescriptorsRepository, __classPrivateFieldGet(this, _javaClassModelTransformers)).execute();
+        return javaClassModel;
     }
-    addValidationAnnotationsToFieldIfApply(field, fieldLines, usedTypes) {
-        if (this.config.useValidationAnnotations) {
-            const annotations = this.validationAnnotationsGenerator.getValidationAnnotations(field);
-            this.addAnnotations(annotations, fieldLines, usedTypes);
-        }
+    static withDefaultConfig() {
+        return this.builder().build();
     }
-    addAnnotations(annotations, lines, usedTypes) {
-        annotations.forEach(annotation => {
-            usedTypes.push(annotation.type);
-            lines.push(annotation.format());
-        });
+    static builder() {
+        return new _erdiagram_converter_oop_code_converter_java_JavaEntityRelationshipModelSourceCodeGeneratorBuilder__WEBPACK_IMPORTED_MODULE_1__.default();
     }
 }
+_classModelGenerator = new WeakMap(), _javaClassModelGenerator = new WeakMap(), _javaClassModelTransformers = new WeakMap(), _javaClassModelCodeGenerator = new WeakMap(), _javaClassModelSourceFilesGenerator = new WeakMap();
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/JavaEntityRelationshipModelSourceCodeGeneratorBuilder.ts":
+/*!***********************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/JavaEntityRelationshipModelSourceCodeGeneratorBuilder.ts ***!
+  \***********************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ JavaEntityRelationshipModelSourceCodeGeneratorBuilder)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_model_ClassModelGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/ClassModelGenerator */ "./src/main/erdiagram/converter/oop/model/ClassModelGenerator.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_model_generator_JavaClassModelGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/model/generator/JavaClassModelGenerator */ "./src/main/erdiagram/converter/oop/code-converter/java/model/generator/JavaClassModelGenerator.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_JavaEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/JavaEntityRelationshipModelSourceCodeGenerator */ "./src/main/erdiagram/converter/oop/code-converter/java/JavaEntityRelationshipModelSourceCodeGenerator.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_code_JavaClassModelCodeGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/code/JavaClassModelCodeGenerator */ "./src/main/erdiagram/converter/oop/code-converter/java/code/JavaClassModelCodeGenerator.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_code_JavaClassCodeGenerator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/code/JavaClassCodeGenerator */ "./src/main/erdiagram/converter/oop/code-converter/java/code/JavaClassCodeGenerator.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_code_JavaClassModelSourceFilesGenerator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/code/JavaClassModelSourceFilesGenerator */ "./src/main/erdiagram/converter/oop/code-converter/java/code/JavaClassModelSourceFilesGenerator.ts");
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _classModelGeneratorConfig, _javaClassModelGeneratorConfig, _javaClassModelTransformers;
+
+
+
+
+
+
+class JavaEntityRelationshipModelSourceCodeGeneratorBuilder {
+    constructor() {
+        _classModelGeneratorConfig.set(this, {});
+        _javaClassModelGeneratorConfig.set(this, {});
+        _javaClassModelTransformers.set(this, []);
+    }
+    withClassModelGeneratorConfig(config) {
+        __classPrivateFieldSet(this, _classModelGeneratorConfig, config);
+        return this;
+    }
+    withJavaClassModelGeneratorConfig(config) {
+        __classPrivateFieldSet(this, _javaClassModelGeneratorConfig, config);
+        return this;
+    }
+    addJavaClassModelTransformers(...javaClassModelTransformers) {
+        __classPrivateFieldGet(this, _javaClassModelTransformers).push(...javaClassModelTransformers);
+        return this;
+    }
+    build() {
+        const classModelGenerator = new _erdiagram_converter_oop_model_ClassModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(__classPrivateFieldGet(this, _classModelGeneratorConfig));
+        const javaClassModelGenerator = new _erdiagram_converter_oop_code_converter_java_model_generator_JavaClassModelGenerator__WEBPACK_IMPORTED_MODULE_1__.default(__classPrivateFieldGet(this, _javaClassModelGeneratorConfig));
+        const javaClassCodeGenerator = new _erdiagram_converter_oop_code_converter_java_code_JavaClassCodeGenerator__WEBPACK_IMPORTED_MODULE_4__.default();
+        const javaClassModelCodeGenerator = new _erdiagram_converter_oop_code_converter_java_code_JavaClassModelCodeGenerator__WEBPACK_IMPORTED_MODULE_3__.default(javaClassCodeGenerator);
+        const javaClassModelSourceFilesGenerator = new _erdiagram_converter_oop_code_converter_java_code_JavaClassModelSourceFilesGenerator__WEBPACK_IMPORTED_MODULE_5__.default(javaClassCodeGenerator);
+        return new _erdiagram_converter_oop_code_converter_java_JavaEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_2__.default(classModelGenerator, javaClassModelGenerator, [...__classPrivateFieldGet(this, _javaClassModelTransformers)], javaClassModelCodeGenerator, javaClassModelSourceFilesGenerator);
+    }
+}
+_classModelGeneratorConfig = new WeakMap(), _javaClassModelGeneratorConfig = new WeakMap(), _javaClassModelTransformers = new WeakMap();
 
 
 /***/ }),
@@ -4047,6 +4089,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ JavaAnnotation)
 /* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_utils_formatJavaAnnotation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/utils/formatJavaAnnotation */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/utils/formatJavaAnnotation.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_utils_RawAnnotationParameterValue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/utils/RawAnnotationParameterValue */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/utils/RawAnnotationParameterValue.ts");
 var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
     if (!privateMap.has(receiver)) {
         throw new TypeError("attempted to set private field on non-instance");
@@ -4061,6 +4105,8 @@ var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || 
     return privateMap.get(receiver);
 };
 var _type, _parameters;
+
+
 class JavaAnnotation {
     constructor(annotationType, parameters = {}) {
         _type.set(this, void 0);
@@ -4075,17 +4121,97 @@ class JavaAnnotation {
         return __classPrivateFieldGet(this, _parameters);
     }
     format() {
-        return formatAnnotation(this);
+        return (0,_erdiagram_converter_oop_code_converter_java_annotation_utils_formatJavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default)(this);
     }
 }
 _type = new WeakMap(), _parameters = new WeakMap();
-function formatAnnotation(annotation) {
+JavaAnnotation.createRawParameterValue = _erdiagram_converter_oop_code_converter_java_annotation_utils_RawAnnotationParameterValue__WEBPACK_IMPORTED_MODULE_1__.createRawParameterValue;
+JavaAnnotation.isRawParameterValue = _erdiagram_converter_oop_code_converter_java_annotation_utils_RawAnnotationParameterValue__WEBPACK_IMPORTED_MODULE_1__.isRawParameterValue;
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/annotation-parameter-types.ts":
+/*!*******************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/annotation/annotation-parameter-types.ts ***!
+  \*******************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/exports.ts":
+/*!************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/annotation/exports.ts ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "JavaAnnotation": () => (/* reexport safe */ _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation.ts");
+/* harmony import */ var _annotation_parameter_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./annotation-parameter-types */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/annotation-parameter-types.ts");
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/utils/RawAnnotationParameterValue.ts":
+/*!**************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/annotation/utils/RawAnnotationParameterValue.ts ***!
+  \**************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createRawParameterValue": () => (/* binding */ createRawParameterValue),
+/* harmony export */   "isRawParameterValue": () => (/* binding */ isRawParameterValue)
+/* harmony export */ });
+const RAW_ANNOTATION_PARAMETER_VALUE_SYMBOL = Symbol('RawAnnotationParameterValue');
+function createRawParameterValue(code, ...usedTypes) {
+    return {
+        [RAW_ANNOTATION_PARAMETER_VALUE_SYMBOL]: true,
+        code,
+        usedTypes
+    };
+}
+function isRawParameterValue(value) {
+    return value != null && typeof value === 'object' && value[RAW_ANNOTATION_PARAMETER_VALUE_SYMBOL];
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/utils/formatJavaAnnotation.ts":
+/*!*******************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/annotation/utils/formatJavaAnnotation.ts ***!
+  \*******************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ formatJavaAnnotation)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation.ts");
+
+function formatJavaAnnotation(annotation) {
     const simpleName = annotation.type.formatSimple();
-    const formattedParams = formatAnnotationParams(annotation.parameters);
+    const formattedParams = formatAnnotationParameters(annotation.parameters);
     return `@${simpleName}${formattedParams}`;
 }
-function formatAnnotationParams(annotationParameters) {
-    const annotationParamsEntries = Object.entries(annotationParameters);
+function formatAnnotationParameters(annotationParameters) {
+    const annotationParamsEntries = Object.entries(annotationParameters)
+        .filter(([, paramValue]) => paramValue != null);
     if (annotationParamsEntries.length === 0) {
         return '';
     }
@@ -4102,211 +4228,243 @@ function formatAnnotationParameterValue(value) {
 function formatAnnotationParameterSingleValue(value) {
     switch (typeof value) {
         case 'number':
+        case 'boolean':
             return String(value);
         case 'string':
             return `"${value}"`;
         default:
-            return formatAnnotation(value);
+            if (_erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default.isRawParameterValue(value)) {
+                return value.code;
+            }
+            return formatJavaAnnotation(value);
     }
 }
 
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/exports.ts":
-/*!************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/oop/code-converter/java/annotation/exports.ts ***!
-  \************************************************************************************/
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/code/JavaClassCodeGenerator.ts":
+/*!*********************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/code/JavaClassCodeGenerator.ts ***!
+  \*********************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "NotNullBlobValidationStrategy": () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_0__.NotNullBlobValidationStrategy),
-/* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_0__.NotNullTextValidationStrategy)
+/* harmony export */   "default": () => (/* binding */ JavaClassCodeGenerator)
 /* harmony export */ });
-/* harmony import */ var _validation_exports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validation/exports */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/exports.ts");
-
-
-
-/***/ }),
-
-/***/ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/JavaValidationAnnotationTypes.ts":
-/*!*********************************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/JavaValidationAnnotationTypes.ts ***!
-  \*********************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/createJavaSimpleType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/createJavaSimpleType.ts");
-
-const VALIDATION_ANNOTATIONS_PACKAGE = 'javax.validation.constraints';
-const JavaValidationAnnotationTypes = {
-    NotNull: (0,_erdiagram_converter_oop_code_converter_java_type_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('NotNull', VALIDATION_ANNOTATIONS_PACKAGE),
-    NotEmpty: (0,_erdiagram_converter_oop_code_converter_java_type_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('NotEmpty', VALIDATION_ANNOTATIONS_PACKAGE),
-    NotBlank: (0,_erdiagram_converter_oop_code_converter_java_type_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('NotBlank', VALIDATION_ANNOTATIONS_PACKAGE),
-    Size: (0,_erdiagram_converter_oop_code_converter_java_type_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('Size', VALIDATION_ANNOTATIONS_PACKAGE)
+/* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_import_JavaImportStatementsGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/import/JavaImportStatementsGenerator */ "./src/main/erdiagram/converter/oop/code-converter/java/type/import/JavaImportStatementsGenerator.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/model/java-class-model-types */ "./src/main/erdiagram/converter/oop/code-converter/java/model/java-class-model-types.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_import_JavaClassUsedTypesCompiler__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/import/JavaClassUsedTypesCompiler */ "./src/main/erdiagram/converter/oop/code-converter/java/type/import/JavaClassUsedTypesCompiler.ts");
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (JavaValidationAnnotationTypes);
-
-
-/***/ }),
-
-/***/ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/JavaValidationAnnotationsGenerator.ts":
-/*!**************************************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/JavaValidationAnnotationsGenerator.ts ***!
-  \**************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ JavaValidationAnnotationsGenerator)
-/* harmony export */ });
-/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
-/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_validation_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullTextValidationStrategy */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullTextValidationStrategy.ts");
-/* harmony import */ var _erdiagram_util_array_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/util/array-utils */ "./src/main/erdiagram/util/array-utils.ts");
-/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_validation_JavaValidationAnnotationTypes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/validation/JavaValidationAnnotationTypes */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/JavaValidationAnnotationTypes.ts");
-/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_validation_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullBlobValidationStrategy */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullBlobValidationStrategy.ts");
-/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation.ts");
-/* harmony import */ var _erdiagram_parser_types_error_ERDiagramSyntaxError__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/parser/types/error/ERDiagramSyntaxError */ "./src/main/erdiagram/parser/types/error/ERDiagramSyntaxError.ts");
-
-
-
-
-
-
-
-class JavaValidationAnnotationsGenerator {
-    constructor(notNullTextValidationStrategy, notNullBlobValidationStrategy) {
-        this.notNullTextValidationStrategy = notNullTextValidationStrategy;
-        this.notNullBlobValidationStrategy = notNullBlobValidationStrategy;
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
     }
-    getValidationAnnotations(field) {
-        return (0,_erdiagram_util_array_utils__WEBPACK_IMPORTED_MODULE_2__.removeNullableValues)([
-            this.getNotNullAnnotation(field),
-            this.getSizeAnnotation(field)
-        ]);
+    return privateMap.get(receiver);
+};
+var _javaUsedTypesCompiler;
+
+
+
+
+const EMPTY_STRING = '';
+class JavaClassCodeGenerator {
+    constructor() {
+        _javaUsedTypesCompiler.set(this, void 0);
+        __classPrivateFieldSet(this, _javaUsedTypesCompiler, new _erdiagram_converter_oop_code_converter_java_type_import_JavaClassUsedTypesCompiler__WEBPACK_IMPORTED_MODULE_3__.default());
     }
-    getNotNullAnnotation(field) {
-        if (field.nullable) {
-            return null;
+    generateCode(javaClass) {
+        const fieldsLines = [];
+        const methodsLines = [];
+        for (const javaField of javaClass.fields) {
+            const { fieldLines, getterLines, setterLines } = this.createField(javaField);
+            fieldsLines.push(...fieldLines);
+            methodsLines.push(...getterLines, ...setterLines);
         }
-        const annotationType = this.getNotNullAnnotationForField(field);
-        return new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_5__.default(annotationType);
-    }
-    getSizeAnnotation(field) {
-        const { maxSize } = field;
-        if (maxSize == null) {
-            return null;
+        const classOuterLines = [];
+        if (javaClass.packageName) {
+            classOuterLines.push(`package ${javaClass.packageName};`, EMPTY_STRING);
         }
-        return new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_5__.default(_erdiagram_converter_oop_code_converter_java_annotation_validation_JavaValidationAnnotationTypes__WEBPACK_IMPORTED_MODULE_3__.default.Size, { max: maxSize });
-    }
-    getNotNullAnnotationForField(field) {
-        switch (field.primitiveType) {
-            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.TEXT:
-                return this.getNotNullAnnotationForTextType();
-            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.BLOB:
-                return this.getNotNullAnnotationForBlobType();
-            default:
-                return _erdiagram_converter_oop_code_converter_java_annotation_validation_JavaValidationAnnotationTypes__WEBPACK_IMPORTED_MODULE_3__.default.NotNull;
+        const importLines = this.generateImportLines(javaClass);
+        if (importLines.length > 0) {
+            classOuterLines.push(...importLines, EMPTY_STRING);
         }
-    }
-    getNotNullAnnotationForTextType() {
-        switch (this.notNullTextValidationStrategy) {
-            case _erdiagram_converter_oop_code_converter_java_annotation_validation_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_1__.default.NOT_NULL:
-                return _erdiagram_converter_oop_code_converter_java_annotation_validation_JavaValidationAnnotationTypes__WEBPACK_IMPORTED_MODULE_3__.default.NotNull;
-            case _erdiagram_converter_oop_code_converter_java_annotation_validation_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_1__.default.NOT_EMPTY:
-                return _erdiagram_converter_oop_code_converter_java_annotation_validation_JavaValidationAnnotationTypes__WEBPACK_IMPORTED_MODULE_3__.default.NotEmpty;
-            case _erdiagram_converter_oop_code_converter_java_annotation_validation_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_1__.default.NOT_BLANK:
-                return _erdiagram_converter_oop_code_converter_java_annotation_validation_JavaValidationAnnotationTypes__WEBPACK_IMPORTED_MODULE_3__.default.NotBlank;
-            /* istanbul ignore next */
-            default:
-                /* istanbul ignore next */
-                throw new _erdiagram_parser_types_error_ERDiagramSyntaxError__WEBPACK_IMPORTED_MODULE_6__.default(`Unknown statement type`);
+        classOuterLines.push(...this.getAnnotationsLines(javaClass.annotations), this.prependVisibility(`class ${javaClass.name} {`, javaClass.visibility), EMPTY_STRING);
+        if (fieldsLines.length > 0) {
+            classOuterLines.push(...(0,_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_0__.indentLines)(fieldsLines), EMPTY_STRING);
         }
-    }
-    getNotNullAnnotationForBlobType() {
-        switch (this.notNullBlobValidationStrategy) {
-            case _erdiagram_converter_oop_code_converter_java_annotation_validation_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_4__.default.NOT_NULL:
-                return _erdiagram_converter_oop_code_converter_java_annotation_validation_JavaValidationAnnotationTypes__WEBPACK_IMPORTED_MODULE_3__.default.NotNull;
-            case _erdiagram_converter_oop_code_converter_java_annotation_validation_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_4__.default.NOT_EMPTY:
-                return _erdiagram_converter_oop_code_converter_java_annotation_validation_JavaValidationAnnotationTypes__WEBPACK_IMPORTED_MODULE_3__.default.NotEmpty;
-            /* istanbul ignore next */
-            default:
-                /* istanbul ignore next */
-                throw new _erdiagram_parser_types_error_ERDiagramSyntaxError__WEBPACK_IMPORTED_MODULE_6__.default(`Unknown statement type`);
+        if (methodsLines.length > 0) {
+            classOuterLines.push(...(0,_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_0__.indentLines)(methodsLines));
         }
+        classOuterLines.push(`}`);
+        return classOuterLines.join('\n');
+    }
+    // TODO move the field generator to a separate class
+    createField(javaField) {
+        const fieldLines = [];
+        const fieldName = javaField.name;
+        const formattedJavaType = javaField.type.formatSimple();
+        fieldLines.push(...this.getAnnotationsLines(javaField.annotations));
+        fieldLines.push(this.prependVisibility(`${formattedJavaType} ${fieldName};`, javaField.visibility));
+        const getterLines = this.createGetterLines(fieldName, formattedJavaType, javaField.getter);
+        const setterLines = this.createSetterLines(fieldName, formattedJavaType, javaField.setter);
+        return {
+            fieldLines,
+            getterLines,
+            setterLines
+        };
+    }
+    createGetterLines(fieldName, formattedJavaType, getter) {
+        if (getter == null) {
+            return [];
+        }
+        return [
+            ...this.getAnnotationsLines(getter.annotations),
+            this.prependVisibility(`${formattedJavaType} ${getter.name}() {`, getter.visibility),
+            (0,_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_0__.indentLine)(`return ${fieldName};`),
+            '}',
+            EMPTY_STRING
+        ];
+    }
+    createSetterLines(fieldName, formattedJavaType, setter) {
+        if (setter == null) {
+            return [];
+        }
+        return [
+            ...this.getAnnotationsLines(setter.annotations),
+            this.prependVisibility(`void ${setter.name}(${formattedJavaType} ${fieldName}) {`, setter.visibility),
+            (0,_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_0__.indentLine)(`this.${fieldName} = ${fieldName};`),
+            '}',
+            EMPTY_STRING
+        ];
+    }
+    getAnnotationsLines(annotations) {
+        return annotations.map(annotation => annotation.format());
+    }
+    prependVisibility(text, visibility) {
+        if (visibility === _erdiagram_converter_oop_code_converter_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_2__.JavaVisibility.PACKAGE_PRIVATE) {
+            return text;
+        }
+        return visibility + ' ' + text;
+    }
+    generateImportLines(javaClass) {
+        const usedTypes = __classPrivateFieldGet(this, _javaUsedTypesCompiler).getUsedTypes(javaClass);
+        const javaImportStatementsGenerator = new _erdiagram_converter_oop_code_converter_java_type_import_JavaImportStatementsGenerator__WEBPACK_IMPORTED_MODULE_1__.default(javaClass.packageName);
+        return javaImportStatementsGenerator.generateImportStatements(usedTypes);
     }
 }
+_javaUsedTypesCompiler = new WeakMap();
 
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullBlobValidationStrategy.ts":
-/*!*********************************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullBlobValidationStrategy.ts ***!
-  \*********************************************************************************************************************/
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/code/JavaClassModelCodeGenerator.ts":
+/*!**************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/code/JavaClassModelCodeGenerator.ts ***!
+  \**************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ JavaClassModelCodeGenerator)
 /* harmony export */ });
-var NotNullBlobValidationStrategy;
-(function (NotNullBlobValidationStrategy) {
-    NotNullBlobValidationStrategy["NOT_NULL"] = "not_null";
-    NotNullBlobValidationStrategy["NOT_EMPTY"] = "not_empty";
-})(NotNullBlobValidationStrategy || (NotNullBlobValidationStrategy = {}));
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NotNullBlobValidationStrategy);
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _javaClassCodeGenerator;
+class JavaClassModelCodeGenerator {
+    constructor(javaClassCodeGenerator) {
+        _javaClassCodeGenerator.set(this, void 0);
+        __classPrivateFieldSet(this, _javaClassCodeGenerator, javaClassCodeGenerator);
+    }
+    generateCode(javaClassModel) {
+        return javaClassModel.classes
+            .map(javaClass => this.generateClassCode(javaClass))
+            .join('\n\n');
+    }
+    generateClassCode(javaClass) {
+        const headerComment = this.generateClassHeaderComment(javaClass);
+        const classCode = __classPrivateFieldGet(this, _javaClassCodeGenerator).generateCode(javaClass);
+        return `${headerComment}\n\n${classCode}`;
+    }
+    generateClassHeaderComment(javaClass) {
+        return `/* ========== ${javaClass.name} class ========== */`;
+    }
+}
+_javaClassCodeGenerator = new WeakMap();
 
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullTextValidationStrategy.ts":
-/*!*********************************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullTextValidationStrategy.ts ***!
-  \*********************************************************************************************************************/
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/code/JavaClassModelSourceFilesGenerator.ts":
+/*!*********************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/code/JavaClassModelSourceFilesGenerator.ts ***!
+  \*********************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ JavaClassModelSourceFilesGenerator)
 /* harmony export */ });
-var NotNullTextValidationStrategy;
-(function (NotNullTextValidationStrategy) {
-    NotNullTextValidationStrategy["NOT_NULL"] = "not_null";
-    NotNullTextValidationStrategy["NOT_EMPTY"] = "not_empty";
-    NotNullTextValidationStrategy["NOT_BLANK"] = "not_blank";
-})(NotNullTextValidationStrategy || (NotNullTextValidationStrategy = {}));
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NotNullTextValidationStrategy);
-
-
-/***/ }),
-
-/***/ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/exports.ts":
-/*!***********************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/exports.ts ***!
-  \***********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _erdiagram_converter_oop_code_converter_java_annotation_validation_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_0__.default),
-/* harmony export */   "NotNullBlobValidationStrategy": () => (/* reexport safe */ _erdiagram_converter_oop_code_converter_java_annotation_validation_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_1__.default)
-/* harmony export */ });
-/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_validation_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullTextValidationStrategy */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullTextValidationStrategy.ts");
-/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_validation_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullBlobValidationStrategy */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullBlobValidationStrategy.ts");
-
-
-
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _javaClassCodeGenerator;
+class JavaClassModelSourceFilesGenerator {
+    constructor(javaClassCodeGenerator) {
+        _javaClassCodeGenerator.set(this, void 0);
+        __classPrivateFieldSet(this, _javaClassCodeGenerator, javaClassCodeGenerator);
+    }
+    generateSourceFiles(javaClassModel) {
+        return javaClassModel.classes.map(javaClass => this.generateClassSourceFile(javaClass));
+    }
+    generateClassSourceFile(javaClass) {
+        return {
+            folder: this.generateClassSourceFileFolder(javaClass),
+            filename: this.generateClassSourceFileName(javaClass),
+            contents: __classPrivateFieldGet(this, _javaClassCodeGenerator).generateCode(javaClass)
+        };
+    }
+    generateClassSourceFileFolder(javaClass) {
+        var _a, _b;
+        return (_b = (_a = javaClass.packageName) === null || _a === void 0 ? void 0 : _a.split('.')) !== null && _b !== void 0 ? _b : [];
+    }
+    generateClassSourceFileName(javaClass) {
+        return `${javaClass.name}.java`;
+    }
+}
+_javaClassCodeGenerator = new WeakMap();
 
 
 /***/ }),
@@ -4326,8 +4484,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 /* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
 /* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/parseJavaType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/parseJavaType.ts");
-/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_validation_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullTextValidationStrategy */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullTextValidationStrategy.ts");
-/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_validation_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullBlobValidationStrategy */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/validation/NotNullBlobValidationStrategy.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullTextValidationStrategy */ "./src/main/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullTextValidationStrategy.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullBlobValidationStrategy */ "./src/main/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullBlobValidationStrategy.ts");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! true-json */ "./node_modules/true-json/dist/true-json.umd.js");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(true_json__WEBPACK_IMPORTED_MODULE_5__);
 
@@ -4353,8 +4511,8 @@ class JavaClassModelToCodeConverterConfigManager extends _erdiagram_common_confi
                 [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.BLOB]: (0,_erdiagram_converter_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__.default)('byte[]')
             },
             useValidationAnnotations: false,
-            notNullTextValidationStrategy: _erdiagram_converter_oop_code_converter_java_annotation_validation_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_3__.default.NOT_NULL,
-            notNullBlobValidationStrategy: _erdiagram_converter_oop_code_converter_java_annotation_validation_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_4__.default.NOT_NULL
+            notNullTextValidationStrategy: _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_3__.default.NOT_NULL,
+            notNullBlobValidationStrategy: _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_4__.default.NOT_NULL
         };
     }
     mergeConfigs(fullConfig, partialConfig) {
@@ -4407,26 +4565,1299 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "NotNullBlobValidationStrategy": () => (/* reexport safe */ _annotation_exports__WEBPACK_IMPORTED_MODULE_1__.NotNullBlobValidationStrategy),
-/* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _annotation_exports__WEBPACK_IMPORTED_MODULE_1__.NotNullTextValidationStrategy),
-/* harmony export */   "JavaClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_2__.JavaClassModelToCodeConverterConfigManager),
-/* harmony export */   "javaClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_2__.javaClassModelToCodeConverterConfigManager),
-/* harmony export */   "createJavaArrayType": () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_3__.createJavaArrayType),
-/* harmony export */   "createJavaParameterizedType": () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_3__.createJavaParameterizedType),
-/* harmony export */   "createJavaSimpleType": () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_3__.createJavaSimpleType),
-/* harmony export */   "isJavaParameterizedType": () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_3__.isJavaParameterizedType),
-/* harmony export */   "parseJavaType": () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_3__.parseJavaType),
-/* harmony export */   "JavaClassModelToCodeConverter": () => (/* reexport safe */ _JavaClassModelToCodeConverter__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */   "JavaAnnotation": () => (/* reexport safe */ _annotation_exports__WEBPACK_IMPORTED_MODULE_2__.JavaAnnotation),
+/* harmony export */   "JavaClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_3__.JavaClassModelToCodeConverterConfigManager),
+/* harmony export */   "javaClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_3__.javaClassModelToCodeConverterConfigManager),
+/* harmony export */   "JpaTransformer": () => (/* reexport safe */ _jpa_exports__WEBPACK_IMPORTED_MODULE_4__.JpaTransformer),
+/* harmony export */   "JpaTransformerConfigManager": () => (/* reexport safe */ _jpa_exports__WEBPACK_IMPORTED_MODULE_4__.JpaTransformerConfigManager),
+/* harmony export */   "jpaTransformerConfigManager": () => (/* reexport safe */ _jpa_exports__WEBPACK_IMPORTED_MODULE_4__.jpaTransformerConfigManager),
+/* harmony export */   "JavaxValidationTransformer": () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_5__.JavaxValidationTransformer),
+/* harmony export */   "JavaxValidationTransformerConfigManager": () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_5__.JavaxValidationTransformerConfigManager),
+/* harmony export */   "NotNullBlobValidationStrategy": () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_5__.NotNullBlobValidationStrategy),
+/* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_5__.NotNullTextValidationStrategy),
+/* harmony export */   "javaxValidationTransformerConfigManager": () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_5__.javaxValidationTransformerConfigManager),
+/* harmony export */   "createJavaArrayType": () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_6__.createJavaArrayType),
+/* harmony export */   "createJavaParameterizedType": () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_6__.createJavaParameterizedType),
+/* harmony export */   "createJavaSimpleType": () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_6__.createJavaSimpleType),
+/* harmony export */   "isJavaParameterizedType": () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_6__.isJavaParameterizedType),
+/* harmony export */   "parseJavaType": () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_6__.parseJavaType),
+/* harmony export */   "JavaEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _JavaEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_0__.default),
+/* harmony export */   "JavaEntityRelationshipModelSourceCodeGeneratorBuilder": () => (/* reexport safe */ _JavaEntityRelationshipModelSourceCodeGeneratorBuilder__WEBPACK_IMPORTED_MODULE_1__.default)
 /* harmony export */ });
-/* harmony import */ var _JavaClassModelToCodeConverter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./JavaClassModelToCodeConverter */ "./src/main/erdiagram/converter/oop/code-converter/java/JavaClassModelToCodeConverter.ts");
-/* harmony import */ var _annotation_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./annotation/exports */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/exports.ts");
-/* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/converter/oop/code-converter/java/config/exports.ts");
-/* harmony import */ var _type_exports__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./type/exports */ "./src/main/erdiagram/converter/oop/code-converter/java/type/exports.ts");
+/* harmony import */ var _JavaEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./JavaEntityRelationshipModelSourceCodeGenerator */ "./src/main/erdiagram/converter/oop/code-converter/java/JavaEntityRelationshipModelSourceCodeGenerator.ts");
+/* harmony import */ var _JavaEntityRelationshipModelSourceCodeGeneratorBuilder__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./JavaEntityRelationshipModelSourceCodeGeneratorBuilder */ "./src/main/erdiagram/converter/oop/code-converter/java/JavaEntityRelationshipModelSourceCodeGeneratorBuilder.ts");
+/* harmony import */ var _annotation_exports__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./annotation/exports */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/exports.ts");
+/* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/converter/oop/code-converter/java/config/exports.ts");
+/* harmony import */ var _jpa_exports__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./jpa/exports */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/exports.ts");
+/* harmony import */ var _validation_exports__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./validation/exports */ "./src/main/erdiagram/converter/oop/code-converter/java/validation/exports.ts");
+/* harmony import */ var _type_exports__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./type/exports */ "./src/main/erdiagram/converter/oop/code-converter/java/type/exports.ts");
 
 
 
 
 
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/config/JpaTransformerConfigManager.ts":
+/*!********************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/jpa/config/JpaTransformerConfigManager.ts ***!
+  \********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "JpaTransformerConfigManager": () => (/* binding */ JpaTransformerConfigManager),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! true-json */ "./node_modules/true-json/dist/true-json.umd.js");
+/* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(true_json__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/converter/common/case-format/StandardCaseFormats.ts");
+
+
+
+class JpaTransformerConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__.default {
+    getDefaultConfig() {
+        return {
+            tableNameCaseFormat: _erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__.default.UPPER_CAMEL,
+            columnNameCaseFormat: _erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__.default.LOWER_CAMEL,
+            annotateGetters: false
+        };
+    }
+    mergeConfigs(fullConfig, partialConfig) {
+        return Object.assign(Object.assign({}, fullConfig), partialConfig);
+    }
+    getJsonAdapter() {
+        return true_json__WEBPACK_IMPORTED_MODULE_1__.JsonAdapters.object({
+            tableNameCaseFormat: true_json__WEBPACK_IMPORTED_MODULE_1__.JsonAdapters.byKeyLenient(_erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__.default, 'UPPER_CAMEL'),
+            columnNameCaseFormat: true_json__WEBPACK_IMPORTED_MODULE_1__.JsonAdapters.byKeyLenient(_erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__.default, 'LOWER_CAMEL')
+        });
+    }
+}
+const jpaTransformerConfigManager = new JpaTransformerConfigManager();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (jpaTransformerConfigManager);
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/config/exports.ts":
+/*!************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/jpa/config/exports.ts ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "JpaTransformerConfigManager": () => (/* reexport safe */ _JpaTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__.JpaTransformerConfigManager),
+/* harmony export */   "jpaTransformerConfigManager": () => (/* reexport safe */ _JpaTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */ });
+/* harmony import */ var _JpaTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./JpaTransformerConfigManager */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/config/JpaTransformerConfigManager.ts");
+
+
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/exports.ts":
+/*!*****************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/jpa/exports.ts ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "JpaTransformerConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_1__.JpaTransformerConfigManager),
+/* harmony export */   "jpaTransformerConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_1__.jpaTransformerConfigManager),
+/* harmony export */   "JpaTransformer": () => (/* reexport safe */ _erdiagram_converter_oop_code_converter_java_jpa_transformer_JpaTransformer__WEBPACK_IMPORTED_MODULE_0__.JpaTransformer)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_jpa_transformer_JpaTransformer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/jpa/transformer/JpaTransformer */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/JpaTransformer.ts");
+/* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/config/exports.ts");
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/jpa-java-types.ts":
+/*!************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/jpa/jpa-java-types.ts ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "JpaAnnotationTypes": () => (/* binding */ JpaAnnotationTypes),
+/* harmony export */   "JpaEnumTypes": () => (/* binding */ JpaEnumTypes)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType.ts");
+
+const JPA_PACKAGE = 'javax.persistence';
+const JpaAnnotationTypes = {
+    Entity: (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('Entity', JPA_PACKAGE),
+    Table: (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('Table', JPA_PACKAGE),
+    Column: (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('Column', JPA_PACKAGE),
+    Id: (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('Id', JPA_PACKAGE),
+    GeneratedValue: (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('GeneratedValue', JPA_PACKAGE),
+    OneToOne: (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('OneToOne', JPA_PACKAGE),
+    OneToMany: (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('OneToMany', JPA_PACKAGE),
+    ManyToOne: (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('ManyToOne', JPA_PACKAGE),
+    ManyToMany: (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('ManyToMany', JPA_PACKAGE),
+    JoinTable: (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('JoinTable', JPA_PACKAGE),
+    JoinColumn: (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('JoinColumn', JPA_PACKAGE),
+    JoinColumns: (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('JoinColumns', JPA_PACKAGE),
+};
+const JpaEnumTypes = {
+    GenerationType: (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('GenerationType', JPA_PACKAGE),
+};
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/JpaTransformer.ts":
+/*!************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/JpaTransformer.ts ***!
+  \************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "JpaTransformer": () => (/* binding */ JpaTransformer)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_jpa_config_JpaTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/jpa/config/JpaTransformerConfigManager */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/config/JpaTransformerConfigManager.ts");
+/* harmony import */ var _erdiagram_converter_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/common/case-format/CaseConverter */ "./src/main/erdiagram/converter/common/case-format/CaseConverter.ts");
+/* harmony import */ var _erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/converter/common/case-format/StandardCaseFormats.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_jpa_transformer_visitor_field_JpaTransformerFieldVisitor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/field/JpaTransformerFieldVisitor */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/field/JpaTransformerFieldVisitor.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_jpa_transformer_visitor_class_JpaTransformerClassVisitor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/class/JpaTransformerClassVisitor */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/class/JpaTransformerClassVisitor.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_jpa_transformer_setup_JpaTransformerSetupDataGenerator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/jpa/transformer/setup/JpaTransformerSetupDataGenerator */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/setup/JpaTransformerSetupDataGenerator.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_jpa_transformer_JpaTransformerBuilder__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/jpa/transformer/JpaTransformerBuilder */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/JpaTransformerBuilder.ts");
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _setupDataGenerator, _fieldVisitor, _classVisitor;
+
+
+
+
+
+
+
+class JpaTransformer {
+    constructor(databaseModelGenerator, config) {
+        _setupDataGenerator.set(this, void 0);
+        _fieldVisitor.set(this, void 0);
+        _classVisitor.set(this, void 0);
+        const { tableNameCaseFormat, columnNameCaseFormat, annotateGetters } = _erdiagram_converter_oop_code_converter_java_jpa_config_JpaTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__.default.mergeWithDefaultConfig(config);
+        const tableNameCaseConverter = new _erdiagram_converter_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_1__.default(_erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__.default.UPPER_CAMEL, tableNameCaseFormat);
+        const columnNameCaseConverter = new _erdiagram_converter_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_1__.default(_erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__.default.UPPER_CAMEL, columnNameCaseFormat);
+        __classPrivateFieldSet(this, _setupDataGenerator, new _erdiagram_converter_oop_code_converter_java_jpa_transformer_setup_JpaTransformerSetupDataGenerator__WEBPACK_IMPORTED_MODULE_5__.default(databaseModelGenerator));
+        __classPrivateFieldSet(this, _fieldVisitor, new _erdiagram_converter_oop_code_converter_java_jpa_transformer_visitor_field_JpaTransformerFieldVisitor__WEBPACK_IMPORTED_MODULE_3__.default(tableNameCaseConverter, columnNameCaseConverter, annotateGetters));
+        __classPrivateFieldSet(this, _classVisitor, new _erdiagram_converter_oop_code_converter_java_jpa_transformer_visitor_class_JpaTransformerClassVisitor__WEBPACK_IMPORTED_MODULE_4__.default(tableNameCaseConverter));
+    }
+    setup(context) {
+        return __classPrivateFieldGet(this, _setupDataGenerator).setup(context);
+    }
+    visitField(javaField, context) {
+        __classPrivateFieldGet(this, _fieldVisitor).visitField(javaField, context);
+    }
+    visitClass(javaClass, context) {
+        __classPrivateFieldGet(this, _classVisitor).visitClass(javaClass, context);
+    }
+    visitModel(javaClassModel, context) {
+        // Do nothing
+    }
+    static withDefaultConfig() {
+        return this.builder().build();
+    }
+    static builder() {
+        return new _erdiagram_converter_oop_code_converter_java_jpa_transformer_JpaTransformerBuilder__WEBPACK_IMPORTED_MODULE_6__.default();
+    }
+}
+_setupDataGenerator = new WeakMap(), _fieldVisitor = new WeakMap(), _classVisitor = new WeakMap();
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/JpaTransformerBuilder.ts":
+/*!*******************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/JpaTransformerBuilder.ts ***!
+  \*******************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ JpaTransformerBuilder)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_database_model_DatabaseModelGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/database/model/DatabaseModelGenerator */ "./src/main/erdiagram/converter/database/model/DatabaseModelGenerator.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_jpa_transformer_JpaTransformer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/jpa/transformer/JpaTransformer */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/JpaTransformer.ts");
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _databaseModelGeneratorConfig, _config;
+
+
+class JpaTransformerBuilder {
+    constructor() {
+        _databaseModelGeneratorConfig.set(this, {});
+        _config.set(this, {});
+    }
+    withDatabaseModelGeneratorConfig(config) {
+        __classPrivateFieldSet(this, _databaseModelGeneratorConfig, config);
+        return this;
+    }
+    withConfig(config) {
+        __classPrivateFieldSet(this, _config, config);
+        return this;
+    }
+    build() {
+        return new _erdiagram_converter_oop_code_converter_java_jpa_transformer_JpaTransformer__WEBPACK_IMPORTED_MODULE_1__.JpaTransformer(new _erdiagram_converter_database_model_DatabaseModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(__classPrivateFieldGet(this, _databaseModelGeneratorConfig)), __classPrivateFieldGet(this, _config));
+    }
+}
+_databaseModelGeneratorConfig = new WeakMap(), _config = new WeakMap();
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/finder/ClassModelSourceFinder.ts":
+/*!***************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/finder/ClassModelSourceFinder.ts ***!
+  \***************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ClassModelSourceFinder)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata/source-metadata-utils */ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-utils.ts");
+
+class ClassModelSourceFinder {
+    findClassAndFieldFromReferencedMember(classModel, referencedMember) {
+        for (const classDescriptor of classModel.classes) {
+            for (const field of classDescriptor.fields) {
+                if ((0,_erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_0__.isRelationshipMemberSourceMetadata)(field.sourceMetadata) && field.sourceMetadata.referencedMember === referencedMember) {
+                    return {
+                        classDescriptor,
+                        field
+                    };
+                }
+            }
+        }
+        throw new Error(`Cannot find field from target member "${referencedMember.entityAlias}"`);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/finder/EntityRelationshipModelSourceFinder.ts":
+/*!****************************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/finder/EntityRelationshipModelSourceFinder.ts ***!
+  \****************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ EntityRelationshipModelSourceFinder)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata/source-metadata-utils */ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-utils.ts");
+
+// FIXME change this name or refactor this class, as it also retrieves field and class descriptors, not only database ones
+class EntityRelationshipModelSourceFinder {
+    findTableAndReferenceFromReferencedMember(databaseModel, referencedMember) {
+        for (const table of databaseModel.tables) {
+            for (const reference of table.references) {
+                if (reference.sourceMetadata.referencedMember === referencedMember) {
+                    return {
+                        table,
+                        reference
+                    };
+                }
+            }
+        }
+        throw new Error(`Cannot find reference from target member "${referencedMember.entityAlias}"`);
+    }
+    findTableFromEntity(databaseModel, entity) {
+        const foundTable = databaseModel.tables.find(table => this.isCorrespondingTable(entity, table));
+        if (foundTable == null) {
+            throw new Error(`Cannot find the corresponding table for entity "${entity.name}"`);
+        }
+        return foundTable;
+    }
+    isCorrespondingTable(entity, tableDescriptor) {
+        return (0,_erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_0__.isEntitySourceMetadata)(tableDescriptor.sourceMetadata) && tableDescriptor.sourceMetadata.entity === entity;
+    }
+    findColumnFromProperty(databaseModel, property) {
+        for (const table of databaseModel.tables) {
+            for (const column of table.columns) {
+                if (column.sourceMetadata.property === property) {
+                    return column;
+                }
+            }
+        }
+        throw new Error(`Cannot find the corresponding column for property "${property.name}"`);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/setup/JpaTransformerSetupDataGenerator.ts":
+/*!************************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/setup/JpaTransformerSetupDataGenerator.ts ***!
+  \************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ JpaTransformerSetupDataGenerator)
+/* harmony export */ });
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _databaseModelGenerator;
+class JpaTransformerSetupDataGenerator {
+    constructor(databaseModelGenerator) {
+        _databaseModelGenerator.set(this, void 0);
+        __classPrivateFieldSet(this, _databaseModelGenerator, databaseModelGenerator);
+    }
+    setup(context) {
+        return {
+            databaseModel: __classPrivateFieldGet(this, _databaseModelGenerator).generateDatabaseModel(context.entityRelationshipModel)
+        };
+    }
+}
+_databaseModelGenerator = new WeakMap();
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/class/JpaTransformerClassVisitor.ts":
+/*!**************************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/class/JpaTransformerClassVisitor.ts ***!
+  \**************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ JpaTransformerClassVisitor)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation.ts");
+/* harmony import */ var _erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata/source-metadata-utils */ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-utils.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/jpa/jpa-java-types */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/jpa-java-types.ts");
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _tableNameCaseConverter;
+
+
+
+class JpaTransformerClassVisitor {
+    constructor(tableNameCaseConverter) {
+        _tableNameCaseConverter.set(this, void 0);
+        __classPrivateFieldSet(this, _tableNameCaseConverter, tableNameCaseConverter);
+    }
+    visitClass(javaClass, context) {
+        const table = this.findTableFromEntity(context.classDescriptor.sourceMetadata.entity, context.setupData.databaseModel);
+        javaClass.annotations.push(new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__.JpaAnnotationTypes.Entity), new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__.JpaAnnotationTypes.Table, {
+            name: this.formatTableName(table.name)
+        }));
+    }
+    findTableFromEntity(entity, databaseModel) {
+        const foundTable = databaseModel.tables.find(table => this.isCorrespondingTable(entity, table));
+        if (foundTable == null) {
+            throw new Error(`Cannot find the corresponding table for entity "${entity.name}"`);
+        }
+        return foundTable;
+    }
+    isCorrespondingTable(entity, tableDescriptor) {
+        return (0,_erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__.isEntitySourceMetadata)(tableDescriptor.sourceMetadata) && tableDescriptor.sourceMetadata.entity === entity;
+    }
+    formatTableName(tableName) {
+        return __classPrivateFieldGet(this, _tableNameCaseConverter).convertCase(tableName);
+    }
+}
+_tableNameCaseConverter = new WeakMap();
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/field/ColumnFieldAnnotationsSupplier.ts":
+/*!******************************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/field/ColumnFieldAnnotationsSupplier.ts ***!
+  \******************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ColumnFieldAnnotationsSupplier)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation.ts");
+/* harmony import */ var _erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata/source-metadata-utils */ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-utils.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/jpa/jpa-java-types */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/jpa-java-types.ts");
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _entityRelationshipModelSourceFinder, _columnNameCaseConverter;
+
+
+
+class ColumnFieldAnnotationsSupplier {
+    constructor(entityRelationshipModelSourceFinder, columnNameCaseConverter) {
+        _entityRelationshipModelSourceFinder.set(this, void 0);
+        _columnNameCaseConverter.set(this, void 0);
+        __classPrivateFieldSet(this, _entityRelationshipModelSourceFinder, entityRelationshipModelSourceFinder);
+        __classPrivateFieldSet(this, _columnNameCaseConverter, columnNameCaseConverter);
+    }
+    getAnnotations(javaField, context) {
+        const columnAnnotation = this.getColumnAnnotation(context.fieldDescriptor, context.setupData.databaseModel);
+        return columnAnnotation != null ? [columnAnnotation] : [];
+    }
+    getColumnAnnotation(fieldDescriptor, databaseModel) {
+        const { sourceMetadata } = fieldDescriptor;
+        const columnName = this.getColumnName(fieldDescriptor, databaseModel);
+        if (columnName == null) {
+            return null;
+        }
+        return new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__.JpaAnnotationTypes.Column, {
+            name: this.formatColumnName(columnName),
+            nullable: fieldDescriptor.nullable ? undefined : false
+        });
+    }
+    getColumnName(fieldDescriptor, databaseModel) {
+        const { sourceMetadata } = fieldDescriptor;
+        if ((0,_erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__.isEntityIdentitySourceMetadata)(sourceMetadata)) {
+            const table = __classPrivateFieldGet(this, _entityRelationshipModelSourceFinder).findTableFromEntity(databaseModel, sourceMetadata.entity);
+            return table.identityColumnName;
+        }
+        if ((0,_erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__.isEntityPropertySourceMetadata)(sourceMetadata)) {
+            const column = __classPrivateFieldGet(this, _entityRelationshipModelSourceFinder).findColumnFromProperty(databaseModel, sourceMetadata.property);
+            return column.name;
+        }
+        return null;
+    }
+    formatColumnName(columnName) {
+        return __classPrivateFieldGet(this, _columnNameCaseConverter).convertCase(columnName);
+    }
+}
+_entityRelationshipModelSourceFinder = new WeakMap(), _columnNameCaseConverter = new WeakMap();
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/field/IdentityFieldAnnotationsSupplier.ts":
+/*!********************************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/field/IdentityFieldAnnotationsSupplier.ts ***!
+  \********************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ IdentityFieldAnnotationsSupplier)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation.ts");
+/* harmony import */ var _erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata/source-metadata-utils */ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-utils.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/jpa/jpa-java-types */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/jpa-java-types.ts");
+
+
+
+class IdentityFieldAnnotationsSupplier {
+    getAnnotations(javaField, context) {
+        if (!(0,_erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__.isEntityIdentitySourceMetadata)(context.fieldDescriptor.sourceMetadata)) {
+            return [];
+        }
+        return [
+            new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__.JpaAnnotationTypes.Id),
+            new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__.JpaAnnotationTypes.GeneratedValue, {
+                // FIXME allow configuring the generation type (if IDENTITY is not valid for all scenarios)
+                strategy: _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default.createRawParameterValue('GenerationType.IDENTITY', _erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__.JpaEnumTypes.GenerationType)
+            })
+        ];
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/field/JpaTransformerFieldVisitor.ts":
+/*!**************************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/field/JpaTransformerFieldVisitor.ts ***!
+  \**************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ JpaTransformerFieldVisitor)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_jpa_transformer_finder_EntityRelationshipModelSourceFinder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/jpa/transformer/finder/EntityRelationshipModelSourceFinder */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/finder/EntityRelationshipModelSourceFinder.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_jpa_transformer_visitor_field_IdentityFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/field/IdentityFieldAnnotationsSupplier */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/field/IdentityFieldAnnotationsSupplier.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_jpa_transformer_visitor_field_ColumnFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/field/ColumnFieldAnnotationsSupplier */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/field/ColumnFieldAnnotationsSupplier.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_jpa_transformer_visitor_field_relationship_RelationshipFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/field/relationship/RelationshipFieldAnnotationsSupplier */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/field/relationship/RelationshipFieldAnnotationsSupplier.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_jpa_transformer_finder_ClassModelSourceFinder__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/jpa/transformer/finder/ClassModelSourceFinder */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/finder/ClassModelSourceFinder.ts");
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _annotateGetters, _fieldAnnotationsSuppliers;
+
+
+
+
+
+class JpaTransformerFieldVisitor {
+    constructor(tableNameCaseConverter, columnNameCaseConverter, annotateGetters) {
+        _annotateGetters.set(this, void 0);
+        _fieldAnnotationsSuppliers.set(this, void 0);
+        __classPrivateFieldSet(this, _annotateGetters, annotateGetters);
+        const entityRelationshipModelSourceFinder = new _erdiagram_converter_oop_code_converter_java_jpa_transformer_finder_EntityRelationshipModelSourceFinder__WEBPACK_IMPORTED_MODULE_0__.default();
+        const classModelSourceFinder = new _erdiagram_converter_oop_code_converter_java_jpa_transformer_finder_ClassModelSourceFinder__WEBPACK_IMPORTED_MODULE_4__.default();
+        __classPrivateFieldSet(this, _fieldAnnotationsSuppliers, [
+            new _erdiagram_converter_oop_code_converter_java_jpa_transformer_visitor_field_IdentityFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_1__.default(),
+            new _erdiagram_converter_oop_code_converter_java_jpa_transformer_visitor_field_ColumnFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_2__.default(entityRelationshipModelSourceFinder, columnNameCaseConverter),
+            new _erdiagram_converter_oop_code_converter_java_jpa_transformer_visitor_field_relationship_RelationshipFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_3__.default(entityRelationshipModelSourceFinder, classModelSourceFinder, tableNameCaseConverter, columnNameCaseConverter)
+        ]);
+    }
+    visitField(javaField, context) {
+        const annotations = this.getFieldAnnotations(javaField, context);
+        const elementToAnnotate = this.getElementToAnnotate(javaField);
+        elementToAnnotate.annotations.push(...annotations);
+    }
+    getFieldAnnotations(javaField, context) {
+        return __classPrivateFieldGet(this, _fieldAnnotationsSuppliers).flatMap(supplier => supplier.getAnnotations(javaField, context));
+    }
+    getElementToAnnotate(javaField) {
+        if (__classPrivateFieldGet(this, _annotateGetters) && javaField.getter != null) {
+            return javaField.getter;
+        }
+        return javaField;
+    }
+}
+_annotateGetters = new WeakMap(), _fieldAnnotationsSuppliers = new WeakMap();
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/field/relationship/RelationshipFieldAnnotationsSupplier.ts":
+/*!*************************************************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/jpa/transformer/visitor/field/relationship/RelationshipFieldAnnotationsSupplier.ts ***!
+  \*************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ RelationshipFieldAnnotationsSupplier)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation.ts");
+/* harmony import */ var _erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata/source-metadata-utils */ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-utils.ts");
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/jpa/jpa-java-types */ "./src/main/erdiagram/converter/oop/code-converter/java/jpa/jpa-java-types.ts");
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _entityRelationshipModelSourceFinder, _classModelSourceFinder, _tableNameCaseConverter, _columnNameCaseConverter;
+
+
+
+
+var RelationshipCardinality;
+(function (RelationshipCardinality) {
+    RelationshipCardinality["ONE_TO_ONE"] = "one_to_one";
+    RelationshipCardinality["ONE_TO_MANY"] = "one_to_many";
+    RelationshipCardinality["MANY_TO_ONE"] = "many_to_one";
+    RelationshipCardinality["MANY_TO_MANY"] = "many_to_many";
+})(RelationshipCardinality || (RelationshipCardinality = {}));
+// TODO split this class
+class RelationshipFieldAnnotationsSupplier {
+    constructor(entityRelationshipModelSourceFinder, classModelSourceFinder, tableNameCaseConverter, columnNameCaseConverter) {
+        _entityRelationshipModelSourceFinder.set(this, void 0);
+        _classModelSourceFinder.set(this, void 0);
+        _tableNameCaseConverter.set(this, void 0);
+        _columnNameCaseConverter.set(this, void 0);
+        __classPrivateFieldSet(this, _entityRelationshipModelSourceFinder, entityRelationshipModelSourceFinder);
+        __classPrivateFieldSet(this, _classModelSourceFinder, classModelSourceFinder);
+        __classPrivateFieldSet(this, _tableNameCaseConverter, tableNameCaseConverter);
+        __classPrivateFieldSet(this, _columnNameCaseConverter, columnNameCaseConverter);
+    }
+    getAnnotations(javaField, context) {
+        const { fieldDescriptor: { sourceMetadata }, classModel, setupData: { databaseModel } } = context;
+        if (!(0,_erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__.isRelationshipMemberSourceMetadata)(sourceMetadata)) {
+            return [];
+        }
+        const { relationship, referencedMember } = sourceMetadata;
+        const fieldBelongsToLeftMember = referencedMember === relationship.rightMember;
+        const relationshipCardinality = this.getRelationshipCardinality(relationship);
+        if (relationshipCardinality === RelationshipCardinality.ONE_TO_ONE) {
+            if (fieldBelongsToLeftMember) {
+                return this.getOneToOneRelationshipAnnotations(relationship.rightMember, databaseModel);
+            }
+            if (relationship.direction === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Direction.BIDIRECTIONAL) {
+                return this.getMappedByOneToOneRelationshipAnnotations(relationship.rightMember, relationship.leftMember, classModel);
+            }
+            return this.getInverseOneToOneRelationshipAnnotations(relationship.rightMember, relationship.leftMember, databaseModel);
+        }
+        if (relationshipCardinality === RelationshipCardinality.MANY_TO_ONE) {
+            if (fieldBelongsToLeftMember) {
+                return this.getManyToOneRelationshipAnnotations(relationship.rightMember, databaseModel);
+            }
+            if (relationship.direction === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Direction.BIDIRECTIONAL) {
+                return this.getMappedByOneToManyRelationshipAnnotations(relationship.rightMember, classModel);
+            }
+            return this.getInverseOneToManyRelationshipAnnotations(relationship.rightMember, databaseModel);
+        }
+        if (relationshipCardinality === RelationshipCardinality.ONE_TO_MANY) {
+            if (!fieldBelongsToLeftMember) {
+                return this.getManyToOneRelationshipAnnotations(relationship.leftMember, databaseModel);
+            }
+            if (relationship.direction === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Direction.BIDIRECTIONAL) {
+                return this.getMappedByOneToManyRelationshipAnnotations(relationship.leftMember, classModel);
+            }
+            return this.getInverseOneToManyRelationshipAnnotations(relationship.leftMember, databaseModel);
+        }
+        if (relationshipCardinality === RelationshipCardinality.MANY_TO_MANY) {
+            if (fieldBelongsToLeftMember) {
+                return this.getManyToManyRelationshipAnnotations(relationship.leftMember, databaseModel);
+            }
+            if (relationship.direction === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Direction.BIDIRECTIONAL) {
+                return this.getMappedByManyToManyRelationshipAnnotations(relationship.rightMember, classModel);
+            }
+            return this.getManyToManyRelationshipAnnotations(relationship.rightMember, databaseModel);
+        }
+        return [];
+    }
+    getRelationshipCardinality(relationship) {
+        const isLeftMemberMany = relationship.leftMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Cardinality.MANY;
+        const isRightMemberMany = relationship.rightMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Cardinality.MANY;
+        if (isLeftMemberMany) {
+            return isRightMemberMany ? RelationshipCardinality.MANY_TO_MANY : RelationshipCardinality.MANY_TO_ONE;
+        }
+        else {
+            return isRightMemberMany ? RelationshipCardinality.ONE_TO_MANY : RelationshipCardinality.ONE_TO_ONE;
+        }
+    }
+    getOneToOneRelationshipAnnotations(foreignMember, databaseModel) {
+        const { reference } = __classPrivateFieldGet(this, _entityRelationshipModelSourceFinder).findTableAndReferenceFromReferencedMember(databaseModel, foreignMember);
+        const optionalRelationship = foreignMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Cardinality.ZERO_OR_ONE;
+        return [
+            new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.OneToOne, {
+                optional: optionalRelationship ? undefined : false
+            }),
+            new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.JoinColumn, {
+                name: this.formatColumnName(reference.columnName),
+                nullable: optionalRelationship ? undefined : false
+            }),
+        ];
+    }
+    getMappedByOneToOneRelationshipAnnotations(ownMember, foreignMember, classModel) {
+        const { field } = __classPrivateFieldGet(this, _classModelSourceFinder).findClassAndFieldFromReferencedMember(classModel, ownMember);
+        return [
+            new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.OneToOne, {
+                mappedBy: field.name,
+                optional: foreignMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Cardinality.ZERO_OR_ONE ? undefined : false
+            }),
+        ];
+    }
+    getInverseOneToOneRelationshipAnnotations(ownMember, foreignMember, databaseModel) {
+        const { table, reference } = __classPrivateFieldGet(this, _entityRelationshipModelSourceFinder).findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
+        return [
+            new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.OneToOne, {
+                optional: foreignMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Cardinality.ZERO_OR_ONE ? undefined : false
+            }),
+            new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.JoinTable, {
+                name: this.formatTableName(table.name),
+                inverseJoinColumns: new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.JoinColumn, {
+                    name: this.formatColumnName(reference.columnName),
+                    nullable: ownMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Cardinality.ZERO_OR_ONE ? undefined : false
+                }),
+            }),
+        ];
+    }
+    getManyToOneRelationshipAnnotations(foreignMember, databaseModel) {
+        const { reference } = __classPrivateFieldGet(this, _entityRelationshipModelSourceFinder).findTableAndReferenceFromReferencedMember(databaseModel, foreignMember);
+        const optionalRelationship = foreignMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Cardinality.ZERO_OR_ONE;
+        return [
+            new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.ManyToOne, {
+                optional: optionalRelationship ? undefined : false
+            }),
+            new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.JoinColumn, {
+                name: this.formatColumnName(reference.columnName),
+                nullable: optionalRelationship ? undefined : false
+            }),
+        ];
+    }
+    getMappedByOneToManyRelationshipAnnotations(ownMember, classModel) {
+        const { field } = __classPrivateFieldGet(this, _classModelSourceFinder).findClassAndFieldFromReferencedMember(classModel, ownMember);
+        return [
+            new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.OneToMany, {
+                mappedBy: field.name
+            }),
+        ];
+    }
+    getInverseOneToManyRelationshipAnnotations(ownMember, databaseModel) {
+        const { table, reference } = __classPrivateFieldGet(this, _entityRelationshipModelSourceFinder).findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
+        return [
+            new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.OneToMany),
+            new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.JoinTable, {
+                name: this.formatTableName(table.name),
+                inverseJoinColumns: new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.JoinColumn, {
+                    name: this.formatColumnName(reference.columnName),
+                    nullable: ownMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Cardinality.ZERO_OR_ONE ? undefined : false
+                }),
+            }),
+        ];
+    }
+    getManyToManyRelationshipAnnotations(ownMember, databaseModel) {
+        const { table, reference: ownReference } = __classPrivateFieldGet(this, _entityRelationshipModelSourceFinder).findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
+        if (table.references.length !== 2) {
+            throw new Error('Relationship table has more than 2 references');
+        }
+        const foreignReference = table.references.find(reference => reference !== ownReference);
+        return [
+            new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.ManyToMany),
+            new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.JoinTable, {
+                name: this.formatTableName(table.name),
+                joinColumns: new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.JoinColumn, {
+                    name: this.formatColumnName(ownReference.columnName),
+                    nullable: false
+                }),
+                inverseJoinColumns: new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.JoinColumn, {
+                    name: this.formatColumnName(foreignReference.columnName),
+                    nullable: false
+                }),
+            }),
+        ];
+    }
+    getMappedByManyToManyRelationshipAnnotations(sourceMember, classModel) {
+        const { field: referencedField } = __classPrivateFieldGet(this, _classModelSourceFinder).findClassAndFieldFromReferencedMember(classModel, sourceMember);
+        return [
+            new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_code_converter_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.ManyToMany, {
+                mappedBy: referencedField.name
+            }),
+        ];
+    }
+    formatColumnName(columnName) {
+        return __classPrivateFieldGet(this, _columnNameCaseConverter).convertCase(columnName);
+    }
+    formatTableName(tableName) {
+        return __classPrivateFieldGet(this, _tableNameCaseConverter).convertCase(tableName);
+    }
+}
+_entityRelationshipModelSourceFinder = new WeakMap(), _classModelSourceFinder = new WeakMap(), _tableNameCaseConverter = new WeakMap(), _columnNameCaseConverter = new WeakMap();
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/model/generator/JavaClassGenerator.ts":
+/*!****************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/model/generator/JavaClassGenerator.ts ***!
+  \****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ JavaClassGenerator)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/model/java-class-model-types */ "./src/main/erdiagram/converter/oop/code-converter/java/model/java-class-model-types.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_model_generator_JavaFieldGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/model/generator/JavaFieldGenerator */ "./src/main/erdiagram/converter/oop/code-converter/java/model/generator/JavaFieldGenerator.ts");
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _generatedClassesPackage, _javaFieldGenerator;
+
+
+class JavaClassGenerator {
+    constructor(generatedClassesPackage, typeResolver) {
+        _generatedClassesPackage.set(this, void 0);
+        _javaFieldGenerator.set(this, void 0);
+        __classPrivateFieldSet(this, _generatedClassesPackage, generatedClassesPackage);
+        __classPrivateFieldSet(this, _javaFieldGenerator, new _erdiagram_converter_oop_code_converter_java_model_generator_JavaFieldGenerator__WEBPACK_IMPORTED_MODULE_1__.default(typeResolver));
+    }
+    generateJavaClass(classDescriptor, fieldGeneratedEventListener) {
+        return {
+            packageName: __classPrivateFieldGet(this, _generatedClassesPackage),
+            visibility: _erdiagram_converter_oop_code_converter_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__.JavaVisibility.PUBLIC,
+            name: classDescriptor.name,
+            annotations: [],
+            fields: classDescriptor.fields.map(fieldDescriptor => {
+                const javaField = __classPrivateFieldGet(this, _javaFieldGenerator).generateJavaField(fieldDescriptor);
+                fieldGeneratedEventListener({ javaField, fieldDescriptor });
+                return javaField;
+            })
+        };
+    }
+}
+_generatedClassesPackage = new WeakMap(), _javaFieldGenerator = new WeakMap();
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/model/generator/JavaClassModelGenerator.ts":
+/*!*********************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/model/generator/JavaClassModelGenerator.ts ***!
+  \*********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ JavaClassModelGenerator)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_JavaFieldTypeResolver__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/JavaFieldTypeResolver */ "./src/main/erdiagram/converter/oop/code-converter/java/type/JavaFieldTypeResolver.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_model_generator_config_JavaClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/model/generator/config/JavaClassModelGeneratorConfigManager */ "./src/main/erdiagram/converter/oop/code-converter/java/model/generator/config/JavaClassModelGeneratorConfigManager.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_model_generator_source_JavaClassModelDescriptorsRepositoryBuilder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/model/generator/source/JavaClassModelDescriptorsRepositoryBuilder */ "./src/main/erdiagram/converter/oop/code-converter/java/model/generator/source/JavaClassModelDescriptorsRepositoryBuilder.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_model_generator_JavaClassGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/model/generator/JavaClassGenerator */ "./src/main/erdiagram/converter/oop/code-converter/java/model/generator/JavaClassGenerator.ts");
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _javaClassGenerator;
+
+
+
+
+class JavaClassModelGenerator {
+    constructor(config) {
+        _javaClassGenerator.set(this, void 0);
+        const fullConfig = _erdiagram_converter_oop_code_converter_java_model_generator_config_JavaClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_1__.default.mergeWithDefaultConfig(config);
+        const generatedClassesPackage = fullConfig.generatedClassesPackage;
+        const typeResolver = new _erdiagram_converter_oop_code_converter_java_type_JavaFieldTypeResolver__WEBPACK_IMPORTED_MODULE_0__.default(fullConfig.typeBindings, generatedClassesPackage);
+        __classPrivateFieldSet(this, _javaClassGenerator, new _erdiagram_converter_oop_code_converter_java_model_generator_JavaClassGenerator__WEBPACK_IMPORTED_MODULE_3__.default(generatedClassesPackage, typeResolver));
+    }
+    generateJavaClassModel(classModel) {
+        const descriptorsRepositoryBuilder = new _erdiagram_converter_oop_code_converter_java_model_generator_source_JavaClassModelDescriptorsRepositoryBuilder__WEBPACK_IMPORTED_MODULE_2__.default();
+        const javaClasses = classModel.classes
+            .map(classDescriptor => {
+            const javaClass = __classPrivateFieldGet(this, _javaClassGenerator).generateJavaClass(classDescriptor, event => {
+                descriptorsRepositoryBuilder.addField(event.javaField, event.fieldDescriptor);
+            });
+            descriptorsRepositoryBuilder.addClass(javaClass, classDescriptor);
+            return javaClass;
+        });
+        return {
+            javaClassModel: {
+                classes: javaClasses
+            },
+            javaClassModelDescriptorsRepository: descriptorsRepositoryBuilder.build()
+        };
+    }
+}
+_javaClassGenerator = new WeakMap();
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/model/generator/JavaFieldGenerator.ts":
+/*!****************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/model/generator/JavaFieldGenerator.ts ***!
+  \****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ JavaFieldGenerator)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/model/java-class-model-types */ "./src/main/erdiagram/converter/oop/code-converter/java/model/java-class-model-types.ts");
+/* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _typeResolver;
+
+
+class JavaFieldGenerator {
+    constructor(typeResolver) {
+        _typeResolver.set(this, void 0);
+        __classPrivateFieldSet(this, _typeResolver, typeResolver);
+    }
+    generateJavaField(fieldDescriptor) {
+        const fieldType = __classPrivateFieldGet(this, _typeResolver).resolveFieldType(fieldDescriptor);
+        return {
+            visibility: _erdiagram_converter_oop_code_converter_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__.JavaVisibility.PRIVATE,
+            name: fieldDescriptor.name,
+            type: fieldType,
+            annotations: [],
+            getter: {
+                visibility: _erdiagram_converter_oop_code_converter_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__.JavaVisibility.PUBLIC,
+                annotations: [],
+                name: this.getGetterName(fieldDescriptor.name, fieldType)
+            },
+            setter: {
+                visibility: _erdiagram_converter_oop_code_converter_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__.JavaVisibility.PUBLIC,
+                annotations: [],
+                name: this.getSetterName(fieldDescriptor.name)
+            },
+        };
+    }
+    getGetterName(fieldName, fieldType) {
+        const capitalizedFieldName = (0,_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__.capitalizeWord)(fieldName);
+        return this.isBooleanType(fieldType) ? `is${capitalizedFieldName}` : `get${capitalizedFieldName}`;
+    }
+    isBooleanType(fieldType) {
+        return fieldType.formatCanonical() === 'boolean';
+    }
+    getSetterName(fieldName) {
+        const capitalizedFieldName = (0,_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__.capitalizeWord)(fieldName);
+        return `set${capitalizedFieldName}`;
+    }
+}
+_typeResolver = new WeakMap();
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/model/generator/config/JavaClassModelGeneratorConfigManager.ts":
+/*!*****************************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/model/generator/config/JavaClassModelGeneratorConfigManager.ts ***!
+  \*****************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "JavaClassModelGeneratorConfigManager": () => (/* binding */ JavaClassModelGeneratorConfigManager),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/parseJavaType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/parseJavaType.ts");
+/* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! true-json */ "./node_modules/true-json/dist/true-json.umd.js");
+/* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(true_json__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+class JavaClassModelGeneratorConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_1__.default {
+    getDefaultConfig() {
+        return {
+            typeBindings: {
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.IDENTITY]: (0,_erdiagram_converter_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__.default)('java.lang.Long'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.TEXT]: (0,_erdiagram_converter_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__.default)('java.lang.String'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.LONG]: (0,_erdiagram_converter_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__.default)('java.lang.Long'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.INT]: (0,_erdiagram_converter_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__.default)('java.lang.Integer'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.SHORT]: (0,_erdiagram_converter_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__.default)('java.lang.Short'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.DECIMAL]: (0,_erdiagram_converter_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__.default)('java.math.BigDecimal'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.BOOLEAN]: (0,_erdiagram_converter_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__.default)('java.lang.Boolean'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.DATE]: (0,_erdiagram_converter_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__.default)('java.time.LocalDate'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.TIME]: (0,_erdiagram_converter_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__.default)('java.time.LocalTime'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.DATETIME]: (0,_erdiagram_converter_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__.default)('java.time.LocalDateTime'),
+                [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.BLOB]: (0,_erdiagram_converter_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__.default)('byte[]')
+            }
+        };
+    }
+    mergeConfigs(fullConfig, partialConfig) {
+        return Object.assign(Object.assign(Object.assign({}, fullConfig), partialConfig), { typeBindings: Object.assign(Object.assign({}, fullConfig.typeBindings), partialConfig === null || partialConfig === void 0 ? void 0 : partialConfig.typeBindings) });
+    }
+    getJsonAdapter() {
+        return true_json__WEBPACK_IMPORTED_MODULE_3__.JsonAdapters.object({
+            typeBindings: true_json__WEBPACK_IMPORTED_MODULE_3__.JsonAdapters.record(true_json__WEBPACK_IMPORTED_MODULE_3__.JsonAdapters.custom({
+                adaptToJson(value) {
+                    return value.formatCanonical();
+                },
+                recoverFromJson(value) {
+                    return (0,_erdiagram_converter_oop_code_converter_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__.default)(value);
+                }
+            }))
+        });
+    }
+}
+const javaClassModelGeneratorConfigManager = new JavaClassModelGeneratorConfigManager();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (javaClassModelGeneratorConfigManager);
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/model/generator/source/JavaClassModelDescriptorsRepository.ts":
+/*!****************************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/model/generator/source/JavaClassModelDescriptorsRepository.ts ***!
+  \****************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ JavaClassModelDescriptorsRepository)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_model_generator_source_JavaClassModelDescriptorsRepositoryBuilder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/model/generator/source/JavaClassModelDescriptorsRepositoryBuilder */ "./src/main/erdiagram/converter/oop/code-converter/java/model/generator/source/JavaClassModelDescriptorsRepositoryBuilder.ts");
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _classDescriptorsMap, _fieldDescriptorsMap;
+
+class JavaClassModelDescriptorsRepository {
+    constructor(classDescriptorsMap, fieldDescriptorsMap) {
+        _classDescriptorsMap.set(this, void 0);
+        _fieldDescriptorsMap.set(this, void 0);
+        __classPrivateFieldSet(this, _classDescriptorsMap, classDescriptorsMap);
+        __classPrivateFieldSet(this, _fieldDescriptorsMap, fieldDescriptorsMap);
+    }
+    getClassDescriptor(javaClass) {
+        const classDescriptor = __classPrivateFieldGet(this, _classDescriptorsMap).get(javaClass);
+        if (classDescriptor == null) {
+            throw new Error(`Cannot find descriptor for Java class "${javaClass.name}"`);
+        }
+        return classDescriptor;
+    }
+    getFieldDescriptor(javaField) {
+        const fieldDescriptor = __classPrivateFieldGet(this, _fieldDescriptorsMap).get(javaField);
+        if (fieldDescriptor == null) {
+            throw new Error(`Cannot find descriptor for Java field "${javaField.name}"`);
+        }
+        return fieldDescriptor;
+    }
+    static builder() {
+        return new _erdiagram_converter_oop_code_converter_java_model_generator_source_JavaClassModelDescriptorsRepositoryBuilder__WEBPACK_IMPORTED_MODULE_0__.default();
+    }
+}
+_classDescriptorsMap = new WeakMap(), _fieldDescriptorsMap = new WeakMap();
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/model/generator/source/JavaClassModelDescriptorsRepositoryBuilder.ts":
+/*!***********************************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/model/generator/source/JavaClassModelDescriptorsRepositoryBuilder.ts ***!
+  \***********************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ JavaClassModelDescriptorsRepositoryBuilder)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_model_generator_source_JavaClassModelDescriptorsRepository__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/model/generator/source/JavaClassModelDescriptorsRepository */ "./src/main/erdiagram/converter/oop/code-converter/java/model/generator/source/JavaClassModelDescriptorsRepository.ts");
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _classDescriptorsMap, _fieldDescriptorsMap;
+
+class JavaClassModelDescriptorsRepositoryBuilder {
+    constructor() {
+        _classDescriptorsMap.set(this, new Map());
+        _fieldDescriptorsMap.set(this, new Map());
+    }
+    addClass(javaClass, classDescriptor) {
+        __classPrivateFieldGet(this, _classDescriptorsMap).set(javaClass, classDescriptor);
+        return this;
+    }
+    addField(javaField, fieldDescriptor) {
+        __classPrivateFieldGet(this, _fieldDescriptorsMap).set(javaField, fieldDescriptor);
+        return this;
+    }
+    build() {
+        return new _erdiagram_converter_oop_code_converter_java_model_generator_source_JavaClassModelDescriptorsRepository__WEBPACK_IMPORTED_MODULE_0__.default(new Map(__classPrivateFieldGet(this, _classDescriptorsMap).entries()), new Map(__classPrivateFieldGet(this, _fieldDescriptorsMap).entries()));
+    }
+}
+_classDescriptorsMap = new WeakMap(), _fieldDescriptorsMap = new WeakMap();
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/model/java-class-model-types.ts":
+/*!**********************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/model/java-class-model-types.ts ***!
+  \**********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "JavaVisibility": () => (/* binding */ JavaVisibility)
+/* harmony export */ });
+var JavaVisibility;
+(function (JavaVisibility) {
+    JavaVisibility["PRIVATE"] = "private";
+    JavaVisibility["PROTECTED"] = "protected";
+    JavaVisibility["PUBLIC"] = "public";
+    JavaVisibility["PACKAGE_PRIVATE"] = "package-private";
+})(JavaVisibility || (JavaVisibility = {}));
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/model/transformer/ApplyTransformersCommand.ts":
+/*!************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/model/transformer/ApplyTransformersCommand.ts ***!
+  \************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ApplyTransformersCommand)
+/* harmony export */ });
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _setupContext, _javaClassModelDescriptorsRepository, _transformers;
+class ApplyTransformersCommand {
+    constructor(setupContext, javaClassModelDescriptorsRepository, transformers) {
+        _setupContext.set(this, void 0);
+        _javaClassModelDescriptorsRepository.set(this, void 0);
+        _transformers.set(this, void 0);
+        __classPrivateFieldSet(this, _setupContext, setupContext);
+        __classPrivateFieldSet(this, _javaClassModelDescriptorsRepository, javaClassModelDescriptorsRepository);
+        __classPrivateFieldSet(this, _transformers, transformers);
+    }
+    execute() {
+        __classPrivateFieldGet(this, _transformers).forEach(transformer => this.applyTransformer(transformer));
+    }
+    applyTransformer(transformer) {
+        const { javaClassModel } = __classPrivateFieldGet(this, _setupContext);
+        const setupData = transformer.setup(__classPrivateFieldGet(this, _setupContext));
+        javaClassModel.classes.forEach(javaClass => {
+            const classDescriptor = __classPrivateFieldGet(this, _javaClassModelDescriptorsRepository).getClassDescriptor(javaClass);
+            javaClass.fields.forEach(javaField => {
+                const fieldDescriptor = __classPrivateFieldGet(this, _javaClassModelDescriptorsRepository).getFieldDescriptor(javaField);
+                return transformer.visitField(javaField, Object.assign(Object.assign({}, __classPrivateFieldGet(this, _setupContext)), { setupData, javaClass: javaClass, classDescriptor,
+                    fieldDescriptor }));
+            });
+            transformer.visitClass(javaClass, Object.assign(Object.assign({}, __classPrivateFieldGet(this, _setupContext)), { setupData,
+                classDescriptor }));
+        });
+        transformer.visitModel(javaClassModel, Object.assign(Object.assign({}, __classPrivateFieldGet(this, _setupContext)), { setupData }));
+    }
+}
+_setupContext = new WeakMap(), _javaClassModelDescriptorsRepository = new WeakMap(), _transformers = new WeakMap();
 
 
 /***/ }),
@@ -4442,7 +5873,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ JavaFieldTypeResolver)
 /* harmony export */ });
-/* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/createJavaSimpleType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/createJavaSimpleType.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType.ts");
 /* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_parameterized_createJavaParameterizedType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/parameterized/createJavaParameterizedType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/parameterized/createJavaParameterizedType.ts");
 
 
@@ -4468,7 +5899,7 @@ class JavaFieldTypeResolver {
             if (primitiveType) {
                 throw new Error('Invalid field descriptor: provided both primitive and entity types');
             }
-            return (0,_erdiagram_converter_oop_code_converter_java_type_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)(entityType, this.generatedClassesPackage);
+            return (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)(entityType, this.generatedClassesPackage);
         }
         if (!primitiveType) {
             throw new Error('Invalid field descriptor: missing type');
@@ -4484,35 +5915,6 @@ class JavaFieldTypeResolver {
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/oop/code-converter/java/type/createJavaSimpleType.ts":
-/*!*******************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/oop/code-converter/java/type/createJavaSimpleType.ts ***!
-  \*******************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ createJavaSimpleType)
-/* harmony export */ });
-function createJavaSimpleType(name, packageName) {
-    const canonicalName = packageName ? `${packageName}.${name}` : name;
-    return {
-        packageName,
-        name,
-        canonicalName,
-        formatSimple() {
-            return name;
-        },
-        formatCanonical() {
-            return canonicalName;
-        }
-    };
-}
-
-
-/***/ }),
-
 /***/ "./src/main/erdiagram/converter/oop/code-converter/java/type/exports.ts":
 /*!******************************************************************************!*\
   !*** ./src/main/erdiagram/converter/oop/code-converter/java/type/exports.ts ***!
@@ -4522,14 +5924,14 @@ function createJavaSimpleType(name, packageName) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createJavaSimpleType": () => (/* reexport safe */ _createJavaSimpleType__WEBPACK_IMPORTED_MODULE_1__.default),
+/* harmony export */   "createJavaSimpleType": () => (/* reexport safe */ _simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_1__.default),
 /* harmony export */   "createJavaParameterizedType": () => (/* reexport safe */ _parameterized_createJavaParameterizedType__WEBPACK_IMPORTED_MODULE_2__.default),
 /* harmony export */   "createJavaArrayType": () => (/* reexport safe */ _parameterized_createJavaArrayType__WEBPACK_IMPORTED_MODULE_3__.default),
 /* harmony export */   "isJavaParameterizedType": () => (/* reexport safe */ _parameterized_isJavaParameterizedType__WEBPACK_IMPORTED_MODULE_4__.default),
 /* harmony export */   "parseJavaType": () => (/* reexport safe */ _parseJavaType__WEBPACK_IMPORTED_MODULE_0__.default)
 /* harmony export */ });
 /* harmony import */ var _parseJavaType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./parseJavaType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/parseJavaType.ts");
-/* harmony import */ var _createJavaSimpleType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createJavaSimpleType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/createJavaSimpleType.ts");
+/* harmony import */ var _simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./simple/createJavaSimpleType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType.ts");
 /* harmony import */ var _parameterized_createJavaParameterizedType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./parameterized/createJavaParameterizedType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/parameterized/createJavaParameterizedType.ts");
 /* harmony import */ var _parameterized_createJavaArrayType__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./parameterized/createJavaArrayType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/parameterized/createJavaArrayType.ts");
 /* harmony import */ var _parameterized_isJavaParameterizedType__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./parameterized/isJavaParameterizedType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/parameterized/isJavaParameterizedType.ts");
@@ -4539,6 +5941,96 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/type/import/JavaAnnotationUsedTypesCompiler.ts":
+/*!*************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/type/import/JavaAnnotationUsedTypesCompiler.ts ***!
+  \*************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ JavaAnnotationUsedTypesCompiler)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation.ts");
+
+// TODO add unit tests
+class JavaAnnotationUsedTypesCompiler {
+    getUsedTypes(annotation) {
+        const parametersUsedTypes = Object.values(annotation.parameters)
+            .filter(parameterValue => parameterValue != null)
+            .flatMap(parameterValue => this.getAnnotationParameterUsedTypes(parameterValue));
+        return [
+            annotation.type,
+            ...parametersUsedTypes
+        ];
+    }
+    getAnnotationParameterUsedTypes(parameterValue) {
+        if (!Array.isArray(parameterValue)) {
+            return this.getAnnotationSingleParameterUsedTypes(parameterValue);
+        }
+        return parameterValue.flatMap(singleParameterValue => this.getAnnotationSingleParameterUsedTypes(singleParameterValue));
+    }
+    getAnnotationSingleParameterUsedTypes(parameterValue) {
+        if (_erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default.isRawParameterValue(parameterValue)) {
+            return parameterValue.usedTypes;
+        }
+        if (parameterValue instanceof _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default) {
+            return this.getUsedTypes(parameterValue);
+        }
+        return [];
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/type/import/JavaClassUsedTypesCompiler.ts":
+/*!********************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/type/import/JavaClassUsedTypesCompiler.ts ***!
+  \********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ JavaClassUsedTypesCompiler)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_import_JavaAnnotationUsedTypesCompiler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/import/JavaAnnotationUsedTypesCompiler */ "./src/main/erdiagram/converter/oop/code-converter/java/type/import/JavaAnnotationUsedTypesCompiler.ts");
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _javaAnnotationUsedTypesCompiler;
+
+// TODO add unit tests
+class JavaClassUsedTypesCompiler {
+    constructor() {
+        _javaAnnotationUsedTypesCompiler.set(this, new _erdiagram_converter_oop_code_converter_java_type_import_JavaAnnotationUsedTypesCompiler__WEBPACK_IMPORTED_MODULE_0__.default());
+    }
+    getUsedTypes(javaClass) {
+        const usedTypes = [];
+        usedTypes.push(...this.getAnnotationsUsedTypes(javaClass.annotations));
+        javaClass.fields.forEach(javaField => {
+            var _a, _b, _c, _d;
+            usedTypes.push(javaField.type);
+            usedTypes.push(...this.getAnnotationsUsedTypes(javaField.annotations));
+            usedTypes.push(...this.getAnnotationsUsedTypes((_b = (_a = javaField.getter) === null || _a === void 0 ? void 0 : _a.annotations) !== null && _b !== void 0 ? _b : []));
+            usedTypes.push(...this.getAnnotationsUsedTypes((_d = (_c = javaField.setter) === null || _c === void 0 ? void 0 : _c.annotations) !== null && _d !== void 0 ? _d : []));
+        });
+        return usedTypes;
+    }
+    getAnnotationsUsedTypes(annotations) {
+        return annotations.flatMap(annotation => __classPrivateFieldGet(this, _javaAnnotationUsedTypesCompiler).getUsedTypes(annotation));
+    }
+}
+_javaAnnotationUsedTypesCompiler = new WeakMap();
 
 
 /***/ }),
@@ -4556,11 +6048,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _erdiagram_util_array_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/array-utils */ "./src/main/erdiagram/util/array-utils.ts");
 /* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_parameterized_isJavaParameterizedType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/parameterized/isJavaParameterizedType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/parameterized/isJavaParameterizedType.ts");
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _currentPackage;
 
 
+const JAVA_LANG_PACKAGE = 'java.lang';
+// TODO add unit tests
 class JavaImportStatementsGenerator {
-    constructor(generatedClassesPackage) {
-        this.generatedClassesPackage = generatedClassesPackage;
+    constructor(currentPackage) {
+        _currentPackage.set(this, void 0);
+        __classPrivateFieldSet(this, _currentPackage, currentPackage);
     }
     generateImportStatements(javaTypes) {
         const importStatements = this.unrollTypesRecursively(javaTypes)
@@ -4579,10 +6088,11 @@ class JavaImportStatementsGenerator {
     }
     isImportRequired(javaType) {
         return !!javaType.packageName
-            && javaType.packageName !== 'java.lang'
-            && this.generatedClassesPackage !== javaType.packageName;
+            && javaType.packageName !== JAVA_LANG_PACKAGE
+            && javaType.packageName !== __classPrivateFieldGet(this, _currentPackage);
     }
 }
+_currentPackage = new WeakMap();
 
 
 /***/ }),
@@ -4598,20 +6108,54 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ createJavaArrayType)
 /* harmony export */ });
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _name, _canonicalName, _parameterType;
 function createJavaArrayType(parameterType) {
-    const name = `${parameterType.name}[]`;
-    return {
-        name,
-        parameterTypes: [parameterType],
-        canonicalName: name,
-        formatSimple() {
-            return `${parameterType.formatSimple()}[]`;
-        },
-        formatCanonical() {
-            return `${parameterType.formatCanonical()}[]`;
-        }
-    };
+    return new JavaArrayTypeImpl(parameterType);
 }
+class JavaArrayTypeImpl {
+    constructor(parameterType) {
+        _name.set(this, void 0);
+        _canonicalName.set(this, void 0);
+        _parameterType.set(this, void 0);
+        __classPrivateFieldSet(this, _name, `${parameterType.name}[]`);
+        __classPrivateFieldSet(this, _canonicalName, `${parameterType.canonicalName}[]`);
+        __classPrivateFieldSet(this, _parameterType, parameterType);
+    }
+    get canonicalName() {
+        return __classPrivateFieldGet(this, _canonicalName);
+    }
+    get name() {
+        return __classPrivateFieldGet(this, _name);
+    }
+    get packageName() {
+        return undefined;
+    }
+    get parameterTypes() {
+        return [__classPrivateFieldGet(this, _parameterType)];
+    }
+    formatSimple() {
+        const formattedParameterType = __classPrivateFieldGet(this, _parameterType).formatSimple();
+        return `${formattedParameterType}[]`;
+    }
+    formatCanonical() {
+        const formattedParameterType = __classPrivateFieldGet(this, _parameterType).formatCanonical();
+        return `${formattedParameterType}[]`;
+    }
+}
+_name = new WeakMap(), _canonicalName = new WeakMap(), _parameterType = new WeakMap();
 
 
 /***/ }),
@@ -4627,23 +6171,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ createJavaParameterizedType)
 /* harmony export */ });
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _name, _packageName, _canonicalName, _parameterTypes;
 function createJavaParameterizedType(name, packageName, parameterTypes) {
-    const canonicalName = packageName ? `${packageName}.${name}` : name;
-    return {
-        packageName,
-        name,
-        parameterTypes,
-        canonicalName,
-        formatSimple(canonical = false) {
-            const formattedParameterTypes = parameterTypes.map(t => t.formatSimple()).join(', ');
-            return `${name}<${formattedParameterTypes}>`;
-        },
-        formatCanonical(canonical = false) {
-            const formattedParameterTypes = parameterTypes.map(t => t.formatCanonical()).join(', ');
-            return `${canonicalName}<${formattedParameterTypes}>`;
-        }
-    };
+    return new JavaParameterizedTypeImpl(name, packageName, parameterTypes);
 }
+class JavaParameterizedTypeImpl {
+    constructor(name, packageName, parameterTypes) {
+        _name.set(this, void 0);
+        _packageName.set(this, void 0);
+        _canonicalName.set(this, void 0);
+        _parameterTypes.set(this, void 0);
+        __classPrivateFieldSet(this, _name, name);
+        __classPrivateFieldSet(this, _packageName, packageName);
+        __classPrivateFieldSet(this, _canonicalName, packageName ? `${packageName}.${name}` : name);
+        __classPrivateFieldSet(this, _parameterTypes, parameterTypes);
+    }
+    get canonicalName() {
+        return __classPrivateFieldGet(this, _canonicalName);
+    }
+    get name() {
+        return __classPrivateFieldGet(this, _name);
+    }
+    get packageName() {
+        return __classPrivateFieldGet(this, _packageName);
+    }
+    get parameterTypes() {
+        return __classPrivateFieldGet(this, _parameterTypes);
+    }
+    formatSimple() {
+        const formattedParameterTypes = __classPrivateFieldGet(this, _parameterTypes).map(parameterType => parameterType.formatSimple()).join(', ');
+        return `${__classPrivateFieldGet(this, _name)}<${formattedParameterTypes}>`;
+    }
+    formatCanonical() {
+        const formattedParameterTypes = __classPrivateFieldGet(this, _parameterTypes).map(parameterType => parameterType.formatCanonical()).join(', ');
+        return `${__classPrivateFieldGet(this, _canonicalName)}<${formattedParameterTypes}>`;
+    }
+}
+_name = new WeakMap(), _packageName = new WeakMap(), _canonicalName = new WeakMap(), _parameterTypes = new WeakMap();
 
 
 /***/ }),
@@ -4677,7 +6254,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ parseJavaType)
 /* harmony export */ });
-/* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/createJavaSimpleType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/createJavaSimpleType.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType.ts");
 /* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_parameterized_createJavaParameterizedType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/parameterized/createJavaParameterizedType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/parameterized/createJavaParameterizedType.ts");
 /* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_parameterized_createJavaArrayType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/parameterized/createJavaArrayType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/parameterized/createJavaArrayType.ts");
 
@@ -4723,11 +6300,11 @@ function parseJavaRawType(text) {
     }
     const lastDotIndex = trimmedText.lastIndexOf(PACKAGE_SEPARATOR);
     if (lastDotIndex === -1) {
-        return (0,_erdiagram_converter_oop_code_converter_java_type_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)(trimmedText);
+        return (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)(trimmedText);
     }
     const packageName = trimmedText.substring(0, lastDotIndex);
     const className = trimmedText.substring(lastDotIndex + 1);
-    return (0,_erdiagram_converter_oop_code_converter_java_type_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)(className, packageName);
+    return (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)(className, packageName);
 }
 function trimRawJavaTypeParts(packageName) {
     return packageName.split(PACKAGE_SEPARATOR).map(e => e.trim()).join(PACKAGE_SEPARATOR);
@@ -4767,6 +6344,420 @@ function splitParameterTypes(parameterTypesText) {
     splittedParameterTypes.push(parameterTypesText.substring(startIndex));
     return splittedParameterTypes;
 }
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType.ts":
+/*!**************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType.ts ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ createJavaSimpleType)
+/* harmony export */ });
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _name, _packageName, _canonicalName;
+function createJavaSimpleType(name, packageName) {
+    return new JavaSimpleTypeImpl(name, packageName);
+}
+class JavaSimpleTypeImpl {
+    constructor(name, packageName) {
+        _name.set(this, void 0);
+        _packageName.set(this, void 0);
+        _canonicalName.set(this, void 0);
+        __classPrivateFieldSet(this, _name, name);
+        __classPrivateFieldSet(this, _packageName, packageName);
+        __classPrivateFieldSet(this, _canonicalName, packageName ? `${packageName}.${name}` : name);
+    }
+    get canonicalName() {
+        return __classPrivateFieldGet(this, _canonicalName);
+    }
+    get name() {
+        return __classPrivateFieldGet(this, _name);
+    }
+    get packageName() {
+        return __classPrivateFieldGet(this, _packageName);
+    }
+    formatSimple() {
+        return __classPrivateFieldGet(this, _name);
+    }
+    formatCanonical() {
+        return __classPrivateFieldGet(this, _canonicalName);
+    }
+}
+_name = new WeakMap(), _packageName = new WeakMap(), _canonicalName = new WeakMap();
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/validation/JavaValidationAnnotationTypes.ts":
+/*!**********************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/validation/JavaValidationAnnotationTypes.ts ***!
+  \**********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType */ "./src/main/erdiagram/converter/oop/code-converter/java/type/simple/createJavaSimpleType.ts");
+
+const VALIDATION_ANNOTATIONS_PACKAGE = 'javax.validation.constraints';
+const JavaValidationAnnotationTypes = {
+    NotNull: (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('NotNull', VALIDATION_ANNOTATIONS_PACKAGE),
+    NotEmpty: (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('NotEmpty', VALIDATION_ANNOTATIONS_PACKAGE),
+    NotBlank: (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('NotBlank', VALIDATION_ANNOTATIONS_PACKAGE),
+    Size: (0,_erdiagram_converter_oop_code_converter_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__.default)('Size', VALIDATION_ANNOTATIONS_PACKAGE)
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (JavaValidationAnnotationTypes);
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/validation/JavaxValidationTransformer.ts":
+/*!*******************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/validation/JavaxValidationTransformer.ts ***!
+  \*******************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ JavaxValidationTransformer)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_validation_visitor_JavaxValidationAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/validation/visitor/JavaxValidationAnnotationsSupplier */ "./src/main/erdiagram/converter/oop/code-converter/java/validation/visitor/JavaxValidationAnnotationsSupplier.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_validation_config_JavaxValidationTransformerConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/validation/config/JavaxValidationTransformerConfigManager */ "./src/main/erdiagram/converter/oop/code-converter/java/validation/config/JavaxValidationTransformerConfigManager.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_validation_visitor_JavaxValidationFieldVisitor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/validation/visitor/JavaxValidationFieldVisitor */ "./src/main/erdiagram/converter/oop/code-converter/java/validation/visitor/JavaxValidationFieldVisitor.ts");
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _javaxValidationFieldVisitor;
+
+
+
+class JavaxValidationTransformer {
+    constructor(config) {
+        _javaxValidationFieldVisitor.set(this, void 0);
+        const { notNullTextValidationStrategy, notNullBlobValidationStrategy, annotateGetters } = _erdiagram_converter_oop_code_converter_java_validation_config_JavaxValidationTransformerConfigManager__WEBPACK_IMPORTED_MODULE_1__.default.mergeWithDefaultConfig(config);
+        const javaxValidationAnnotationsSupplier = new _erdiagram_converter_oop_code_converter_java_validation_visitor_JavaxValidationAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_0__.default(notNullTextValidationStrategy, notNullBlobValidationStrategy);
+        __classPrivateFieldSet(this, _javaxValidationFieldVisitor, new _erdiagram_converter_oop_code_converter_java_validation_visitor_JavaxValidationFieldVisitor__WEBPACK_IMPORTED_MODULE_2__.default(javaxValidationAnnotationsSupplier, annotateGetters));
+    }
+    setup(context) {
+        return undefined;
+    }
+    visitField(javaField, context) {
+        __classPrivateFieldGet(this, _javaxValidationFieldVisitor).visitField(javaField, context);
+    }
+    visitClass(javaClass, context) {
+        // Do nothing
+    }
+    visitModel(javaClassModel, context) {
+        // Do nothing
+    }
+}
+_javaxValidationFieldVisitor = new WeakMap();
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/validation/config/JavaxValidationTransformerConfigManager.ts":
+/*!***************************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/validation/config/JavaxValidationTransformerConfigManager.ts ***!
+  \***************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "JavaxValidationTransformerConfigManager": () => (/* binding */ JavaxValidationTransformerConfigManager),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! true-json */ "./node_modules/true-json/dist/true-json.umd.js");
+/* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(true_json__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullTextValidationStrategy */ "./src/main/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullTextValidationStrategy.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullBlobValidationStrategy */ "./src/main/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullBlobValidationStrategy.ts");
+
+
+
+
+class JavaxValidationTransformerConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__.default {
+    getDefaultConfig() {
+        return {
+            notNullTextValidationStrategy: _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_2__.default.NOT_NULL,
+            notNullBlobValidationStrategy: _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_3__.default.NOT_NULL,
+            annotateGetters: false
+        };
+    }
+    mergeConfigs(fullConfig, partialConfig) {
+        return Object.assign(Object.assign({}, fullConfig), partialConfig);
+    }
+    getJsonAdapter() {
+        return true_json__WEBPACK_IMPORTED_MODULE_1__.JsonAdapters.object({
+            notNullTextValidationStrategy: true_json__WEBPACK_IMPORTED_MODULE_1__.JsonAdapters.byKeyLenient(_erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_2__.default, 'NOT_NULL'),
+            notNullBlobValidationStrategy: true_json__WEBPACK_IMPORTED_MODULE_1__.JsonAdapters.byKeyLenient(_erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_3__.default, 'NOT_NULL')
+        });
+    }
+}
+const javaxValidationTransformerConfigManager = new JavaxValidationTransformerConfigManager();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (javaxValidationTransformerConfigManager);
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/validation/config/exports.ts":
+/*!*******************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/validation/config/exports.ts ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "JavaxValidationTransformerConfigManager": () => (/* reexport safe */ _JavaxValidationTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__.JavaxValidationTransformerConfigManager),
+/* harmony export */   "javaxValidationTransformerConfigManager": () => (/* reexport safe */ _JavaxValidationTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */ });
+/* harmony import */ var _JavaxValidationTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./JavaxValidationTransformerConfigManager */ "./src/main/erdiagram/converter/oop/code-converter/java/validation/config/JavaxValidationTransformerConfigManager.ts");
+
+
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/validation/exports.ts":
+/*!************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/validation/exports.ts ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "JavaxValidationTransformerConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_3__.JavaxValidationTransformerConfigManager),
+/* harmony export */   "javaxValidationTransformerConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_3__.javaxValidationTransformerConfigManager),
+/* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_0__.default),
+/* harmony export */   "NotNullBlobValidationStrategy": () => (/* reexport safe */ _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_1__.default),
+/* harmony export */   "JavaxValidationTransformer": () => (/* reexport safe */ _erdiagram_converter_oop_code_converter_java_validation_JavaxValidationTransformer__WEBPACK_IMPORTED_MODULE_2__.default)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullTextValidationStrategy */ "./src/main/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullTextValidationStrategy.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullBlobValidationStrategy */ "./src/main/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullBlobValidationStrategy.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_validation_JavaxValidationTransformer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/validation/JavaxValidationTransformer */ "./src/main/erdiagram/converter/oop/code-converter/java/validation/JavaxValidationTransformer.ts");
+/* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/converter/oop/code-converter/java/validation/config/exports.ts");
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullBlobValidationStrategy.ts":
+/*!*******************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullBlobValidationStrategy.ts ***!
+  \*******************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var NotNullBlobValidationStrategy;
+(function (NotNullBlobValidationStrategy) {
+    NotNullBlobValidationStrategy["NOT_NULL"] = "not_null";
+    NotNullBlobValidationStrategy["NOT_EMPTY"] = "not_empty";
+})(NotNullBlobValidationStrategy || (NotNullBlobValidationStrategy = {}));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NotNullBlobValidationStrategy);
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullTextValidationStrategy.ts":
+/*!*******************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullTextValidationStrategy.ts ***!
+  \*******************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var NotNullTextValidationStrategy;
+(function (NotNullTextValidationStrategy) {
+    NotNullTextValidationStrategy["NOT_NULL"] = "not_null";
+    NotNullTextValidationStrategy["NOT_EMPTY"] = "not_empty";
+    NotNullTextValidationStrategy["NOT_BLANK"] = "not_blank";
+})(NotNullTextValidationStrategy || (NotNullTextValidationStrategy = {}));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NotNullTextValidationStrategy);
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/validation/visitor/JavaxValidationAnnotationsSupplier.ts":
+/*!***********************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/validation/visitor/JavaxValidationAnnotationsSupplier.ts ***!
+  \***********************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ JavaxValidationAnnotationsSupplier)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullTextValidationStrategy */ "./src/main/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullTextValidationStrategy.ts");
+/* harmony import */ var _erdiagram_util_array_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/util/array-utils */ "./src/main/erdiagram/util/array-utils.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_validation_JavaValidationAnnotationTypes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/validation/JavaValidationAnnotationTypes */ "./src/main/erdiagram/converter/oop/code-converter/java/validation/JavaValidationAnnotationTypes.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullBlobValidationStrategy */ "./src/main/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullBlobValidationStrategy.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation */ "./src/main/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation.ts");
+/* harmony import */ var _erdiagram_parser_types_error_ERDiagramSyntaxError__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/parser/types/error/ERDiagramSyntaxError */ "./src/main/erdiagram/parser/types/error/ERDiagramSyntaxError.ts");
+
+
+
+
+
+
+
+class JavaxValidationAnnotationsSupplier {
+    constructor(notNullTextValidationStrategy, notNullBlobValidationStrategy) {
+        this.notNullTextValidationStrategy = notNullTextValidationStrategy;
+        this.notNullBlobValidationStrategy = notNullBlobValidationStrategy;
+    }
+    getAnnotations(field) {
+        return (0,_erdiagram_util_array_utils__WEBPACK_IMPORTED_MODULE_2__.removeNullableValues)([
+            this.getNotNullAnnotation(field),
+            this.getSizeAnnotation(field)
+        ]);
+    }
+    getNotNullAnnotation(field) {
+        if (field.nullable) {
+            return null;
+        }
+        const annotationType = this.getNotNullAnnotationForField(field);
+        return new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_5__.default(annotationType);
+    }
+    getSizeAnnotation(field) {
+        const { maxSize } = field;
+        if (maxSize == null) {
+            return null;
+        }
+        return new _erdiagram_converter_oop_code_converter_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_5__.default(_erdiagram_converter_oop_code_converter_java_validation_JavaValidationAnnotationTypes__WEBPACK_IMPORTED_MODULE_3__.default.Size, { max: maxSize });
+    }
+    getNotNullAnnotationForField(field) {
+        switch (field.primitiveType) {
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.TEXT:
+                return this.getNotNullAnnotationForTextType();
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.BLOB:
+                return this.getNotNullAnnotationForBlobType();
+            default:
+                return _erdiagram_converter_oop_code_converter_java_validation_JavaValidationAnnotationTypes__WEBPACK_IMPORTED_MODULE_3__.default.NotNull;
+        }
+    }
+    getNotNullAnnotationForTextType() {
+        switch (this.notNullTextValidationStrategy) {
+            case _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_1__.default.NOT_NULL:
+                return _erdiagram_converter_oop_code_converter_java_validation_JavaValidationAnnotationTypes__WEBPACK_IMPORTED_MODULE_3__.default.NotNull;
+            case _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_1__.default.NOT_EMPTY:
+                return _erdiagram_converter_oop_code_converter_java_validation_JavaValidationAnnotationTypes__WEBPACK_IMPORTED_MODULE_3__.default.NotEmpty;
+            case _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_1__.default.NOT_BLANK:
+                return _erdiagram_converter_oop_code_converter_java_validation_JavaValidationAnnotationTypes__WEBPACK_IMPORTED_MODULE_3__.default.NotBlank;
+            /* istanbul ignore next */
+            default:
+                /* istanbul ignore next */
+                throw new _erdiagram_parser_types_error_ERDiagramSyntaxError__WEBPACK_IMPORTED_MODULE_6__.default(`Unknown statement type`);
+        }
+    }
+    getNotNullAnnotationForBlobType() {
+        switch (this.notNullBlobValidationStrategy) {
+            case _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_4__.default.NOT_NULL:
+                return _erdiagram_converter_oop_code_converter_java_validation_JavaValidationAnnotationTypes__WEBPACK_IMPORTED_MODULE_3__.default.NotNull;
+            case _erdiagram_converter_oop_code_converter_java_validation_strategy_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_4__.default.NOT_EMPTY:
+                return _erdiagram_converter_oop_code_converter_java_validation_JavaValidationAnnotationTypes__WEBPACK_IMPORTED_MODULE_3__.default.NotEmpty;
+            /* istanbul ignore next */
+            default:
+                /* istanbul ignore next */
+                throw new _erdiagram_parser_types_error_ERDiagramSyntaxError__WEBPACK_IMPORTED_MODULE_6__.default(`Unknown statement type`);
+        }
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/code-converter/java/validation/visitor/JavaxValidationFieldVisitor.ts":
+/*!****************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/java/validation/visitor/JavaxValidationFieldVisitor.ts ***!
+  \****************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ JavaxValidationFieldVisitor)
+/* harmony export */ });
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _javaValidationAnnotationsGenerator, _annotateGetters;
+class JavaxValidationFieldVisitor {
+    constructor(javaValidationAnnotationsGenerator, annotateGetters) {
+        _javaValidationAnnotationsGenerator.set(this, void 0);
+        _annotateGetters.set(this, void 0);
+        __classPrivateFieldSet(this, _javaValidationAnnotationsGenerator, javaValidationAnnotationsGenerator);
+        __classPrivateFieldSet(this, _annotateGetters, annotateGetters);
+    }
+    visitField(javaField, context) {
+        const annotations = __classPrivateFieldGet(this, _javaValidationAnnotationsGenerator).getAnnotations(context.fieldDescriptor);
+        const elementToAnnotate = this.getElementToAnnotate(javaField);
+        elementToAnnotate.annotations.push(...annotations);
+    }
+    getElementToAnnotate(javaField) {
+        if (__classPrivateFieldGet(this, _annotateGetters) && javaField.getter != null) {
+            return javaField.getter;
+        }
+        return javaField;
+    }
+}
+_javaValidationAnnotationsGenerator = new WeakMap(), _annotateGetters = new WeakMap();
 
 
 /***/ }),
@@ -4944,7 +6935,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ TypeScriptTypeResolver)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_code_converter_typescript_type_parameterized_createTypeScriptArrayType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/typescript/type/parameterized/createTypeScriptArrayType */ "./src/main/erdiagram/converter/oop/code-converter/typescript/type/parameterized/createTypeScriptArrayType.ts");
-/* harmony import */ var _erdiagram_converter_oop_code_converter_typescript_type_createTypeScriptSimpleType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/typescript/type/createTypeScriptSimpleType */ "./src/main/erdiagram/converter/oop/code-converter/typescript/type/createTypeScriptSimpleType.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_typescript_type_simple_createTypeScriptSimpleType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/typescript/type/simple/createTypeScriptSimpleType */ "./src/main/erdiagram/converter/oop/code-converter/typescript/type/simple/createTypeScriptSimpleType.ts");
 
 
 class TypeScriptTypeResolver {
@@ -4968,7 +6959,7 @@ class TypeScriptTypeResolver {
             if (primitiveType) {
                 throw new Error('Invalid field descriptor: provided both primitive and entity types');
             }
-            return (0,_erdiagram_converter_oop_code_converter_typescript_type_createTypeScriptSimpleType__WEBPACK_IMPORTED_MODULE_1__.default)(entityType);
+            return (0,_erdiagram_converter_oop_code_converter_typescript_type_simple_createTypeScriptSimpleType__WEBPACK_IMPORTED_MODULE_1__.default)(entityType);
         }
         if (!primitiveType) {
             throw new Error('Invalid field descriptor: missing type');
@@ -4984,27 +6975,6 @@ class TypeScriptTypeResolver {
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/oop/code-converter/typescript/type/createTypeScriptSimpleType.ts":
-/*!*******************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/oop/code-converter/typescript/type/createTypeScriptSimpleType.ts ***!
-  \*******************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ createTypeScriptSimpleType)
-/* harmony export */ });
-function createTypeScriptSimpleType(name) {
-    return {
-        name,
-        format: () => name
-    };
-}
-
-
-/***/ }),
-
 /***/ "./src/main/erdiagram/converter/oop/code-converter/typescript/type/exports.ts":
 /*!************************************************************************************!*\
   !*** ./src/main/erdiagram/converter/oop/code-converter/typescript/type/exports.ts ***!
@@ -5014,7 +6984,7 @@ function createTypeScriptSimpleType(name) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createTypeScriptSimpleType": () => (/* reexport safe */ _createTypeScriptSimpleType__WEBPACK_IMPORTED_MODULE_4__.default),
+/* harmony export */   "createTypeScriptSimpleType": () => (/* reexport safe */ _simple_createTypeScriptSimpleType__WEBPACK_IMPORTED_MODULE_4__.default),
 /* harmony export */   "createTypeScriptParameterizedType": () => (/* reexport safe */ _parameterized_createTypeScriptParameterizedType__WEBPACK_IMPORTED_MODULE_1__.default),
 /* harmony export */   "createTypeScriptArrayType": () => (/* reexport safe */ _parameterized_createTypeScriptArrayType__WEBPACK_IMPORTED_MODULE_2__.default),
 /* harmony export */   "isTypeScriptParameterizedType": () => (/* reexport safe */ _parameterized_isTypeScriptParameterizedType__WEBPACK_IMPORTED_MODULE_3__.default),
@@ -5024,7 +6994,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _parameterized_createTypeScriptParameterizedType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parameterized/createTypeScriptParameterizedType */ "./src/main/erdiagram/converter/oop/code-converter/typescript/type/parameterized/createTypeScriptParameterizedType.ts");
 /* harmony import */ var _parameterized_createTypeScriptArrayType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./parameterized/createTypeScriptArrayType */ "./src/main/erdiagram/converter/oop/code-converter/typescript/type/parameterized/createTypeScriptArrayType.ts");
 /* harmony import */ var _parameterized_isTypeScriptParameterizedType__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./parameterized/isTypeScriptParameterizedType */ "./src/main/erdiagram/converter/oop/code-converter/typescript/type/parameterized/isTypeScriptParameterizedType.ts");
-/* harmony import */ var _createTypeScriptSimpleType__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./createTypeScriptSimpleType */ "./src/main/erdiagram/converter/oop/code-converter/typescript/type/createTypeScriptSimpleType.ts");
+/* harmony import */ var _simple_createTypeScriptSimpleType__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./simple/createTypeScriptSimpleType */ "./src/main/erdiagram/converter/oop/code-converter/typescript/type/simple/createTypeScriptSimpleType.ts");
 
 
 
@@ -5046,13 +7016,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ createTypeScriptArrayType)
 /* harmony export */ });
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _parameterType;
 function createTypeScriptArrayType(parameterType) {
-    return {
-        name: 'Array',
-        parameterTypes: [parameterType],
-        format: () => `${parameterType.format()}[]`
-    };
+    return new TypeScriptArrayTypeImpl(parameterType);
 }
+class TypeScriptArrayTypeImpl {
+    constructor(parameterType) {
+        _parameterType.set(this, void 0);
+        __classPrivateFieldSet(this, _parameterType, parameterType);
+    }
+    get name() {
+        return 'Array';
+    }
+    get parameterTypes() {
+        return [__classPrivateFieldGet(this, _parameterType)];
+    }
+    format() {
+        const formattedParameterType = __classPrivateFieldGet(this, _parameterType).format();
+        return `${formattedParameterType}[]`;
+    }
+}
+_parameterType = new WeakMap();
 
 
 /***/ }),
@@ -5068,16 +7065,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ createTypeScriptParameterizedType)
 /* harmony export */ });
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _name, _parameterTypes;
 function createTypeScriptParameterizedType(name, parameterTypes) {
-    return {
-        name,
-        parameterTypes,
-        format: () => {
-            const formattedParameterTypes = parameterTypes.map(t => t.format()).join(', ');
-            return `${name}<${formattedParameterTypes}>`;
-        }
-    };
+    return new TypeScriptParameterizedTypeImpl(name, parameterTypes);
 }
+class TypeScriptParameterizedTypeImpl {
+    constructor(name, parameterTypes) {
+        _name.set(this, void 0);
+        _parameterTypes.set(this, void 0);
+        __classPrivateFieldSet(this, _name, name);
+        __classPrivateFieldSet(this, _parameterTypes, parameterTypes);
+    }
+    get name() {
+        return __classPrivateFieldGet(this, _name);
+    }
+    get parameterTypes() {
+        return __classPrivateFieldGet(this, _parameterTypes);
+    }
+    format() {
+        const formattedParameterTypes = __classPrivateFieldGet(this, _parameterTypes).map(parameterType => parameterType.format()).join(', ');
+        return `${__classPrivateFieldGet(this, _name)}<${formattedParameterTypes}>`;
+    }
+}
+_name = new WeakMap(), _parameterTypes = new WeakMap();
 
 
 /***/ }),
@@ -5113,7 +7136,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_code_converter_typescript_type_parameterized_createTypeScriptParameterizedType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/typescript/type/parameterized/createTypeScriptParameterizedType */ "./src/main/erdiagram/converter/oop/code-converter/typescript/type/parameterized/createTypeScriptParameterizedType.ts");
 /* harmony import */ var _erdiagram_converter_oop_code_converter_typescript_type_parameterized_createTypeScriptArrayType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/typescript/type/parameterized/createTypeScriptArrayType */ "./src/main/erdiagram/converter/oop/code-converter/typescript/type/parameterized/createTypeScriptArrayType.ts");
-/* harmony import */ var _erdiagram_converter_oop_code_converter_typescript_type_createTypeScriptSimpleType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/typescript/type/createTypeScriptSimpleType */ "./src/main/erdiagram/converter/oop/code-converter/typescript/type/createTypeScriptSimpleType.ts");
+/* harmony import */ var _erdiagram_converter_oop_code_converter_typescript_type_simple_createTypeScriptSimpleType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/code-converter/typescript/type/simple/createTypeScriptSimpleType */ "./src/main/erdiagram/converter/oop/code-converter/typescript/type/simple/createTypeScriptSimpleType.ts");
 
 
 
@@ -5154,7 +7177,7 @@ function parseTypeScriptRawType(text) {
     if (!RAW_TYPE_REGEX.test(trimmedText)) {
         throw new Error(`Illegal TypeScript type format: ${text}`);
     }
-    return (0,_erdiagram_converter_oop_code_converter_typescript_type_createTypeScriptSimpleType__WEBPACK_IMPORTED_MODULE_2__.default)(trimmedText);
+    return (0,_erdiagram_converter_oop_code_converter_typescript_type_simple_createTypeScriptSimpleType__WEBPACK_IMPORTED_MODULE_2__.default)(trimmedText);
 }
 function splitParameterTypes(parameterTypesText) {
     if (!parameterTypesText.includes(',')) {
@@ -5195,6 +7218,51 @@ function splitParameterTypes(parameterTypesText) {
 
 /***/ }),
 
+/***/ "./src/main/erdiagram/converter/oop/code-converter/typescript/type/simple/createTypeScriptSimpleType.ts":
+/*!**************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/code-converter/typescript/type/simple/createTypeScriptSimpleType.ts ***!
+  \**************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ createTypeScriptSimpleType)
+/* harmony export */ });
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _name;
+function createTypeScriptSimpleType(name) {
+    return new TypeScriptSimpleTypeImpl(name);
+}
+class TypeScriptSimpleTypeImpl {
+    constructor(name) {
+        _name.set(this, void 0);
+        __classPrivateFieldSet(this, _name, name);
+    }
+    get name() {
+        return __classPrivateFieldGet(this, _name);
+    }
+    format() {
+        return __classPrivateFieldGet(this, _name);
+    }
+}
+_name = new WeakMap();
+
+
+/***/ }),
+
 /***/ "./src/main/erdiagram/converter/oop/exports.ts":
 /*!*****************************************************!*\
   !*** ./src/main/erdiagram/converter/oop/exports.ts ***!
@@ -5204,9 +7272,14 @@ function splitParameterTypes(parameterTypesText) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "EntityRelationshipModelToClassCodeConverter": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.EntityRelationshipModelToClassCodeConverter),
-/* harmony export */   "JavaClassModelToCodeConverter": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.JavaClassModelToCodeConverter),
+/* harmony export */   "JavaAnnotation": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.JavaAnnotation),
 /* harmony export */   "JavaClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.JavaClassModelToCodeConverterConfigManager),
+/* harmony export */   "JavaEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.JavaEntityRelationshipModelSourceCodeGenerator),
+/* harmony export */   "JavaEntityRelationshipModelSourceCodeGeneratorBuilder": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.JavaEntityRelationshipModelSourceCodeGeneratorBuilder),
+/* harmony export */   "JavaxValidationTransformer": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.JavaxValidationTransformer),
+/* harmony export */   "JavaxValidationTransformerConfigManager": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.JavaxValidationTransformerConfigManager),
+/* harmony export */   "JpaTransformer": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.JpaTransformer),
+/* harmony export */   "JpaTransformerConfigManager": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.JpaTransformerConfigManager),
 /* harmony export */   "NotNullBlobValidationStrategy": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.NotNullBlobValidationStrategy),
 /* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.NotNullTextValidationStrategy),
 /* harmony export */   "TypeScriptClassModelToCodeConverter": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.TypeScriptClassModelToCodeConverter),
@@ -5220,6 +7293,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "isJavaParameterizedType": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.isJavaParameterizedType),
 /* harmony export */   "isTypeScriptParameterizedType": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.isTypeScriptParameterizedType),
 /* harmony export */   "javaClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.javaClassModelToCodeConverterConfigManager),
+/* harmony export */   "javaxValidationTransformerConfigManager": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.javaxValidationTransformerConfigManager),
+/* harmony export */   "jpaTransformerConfigManager": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.jpaTransformerConfigManager),
 /* harmony export */   "parseJavaType": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.parseJavaType),
 /* harmony export */   "parseTypeScriptType": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.parseTypeScriptType),
 /* harmony export */   "typescriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _code_converter_exports__WEBPACK_IMPORTED_MODULE_0__.typescriptClassModelToCodeConverterConfigManager),
@@ -5297,7 +7372,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_oop_model_class_field_RelationshipMemberToClassFieldMapper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/class/field/RelationshipMemberToClassFieldMapper */ "./src/main/erdiagram/converter/oop/model/class/field/RelationshipMemberToClassFieldMapper.ts");
 /* harmony import */ var _erdiagram_converter_oop_model_class_field_EntityPropertyToClassFieldMapper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/class/field/EntityPropertyToClassFieldMapper */ "./src/main/erdiagram/converter/oop/model/class/field/EntityPropertyToClassFieldMapper.ts");
 /* harmony import */ var _erdiagram_converter_oop_model_class_field_EntityToIdClassFieldMapper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/class/field/EntityToIdClassFieldMapper */ "./src/main/erdiagram/converter/oop/model/class/field/EntityToIdClassFieldMapper.ts");
-/* harmony import */ var _erdiagram_converter_oop_model_source_metadata_types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata-types */ "./src/main/erdiagram/converter/oop/model/source-metadata-types.ts");
+/* harmony import */ var _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata/source-metadata-types */ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-types.ts");
 
 
 
@@ -5332,7 +7407,7 @@ class EntityToClassMapper {
             name,
             fields,
             sourceMetadata: {
-                sourceType: _erdiagram_converter_oop_model_source_metadata_types__WEBPACK_IMPORTED_MODULE_5__.SourceType.ENTITY,
+                sourceType: _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_5__.SourceType.ENTITY,
                 entity
             }
         };
@@ -5355,7 +7430,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ EntityPropertyToClassFieldMapper)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
-/* harmony import */ var _erdiagram_converter_oop_model_source_metadata_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata-types */ "./src/main/erdiagram/converter/oop/model/source-metadata-types.ts");
+/* harmony import */ var _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata/source-metadata-types */ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-types.ts");
 
 
 const TYPES_WITH_MAX_SIZE_SUPPORT = [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.TEXT, _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.BLOB];
@@ -5369,7 +7444,7 @@ class EntityPropertyToClassFieldMapper {
             list: false,
             maxSize: TYPES_WITH_MAX_SIZE_SUPPORT.includes(type) ? length[0] : undefined,
             sourceMetadata: {
-                sourceType: _erdiagram_converter_oop_model_source_metadata_types__WEBPACK_IMPORTED_MODULE_1__.SourceType.ENTITY_PROPERTY,
+                sourceType: _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_1__.SourceType.ENTITY_PROPERTY,
                 entity,
                 property
             }
@@ -5393,7 +7468,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ EntityToIdClassFieldMapper)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
-/* harmony import */ var _erdiagram_converter_oop_model_source_metadata_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata-types */ "./src/main/erdiagram/converter/oop/model/source-metadata-types.ts");
+/* harmony import */ var _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata/source-metadata-types */ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-types.ts");
 
 
 class EntityToIdClassFieldMapper {
@@ -5408,7 +7483,7 @@ class EntityToIdClassFieldMapper {
             nullable: true,
             list: false,
             sourceMetadata: {
-                sourceType: _erdiagram_converter_oop_model_source_metadata_types__WEBPACK_IMPORTED_MODULE_1__.SourceType.ENTITY_IDENTITY,
+                sourceType: _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_1__.SourceType.ENTITY_IDENTITY,
                 entity
             }
         };
@@ -5440,7 +7515,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 /* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pluralize */ "./node_modules/pluralize/pluralize.js");
 /* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(pluralize__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _erdiagram_converter_oop_model_source_metadata_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata-types */ "./src/main/erdiagram/converter/oop/model/source-metadata-types.ts");
+/* harmony import */ var _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata/source-metadata-types */ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-types.ts");
 
 
 
@@ -5454,9 +7529,9 @@ class RelationshipMemberToClassFieldMapper {
             entityType: toMember.entity,
             list,
             sourceMetadata: {
-                sourceType: _erdiagram_converter_oop_model_source_metadata_types__WEBPACK_IMPORTED_MODULE_2__.SourceType.RELATIONSHIP_TARGET,
+                sourceType: _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_2__.SourceType.RELATIONSHIP_MEMBER,
                 relationship,
-                targetMember: toMember
+                referencedMember: toMember
             }
         };
     }
@@ -5548,10 +7623,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/oop/model/source-metadata-types.ts":
-/*!*************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/oop/model/source-metadata-types.ts ***!
-  \*************************************************************************/
+/***/ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-types.ts":
+/*!*****************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-types.ts ***!
+  \*****************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5561,12 +7636,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var SourceType;
 (function (SourceType) {
+    SourceType["ENTITY_RELATIONSHIP_MODEL"] = "entity_relationship_model";
     SourceType["ENTITY"] = "entity";
     SourceType["ENTITY_IDENTITY"] = "entity_identity";
     SourceType["ENTITY_PROPERTY"] = "entity_property";
     SourceType["RELATIONSHIP"] = "relationship";
-    SourceType["RELATIONSHIP_TARGET"] = "relationship_target";
+    SourceType["RELATIONSHIP_MEMBER"] = "relationship_member";
 })(SourceType || (SourceType = {}));
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-utils.ts":
+/*!*****************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-utils.ts ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isEntityRelationshipModelSourceMetadata": () => (/* binding */ isEntityRelationshipModelSourceMetadata),
+/* harmony export */   "isEntitySourceMetadata": () => (/* binding */ isEntitySourceMetadata),
+/* harmony export */   "isEntityIdentitySourceMetadata": () => (/* binding */ isEntityIdentitySourceMetadata),
+/* harmony export */   "isEntityPropertySourceMetadata": () => (/* binding */ isEntityPropertySourceMetadata),
+/* harmony export */   "isRelationshipSourceMetadata": () => (/* binding */ isRelationshipSourceMetadata),
+/* harmony export */   "isRelationshipMemberSourceMetadata": () => (/* binding */ isRelationshipMemberSourceMetadata)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata/source-metadata-types */ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-types.ts");
+
+function isEntityRelationshipModelSourceMetadata(sourceMetadata) {
+    return sourceMetadata.sourceType === _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_0__.SourceType.ENTITY_RELATIONSHIP_MODEL;
+}
+function isEntitySourceMetadata(sourceMetadata) {
+    return sourceMetadata.sourceType === _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_0__.SourceType.ENTITY;
+}
+function isEntityIdentitySourceMetadata(sourceMetadata) {
+    return sourceMetadata.sourceType === _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_0__.SourceType.ENTITY_IDENTITY;
+}
+function isEntityPropertySourceMetadata(sourceMetadata) {
+    return sourceMetadata.sourceType === _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_0__.SourceType.ENTITY_PROPERTY;
+}
+function isRelationshipSourceMetadata(sourceMetadata) {
+    return sourceMetadata.sourceType === _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_0__.SourceType.RELATIONSHIP;
+}
+function isRelationshipMemberSourceMetadata(sourceMetadata) {
+    return sourceMetadata.sourceType === _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_0__.SourceType.RELATIONSHIP_MEMBER;
+}
 
 
 /***/ }),
@@ -5587,21 +7703,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "DatabaseModelGenerator": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.DatabaseModelGenerator),
 /* harmony export */   "DatabaseModelGeneratorConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.DatabaseModelGeneratorConfigManager),
 /* harmony export */   "DatabaseModelToSqlCodeConverter": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.DatabaseModelToSqlCodeConverter),
-/* harmony export */   "EntityRelationshipModelToClassCodeConverter": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.EntityRelationshipModelToClassCodeConverter),
-/* harmony export */   "EntityRelationshipModelToDatabaseCodeConverter": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.EntityRelationshipModelToDatabaseCodeConverter),
-/* harmony export */   "JavaClassModelToCodeConverter": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JavaClassModelToCodeConverter),
+/* harmony export */   "JavaAnnotation": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JavaAnnotation),
 /* harmony export */   "JavaClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JavaClassModelToCodeConverterConfigManager),
+/* harmony export */   "JavaEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JavaEntityRelationshipModelSourceCodeGenerator),
+/* harmony export */   "JavaEntityRelationshipModelSourceCodeGeneratorBuilder": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JavaEntityRelationshipModelSourceCodeGeneratorBuilder),
+/* harmony export */   "JavaxValidationTransformer": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JavaxValidationTransformer),
+/* harmony export */   "JavaxValidationTransformerConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JavaxValidationTransformerConfigManager),
+/* harmony export */   "JpaTransformer": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JpaTransformer),
+/* harmony export */   "JpaTransformerConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JpaTransformerConfigManager),
 /* harmony export */   "MysqlDialect": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.MysqlDialect),
 /* harmony export */   "MysqlDialectConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.MysqlDialectConfigManager),
-/* harmony export */   "NomnomlEntityRelationshipModelToDiagramCodeConverter": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.NomnomlEntityRelationshipModelToDiagramCodeConverter),
-/* harmony export */   "NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.NomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager),
+/* harmony export */   "NomnomlEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.NomnomlEntityRelationshipModelSourceCodeGenerator),
+/* harmony export */   "NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager),
 /* harmony export */   "NotNullBlobValidationStrategy": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.NotNullBlobValidationStrategy),
 /* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.NotNullTextValidationStrategy),
 /* harmony export */   "OracleDialect": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.OracleDialect),
 /* harmony export */   "OracleDialectConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.OracleDialectConfigManager),
-/* harmony export */   "PlantUmlEntityRelationshipModelToDiagramCodeConverter": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.PlantUmlEntityRelationshipModelToDiagramCodeConverter),
+/* harmony export */   "PlantUmlEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.PlantUmlEntityRelationshipModelSourceCodeGenerator),
 /* harmony export */   "PostgresqlDialect": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.PostgresqlDialect),
 /* harmony export */   "PostgresqlDialectConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.PostgresqlDialectConfigManager),
+/* harmony export */   "SqlEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.SqlEntityRelationshipModelSourceCodeGenerator),
 /* harmony export */   "SqlServerDialect": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.SqlServerDialect),
 /* harmony export */   "SqlServerDialectConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.SqlServerDialectConfigManager),
 /* harmony export */   "SqliteDialect": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.SqliteDialect),
@@ -5619,8 +7740,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "createTypeScriptSimpleType": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.createTypeScriptSimpleType),
 /* harmony export */   "databaseModelGeneratorConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.databaseModelGeneratorConfigManager),
 /* harmony export */   "isJavaParameterizedType": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.isJavaParameterizedType),
+/* harmony export */   "isMultipleFileEntityRelationshipModelSourceCodeGenerator": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.isMultipleFileEntityRelationshipModelSourceCodeGenerator),
 /* harmony export */   "isTypeScriptParameterizedType": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.isTypeScriptParameterizedType),
 /* harmony export */   "javaClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.javaClassModelToCodeConverterConfigManager),
+/* harmony export */   "javaxValidationTransformerConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.javaxValidationTransformerConfigManager),
+/* harmony export */   "jpaTransformerConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.jpaTransformerConfigManager),
 /* harmony export */   "mysqlDialectConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.mysqlDialectConfigManager),
 /* harmony export */   "nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager),
 /* harmony export */   "oracleDialectConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.oracleDialectConfigManager),

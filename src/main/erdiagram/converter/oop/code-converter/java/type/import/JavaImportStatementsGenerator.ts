@@ -24,7 +24,7 @@ export default class JavaImportStatementsGenerator {
 
 	}
 
-	private unrollTypesRecursively(javaTypes: JavaType[], appendTo: JavaType[] = []): JavaType[] {
+	private unrollTypesRecursively(javaTypes: ReadonlyArray<JavaType>, appendTo: JavaType[] = []): JavaType[] {
 
 		for (const javaType of javaTypes) {
 

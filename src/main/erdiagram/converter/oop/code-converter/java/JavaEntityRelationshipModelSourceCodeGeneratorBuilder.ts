@@ -5,15 +5,15 @@ import JavaClassModelGenerator
 	from '@/erdiagram/converter/oop/code-converter/java/model/generator/JavaClassModelGenerator';
 import {PartialClassModelGeneratorConfig} from '@/erdiagram/converter/oop/model/config/ClassModelGeneratorConfig';
 import {PartialJavaClassModelGeneratorConfig} from '@/erdiagram/converter/oop/code-converter/java/model/generator/config/JavaClassModelGeneratorConfig';
-import EntityRelationshipModelToJavaCodeConverter
-	from '@/erdiagram/converter/oop/code-converter/java/EntityRelationshipModelToJavaCodeConverter';
+import JavaEntityRelationshipModelSourceCodeGenerator
+	from '@/erdiagram/converter/oop/code-converter/java/JavaEntityRelationshipModelSourceCodeGenerator';
 import JavaClassModelCodeGenerator
 	from '@/erdiagram/converter/oop/code-converter/java/code/JavaClassModelCodeGenerator';
 import JavaClassCodeGenerator from '@/erdiagram/converter/oop/code-converter/java/code/JavaClassCodeGenerator';
 import JavaClassModelSourceFilesGenerator
 	from '@/erdiagram/converter/oop/code-converter/java/code/JavaClassModelSourceFilesGenerator';
 
-export default class EntityRelationshipModelToJavaCodeConverterBuilder {
+export default class JavaEntityRelationshipModelSourceCodeGeneratorBuilder {
 
 	#classModelGeneratorConfig: PartialClassModelGeneratorConfig = {};
 	#javaClassModelGeneratorConfig: PartialJavaClassModelGeneratorConfig = {};
@@ -43,7 +43,7 @@ export default class EntityRelationshipModelToJavaCodeConverterBuilder {
 		const javaClassModelCodeGenerator = new JavaClassModelCodeGenerator(javaClassCodeGenerator);
 		const javaClassModelSourceFilesGenerator = new JavaClassModelSourceFilesGenerator(javaClassCodeGenerator);
 
-		return new EntityRelationshipModelToJavaCodeConverter(
+		return new JavaEntityRelationshipModelSourceCodeGenerator(
 				classModelGenerator,
 				javaClassModelGenerator,
 				[...this.#javaClassModelTransformers],

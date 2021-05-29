@@ -1,8 +1,8 @@
-import JavaAnnotation, {
+import JavaAnnotation, {JavaAnnotationParametersRecord} from '@/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation';
+import {
 	JavaAnnotationParameterSingleValue,
-	JavaAnnotationParametersRecord,
 	JavaAnnotationParameterValue
-} from '@/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation';
+} from '@/erdiagram/converter/oop/code-converter/java/annotation/annotation-parameter-types';
 
 export default function formatJavaAnnotation(annotation: JavaAnnotation): string {
 

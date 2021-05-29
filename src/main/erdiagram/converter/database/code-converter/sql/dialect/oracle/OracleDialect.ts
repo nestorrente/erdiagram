@@ -6,8 +6,7 @@ import OracleIdColumnCodeGenerator
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/oracle/column/OracleIdColumnCodeGenerator';
 import OracleForeignColumnCodeGenerator
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/oracle/column/OracleForeignColumnCodeGenerator';
-import OracleDialectConfig
-	from '@/erdiagram/converter/database/code-converter/sql/dialect/oracle/config/OracleDialectConfig';
+import {PartialOracleDialectConfig} from '@/erdiagram/converter/database/code-converter/sql/dialect/oracle/config/OracleDialectConfig';
 import oracleDialectConfigManager
 	from '@/erdiagram/converter/database/code-converter/sql/dialect/oracle/config/OracleDialectConfigManager';
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
@@ -30,7 +29,7 @@ export default class OracleDialect implements SqlDialect {
 	private readonly idColumnCodeGenerator: OracleIdColumnCodeGenerator;
 	private readonly foreignColumnCodeGenerator: OracleForeignColumnCodeGenerator;
 
-	constructor(config?: Partial<OracleDialectConfig>) {
+	constructor(config?: PartialOracleDialectConfig) {
 
 		const fullConfig = oracleDialectConfigManager.mergeWithDefaultConfig(config);
 

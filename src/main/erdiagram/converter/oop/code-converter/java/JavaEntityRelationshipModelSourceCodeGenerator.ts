@@ -1,4 +1,3 @@
-import EntityRelationshipModelToCodeConverter from '@/erdiagram/converter/EntityRelationshipModelToCodeConverter';
 import {EntityRelationshipModel} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import ClassModelGenerator from '@/erdiagram/converter/oop/model/ClassModelGenerator';
 import JavaClassModelTransformer
@@ -10,17 +9,17 @@ import JavaClassModelCodeGenerator
 import ApplyTransformersCommand
 	from '@/erdiagram/converter/oop/code-converter/java/model/transformer/ApplyTransformersCommand';
 import {SetupContext} from '@/erdiagram/converter/oop/code-converter/java/model/transformer/java-class-model-transformer-context-types';
-import EntityRelationshipModelToJavaCodeConverterBuilder
-	from '@/erdiagram/converter/oop/code-converter/java/EntityRelationshipModelToJavaCodeConverterBuilder';
+import JavaEntityRelationshipModelSourceCodeGeneratorBuilder
+	from '@/erdiagram/converter/oop/code-converter/java/JavaEntityRelationshipModelSourceCodeGeneratorBuilder';
 import SourceFileInfo from '@/erdiagram/converter/common/SourceFileInfo';
 import JavaClassModelSourceFilesGenerator
 	from '@/erdiagram/converter/oop/code-converter/java/code/JavaClassModelSourceFilesGenerator';
-import EntityRelationshipModelToSourceFilesConverter
-	from '@/erdiagram/converter/EntityRelationshipModelToSourceFilesConverter';
+import MultipleFileEntityRelationshipModelSourceCodeGenerator
+	from '@/erdiagram/converter/MultipleFileEntityRelationshipModelSourceCodeGenerator';
 import {JavaClassModel} from '@/erdiagram/converter/oop/code-converter/java/model/java-class-model-types';
 
-export default class EntityRelationshipModelToJavaCodeConverter
-		implements EntityRelationshipModelToCodeConverter, EntityRelationshipModelToSourceFilesConverter {
+export default class JavaEntityRelationshipModelSourceCodeGenerator
+		implements MultipleFileEntityRelationshipModelSourceCodeGenerator {
 
 	readonly #classModelGenerator: ClassModelGenerator;
 	readonly #javaClassModelGenerator: JavaClassModelGenerator;
@@ -42,16 +41,14 @@ export default class EntityRelationshipModelToJavaCodeConverter
 		this.#javaClassModelSourceFilesGenerator = javaClassModelSourceFilesGenerator;
 	}
 
-	convertToCode(entityRelationshipModel: EntityRelationshipModel): string {
+	generateSourceCode(entityRelationshipModel: EntityRelationshipModel): string {
 		const javaClassModel = this.getJavaClassModel(entityRelationshipModel);
-
 		return this.#javaClassModelCodeGenerator.generateCode(javaClassModel);
-
 	}
 
-	convertToSourceFiles(model: EntityRelationshipModel): SourceFileInfo[] {
-		// TODO implement
-		return [];
+	generateSourceFiles(entityRelationshipModel: EntityRelationshipModel): SourceFileInfo[] {
+		const javaClassModel = this.getJavaClassModel(entityRelationshipModel);
+		return this.#javaClassModelSourceFilesGenerator.generateSourceFiles(javaClassModel);
 	}
 
 	private getJavaClassModel(entityRelationshipModel: EntityRelationshipModel): JavaClassModel {
@@ -85,7 +82,7 @@ export default class EntityRelationshipModelToJavaCodeConverter
 	}
 
 	static builder() {
-		return new EntityRelationshipModelToJavaCodeConverterBuilder();
+		return new JavaEntityRelationshipModelSourceCodeGeneratorBuilder();
 	}
 
 }
