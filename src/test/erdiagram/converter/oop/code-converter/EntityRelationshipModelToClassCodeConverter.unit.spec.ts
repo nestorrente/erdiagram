@@ -40,16 +40,10 @@ test('convertToCode() calls dependencies', () => {
 
 	expect(result).toBe(mockValues.outputCode);
 
-	const generateClassModelCalls = classModelGeneratorMock.generateClassModel.mock.calls;
-	expect(generateClassModelCalls).toHaveLength(1);
+	expect(classModelGeneratorMock.generateClassModel).toHaveBeenCalledTimes(1);
+	expect(classModelGeneratorMock.generateClassModel).toHaveBeenCalledWith(mockValues.entityRelationshipModel);
 
-	const generateClassModelCallArgs = generateClassModelCalls[0] as any[];
-	expect(generateClassModelCallArgs[0]).toBe(mockValues.entityRelationshipModel);
-
-	const convertToCodeCalls = classModelToCodeConverterMock.convertToCode.mock.calls;
-	expect(convertToCodeCalls).toHaveLength(1);
-
-	const convertToCodeCallArgs = convertToCodeCalls[0] as any[];
-	expect(convertToCodeCallArgs[0]).toBe(mockValues.classModel);
+	expect(classModelToCodeConverterMock.convertToCode).toHaveBeenCalledTimes(1);
+	expect(classModelToCodeConverterMock.convertToCode).toHaveBeenCalledWith(mockValues.classModel);
 
 });

@@ -1,7 +1,8 @@
 import {JavaClass} from '@/erdiagram/converter/oop/code-converter/java/model/java-class-model-types';
-import JavaClassModelCodeGenerator
-	from '@/erdiagram/converter/oop/code-converter/java/code/JavaClassModelCodeGenerator';
 import JavaClassCodeGenerator from '@/erdiagram/converter/oop/code-converter/java/code/JavaClassCodeGenerator';
+import JavaClassModelSourceFilesGenerator
+	from '@/erdiagram/converter/oop/code-converter/java/code/JavaClassModelSourceFilesGenerator';
+import SourceFileInfo from '@/erdiagram/converter/common/SourceFileInfo';
 import {createJavaClass} from '../model/generator/source/java-class-model-mothers';
 
 const javaClassCodeGeneratorMock = {
@@ -10,31 +11,36 @@ const javaClassCodeGeneratorMock = {
 	})
 };
 
-const javaClassModelCodeGenerator = new JavaClassModelCodeGenerator(
+const javaClassModelSourceFilesGenerator = new JavaClassModelSourceFilesGenerator(
 		javaClassCodeGeneratorMock as unknown as JavaClassCodeGenerator
 );
 
 test('Should invoke JavaClassCodeGenerator for all classes', () => {
 
-	const myClass1 = createJavaClass('MyClass1');
-	const myClass2 = createJavaClass('MyClass2');
+	const packageName = 'com.example.erdiagram';
 
-	const result = javaClassModelCodeGenerator.generateCode({
+	const myClass1 = createJavaClass('MyClass1', {packageName});
+	const myClass2 = createJavaClass('MyClass2', {packageName});
+
+	const result = javaClassModelSourceFilesGenerator.generateSourceFiles({
 		classes: [
 			myClass1,
 			myClass2
 		]
 	});
 
-	expect(result).toBe(`
-/* ========== MyClass1 class ========== */
-
-/* code for class MyClass1 */
-
-/* ========== MyClass2 class ========== */
-
-/* code for class MyClass2 */
-`.trim());
+	expect(result).toStrictEqual<SourceFileInfo[]>([
+		{
+			folder: ['com', 'example', 'erdiagram'],
+			filename: 'MyClass1.java',
+			contents: '/* code for class MyClass1 */'
+		},
+		{
+			folder: ['com', 'example', 'erdiagram'],
+			filename: 'MyClass2.java',
+			contents: '/* code for class MyClass2 */'
+		}
+	]);
 
 	expect(javaClassCodeGeneratorMock.generateCode).toHaveBeenCalledTimes(2);
 	expect(javaClassCodeGeneratorMock.generateCode).toHaveBeenNthCalledWith(1, myClass1);

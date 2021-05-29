@@ -12,26 +12,49 @@ import ApplyTransformersCommand
 import {SetupContext} from '@/erdiagram/converter/oop/code-converter/java/model/transformer/java-class-model-transformer-context-types';
 import EntityRelationshipModelToJavaCodeConverterBuilder
 	from '@/erdiagram/converter/oop/code-converter/java/EntityRelationshipModelToJavaCodeConverterBuilder';
+import SourceFileInfo from '@/erdiagram/converter/common/SourceFileInfo';
+import JavaClassModelSourceFilesGenerator
+	from '@/erdiagram/converter/oop/code-converter/java/code/JavaClassModelSourceFilesGenerator';
+import EntityRelationshipModelToSourceFilesConverter
+	from '@/erdiagram/converter/EntityRelationshipModelToSourceFilesConverter';
+import {JavaClassModel} from '@/erdiagram/converter/oop/code-converter/java/model/java-class-model-types';
 
-export default class EntityRelationshipModelToJavaCodeConverter implements EntityRelationshipModelToCodeConverter {
+export default class EntityRelationshipModelToJavaCodeConverter
+		implements EntityRelationshipModelToCodeConverter, EntityRelationshipModelToSourceFilesConverter {
 
 	readonly #classModelGenerator: ClassModelGenerator;
 	readonly #javaClassModelGenerator: JavaClassModelGenerator;
 	readonly #javaClassModelTransformers: JavaClassModelTransformer[];
 	readonly #javaClassModelCodeGenerator: JavaClassModelCodeGenerator;
+	readonly #javaClassModelSourceFilesGenerator: JavaClassModelSourceFilesGenerator;
 
 	constructor(
 			classModelGenerator: ClassModelGenerator,
 			javaClassModelGenerator: JavaClassModelGenerator,
-			javaClassModelTransformers: JavaClassModelTransformer[]
+			javaClassModelTransformers: JavaClassModelTransformer[],
+			javaClassModelCodeGenerator: JavaClassModelCodeGenerator,
+			javaClassModelSourceFilesGenerator: JavaClassModelSourceFilesGenerator
 	) {
 		this.#classModelGenerator = classModelGenerator;
 		this.#javaClassModelGenerator = javaClassModelGenerator;
 		this.#javaClassModelTransformers = javaClassModelTransformers;
-		this.#javaClassModelCodeGenerator = new JavaClassModelCodeGenerator();
+		this.#javaClassModelCodeGenerator = javaClassModelCodeGenerator;
+		this.#javaClassModelSourceFilesGenerator = javaClassModelSourceFilesGenerator;
 	}
 
 	convertToCode(entityRelationshipModel: EntityRelationshipModel): string {
+		const javaClassModel = this.getJavaClassModel(entityRelationshipModel);
+
+		return this.#javaClassModelCodeGenerator.generateCode(javaClassModel);
+
+	}
+
+	convertToSourceFiles(model: EntityRelationshipModel): SourceFileInfo[] {
+		// TODO implement
+		return [];
+	}
+
+	private getJavaClassModel(entityRelationshipModel: EntityRelationshipModel): JavaClassModel {
 
 		const classModel = this.#classModelGenerator.generateClassModel(entityRelationshipModel);
 
@@ -46,13 +69,14 @@ export default class EntityRelationshipModelToJavaCodeConverter implements Entit
 			classModel,
 			javaClassModel
 		};
+
 		new ApplyTransformersCommand(
 				applyTransformersCommandContext,
 				javaClassModelDescriptorsRepository,
 				this.#javaClassModelTransformers
 		).execute();
 
-		return this.#javaClassModelCodeGenerator.generateCode(javaClassModel);
+		return javaClassModel;
 
 	}
 

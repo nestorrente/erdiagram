@@ -55,11 +55,7 @@ describe('Well formatted types', () => {
 			'Parsing "%s"',
 			(input, simpleFormat) => {
 
-				// When
-
 				const result = parseJavaType(input);
-
-				// Then
 
 				expect(result.formatCanonical()).toBe(input);
 				expect(result.formatSimple()).toBe(simpleFormat);
@@ -78,14 +74,29 @@ describe('Correct types formatted differently', () => {
 			'Parsing "%s"',
 			(input, canonicalFormat, simpleFormat) => {
 
-				// When
-
 				const result = parseJavaType(input);
-
-				// Then
 
 				expect(result.formatCanonical()).toBe(canonicalFormat);
 				expect(result.formatSimple()).toBe(simpleFormat);
+
+			}
+	);
+});
+
+describe('Type equality', () => {
+	it.each([
+		['boolean', '   boolean '],
+		['java.lang.String', 'java\t.  lang.String   '],
+		['a.A<B>', '  a.A< B \t  >'],
+		['int[]', '\tint [   \t]   '],
+	])(
+			'Parsing "%s"',
+			(wellFormatted, badFormatted) => {
+
+				const resultFromWellFormatted = parseJavaType(wellFormatted);
+				const resultFromBadFormatted = parseJavaType(badFormatted);
+
+				expect(resultFromWellFormatted).toStrictEqual(resultFromBadFormatted);
 
 			}
 	);

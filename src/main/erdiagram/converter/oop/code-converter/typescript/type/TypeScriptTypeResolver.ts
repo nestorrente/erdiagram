@@ -7,7 +7,7 @@ import FieldTypeResolver from '@/erdiagram/converter/oop/code-converter/common/t
 import createTypeScriptArrayType
 	from '@/erdiagram/converter/oop/code-converter/typescript/type/parameterized/createTypeScriptArrayType';
 import createTypeScriptSimpleType
-	from '@/erdiagram/converter/oop/code-converter/typescript/type/createTypeScriptSimpleType';
+	from '@/erdiagram/converter/oop/code-converter/typescript/type/simple/createTypeScriptSimpleType';
 
 export default class TypeScriptTypeResolver implements FieldTypeResolver<TypeScriptType> {
 

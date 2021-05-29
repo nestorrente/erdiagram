@@ -1,8 +1,8 @@
 export default interface JavaType {
 
-	packageName?: string;
-	name: string;
-	canonicalName: string;
+	readonly packageName?: string;
+	readonly name: string;
+	readonly canonicalName: string;
 
 	formatSimple(): string;
 

@@ -4,7 +4,7 @@ import createTypeScriptParameterizedType
 import createTypeScriptArrayType
 	from '@/erdiagram/converter/oop/code-converter/typescript/type/parameterized/createTypeScriptArrayType';
 import createTypeScriptSimpleType
-	from '@/erdiagram/converter/oop/code-converter/typescript/type/createTypeScriptSimpleType';
+	from '@/erdiagram/converter/oop/code-converter/typescript/type/simple/createTypeScriptSimpleType';
 
 const RAW_TYPE_REGEX = /^[a-zA-Z_$][a-zA-Z_$\d]*$/;
 const ARRAY_TYPE_REGEX = /^(.*)\[\s*]\s*$/;

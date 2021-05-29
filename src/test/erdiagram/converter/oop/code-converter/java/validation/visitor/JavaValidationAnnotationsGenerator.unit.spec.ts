@@ -1,17 +1,17 @@
 import JavaxValidationAnnotationsSupplier
-	from '../../../../../../../../main/erdiagram/converter/oop/code-converter/java/validation/visitor/JavaxValidationAnnotationsSupplier';
+	from '@/erdiagram/converter/oop/code-converter/java/validation/visitor/JavaxValidationAnnotationsSupplier';
 import NotNullTextValidationStrategy
-	from '../../../../../../../../main/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullTextValidationStrategy';
+	from '@/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullTextValidationStrategy';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import JavaValidationAnnotationTypes
-	from '../../../../../../../../main/erdiagram/converter/oop/code-converter/java/validation/JavaValidationAnnotationTypes';
+	from '@/erdiagram/converter/oop/code-converter/java/validation/JavaValidationAnnotationTypes';
 import JavaType from '@/erdiagram/converter/oop/code-converter/java/type/JavaType';
 import NotNullBlobValidationStrategy
-	from '../../../../../../../../main/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullBlobValidationStrategy';
-import {createPrimitiveClassField} from '../../../../model/class-model-mothers';
+	from '@/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullBlobValidationStrategy';
+import {createPrimitiveClassField} from '#/erdiagram/converter/oop/model/class-model-mothers';
 import JavaAnnotation from '@/erdiagram/converter/oop/code-converter/java/annotation/JavaAnnotation';
 
-const validationAnnotationsGenerator = new JavaxValidationAnnotationsSupplier(
+const validationAnnotationsSupplier = new JavaxValidationAnnotationsSupplier(
 		NotNullTextValidationStrategy.NOT_NULL,
 		NotNullBlobValidationStrategy.NOT_NULL
 );
@@ -22,7 +22,7 @@ test('Nullable field should not be annotated', () => {
 		nullable: true
 	});
 
-	const fieldAnnotations = validationAnnotationsGenerator.getAnnotations(field);
+	const fieldAnnotations = validationAnnotationsSupplier.getAnnotations(field);
 
 	expect(fieldAnnotations).toHaveLength(0);
 
@@ -32,7 +32,7 @@ test('Not-null field should be annotated with @NotNull', () => {
 
 	const field = createPrimitiveClassField('field', EntityPropertyType.INT);
 
-	const fieldAnnotations = validationAnnotationsGenerator.getAnnotations(field);
+	const fieldAnnotations = validationAnnotationsSupplier.getAnnotations(field);
 
 	expect(fieldAnnotations).toHaveLength(1);
 	expectAnnotationToBe(fieldAnnotations[0], {
@@ -48,7 +48,7 @@ test('Field with max-size should be annotated with @Size', () => {
 		maxSize: 2048
 	});
 
-	const fieldAnnotations = validationAnnotationsGenerator.getAnnotations(field);
+	const fieldAnnotations = validationAnnotationsSupplier.getAnnotations(field);
 
 	expect(fieldAnnotations).toHaveLength(1);
 	expectAnnotationToBe(fieldAnnotations[0], {

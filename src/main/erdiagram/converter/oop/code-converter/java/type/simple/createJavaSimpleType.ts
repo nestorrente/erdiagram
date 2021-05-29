@@ -1,19 +1,39 @@
 import JavaType from '@/erdiagram/converter/oop/code-converter/java/type/JavaType';
 
 export default function createJavaSimpleType(name: string, packageName?: string): JavaType {
+	return new JavaSimpleTypeImpl(name, packageName);
+}
 
-	const canonicalName = packageName ? `${packageName}.${name}` : name;
+class JavaSimpleTypeImpl implements JavaType {
 
-	return {
-		packageName,
-		name,
-		canonicalName,
-		formatSimple() {
-			return name;
-		},
-		formatCanonical() {
-			return canonicalName;
-		}
-	};
+	readonly #name: string;
+	readonly #packageName?: string;
+	readonly #canonicalName: string;
+
+	constructor(name: string, packageName?: string) {
+		this.#name = name;
+		this.#packageName = packageName;
+		this.#canonicalName = packageName ? `${packageName}.${name}` : name;
+	}
+
+	get canonicalName() {
+		return this.#canonicalName;
+	}
+
+	get name() {
+		return this.#name;
+	}
+
+	get packageName() {
+		return this.#packageName;
+	}
+
+	formatSimple() {
+		return this.#name;
+	}
+
+	formatCanonical() {
+		return this.#canonicalName;
+	}
 
 }

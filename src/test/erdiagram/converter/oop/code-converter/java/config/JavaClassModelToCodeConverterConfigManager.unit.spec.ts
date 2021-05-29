@@ -2,12 +2,11 @@ import {JavaClassModelToCodeConverterConfigManager} from '@/erdiagram/converter/
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import parseJavaType from '@/erdiagram/converter/oop/code-converter/java/type/parseJavaType';
 import NotNullTextValidationStrategy
-	from '../../../../../../../main/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullTextValidationStrategy';
+	from '@/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullTextValidationStrategy';
 import NotNullBlobValidationStrategy
-	from '../../../../../../../main/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullBlobValidationStrategy';
+	from '@/erdiagram/converter/oop/code-converter/java/validation/strategy/NotNullBlobValidationStrategy';
 import JavaClassModelToCodeConverterConfig
 	from '@/erdiagram/converter/oop/code-converter/java/config/JavaClassModelToCodeConverterConfig';
-import {assertSameRecords} from '#/erdiagram/util/jest-utils';
 import {JsonValue} from 'true-json';
 
 const configManager = new JavaClassModelToCodeConverterConfigManager();
@@ -64,21 +63,7 @@ describe('Serialization', () => {
 
 		const result = configManager.convertFromSerializableObject(serializableConfig);
 
-		const {
-			typeBindings,
-			...resultWithoutTypeBindings
-		} = result;
-
-		const {
-			typeBindings: expectedTypeBindings,
-			...expectedResultWithoutTypeBindings
-		} = config;
-
-		expect(resultWithoutTypeBindings).toStrictEqual(expectedResultWithoutTypeBindings);
-
-		assertSameRecords(typeBindings, expectedTypeBindings, (actualType, expectedType) => {
-			expect(actualType.formatCanonical()).toBe(expectedType.formatCanonical());
-		});
+		expect(result).toStrictEqual(config);
 
 	});
 

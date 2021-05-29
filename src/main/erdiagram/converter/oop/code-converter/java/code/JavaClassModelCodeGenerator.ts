@@ -1,14 +1,12 @@
 import {JavaClass, JavaClassModel} from '@/erdiagram/converter/oop/code-converter/java/model/java-class-model-types';
 import JavaClassCodeGenerator from '@/erdiagram/converter/oop/code-converter/java/code/JavaClassCodeGenerator';
 
-const EMPTY_STRING: string = '';
-
 export default class JavaClassModelCodeGenerator {
 
 	readonly #javaClassCodeGenerator: JavaClassCodeGenerator;
 
-	constructor() {
-		this.#javaClassCodeGenerator = new JavaClassCodeGenerator();
+	constructor(javaClassCodeGenerator: JavaClassCodeGenerator) {
+		this.#javaClassCodeGenerator = javaClassCodeGenerator;
 	}
 
 	public generateCode(javaClassModel: JavaClassModel): string {

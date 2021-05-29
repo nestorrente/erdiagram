@@ -284,7 +284,7 @@ A *->* B
 		expect(aClass.name).toBe('A');
 		checkClassFieldsAnnotations(aClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)', '@Column(name = "id")'],
-			bs: ['@ManyToMany', '@JoinTable(name = "Ab", joinColumns = @JoinColumn(name = "aId", nullable = false), inverseJoinColumns = @JoinColumn(name = "bId", nullable = false))'],
+			bs: ['@ManyToMany', '@JoinTable(name = "AB", joinColumns = @JoinColumn(name = "aId", nullable = false), inverseJoinColumns = @JoinColumn(name = "bId", nullable = false))'],
 		});
 
 		const bClass = javaClassModel.classes[1];
@@ -313,7 +313,7 @@ A *<-* B
 		expect(bClass.name).toBe('B');
 		checkClassFieldsAnnotations(bClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)', '@Column(name = "id")'],
-			as: ['@ManyToMany', '@JoinTable(name = "Ab", joinColumns = @JoinColumn(name = "bId", nullable = false), inverseJoinColumns = @JoinColumn(name = "aId", nullable = false))'],
+			as: ['@ManyToMany', '@JoinTable(name = "AB", joinColumns = @JoinColumn(name = "bId", nullable = false), inverseJoinColumns = @JoinColumn(name = "aId", nullable = false))'],
 		});
 
 	});
@@ -330,7 +330,7 @@ A *<->* B
 		expect(aClass.name).toBe('A');
 		checkClassFieldsAnnotations(aClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)', '@Column(name = "id")'],
-			bs: ['@ManyToMany', '@JoinTable(name = "Ab", joinColumns = @JoinColumn(name = "aId", nullable = false), inverseJoinColumns = @JoinColumn(name = "bId", nullable = false))'],
+			bs: ['@ManyToMany', '@JoinTable(name = "AB", joinColumns = @JoinColumn(name = "aId", nullable = false), inverseJoinColumns = @JoinColumn(name = "bId", nullable = false))'],
 		});
 
 		const bClass = javaClassModel.classes[1];
@@ -386,3 +386,5 @@ function checkClassFieldsAnnotations(javaClass: JavaClass, classFieldsAnnotation
 function formatAnnotations(annotatedElement: JavaAnnotatedElement) {
 	return annotatedElement.annotations.map(annotations => annotations.format());
 }
+
+// TODO add tests for trying the factory methods withDefaultConfig() and builder().(...).build()

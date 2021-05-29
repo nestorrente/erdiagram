@@ -3,19 +3,45 @@ import JavaParameterizedType
 	from '@/erdiagram/converter/oop/code-converter/java/type/parameterized/JavaParameterizedType';
 
 export default function createJavaArrayType(parameterType: JavaType): JavaParameterizedType {
+	return new JavaArrayTypeImpl(parameterType);
+}
 
-	const name = `${parameterType.name}[]`;
+class JavaArrayTypeImpl implements JavaParameterizedType {
 
-	return {
-		name,
-		parameterTypes: [parameterType],
-		canonicalName: name,
-		formatSimple() {
-			return `${parameterType.formatSimple()}[]`;
-		},
-		formatCanonical() {
-			return `${parameterType.formatCanonical()}[]`;
-		}
-	};
+	readonly #name: string;
+	readonly #canonicalName: string;
+	readonly #parameterType: JavaType;
+
+	constructor(parameterType: JavaType) {
+		this.#name = `${parameterType.name}[]`;
+		this.#canonicalName = `${parameterType.canonicalName}[]`;
+		this.#parameterType = parameterType;
+	}
+
+	get canonicalName() {
+		return this.#canonicalName;
+	}
+
+	get name() {
+		return this.#name;
+	}
+
+	get packageName() {
+		return undefined;
+	}
+
+	get parameterTypes() {
+		return [this.#parameterType];
+	}
+
+	formatSimple() {
+		const formattedParameterType = this.#parameterType.formatSimple();
+		return `${formattedParameterType}[]`;
+	}
+
+	formatCanonical() {
+		const formattedParameterType = this.#parameterType.formatCanonical();
+		return `${formattedParameterType}[]`;
+	}
 
 }

@@ -3,7 +3,6 @@ import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-m
 import parseTypeScriptType from '@/erdiagram/converter/oop/code-converter/typescript/type/parseTypeScriptType';
 import TypeScriptClassModelToCodeConverterConfig
 	from '@/erdiagram/converter/oop/code-converter/typescript/config/TypeScriptClassModelToCodeConverterConfig';
-import {assertSameRecords} from '#/erdiagram/util/jest-utils';
 import {JsonValue} from 'true-json';
 
 const configManager = new TypeScriptClassModelToCodeConverterConfigManager();
@@ -54,21 +53,7 @@ describe('Serialization', () => {
 
 		const result = configManager.convertFromSerializableObject(serializableConfig);
 
-		const {
-			typeBindings,
-			...resultWithoutTypeBindings
-		} = result;
-
-		const {
-			typeBindings: expectedTypeBindings,
-			...expectedResultWithoutTypeBindings
-		} = config;
-
-		expect(resultWithoutTypeBindings).toStrictEqual(expectedResultWithoutTypeBindings);
-
-		assertSameRecords(typeBindings, expectedTypeBindings, (actualType, expectedType) => {
-			expect(actualType.format()).toBe(expectedType.format());
-		});
+		expect(result).toStrictEqual(config);
 
 	});
 

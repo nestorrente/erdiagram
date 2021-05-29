@@ -28,6 +28,7 @@ enum RelationshipCardinality {
 	MANY_TO_MANY = 'many_to_many'
 }
 
+// TODO split this class
 export default class RelationshipFieldAnnotationsSupplier implements FieldAnnotationsSupplier {
 
 	readonly #entityRelationshipModelSourceFinder: EntityRelationshipModelSourceFinder;

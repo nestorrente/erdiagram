@@ -72,6 +72,24 @@ describe('Correct types formatted differently', () => {
 	);
 });
 
+describe('Type equality', () => {
+	it.each([
+		['boolean', '   boolean '],
+		['A<B>', '  A< B \t  >'],
+		['number[]', '\tnumber [   \t]   '],
+	])(
+			'Parsing "%s"',
+			(badFormatted, wellFormatted) => {
+
+				const resultFromWellFormatted = parseTypeScriptType(wellFormatted);
+				const resultFromBadFormatted = parseTypeScriptType(badFormatted);
+
+				expect(resultFromWellFormatted).toStrictEqual(resultFromBadFormatted);
+
+			}
+	);
+});
+
 describe('Incorrect types', () => {
 	it.each([
 		['.boolean'],
