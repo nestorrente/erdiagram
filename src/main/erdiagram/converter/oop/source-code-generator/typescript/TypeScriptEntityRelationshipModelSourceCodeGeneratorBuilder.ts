@@ -11,12 +11,12 @@ export default class TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder
 	#classModelGeneratorConfig: PartialClassModelGeneratorConfig = {};
 	#typeScriptClassModelToCodeConverterConfig: PartialTypeScriptClassModelToCodeConverterConfig = {};
 
-	public withClassModelGeneratorConfig(config: PartialClassModelGeneratorConfig) {
+	public configureClassModel(config: PartialClassModelGeneratorConfig) {
 		this.#classModelGeneratorConfig = config;
 		return this;
 	}
 
-	public withTypeScriptClassModelToCodeConverterConfig(config: PartialTypeScriptClassModelToCodeConverterConfig) {
+	public configureTypeScriptCode(config: PartialTypeScriptClassModelToCodeConverterConfig) {
 		this.#typeScriptClassModelToCodeConverterConfig = config;
 		return this;
 	}

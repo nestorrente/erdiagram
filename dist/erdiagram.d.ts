@@ -213,8 +213,8 @@ export declare class DatabaseModelToSqlCodeConverter {
 }
 declare class SqlEntityRelationshipModelSourceCodeGeneratorBuilder {
 	#private;
-	withDatabaseModelGeneratorConfig(config: PartialDatabaseModelGeneratorConfig): this;
-	withSqlDialect(sqlDialect: SqlDialect): this;
+	configureDatabaseModel(config: PartialDatabaseModelGeneratorConfig): this;
+	useDialect(sqlDialect: SqlDialect): this;
 	build(): SqlEntityRelationshipModelSourceCodeGenerator;
 }
 export declare class SqlEntityRelationshipModelSourceCodeGenerator implements EntityRelationshipModelSourceCodeGenerator {
@@ -526,9 +526,9 @@ declare class JavaClassModelCodeGenerator {
 }
 export declare class JavaEntityRelationshipModelSourceCodeGeneratorBuilder {
 	#private;
-	withClassModelGeneratorConfig(config: PartialClassModelGeneratorConfig): this;
-	withJavaClassModelGeneratorConfig(config: PartialJavaClassModelGeneratorConfig): this;
-	addJavaClassModelTransformers(...javaClassModelTransformers: JavaClassModelTransformer[]): this;
+	configureClassModel(config: PartialClassModelGeneratorConfig): this;
+	configureJavaCode(config: PartialJavaClassModelGeneratorConfig): this;
+	addTransformers(...javaClassModelTransformers: JavaClassModelTransformer[]): this;
 	build(): JavaEntityRelationshipModelSourceCodeGenerator;
 }
 declare class JavaClassModelSourceFilesGenerator {
@@ -571,8 +571,8 @@ export interface JpaTransformerSetupData {
 }
 export declare class JpaTransformerBuilder {
 	#private;
-	withDatabaseModelGeneratorConfig(config: PartialDatabaseModelGeneratorConfig): this;
-	withConfig(config: PartialJpaTransformerConfig): this;
+	configureDatabaseModel(config: PartialDatabaseModelGeneratorConfig): this;
+	configureJpa(config: PartialJpaTransformerConfig): this;
 	build(): JpaTransformer;
 }
 export declare class JpaTransformer implements JavaClassModelTransformer<JpaTransformerSetupData> {
@@ -638,8 +638,8 @@ export declare class TypeScriptClassModelToCodeConverter implements ClassModelTo
 }
 export declare class TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder {
 	#private;
-	withClassModelGeneratorConfig(config: PartialClassModelGeneratorConfig): this;
-	withTypeScriptClassModelToCodeConverterConfig(config: PartialTypeScriptClassModelToCodeConverterConfig): this;
+	configureClassModel(config: PartialClassModelGeneratorConfig): this;
+	configureTypeScriptCode(config: PartialTypeScriptClassModelToCodeConverterConfig): this;
 	build(): TypeScriptEntityRelationshipModelSourceCodeGenerator;
 }
 export declare class TypeScriptEntityRelationshipModelSourceCodeGenerator implements EntityRelationshipModelSourceCodeGenerator {

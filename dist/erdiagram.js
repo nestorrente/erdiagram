@@ -4,7 +4,7 @@
  *
  * Released under the MIT License.
  *
- * Build date: 2021-05-30T10:00:48.523Z
+ * Build date: 2021-05-30T11:01:57.865Z
  */
 var ERDiagram;
 /******/ (() => { // webpackBootstrap
@@ -529,9 +529,9 @@ var ERDiagram;
  *
  * Released under the MIT License.
  *
- * Build date: 2021-05-22T18:22:58.182Z
+ * Build date: 2021-05-30T10:31:24.592Z
  */
-!function(o,e){ true?module.exports=e():0}("undefined"!=typeof self?self:this,(function(){return(()=>{"use strict";var o={d:(e,r)=>{for(var n in r)o.o(r,n)&&!o.o(e,n)&&Object.defineProperty(e,n,{enumerable:!0,get:r[n]})},o:(o,e)=>Object.prototype.hasOwnProperty.call(o,e),r:o=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(o,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(o,"__esModule",{value:!0})}},e={};o.r(e),o.d(e,{JsonAdapters:()=>p,JsonConverter:()=>a});var r,n,t=function(o,e,r){if(!e.has(o))throw new TypeError("attempted to set private field on non-instance");return e.set(o,r),r},s=function(o,e){if(!e.has(o))throw new TypeError("attempted to get private field on non-instance");return e.get(o)};class a{constructor(o,e=JSON){r.set(this,void 0),n.set(this,void 0),t(this,r,e),t(this,n,o)}stringify(o,e){return s(this,r).stringify(s(this,n).adaptToJson(o),void 0,e)}parse(o){return s(this,n).recoverFromJson(s(this,r).parse(o))}}function i(){return{adaptToJson:o=>o,recoverFromJson:o=>o}}function c(o){return{adaptToJson:e=>e.map((e=>o.adaptToJson(e))),recoverFromJson:e=>e.map((e=>o.recoverFromJson(e)))}}function u(o){var e,r;const n=null!==(e=null==o?void 0:o.keyAdapter)&&void 0!==e?e:{adaptToJson:o=>o,recoverFromJson:o=>o},t=null!==(r=null==o?void 0:o.valueAdapter)&&void 0!==r?r:{adaptToJson:o=>o,recoverFromJson:o=>o},s=c({adaptToJson(o){const[e,r]=o;return[n.adaptToJson(e),t.adaptToJson(r)]},recoverFromJson(o){const[e,r]=o;return[n.recoverFromJson(e),t.recoverFromJson(r)]}});return{adaptToJson:o=>s.adaptToJson([...o]),recoverFromJson:o=>new Map(s.recoverFromJson(o))}}function d(o,e,r){const{omitUnmappedProperties:n,omittedProperties:t}=r,s=Object.entries(o);return n||0!==t.length?s.filter((([o])=>!function(o,e,r){return function(o,e){const{omittedProperties:r}=e;return r.includes(o)}(o,r)||r.omitUnmappedProperties&&function(o,e){return!e.hasOwnProperty(o)}(o,e)}(o,e,r))):s}r=new WeakMap,n=new WeakMap;const p={identity:i,isoDate:function(){return{adaptToJson:o=>o.toJSON(),recoverFromJson:o=>new Date(o)}},dateTimestamp:function(){return{adaptToJson:o=>o.getTime(),recoverFromJson:o=>new Date(o)}},array:c,set:function(o={adaptToJson:o=>o,recoverFromJson:o=>o}){const e=c(o);return{adaptToJson:o=>e.adaptToJson([...o]),recoverFromJson:o=>new Set(e.recoverFromJson(o))}},record:function(o){return{adaptToJson(e){const r=Object.entries(e).map((([e,r])=>[e,o.adaptToJson(r)]));return Object.fromEntries(r)},recoverFromJson(e){const r=Object.entries(e).map((([e,r])=>[e,o.recoverFromJson(r)]));return Object.fromEntries(r)}}},mapAsEntries:u,mapAsRecord:function(o){const e=u(o);return{adaptToJson(o){const r=e.adaptToJson(o);return Object.fromEntries(r)},recoverFromJson(o){const r=Object.entries(o);return e.recoverFromJson(r)}}},object:function(o,e){const r=(n=e,Object.assign({omitUnmappedProperties:!1,omittedProperties:[]},n));var n;return{adaptToJson(e){const n=d(e,o,r).map((([e,r])=>{const n=o[e];return[e,n?n.adaptToJson(r):r]}));return Object.fromEntries(n)},recoverFromJson(e){const n=d(e,o,r).map((([e,r])=>{const n=o[e];return[e,n?n.recoverFromJson(r):r]}));return Object.fromEntries(n)}}},byKey:function(o){return{adaptToJson(e){const r=Object.entries(o).find((([,o])=>e===o));if(!r)throw new Error("Provided value is not associated with any key");const[n]=r;return n},recoverFromJson(e){if(null==e||!o.hasOwnProperty(e))throw new Error("Provided key is not associated with any value");return o[e]}}},byKeyLenient:function(o,e){return{adaptToJson(r){const n=Object.entries(o).find((([,o])=>r===o));if(!n)return e;const[t]=n;return t},recoverFromJson:r=>null!=r&&o.hasOwnProperty(r)?o[r]:null!=e?o[e]:void 0}},custom:function(o){return o},nullAware:function(o){return{adaptToJson:e=>null===e?null:o.adaptToJson(e),recoverFromJson:e=>null===e?null:o.recoverFromJson(e)}},undefinedAware:function(o){return{adaptToJson:e=>void 0===e?void 0:o.adaptToJson(e),recoverFromJson:e=>void 0===e?void 0:o.recoverFromJson(e)}},nullishAware:function(o){return{adaptToJson:e=>null===e?null:void 0===e?void 0:o.adaptToJson(e),recoverFromJson:e=>null===e?null:void 0===e?void 0:o.recoverFromJson(e)}}};return e})()}));
+!function(o,e){ true?module.exports=e():0}("undefined"!=typeof self?self:this,(function(){return(()=>{"use strict";var o={d:(e,r)=>{for(var n in r)o.o(r,n)&&!o.o(e,n)&&Object.defineProperty(e,n,{enumerable:!0,get:r[n]})},o:(o,e)=>Object.prototype.hasOwnProperty.call(o,e),r:o=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(o,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(o,"__esModule",{value:!0})}},e={};o.r(e),o.d(e,{JsonAdapters:()=>p,JsonConverter:()=>a});var r,n,t=function(o,e,r,n,t){if("m"===n)throw new TypeError("Private method is not writable");if("a"===n&&!t)throw new TypeError("Private accessor was defined without a setter");if("function"==typeof e?o!==e||!t:!e.has(o))throw new TypeError("Cannot write private member to an object whose class did not declare it");return"a"===n?t.call(o,r):t?t.value=r:e.set(o,r),r},s=function(o,e,r,n){if("a"===r&&!n)throw new TypeError("Private accessor was defined without a getter");if("function"==typeof e?o!==e||!n:!e.has(o))throw new TypeError("Cannot read private member from an object whose class did not declare it");return"m"===r?n:"a"===r?n.call(o):n?n.value:e.get(o)};class a{constructor(o,e=JSON){r.set(this,void 0),n.set(this,void 0),t(this,r,e,"f"),t(this,n,o,"f")}stringify(o,e){return s(this,r,"f").stringify(s(this,n,"f").adaptToJson(o),void 0,e)}parse(o){return s(this,n,"f").recoverFromJson(s(this,r,"f").parse(o))}}function i(){return{adaptToJson:o=>o,recoverFromJson:o=>o}}function c(o){return{adaptToJson:e=>e.map((e=>o.adaptToJson(e))),recoverFromJson:e=>e.map((e=>o.recoverFromJson(e)))}}function u(o){var e,r;const n=null!==(e=null==o?void 0:o.keyAdapter)&&void 0!==e?e:{adaptToJson:o=>o,recoverFromJson:o=>o},t=null!==(r=null==o?void 0:o.valueAdapter)&&void 0!==r?r:{adaptToJson:o=>o,recoverFromJson:o=>o},s=c({adaptToJson(o){const[e,r]=o;return[n.adaptToJson(e),t.adaptToJson(r)]},recoverFromJson(o){const[e,r]=o;return[n.recoverFromJson(e),t.recoverFromJson(r)]}});return{adaptToJson:o=>s.adaptToJson([...o]),recoverFromJson:o=>new Map(s.recoverFromJson(o))}}function d(o,e,r){const{omitUnmappedProperties:n,omittedProperties:t}=r,s=Object.entries(o);return n||0!==t.length?s.filter((([o])=>!function(o,e,r){return function(o,e){const{omittedProperties:r}=e;return r.includes(o)}(o,r)||r.omitUnmappedProperties&&function(o,e){return!e.hasOwnProperty(o)}(o,e)}(o,e,r))):s}r=new WeakMap,n=new WeakMap;const p={identity:i,isoDate:function(){return{adaptToJson:o=>o.toJSON(),recoverFromJson:o=>new Date(o)}},dateTimestamp:function(){return{adaptToJson:o=>o.getTime(),recoverFromJson:o=>new Date(o)}},array:c,set:function(o={adaptToJson:o=>o,recoverFromJson:o=>o}){const e=c(o);return{adaptToJson:o=>e.adaptToJson([...o]),recoverFromJson:o=>new Set(e.recoverFromJson(o))}},record:function(o){return{adaptToJson(e){const r=Object.entries(e).map((([e,r])=>[e,o.adaptToJson(r)]));return Object.fromEntries(r)},recoverFromJson(e){const r=Object.entries(e).map((([e,r])=>[e,o.recoverFromJson(r)]));return Object.fromEntries(r)}}},mapAsEntries:u,mapAsRecord:function(o){const e=u(o);return{adaptToJson(o){const r=e.adaptToJson(o);return Object.fromEntries(r)},recoverFromJson(o){const r=Object.entries(o);return e.recoverFromJson(r)}}},object:function(o,e){const r=(n=e,Object.assign({omitUnmappedProperties:!1,omittedProperties:[]},n));var n;return{adaptToJson(e){const n=d(e,o,r).map((([e,r])=>{const n=o[e];return[e,n?n.adaptToJson(r):r]}));return Object.fromEntries(n)},recoverFromJson(e){const n=d(e,o,r).map((([e,r])=>{const n=o[e];return[e,n?n.recoverFromJson(r):r]}));return Object.fromEntries(n)}}},byKey:function(o){return{adaptToJson(e){const r=Object.entries(o).find((([,o])=>e===o));if(!r)throw new Error("Provided value is not associated with any key");const[n]=r;return n},recoverFromJson(e){if(null==e||!o.hasOwnProperty(e))throw new Error("Provided key is not associated with any value");return o[e]}}},byKeyLenient:function(o,e){return{adaptToJson(r){const n=Object.entries(o).find((([,o])=>r===o));if(!n)return e;const[t]=n;return t},recoverFromJson:r=>null!=r&&o.hasOwnProperty(r)?o[r]:null!=e?o[e]:void 0}},custom:function(o){return o},nullAware:function(o){return{adaptToJson:e=>null===e?null:o.adaptToJson(e),recoverFromJson:e=>null===e?null:o.recoverFromJson(e)}},undefinedAware:function(o){return{adaptToJson:e=>void 0===e?void 0:o.adaptToJson(e),recoverFromJson:e=>void 0===e?void 0:o.recoverFromJson(e)}},nullishAware:function(o){return{adaptToJson:e=>null===e?null:void 0===e?void 0:o.adaptToJson(e),recoverFromJson:e=>null===e?null:void 0===e?void 0:o.recoverFromJson(e)}}};return e})()}));
 //# sourceMappingURL=true-json.umd.js.map
 
 /***/ }),
@@ -1343,11 +1343,11 @@ class SqlEntityRelationshipModelSourceCodeGeneratorBuilder {
         _databaseModelGeneratorConfig.set(this, {});
         _sqlDialect.set(this, void 0);
     }
-    withDatabaseModelGeneratorConfig(config) {
+    configureDatabaseModel(config) {
         __classPrivateFieldSet(this, _databaseModelGeneratorConfig, config);
         return this;
     }
-    withSqlDialect(sqlDialect) {
+    useDialect(sqlDialect) {
         __classPrivateFieldSet(this, _sqlDialect, sqlDialect);
         return this;
     }
@@ -4555,15 +4555,15 @@ class JavaEntityRelationshipModelSourceCodeGeneratorBuilder {
         _javaClassModelGeneratorConfig.set(this, {});
         _javaClassModelTransformers.set(this, []);
     }
-    withClassModelGeneratorConfig(config) {
+    configureClassModel(config) {
         __classPrivateFieldSet(this, _classModelGeneratorConfig, config);
         return this;
     }
-    withJavaClassModelGeneratorConfig(config) {
+    configureJavaCode(config) {
         __classPrivateFieldSet(this, _javaClassModelGeneratorConfig, config);
         return this;
     }
-    addJavaClassModelTransformers(...javaClassModelTransformers) {
+    addTransformers(...javaClassModelTransformers) {
         __classPrivateFieldGet(this, _javaClassModelTransformers).push(...javaClassModelTransformers);
         return this;
     }
@@ -5251,11 +5251,11 @@ class JpaTransformerBuilder {
         _databaseModelGeneratorConfig.set(this, {});
         _config.set(this, {});
     }
-    withDatabaseModelGeneratorConfig(config) {
+    configureDatabaseModel(config) {
         __classPrivateFieldSet(this, _databaseModelGeneratorConfig, config);
         return this;
     }
-    withConfig(config) {
+    configureJpa(config) {
         __classPrivateFieldSet(this, _config, config);
         return this;
     }
@@ -7394,11 +7394,11 @@ class TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder {
         _classModelGeneratorConfig.set(this, {});
         _typeScriptClassModelToCodeConverterConfig.set(this, {});
     }
-    withClassModelGeneratorConfig(config) {
+    configureClassModel(config) {
         __classPrivateFieldSet(this, _classModelGeneratorConfig, config);
         return this;
     }
-    withTypeScriptClassModelToCodeConverterConfig(config) {
+    configureTypeScriptCode(config) {
         __classPrivateFieldSet(this, _typeScriptClassModelToCodeConverterConfig, config);
         return this;
     }

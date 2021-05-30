@@ -19,17 +19,17 @@ export default class JavaEntityRelationshipModelSourceCodeGeneratorBuilder {
 	#javaClassModelGeneratorConfig: PartialJavaClassModelGeneratorConfig = {};
 	#javaClassModelTransformers: JavaClassModelTransformer[] = [];
 
-	public withClassModelGeneratorConfig(config: PartialClassModelGeneratorConfig) {
+	public configureClassModel(config: PartialClassModelGeneratorConfig) {
 		this.#classModelGeneratorConfig = config;
 		return this;
 	}
 
-	public withJavaClassModelGeneratorConfig(config: PartialJavaClassModelGeneratorConfig) {
+	public configureJavaCode(config: PartialJavaClassModelGeneratorConfig) {
 		this.#javaClassModelGeneratorConfig = config;
 		return this;
 	}
 
-	public addJavaClassModelTransformers(...javaClassModelTransformers: JavaClassModelTransformer[]) {
+	public addTransformers(...javaClassModelTransformers: JavaClassModelTransformer[]) {
 		this.#javaClassModelTransformers.push(...javaClassModelTransformers);
 		return this;
 	}

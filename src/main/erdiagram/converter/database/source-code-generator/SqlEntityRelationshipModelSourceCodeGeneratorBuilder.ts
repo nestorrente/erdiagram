@@ -11,12 +11,12 @@ export default class SqlEntityRelationshipModelSourceCodeGeneratorBuilder {
 	#databaseModelGeneratorConfig: PartialDatabaseModelGeneratorConfig = {};
 	#sqlDialect?: SqlDialect;
 
-	public withDatabaseModelGeneratorConfig(config: PartialDatabaseModelGeneratorConfig) {
+	public configureDatabaseModel(config: PartialDatabaseModelGeneratorConfig) {
 		this.#databaseModelGeneratorConfig = config;
 		return this;
 	}
 
-	public withSqlDialect(sqlDialect: SqlDialect) {
+	public useDialect(sqlDialect: SqlDialect) {
 		this.#sqlDialect = sqlDialect;
 		return this;
 	}

@@ -8,12 +8,12 @@ export default class JpaTransformerBuilder {
 	#databaseModelGeneratorConfig: PartialDatabaseModelGeneratorConfig = {};
 	#config: PartialJpaTransformerConfig = {};
 
-	public withDatabaseModelGeneratorConfig(config: PartialDatabaseModelGeneratorConfig) {
+	public configureDatabaseModel(config: PartialDatabaseModelGeneratorConfig) {
 		this.#databaseModelGeneratorConfig = config;
 		return this;
 	}
 
-	public withConfig(config: PartialJpaTransformerConfig) {
+	public configureJpa(config: PartialJpaTransformerConfig) {
 		this.#config = config;
 		return this;
 	}
