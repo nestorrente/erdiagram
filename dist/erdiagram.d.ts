@@ -211,11 +211,19 @@ export declare class DatabaseModelToSqlCodeConverter {
 	private getCreateTableInnerLines;
 	private getAlterTableLines;
 }
+declare class SqlEntityRelationshipModelSourceCodeGeneratorBuilder {
+	#private;
+	withDatabaseModelGeneratorConfig(config: PartialDatabaseModelGeneratorConfig): this;
+	withSqlDialect(sqlDialect: SqlDialect): this;
+	build(): SqlEntityRelationshipModelSourceCodeGenerator;
+}
 export declare class SqlEntityRelationshipModelSourceCodeGenerator implements EntityRelationshipModelSourceCodeGenerator {
 	private readonly databaseModelGenerator;
 	private readonly databaseModelToSqlCodeConverter;
 	constructor(databaseModelGenerator: DatabaseModelGenerator, databaseModelToSqlCodeConverter: DatabaseModelToSqlCodeConverter);
 	generateSourceCode(entityRelationshipModel: EntityRelationshipModel): string;
+	static withDefaultConfig(): SqlEntityRelationshipModelSourceCodeGenerator;
+	static builder(): SqlEntityRelationshipModelSourceCodeGeneratorBuilder;
 }
 export interface SqlDialectConfig {
 	typeBindings: Record<EntityPropertyType, string>;
@@ -425,7 +433,7 @@ export interface JavaAnnotatedElement {
 export interface JavaAccessibleElement {
 	visibility: JavaVisibility;
 }
-declare enum JavaVisibility {
+export declare enum JavaVisibility {
 	PRIVATE = "private",
 	PROTECTED = "protected",
 	PUBLIC = "public",
@@ -493,7 +501,7 @@ export interface JavaClassModelGeneratorConfig {
 	generatedClassesPackage?: string;
 }
 export declare type PartialJavaClassModelGeneratorConfig = Partial<WithPartial<JavaClassModelGeneratorConfig, "typeBindings">>;
-declare class JavaClassModelGenerator {
+export declare class JavaClassModelGenerator {
 	#private;
 	constructor(config?: PartialJavaClassModelGeneratorConfig);
 	generateJavaClassModel(classModel: ClassModel): JavaClassModelGenerationResult;
@@ -540,38 +548,28 @@ export declare class JavaEntityRelationshipModelSourceCodeGenerator implements M
 	static withDefaultConfig(): JavaEntityRelationshipModelSourceCodeGenerator;
 	static builder(): JavaEntityRelationshipModelSourceCodeGeneratorBuilder;
 }
-export declare enum NotNullTextValidationStrategy {
-	NOT_NULL = "not_null",
-	NOT_EMPTY = "not_empty",
-	NOT_BLANK = "not_blank"
+export declare class JavaClassModelGeneratorConfigManager extends AbstractComponentConfigManager<JavaClassModelGeneratorConfig, PartialJavaClassModelGeneratorConfig> {
+	getDefaultConfig(): JavaClassModelGeneratorConfig;
+	mergeConfigs(fullConfig: JavaClassModelGeneratorConfig, partialConfig?: PartialJavaClassModelGeneratorConfig): JavaClassModelGeneratorConfig;
+	protected getJsonAdapter(): JsonAdapter<JavaClassModelGeneratorConfig>;
 }
-export declare enum NotNullBlobValidationStrategy {
-	NOT_NULL = "not_null",
-	NOT_EMPTY = "not_empty"
-}
-export interface JavaClassModelToCodeConverterConfig extends ClassModelToCodeConverterConfig<JavaType> {
-	generatedClassesPackage?: string;
-	useValidationAnnotations: boolean;
-	notNullTextValidationStrategy: NotNullTextValidationStrategy;
-	notNullBlobValidationStrategy: NotNullBlobValidationStrategy;
-}
-export declare type PartialJavaClassModelToCodeConverterConfig = Partial<WithPartial<JavaClassModelToCodeConverterConfig, "typeBindings">>;
-export declare class JavaClassModelToCodeConverterConfigManager extends AbstractComponentConfigManager<JavaClassModelToCodeConverterConfig, PartialJavaClassModelToCodeConverterConfig> {
-	getDefaultConfig(): JavaClassModelToCodeConverterConfig;
-	mergeConfigs(fullConfig: JavaClassModelToCodeConverterConfig, partialConfig?: PartialJavaClassModelToCodeConverterConfig): JavaClassModelToCodeConverterConfig;
-	protected getJsonAdapter(): JsonAdapter<JavaClassModelToCodeConverterConfig>;
-}
-export declare const javaClassModelToCodeConverterConfigManager: JavaClassModelToCodeConverterConfigManager;
+export declare const javaClassModelGeneratorConfigManager: JavaClassModelGeneratorConfigManager;
 export interface JpaTransformerConfig {
 	tableNameCaseFormat: CaseFormat;
 	columnNameCaseFormat: CaseFormat;
 	annotateGetters: boolean;
 }
 export declare type PartialJpaTransformerConfig = Partial<JpaTransformerConfig>;
+export declare class JpaTransformerConfigManager extends AbstractComponentConfigManager<JpaTransformerConfig, PartialJpaTransformerConfig> {
+	getDefaultConfig(): JpaTransformerConfig;
+	mergeConfigs(fullConfig: JpaTransformerConfig, partialConfig?: PartialJpaTransformerConfig): JpaTransformerConfig;
+	protected getJsonAdapter(): JsonAdapter<JpaTransformerConfig>;
+}
+export declare const jpaTransformerConfigManager: JpaTransformerConfigManager;
 export interface JpaTransformerSetupData {
 	databaseModel: DatabaseModel;
 }
-declare class JpaTransformerBuilder {
+export declare class JpaTransformerBuilder {
 	#private;
 	withDatabaseModelGeneratorConfig(config: PartialDatabaseModelGeneratorConfig): this;
 	withConfig(config: PartialJpaTransformerConfig): this;
@@ -587,12 +585,15 @@ export declare class JpaTransformer implements JavaClassModelTransformer<JpaTran
 	static withDefaultConfig(): JpaTransformer;
 	static builder(): JpaTransformerBuilder;
 }
-export declare class JpaTransformerConfigManager extends AbstractComponentConfigManager<JpaTransformerConfig, PartialJpaTransformerConfig> {
-	getDefaultConfig(): JpaTransformerConfig;
-	mergeConfigs(fullConfig: JpaTransformerConfig, partialConfig?: PartialJpaTransformerConfig): JpaTransformerConfig;
-	protected getJsonAdapter(): JsonAdapter<JpaTransformerConfig>;
+export declare enum NotNullTextValidationStrategy {
+	NOT_NULL = "not_null",
+	NOT_EMPTY = "not_empty",
+	NOT_BLANK = "not_blank"
 }
-export declare const jpaTransformerConfigManager: JpaTransformerConfigManager;
+export declare enum NotNullBlobValidationStrategy {
+	NOT_NULL = "not_null",
+	NOT_EMPTY = "not_empty"
+}
 export interface JavaxValidationTransformerConfig {
 	notNullTextValidationStrategy: NotNullTextValidationStrategy;
 	notNullBlobValidationStrategy: NotNullBlobValidationStrategy;
@@ -610,7 +611,6 @@ export declare class JavaxValidationTransformer implements JavaClassModelTransfo
 export declare class JavaxValidationTransformerConfigManager extends AbstractComponentConfigManager<JavaxValidationTransformerConfig, PartialJavaxValidationTransformerConfig> {
 	getDefaultConfig(): JavaxValidationTransformerConfig;
 	mergeConfigs(fullConfig: JavaxValidationTransformerConfig, partialConfig?: PartialJavaxValidationTransformerConfig): JavaxValidationTransformerConfig;
-	protected getJsonAdapter(): JsonAdapter<JavaxValidationTransformerConfig>;
 }
 export declare const javaxValidationTransformerConfigManager: JavaxValidationTransformerConfigManager;
 export interface JavaParameterizedType extends JavaType {
@@ -635,6 +635,19 @@ export declare class TypeScriptClassModelToCodeConverter implements ClassModelTo
 	convertToCode(classModel: ClassModel): string;
 	private generateClass;
 	private createField;
+}
+export declare class TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder {
+	#private;
+	withClassModelGeneratorConfig(config: PartialClassModelGeneratorConfig): this;
+	withTypeScriptClassModelToCodeConverterConfig(config: PartialTypeScriptClassModelToCodeConverterConfig): this;
+	build(): TypeScriptEntityRelationshipModelSourceCodeGenerator;
+}
+export declare class TypeScriptEntityRelationshipModelSourceCodeGenerator implements EntityRelationshipModelSourceCodeGenerator {
+	#private;
+	constructor(classModelGenerator: ClassModelGenerator, typeScriptClassModelToCodeConverter: TypeScriptClassModelToCodeConverter);
+	generateSourceCode(entityRelationshipModel: EntityRelationshipModel): string;
+	static withDefaultConfig(): TypeScriptEntityRelationshipModelSourceCodeGenerator;
+	static builder(): TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder;
 }
 export declare class TypeScriptClassModelToCodeConverterConfigManager extends AbstractComponentConfigManager<TypeScriptClassModelToCodeConverterConfig, PartialTypeScriptClassModelToCodeConverterConfig> {
 	getDefaultConfig(): TypeScriptClassModelToCodeConverterConfig;

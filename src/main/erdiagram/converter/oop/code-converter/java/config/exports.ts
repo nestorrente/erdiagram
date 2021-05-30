@@ -1,9 +1,0 @@
-import JavaClassModelToCodeConverterConfig, {PartialJavaClassModelToCodeConverterConfig} from './JavaClassModelToCodeConverterConfig';
-import javaClassModelToCodeConverterConfigManager, {JavaClassModelToCodeConverterConfigManager} from './JavaClassModelToCodeConverterConfigManager';
-
-export {
-	JavaClassModelToCodeConverterConfig,
-	PartialJavaClassModelToCodeConverterConfig,
-	JavaClassModelToCodeConverterConfigManager,
-	javaClassModelToCodeConverterConfigManager
-};
