@@ -568,6 +568,8 @@ export interface JpaTransformerConfig {
 	tableNameCaseFormat: CaseFormat;
 	columnNameCaseFormat: CaseFormat;
 	annotateGetters: boolean;
+	useExplicitTableName: boolean;
+	useExplicitColumnName: boolean;
 }
 export declare type PartialJpaTransformerConfig = Partial<JpaTransformerConfig>;
 export declare class JpaTransformerConfigManager extends AbstractComponentConfigManager<JpaTransformerConfig, PartialJpaTransformerConfig> {

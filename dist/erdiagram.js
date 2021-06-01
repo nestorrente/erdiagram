@@ -4,7 +4,7 @@
  *
  * Released under the MIT License.
  *
- * Build date: 2021-05-31T12:43:14.801Z
+ * Build date: 2021-06-01T11:46:27.217Z
  */
 var ERDiagram;
 /******/ (() => { // webpackBootstrap
@@ -4914,7 +4914,9 @@ class JpaTransformerConfigManager extends _erdiagram_common_config_AbstractCompo
         return {
             tableNameCaseFormat: _erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__.default.UPPER_CAMEL,
             columnNameCaseFormat: _erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__.default.LOWER_CAMEL,
-            annotateGetters: false
+            annotateGetters: false,
+            useExplicitTableName: false,
+            useExplicitColumnName: false
         };
     }
     mergeConfigs(fullConfig, partialConfig) {
@@ -5037,12 +5039,12 @@ __webpack_require__.r(__webpack_exports__);
 
 class JpaTransformer {
     constructor(databaseModelGenerator, config) {
-        const { tableNameCaseFormat, columnNameCaseFormat, annotateGetters } = _erdiagram_converter_oop_source_code_generator_java_jpa_config_JpaTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__.default.mergeWithDefaultConfig(config);
+        const { tableNameCaseFormat, columnNameCaseFormat, annotateGetters, useExplicitTableName, useExplicitColumnName } = _erdiagram_converter_oop_source_code_generator_java_jpa_config_JpaTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__.default.mergeWithDefaultConfig(config);
         const tableNameCaseConverter = new _erdiagram_converter_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_1__.default(_erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__.default.UPPER_CAMEL, tableNameCaseFormat);
         const columnNameCaseConverter = new _erdiagram_converter_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_1__.default(_erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__.default.UPPER_CAMEL, columnNameCaseFormat);
         this._setupDataGenerator = new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_setup_JpaTransformerSetupDataGenerator__WEBPACK_IMPORTED_MODULE_5__.default(databaseModelGenerator);
-        this._fieldVisitor = new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_JpaTransformerFieldVisitor__WEBPACK_IMPORTED_MODULE_3__.default(tableNameCaseConverter, columnNameCaseConverter, annotateGetters);
-        this._classVisitor = new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_class_JpaTransformerClassVisitor__WEBPACK_IMPORTED_MODULE_4__.default(tableNameCaseConverter);
+        this._fieldVisitor = new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_JpaTransformerFieldVisitor__WEBPACK_IMPORTED_MODULE_3__.default(tableNameCaseConverter, columnNameCaseConverter, annotateGetters, useExplicitColumnName);
+        this._classVisitor = new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_class_JpaTransformerClassVisitor__WEBPACK_IMPORTED_MODULE_4__.default(tableNameCaseConverter, useExplicitTableName);
     }
     setup(context) {
         return this._setupDataGenerator.setup(context);
@@ -5252,14 +5254,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class JpaTransformerClassVisitor {
-    constructor(tableNameCaseConverter) {
+    constructor(tableNameCaseConverter, useExplicitTableName) {
         this._tableNameCaseConverter = tableNameCaseConverter;
+        this._useExplicitTableName = useExplicitTableName;
     }
     visitClass(javaClass, context) {
         const table = this.findTableFromEntity(context.classDescriptor.sourceMetadata.entity, context.setupData.databaseModel);
-        javaClass.annotations.push(new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__.JpaAnnotationTypes.Entity), new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__.JpaAnnotationTypes.Table, {
-            name: this.formatTableName(table.name)
-        }));
+        javaClass.annotations.push(new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__.JpaAnnotationTypes.Entity));
+        if (this._useExplicitTableName) {
+            this.addTableAnnotation(javaClass, table);
+        }
     }
     findTableFromEntity(entity, databaseModel) {
         const foundTable = databaseModel.tables.find(table => this.isCorrespondingTable(entity, table));
@@ -5270,6 +5274,12 @@ class JpaTransformerClassVisitor {
     }
     isCorrespondingTable(entity, tableDescriptor) {
         return (0,_erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__.isEntitySourceMetadata)(tableDescriptor.sourceMetadata) && tableDescriptor.sourceMetadata.entity === entity;
+    }
+    addTableAnnotation(javaClass, table) {
+        const tableAnnotation = new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__.JpaAnnotationTypes.Table, {
+            name: this.formatTableName(table.name)
+        });
+        javaClass.annotations.push(tableAnnotation);
     }
     formatTableName(tableName) {
         return this._tableNameCaseConverter.convertCase(tableName);
@@ -5297,24 +5307,30 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class ColumnFieldAnnotationsSupplier {
-    constructor(entityRelationshipModelSourceFinder, columnNameCaseConverter) {
+    constructor(entityRelationshipModelSourceFinder, columnNameCaseConverter, useExplicitColumnName) {
         this._entityRelationshipModelSourceFinder = entityRelationshipModelSourceFinder;
         this._columnNameCaseConverter = columnNameCaseConverter;
+        this._useExplicitColumnName = useExplicitColumnName;
     }
     getAnnotations(javaField, context) {
         const columnAnnotation = this.getColumnAnnotation(context.fieldDescriptor, context.setupData.databaseModel);
         return columnAnnotation != null ? [columnAnnotation] : [];
     }
     getColumnAnnotation(fieldDescriptor, databaseModel) {
-        const { sourceMetadata } = fieldDescriptor;
         const columnName = this.getColumnName(fieldDescriptor, databaseModel);
         if (columnName == null) {
             return null;
         }
-        return new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__.JpaAnnotationTypes.Column, {
-            name: this.formatColumnName(columnName),
+        const columnAnnotationParameters = {
+            name: this._useExplicitColumnName ? this.formatColumnName(columnName) : undefined,
             nullable: fieldDescriptor.nullable ? undefined : false
-        });
+        };
+        const allValuesAreUndefined = Object.values(columnAnnotationParameters).every(parameterValue => parameterValue === undefined);
+        if (allValuesAreUndefined) {
+            // Column annotation is not needed
+            return null;
+        }
+        return new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__.JpaAnnotationTypes.Column, columnAnnotationParameters);
     }
     getColumnName(fieldDescriptor, databaseModel) {
         const { sourceMetadata } = fieldDescriptor;
@@ -5393,13 +5409,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class JpaTransformerFieldVisitor {
-    constructor(tableNameCaseConverter, columnNameCaseConverter, annotateGetters) {
+    constructor(tableNameCaseConverter, columnNameCaseConverter, annotateGetters, useExplicitColumnName) {
         this._annotateGetters = annotateGetters;
         const entityRelationshipModelSourceFinder = new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_finder_EntityRelationshipModelSourceFinder__WEBPACK_IMPORTED_MODULE_0__.default();
         const classModelSourceFinder = new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_finder_ClassModelSourceFinder__WEBPACK_IMPORTED_MODULE_4__.default();
         this._fieldAnnotationsSuppliers = [
             new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_IdentityFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_1__.default(),
-            new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_ColumnFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_2__.default(entityRelationshipModelSourceFinder, columnNameCaseConverter),
+            new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_ColumnFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_2__.default(entityRelationshipModelSourceFinder, columnNameCaseConverter, useExplicitColumnName),
             new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_relationship_RelationshipFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_3__.default(entityRelationshipModelSourceFinder, classModelSourceFinder, tableNameCaseConverter, columnNameCaseConverter)
         ];
     }
