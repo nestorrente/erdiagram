@@ -1,7 +1,7 @@
 import {JavaFieldTransformContext} from '@/erdiagram/converter/oop/source-code-generator/java/model/transformer/java-class-model-transformer-context-types';
 import {JavaField} from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
 import {DatabaseModel} from '@/erdiagram/converter/database/model/database-model-types';
-import JavaAnnotation from '@/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation';
+import JavaAnnotation, {JavaAnnotationParametersRecord} from '@/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation';
 import {
 	isEntityIdentitySourceMetadata,
 	isEntityPropertySourceMetadata
@@ -20,13 +20,16 @@ export default class ColumnFieldAnnotationsSupplier implements FieldAnnotationsS
 
 	private readonly _entityRelationshipModelSourceFinder: EntityRelationshipModelSourceFinder;
 	private readonly _columnNameCaseConverter: CaseConverter;
+	private readonly _useExplicitColumnName: boolean;
 
 	constructor(
 			entityRelationshipModelSourceFinder: EntityRelationshipModelSourceFinder,
-			columnNameCaseConverter: CaseConverter
+			columnNameCaseConverter: CaseConverter,
+			useExplicitColumnName: boolean
 	) {
 		this._entityRelationshipModelSourceFinder = entityRelationshipModelSourceFinder;
 		this._columnNameCaseConverter = columnNameCaseConverter;
+		this._useExplicitColumnName = useExplicitColumnName;
 	}
 
 	public getAnnotations(javaField: JavaField, context: JavaFieldTransformContext<JpaTransformerSetupData>): JavaAnnotation[] {
@@ -36,18 +39,25 @@ export default class ColumnFieldAnnotationsSupplier implements FieldAnnotationsS
 
 	private getColumnAnnotation(fieldDescriptor: ClassFieldDescriptor, databaseModel: DatabaseModel): JavaAnnotation | null {
 
-		const {sourceMetadata} = fieldDescriptor;
-
 		const columnName = this.getColumnName(fieldDescriptor, databaseModel);
 
 		if (columnName == null) {
 			return null;
 		}
 
-		return new JavaAnnotation(JpaAnnotationTypes.Column, {
-			name: this.formatColumnName(columnName),
+		const columnAnnotationParameters: JavaAnnotationParametersRecord = {
+			name: this._useExplicitColumnName ? this.formatColumnName(columnName) : undefined,
 			nullable: fieldDescriptor.nullable ? undefined : false
-		});
+		};
+
+		const allValuesAreUndefined = Object.values(columnAnnotationParameters).every(parameterValue => parameterValue === undefined);
+
+		if (allValuesAreUndefined) {
+			// Column annotation is not needed
+			return null;
+		}
+
+		return new JavaAnnotation(JpaAnnotationTypes.Column, columnAnnotationParameters);
 
 	}
 

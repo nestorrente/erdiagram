@@ -27,7 +27,8 @@ export default class JpaTransformerFieldVisitor {
 	constructor(
 			tableNameCaseConverter: CaseConverter,
 			columnNameCaseConverter: CaseConverter,
-			annotateGetters: boolean
+			annotateGetters: boolean,
+			useExplicitColumnName: boolean
 	) {
 
 		this._annotateGetters = annotateGetters;
@@ -39,7 +40,8 @@ export default class JpaTransformerFieldVisitor {
 			new IdentityFieldAnnotationsSupplier(),
 			new ColumnFieldAnnotationsSupplier(
 					entityRelationshipModelSourceFinder,
-					columnNameCaseConverter
+					columnNameCaseConverter,
+					useExplicitColumnName
 			),
 			new RelationshipFieldAnnotationsSupplier(
 					entityRelationshipModelSourceFinder,

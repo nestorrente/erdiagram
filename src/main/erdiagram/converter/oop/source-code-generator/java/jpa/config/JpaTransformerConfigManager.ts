@@ -10,7 +10,9 @@ export class JpaTransformerConfigManager
 		return {
 			tableNameCaseFormat: StandardCaseFormats.UPPER_CAMEL,
 			columnNameCaseFormat: StandardCaseFormats.LOWER_CAMEL,
-			annotateGetters: false
+			annotateGetters: false,
+			useExplicitTableName: false,
+			useExplicitColumnName: false
 		};
 	}
 

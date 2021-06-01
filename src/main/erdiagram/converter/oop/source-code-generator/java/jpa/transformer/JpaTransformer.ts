@@ -39,7 +39,9 @@ export class JpaTransformer implements JavaClassModelTransformer<JpaTransformerS
 		const {
 			tableNameCaseFormat,
 			columnNameCaseFormat,
-			annotateGetters
+			annotateGetters,
+			useExplicitTableName,
+			useExplicitColumnName
 		} = jpaTransformerConfigManager.mergeWithDefaultConfig(config);
 
 		const tableNameCaseConverter = new CaseConverter(StandardCaseFormats.UPPER_CAMEL, tableNameCaseFormat);
@@ -50,10 +52,14 @@ export class JpaTransformer implements JavaClassModelTransformer<JpaTransformerS
 		this._fieldVisitor = new JpaTransformerFieldVisitor(
 				tableNameCaseConverter,
 				columnNameCaseConverter,
-				annotateGetters
+				annotateGetters,
+				useExplicitColumnName
 		);
 
-		this._classVisitor = new JpaTransformerClassVisitor(tableNameCaseConverter);
+		this._classVisitor = new JpaTransformerClassVisitor(
+				tableNameCaseConverter,
+				useExplicitTableName
+		);
 
 	}
 

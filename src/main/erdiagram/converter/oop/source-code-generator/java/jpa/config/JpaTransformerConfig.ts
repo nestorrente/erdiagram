@@ -4,7 +4,8 @@ export default interface JpaTransformerConfig {
 	tableNameCaseFormat: CaseFormat;
 	columnNameCaseFormat: CaseFormat;
 	annotateGetters: boolean;
-	// TODO add properties for indicating whether the @Table and @Column annotations should be used or not
+	useExplicitTableName: boolean;
+	useExplicitColumnName: boolean;
 }
 
 export type PartialJpaTransformerConfig = Partial<JpaTransformerConfig>;

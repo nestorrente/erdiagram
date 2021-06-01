@@ -12,21 +12,22 @@ import JpaTransformerSetupData
 export default class JpaTransformerClassVisitor {
 
 	private readonly _tableNameCaseConverter: CaseConverter;
+	private readonly _useExplicitTableName: boolean;
 
-	constructor(tableNameCaseConverter: CaseConverter) {
+	constructor(tableNameCaseConverter: CaseConverter, useExplicitTableName: boolean) {
 		this._tableNameCaseConverter = tableNameCaseConverter;
+		this._useExplicitTableName = useExplicitTableName;
 	}
 
 	public visitClass(javaClass: JavaClass, context: JavaClassTransformContext<JpaTransformerSetupData>): void {
 
 		const table = this.findTableFromEntity(context.classDescriptor.sourceMetadata.entity, context.setupData.databaseModel);
 
-		javaClass.annotations.push(
-				new JavaAnnotation(JpaAnnotationTypes.Entity),
-				new JavaAnnotation(JpaAnnotationTypes.Table, {
-					name: this.formatTableName(table.name)
-				})
-		);
+		javaClass.annotations.push(new JavaAnnotation(JpaAnnotationTypes.Entity));
+
+		if (this._useExplicitTableName) {
+			this.addTableAnnotation(javaClass, table);
+		}
 
 	}
 
@@ -44,6 +45,16 @@ export default class JpaTransformerClassVisitor {
 
 	private isCorrespondingTable(entity: EntityDescriptor, tableDescriptor: TableDescriptor): boolean {
 		return isEntitySourceMetadata(tableDescriptor.sourceMetadata) && tableDescriptor.sourceMetadata.entity === entity;
+	}
+
+	private addTableAnnotation(javaClass: JavaClass, table: TableDescriptor) {
+
+		const tableAnnotation = new JavaAnnotation(JpaAnnotationTypes.Table, {
+			name: this.formatTableName(table.name)
+		});
+
+		javaClass.annotations.push(tableAnnotation);
+
 	}
 
 	private formatTableName(tableName: string): string {
