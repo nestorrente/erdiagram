@@ -5,7 +5,8 @@ import {
 	JavaVisibility
 } from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
 import JavaFieldTypeResolver from '@/erdiagram/converter/oop/source-code-generator/java/type/JavaFieldTypeResolver';
-import JavaFieldGenerator from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaFieldGenerator';
+import JavaFieldGenerator
+	from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaFieldGenerator';
 
 interface FieldGeneratedEvent {
 	javaField: JavaField;
@@ -16,25 +17,25 @@ type FieldGeneratedEventListener = (event: FieldGeneratedEvent) => void;
 
 export default class JavaClassGenerator {
 
-	readonly #generatedClassesPackage?: string;
-	readonly #javaFieldGenerator: JavaFieldGenerator;
+	private readonly _generatedClassesPackage?: string;
+	private readonly _javaFieldGenerator: JavaFieldGenerator;
 
 	constructor(
 			generatedClassesPackage: string | undefined,
 			typeResolver: JavaFieldTypeResolver
 	) {
-		this.#generatedClassesPackage = generatedClassesPackage;
-		this.#javaFieldGenerator = new JavaFieldGenerator(typeResolver);
+		this._generatedClassesPackage = generatedClassesPackage;
+		this._javaFieldGenerator = new JavaFieldGenerator(typeResolver);
 	}
 
 	public generateJavaClass(classDescriptor: ClassDescriptor, fieldGeneratedEventListener: FieldGeneratedEventListener): JavaClass {
 		return {
-			packageName: this.#generatedClassesPackage,
+			packageName: this._generatedClassesPackage,
 			visibility: JavaVisibility.PUBLIC,
 			name: classDescriptor.name,
 			annotations: [],
 			fields: classDescriptor.fields.map(fieldDescriptor => {
-				const javaField = this.#javaFieldGenerator.generateJavaField(fieldDescriptor);
+				const javaField = this._javaFieldGenerator.generateJavaField(fieldDescriptor);
 				fieldGeneratedEventListener({javaField, fieldDescriptor});
 				return javaField;
 			})

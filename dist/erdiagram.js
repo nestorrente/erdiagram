@@ -4,7 +4,7 @@
  *
  * Released under the MIT License.
  *
- * Build date: 2021-05-30T11:01:57.865Z
+ * Build date: 2021-05-31T12:43:14.801Z
  */
 var ERDiagram;
 /******/ (() => { // webpackBootstrap
@@ -549,40 +549,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! true-json */ "./node_modules/true-json/dist/true-json.umd.js");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(true_json__WEBPACK_IMPORTED_MODULE_0__);
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _jsonAdapter;
 
 class AbstractComponentConfigManager {
     constructor() {
-        _jsonAdapter.set(this, void 0);
-        __classPrivateFieldSet(this, _jsonAdapter, this.getJsonAdapter());
+        this._jsonAdapter = this.getJsonAdapter();
     }
     mergeWithDefaultConfig(partialConfig) {
         return this.mergeConfigs(this.getDefaultConfig(), partialConfig);
     }
     convertToSerializableObject(fullConfig) {
-        return __classPrivateFieldGet(this, _jsonAdapter).adaptToJson(fullConfig);
+        return this._jsonAdapter.adaptToJson(fullConfig);
     }
     convertFromSerializableObject(serializableConfig) {
-        return __classPrivateFieldGet(this, _jsonAdapter).recoverFromJson(serializableConfig);
+        return this._jsonAdapter.recoverFromJson(serializableConfig);
     }
     getJsonAdapter() {
         return true_json__WEBPACK_IMPORTED_MODULE_0__.JsonAdapters.identity();
     }
 }
-_jsonAdapter = new WeakMap();
 
 
 /***/ }),
@@ -1321,44 +1305,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_database_model_DatabaseModelGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/database/model/DatabaseModelGenerator */ "./src/main/erdiagram/converter/database/model/DatabaseModelGenerator.ts");
 /* harmony import */ var _erdiagram_converter_database_source_code_generator_SqlEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/database/source-code-generator/SqlEntityRelationshipModelSourceCodeGenerator */ "./src/main/erdiagram/converter/database/source-code-generator/SqlEntityRelationshipModelSourceCodeGenerator.ts");
 /* harmony import */ var _erdiagram_converter_database_source_code_generator_sql_DatabaseModelToSqlCodeConverter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/database/source-code-generator/sql/DatabaseModelToSqlCodeConverter */ "./src/main/erdiagram/converter/database/source-code-generator/sql/DatabaseModelToSqlCodeConverter.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _databaseModelGeneratorConfig, _sqlDialect;
 
 
 
 class SqlEntityRelationshipModelSourceCodeGeneratorBuilder {
     constructor() {
-        _databaseModelGeneratorConfig.set(this, {});
-        _sqlDialect.set(this, void 0);
+        this._databaseModelGeneratorConfig = {};
     }
     configureDatabaseModel(config) {
-        __classPrivateFieldSet(this, _databaseModelGeneratorConfig, config);
+        this._databaseModelGeneratorConfig = config;
         return this;
     }
     useDialect(sqlDialect) {
-        __classPrivateFieldSet(this, _sqlDialect, sqlDialect);
+        this._sqlDialect = sqlDialect;
         return this;
     }
     build() {
-        if (__classPrivateFieldGet(this, _sqlDialect) == null) {
+        if (this._sqlDialect == null) {
             throw new Error('SqlDialect is not configured');
         }
-        return new _erdiagram_converter_database_source_code_generator_SqlEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_1__.default(new _erdiagram_converter_database_model_DatabaseModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(__classPrivateFieldGet(this, _databaseModelGeneratorConfig)), new _erdiagram_converter_database_source_code_generator_sql_DatabaseModelToSqlCodeConverter__WEBPACK_IMPORTED_MODULE_2__.default(__classPrivateFieldGet(this, _sqlDialect)));
+        return new _erdiagram_converter_database_source_code_generator_SqlEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_1__.default(new _erdiagram_converter_database_model_DatabaseModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(this._databaseModelGeneratorConfig), new _erdiagram_converter_database_source_code_generator_sql_DatabaseModelToSqlCodeConverter__WEBPACK_IMPORTED_MODULE_2__.default(this._sqlDialect));
     }
 }
-_databaseModelGeneratorConfig = new WeakMap(), _sqlDialect = new WeakMap();
 
 
 /***/ }),
@@ -4451,53 +4419,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_transformer_ApplyTransformersCommand__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/transformer/ApplyTransformersCommand */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/transformer/ApplyTransformersCommand.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_JavaEntityRelationshipModelSourceCodeGeneratorBuilder__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/JavaEntityRelationshipModelSourceCodeGeneratorBuilder */ "./src/main/erdiagram/converter/oop/source-code-generator/java/JavaEntityRelationshipModelSourceCodeGeneratorBuilder.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _classModelGenerator, _javaClassModelGenerator, _javaClassModelTransformers, _javaClassModelCodeGenerator, _javaClassModelSourceFilesGenerator;
 
 
 class JavaEntityRelationshipModelSourceCodeGenerator {
     constructor(classModelGenerator, javaClassModelGenerator, javaClassModelTransformers, javaClassModelCodeGenerator, javaClassModelSourceFilesGenerator) {
-        _classModelGenerator.set(this, void 0);
-        _javaClassModelGenerator.set(this, void 0);
-        _javaClassModelTransformers.set(this, void 0);
-        _javaClassModelCodeGenerator.set(this, void 0);
-        _javaClassModelSourceFilesGenerator.set(this, void 0);
-        __classPrivateFieldSet(this, _classModelGenerator, classModelGenerator);
-        __classPrivateFieldSet(this, _javaClassModelGenerator, javaClassModelGenerator);
-        __classPrivateFieldSet(this, _javaClassModelTransformers, javaClassModelTransformers);
-        __classPrivateFieldSet(this, _javaClassModelCodeGenerator, javaClassModelCodeGenerator);
-        __classPrivateFieldSet(this, _javaClassModelSourceFilesGenerator, javaClassModelSourceFilesGenerator);
+        this._classModelGenerator = classModelGenerator;
+        this._javaClassModelGenerator = javaClassModelGenerator;
+        this._javaClassModelTransformers = javaClassModelTransformers;
+        this._javaClassModelCodeGenerator = javaClassModelCodeGenerator;
+        this._javaClassModelSourceFilesGenerator = javaClassModelSourceFilesGenerator;
     }
     generateSourceCode(entityRelationshipModel) {
         const javaClassModel = this.getJavaClassModel(entityRelationshipModel);
-        return __classPrivateFieldGet(this, _javaClassModelCodeGenerator).generateCode(javaClassModel);
+        return this._javaClassModelCodeGenerator.generateCode(javaClassModel);
     }
     generateSourceFiles(entityRelationshipModel) {
         const javaClassModel = this.getJavaClassModel(entityRelationshipModel);
-        return __classPrivateFieldGet(this, _javaClassModelSourceFilesGenerator).generateSourceFiles(javaClassModel);
+        return this._javaClassModelSourceFilesGenerator.generateSourceFiles(javaClassModel);
     }
     getJavaClassModel(entityRelationshipModel) {
-        const classModel = __classPrivateFieldGet(this, _classModelGenerator).generateClassModel(entityRelationshipModel);
-        const { javaClassModel, javaClassModelDescriptorsRepository } = __classPrivateFieldGet(this, _javaClassModelGenerator).generateJavaClassModel(classModel);
+        const classModel = this._classModelGenerator.generateClassModel(entityRelationshipModel);
+        const { javaClassModel, javaClassModelDescriptorsRepository } = this._javaClassModelGenerator.generateJavaClassModel(classModel);
         // FIXME too much dependencies?
         const applyTransformersCommandContext = {
             entityRelationshipModel,
             classModel,
             javaClassModel
         };
-        new _erdiagram_converter_oop_source_code_generator_java_model_transformer_ApplyTransformersCommand__WEBPACK_IMPORTED_MODULE_0__.default(applyTransformersCommandContext, javaClassModelDescriptorsRepository, __classPrivateFieldGet(this, _javaClassModelTransformers)).execute();
+        new _erdiagram_converter_oop_source_code_generator_java_model_transformer_ApplyTransformersCommand__WEBPACK_IMPORTED_MODULE_0__.default(applyTransformersCommandContext, javaClassModelDescriptorsRepository, this._javaClassModelTransformers).execute();
         return javaClassModel;
     }
     static withDefaultConfig() {
@@ -4507,7 +4456,6 @@ class JavaEntityRelationshipModelSourceCodeGenerator {
         return new _erdiagram_converter_oop_source_code_generator_java_JavaEntityRelationshipModelSourceCodeGeneratorBuilder__WEBPACK_IMPORTED_MODULE_1__.default();
     }
 }
-_classModelGenerator = new WeakMap(), _javaClassModelGenerator = new WeakMap(), _javaClassModelTransformers = new WeakMap(), _javaClassModelCodeGenerator = new WeakMap(), _javaClassModelSourceFilesGenerator = new WeakMap();
 
 
 /***/ }),
@@ -4529,20 +4477,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_code_JavaClassModelCodeGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/code/JavaClassModelCodeGenerator */ "./src/main/erdiagram/converter/oop/source-code-generator/java/code/JavaClassModelCodeGenerator.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_code_JavaClassCodeGenerator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/code/JavaClassCodeGenerator */ "./src/main/erdiagram/converter/oop/source-code-generator/java/code/JavaClassCodeGenerator.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_code_JavaClassModelSourceFilesGenerator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/code/JavaClassModelSourceFilesGenerator */ "./src/main/erdiagram/converter/oop/source-code-generator/java/code/JavaClassModelSourceFilesGenerator.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _classModelGeneratorConfig, _javaClassModelGeneratorConfig, _javaClassModelTransformers;
 
 
 
@@ -4551,32 +4485,31 @@ var _classModelGeneratorConfig, _javaClassModelGeneratorConfig, _javaClassModelT
 
 class JavaEntityRelationshipModelSourceCodeGeneratorBuilder {
     constructor() {
-        _classModelGeneratorConfig.set(this, {});
-        _javaClassModelGeneratorConfig.set(this, {});
-        _javaClassModelTransformers.set(this, []);
+        this._classModelGeneratorConfig = {};
+        this._javaClassModelGeneratorConfig = {};
+        this._javaClassModelTransformers = [];
     }
     configureClassModel(config) {
-        __classPrivateFieldSet(this, _classModelGeneratorConfig, config);
+        this._classModelGeneratorConfig = config;
         return this;
     }
     configureJavaCode(config) {
-        __classPrivateFieldSet(this, _javaClassModelGeneratorConfig, config);
+        this._javaClassModelGeneratorConfig = config;
         return this;
     }
     addTransformers(...javaClassModelTransformers) {
-        __classPrivateFieldGet(this, _javaClassModelTransformers).push(...javaClassModelTransformers);
+        this._javaClassModelTransformers.push(...javaClassModelTransformers);
         return this;
     }
     build() {
-        const classModelGenerator = new _erdiagram_converter_oop_model_ClassModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(__classPrivateFieldGet(this, _classModelGeneratorConfig));
-        const javaClassModelGenerator = new _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaClassModelGenerator__WEBPACK_IMPORTED_MODULE_1__.default(__classPrivateFieldGet(this, _javaClassModelGeneratorConfig));
+        const classModelGenerator = new _erdiagram_converter_oop_model_ClassModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(this._classModelGeneratorConfig);
+        const javaClassModelGenerator = new _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaClassModelGenerator__WEBPACK_IMPORTED_MODULE_1__.default(this._javaClassModelGeneratorConfig);
         const javaClassCodeGenerator = new _erdiagram_converter_oop_source_code_generator_java_code_JavaClassCodeGenerator__WEBPACK_IMPORTED_MODULE_4__.default();
         const javaClassModelCodeGenerator = new _erdiagram_converter_oop_source_code_generator_java_code_JavaClassModelCodeGenerator__WEBPACK_IMPORTED_MODULE_3__.default(javaClassCodeGenerator);
         const javaClassModelSourceFilesGenerator = new _erdiagram_converter_oop_source_code_generator_java_code_JavaClassModelSourceFilesGenerator__WEBPACK_IMPORTED_MODULE_5__.default(javaClassCodeGenerator);
-        return new _erdiagram_converter_oop_source_code_generator_java_JavaEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_2__.default(classModelGenerator, javaClassModelGenerator, [...__classPrivateFieldGet(this, _javaClassModelTransformers)], javaClassModelCodeGenerator, javaClassModelSourceFilesGenerator);
+        return new _erdiagram_converter_oop_source_code_generator_java_JavaEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_2__.default(classModelGenerator, javaClassModelGenerator, [...this._javaClassModelTransformers], javaClassModelCodeGenerator, javaClassModelSourceFilesGenerator);
     }
 }
-_classModelGeneratorConfig = new WeakMap(), _javaClassModelGeneratorConfig = new WeakMap(), _javaClassModelTransformers = new WeakMap();
 
 
 /***/ }),
@@ -4594,40 +4527,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_annotation_utils_formatJavaAnnotation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/annotation/utils/formatJavaAnnotation */ "./src/main/erdiagram/converter/oop/source-code-generator/java/annotation/utils/formatJavaAnnotation.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_annotation_utils_RawAnnotationParameterValue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/annotation/utils/RawAnnotationParameterValue */ "./src/main/erdiagram/converter/oop/source-code-generator/java/annotation/utils/RawAnnotationParameterValue.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _type, _parameters;
 
 
 class JavaAnnotation {
     constructor(annotationType, parameters = {}) {
-        _type.set(this, void 0);
-        _parameters.set(this, void 0);
-        __classPrivateFieldSet(this, _type, annotationType);
-        __classPrivateFieldSet(this, _parameters, parameters);
+        this._type = annotationType;
+        this._parameters = parameters;
     }
     get type() {
-        return __classPrivateFieldGet(this, _type);
+        return this._type;
     }
     get parameters() {
-        return __classPrivateFieldGet(this, _parameters);
+        return this._parameters;
     }
     format() {
         return (0,_erdiagram_converter_oop_source_code_generator_java_annotation_utils_formatJavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default)(this);
     }
 }
-_type = new WeakMap(), _parameters = new WeakMap();
 JavaAnnotation.createRawParameterValue = _erdiagram_converter_oop_source_code_generator_java_annotation_utils_RawAnnotationParameterValue__WEBPACK_IMPORTED_MODULE_1__.createRawParameterValue;
 JavaAnnotation.isRawParameterValue = _erdiagram_converter_oop_source_code_generator_java_annotation_utils_RawAnnotationParameterValue__WEBPACK_IMPORTED_MODULE_1__.isRawParameterValue;
 
@@ -4761,20 +4677,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_type_import_JavaImportStatementsGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/type/import/JavaImportStatementsGenerator */ "./src/main/erdiagram/converter/oop/source-code-generator/java/type/import/JavaImportStatementsGenerator.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_type_import_JavaClassUsedTypesCompiler__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/type/import/JavaClassUsedTypesCompiler */ "./src/main/erdiagram/converter/oop/source-code-generator/java/type/import/JavaClassUsedTypesCompiler.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _javaUsedTypesCompiler;
 
 
 
@@ -4782,8 +4684,7 @@ var _javaUsedTypesCompiler;
 const EMPTY_STRING = '';
 class JavaClassCodeGenerator {
     constructor() {
-        _javaUsedTypesCompiler.set(this, void 0);
-        __classPrivateFieldSet(this, _javaUsedTypesCompiler, new _erdiagram_converter_oop_source_code_generator_java_type_import_JavaClassUsedTypesCompiler__WEBPACK_IMPORTED_MODULE_3__.default());
+        this._javaUsedTypesCompiler = new _erdiagram_converter_oop_source_code_generator_java_type_import_JavaClassUsedTypesCompiler__WEBPACK_IMPORTED_MODULE_3__.default();
     }
     generateCode(javaClass) {
         const fieldsLines = [];
@@ -4860,12 +4761,11 @@ class JavaClassCodeGenerator {
         return visibility + ' ' + text;
     }
     generateImportLines(javaClass) {
-        const usedTypes = __classPrivateFieldGet(this, _javaUsedTypesCompiler).getUsedTypes(javaClass);
+        const usedTypes = this._javaUsedTypesCompiler.getUsedTypes(javaClass);
         const javaImportStatementsGenerator = new _erdiagram_converter_oop_source_code_generator_java_type_import_JavaImportStatementsGenerator__WEBPACK_IMPORTED_MODULE_1__.default(javaClass.packageName);
         return javaImportStatementsGenerator.generateImportStatements(usedTypes);
     }
 }
-_javaUsedTypesCompiler = new WeakMap();
 
 
 /***/ }),
@@ -4881,24 +4781,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ JavaClassModelCodeGenerator)
 /* harmony export */ });
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _javaClassCodeGenerator;
 class JavaClassModelCodeGenerator {
     constructor(javaClassCodeGenerator) {
-        _javaClassCodeGenerator.set(this, void 0);
-        __classPrivateFieldSet(this, _javaClassCodeGenerator, javaClassCodeGenerator);
+        this._javaClassCodeGenerator = javaClassCodeGenerator;
     }
     generateCode(javaClassModel) {
         return javaClassModel.classes
@@ -4907,14 +4792,13 @@ class JavaClassModelCodeGenerator {
     }
     generateClassCode(javaClass) {
         const headerComment = this.generateClassHeaderComment(javaClass);
-        const classCode = __classPrivateFieldGet(this, _javaClassCodeGenerator).generateCode(javaClass);
+        const classCode = this._javaClassCodeGenerator.generateCode(javaClass);
         return `${headerComment}\n\n${classCode}`;
     }
     generateClassHeaderComment(javaClass) {
         return `/* ========== ${javaClass.name} class ========== */`;
     }
 }
-_javaClassCodeGenerator = new WeakMap();
 
 
 /***/ }),
@@ -4930,24 +4814,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ JavaClassModelSourceFilesGenerator)
 /* harmony export */ });
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _javaClassCodeGenerator;
 class JavaClassModelSourceFilesGenerator {
     constructor(javaClassCodeGenerator) {
-        _javaClassCodeGenerator.set(this, void 0);
-        __classPrivateFieldSet(this, _javaClassCodeGenerator, javaClassCodeGenerator);
+        this._javaClassCodeGenerator = javaClassCodeGenerator;
     }
     generateSourceFiles(javaClassModel) {
         return javaClassModel.classes.map(javaClass => this.generateClassSourceFile(javaClass));
@@ -4956,7 +4825,7 @@ class JavaClassModelSourceFilesGenerator {
         return {
             folder: this.generateClassSourceFileFolder(javaClass),
             filename: this.generateClassSourceFileName(javaClass),
-            contents: __classPrivateFieldGet(this, _javaClassCodeGenerator).generateCode(javaClass)
+            contents: this._javaClassCodeGenerator.generateCode(javaClass)
         };
     }
     generateClassSourceFileFolder(javaClass) {
@@ -4967,7 +4836,6 @@ class JavaClassModelSourceFilesGenerator {
         return `${javaClass.name}.java`;
     }
 }
-_javaClassCodeGenerator = new WeakMap();
 
 
 /***/ }),
@@ -5160,20 +5028,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_class_JpaTransformerClassVisitor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/visitor/class/JpaTransformerClassVisitor */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/visitor/class/JpaTransformerClassVisitor.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_setup_JpaTransformerSetupDataGenerator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/setup/JpaTransformerSetupDataGenerator */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/setup/JpaTransformerSetupDataGenerator.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_JpaTransformerBuilder__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/JpaTransformerBuilder */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/JpaTransformerBuilder.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _setupDataGenerator, _fieldVisitor, _classVisitor;
 
 
 
@@ -5183,24 +5037,21 @@ var _setupDataGenerator, _fieldVisitor, _classVisitor;
 
 class JpaTransformer {
     constructor(databaseModelGenerator, config) {
-        _setupDataGenerator.set(this, void 0);
-        _fieldVisitor.set(this, void 0);
-        _classVisitor.set(this, void 0);
         const { tableNameCaseFormat, columnNameCaseFormat, annotateGetters } = _erdiagram_converter_oop_source_code_generator_java_jpa_config_JpaTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__.default.mergeWithDefaultConfig(config);
         const tableNameCaseConverter = new _erdiagram_converter_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_1__.default(_erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__.default.UPPER_CAMEL, tableNameCaseFormat);
         const columnNameCaseConverter = new _erdiagram_converter_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_1__.default(_erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__.default.UPPER_CAMEL, columnNameCaseFormat);
-        __classPrivateFieldSet(this, _setupDataGenerator, new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_setup_JpaTransformerSetupDataGenerator__WEBPACK_IMPORTED_MODULE_5__.default(databaseModelGenerator));
-        __classPrivateFieldSet(this, _fieldVisitor, new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_JpaTransformerFieldVisitor__WEBPACK_IMPORTED_MODULE_3__.default(tableNameCaseConverter, columnNameCaseConverter, annotateGetters));
-        __classPrivateFieldSet(this, _classVisitor, new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_class_JpaTransformerClassVisitor__WEBPACK_IMPORTED_MODULE_4__.default(tableNameCaseConverter));
+        this._setupDataGenerator = new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_setup_JpaTransformerSetupDataGenerator__WEBPACK_IMPORTED_MODULE_5__.default(databaseModelGenerator);
+        this._fieldVisitor = new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_JpaTransformerFieldVisitor__WEBPACK_IMPORTED_MODULE_3__.default(tableNameCaseConverter, columnNameCaseConverter, annotateGetters);
+        this._classVisitor = new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_class_JpaTransformerClassVisitor__WEBPACK_IMPORTED_MODULE_4__.default(tableNameCaseConverter);
     }
     setup(context) {
-        return __classPrivateFieldGet(this, _setupDataGenerator).setup(context);
+        return this._setupDataGenerator.setup(context);
     }
     visitField(javaField, context) {
-        __classPrivateFieldGet(this, _fieldVisitor).visitField(javaField, context);
+        this._fieldVisitor.visitField(javaField, context);
     }
     visitClass(javaClass, context) {
-        __classPrivateFieldGet(this, _classVisitor).visitClass(javaClass, context);
+        this._classVisitor.visitClass(javaClass, context);
     }
     visitModel(javaClassModel, context) {
         // Do nothing
@@ -5212,7 +5063,6 @@ class JpaTransformer {
         return new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_JpaTransformerBuilder__WEBPACK_IMPORTED_MODULE_6__.default();
     }
 }
-_setupDataGenerator = new WeakMap(), _fieldVisitor = new WeakMap(), _classVisitor = new WeakMap();
 
 
 /***/ }),
@@ -5230,40 +5080,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_database_model_DatabaseModelGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/database/model/DatabaseModelGenerator */ "./src/main/erdiagram/converter/database/model/DatabaseModelGenerator.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_JpaTransformer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/JpaTransformer */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/JpaTransformer.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _databaseModelGeneratorConfig, _config;
 
 
 class JpaTransformerBuilder {
     constructor() {
-        _databaseModelGeneratorConfig.set(this, {});
-        _config.set(this, {});
+        this._databaseModelGeneratorConfig = {};
+        this._config = {};
     }
     configureDatabaseModel(config) {
-        __classPrivateFieldSet(this, _databaseModelGeneratorConfig, config);
+        this._databaseModelGeneratorConfig = config;
         return this;
     }
     configureJpa(config) {
-        __classPrivateFieldSet(this, _config, config);
+        this._config = config;
         return this;
     }
     build() {
-        return new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_JpaTransformer__WEBPACK_IMPORTED_MODULE_1__.JpaTransformer(new _erdiagram_converter_database_model_DatabaseModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(__classPrivateFieldGet(this, _databaseModelGeneratorConfig)), __classPrivateFieldGet(this, _config));
+        return new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_JpaTransformer__WEBPACK_IMPORTED_MODULE_1__.JpaTransformer(new _erdiagram_converter_database_model_DatabaseModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(this._databaseModelGeneratorConfig), this._config);
     }
 }
-_databaseModelGeneratorConfig = new WeakMap(), _config = new WeakMap();
 
 
 /***/ }),
@@ -5385,32 +5220,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ JpaTransformerSetupDataGenerator)
 /* harmony export */ });
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _databaseModelGenerator;
 class JpaTransformerSetupDataGenerator {
     constructor(databaseModelGenerator) {
-        _databaseModelGenerator.set(this, void 0);
-        __classPrivateFieldSet(this, _databaseModelGenerator, databaseModelGenerator);
+        this._databaseModelGenerator = databaseModelGenerator;
     }
     setup(context) {
         return {
-            databaseModel: __classPrivateFieldGet(this, _databaseModelGenerator).generateDatabaseModel(context.entityRelationshipModel)
+            databaseModel: this._databaseModelGenerator.generateDatabaseModel(context.entityRelationshipModel)
         };
     }
 }
-_databaseModelGenerator = new WeakMap();
 
 
 /***/ }),
@@ -5429,27 +5248,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation */ "./src/main/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation.ts");
 /* harmony import */ var _erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata/source-metadata-utils */ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-utils.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/jpa-java-types */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/jpa-java-types.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _tableNameCaseConverter;
 
 
 
 class JpaTransformerClassVisitor {
     constructor(tableNameCaseConverter) {
-        _tableNameCaseConverter.set(this, void 0);
-        __classPrivateFieldSet(this, _tableNameCaseConverter, tableNameCaseConverter);
+        this._tableNameCaseConverter = tableNameCaseConverter;
     }
     visitClass(javaClass, context) {
         const table = this.findTableFromEntity(context.classDescriptor.sourceMetadata.entity, context.setupData.databaseModel);
@@ -5468,10 +5272,9 @@ class JpaTransformerClassVisitor {
         return (0,_erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__.isEntitySourceMetadata)(tableDescriptor.sourceMetadata) && tableDescriptor.sourceMetadata.entity === entity;
     }
     formatTableName(tableName) {
-        return __classPrivateFieldGet(this, _tableNameCaseConverter).convertCase(tableName);
+        return this._tableNameCaseConverter.convertCase(tableName);
     }
 }
-_tableNameCaseConverter = new WeakMap();
 
 
 /***/ }),
@@ -5490,29 +5293,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation */ "./src/main/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation.ts");
 /* harmony import */ var _erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata/source-metadata-utils */ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-utils.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/jpa-java-types */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/jpa-java-types.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _entityRelationshipModelSourceFinder, _columnNameCaseConverter;
 
 
 
 class ColumnFieldAnnotationsSupplier {
     constructor(entityRelationshipModelSourceFinder, columnNameCaseConverter) {
-        _entityRelationshipModelSourceFinder.set(this, void 0);
-        _columnNameCaseConverter.set(this, void 0);
-        __classPrivateFieldSet(this, _entityRelationshipModelSourceFinder, entityRelationshipModelSourceFinder);
-        __classPrivateFieldSet(this, _columnNameCaseConverter, columnNameCaseConverter);
+        this._entityRelationshipModelSourceFinder = entityRelationshipModelSourceFinder;
+        this._columnNameCaseConverter = columnNameCaseConverter;
     }
     getAnnotations(javaField, context) {
         const columnAnnotation = this.getColumnAnnotation(context.fieldDescriptor, context.setupData.databaseModel);
@@ -5532,20 +5319,19 @@ class ColumnFieldAnnotationsSupplier {
     getColumnName(fieldDescriptor, databaseModel) {
         const { sourceMetadata } = fieldDescriptor;
         if ((0,_erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__.isEntityIdentitySourceMetadata)(sourceMetadata)) {
-            const table = __classPrivateFieldGet(this, _entityRelationshipModelSourceFinder).findTableFromEntity(databaseModel, sourceMetadata.entity);
+            const table = this._entityRelationshipModelSourceFinder.findTableFromEntity(databaseModel, sourceMetadata.entity);
             return table.identityColumnName;
         }
         if ((0,_erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__.isEntityPropertySourceMetadata)(sourceMetadata)) {
-            const column = __classPrivateFieldGet(this, _entityRelationshipModelSourceFinder).findColumnFromProperty(databaseModel, sourceMetadata.property);
+            const column = this._entityRelationshipModelSourceFinder.findColumnFromProperty(databaseModel, sourceMetadata.property);
             return column.name;
         }
         return null;
     }
     formatColumnName(columnName) {
-        return __classPrivateFieldGet(this, _columnNameCaseConverter).convertCase(columnName);
+        return this._columnNameCaseConverter.convertCase(columnName);
     }
 }
-_entityRelationshipModelSourceFinder = new WeakMap(), _columnNameCaseConverter = new WeakMap();
 
 
 /***/ }),
@@ -5601,20 +5387,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_ColumnFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/visitor/field/ColumnFieldAnnotationsSupplier */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/visitor/field/ColumnFieldAnnotationsSupplier.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_relationship_RelationshipFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/visitor/field/relationship/RelationshipFieldAnnotationsSupplier */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/visitor/field/relationship/RelationshipFieldAnnotationsSupplier.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_finder_ClassModelSourceFinder__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/ClassModelSourceFinder */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/ClassModelSourceFinder.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _annotateGetters, _fieldAnnotationsSuppliers;
 
 
 
@@ -5622,16 +5394,14 @@ var _annotateGetters, _fieldAnnotationsSuppliers;
 
 class JpaTransformerFieldVisitor {
     constructor(tableNameCaseConverter, columnNameCaseConverter, annotateGetters) {
-        _annotateGetters.set(this, void 0);
-        _fieldAnnotationsSuppliers.set(this, void 0);
-        __classPrivateFieldSet(this, _annotateGetters, annotateGetters);
+        this._annotateGetters = annotateGetters;
         const entityRelationshipModelSourceFinder = new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_finder_EntityRelationshipModelSourceFinder__WEBPACK_IMPORTED_MODULE_0__.default();
         const classModelSourceFinder = new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_finder_ClassModelSourceFinder__WEBPACK_IMPORTED_MODULE_4__.default();
-        __classPrivateFieldSet(this, _fieldAnnotationsSuppliers, [
+        this._fieldAnnotationsSuppliers = [
             new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_IdentityFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_1__.default(),
             new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_ColumnFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_2__.default(entityRelationshipModelSourceFinder, columnNameCaseConverter),
             new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_relationship_RelationshipFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_3__.default(entityRelationshipModelSourceFinder, classModelSourceFinder, tableNameCaseConverter, columnNameCaseConverter)
-        ]);
+        ];
     }
     visitField(javaField, context) {
         const annotations = this.getFieldAnnotations(javaField, context);
@@ -5639,16 +5409,15 @@ class JpaTransformerFieldVisitor {
         elementToAnnotate.annotations.push(...annotations);
     }
     getFieldAnnotations(javaField, context) {
-        return __classPrivateFieldGet(this, _fieldAnnotationsSuppliers).flatMap(supplier => supplier.getAnnotations(javaField, context));
+        return this._fieldAnnotationsSuppliers.flatMap(supplier => supplier.getAnnotations(javaField, context));
     }
     getElementToAnnotate(javaField) {
-        if (__classPrivateFieldGet(this, _annotateGetters) && javaField.getter != null) {
+        if (this._annotateGetters && javaField.getter != null) {
             return javaField.getter;
         }
         return javaField;
     }
 }
-_annotateGetters = new WeakMap(), _fieldAnnotationsSuppliers = new WeakMap();
 
 
 /***/ }),
@@ -5668,20 +5437,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata/source-metadata-utils */ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-utils.ts");
 /* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/jpa-java-types */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/jpa-java-types.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _entityRelationshipModelSourceFinder, _classModelSourceFinder, _tableNameCaseConverter, _columnNameCaseConverter;
 
 
 
@@ -5696,14 +5451,10 @@ var RelationshipCardinality;
 // TODO split this class
 class RelationshipFieldAnnotationsSupplier {
     constructor(entityRelationshipModelSourceFinder, classModelSourceFinder, tableNameCaseConverter, columnNameCaseConverter) {
-        _entityRelationshipModelSourceFinder.set(this, void 0);
-        _classModelSourceFinder.set(this, void 0);
-        _tableNameCaseConverter.set(this, void 0);
-        _columnNameCaseConverter.set(this, void 0);
-        __classPrivateFieldSet(this, _entityRelationshipModelSourceFinder, entityRelationshipModelSourceFinder);
-        __classPrivateFieldSet(this, _classModelSourceFinder, classModelSourceFinder);
-        __classPrivateFieldSet(this, _tableNameCaseConverter, tableNameCaseConverter);
-        __classPrivateFieldSet(this, _columnNameCaseConverter, columnNameCaseConverter);
+        this._entityRelationshipModelSourceFinder = entityRelationshipModelSourceFinder;
+        this._classModelSourceFinder = classModelSourceFinder;
+        this._tableNameCaseConverter = tableNameCaseConverter;
+        this._columnNameCaseConverter = columnNameCaseConverter;
     }
     getAnnotations(javaField, context) {
         const { fieldDescriptor: { sourceMetadata }, classModel, setupData: { databaseModel } } = context;
@@ -5762,7 +5513,7 @@ class RelationshipFieldAnnotationsSupplier {
         }
     }
     getOneToOneRelationshipAnnotations(foreignMember, databaseModel) {
-        const { reference } = __classPrivateFieldGet(this, _entityRelationshipModelSourceFinder).findTableAndReferenceFromReferencedMember(databaseModel, foreignMember);
+        const { reference } = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, foreignMember);
         const optionalRelationship = foreignMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Cardinality.ZERO_OR_ONE;
         return [
             new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.OneToOne, {
@@ -5775,7 +5526,7 @@ class RelationshipFieldAnnotationsSupplier {
         ];
     }
     getMappedByOneToOneRelationshipAnnotations(ownMember, foreignMember, classModel) {
-        const { field } = __classPrivateFieldGet(this, _classModelSourceFinder).findClassAndFieldFromReferencedMember(classModel, ownMember);
+        const { field } = this._classModelSourceFinder.findClassAndFieldFromReferencedMember(classModel, ownMember);
         return [
             new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.OneToOne, {
                 mappedBy: field.name,
@@ -5784,7 +5535,7 @@ class RelationshipFieldAnnotationsSupplier {
         ];
     }
     getInverseOneToOneRelationshipAnnotations(ownMember, foreignMember, databaseModel) {
-        const { table, reference } = __classPrivateFieldGet(this, _entityRelationshipModelSourceFinder).findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
+        const { table, reference } = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
         return [
             new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.OneToOne, {
                 optional: foreignMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Cardinality.ZERO_OR_ONE ? undefined : false
@@ -5799,7 +5550,7 @@ class RelationshipFieldAnnotationsSupplier {
         ];
     }
     getManyToOneRelationshipAnnotations(foreignMember, databaseModel) {
-        const { reference } = __classPrivateFieldGet(this, _entityRelationshipModelSourceFinder).findTableAndReferenceFromReferencedMember(databaseModel, foreignMember);
+        const { reference } = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, foreignMember);
         const optionalRelationship = foreignMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Cardinality.ZERO_OR_ONE;
         return [
             new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.ManyToOne, {
@@ -5812,7 +5563,7 @@ class RelationshipFieldAnnotationsSupplier {
         ];
     }
     getMappedByOneToManyRelationshipAnnotations(ownMember, classModel) {
-        const { field } = __classPrivateFieldGet(this, _classModelSourceFinder).findClassAndFieldFromReferencedMember(classModel, ownMember);
+        const { field } = this._classModelSourceFinder.findClassAndFieldFromReferencedMember(classModel, ownMember);
         return [
             new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.OneToMany, {
                 mappedBy: field.name
@@ -5820,7 +5571,7 @@ class RelationshipFieldAnnotationsSupplier {
         ];
     }
     getInverseOneToManyRelationshipAnnotations(ownMember, databaseModel) {
-        const { table, reference } = __classPrivateFieldGet(this, _entityRelationshipModelSourceFinder).findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
+        const { table, reference } = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
         return [
             new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.OneToMany),
             new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.JoinTable, {
@@ -5833,7 +5584,7 @@ class RelationshipFieldAnnotationsSupplier {
         ];
     }
     getManyToManyRelationshipAnnotations(ownMember, databaseModel) {
-        const { table, reference: ownReference } = __classPrivateFieldGet(this, _entityRelationshipModelSourceFinder).findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
+        const { table, reference: ownReference } = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
         if (table.references.length !== 2) {
             throw new Error('Relationship table has more than 2 references');
         }
@@ -5854,7 +5605,7 @@ class RelationshipFieldAnnotationsSupplier {
         ];
     }
     getMappedByManyToManyRelationshipAnnotations(sourceMember, classModel) {
-        const { field: referencedField } = __classPrivateFieldGet(this, _classModelSourceFinder).findClassAndFieldFromReferencedMember(classModel, sourceMember);
+        const { field: referencedField } = this._classModelSourceFinder.findClassAndFieldFromReferencedMember(classModel, sourceMember);
         return [
             new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.ManyToMany, {
                 mappedBy: referencedField.name
@@ -5862,13 +5613,12 @@ class RelationshipFieldAnnotationsSupplier {
         ];
     }
     formatColumnName(columnName) {
-        return __classPrivateFieldGet(this, _columnNameCaseConverter).convertCase(columnName);
+        return this._columnNameCaseConverter.convertCase(columnName);
     }
     formatTableName(tableName) {
-        return __classPrivateFieldGet(this, _tableNameCaseConverter).convertCase(tableName);
+        return this._tableNameCaseConverter.convertCase(tableName);
     }
 }
-_entityRelationshipModelSourceFinder = new WeakMap(), _classModelSourceFinder = new WeakMap(), _tableNameCaseConverter = new WeakMap(), _columnNameCaseConverter = new WeakMap();
 
 
 /***/ }),
@@ -5908,44 +5658,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaFieldGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaFieldGenerator */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaFieldGenerator.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _generatedClassesPackage, _javaFieldGenerator;
 
 
 class JavaClassGenerator {
     constructor(generatedClassesPackage, typeResolver) {
-        _generatedClassesPackage.set(this, void 0);
-        _javaFieldGenerator.set(this, void 0);
-        __classPrivateFieldSet(this, _generatedClassesPackage, generatedClassesPackage);
-        __classPrivateFieldSet(this, _javaFieldGenerator, new _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaFieldGenerator__WEBPACK_IMPORTED_MODULE_1__.default(typeResolver));
+        this._generatedClassesPackage = generatedClassesPackage;
+        this._javaFieldGenerator = new _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaFieldGenerator__WEBPACK_IMPORTED_MODULE_1__.default(typeResolver);
     }
     generateJavaClass(classDescriptor, fieldGeneratedEventListener) {
         return {
-            packageName: __classPrivateFieldGet(this, _generatedClassesPackage),
+            packageName: this._generatedClassesPackage,
             visibility: _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__.JavaVisibility.PUBLIC,
             name: classDescriptor.name,
             annotations: [],
             fields: classDescriptor.fields.map(fieldDescriptor => {
-                const javaField = __classPrivateFieldGet(this, _javaFieldGenerator).generateJavaField(fieldDescriptor);
+                const javaField = this._javaFieldGenerator.generateJavaField(fieldDescriptor);
                 fieldGeneratedEventListener({ javaField, fieldDescriptor });
                 return javaField;
             })
         };
     }
 }
-_generatedClassesPackage = new WeakMap(), _javaFieldGenerator = new WeakMap();
 
 
 /***/ }),
@@ -5965,37 +5698,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_generator_config_JavaClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelGeneratorConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelGeneratorConfigManager.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_generator_source_JavaClassModelDescriptorsRepositoryBuilder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/generator/source/JavaClassModelDescriptorsRepositoryBuilder */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/source/JavaClassModelDescriptorsRepositoryBuilder.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaClassGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaClassGenerator */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaClassGenerator.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _javaClassGenerator;
 
 
 
 
 class JavaClassModelGenerator {
     constructor(config) {
-        _javaClassGenerator.set(this, void 0);
         const fullConfig = _erdiagram_converter_oop_source_code_generator_java_model_generator_config_JavaClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_1__.default.mergeWithDefaultConfig(config);
         const generatedClassesPackage = fullConfig.generatedClassesPackage;
         const typeResolver = new _erdiagram_converter_oop_source_code_generator_java_type_JavaFieldTypeResolver__WEBPACK_IMPORTED_MODULE_0__.default(fullConfig.typeBindings, generatedClassesPackage);
-        __classPrivateFieldSet(this, _javaClassGenerator, new _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaClassGenerator__WEBPACK_IMPORTED_MODULE_3__.default(generatedClassesPackage, typeResolver));
+        this._javaClassGenerator = new _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaClassGenerator__WEBPACK_IMPORTED_MODULE_3__.default(generatedClassesPackage, typeResolver);
     }
     generateJavaClassModel(classModel) {
         const descriptorsRepositoryBuilder = new _erdiagram_converter_oop_source_code_generator_java_model_generator_source_JavaClassModelDescriptorsRepositoryBuilder__WEBPACK_IMPORTED_MODULE_2__.default();
         const javaClasses = classModel.classes
             .map(classDescriptor => {
-            const javaClass = __classPrivateFieldGet(this, _javaClassGenerator).generateJavaClass(classDescriptor, event => {
+            const javaClass = this._javaClassGenerator.generateJavaClass(classDescriptor, event => {
                 descriptorsRepositoryBuilder.addField(event.javaField, event.fieldDescriptor);
             });
             descriptorsRepositoryBuilder.addClass(javaClass, classDescriptor);
@@ -6009,7 +5727,6 @@ class JavaClassModelGenerator {
         };
     }
 }
-_javaClassGenerator = new WeakMap();
 
 
 /***/ }),
@@ -6027,29 +5744,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types.ts");
 /* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _typeResolver;
 
 
 class JavaFieldGenerator {
     constructor(typeResolver) {
-        _typeResolver.set(this, void 0);
-        __classPrivateFieldSet(this, _typeResolver, typeResolver);
+        this._typeResolver = typeResolver;
     }
     generateJavaField(fieldDescriptor) {
-        const fieldType = __classPrivateFieldGet(this, _typeResolver).resolveFieldType(fieldDescriptor);
+        const fieldType = this._typeResolver.resolveFieldType(fieldDescriptor);
         return {
             visibility: _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__.JavaVisibility.PRIVATE,
             name: fieldDescriptor.name,
@@ -6079,7 +5781,6 @@ class JavaFieldGenerator {
         return `set${capitalizedFieldName}`;
     }
 }
-_typeResolver = new WeakMap();
 
 
 /***/ }),
@@ -6198,37 +5899,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ JavaClassModelDescriptorsRepository)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_generator_source_JavaClassModelDescriptorsRepositoryBuilder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/generator/source/JavaClassModelDescriptorsRepositoryBuilder */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/source/JavaClassModelDescriptorsRepositoryBuilder.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _classDescriptorsMap, _fieldDescriptorsMap;
 
 class JavaClassModelDescriptorsRepository {
     constructor(classDescriptorsMap, fieldDescriptorsMap) {
-        _classDescriptorsMap.set(this, void 0);
-        _fieldDescriptorsMap.set(this, void 0);
-        __classPrivateFieldSet(this, _classDescriptorsMap, classDescriptorsMap);
-        __classPrivateFieldSet(this, _fieldDescriptorsMap, fieldDescriptorsMap);
+        this._classDescriptorsMap = classDescriptorsMap;
+        this._fieldDescriptorsMap = fieldDescriptorsMap;
     }
     getClassDescriptor(javaClass) {
-        const classDescriptor = __classPrivateFieldGet(this, _classDescriptorsMap).get(javaClass);
+        const classDescriptor = this._classDescriptorsMap.get(javaClass);
         if (classDescriptor == null) {
             throw new Error(`Cannot find descriptor for Java class "${javaClass.name}"`);
         }
         return classDescriptor;
     }
     getFieldDescriptor(javaField) {
-        const fieldDescriptor = __classPrivateFieldGet(this, _fieldDescriptorsMap).get(javaField);
+        const fieldDescriptor = this._fieldDescriptorsMap.get(javaField);
         if (fieldDescriptor == null) {
             throw new Error(`Cannot find descriptor for Java field "${javaField.name}"`);
         }
@@ -6238,7 +5923,6 @@ class JavaClassModelDescriptorsRepository {
         return new _erdiagram_converter_oop_source_code_generator_java_model_generator_source_JavaClassModelDescriptorsRepositoryBuilder__WEBPACK_IMPORTED_MODULE_0__.default();
     }
 }
-_classDescriptorsMap = new WeakMap(), _fieldDescriptorsMap = new WeakMap();
 
 
 /***/ }),
@@ -6255,32 +5939,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ JavaClassModelDescriptorsRepositoryBuilder)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_generator_source_JavaClassModelDescriptorsRepository__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/generator/source/JavaClassModelDescriptorsRepository */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/source/JavaClassModelDescriptorsRepository.ts");
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _classDescriptorsMap, _fieldDescriptorsMap;
 
 class JavaClassModelDescriptorsRepositoryBuilder {
     constructor() {
-        _classDescriptorsMap.set(this, new Map());
-        _fieldDescriptorsMap.set(this, new Map());
+        this._classDescriptorsMap = new Map();
+        this._fieldDescriptorsMap = new Map();
     }
     addClass(javaClass, classDescriptor) {
-        __classPrivateFieldGet(this, _classDescriptorsMap).set(javaClass, classDescriptor);
+        this._classDescriptorsMap.set(javaClass, classDescriptor);
         return this;
     }
     addField(javaField, fieldDescriptor) {
-        __classPrivateFieldGet(this, _fieldDescriptorsMap).set(javaField, fieldDescriptor);
+        this._fieldDescriptorsMap.set(javaField, fieldDescriptor);
         return this;
     }
     build() {
-        return new _erdiagram_converter_oop_source_code_generator_java_model_generator_source_JavaClassModelDescriptorsRepository__WEBPACK_IMPORTED_MODULE_0__.default(new Map(__classPrivateFieldGet(this, _classDescriptorsMap).entries()), new Map(__classPrivateFieldGet(this, _fieldDescriptorsMap).entries()));
+        return new _erdiagram_converter_oop_source_code_generator_java_model_generator_source_JavaClassModelDescriptorsRepository__WEBPACK_IMPORTED_MODULE_0__.default(new Map(this._classDescriptorsMap.entries()), new Map(this._fieldDescriptorsMap.entries()));
     }
 }
-_classDescriptorsMap = new WeakMap(), _fieldDescriptorsMap = new WeakMap();
 
 
 /***/ }),
@@ -6318,49 +5994,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ApplyTransformersCommand)
 /* harmony export */ });
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _setupContext, _javaClassModelDescriptorsRepository, _transformers;
 class ApplyTransformersCommand {
     constructor(setupContext, javaClassModelDescriptorsRepository, transformers) {
-        _setupContext.set(this, void 0);
-        _javaClassModelDescriptorsRepository.set(this, void 0);
-        _transformers.set(this, void 0);
-        __classPrivateFieldSet(this, _setupContext, setupContext);
-        __classPrivateFieldSet(this, _javaClassModelDescriptorsRepository, javaClassModelDescriptorsRepository);
-        __classPrivateFieldSet(this, _transformers, transformers);
+        this._setupContext = setupContext;
+        this._javaClassModelDescriptorsRepository = javaClassModelDescriptorsRepository;
+        this._transformers = transformers;
     }
     execute() {
-        __classPrivateFieldGet(this, _transformers).forEach(transformer => this.applyTransformer(transformer));
+        this._transformers.forEach(transformer => this.applyTransformer(transformer));
     }
     applyTransformer(transformer) {
-        const { javaClassModel } = __classPrivateFieldGet(this, _setupContext);
-        const setupData = transformer.setup(__classPrivateFieldGet(this, _setupContext));
+        const { javaClassModel } = this._setupContext;
+        const setupData = transformer.setup(this._setupContext);
         javaClassModel.classes.forEach(javaClass => {
-            const classDescriptor = __classPrivateFieldGet(this, _javaClassModelDescriptorsRepository).getClassDescriptor(javaClass);
+            const classDescriptor = this._javaClassModelDescriptorsRepository.getClassDescriptor(javaClass);
             javaClass.fields.forEach(javaField => {
-                const fieldDescriptor = __classPrivateFieldGet(this, _javaClassModelDescriptorsRepository).getFieldDescriptor(javaField);
-                return transformer.visitField(javaField, Object.assign(Object.assign({}, __classPrivateFieldGet(this, _setupContext)), { setupData, javaClass: javaClass, classDescriptor,
+                const fieldDescriptor = this._javaClassModelDescriptorsRepository.getFieldDescriptor(javaField);
+                return transformer.visitField(javaField, Object.assign(Object.assign({}, this._setupContext), { setupData, javaClass: javaClass, classDescriptor,
                     fieldDescriptor }));
             });
-            transformer.visitClass(javaClass, Object.assign(Object.assign({}, __classPrivateFieldGet(this, _setupContext)), { setupData,
+            transformer.visitClass(javaClass, Object.assign(Object.assign({}, this._setupContext), { setupData,
                 classDescriptor }));
         });
-        transformer.visitModel(javaClassModel, Object.assign(Object.assign({}, __classPrivateFieldGet(this, _setupContext)), { setupData }));
+        transformer.visitModel(javaClassModel, Object.assign(Object.assign({}, this._setupContext), { setupData }));
     }
 }
-_setupContext = new WeakMap(), _javaClassModelDescriptorsRepository = new WeakMap(), _transformers = new WeakMap();
 
 
 /***/ }),
@@ -6504,18 +6162,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ JavaClassUsedTypesCompiler)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_type_import_JavaAnnotationUsedTypesCompiler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/type/import/JavaAnnotationUsedTypesCompiler */ "./src/main/erdiagram/converter/oop/source-code-generator/java/type/import/JavaAnnotationUsedTypesCompiler.ts");
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _javaAnnotationUsedTypesCompiler;
 
 // TODO add unit tests
 class JavaClassUsedTypesCompiler {
     constructor() {
-        _javaAnnotationUsedTypesCompiler.set(this, new _erdiagram_converter_oop_source_code_generator_java_type_import_JavaAnnotationUsedTypesCompiler__WEBPACK_IMPORTED_MODULE_0__.default());
+        this._javaAnnotationUsedTypesCompiler = new _erdiagram_converter_oop_source_code_generator_java_type_import_JavaAnnotationUsedTypesCompiler__WEBPACK_IMPORTED_MODULE_0__.default();
     }
     getUsedTypes(javaClass) {
         const usedTypes = [];
@@ -6530,10 +6181,9 @@ class JavaClassUsedTypesCompiler {
         return usedTypes;
     }
     getAnnotationsUsedTypes(annotations) {
-        return annotations.flatMap(annotation => __classPrivateFieldGet(this, _javaAnnotationUsedTypesCompiler).getUsedTypes(annotation));
+        return annotations.flatMap(annotation => this._javaAnnotationUsedTypesCompiler.getUsedTypes(annotation));
     }
 }
-_javaAnnotationUsedTypesCompiler = new WeakMap();
 
 
 /***/ }),
@@ -6551,28 +6201,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _erdiagram_util_array_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/array-utils */ "./src/main/erdiagram/util/array-utils.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_type_parameterized_isJavaParameterizedType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/type/parameterized/isJavaParameterizedType */ "./src/main/erdiagram/converter/oop/source-code-generator/java/type/parameterized/isJavaParameterizedType.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _currentPackage;
 
 
 const JAVA_LANG_PACKAGE = 'java.lang';
 // TODO add unit tests
 class JavaImportStatementsGenerator {
     constructor(currentPackage) {
-        _currentPackage.set(this, void 0);
-        __classPrivateFieldSet(this, _currentPackage, currentPackage);
+        this._currentPackage = currentPackage;
     }
     generateImportStatements(javaTypes) {
         const importStatements = this.unrollTypesRecursively(javaTypes)
@@ -6592,10 +6227,9 @@ class JavaImportStatementsGenerator {
     isImportRequired(javaType) {
         return !!javaType.packageName
             && javaType.packageName !== JAVA_LANG_PACKAGE
-            && javaType.packageName !== __classPrivateFieldGet(this, _currentPackage);
+            && javaType.packageName !== this._currentPackage;
     }
 }
-_currentPackage = new WeakMap();
 
 
 /***/ }),
@@ -6611,54 +6245,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ createJavaArrayType)
 /* harmony export */ });
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _name, _canonicalName, _parameterType;
 function createJavaArrayType(parameterType) {
     return new JavaArrayTypeImpl(parameterType);
 }
 class JavaArrayTypeImpl {
     constructor(parameterType) {
-        _name.set(this, void 0);
-        _canonicalName.set(this, void 0);
-        _parameterType.set(this, void 0);
-        __classPrivateFieldSet(this, _name, `${parameterType.name}[]`);
-        __classPrivateFieldSet(this, _canonicalName, `${parameterType.canonicalName}[]`);
-        __classPrivateFieldSet(this, _parameterType, parameterType);
+        this._name = `${parameterType.name}[]`;
+        this._canonicalName = `${parameterType.canonicalName}[]`;
+        this._parameterType = parameterType;
     }
     get canonicalName() {
-        return __classPrivateFieldGet(this, _canonicalName);
+        return this._canonicalName;
     }
     get name() {
-        return __classPrivateFieldGet(this, _name);
+        return this._name;
     }
     get packageName() {
         return undefined;
     }
     get parameterTypes() {
-        return [__classPrivateFieldGet(this, _parameterType)];
+        return [this._parameterType];
     }
     formatSimple() {
-        const formattedParameterType = __classPrivateFieldGet(this, _parameterType).formatSimple();
+        const formattedParameterType = this._parameterType.formatSimple();
         return `${formattedParameterType}[]`;
     }
     formatCanonical() {
-        const formattedParameterType = __classPrivateFieldGet(this, _parameterType).formatCanonical();
+        const formattedParameterType = this._parameterType.formatCanonical();
         return `${formattedParameterType}[]`;
     }
 }
-_name = new WeakMap(), _canonicalName = new WeakMap(), _parameterType = new WeakMap();
 
 
 /***/ }),
@@ -6674,56 +6290,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ createJavaParameterizedType)
 /* harmony export */ });
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _name, _packageName, _canonicalName, _parameterTypes;
 function createJavaParameterizedType(name, packageName, parameterTypes) {
     return new JavaParameterizedTypeImpl(name, packageName, parameterTypes);
 }
 class JavaParameterizedTypeImpl {
     constructor(name, packageName, parameterTypes) {
-        _name.set(this, void 0);
-        _packageName.set(this, void 0);
-        _canonicalName.set(this, void 0);
-        _parameterTypes.set(this, void 0);
-        __classPrivateFieldSet(this, _name, name);
-        __classPrivateFieldSet(this, _packageName, packageName);
-        __classPrivateFieldSet(this, _canonicalName, packageName ? `${packageName}.${name}` : name);
-        __classPrivateFieldSet(this, _parameterTypes, parameterTypes);
+        this._name = name;
+        this._packageName = packageName;
+        this._canonicalName = packageName ? `${packageName}.${name}` : name;
+        this._parameterTypes = parameterTypes;
     }
     get canonicalName() {
-        return __classPrivateFieldGet(this, _canonicalName);
+        return this._canonicalName;
     }
     get name() {
-        return __classPrivateFieldGet(this, _name);
+        return this._name;
     }
     get packageName() {
-        return __classPrivateFieldGet(this, _packageName);
+        return this._packageName;
     }
     get parameterTypes() {
-        return __classPrivateFieldGet(this, _parameterTypes);
+        return this._parameterTypes;
     }
     formatSimple() {
-        const formattedParameterTypes = __classPrivateFieldGet(this, _parameterTypes).map(parameterType => parameterType.formatSimple()).join(', ');
-        return `${__classPrivateFieldGet(this, _name)}<${formattedParameterTypes}>`;
+        const formattedParameterTypes = this._parameterTypes.map(parameterType => parameterType.formatSimple()).join(', ');
+        return `${this._name}<${formattedParameterTypes}>`;
     }
     formatCanonical() {
-        const formattedParameterTypes = __classPrivateFieldGet(this, _parameterTypes).map(parameterType => parameterType.formatCanonical()).join(', ');
-        return `${__classPrivateFieldGet(this, _canonicalName)}<${formattedParameterTypes}>`;
+        const formattedParameterTypes = this._parameterTypes.map(parameterType => parameterType.formatCanonical()).join(', ');
+        return `${this._canonicalName}<${formattedParameterTypes}>`;
     }
 }
-_name = new WeakMap(), _packageName = new WeakMap(), _canonicalName = new WeakMap(), _parameterTypes = new WeakMap();
 
 
 /***/ }),
@@ -6862,49 +6459,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ createJavaSimpleType)
 /* harmony export */ });
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _name, _packageName, _canonicalName;
 function createJavaSimpleType(name, packageName) {
     return new JavaSimpleTypeImpl(name, packageName);
 }
 class JavaSimpleTypeImpl {
     constructor(name, packageName) {
-        _name.set(this, void 0);
-        _packageName.set(this, void 0);
-        _canonicalName.set(this, void 0);
-        __classPrivateFieldSet(this, _name, name);
-        __classPrivateFieldSet(this, _packageName, packageName);
-        __classPrivateFieldSet(this, _canonicalName, packageName ? `${packageName}.${name}` : name);
+        this._name = name;
+        this._packageName = packageName;
+        this._canonicalName = packageName ? `${packageName}.${name}` : name;
     }
     get canonicalName() {
-        return __classPrivateFieldGet(this, _canonicalName);
+        return this._canonicalName;
     }
     get name() {
-        return __classPrivateFieldGet(this, _name);
+        return this._name;
     }
     get packageName() {
-        return __classPrivateFieldGet(this, _packageName);
+        return this._packageName;
     }
     formatSimple() {
-        return __classPrivateFieldGet(this, _name);
+        return this._name;
     }
     formatCanonical() {
-        return __classPrivateFieldGet(this, _canonicalName);
+        return this._canonicalName;
     }
 }
-_name = new WeakMap(), _packageName = new WeakMap(), _canonicalName = new WeakMap();
 
 
 /***/ }),
@@ -6948,35 +6527,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_validation_visitor_JavaxValidationAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/validation/visitor/JavaxValidationAnnotationsSupplier */ "./src/main/erdiagram/converter/oop/source-code-generator/java/validation/visitor/JavaxValidationAnnotationsSupplier.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_validation_config_JavaxValidationTransformerConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/validation/config/JavaxValidationTransformerConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/java/validation/config/JavaxValidationTransformerConfigManager.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_validation_visitor_JavaxValidationFieldVisitor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/validation/visitor/JavaxValidationFieldVisitor */ "./src/main/erdiagram/converter/oop/source-code-generator/java/validation/visitor/JavaxValidationFieldVisitor.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _javaxValidationFieldVisitor;
 
 
 
 class JavaxValidationTransformer {
     constructor(config) {
-        _javaxValidationFieldVisitor.set(this, void 0);
         const { notNullTextValidationStrategy, notNullBlobValidationStrategy, annotateGetters } = _erdiagram_converter_oop_source_code_generator_java_validation_config_JavaxValidationTransformerConfigManager__WEBPACK_IMPORTED_MODULE_1__.default.mergeWithDefaultConfig(config);
         const javaxValidationAnnotationsSupplier = new _erdiagram_converter_oop_source_code_generator_java_validation_visitor_JavaxValidationAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_0__.default(notNullTextValidationStrategy, notNullBlobValidationStrategy);
-        __classPrivateFieldSet(this, _javaxValidationFieldVisitor, new _erdiagram_converter_oop_source_code_generator_java_validation_visitor_JavaxValidationFieldVisitor__WEBPACK_IMPORTED_MODULE_2__.default(javaxValidationAnnotationsSupplier, annotateGetters));
+        this._javaxValidationFieldVisitor = new _erdiagram_converter_oop_source_code_generator_java_validation_visitor_JavaxValidationFieldVisitor__WEBPACK_IMPORTED_MODULE_2__.default(javaxValidationAnnotationsSupplier, annotateGetters);
     }
     setup(context) {
         return undefined;
     }
     visitField(javaField, context) {
-        __classPrivateFieldGet(this, _javaxValidationFieldVisitor).visitField(javaField, context);
+        this._javaxValidationFieldVisitor.visitField(javaField, context);
     }
     visitClass(javaClass, context) {
         // Do nothing
@@ -6985,7 +6549,6 @@ class JavaxValidationTransformer {
         // Do nothing
     }
 }
-_javaxValidationFieldVisitor = new WeakMap();
 
 
 /***/ }),
@@ -7218,40 +6781,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ JavaxValidationFieldVisitor)
 /* harmony export */ });
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _javaValidationAnnotationsGenerator, _annotateGetters;
 class JavaxValidationFieldVisitor {
     constructor(javaValidationAnnotationsGenerator, annotateGetters) {
-        _javaValidationAnnotationsGenerator.set(this, void 0);
-        _annotateGetters.set(this, void 0);
-        __classPrivateFieldSet(this, _javaValidationAnnotationsGenerator, javaValidationAnnotationsGenerator);
-        __classPrivateFieldSet(this, _annotateGetters, annotateGetters);
+        this._javaValidationAnnotationsGenerator = javaValidationAnnotationsGenerator;
+        this._annotateGetters = annotateGetters;
     }
     visitField(javaField, context) {
-        const annotations = __classPrivateFieldGet(this, _javaValidationAnnotationsGenerator).getAnnotations(context.fieldDescriptor);
+        const annotations = this._javaValidationAnnotationsGenerator.getAnnotations(context.fieldDescriptor);
         const elementToAnnotate = this.getElementToAnnotate(javaField);
         elementToAnnotate.annotations.push(...annotations);
     }
     getElementToAnnotate(javaField) {
-        if (__classPrivateFieldGet(this, _annotateGetters) && javaField.getter != null) {
+        if (this._annotateGetters && javaField.getter != null) {
             return javaField.getter;
         }
         return javaField;
     }
 }
-_javaValidationAnnotationsGenerator = new WeakMap(), _annotateGetters = new WeakMap();
 
 
 /***/ }),
@@ -7320,31 +6866,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ TypeScriptEntityRelationshipModelSourceCodeGenerator)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_typescript_TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/typescript/TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder */ "./src/main/erdiagram/converter/oop/source-code-generator/typescript/TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _classModelGenerator, _typeScriptClassModelToCodeConverter;
 
 class TypeScriptEntityRelationshipModelSourceCodeGenerator {
     constructor(classModelGenerator, typeScriptClassModelToCodeConverter) {
-        _classModelGenerator.set(this, void 0);
-        _typeScriptClassModelToCodeConverter.set(this, void 0);
-        __classPrivateFieldSet(this, _classModelGenerator, classModelGenerator);
-        __classPrivateFieldSet(this, _typeScriptClassModelToCodeConverter, typeScriptClassModelToCodeConverter);
+        this._classModelGenerator = classModelGenerator;
+        this._typeScriptClassModelToCodeConverter = typeScriptClassModelToCodeConverter;
     }
     generateSourceCode(entityRelationshipModel) {
-        const classModel = __classPrivateFieldGet(this, _classModelGenerator).generateClassModel(entityRelationshipModel);
-        return __classPrivateFieldGet(this, _typeScriptClassModelToCodeConverter).convertToCode(classModel);
+        const classModel = this._classModelGenerator.generateClassModel(entityRelationshipModel);
+        return this._typeScriptClassModelToCodeConverter.convertToCode(classModel);
     }
     static withDefaultConfig() {
         return this.builder().build();
@@ -7353,7 +6883,6 @@ class TypeScriptEntityRelationshipModelSourceCodeGenerator {
         return new _erdiagram_converter_oop_source_code_generator_typescript_TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder__WEBPACK_IMPORTED_MODULE_0__.default();
     }
 }
-_classModelGenerator = new WeakMap(), _typeScriptClassModelToCodeConverter = new WeakMap();
 
 
 /***/ }),
@@ -7372,41 +6901,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_oop_model_ClassModelGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/ClassModelGenerator */ "./src/main/erdiagram/converter/oop/model/ClassModelGenerator.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_typescript_TypeScriptClassModelToCodeConverter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/typescript/TypeScriptClassModelToCodeConverter */ "./src/main/erdiagram/converter/oop/source-code-generator/typescript/TypeScriptClassModelToCodeConverter.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_typescript_TypeScriptEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/typescript/TypeScriptEntityRelationshipModelSourceCodeGenerator */ "./src/main/erdiagram/converter/oop/source-code-generator/typescript/TypeScriptEntityRelationshipModelSourceCodeGenerator.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _classModelGeneratorConfig, _typeScriptClassModelToCodeConverterConfig;
 
 
 
 class TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder {
     constructor() {
-        _classModelGeneratorConfig.set(this, {});
-        _typeScriptClassModelToCodeConverterConfig.set(this, {});
+        this._classModelGeneratorConfig = {};
+        this._typeScriptClassModelToCodeConverterConfig = {};
     }
     configureClassModel(config) {
-        __classPrivateFieldSet(this, _classModelGeneratorConfig, config);
+        this._classModelGeneratorConfig = config;
         return this;
     }
     configureTypeScriptCode(config) {
-        __classPrivateFieldSet(this, _typeScriptClassModelToCodeConverterConfig, config);
+        this._typeScriptClassModelToCodeConverterConfig = config;
         return this;
     }
     build() {
-        return new _erdiagram_converter_oop_source_code_generator_typescript_TypeScriptEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_2__.default(new _erdiagram_converter_oop_model_ClassModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(__classPrivateFieldGet(this, _classModelGeneratorConfig)), new _erdiagram_converter_oop_source_code_generator_typescript_TypeScriptClassModelToCodeConverter__WEBPACK_IMPORTED_MODULE_1__.default(__classPrivateFieldGet(this, _typeScriptClassModelToCodeConverterConfig)));
+        return new _erdiagram_converter_oop_source_code_generator_typescript_TypeScriptEntityRelationshipModelSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_2__.default(new _erdiagram_converter_oop_model_ClassModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(this._classModelGeneratorConfig), new _erdiagram_converter_oop_source_code_generator_typescript_TypeScriptClassModelToCodeConverter__WEBPACK_IMPORTED_MODULE_1__.default(this._typeScriptClassModelToCodeConverterConfig));
     }
 }
-_classModelGeneratorConfig = new WeakMap(), _typeScriptClassModelToCodeConverterConfig = new WeakMap();
 
 
 /***/ }),
@@ -7619,40 +7133,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ createTypeScriptArrayType)
 /* harmony export */ });
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _parameterType;
 function createTypeScriptArrayType(parameterType) {
     return new TypeScriptArrayTypeImpl(parameterType);
 }
 class TypeScriptArrayTypeImpl {
     constructor(parameterType) {
-        _parameterType.set(this, void 0);
-        __classPrivateFieldSet(this, _parameterType, parameterType);
+        this._parameterType = parameterType;
     }
     get name() {
         return 'Array';
     }
     get parameterTypes() {
-        return [__classPrivateFieldGet(this, _parameterType)];
+        return [this._parameterType];
     }
     format() {
-        const formattedParameterType = __classPrivateFieldGet(this, _parameterType).format();
+        const formattedParameterType = this._parameterType.format();
         return `${formattedParameterType}[]`;
     }
 }
-_parameterType = new WeakMap();
 
 
 /***/ }),
@@ -7668,42 +7166,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ createTypeScriptParameterizedType)
 /* harmony export */ });
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _name, _parameterTypes;
 function createTypeScriptParameterizedType(name, parameterTypes) {
     return new TypeScriptParameterizedTypeImpl(name, parameterTypes);
 }
 class TypeScriptParameterizedTypeImpl {
     constructor(name, parameterTypes) {
-        _name.set(this, void 0);
-        _parameterTypes.set(this, void 0);
-        __classPrivateFieldSet(this, _name, name);
-        __classPrivateFieldSet(this, _parameterTypes, parameterTypes);
+        this._name = name;
+        this._parameterTypes = parameterTypes;
     }
     get name() {
-        return __classPrivateFieldGet(this, _name);
+        return this._name;
     }
     get parameterTypes() {
-        return __classPrivateFieldGet(this, _parameterTypes);
+        return this._parameterTypes;
     }
     format() {
-        const formattedParameterTypes = __classPrivateFieldGet(this, _parameterTypes).map(parameterType => parameterType.format()).join(', ');
-        return `${__classPrivateFieldGet(this, _name)}<${formattedParameterTypes}>`;
+        const formattedParameterTypes = this._parameterTypes.map(parameterType => parameterType.format()).join(', ');
+        return `${this._name}<${formattedParameterTypes}>`;
     }
 }
-_name = new WeakMap(), _parameterTypes = new WeakMap();
 
 
 /***/ }),
@@ -7832,36 +7313,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ createTypeScriptSimpleType)
 /* harmony export */ });
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, privateMap, value) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to set private field on non-instance");
-    }
-    privateMap.set(receiver, value);
-    return value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, privateMap) {
-    if (!privateMap.has(receiver)) {
-        throw new TypeError("attempted to get private field on non-instance");
-    }
-    return privateMap.get(receiver);
-};
-var _name;
 function createTypeScriptSimpleType(name) {
     return new TypeScriptSimpleTypeImpl(name);
 }
 class TypeScriptSimpleTypeImpl {
     constructor(name) {
-        _name.set(this, void 0);
-        __classPrivateFieldSet(this, _name, name);
+        this._name = name;
     }
     get name() {
-        return __classPrivateFieldGet(this, _name);
+        return this._name;
     }
     format() {
-        return __classPrivateFieldGet(this, _name);
+        return this._name;
     }
 }
-_name = new WeakMap();
 
 
 /***/ }),

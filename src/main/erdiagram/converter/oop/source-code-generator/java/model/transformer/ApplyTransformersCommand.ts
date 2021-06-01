@@ -6,40 +6,40 @@ import JavaClassModelDescriptorsRepository
 
 export default class ApplyTransformersCommand {
 
-	readonly #setupContext: SetupContext;
-	readonly #javaClassModelDescriptorsRepository: JavaClassModelDescriptorsRepository;
-	readonly #transformers: JavaClassModelTransformer[];
+	private readonly _setupContext: SetupContext;
+	private readonly _javaClassModelDescriptorsRepository: JavaClassModelDescriptorsRepository;
+	private readonly _transformers: JavaClassModelTransformer[];
 
 	constructor(
 			setupContext: SetupContext,
 			javaClassModelDescriptorsRepository: JavaClassModelDescriptorsRepository,
 			transformers: JavaClassModelTransformer[]
 	) {
-		this.#setupContext = setupContext;
-		this.#javaClassModelDescriptorsRepository = javaClassModelDescriptorsRepository;
-		this.#transformers = transformers;
+		this._setupContext = setupContext;
+		this._javaClassModelDescriptorsRepository = javaClassModelDescriptorsRepository;
+		this._transformers = transformers;
 	}
 
 	public execute() {
-		this.#transformers.forEach(transformer => this.applyTransformer(transformer));
+		this._transformers.forEach(transformer => this.applyTransformer(transformer));
 	}
 
 	private applyTransformer<T>(transformer: JavaClassModelTransformer<T>) {
 
-		const {javaClassModel} = this.#setupContext;
+		const {javaClassModel} = this._setupContext;
 
-		const setupData = transformer.setup(this.#setupContext);
+		const setupData = transformer.setup(this._setupContext);
 
 		javaClassModel.classes.forEach(javaClass => {
 
-			const classDescriptor = this.#javaClassModelDescriptorsRepository.getClassDescriptor(javaClass)!;
+			const classDescriptor = this._javaClassModelDescriptorsRepository.getClassDescriptor(javaClass)!;
 
 			javaClass.fields.forEach(javaField => {
 
-				const fieldDescriptor = this.#javaClassModelDescriptorsRepository.getFieldDescriptor(javaField)!;
+				const fieldDescriptor = this._javaClassModelDescriptorsRepository.getFieldDescriptor(javaField)!;
 
 				return transformer.visitField(javaField, {
-					...this.#setupContext,
+					...this._setupContext,
 					setupData,
 					javaClass: javaClass,
 					classDescriptor,
@@ -49,7 +49,7 @@ export default class ApplyTransformersCommand {
 			});
 
 			transformer.visitClass(javaClass, {
-				...this.#setupContext,
+				...this._setupContext,
 				setupData,
 				classDescriptor
 			});
@@ -57,7 +57,7 @@ export default class ApplyTransformersCommand {
 		});
 
 		transformer.visitModel(javaClassModel, {
-			...this.#setupContext,
+			...this._setupContext,
 			setupData
 		});
 

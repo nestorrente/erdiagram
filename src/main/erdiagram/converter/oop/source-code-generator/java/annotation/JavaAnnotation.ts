@@ -1,5 +1,6 @@
 import JavaType from '@/erdiagram/converter/oop/source-code-generator/java/type/JavaType';
-import formatJavaAnnotation from '@/erdiagram/converter/oop/source-code-generator/java/annotation/utils/formatJavaAnnotation';
+import formatJavaAnnotation
+	from '@/erdiagram/converter/oop/source-code-generator/java/annotation/utils/formatJavaAnnotation';
 import {
 	createRawParameterValue,
 	isRawParameterValue
@@ -10,23 +11,23 @@ export type JavaAnnotationParametersRecord = Record<string, JavaAnnotationParame
 
 export default class JavaAnnotation {
 
-	readonly #type: JavaType;
-	readonly #parameters: JavaAnnotationParametersRecord;
+	private readonly _type: JavaType;
+	private readonly _parameters: JavaAnnotationParametersRecord;
 
 	constructor(
 			annotationType: JavaType,
 			parameters: JavaAnnotationParametersRecord = {}
 	) {
-		this.#type = annotationType;
-		this.#parameters = parameters;
+		this._type = annotationType;
+		this._parameters = parameters;
 	}
 
 	get type() {
-		return this.#type;
+		return this._type;
 	}
 
 	get parameters() {
-		return this.#parameters;
+		return this._parameters;
 	}
 
 	public format(): string {

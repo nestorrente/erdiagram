@@ -6,18 +6,18 @@ export default function createTypeScriptSimpleType(name: string): TypeScriptType
 
 class TypeScriptSimpleTypeImpl implements TypeScriptType {
 
-	readonly #name: string;
+	private readonly _name: string;
 
 	constructor(name: string) {
-		this.#name = name;
+		this._name = name;
 	}
 
 	get name() {
-		return this.#name;
+		return this._name;
 	}
 
 	format(): string {
-		return this.#name;
+		return this._name;
 	}
 
 }

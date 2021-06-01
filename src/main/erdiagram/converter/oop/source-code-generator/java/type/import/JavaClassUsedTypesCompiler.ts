@@ -7,7 +7,7 @@ import JavaAnnotationUsedTypesCompiler
 // TODO add unit tests
 export default class JavaClassUsedTypesCompiler {
 
-	readonly #javaAnnotationUsedTypesCompiler = new JavaAnnotationUsedTypesCompiler();
+	private readonly _javaAnnotationUsedTypesCompiler = new JavaAnnotationUsedTypesCompiler();
 
 	public getUsedTypes(javaClass: JavaClass): JavaType[] {
 
@@ -30,7 +30,7 @@ export default class JavaClassUsedTypesCompiler {
 	}
 
 	private getAnnotationsUsedTypes(annotations: JavaAnnotation[]): JavaType[] {
-		return annotations.flatMap(annotation => this.#javaAnnotationUsedTypesCompiler.getUsedTypes(annotation));
+		return annotations.flatMap(annotation => this._javaAnnotationUsedTypesCompiler.getUsedTypes(annotation));
 	}
 
 }

@@ -15,29 +15,29 @@ import JavaClassModelSourceFilesGenerator
 
 export default class JavaEntityRelationshipModelSourceCodeGeneratorBuilder {
 
-	#classModelGeneratorConfig: PartialClassModelGeneratorConfig = {};
-	#javaClassModelGeneratorConfig: PartialJavaClassModelGeneratorConfig = {};
-	#javaClassModelTransformers: JavaClassModelTransformer[] = [];
+	private _classModelGeneratorConfig: PartialClassModelGeneratorConfig = {};
+	private _javaClassModelGeneratorConfig: PartialJavaClassModelGeneratorConfig = {};
+	private _javaClassModelTransformers: JavaClassModelTransformer[] = [];
 
 	public configureClassModel(config: PartialClassModelGeneratorConfig) {
-		this.#classModelGeneratorConfig = config;
+		this._classModelGeneratorConfig = config;
 		return this;
 	}
 
 	public configureJavaCode(config: PartialJavaClassModelGeneratorConfig) {
-		this.#javaClassModelGeneratorConfig = config;
+		this._javaClassModelGeneratorConfig = config;
 		return this;
 	}
 
 	public addTransformers(...javaClassModelTransformers: JavaClassModelTransformer[]) {
-		this.#javaClassModelTransformers.push(...javaClassModelTransformers);
+		this._javaClassModelTransformers.push(...javaClassModelTransformers);
 		return this;
 	}
 
 	public build() {
 
-		const classModelGenerator = new ClassModelGenerator(this.#classModelGeneratorConfig);
-		const javaClassModelGenerator = new JavaClassModelGenerator(this.#javaClassModelGeneratorConfig);
+		const classModelGenerator = new ClassModelGenerator(this._classModelGeneratorConfig);
+		const javaClassModelGenerator = new JavaClassModelGenerator(this._javaClassModelGeneratorConfig);
 
 		const javaClassCodeGenerator = new JavaClassCodeGenerator();
 		const javaClassModelCodeGenerator = new JavaClassModelCodeGenerator(javaClassCodeGenerator);
@@ -46,7 +46,7 @@ export default class JavaEntityRelationshipModelSourceCodeGeneratorBuilder {
 		return new JavaEntityRelationshipModelSourceCodeGenerator(
 				classModelGenerator,
 				javaClassModelGenerator,
-				[...this.#javaClassModelTransformers],
+				[...this._javaClassModelTransformers],
 				javaClassModelCodeGenerator,
 				javaClassModelSourceFilesGenerator
 		);

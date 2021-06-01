@@ -11,10 +11,10 @@ import JpaTransformerSetupData
 
 export default class JpaTransformerClassVisitor {
 
-	readonly #tableNameCaseConverter: CaseConverter;
+	private readonly _tableNameCaseConverter: CaseConverter;
 
 	constructor(tableNameCaseConverter: CaseConverter) {
-		this.#tableNameCaseConverter = tableNameCaseConverter;
+		this._tableNameCaseConverter = tableNameCaseConverter;
 	}
 
 	public visitClass(javaClass: JavaClass, context: JavaClassTransformContext<JpaTransformerSetupData>): void {
@@ -47,7 +47,7 @@ export default class JpaTransformerClassVisitor {
 	}
 
 	private formatTableName(tableName: string): string {
-		return this.#tableNameCaseConverter.convertCase(tableName);
+		return this._tableNameCaseConverter.convertCase(tableName);
 	}
 
 }

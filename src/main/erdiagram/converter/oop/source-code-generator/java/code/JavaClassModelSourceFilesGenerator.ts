@@ -1,13 +1,16 @@
-import {JavaClass, JavaClassModel} from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
+import {
+	JavaClass,
+	JavaClassModel
+} from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
 import JavaClassCodeGenerator from '@/erdiagram/converter/oop/source-code-generator/java/code/JavaClassCodeGenerator';
 import SourceFileInfo from '@/erdiagram/converter/common/SourceFileInfo';
 
 export default class JavaClassModelSourceFilesGenerator {
 
-	readonly #javaClassCodeGenerator: JavaClassCodeGenerator;
+	readonly _javaClassCodeGenerator: JavaClassCodeGenerator;
 
 	constructor(javaClassCodeGenerator: JavaClassCodeGenerator) {
-		this.#javaClassCodeGenerator = javaClassCodeGenerator;
+		this._javaClassCodeGenerator = javaClassCodeGenerator;
 	}
 
 	public generateSourceFiles(javaClassModel: JavaClassModel): SourceFileInfo[] {
@@ -18,7 +21,7 @@ export default class JavaClassModelSourceFilesGenerator {
 		return {
 			folder: this.generateClassSourceFileFolder(javaClass),
 			filename: this.generateClassSourceFileName(javaClass),
-			contents: this.#javaClassCodeGenerator.generateCode(javaClass)
+			contents: this._javaClassCodeGenerator.generateCode(javaClass)
 		};
 	}
 

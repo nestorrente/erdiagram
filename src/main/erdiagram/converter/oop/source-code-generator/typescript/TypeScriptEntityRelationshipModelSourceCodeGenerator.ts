@@ -10,20 +10,20 @@ import TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder
 export default class TypeScriptEntityRelationshipModelSourceCodeGenerator
 		implements EntityRelationshipModelSourceCodeGenerator {
 
-	readonly #classModelGenerator: ClassModelGenerator;
-	readonly #typeScriptClassModelToCodeConverter: TypeScriptClassModelToCodeConverter;
+	private readonly _classModelGenerator: ClassModelGenerator;
+	private readonly _typeScriptClassModelToCodeConverter: TypeScriptClassModelToCodeConverter;
 
 	constructor(
 			classModelGenerator: ClassModelGenerator,
 			typeScriptClassModelToCodeConverter: TypeScriptClassModelToCodeConverter
 	) {
-		this.#classModelGenerator = classModelGenerator;
-		this.#typeScriptClassModelToCodeConverter = typeScriptClassModelToCodeConverter;
+		this._classModelGenerator = classModelGenerator;
+		this._typeScriptClassModelToCodeConverter = typeScriptClassModelToCodeConverter;
 	}
 
 	generateSourceCode(entityRelationshipModel: EntityRelationshipModel): string {
-		const classModel = this.#classModelGenerator.generateClassModel(entityRelationshipModel);
-		return this.#typeScriptClassModelToCodeConverter.convertToCode(classModel);
+		const classModel = this._classModelGenerator.generateClassModel(entityRelationshipModel);
+		return this._typeScriptClassModelToCodeConverter.convertToCode(classModel);
 	}
 
 	static withDefaultConfig() {

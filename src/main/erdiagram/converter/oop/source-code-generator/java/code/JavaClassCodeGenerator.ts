@@ -16,10 +16,10 @@ const EMPTY_STRING: string = '';
 
 export default class JavaClassCodeGenerator {
 
-	readonly #javaUsedTypesCompiler: JavaClassUsedTypesCompiler;
+	private readonly _javaUsedTypesCompiler: JavaClassUsedTypesCompiler;
 
 	constructor() {
-		this.#javaUsedTypesCompiler = new JavaClassUsedTypesCompiler();
+		this._javaUsedTypesCompiler = new JavaClassUsedTypesCompiler();
 	}
 
 	public generateCode(javaClass: JavaClass): string {
@@ -140,7 +140,7 @@ export default class JavaClassCodeGenerator {
 
 	private generateImportLines(javaClass: JavaClass) {
 
-		const usedTypes = this.#javaUsedTypesCompiler.getUsedTypes(javaClass);
+		const usedTypes = this._javaUsedTypesCompiler.getUsedTypes(javaClass);
 
 		const javaImportStatementsGenerator = new JavaImportStatementsGenerator(javaClass.packageName);
 		return javaImportStatementsGenerator.generateImportStatements(usedTypes);

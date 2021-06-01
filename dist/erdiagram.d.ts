@@ -10,7 +10,7 @@ export interface ComponentConfigManager<C, P> {
 	convertFromSerializableObject(serializableConfig: JsonValue): C;
 }
 export declare abstract class AbstractComponentConfigManager<C, P = Partial<C>> implements ComponentConfigManager<C, P> {
-	#private;
+	private readonly _jsonAdapter;
 	constructor();
 	abstract getDefaultConfig(): C;
 	abstract mergeConfigs(fullConfig: C, partialConfig?: P): C;
@@ -212,7 +212,8 @@ export declare class DatabaseModelToSqlCodeConverter {
 	private getAlterTableLines;
 }
 declare class SqlEntityRelationshipModelSourceCodeGeneratorBuilder {
-	#private;
+	private _databaseModelGeneratorConfig;
+	private _sqlDialect?;
 	configureDatabaseModel(config: PartialDatabaseModelGeneratorConfig): this;
 	useDialect(sqlDialect: SqlDialect): this;
 	build(): SqlEntityRelationshipModelSourceCodeGenerator;
@@ -416,7 +417,8 @@ declare function createRawParameterValue(code: string, ...usedTypes: JavaType[])
 declare function isRawParameterValue(value: JavaAnnotationParameterValue): value is RawAnnotationParameterValue;
 export declare type JavaAnnotationParametersRecord = Record<string, JavaAnnotationParameterValue | undefined>;
 export declare class JavaAnnotation {
-	#private;
+	private readonly _type;
+	private readonly _parameters;
 	constructor(annotationType: JavaType, parameters?: JavaAnnotationParametersRecord);
 	get type(): JavaType;
 	get parameters(): JavaAnnotationParametersRecord;
@@ -480,13 +482,15 @@ export interface JavaClassModelTransformer<T = unknown> {
 	visitModel(javaClassModel: JavaClassModel, context: JavaClassModelTransformContext<T>): void;
 }
 declare class JavaClassModelDescriptorsRepositoryBuilder {
-	#private;
+	private readonly _classDescriptorsMap;
+	private readonly _fieldDescriptorsMap;
 	addClass(javaClass: JavaClass, classDescriptor: ClassDescriptor): this;
 	addField(javaField: JavaField, fieldDescriptor: ClassFieldDescriptor): this;
 	build(): JavaClassModelDescriptorsRepository;
 }
 declare class JavaClassModelDescriptorsRepository {
-	#private;
+	private readonly _classDescriptorsMap;
+	private readonly _fieldDescriptorsMap;
 	constructor(classDescriptorsMap: Map<JavaClass, ClassDescriptor>, fieldDescriptorsMap: Map<JavaField, ClassFieldDescriptor>);
 	getClassDescriptor(javaClass: JavaClass): ClassDescriptor;
 	getFieldDescriptor(javaField: JavaField): ClassFieldDescriptor;
@@ -502,12 +506,12 @@ export interface JavaClassModelGeneratorConfig {
 }
 export declare type PartialJavaClassModelGeneratorConfig = Partial<WithPartial<JavaClassModelGeneratorConfig, "typeBindings">>;
 export declare class JavaClassModelGenerator {
-	#private;
+	private readonly _javaClassGenerator;
 	constructor(config?: PartialJavaClassModelGeneratorConfig);
 	generateJavaClassModel(classModel: ClassModel): JavaClassModelGenerationResult;
 }
 declare class JavaClassCodeGenerator {
-	#private;
+	private readonly _javaUsedTypesCompiler;
 	constructor();
 	generateCode(javaClass: JavaClass): string;
 	private createField;
@@ -518,21 +522,23 @@ declare class JavaClassCodeGenerator {
 	private generateImportLines;
 }
 declare class JavaClassModelCodeGenerator {
-	#private;
+	private readonly _javaClassCodeGenerator;
 	constructor(javaClassCodeGenerator: JavaClassCodeGenerator);
 	generateCode(javaClassModel: JavaClassModel): string;
 	private generateClassCode;
 	private generateClassHeaderComment;
 }
 export declare class JavaEntityRelationshipModelSourceCodeGeneratorBuilder {
-	#private;
+	private _classModelGeneratorConfig;
+	private _javaClassModelGeneratorConfig;
+	private _javaClassModelTransformers;
 	configureClassModel(config: PartialClassModelGeneratorConfig): this;
 	configureJavaCode(config: PartialJavaClassModelGeneratorConfig): this;
 	addTransformers(...javaClassModelTransformers: JavaClassModelTransformer[]): this;
 	build(): JavaEntityRelationshipModelSourceCodeGenerator;
 }
 declare class JavaClassModelSourceFilesGenerator {
-	#private;
+	readonly _javaClassCodeGenerator: JavaClassCodeGenerator;
 	constructor(javaClassCodeGenerator: JavaClassCodeGenerator);
 	generateSourceFiles(javaClassModel: JavaClassModel): SourceFileInfo[];
 	private generateClassSourceFile;
@@ -540,7 +546,11 @@ declare class JavaClassModelSourceFilesGenerator {
 	private generateClassSourceFileName;
 }
 export declare class JavaEntityRelationshipModelSourceCodeGenerator implements MultipleFileEntityRelationshipModelSourceCodeGenerator {
-	#private;
+	private readonly _classModelGenerator;
+	private readonly _javaClassModelGenerator;
+	private readonly _javaClassModelTransformers;
+	private readonly _javaClassModelCodeGenerator;
+	private readonly _javaClassModelSourceFilesGenerator;
 	constructor(classModelGenerator: ClassModelGenerator, javaClassModelGenerator: JavaClassModelGenerator, javaClassModelTransformers: JavaClassModelTransformer[], javaClassModelCodeGenerator: JavaClassModelCodeGenerator, javaClassModelSourceFilesGenerator: JavaClassModelSourceFilesGenerator);
 	generateSourceCode(entityRelationshipModel: EntityRelationshipModel): string;
 	generateSourceFiles(entityRelationshipModel: EntityRelationshipModel): SourceFileInfo[];
@@ -570,13 +580,16 @@ export interface JpaTransformerSetupData {
 	databaseModel: DatabaseModel;
 }
 export declare class JpaTransformerBuilder {
-	#private;
+	private _databaseModelGeneratorConfig;
+	private _config;
 	configureDatabaseModel(config: PartialDatabaseModelGeneratorConfig): this;
 	configureJpa(config: PartialJpaTransformerConfig): this;
 	build(): JpaTransformer;
 }
 export declare class JpaTransformer implements JavaClassModelTransformer<JpaTransformerSetupData> {
-	#private;
+	private readonly _setupDataGenerator;
+	private readonly _fieldVisitor;
+	private readonly _classVisitor;
 	constructor(databaseModelGenerator: DatabaseModelGenerator, config?: Partial<JpaTransformerConfig>);
 	setup(context: SetupContext): JpaTransformerSetupData;
 	visitField(javaField: JavaField, context: JavaFieldTransformContext<JpaTransformerSetupData>): void;
@@ -601,7 +614,7 @@ export interface JavaxValidationTransformerConfig {
 }
 export declare type PartialJavaxValidationTransformerConfig = Partial<JavaxValidationTransformerConfig>;
 export declare class JavaxValidationTransformer implements JavaClassModelTransformer {
-	#private;
+	private readonly _javaxValidationFieldVisitor;
 	constructor(config?: PartialJavaxValidationTransformerConfig);
 	setup(context: SetupContext): unknown;
 	visitField(javaField: JavaField, context: JavaFieldTransformContext<unknown>): void;
@@ -637,13 +650,15 @@ export declare class TypeScriptClassModelToCodeConverter implements ClassModelTo
 	private createField;
 }
 export declare class TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder {
-	#private;
+	private _classModelGeneratorConfig;
+	private _typeScriptClassModelToCodeConverterConfig;
 	configureClassModel(config: PartialClassModelGeneratorConfig): this;
 	configureTypeScriptCode(config: PartialTypeScriptClassModelToCodeConverterConfig): this;
 	build(): TypeScriptEntityRelationshipModelSourceCodeGenerator;
 }
 export declare class TypeScriptEntityRelationshipModelSourceCodeGenerator implements EntityRelationshipModelSourceCodeGenerator {
-	#private;
+	private readonly _classModelGenerator;
+	private readonly _typeScriptClassModelToCodeConverter;
 	constructor(classModelGenerator: ClassModelGenerator, typeScriptClassModelToCodeConverter: TypeScriptClassModelToCodeConverter);
 	generateSourceCode(entityRelationshipModel: EntityRelationshipModel): string;
 	static withDefaultConfig(): TypeScriptEntityRelationshipModelSourceCodeGenerator;

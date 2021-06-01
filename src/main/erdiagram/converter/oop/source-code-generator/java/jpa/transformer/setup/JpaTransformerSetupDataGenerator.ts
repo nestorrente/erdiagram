@@ -5,15 +5,15 @@ import JpaTransformerSetupData
 
 export default class JpaTransformerSetupDataGenerator {
 
-	readonly #databaseModelGenerator: DatabaseModelGenerator;
+	private readonly _databaseModelGenerator: DatabaseModelGenerator;
 
 	constructor(databaseModelGenerator: DatabaseModelGenerator) {
-		this.#databaseModelGenerator = databaseModelGenerator;
+		this._databaseModelGenerator = databaseModelGenerator;
 	}
 
 	setup(context: SetupContext): JpaTransformerSetupData {
 		return {
-			databaseModel: this.#databaseModelGenerator.generateDatabaseModel(context.entityRelationshipModel)
+			databaseModel: this._databaseModelGenerator.generateDatabaseModel(context.entityRelationshipModel)
 		};
 	}
 

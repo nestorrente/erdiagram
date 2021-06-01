@@ -25,13 +25,14 @@ import JpaTransformerSetupData
 	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/setup/JpaTransformerSetupData';
 import JpaTransformerSetupDataGenerator
 	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/setup/JpaTransformerSetupDataGenerator';
-import JpaTransformerBuilder from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/JpaTransformerBuilder';
+import JpaTransformerBuilder
+	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/JpaTransformerBuilder';
 
 export class JpaTransformer implements JavaClassModelTransformer<JpaTransformerSetupData> {
 
-	readonly #setupDataGenerator: JpaTransformerSetupDataGenerator;
-	readonly #fieldVisitor: JpaTransformerFieldVisitor;
-	readonly #classVisitor: JpaTransformerClassVisitor;
+	private readonly _setupDataGenerator: JpaTransformerSetupDataGenerator;
+	private readonly _fieldVisitor: JpaTransformerFieldVisitor;
+	private readonly _classVisitor: JpaTransformerClassVisitor;
 
 	constructor(databaseModelGenerator: DatabaseModelGenerator, config?: Partial<JpaTransformerConfig>) {
 
@@ -44,28 +45,28 @@ export class JpaTransformer implements JavaClassModelTransformer<JpaTransformerS
 		const tableNameCaseConverter = new CaseConverter(StandardCaseFormats.UPPER_CAMEL, tableNameCaseFormat);
 		const columnNameCaseConverter = new CaseConverter(StandardCaseFormats.UPPER_CAMEL, columnNameCaseFormat);
 
-		this.#setupDataGenerator = new JpaTransformerSetupDataGenerator(databaseModelGenerator);
+		this._setupDataGenerator = new JpaTransformerSetupDataGenerator(databaseModelGenerator);
 
-		this.#fieldVisitor = new JpaTransformerFieldVisitor(
+		this._fieldVisitor = new JpaTransformerFieldVisitor(
 				tableNameCaseConverter,
 				columnNameCaseConverter,
 				annotateGetters
 		);
 
-		this.#classVisitor = new JpaTransformerClassVisitor(tableNameCaseConverter);
+		this._classVisitor = new JpaTransformerClassVisitor(tableNameCaseConverter);
 
 	}
 
 	setup(context: SetupContext): JpaTransformerSetupData {
-		return this.#setupDataGenerator.setup(context);
+		return this._setupDataGenerator.setup(context);
 	}
 
 	visitField(javaField: JavaField, context: JavaFieldTransformContext<JpaTransformerSetupData>): void {
-		this.#fieldVisitor.visitField(javaField, context);
+		this._fieldVisitor.visitField(javaField, context);
 	}
 
 	visitClass(javaClass: JavaClass, context: JavaClassTransformContext<JpaTransformerSetupData>): void {
-		this.#classVisitor.visitClass(javaClass, context);
+		this._classVisitor.visitClass(javaClass, context);
 	}
 
 	visitModel(javaClassModel: JavaClassModel, context: JavaClassModelTransformContext<JpaTransformerSetupData>): void {

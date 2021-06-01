@@ -18,15 +18,15 @@ import FieldAnnotationsSupplier
 
 export default class ColumnFieldAnnotationsSupplier implements FieldAnnotationsSupplier {
 
-	readonly #entityRelationshipModelSourceFinder: EntityRelationshipModelSourceFinder;
-	readonly #columnNameCaseConverter: CaseConverter;
+	private readonly _entityRelationshipModelSourceFinder: EntityRelationshipModelSourceFinder;
+	private readonly _columnNameCaseConverter: CaseConverter;
 
 	constructor(
 			entityRelationshipModelSourceFinder: EntityRelationshipModelSourceFinder,
 			columnNameCaseConverter: CaseConverter
 	) {
-		this.#entityRelationshipModelSourceFinder = entityRelationshipModelSourceFinder;
-		this.#columnNameCaseConverter = columnNameCaseConverter;
+		this._entityRelationshipModelSourceFinder = entityRelationshipModelSourceFinder;
+		this._columnNameCaseConverter = columnNameCaseConverter;
 	}
 
 	public getAnnotations(javaField: JavaField, context: JavaFieldTransformContext<JpaTransformerSetupData>): JavaAnnotation[] {
@@ -56,12 +56,12 @@ export default class ColumnFieldAnnotationsSupplier implements FieldAnnotationsS
 		const {sourceMetadata} = fieldDescriptor;
 
 		if (isEntityIdentitySourceMetadata(sourceMetadata)) {
-			const table = this.#entityRelationshipModelSourceFinder.findTableFromEntity(databaseModel, sourceMetadata.entity);
+			const table = this._entityRelationshipModelSourceFinder.findTableFromEntity(databaseModel, sourceMetadata.entity);
 			return table.identityColumnName;
 		}
 
 		if (isEntityPropertySourceMetadata(sourceMetadata)) {
-			const column = this.#entityRelationshipModelSourceFinder.findColumnFromProperty(databaseModel, sourceMetadata.property);
+			const column = this._entityRelationshipModelSourceFinder.findColumnFromProperty(databaseModel, sourceMetadata.property);
 			return column.name;
 
 		}
@@ -71,7 +71,7 @@ export default class ColumnFieldAnnotationsSupplier implements FieldAnnotationsS
 	}
 
 	private formatColumnName(columnName: string): string {
-		return this.#columnNameCaseConverter.convertCase(columnName);
+		return this._columnNameCaseConverter.convertCase(columnName);
 	}
 
 }

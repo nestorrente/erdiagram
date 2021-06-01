@@ -8,10 +8,10 @@ const JAVA_LANG_PACKAGE = 'java.lang';
 // TODO add unit tests
 export default class JavaImportStatementsGenerator {
 
-	readonly #currentPackage?: string;
+	private readonly _currentPackage?: string;
 
 	constructor(currentPackage?: string) {
-		this.#currentPackage = currentPackage;
+		this._currentPackage = currentPackage;
 	}
 
 	public generateImportStatements(javaTypes: JavaType[]): string[] {
@@ -43,7 +43,7 @@ export default class JavaImportStatementsGenerator {
 	private isImportRequired(javaType: JavaType): boolean {
 		return !!javaType.packageName
 				&& javaType.packageName !== JAVA_LANG_PACKAGE
-				&& javaType.packageName !== this.#currentPackage;
+				&& javaType.packageName !== this._currentPackage;
 	}
 
 }

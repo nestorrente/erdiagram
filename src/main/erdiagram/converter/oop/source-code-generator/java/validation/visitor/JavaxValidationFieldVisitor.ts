@@ -8,20 +8,20 @@ import JavaxValidationAnnotationsSupplier
 
 export default class JavaxValidationFieldVisitor {
 
-	readonly #javaValidationAnnotationsGenerator: JavaxValidationAnnotationsSupplier;
-	readonly #annotateGetters: boolean;
+	private readonly _javaValidationAnnotationsGenerator: JavaxValidationAnnotationsSupplier;
+	private readonly _annotateGetters: boolean;
 
 	constructor(
 			javaValidationAnnotationsGenerator: JavaxValidationAnnotationsSupplier,
 			annotateGetters: boolean
 	) {
-		this.#javaValidationAnnotationsGenerator = javaValidationAnnotationsGenerator;
-		this.#annotateGetters = annotateGetters;
+		this._javaValidationAnnotationsGenerator = javaValidationAnnotationsGenerator;
+		this._annotateGetters = annotateGetters;
 	}
 
 	visitField(javaField: JavaField, context: JavaFieldTransformContext<unknown>): void {
 
-		const annotations = this.#javaValidationAnnotationsGenerator.getAnnotations(context.fieldDescriptor);
+		const annotations = this._javaValidationAnnotationsGenerator.getAnnotations(context.fieldDescriptor);
 		const elementToAnnotate = this.getElementToAnnotate(javaField);
 
 		elementToAnnotate.annotations.push(...annotations);
@@ -30,7 +30,7 @@ export default class JavaxValidationFieldVisitor {
 
 	private getElementToAnnotate(javaField: JavaField): JavaAnnotatedElement {
 
-		if (this.#annotateGetters && javaField.getter != null) {
+		if (this._annotateGetters && javaField.getter != null) {
 			return javaField.getter;
 		}
 

@@ -8,28 +8,28 @@ import DatabaseModelToSqlCodeConverter
 
 export default class SqlEntityRelationshipModelSourceCodeGeneratorBuilder {
 
-	#databaseModelGeneratorConfig: PartialDatabaseModelGeneratorConfig = {};
-	#sqlDialect?: SqlDialect;
+	private _databaseModelGeneratorConfig: PartialDatabaseModelGeneratorConfig = {};
+	private _sqlDialect?: SqlDialect;
 
 	public configureDatabaseModel(config: PartialDatabaseModelGeneratorConfig) {
-		this.#databaseModelGeneratorConfig = config;
+		this._databaseModelGeneratorConfig = config;
 		return this;
 	}
 
 	public useDialect(sqlDialect: SqlDialect) {
-		this.#sqlDialect = sqlDialect;
+		this._sqlDialect = sqlDialect;
 		return this;
 	}
 
 	public build() {
 
-		if (this.#sqlDialect == null) {
+		if (this._sqlDialect == null) {
 			throw new Error('SqlDialect is not configured');
 		}
 
 		return new SqlEntityRelationshipModelSourceCodeGenerator(
-				new DatabaseModelGenerator(this.#databaseModelGeneratorConfig),
-				new DatabaseModelToSqlCodeConverter(this.#sqlDialect)
+				new DatabaseModelGenerator(this._databaseModelGeneratorConfig),
+				new DatabaseModelToSqlCodeConverter(this._sqlDialect)
 		);
 
 	}

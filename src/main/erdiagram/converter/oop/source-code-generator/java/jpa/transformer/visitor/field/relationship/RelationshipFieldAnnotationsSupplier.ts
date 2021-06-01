@@ -31,10 +31,10 @@ enum RelationshipCardinality {
 // TODO split this class
 export default class RelationshipFieldAnnotationsSupplier implements FieldAnnotationsSupplier {
 
-	readonly #entityRelationshipModelSourceFinder: EntityRelationshipModelSourceFinder;
-	readonly #classModelSourceFinder: ClassModelSourceFinder;
-	readonly #tableNameCaseConverter: CaseConverter;
-	readonly #columnNameCaseConverter: CaseConverter;
+	private readonly _entityRelationshipModelSourceFinder: EntityRelationshipModelSourceFinder;
+	private readonly _classModelSourceFinder: ClassModelSourceFinder;
+	private readonly _tableNameCaseConverter: CaseConverter;
+	private readonly _columnNameCaseConverter: CaseConverter;
 
 	constructor(
 			entityRelationshipModelSourceFinder: EntityRelationshipModelSourceFinder,
@@ -42,10 +42,10 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 			tableNameCaseConverter: CaseConverter,
 			columnNameCaseConverter: CaseConverter
 	) {
-		this.#entityRelationshipModelSourceFinder = entityRelationshipModelSourceFinder;
-		this.#classModelSourceFinder = classModelSourceFinder;
-		this.#tableNameCaseConverter = tableNameCaseConverter;
-		this.#columnNameCaseConverter = columnNameCaseConverter;
+		this._entityRelationshipModelSourceFinder = entityRelationshipModelSourceFinder;
+		this._classModelSourceFinder = classModelSourceFinder;
+		this._tableNameCaseConverter = tableNameCaseConverter;
+		this._columnNameCaseConverter = columnNameCaseConverter;
 	}
 
 	public getAnnotations(javaField: JavaField, context: JavaFieldTransformContext<JpaTransformerSetupData>): JavaAnnotation[] {
@@ -150,7 +150,7 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 
 		const {
 			reference
-		} = this.#entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, foreignMember);
+		} = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, foreignMember);
 
 		const optionalRelationship = foreignMember.cardinality === Cardinality.ZERO_OR_ONE;
 
@@ -170,7 +170,7 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 
 		const {
 			field
-		} = this.#classModelSourceFinder.findClassAndFieldFromReferencedMember(classModel, ownMember);
+		} = this._classModelSourceFinder.findClassAndFieldFromReferencedMember(classModel, ownMember);
 
 		return [
 			new JavaAnnotation(JpaAnnotationTypes.OneToOne, {
@@ -185,7 +185,7 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 		const {
 			table,
 			reference
-		} = this.#entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
+		} = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
 
 		return [
 			new JavaAnnotation(JpaAnnotationTypes.OneToOne, {
@@ -206,7 +206,7 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 
 		const {
 			reference
-		} = this.#entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, foreignMember);
+		} = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, foreignMember);
 
 		const optionalRelationship = foreignMember.cardinality === Cardinality.ZERO_OR_ONE;
 
@@ -226,7 +226,7 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 
 		const {
 			field
-		} = this.#classModelSourceFinder.findClassAndFieldFromReferencedMember(classModel, ownMember);
+		} = this._classModelSourceFinder.findClassAndFieldFromReferencedMember(classModel, ownMember);
 
 		return [
 			new JavaAnnotation(JpaAnnotationTypes.OneToMany, {
@@ -240,7 +240,7 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 		const {
 			table,
 			reference
-		} = this.#entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
+		} = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
 
 		return [
 			new JavaAnnotation(JpaAnnotationTypes.OneToMany),
@@ -260,7 +260,7 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 		const {
 			table,
 			reference: ownReference
-		} = this.#entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
+		} = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
 
 		if (table.references.length !== 2) {
 			throw new Error('Relationship table has more than 2 references');
@@ -289,7 +289,7 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 
 		const {
 			field: referencedField
-		} = this.#classModelSourceFinder.findClassAndFieldFromReferencedMember(classModel, sourceMember);
+		} = this._classModelSourceFinder.findClassAndFieldFromReferencedMember(classModel, sourceMember);
 
 		return [
 			new JavaAnnotation(JpaAnnotationTypes.ManyToMany, {
@@ -299,11 +299,11 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 	}
 
 	private formatColumnName(columnName: string): string {
-		return this.#columnNameCaseConverter.convertCase(columnName);
+		return this._columnNameCaseConverter.convertCase(columnName);
 	}
 
 	private formatTableName(tableName: string): string {
-		return this.#tableNameCaseConverter.convertCase(tableName);
+		return this._tableNameCaseConverter.convertCase(tableName);
 	}
 
 }

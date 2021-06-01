@@ -5,20 +5,20 @@ import JavaClassModelDescriptorsRepositoryBuilder
 
 export default class JavaClassModelDescriptorsRepository {
 
-	readonly #classDescriptorsMap: Map<JavaClass, ClassDescriptor>;
-	readonly #fieldDescriptorsMap: Map<JavaField, ClassFieldDescriptor>;
+	private readonly _classDescriptorsMap: Map<JavaClass, ClassDescriptor>;
+	private readonly _fieldDescriptorsMap: Map<JavaField, ClassFieldDescriptor>;
 
 	constructor(
 			classDescriptorsMap: Map<JavaClass, ClassDescriptor>,
 			fieldDescriptorsMap: Map<JavaField, ClassFieldDescriptor>
 	) {
-		this.#classDescriptorsMap = classDescriptorsMap;
-		this.#fieldDescriptorsMap = fieldDescriptorsMap;
+		this._classDescriptorsMap = classDescriptorsMap;
+		this._fieldDescriptorsMap = fieldDescriptorsMap;
 	}
 
 	public getClassDescriptor(javaClass: JavaClass): ClassDescriptor {
 
-		const classDescriptor = this.#classDescriptorsMap.get(javaClass);
+		const classDescriptor = this._classDescriptorsMap.get(javaClass);
 
 		if (classDescriptor == null) {
 			throw new Error(`Cannot find descriptor for Java class "${javaClass.name}"`);
@@ -30,7 +30,7 @@ export default class JavaClassModelDescriptorsRepository {
 
 	public getFieldDescriptor(javaField: JavaField): ClassFieldDescriptor {
 
-		const fieldDescriptor = this.#fieldDescriptorsMap.get(javaField);
+		const fieldDescriptor = this._fieldDescriptorsMap.get(javaField);
 
 		if (fieldDescriptor == null) {
 			throw new Error(`Cannot find descriptor for Java field "${javaField.name}"`);

@@ -8,10 +8,10 @@ export default function createTypeScriptArrayType(parameterType: TypeScriptType)
 
 class TypeScriptArrayTypeImpl implements TypeScriptParameterizedType {
 
-	readonly #parameterType: TypeScriptType;
+	private readonly _parameterType: TypeScriptType;
 
 	constructor(parameterType: TypeScriptType) {
-		this.#parameterType = parameterType;
+		this._parameterType = parameterType;
 	}
 
 	get name() {
@@ -19,11 +19,11 @@ class TypeScriptArrayTypeImpl implements TypeScriptParameterizedType {
 	}
 
 	get parameterTypes() {
-		return [this.#parameterType];
+		return [this._parameterType];
 	}
 
 	format(): string {
-		const formattedParameterType = this.#parameterType.format();
+		const formattedParameterType = this._parameterType.format();
 		return `${formattedParameterType}[]`;
 	}
 

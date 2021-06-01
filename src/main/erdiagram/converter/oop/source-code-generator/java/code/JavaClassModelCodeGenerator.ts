@@ -1,12 +1,15 @@
-import {JavaClass, JavaClassModel} from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
+import {
+	JavaClass,
+	JavaClassModel
+} from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
 import JavaClassCodeGenerator from '@/erdiagram/converter/oop/source-code-generator/java/code/JavaClassCodeGenerator';
 
 export default class JavaClassModelCodeGenerator {
 
-	readonly #javaClassCodeGenerator: JavaClassCodeGenerator;
+	private readonly _javaClassCodeGenerator: JavaClassCodeGenerator;
 
 	constructor(javaClassCodeGenerator: JavaClassCodeGenerator) {
-		this.#javaClassCodeGenerator = javaClassCodeGenerator;
+		this._javaClassCodeGenerator = javaClassCodeGenerator;
 	}
 
 	public generateCode(javaClassModel: JavaClassModel): string {
@@ -17,7 +20,7 @@ export default class JavaClassModelCodeGenerator {
 
 	private generateClassCode(javaClass: JavaClass) {
 		const headerComment = this.generateClassHeaderComment(javaClass);
-		const classCode = this.#javaClassCodeGenerator.generateCode(javaClass);
+		const classCode = this._javaClassCodeGenerator.generateCode(javaClass);
 		return `${headerComment}\n\n${classCode}`;
 	}
 

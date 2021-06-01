@@ -215,39 +215,39 @@ describe('Single class', () => {
 							getter: createJavaGetter('getId'),
 							setter: createJavaSetter('setId')
 						}),
-						createJavaField('booleanField', 'Boolean', {
+						createJavaField('booleanField', 'java.lang.Boolean', {
 							getter: createJavaGetter('getBooleanField'),
 							setter: createJavaSetter('setBooleanField')
 						}),
-						createJavaField('shortField', 'Short', {
+						createJavaField('shortField', 'java.lang.Short', {
 							getter: createJavaGetter('getShortField'),
 							setter: createJavaSetter('setShortField')
 						}),
-						createJavaField('intField', 'Integer', {
+						createJavaField('intField', 'java.lang.Integer', {
 							getter: createJavaGetter('getIntField'),
 							setter: createJavaSetter('setIntField')
 						}),
-						createJavaField('longField', 'Long', {
+						createJavaField('longField', 'java.lang.Long', {
 							getter: createJavaGetter('getLongField'),
 							setter: createJavaSetter('setLongField')
 						}),
-						createJavaField('decimalField', 'BigDecimal', {
+						createJavaField('decimalField', 'java.math.BigDecimal', {
 							getter: createJavaGetter('getDecimalField'),
 							setter: createJavaSetter('setDecimalField')
 						}),
-						createJavaField('textField', 'String', {
+						createJavaField('textField', 'java.lang.String', {
 							getter: createJavaGetter('getTextField'),
 							setter: createJavaSetter('setTextField')
 						}),
-						createJavaField('dateField', 'LocalDate', {
+						createJavaField('dateField', 'java.time.LocalDate', {
 							getter: createJavaGetter('getDateField'),
 							setter: createJavaSetter('setDateField')
 						}),
-						createJavaField('timeField', 'LocalTime', {
+						createJavaField('timeField', 'java.time.LocalTime', {
 							getter: createJavaGetter('getTimeField'),
 							setter: createJavaSetter('setTimeField')
 						}),
-						createJavaField('datetimeField', 'LocalDateTime', {
+						createJavaField('datetimeField', 'java.time.LocalDateTime', {
 							getter: createJavaGetter('getDatetimeField'),
 							setter: createJavaSetter('setDatetimeField')
 						}),
@@ -346,7 +346,7 @@ describe('Multiple classes', () => {
 							getter: createJavaGetter('getTestClass2NullableField'),
 							setter: createJavaSetter('setTestClass2NullableField')
 						}),
-						createJavaField('testClass2ListField', 'java.uti.List<TestClass2>', {
+						createJavaField('testClass2ListField', 'java.util.List<TestClass2>', {
 							getter: createJavaGetter('getTestClass2ListField'),
 							setter: createJavaSetter('setTestClass2ListField')
 						})

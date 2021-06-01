@@ -5,23 +5,23 @@ import JavaClassModelDescriptorsRepository
 
 export default class JavaClassModelDescriptorsRepositoryBuilder {
 
-	readonly #classDescriptorsMap = new Map<JavaClass, ClassDescriptor>();
-	readonly #fieldDescriptorsMap = new Map<JavaField, ClassFieldDescriptor>();
+	private readonly _classDescriptorsMap = new Map<JavaClass, ClassDescriptor>();
+	private readonly _fieldDescriptorsMap = new Map<JavaField, ClassFieldDescriptor>();
 
 	public addClass(javaClass: JavaClass, classDescriptor: ClassDescriptor): this {
-		this.#classDescriptorsMap.set(javaClass, classDescriptor);
+		this._classDescriptorsMap.set(javaClass, classDescriptor);
 		return this;
 	}
 
 	public addField(javaField: JavaField, fieldDescriptor: ClassFieldDescriptor): this {
-		this.#fieldDescriptorsMap.set(javaField, fieldDescriptor);
+		this._fieldDescriptorsMap.set(javaField, fieldDescriptor);
 		return this;
 	}
 
 	public build(): JavaClassModelDescriptorsRepository {
 		return new JavaClassModelDescriptorsRepository(
-				new Map(this.#classDescriptorsMap.entries()),
-				new Map(this.#fieldDescriptorsMap.entries())
+				new Map(this._classDescriptorsMap.entries()),
+				new Map(this._fieldDescriptorsMap.entries())
 		);
 	}
 

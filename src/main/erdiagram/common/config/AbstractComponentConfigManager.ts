@@ -4,10 +4,10 @@ import {JsonAdapter, JsonAdapters, JsonValue} from 'true-json';
 export default abstract class AbstractComponentConfigManager<C, P = Partial<C>>
 		implements ComponentConfigManager<C, P> {
 
-	readonly #jsonAdapter: JsonAdapter<C>;
+	private readonly _jsonAdapter: JsonAdapter<C>;
 
 	constructor() {
-		this.#jsonAdapter = this.getJsonAdapter();
+		this._jsonAdapter = this.getJsonAdapter();
 	}
 
 	abstract getDefaultConfig(): C;
@@ -19,11 +19,11 @@ export default abstract class AbstractComponentConfigManager<C, P = Partial<C>>
 	}
 
 	convertToSerializableObject(fullConfig: C): JsonValue {
-		return this.#jsonAdapter.adaptToJson(fullConfig);
+		return this._jsonAdapter.adaptToJson(fullConfig);
 	}
 
 	convertFromSerializableObject(serializableConfig: JsonValue): C {
-		return this.#jsonAdapter.recoverFromJson(serializableConfig);
+		return this._jsonAdapter.recoverFromJson(serializableConfig);
 	}
 
 	protected getJsonAdapter(): JsonAdapter<C> {

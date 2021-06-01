@@ -6,34 +6,34 @@ export default function createJavaSimpleType(name: string, packageName?: string)
 
 class JavaSimpleTypeImpl implements JavaType {
 
-	readonly #name: string;
-	readonly #packageName?: string;
-	readonly #canonicalName: string;
+	private readonly _name: string;
+	private readonly _packageName?: string;
+	private readonly _canonicalName: string;
 
 	constructor(name: string, packageName?: string) {
-		this.#name = name;
-		this.#packageName = packageName;
-		this.#canonicalName = packageName ? `${packageName}.${name}` : name;
+		this._name = name;
+		this._packageName = packageName;
+		this._canonicalName = packageName ? `${packageName}.${name}` : name;
 	}
 
 	get canonicalName() {
-		return this.#canonicalName;
+		return this._canonicalName;
 	}
 
 	get name() {
-		return this.#name;
+		return this._name;
 	}
 
 	get packageName() {
-		return this.#packageName;
+		return this._packageName;
 	}
 
 	formatSimple() {
-		return this.#name;
+		return this._name;
 	}
 
 	formatCanonical() {
-		return this.#canonicalName;
+		return this._canonicalName;
 	}
 
 }

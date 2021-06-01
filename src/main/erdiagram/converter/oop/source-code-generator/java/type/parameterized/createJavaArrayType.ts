@@ -8,22 +8,22 @@ export default function createJavaArrayType(parameterType: JavaType): JavaParame
 
 class JavaArrayTypeImpl implements JavaParameterizedType {
 
-	readonly #name: string;
-	readonly #canonicalName: string;
-	readonly #parameterType: JavaType;
+	private readonly _name: string;
+	private readonly _canonicalName: string;
+	private readonly _parameterType: JavaType;
 
 	constructor(parameterType: JavaType) {
-		this.#name = `${parameterType.name}[]`;
-		this.#canonicalName = `${parameterType.canonicalName}[]`;
-		this.#parameterType = parameterType;
+		this._name = `${parameterType.name}[]`;
+		this._canonicalName = `${parameterType.canonicalName}[]`;
+		this._parameterType = parameterType;
 	}
 
 	get canonicalName() {
-		return this.#canonicalName;
+		return this._canonicalName;
 	}
 
 	get name() {
-		return this.#name;
+		return this._name;
 	}
 
 	get packageName() {
@@ -31,16 +31,16 @@ class JavaArrayTypeImpl implements JavaParameterizedType {
 	}
 
 	get parameterTypes() {
-		return [this.#parameterType];
+		return [this._parameterType];
 	}
 
 	formatSimple() {
-		const formattedParameterType = this.#parameterType.formatSimple();
+		const formattedParameterType = this._parameterType.formatSimple();
 		return `${formattedParameterType}[]`;
 	}
 
 	formatCanonical() {
-		const formattedParameterType = this.#parameterType.formatCanonical();
+		const formattedParameterType = this._parameterType.formatCanonical();
 		return `${formattedParameterType}[]`;
 	}
 

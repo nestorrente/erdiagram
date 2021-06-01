@@ -21,11 +21,11 @@ import {JavaClassModel} from '@/erdiagram/converter/oop/source-code-generator/ja
 export default class JavaEntityRelationshipModelSourceCodeGenerator
 		implements MultipleFileEntityRelationshipModelSourceCodeGenerator {
 
-	readonly #classModelGenerator: ClassModelGenerator;
-	readonly #javaClassModelGenerator: JavaClassModelGenerator;
-	readonly #javaClassModelTransformers: JavaClassModelTransformer[];
-	readonly #javaClassModelCodeGenerator: JavaClassModelCodeGenerator;
-	readonly #javaClassModelSourceFilesGenerator: JavaClassModelSourceFilesGenerator;
+	private readonly _classModelGenerator: ClassModelGenerator;
+	private readonly _javaClassModelGenerator: JavaClassModelGenerator;
+	private readonly _javaClassModelTransformers: JavaClassModelTransformer[];
+	private readonly _javaClassModelCodeGenerator: JavaClassModelCodeGenerator;
+	private readonly _javaClassModelSourceFilesGenerator: JavaClassModelSourceFilesGenerator;
 
 	constructor(
 			classModelGenerator: ClassModelGenerator,
@@ -34,31 +34,31 @@ export default class JavaEntityRelationshipModelSourceCodeGenerator
 			javaClassModelCodeGenerator: JavaClassModelCodeGenerator,
 			javaClassModelSourceFilesGenerator: JavaClassModelSourceFilesGenerator
 	) {
-		this.#classModelGenerator = classModelGenerator;
-		this.#javaClassModelGenerator = javaClassModelGenerator;
-		this.#javaClassModelTransformers = javaClassModelTransformers;
-		this.#javaClassModelCodeGenerator = javaClassModelCodeGenerator;
-		this.#javaClassModelSourceFilesGenerator = javaClassModelSourceFilesGenerator;
+		this._classModelGenerator = classModelGenerator;
+		this._javaClassModelGenerator = javaClassModelGenerator;
+		this._javaClassModelTransformers = javaClassModelTransformers;
+		this._javaClassModelCodeGenerator = javaClassModelCodeGenerator;
+		this._javaClassModelSourceFilesGenerator = javaClassModelSourceFilesGenerator;
 	}
 
 	generateSourceCode(entityRelationshipModel: EntityRelationshipModel): string {
 		const javaClassModel = this.getJavaClassModel(entityRelationshipModel);
-		return this.#javaClassModelCodeGenerator.generateCode(javaClassModel);
+		return this._javaClassModelCodeGenerator.generateCode(javaClassModel);
 	}
 
 	generateSourceFiles(entityRelationshipModel: EntityRelationshipModel): SourceFileInfo[] {
 		const javaClassModel = this.getJavaClassModel(entityRelationshipModel);
-		return this.#javaClassModelSourceFilesGenerator.generateSourceFiles(javaClassModel);
+		return this._javaClassModelSourceFilesGenerator.generateSourceFiles(javaClassModel);
 	}
 
 	private getJavaClassModel(entityRelationshipModel: EntityRelationshipModel): JavaClassModel {
 
-		const classModel = this.#classModelGenerator.generateClassModel(entityRelationshipModel);
+		const classModel = this._classModelGenerator.generateClassModel(entityRelationshipModel);
 
 		const {
 			javaClassModel,
 			javaClassModelDescriptorsRepository
-		} = this.#javaClassModelGenerator.generateJavaClassModel(classModel);
+		} = this._javaClassModelGenerator.generateJavaClassModel(classModel);
 
 		// FIXME too much dependencies?
 		const applyTransformersCommandContext: SetupContext = {
@@ -70,7 +70,7 @@ export default class JavaEntityRelationshipModelSourceCodeGenerator
 		new ApplyTransformersCommand(
 				applyTransformersCommandContext,
 				javaClassModelDescriptorsRepository,
-				this.#javaClassModelTransformers
+				this._javaClassModelTransformers
 		).execute();
 
 		return javaClassModel;

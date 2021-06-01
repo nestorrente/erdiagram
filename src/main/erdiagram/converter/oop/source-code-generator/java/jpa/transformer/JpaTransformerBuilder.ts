@@ -5,23 +5,23 @@ import {JpaTransformer} from '@/erdiagram/converter/oop/source-code-generator/ja
 
 export default class JpaTransformerBuilder {
 
-	#databaseModelGeneratorConfig: PartialDatabaseModelGeneratorConfig = {};
-	#config: PartialJpaTransformerConfig = {};
+	private _databaseModelGeneratorConfig: PartialDatabaseModelGeneratorConfig = {};
+	private _config: PartialJpaTransformerConfig = {};
 
 	public configureDatabaseModel(config: PartialDatabaseModelGeneratorConfig) {
-		this.#databaseModelGeneratorConfig = config;
+		this._databaseModelGeneratorConfig = config;
 		return this;
 	}
 
 	public configureJpa(config: PartialJpaTransformerConfig) {
-		this.#config = config;
+		this._config = config;
 		return this;
 	}
 
 	public build() {
 		return new JpaTransformer(
-				new DatabaseModelGenerator(this.#databaseModelGeneratorConfig),
-				this.#config
+				new DatabaseModelGenerator(this._databaseModelGeneratorConfig),
+				this._config
 		);
 	}
 

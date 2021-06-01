@@ -21,8 +21,8 @@ import ClassModelSourceFinder
 
 export default class JpaTransformerFieldVisitor {
 
-	readonly #annotateGetters: boolean;
-	readonly #fieldAnnotationsSuppliers: FieldAnnotationsSupplier[];
+	private readonly _annotateGetters: boolean;
+	private readonly _fieldAnnotationsSuppliers: FieldAnnotationsSupplier[];
 
 	constructor(
 			tableNameCaseConverter: CaseConverter,
@@ -30,12 +30,12 @@ export default class JpaTransformerFieldVisitor {
 			annotateGetters: boolean
 	) {
 
-		this.#annotateGetters = annotateGetters;
+		this._annotateGetters = annotateGetters;
 
 		const entityRelationshipModelSourceFinder = new EntityRelationshipModelSourceFinder();
 		const classModelSourceFinder = new ClassModelSourceFinder();
 
-		this.#fieldAnnotationsSuppliers = [
+		this._fieldAnnotationsSuppliers = [
 			new IdentityFieldAnnotationsSupplier(),
 			new ColumnFieldAnnotationsSupplier(
 					entityRelationshipModelSourceFinder,
@@ -60,12 +60,12 @@ export default class JpaTransformerFieldVisitor {
 	}
 
 	private getFieldAnnotations(javaField: JavaField, context: JavaFieldTransformContext<JpaTransformerSetupData>) {
-		return this.#fieldAnnotationsSuppliers.flatMap(supplier => supplier.getAnnotations(javaField, context));
+		return this._fieldAnnotationsSuppliers.flatMap(supplier => supplier.getAnnotations(javaField, context));
 	}
 
 	private getElementToAnnotate(javaField: JavaField): JavaAnnotatedElement {
 
-		if (this.#annotateGetters && javaField.getter != null) {
+		if (this._annotateGetters && javaField.getter != null) {
 			return javaField.getter;
 		}
 

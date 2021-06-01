@@ -21,7 +21,7 @@ import JavaxValidationFieldVisitor
 
 export default class JavaxValidationTransformer implements JavaClassModelTransformer {
 
-	readonly #javaxValidationFieldVisitor: JavaxValidationFieldVisitor;
+	private readonly _javaxValidationFieldVisitor: JavaxValidationFieldVisitor;
 
 	constructor(config?: PartialJavaxValidationTransformerConfig) {
 
@@ -33,7 +33,7 @@ export default class JavaxValidationTransformer implements JavaClassModelTransfo
 
 		const javaxValidationAnnotationsSupplier = new JavaxValidationAnnotationsSupplier(notNullTextValidationStrategy, notNullBlobValidationStrategy);
 
-		this.#javaxValidationFieldVisitor = new JavaxValidationFieldVisitor(
+		this._javaxValidationFieldVisitor = new JavaxValidationFieldVisitor(
 				javaxValidationAnnotationsSupplier,
 				annotateGetters
 		);
@@ -45,7 +45,7 @@ export default class JavaxValidationTransformer implements JavaClassModelTransfo
 	}
 
 	visitField(javaField: JavaField, context: JavaFieldTransformContext<unknown>): void {
-		this.#javaxValidationFieldVisitor.visitField(javaField, context);
+		this._javaxValidationFieldVisitor.visitField(javaField, context);
 	}
 
 	visitClass(javaClass: JavaClass, context: JavaClassTransformContext<unknown>): void {

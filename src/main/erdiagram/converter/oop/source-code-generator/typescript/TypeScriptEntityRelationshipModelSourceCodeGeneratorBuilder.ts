@@ -8,23 +8,23 @@ import TypeScriptEntityRelationshipModelSourceCodeGenerator
 
 export default class TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder {
 
-	#classModelGeneratorConfig: PartialClassModelGeneratorConfig = {};
-	#typeScriptClassModelToCodeConverterConfig: PartialTypeScriptClassModelToCodeConverterConfig = {};
+	private _classModelGeneratorConfig: PartialClassModelGeneratorConfig = {};
+	private _typeScriptClassModelToCodeConverterConfig: PartialTypeScriptClassModelToCodeConverterConfig = {};
 
 	public configureClassModel(config: PartialClassModelGeneratorConfig) {
-		this.#classModelGeneratorConfig = config;
+		this._classModelGeneratorConfig = config;
 		return this;
 	}
 
 	public configureTypeScriptCode(config: PartialTypeScriptClassModelToCodeConverterConfig) {
-		this.#typeScriptClassModelToCodeConverterConfig = config;
+		this._typeScriptClassModelToCodeConverterConfig = config;
 		return this;
 	}
 
 	public build() {
 		return new TypeScriptEntityRelationshipModelSourceCodeGenerator(
-				new ClassModelGenerator(this.#classModelGeneratorConfig),
-				new TypeScriptClassModelToCodeConverter(this.#typeScriptClassModelToCodeConverterConfig)
+				new ClassModelGenerator(this._classModelGeneratorConfig),
+				new TypeScriptClassModelToCodeConverter(this._typeScriptClassModelToCodeConverterConfig)
 		);
 	}
 

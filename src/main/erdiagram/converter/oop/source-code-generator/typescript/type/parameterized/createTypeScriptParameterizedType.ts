@@ -8,25 +8,25 @@ export default function createTypeScriptParameterizedType(name: string, paramete
 
 class TypeScriptParameterizedTypeImpl implements TypeScriptParameterizedType {
 
-	readonly #name: string;
-	readonly #parameterTypes: TypeScriptType[];
+	private readonly _name: string;
+	private readonly _parameterTypes: TypeScriptType[];
 
 	constructor(name: string, parameterTypes: TypeScriptType[]) {
-		this.#name = name;
-		this.#parameterTypes = parameterTypes;
+		this._name = name;
+		this._parameterTypes = parameterTypes;
 	}
 
 	get name() {
-		return this.#name;
+		return this._name;
 	}
 
 	get parameterTypes() {
-		return this.#parameterTypes;
+		return this._parameterTypes;
 	}
 
 	format(): string {
-		const formattedParameterTypes = this.#parameterTypes.map(parameterType => parameterType.format()).join(', ');
-		return `${this.#name}<${formattedParameterTypes}>`;
+		const formattedParameterTypes = this._parameterTypes.map(parameterType => parameterType.format()).join(', ');
+		return `${this._name}<${formattedParameterTypes}>`;
 	}
 
 }
