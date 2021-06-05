@@ -1,10 +1,11 @@
 import {EntityRelationshipModel} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {DatabaseModel} from '@/erdiagram/converter/database/model/database-model-types';
 import DatabaseModelGenerator from '@/erdiagram/converter/database/model/DatabaseModelGenerator';
-import SqlEntityRelationshipModelSourceCodeGenerator
-	from '@/erdiagram/converter/database/source-code-generator/SqlEntityRelationshipModelSourceCodeGenerator';
+import SqlSourceCodeGenerator
+	from '../../../../../main/erdiagram/converter/database/source-code-generator/SqlSourceCodeGenerator';
 import DatabaseModelToSqlCodeConverter
 	from '@/erdiagram/converter/database/source-code-generator/sql/DatabaseModelToSqlCodeConverter';
+import {createMockObject} from '#/erdiagram/util/jest-utils';
 
 test('convertToCode() calls dependencies', () => {
 
@@ -23,19 +24,17 @@ test('convertToCode() calls dependencies', () => {
 
 	};
 
-	const databaseModelGeneratorMock = {
-		generateDatabaseModel: jest.fn(() => mockValues.databaseModel)
-	};
+	const databaseModelGeneratorMock = createMockObject<DatabaseModelGenerator>({
+		generateDatabaseModel: jest.fn((model) => mockValues.databaseModel)
+	});
 
-	const convertToCodeMockFunction = jest.fn(() => mockValues.outputCode);
+	const databaseModelToSqlCodeConverterMock = createMockObject<DatabaseModelToSqlCodeConverter>({
+		convertToCode: jest.fn((model) => mockValues.outputCode)
+	});
 
-	const databaseModelToSqlCodeConverterMock = {
-		convertToCode: convertToCodeMockFunction
-	};
-
-	const entityRelationshipModelToDatabaseCodeConverter = new SqlEntityRelationshipModelSourceCodeGenerator(
-			databaseModelGeneratorMock as unknown as DatabaseModelGenerator,
-			databaseModelToSqlCodeConverterMock as unknown as DatabaseModelToSqlCodeConverter
+	const entityRelationshipModelToDatabaseCodeConverter = new SqlSourceCodeGenerator(
+			databaseModelGeneratorMock,
+			databaseModelToSqlCodeConverterMock
 	);
 
 	const result = entityRelationshipModelToDatabaseCodeConverter.generateSourceCode(mockValues.entityRelationshipModel);

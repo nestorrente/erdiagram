@@ -240,7 +240,7 @@ const outputCode = databaseModelToCodeConverter.convertToCode(databaseModel);
 console.log(outputCode);
 
 // Way 2: create an EntityRelationshipModelToDatabaseCodeConverter.
-// That class implements the EntityRelationshipModelSourceCodeGenerator interface,
+// That class implements the SourceCodeGenerator interface,
 // which allows to transform the EntityRelationshipModel to the output code directly.
 // It does the 2-step conversion under the hood.
 
@@ -338,7 +338,7 @@ const outputCode = classModelToCodeConverter.convertToCode(classModel);
 console.log(outputCode);
 
 // Way 2: create an EntityRelationshipModelToClassCodeConverter.
-// That class implements the EntityRelationshipModelSourceCodeGenerator interface,
+// That class implements the SourceCodeGenerator interface,
 // which allows to transform the EntityRelationshipModel to the output code directly.
 // It does the 2-step conversion under the hood.
 
@@ -497,8 +497,8 @@ of your entity-relationship model.
 
 ```javascript
 import {
-  PlantUmlEntityRelationshipModelToDiagramCodeConverter,
-  PlantUmlEntityRelationshipModelToDiagramImageConverter
+    PlantUmlEntityRelationshipModelToDiagramCodeConverter,
+    PlantUmlEntityRelationshipModelToDiagramImageConverter
 } from '@nestorrente/erdiagram';
 
 const model = { /* the model of the parsing example */};
@@ -506,8 +506,8 @@ const model = { /* the model of the parsing example */};
 const plantUmlERModelToDiagramCodeConverter = new PlantUmlEntityRelationshipModelToDiagramCodeConverter();
 const plantUmlCode = erModelToDiagramCodeConverter.convertToCode(model);
 
-const nomnomlERModelToDiagramCodeConverter = new NomnomlEntityRelationshipModelSourceCodeGenerator({
-  // Optional config options
+const nomnomlERModelToDiagramCodeConverter = new NomnomlSourceCodeGenerator({
+    // Optional config options
 });
 const nomnomlCode = nomnomlERModelToDiagramCodeConverter.generateSourceCode(model);
 ```

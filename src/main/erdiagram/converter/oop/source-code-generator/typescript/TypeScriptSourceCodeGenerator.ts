@@ -1,14 +1,12 @@
 import {EntityRelationshipModel} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import ClassModelGenerator from '@/erdiagram/converter/oop/model/ClassModelGenerator';
-import EntityRelationshipModelSourceCodeGenerator
-	from '@/erdiagram/converter/EntityRelationshipModelSourceCodeGenerator';
+import SourceCodeGenerator from '@/erdiagram/converter/SourceCodeGenerator';
 import TypeScriptClassModelToCodeConverter
 	from '@/erdiagram/converter/oop/source-code-generator/typescript/TypeScriptClassModelToCodeConverter';
-import TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder
-	from '@/erdiagram/converter/oop/source-code-generator/typescript/TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder';
+import TypeScriptSourceCodeGeneratorBuilder
+	from '@/erdiagram/converter/oop/source-code-generator/typescript/TypeScriptSourceCodeGeneratorBuilder';
 
-export default class TypeScriptEntityRelationshipModelSourceCodeGenerator
-		implements EntityRelationshipModelSourceCodeGenerator {
+export default class TypeScriptSourceCodeGenerator implements SourceCodeGenerator {
 
 	private readonly _classModelGenerator: ClassModelGenerator;
 	private readonly _typeScriptClassModelToCodeConverter: TypeScriptClassModelToCodeConverter;
@@ -31,7 +29,7 @@ export default class TypeScriptEntityRelationshipModelSourceCodeGenerator
 	}
 
 	static builder() {
-		return new TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder();
+		return new TypeScriptSourceCodeGeneratorBuilder();
 	}
 
 }

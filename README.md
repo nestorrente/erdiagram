@@ -91,7 +91,7 @@ npm run build
     * SQLite
     * SQL Server
   * OOP classes/interfaces:
-    * Java POJO (no JPA support so far)
+    * Java (includes Bean Validation and JPA support)
     * TypeScript
   * Diagram code:
     * PlantUML

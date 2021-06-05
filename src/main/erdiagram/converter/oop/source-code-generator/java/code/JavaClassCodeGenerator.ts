@@ -18,8 +18,8 @@ export default class JavaClassCodeGenerator {
 
 	private readonly _javaUsedTypesCompiler: JavaClassUsedTypesCompiler;
 
-	constructor() {
-		this._javaUsedTypesCompiler = new JavaClassUsedTypesCompiler();
+	constructor(javaUsedTypesCompiler: JavaClassUsedTypesCompiler) {
+		this._javaUsedTypesCompiler = javaUsedTypesCompiler;
 	}
 
 	public generateCode(javaClass: JavaClass): string {

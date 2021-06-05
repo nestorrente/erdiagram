@@ -1,13 +1,13 @@
 import DatabaseModelGenerator from '@/erdiagram/converter/database/model/DatabaseModelGenerator';
-import EntityRelationshipModelSourceCodeGenerator
-	from '@/erdiagram/converter/EntityRelationshipModelSourceCodeGenerator';
+import SourceCodeGenerator from '@/erdiagram/converter/SourceCodeGenerator';
 import {EntityRelationshipModel} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import DatabaseModelToSqlCodeConverter
 	from '@/erdiagram/converter/database/source-code-generator/sql/DatabaseModelToSqlCodeConverter';
-import SqlEntityRelationshipModelSourceCodeGeneratorBuilder
-	from '@/erdiagram/converter/database/source-code-generator/SqlEntityRelationshipModelSourceCodeGeneratorBuilder';
+import SqlSourceCodeGeneratorBuilder
+	from '@/erdiagram/converter/database/source-code-generator/SqlSourceCodeGeneratorBuilder';
+import SqlDialect from '@/erdiagram/converter/database/source-code-generator/sql/dialect/common/SqlDialect';
 
-export default class SqlEntityRelationshipModelSourceCodeGenerator implements EntityRelationshipModelSourceCodeGenerator {
+export default class SqlSourceCodeGenerator implements SourceCodeGenerator {
 
 	private readonly databaseModelGenerator: DatabaseModelGenerator;
 	private readonly databaseModelToSqlCodeConverter: DatabaseModelToSqlCodeConverter;
@@ -25,12 +25,12 @@ export default class SqlEntityRelationshipModelSourceCodeGenerator implements En
 		return this.databaseModelToSqlCodeConverter.convertToCode(databaseModel);
 	}
 
-	static withDefaultConfig() {
-		return this.builder().build();
+	static withDefaultConfig(sqlDialect: SqlDialect) {
+		return this.builder().useDialect(sqlDialect).build();
 	}
 
 	static builder() {
-		return new SqlEntityRelationshipModelSourceCodeGeneratorBuilder();
+		return new SqlSourceCodeGeneratorBuilder();
 	}
 
 }

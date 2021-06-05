@@ -1,6 +1,5 @@
-import JavaEntityRelationshipModelSourceCodeGenerator from './JavaEntityRelationshipModelSourceCodeGenerator';
-import JavaEntityRelationshipModelSourceCodeGeneratorBuilder
-	from './JavaEntityRelationshipModelSourceCodeGeneratorBuilder';
+import JavaSourceCodeGenerator from './JavaSourceCodeGenerator';
+import JavaSourceCodeGeneratorBuilder from './JavaSourceCodeGeneratorBuilder';
 
 export * from './annotation/exports';
 export * from './model/exports';
@@ -9,6 +8,6 @@ export * from './validation/exports';
 export * from './type/exports';
 
 export {
-	JavaEntityRelationshipModelSourceCodeGenerator,
-	JavaEntityRelationshipModelSourceCodeGeneratorBuilder
+	JavaSourceCodeGenerator,
+	JavaSourceCodeGeneratorBuilder
 };

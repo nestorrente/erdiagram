@@ -1,13 +1,13 @@
-import {NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager} from '@/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager';
-import NomnomlEntityRelationshipModelSourceCodeGeneratorConfig
-	from '@/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelSourceCodeGeneratorConfig';
+import {NomnomlSourceCodeGeneratorConfigManager} from '../../../../../../main/erdiagram/converter/diagram/nomnoml/config/NomnomlSourceCodeGeneratorConfigManager';
+import NomnomlSourceCodeGeneratorConfig
+	from '../../../../../../main/erdiagram/converter/diagram/nomnoml/config/NomnomlSourceCodeGeneratorConfig';
 import {JsonValue} from 'true-json';
 
-const configManager = new NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager();
+const configManager = new NomnomlSourceCodeGeneratorConfigManager();
 
 describe('Serialization', () => {
 
-	const config: NomnomlEntityRelationshipModelSourceCodeGeneratorConfig = {
+	const config: NomnomlSourceCodeGeneratorConfig = {
 		arrowSize: 1,
 		bendSize: undefined,
 		direction: undefined,

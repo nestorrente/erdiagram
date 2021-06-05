@@ -10,7 +10,7 @@ import NotNullBlobValidationStrategy
 import JavaAnnotation from '@/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation';
 import ERDiagramSyntaxError from '@/erdiagram/parser/types/error/ERDiagramSyntaxError';
 
-export default class JavaxValidationAnnotationsSupplier {
+export default class BeanValidationAnnotationsSupplier {
 
 	constructor(
 			private readonly notNullTextValidationStrategy: NotNullTextValidationStrategy,

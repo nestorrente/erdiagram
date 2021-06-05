@@ -1,11 +1,10 @@
 import {EntityRelationshipModel} from '@/erdiagram/parser/types/entity-relationship-model-types';
-import EntityRelationshipModelSourceCodeGenerator
-	from '@/erdiagram/converter/EntityRelationshipModelSourceCodeGenerator';
+import SourceCodeGenerator from '@/erdiagram/converter/SourceCodeGenerator';
 import PlantUmlEntityCodeGenerator from '@/erdiagram/converter/diagram/plantuml/entity/PlantUmlEntityCodeGenerator';
 import PlantUmlRelationshipCodeGenerator
 	from '@/erdiagram/converter/diagram/plantuml/relationship/PlantUmlRelationshipCodeGenerator';
 
-export default class PlantUmlEntityRelationshipModelSourceCodeGenerator implements EntityRelationshipModelSourceCodeGenerator {
+export default class PlantUmlSourceCodeGenerator implements SourceCodeGenerator {
 
 	private readonly entityCodeGenerator = new PlantUmlEntityCodeGenerator();
 	private readonly relationshipCodeGenerator = new PlantUmlRelationshipCodeGenerator();

@@ -4,10 +4,10 @@ import {
 	EntityPropertyType,
 	EntityRelationshipModel
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
-import PlantUmlEntityRelationshipModelSourceCodeGenerator
-	from '@/erdiagram/converter/diagram/plantuml/PlantUmlEntityRelationshipModelSourceCodeGenerator';
+import PlantUmlSourceCodeGenerator
+	from '../../../../../main/erdiagram/converter/diagram/plantuml/PlantUmlSourceCodeGenerator';
 
-const plantumlERModelToDiagramCodeConverter = new PlantUmlEntityRelationshipModelSourceCodeGenerator();
+const plantumlERModelToDiagramCodeConverter = new PlantUmlSourceCodeGenerator();
 
 function addHeaderAndFooter(expectedResult: string): string {
 	return [

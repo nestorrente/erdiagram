@@ -3,16 +3,15 @@ import JavaClassModelCodeGenerator
 	from '@/erdiagram/converter/oop/source-code-generator/java/code/JavaClassModelCodeGenerator';
 import JavaClassCodeGenerator from '@/erdiagram/converter/oop/source-code-generator/java/code/JavaClassCodeGenerator';
 import {createJavaClass} from '#/erdiagram/converter/oop/source-code-generator/java/model/generator/source/java-class-model-mothers';
+import {createMockObject} from '#/erdiagram/util/jest-utils';
 
-const javaClassCodeGeneratorMock = {
+const javaClassCodeGeneratorMock = createMockObject<JavaClassCodeGenerator>({
 	generateCode: jest.fn((javaClass: JavaClass): string => {
 		return `/* code for class ${javaClass.name} */`;
 	})
-};
+});
 
-const javaClassModelCodeGenerator = new JavaClassModelCodeGenerator(
-		javaClassCodeGeneratorMock as unknown as JavaClassCodeGenerator
-);
+const javaClassModelCodeGenerator = new JavaClassModelCodeGenerator(javaClassCodeGeneratorMock);
 
 test('Should invoke JavaClassCodeGenerator for all classes', () => {
 

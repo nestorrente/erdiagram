@@ -9,8 +9,16 @@ import {JavaVisibility} from '@/erdiagram/converter/oop/source-code-generator/ja
 import JavaAnnotation from '@/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation';
 import createJavaSimpleType
 	from '@/erdiagram/converter/oop/source-code-generator/java/type/simple/createJavaSimpleType';
+import JavaClassUsedTypesCompiler
+	from '@/erdiagram/converter/oop/source-code-generator/java/type/import/JavaClassUsedTypesCompiler';
+import JavaAnnotationUsedTypesCompiler
+	from '@/erdiagram/converter/oop/source-code-generator/java/type/import/JavaAnnotationUsedTypesCompiler';
 
-const javaClassModelToCodeConverter = new JavaClassCodeGenerator();
+const javaClassModelToCodeConverter = new JavaClassCodeGenerator(
+		new JavaClassUsedTypesCompiler(
+				new JavaAnnotationUsedTypesCompiler()
+		)
+);
 
 describe('Empty class', () => {
 

@@ -1,9 +1,9 @@
-import nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, {NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager} from './NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager';
-import NomnomlEntityRelationshipModelSourceCodeGeneratorConfig
-	from '@/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelSourceCodeGeneratorConfig';
+import nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, {NomnomlSourceCodeGeneratorConfigManager} from './NomnomlSourceCodeGeneratorConfigManager';
+import NomnomlSourceCodeGeneratorConfig
+	from '@/erdiagram/converter/diagram/nomnoml/config/NomnomlSourceCodeGeneratorConfig';
 
 export {
-	NomnomlEntityRelationshipModelSourceCodeGeneratorConfig,
-	NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager,
+	NomnomlSourceCodeGeneratorConfig,
+	NomnomlSourceCodeGeneratorConfigManager,
 	nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager
 };

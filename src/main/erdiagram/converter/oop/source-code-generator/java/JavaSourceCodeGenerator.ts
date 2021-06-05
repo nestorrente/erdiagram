@@ -9,17 +9,15 @@ import JavaClassModelCodeGenerator
 import ApplyTransformersCommand
 	from '@/erdiagram/converter/oop/source-code-generator/java/model/transformer/ApplyTransformersCommand';
 import {SetupContext} from '@/erdiagram/converter/oop/source-code-generator/java/model/transformer/java-class-model-transformer-context-types';
-import JavaEntityRelationshipModelSourceCodeGeneratorBuilder
-	from '@/erdiagram/converter/oop/source-code-generator/java/JavaEntityRelationshipModelSourceCodeGeneratorBuilder';
+import JavaSourceCodeGeneratorBuilder
+	from '@/erdiagram/converter/oop/source-code-generator/java/JavaSourceCodeGeneratorBuilder';
 import SourceFileInfo from '@/erdiagram/converter/common/SourceFileInfo';
 import JavaClassModelSourceFilesGenerator
 	from '@/erdiagram/converter/oop/source-code-generator/java/code/JavaClassModelSourceFilesGenerator';
-import MultipleFileEntityRelationshipModelSourceCodeGenerator
-	from '@/erdiagram/converter/MultipleFileEntityRelationshipModelSourceCodeGenerator';
+import MultipleFileSourceCodeGenerator from '@/erdiagram/converter/MultipleFileSourceCodeGenerator';
 import {JavaClassModel} from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
 
-export default class JavaEntityRelationshipModelSourceCodeGenerator
-		implements MultipleFileEntityRelationshipModelSourceCodeGenerator {
+export default class JavaSourceCodeGenerator implements MultipleFileSourceCodeGenerator {
 
 	private readonly _classModelGenerator: ClassModelGenerator;
 	private readonly _javaClassModelGenerator: JavaClassModelGenerator;
@@ -27,6 +25,7 @@ export default class JavaEntityRelationshipModelSourceCodeGenerator
 	private readonly _javaClassModelCodeGenerator: JavaClassModelCodeGenerator;
 	private readonly _javaClassModelSourceFilesGenerator: JavaClassModelSourceFilesGenerator;
 
+	// FIXME too much dependencies?
 	constructor(
 			classModelGenerator: ClassModelGenerator,
 			javaClassModelGenerator: JavaClassModelGenerator,
@@ -60,7 +59,6 @@ export default class JavaEntityRelationshipModelSourceCodeGenerator
 			javaClassModelDescriptorsRepository
 		} = this._javaClassModelGenerator.generateJavaClassModel(classModel);
 
-		// FIXME too much dependencies?
 		const applyTransformersCommandContext: SetupContext = {
 			entityRelationshipModel,
 			classModel,
@@ -82,7 +80,7 @@ export default class JavaEntityRelationshipModelSourceCodeGenerator
 	}
 
 	static builder() {
-		return new JavaEntityRelationshipModelSourceCodeGeneratorBuilder();
+		return new JavaSourceCodeGeneratorBuilder();
 	}
 
 }

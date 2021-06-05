@@ -1,12 +1,11 @@
 import {PartialDatabaseModelGeneratorConfig} from '@/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfig';
 import SqlDialect from '@/erdiagram/converter/database/source-code-generator/sql/dialect/common/SqlDialect';
 import DatabaseModelGenerator from '@/erdiagram/converter/database/model/DatabaseModelGenerator';
-import SqlEntityRelationshipModelSourceCodeGenerator
-	from '@/erdiagram/converter/database/source-code-generator/SqlEntityRelationshipModelSourceCodeGenerator';
+import SqlSourceCodeGenerator from '@/erdiagram/converter/database/source-code-generator/SqlSourceCodeGenerator';
 import DatabaseModelToSqlCodeConverter
 	from '@/erdiagram/converter/database/source-code-generator/sql/DatabaseModelToSqlCodeConverter';
 
-export default class SqlEntityRelationshipModelSourceCodeGeneratorBuilder {
+export default class SqlSourceCodeGeneratorBuilder {
 
 	private _databaseModelGeneratorConfig: PartialDatabaseModelGeneratorConfig = {};
 	private _sqlDialect?: SqlDialect;
@@ -27,7 +26,7 @@ export default class SqlEntityRelationshipModelSourceCodeGeneratorBuilder {
 			throw new Error('SqlDialect is not configured');
 		}
 
-		return new SqlEntityRelationshipModelSourceCodeGenerator(
+		return new SqlSourceCodeGenerator(
 				new DatabaseModelGenerator(this._databaseModelGeneratorConfig),
 				new DatabaseModelToSqlCodeConverter(this._sqlDialect)
 		);

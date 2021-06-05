@@ -1,7 +1,5 @@
 import {JavaClass, JavaField} from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
 import {ClassDescriptor, ClassFieldDescriptor} from '@/erdiagram/converter/oop/model/class-model-types';
-import JavaClassModelDescriptorsRepositoryBuilder
-	from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/source/JavaClassModelDescriptorsRepositoryBuilder';
 
 export default class JavaClassModelDescriptorsRepository {
 
@@ -38,10 +36,6 @@ export default class JavaClassModelDescriptorsRepository {
 
 		return fieldDescriptor;
 
-	}
-
-	static builder() {
-		return new JavaClassModelDescriptorsRepositoryBuilder();
 	}
 
 }

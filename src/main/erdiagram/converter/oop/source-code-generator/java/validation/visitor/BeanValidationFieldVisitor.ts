@@ -3,25 +3,25 @@ import {
 	JavaAnnotatedElement,
 	JavaField
 } from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
-import JavaxValidationAnnotationsSupplier
-	from '@/erdiagram/converter/oop/source-code-generator/java/validation/visitor/JavaxValidationAnnotationsSupplier';
+import BeanValidationAnnotationsSupplier
+	from '@/erdiagram/converter/oop/source-code-generator/java/validation/visitor/BeanValidationAnnotationsSupplier';
 
-export default class JavaxValidationFieldVisitor {
+export default class BeanValidationFieldVisitor {
 
-	private readonly _javaValidationAnnotationsGenerator: JavaxValidationAnnotationsSupplier;
+	private readonly _beanValidationAnnotationsGenerator: BeanValidationAnnotationsSupplier;
 	private readonly _annotateGetters: boolean;
 
 	constructor(
-			javaValidationAnnotationsGenerator: JavaxValidationAnnotationsSupplier,
+			beanValidationAnnotationsGenerator: BeanValidationAnnotationsSupplier,
 			annotateGetters: boolean
 	) {
-		this._javaValidationAnnotationsGenerator = javaValidationAnnotationsGenerator;
+		this._beanValidationAnnotationsGenerator = beanValidationAnnotationsGenerator;
 		this._annotateGetters = annotateGetters;
 	}
 
 	visitField(javaField: JavaField, context: JavaFieldTransformContext<unknown>): void {
 
-		const annotations = this._javaValidationAnnotationsGenerator.getAnnotations(context.fieldDescriptor);
+		const annotations = this._beanValidationAnnotationsGenerator.getAnnotations(context.fieldDescriptor);
 		const elementToAnnotate = this.getElementToAnnotate(javaField);
 
 		elementToAnnotate.annotations.push(...annotations);

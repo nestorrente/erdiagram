@@ -1,5 +1,5 @@
-import JavaxValidationAnnotationsSupplier
-	from '@/erdiagram/converter/oop/source-code-generator/java/validation/visitor/JavaxValidationAnnotationsSupplier';
+import BeanValidationAnnotationsSupplier
+	from '../../../../../../../../main/erdiagram/converter/oop/source-code-generator/java/validation/visitor/BeanValidationAnnotationsSupplier';
 import NotNullTextValidationStrategy
 	from '@/erdiagram/converter/oop/source-code-generator/java/validation/strategy/NotNullTextValidationStrategy';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
@@ -11,7 +11,7 @@ import NotNullBlobValidationStrategy
 import {createPrimitiveClassField} from '#/erdiagram/converter/oop/model/class-model-mothers';
 import JavaAnnotation from '@/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation';
 
-const validationAnnotationsSupplier = new JavaxValidationAnnotationsSupplier(
+const validationAnnotationsSupplier = new BeanValidationAnnotationsSupplier(
 		NotNullTextValidationStrategy.NOT_NULL,
 		NotNullBlobValidationStrategy.NOT_NULL
 );
@@ -70,7 +70,7 @@ describe('Not-null text validation strategies', () => {
 
 	testCaseParams.forEach(([notNullTextValidationStrategy, annotationType]) => {
 
-		const customizedJavaValidationAnnotationsGenerator = new JavaxValidationAnnotationsSupplier(
+		const customizedJavaValidationAnnotationsGenerator = new BeanValidationAnnotationsSupplier(
 				notNullTextValidationStrategy,
 				NotNullBlobValidationStrategy.NOT_NULL
 		);
@@ -122,7 +122,7 @@ describe('Not-null blob validation strategies', () => {
 
 	testCaseParams.forEach(([notNullBlobValidationStrategy, annotationType]) => {
 
-		const customizedJavaValidationAnnotationsGenerator = new JavaxValidationAnnotationsSupplier(
+		const customizedJavaValidationAnnotationsGenerator = new BeanValidationAnnotationsSupplier(
 				NotNullTextValidationStrategy.NOT_NULL,
 				notNullBlobValidationStrategy
 		);

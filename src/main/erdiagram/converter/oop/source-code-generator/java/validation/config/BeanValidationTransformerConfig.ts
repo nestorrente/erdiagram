@@ -3,10 +3,10 @@ import NotNullTextValidationStrategy
 import NotNullBlobValidationStrategy
 	from '@/erdiagram/converter/oop/source-code-generator/java/validation/strategy/NotNullBlobValidationStrategy';
 
-export default interface JavaxValidationTransformerConfig {
+export default interface BeanValidationTransformerConfig {
 	notNullTextValidationStrategy: NotNullTextValidationStrategy;
 	notNullBlobValidationStrategy: NotNullBlobValidationStrategy;
 	annotateGetters: boolean;
 }
 
-export type PartialJavaxValidationTransformerConfig = Partial<JavaxValidationTransformerConfig>;
+export type PartialBeanValidationTransformerConfig = Partial<BeanValidationTransformerConfig>;

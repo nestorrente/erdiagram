@@ -9,6 +9,10 @@ export default class JavaClassUsedTypesCompiler {
 
 	private readonly _javaAnnotationUsedTypesCompiler = new JavaAnnotationUsedTypesCompiler();
 
+	constructor(javaAnnotationUsedTypesCompiler: JavaAnnotationUsedTypesCompiler) {
+		this._javaAnnotationUsedTypesCompiler = javaAnnotationUsedTypesCompiler;
+	}
+
 	public getUsedTypes(javaClass: JavaClass): JavaType[] {
 
 		const usedTypes: JavaType[] = [];

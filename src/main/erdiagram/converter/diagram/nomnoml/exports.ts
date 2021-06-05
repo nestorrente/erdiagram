@@ -1,8 +1,7 @@
-import NomnomlEntityRelationshipModelSourceCodeGenerator
-	from './NomnomlEntityRelationshipModelSourceCodeGenerator';
+import NomnomlSourceCodeGenerator from './NomnomlSourceCodeGenerator';
 
 export * from './config/exports';
 
 export {
-	NomnomlEntityRelationshipModelSourceCodeGenerator
+	NomnomlSourceCodeGenerator
 };

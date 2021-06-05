@@ -16,11 +16,13 @@ export default class JavaImportStatementsGenerator {
 
 	public generateImportStatements(javaTypes: JavaType[]): string[] {
 
-		const importStatements = this.unrollTypesRecursively(javaTypes)
+		const cannonicalNames = this.unrollTypesRecursively(javaTypes)
 				.filter(javaType => this.isImportRequired(javaType))
-				.map(javaType => `import ${javaType.canonicalName};`);
+				.map(javaType => javaType.canonicalName);
 
-		return removeDuplicates(importStatements).sort();
+		return removeDuplicates(cannonicalNames)
+				.sort()
+				.map(cannonicalName => `import ${cannonicalName};`);
 
 	}
 

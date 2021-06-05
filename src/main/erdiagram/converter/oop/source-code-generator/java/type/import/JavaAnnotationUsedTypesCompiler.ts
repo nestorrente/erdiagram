@@ -5,7 +5,6 @@ import {
 	JavaAnnotationParameterValue
 } from '@/erdiagram/converter/oop/source-code-generator/java/annotation/annotation-parameter-types';
 
-// TODO add unit tests
 export default class JavaAnnotationUsedTypesCompiler {
 
 	public getUsedTypes(annotation: JavaAnnotation): JavaType[] {
@@ -21,7 +20,7 @@ export default class JavaAnnotationUsedTypesCompiler {
 
 	}
 
-	private getAnnotationParameterUsedTypes(parameterValue: JavaAnnotationParameterValue) {
+	private getAnnotationParameterUsedTypes(parameterValue: JavaAnnotationParameterValue): JavaType[] {
 
 		if (!Array.isArray(parameterValue)) {
 			return this.getAnnotationSingleParameterUsedTypes(parameterValue);

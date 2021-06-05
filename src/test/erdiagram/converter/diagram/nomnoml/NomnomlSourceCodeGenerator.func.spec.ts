@@ -4,11 +4,11 @@ import {
 	EntityPropertyType,
 	EntityRelationshipModel
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
-import NomnomlEntityRelationshipModelSourceCodeGenerator
-	from '@/erdiagram/converter/diagram/nomnoml/NomnomlEntityRelationshipModelSourceCodeGenerator';
+import NomnomlSourceCodeGenerator
+	from '../../../../../main/erdiagram/converter/diagram/nomnoml/NomnomlSourceCodeGenerator';
 import {createEntityProperty} from '#/erdiagram/parser/entity-relationship-model-mothers';
 
-const nomnomlERModelSourceCodeGenerator = new NomnomlEntityRelationshipModelSourceCodeGenerator();
+const nomnomlERModelSourceCodeGenerator = new NomnomlSourceCodeGenerator();
 
 function addDefaultDirectives(expectedResult: string): string {
 	return [

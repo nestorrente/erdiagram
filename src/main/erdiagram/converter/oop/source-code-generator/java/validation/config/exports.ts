@@ -1,9 +1,9 @@
-import JavaxValidationTransformerConfig, {PartialJavaxValidationTransformerConfig} from './JavaxValidationTransformerConfig';
-import javaxValidationTransformerConfigManager, {JavaxValidationTransformerConfigManager} from './JavaxValidationTransformerConfigManager';
+import BeanValidationTransformerConfig, {PartialBeanValidationTransformerConfig} from './BeanValidationTransformerConfig';
+import beanValidationTransformerConfigManager, {BeanValidationTransformerConfigManager} from './BeanValidationTransformerConfigManager';
 
 export {
-	JavaxValidationTransformerConfig,
-	PartialJavaxValidationTransformerConfig,
-	JavaxValidationTransformerConfigManager,
-	javaxValidationTransformerConfigManager
+	BeanValidationTransformerConfig,
+	PartialBeanValidationTransformerConfig,
+	BeanValidationTransformerConfigManager,
+	beanValidationTransformerConfigManager
 };

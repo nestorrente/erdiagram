@@ -3,10 +3,10 @@ import {PartialClassModelGeneratorConfig} from '@/erdiagram/converter/oop/model/
 import TypeScriptClassModelToCodeConverter
 	from '@/erdiagram/converter/oop/source-code-generator/typescript/TypeScriptClassModelToCodeConverter';
 import {PartialTypeScriptClassModelToCodeConverterConfig} from '@/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptClassModelToCodeConverterConfig';
-import TypeScriptEntityRelationshipModelSourceCodeGenerator
-	from '@/erdiagram/converter/oop/source-code-generator/typescript/TypeScriptEntityRelationshipModelSourceCodeGenerator';
+import TypeScriptSourceCodeGenerator
+	from '@/erdiagram/converter/oop/source-code-generator/typescript/TypeScriptSourceCodeGenerator';
 
-export default class TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder {
+export default class TypeScriptSourceCodeGeneratorBuilder {
 
 	private _classModelGeneratorConfig: PartialClassModelGeneratorConfig = {};
 	private _typeScriptClassModelToCodeConverterConfig: PartialTypeScriptClassModelToCodeConverterConfig = {};
@@ -22,7 +22,7 @@ export default class TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder
 	}
 
 	public build() {
-		return new TypeScriptEntityRelationshipModelSourceCodeGenerator(
+		return new TypeScriptSourceCodeGenerator(
 				new ClassModelGenerator(this._classModelGeneratorConfig),
 				new TypeScriptClassModelToCodeConverter(this._typeScriptClassModelToCodeConverterConfig)
 		);

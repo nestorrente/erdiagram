@@ -7,7 +7,7 @@ import SourceFileInfo from '@/erdiagram/converter/common/SourceFileInfo';
 
 export default class JavaClassModelSourceFilesGenerator {
 
-	readonly _javaClassCodeGenerator: JavaClassCodeGenerator;
+	private readonly _javaClassCodeGenerator: JavaClassCodeGenerator;
 
 	constructor(javaClassCodeGenerator: JavaClassCodeGenerator) {
 		this._javaClassCodeGenerator = javaClassCodeGenerator;

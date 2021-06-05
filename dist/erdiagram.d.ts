@@ -69,7 +69,7 @@ export declare enum Direction {
 	RIGHT_TO_LEFT = "right_to_left",
 	BIDIRECTIONAL = "bidirectional"
 }
-export interface EntityRelationshipModelSourceCodeGenerator {
+export interface SourceCodeGenerator {
 	generateSourceCode(model: EntityRelationshipModel): string;
 }
 export interface SourceFileInfo {
@@ -77,10 +77,10 @@ export interface SourceFileInfo {
 	filename: string;
 	contents: string;
 }
-export interface MultipleFileEntityRelationshipModelSourceCodeGenerator extends EntityRelationshipModelSourceCodeGenerator {
+export interface MultipleFileSourceCodeGenerator extends SourceCodeGenerator {
 	generateSourceFiles(model: EntityRelationshipModel): SourceFileInfo[];
 }
-export declare function isMultipleFileEntityRelationshipModelSourceCodeGenerator(generator: EntityRelationshipModelSourceCodeGenerator): generator is MultipleFileEntityRelationshipModelSourceCodeGenerator;
+export declare function isMultipleFileSourceCodeGenerator(generator: SourceCodeGenerator): generator is MultipleFileSourceCodeGenerator;
 export interface CaseFormat {
 	splitWords(text: string): string[];
 	joinWords(words: string[]): string;
@@ -211,20 +211,20 @@ export declare class DatabaseModelToSqlCodeConverter {
 	private getCreateTableInnerLines;
 	private getAlterTableLines;
 }
-declare class SqlEntityRelationshipModelSourceCodeGeneratorBuilder {
+export declare class SqlSourceCodeGeneratorBuilder {
 	private _databaseModelGeneratorConfig;
 	private _sqlDialect?;
 	configureDatabaseModel(config: PartialDatabaseModelGeneratorConfig): this;
 	useDialect(sqlDialect: SqlDialect): this;
-	build(): SqlEntityRelationshipModelSourceCodeGenerator;
+	build(): SqlSourceCodeGenerator;
 }
-export declare class SqlEntityRelationshipModelSourceCodeGenerator implements EntityRelationshipModelSourceCodeGenerator {
+export declare class SqlSourceCodeGenerator implements SourceCodeGenerator {
 	private readonly databaseModelGenerator;
 	private readonly databaseModelToSqlCodeConverter;
 	constructor(databaseModelGenerator: DatabaseModelGenerator, databaseModelToSqlCodeConverter: DatabaseModelToSqlCodeConverter);
 	generateSourceCode(entityRelationshipModel: EntityRelationshipModel): string;
-	static withDefaultConfig(): SqlEntityRelationshipModelSourceCodeGenerator;
-	static builder(): SqlEntityRelationshipModelSourceCodeGeneratorBuilder;
+	static withDefaultConfig(sqlDialect: SqlDialect): SqlSourceCodeGenerator;
+	static builder(): SqlSourceCodeGeneratorBuilder;
 }
 export interface SqlDialectConfig {
 	typeBindings: Record<EntityPropertyType, string>;
@@ -481,20 +481,12 @@ export interface JavaClassModelTransformer<T = unknown> {
 	visitClass(javaClass: JavaClass, context: JavaClassTransformContext<T>): void;
 	visitModel(javaClassModel: JavaClassModel, context: JavaClassModelTransformContext<T>): void;
 }
-declare class JavaClassModelDescriptorsRepositoryBuilder {
-	private readonly _classDescriptorsMap;
-	private readonly _fieldDescriptorsMap;
-	addClass(javaClass: JavaClass, classDescriptor: ClassDescriptor): this;
-	addField(javaField: JavaField, fieldDescriptor: ClassFieldDescriptor): this;
-	build(): JavaClassModelDescriptorsRepository;
-}
 declare class JavaClassModelDescriptorsRepository {
 	private readonly _classDescriptorsMap;
 	private readonly _fieldDescriptorsMap;
 	constructor(classDescriptorsMap: Map<JavaClass, ClassDescriptor>, fieldDescriptorsMap: Map<JavaField, ClassFieldDescriptor>);
 	getClassDescriptor(javaClass: JavaClass): ClassDescriptor;
 	getFieldDescriptor(javaField: JavaField): ClassFieldDescriptor;
-	static builder(): JavaClassModelDescriptorsRepositoryBuilder;
 }
 export interface JavaClassModelGenerationResult {
 	javaClassModel: JavaClassModel;
@@ -510,9 +502,20 @@ export declare class JavaClassModelGenerator {
 	constructor(config?: PartialJavaClassModelGeneratorConfig);
 	generateJavaClassModel(classModel: ClassModel): JavaClassModelGenerationResult;
 }
+declare class JavaAnnotationUsedTypesCompiler {
+	getUsedTypes(annotation: JavaAnnotation): JavaType[];
+	private getAnnotationParameterUsedTypes;
+	private getAnnotationSingleParameterUsedTypes;
+}
+declare class JavaClassUsedTypesCompiler {
+	private readonly _javaAnnotationUsedTypesCompiler;
+	constructor(javaAnnotationUsedTypesCompiler: JavaAnnotationUsedTypesCompiler);
+	getUsedTypes(javaClass: JavaClass): JavaType[];
+	private getAnnotationsUsedTypes;
+}
 declare class JavaClassCodeGenerator {
 	private readonly _javaUsedTypesCompiler;
-	constructor();
+	constructor(javaUsedTypesCompiler: JavaClassUsedTypesCompiler);
 	generateCode(javaClass: JavaClass): string;
 	private createField;
 	private createGetterLines;
@@ -528,24 +531,24 @@ declare class JavaClassModelCodeGenerator {
 	private generateClassCode;
 	private generateClassHeaderComment;
 }
-export declare class JavaEntityRelationshipModelSourceCodeGeneratorBuilder {
+export declare class JavaSourceCodeGeneratorBuilder {
 	private _classModelGeneratorConfig;
 	private _javaClassModelGeneratorConfig;
 	private _javaClassModelTransformers;
 	configureClassModel(config: PartialClassModelGeneratorConfig): this;
 	configureJavaCode(config: PartialJavaClassModelGeneratorConfig): this;
 	addTransformers(...javaClassModelTransformers: JavaClassModelTransformer[]): this;
-	build(): JavaEntityRelationshipModelSourceCodeGenerator;
+	build(): JavaSourceCodeGenerator;
 }
 declare class JavaClassModelSourceFilesGenerator {
-	readonly _javaClassCodeGenerator: JavaClassCodeGenerator;
+	private readonly _javaClassCodeGenerator;
 	constructor(javaClassCodeGenerator: JavaClassCodeGenerator);
 	generateSourceFiles(javaClassModel: JavaClassModel): SourceFileInfo[];
 	private generateClassSourceFile;
 	private generateClassSourceFileFolder;
 	private generateClassSourceFileName;
 }
-export declare class JavaEntityRelationshipModelSourceCodeGenerator implements MultipleFileEntityRelationshipModelSourceCodeGenerator {
+export declare class JavaSourceCodeGenerator implements MultipleFileSourceCodeGenerator {
 	private readonly _classModelGenerator;
 	private readonly _javaClassModelGenerator;
 	private readonly _javaClassModelTransformers;
@@ -555,8 +558,8 @@ export declare class JavaEntityRelationshipModelSourceCodeGenerator implements M
 	generateSourceCode(entityRelationshipModel: EntityRelationshipModel): string;
 	generateSourceFiles(entityRelationshipModel: EntityRelationshipModel): SourceFileInfo[];
 	private getJavaClassModel;
-	static withDefaultConfig(): JavaEntityRelationshipModelSourceCodeGenerator;
-	static builder(): JavaEntityRelationshipModelSourceCodeGeneratorBuilder;
+	static withDefaultConfig(): JavaSourceCodeGenerator;
+	static builder(): JavaSourceCodeGeneratorBuilder;
 }
 export declare class JavaClassModelGeneratorConfigManager extends AbstractComponentConfigManager<JavaClassModelGeneratorConfig, PartialJavaClassModelGeneratorConfig> {
 	getDefaultConfig(): JavaClassModelGeneratorConfig;
@@ -609,25 +612,25 @@ export declare enum NotNullBlobValidationStrategy {
 	NOT_NULL = "not_null",
 	NOT_EMPTY = "not_empty"
 }
-export interface JavaxValidationTransformerConfig {
+export interface BeanValidationTransformerConfig {
 	notNullTextValidationStrategy: NotNullTextValidationStrategy;
 	notNullBlobValidationStrategy: NotNullBlobValidationStrategy;
 	annotateGetters: boolean;
 }
-export declare type PartialJavaxValidationTransformerConfig = Partial<JavaxValidationTransformerConfig>;
-export declare class JavaxValidationTransformer implements JavaClassModelTransformer {
-	private readonly _javaxValidationFieldVisitor;
-	constructor(config?: PartialJavaxValidationTransformerConfig);
+export declare type PartialBeanValidationTransformerConfig = Partial<BeanValidationTransformerConfig>;
+export declare class BeanValidationTransformer implements JavaClassModelTransformer {
+	private readonly _beanValidationFieldVisitor;
+	constructor(config?: PartialBeanValidationTransformerConfig);
 	setup(context: SetupContext): unknown;
 	visitField(javaField: JavaField, context: JavaFieldTransformContext<unknown>): void;
 	visitClass(javaClass: JavaClass, context: JavaClassTransformContext<unknown>): void;
 	visitModel(javaClassModel: JavaClassModel, context: JavaClassModelTransformContext<unknown>): void;
 }
-export declare class JavaxValidationTransformerConfigManager extends AbstractComponentConfigManager<JavaxValidationTransformerConfig, PartialJavaxValidationTransformerConfig> {
-	getDefaultConfig(): JavaxValidationTransformerConfig;
-	mergeConfigs(fullConfig: JavaxValidationTransformerConfig, partialConfig?: PartialJavaxValidationTransformerConfig): JavaxValidationTransformerConfig;
+export declare class BeanValidationTransformerConfigManager extends AbstractComponentConfigManager<BeanValidationTransformerConfig, PartialBeanValidationTransformerConfig> {
+	getDefaultConfig(): BeanValidationTransformerConfig;
+	mergeConfigs(fullConfig: BeanValidationTransformerConfig, partialConfig?: PartialBeanValidationTransformerConfig): BeanValidationTransformerConfig;
 }
-export declare const javaxValidationTransformerConfigManager: JavaxValidationTransformerConfigManager;
+export declare const beanValidationTransformerConfigManager: BeanValidationTransformerConfigManager;
 export interface JavaParameterizedType extends JavaType {
 	readonly parameterTypes: ReadonlyArray<JavaType>;
 }
@@ -651,20 +654,20 @@ export declare class TypeScriptClassModelToCodeConverter implements ClassModelTo
 	private generateClass;
 	private createField;
 }
-export declare class TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder {
+export declare class TypeScriptSourceCodeGeneratorBuilder {
 	private _classModelGeneratorConfig;
 	private _typeScriptClassModelToCodeConverterConfig;
 	configureClassModel(config: PartialClassModelGeneratorConfig): this;
 	configureTypeScriptCode(config: PartialTypeScriptClassModelToCodeConverterConfig): this;
-	build(): TypeScriptEntityRelationshipModelSourceCodeGenerator;
+	build(): TypeScriptSourceCodeGenerator;
 }
-export declare class TypeScriptEntityRelationshipModelSourceCodeGenerator implements EntityRelationshipModelSourceCodeGenerator {
+export declare class TypeScriptSourceCodeGenerator implements SourceCodeGenerator {
 	private readonly _classModelGenerator;
 	private readonly _typeScriptClassModelToCodeConverter;
 	constructor(classModelGenerator: ClassModelGenerator, typeScriptClassModelToCodeConverter: TypeScriptClassModelToCodeConverter);
 	generateSourceCode(entityRelationshipModel: EntityRelationshipModel): string;
-	static withDefaultConfig(): TypeScriptEntityRelationshipModelSourceCodeGenerator;
-	static builder(): TypeScriptEntityRelationshipModelSourceCodeGeneratorBuilder;
+	static withDefaultConfig(): TypeScriptSourceCodeGenerator;
+	static builder(): TypeScriptSourceCodeGeneratorBuilder;
 }
 export declare class TypeScriptClassModelToCodeConverterConfigManager extends AbstractComponentConfigManager<TypeScriptClassModelToCodeConverterConfig, PartialTypeScriptClassModelToCodeConverterConfig> {
 	getDefaultConfig(): TypeScriptClassModelToCodeConverterConfig;
@@ -686,7 +689,7 @@ export declare class ClassModelGeneratorConfigManager extends AbstractComponentC
 	protected getJsonAdapter(): JsonAdapter<ClassModelGeneratorConfig>;
 }
 export declare const classModelGeneratorConfigManager: ClassModelGeneratorConfigManager;
-export interface NomnomlEntityRelationshipModelSourceCodeGeneratorConfig {
+export interface NomnomlSourceCodeGeneratorConfig {
 	arrowSize?: number;
 	bendSize?: number;
 	direction?: "down" | "right";
@@ -709,20 +712,20 @@ export interface NomnomlEntityRelationshipModelSourceCodeGeneratorConfig {
 	acyclicer?: "greedy";
 	ranker?: "network-simplex" | "tight-tree" | "longest-path";
 }
-export declare class NomnomlEntityRelationshipModelSourceCodeGenerator implements EntityRelationshipModelSourceCodeGenerator {
+export declare class NomnomlSourceCodeGenerator implements SourceCodeGenerator {
 	private readonly config;
 	private readonly entityCodeGenerator;
 	private readonly relationshipCodeGenerator;
 	private readonly directivesCodeGenerator;
-	constructor(config?: NomnomlEntityRelationshipModelSourceCodeGeneratorConfig);
+	constructor(config?: NomnomlSourceCodeGeneratorConfig);
 	generateSourceCode(model: EntityRelationshipModel): string;
 }
-export declare class NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager extends AbstractComponentConfigManager<NomnomlEntityRelationshipModelSourceCodeGeneratorConfig, NomnomlEntityRelationshipModelSourceCodeGeneratorConfig> {
-	getDefaultConfig(): NomnomlEntityRelationshipModelSourceCodeGeneratorConfig;
-	mergeConfigs(fullConfig: NomnomlEntityRelationshipModelSourceCodeGeneratorConfig, partialConfig?: Partial<NomnomlEntityRelationshipModelSourceCodeGeneratorConfig>): NomnomlEntityRelationshipModelSourceCodeGeneratorConfig;
+export declare class NomnomlSourceCodeGeneratorConfigManager extends AbstractComponentConfigManager<NomnomlSourceCodeGeneratorConfig, NomnomlSourceCodeGeneratorConfig> {
+	getDefaultConfig(): NomnomlSourceCodeGeneratorConfig;
+	mergeConfigs(fullConfig: NomnomlSourceCodeGeneratorConfig, partialConfig?: Partial<NomnomlSourceCodeGeneratorConfig>): NomnomlSourceCodeGeneratorConfig;
 }
-export declare const nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager: NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager;
-export declare class PlantUmlEntityRelationshipModelSourceCodeGenerator implements EntityRelationshipModelSourceCodeGenerator {
+export declare const nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager: NomnomlSourceCodeGeneratorConfigManager;
+export declare class PlantUmlSourceCodeGenerator implements SourceCodeGenerator {
 	private readonly entityCodeGenerator;
 	private readonly relationshipCodeGenerator;
 	generateSourceCode(model: EntityRelationshipModel): string;

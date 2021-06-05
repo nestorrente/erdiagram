@@ -3,15 +3,15 @@ import NotNullTextValidationStrategy
 import NotNullBlobValidationStrategy
 	from '@/erdiagram/converter/oop/source-code-generator/java/validation/strategy/NotNullBlobValidationStrategy';
 import {JsonValue} from 'true-json';
-import {JavaxValidationTransformerConfigManager} from '@/erdiagram/converter/oop/source-code-generator/java/validation/config/JavaxValidationTransformerConfigManager';
-import JavaxValidationTransformerConfig
-	from '@/erdiagram/converter/oop/source-code-generator/java/validation/config/JavaxValidationTransformerConfig';
+import {BeanValidationTransformerConfigManager} from '@/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationTransformerConfigManager';
+import BeanValidationTransformerConfig
+	from '@/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationTransformerConfig';
 
-const configManager = new JavaxValidationTransformerConfigManager();
+const configManager = new BeanValidationTransformerConfigManager();
 
 describe('Serialization', () => {
 
-	const config: JavaxValidationTransformerConfig = {
+	const config: BeanValidationTransformerConfig = {
 		notNullTextValidationStrategy: NotNullTextValidationStrategy.NOT_BLANK,
 		notNullBlobValidationStrategy: NotNullBlobValidationStrategy.NOT_EMPTY,
 		annotateGetters: true

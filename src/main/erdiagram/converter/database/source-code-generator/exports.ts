@@ -1,7 +1,10 @@
-import SqlEntityRelationshipModelSourceCodeGenerator from './SqlEntityRelationshipModelSourceCodeGenerator';
+import SqlSourceCodeGenerator from './SqlSourceCodeGenerator';
+import SqlSourceCodeGeneratorBuilder
+	from '@/erdiagram/converter/database/source-code-generator/SqlSourceCodeGeneratorBuilder';
 
 export * from './sql/exports';
 
 export {
-	SqlEntityRelationshipModelSourceCodeGenerator
+	SqlSourceCodeGenerator,
+	SqlSourceCodeGeneratorBuilder
 };

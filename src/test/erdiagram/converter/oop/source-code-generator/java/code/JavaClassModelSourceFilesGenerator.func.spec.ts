@@ -1,19 +1,18 @@
 import {JavaClass} from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
-import JavaClassCodeGenerator from '@/erdiagram/converter/oop/source-code-generator/java/code/JavaClassCodeGenerator';
 import JavaClassModelSourceFilesGenerator
 	from '@/erdiagram/converter/oop/source-code-generator/java/code/JavaClassModelSourceFilesGenerator';
 import SourceFileInfo from '@/erdiagram/converter/common/SourceFileInfo';
 import {createJavaClass} from '#/erdiagram/converter/oop/source-code-generator/java/model/generator/source/java-class-model-mothers';
+import {createMockObject} from '#/erdiagram/util/jest-utils';
+import JavaClassCodeGenerator from '@/erdiagram/converter/oop/source-code-generator/java/code/JavaClassCodeGenerator';
 
-const javaClassCodeGeneratorMock = {
+const javaClassCodeGeneratorMock = createMockObject<JavaClassCodeGenerator>({
 	generateCode: jest.fn((javaClass: JavaClass): string => {
 		return `/* code for class ${javaClass.name} */`;
 	})
-};
+});
 
-const javaClassModelSourceFilesGenerator = new JavaClassModelSourceFilesGenerator(
-		javaClassCodeGeneratorMock as unknown as JavaClassCodeGenerator
-);
+const javaClassModelSourceFilesGenerator = new JavaClassModelSourceFilesGenerator(javaClassCodeGeneratorMock);
 
 test('Should invoke JavaClassCodeGenerator for all classes', () => {
 

@@ -1,6 +1,6 @@
-import PlantUmlEntityRelationshipModelSourceCodeGenerator
-	from './PlantUmlEntityRelationshipModelSourceCodeGenerator';
+import PlantUmlSourceCodeGenerator
+	from './PlantUmlSourceCodeGenerator';
 
 export {
-	PlantUmlEntityRelationshipModelSourceCodeGenerator
+	PlantUmlSourceCodeGenerator
 };

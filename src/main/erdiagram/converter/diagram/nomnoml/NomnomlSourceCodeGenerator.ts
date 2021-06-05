@@ -2,24 +2,23 @@ import {EntityRelationshipModel} from '@/erdiagram/parser/types/entity-relations
 import NomnomlEntityCodeGenerator from '@/erdiagram/converter/diagram/nomnoml/entity/NomnomlEntityCodeGenerator';
 import NomnomlRelationshipCodeGenerator
 	from '@/erdiagram/converter/diagram/nomnoml/relationship/NomnomlRelationshipCodeGenerator';
-import EntityRelationshipModelSourceCodeGenerator
-	from '@/erdiagram/converter/EntityRelationshipModelSourceCodeGenerator';
-import NomnomlEntityRelationshipModelSourceCodeGeneratorConfig
-	from '@/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelSourceCodeGeneratorConfig';
+import SourceCodeGenerator from '@/erdiagram/converter/SourceCodeGenerator';
+import NomnomlSourceCodeGeneratorConfig
+	from '@/erdiagram/converter/diagram/nomnoml/config/NomnomlSourceCodeGeneratorConfig';
 import nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager
-	from '@/erdiagram/converter/diagram/nomnoml/config/NomnomlEntityRelationshipModelSourceCodeGeneratorConfigManager';
+	from '@/erdiagram/converter/diagram/nomnoml/config/NomnomlSourceCodeGeneratorConfigManager';
 import NomnomlDirectivesCodeGenerator
 	from '@/erdiagram/converter/diagram/nomnoml/directive/NomnomlDirectivesCodeGenerator';
 
-export default class NomnomlEntityRelationshipModelSourceCodeGenerator implements EntityRelationshipModelSourceCodeGenerator {
+export default class NomnomlSourceCodeGenerator implements SourceCodeGenerator {
 
-	private readonly config: NomnomlEntityRelationshipModelSourceCodeGeneratorConfig;
+	private readonly config: NomnomlSourceCodeGeneratorConfig;
 
 	private readonly entityCodeGenerator = new NomnomlEntityCodeGenerator();
 	private readonly relationshipCodeGenerator = new NomnomlRelationshipCodeGenerator();
 	private readonly directivesCodeGenerator = new NomnomlDirectivesCodeGenerator();
 
-	constructor(config?: NomnomlEntityRelationshipModelSourceCodeGeneratorConfig) {
+	constructor(config?: NomnomlSourceCodeGeneratorConfig) {
 		this.config = nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager.mergeWithDefaultConfig(config);
 	}
 
