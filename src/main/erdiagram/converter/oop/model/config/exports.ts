@@ -1,8 +1,8 @@
-import ClassModelGeneratorConfig from './ClassModelGeneratorConfig';
-import classModelGeneratorConfigManager, {ClassModelGeneratorConfigManager} from './ClassModelGeneratorConfigManager';
+import ClassModelConfig from './ClassModelConfig';
+import classModelConfigManager, {ClassModelConfigManager} from './ClassModelConfigManager';
 
 export {
-	ClassModelGeneratorConfig,
-	ClassModelGeneratorConfigManager,
-	classModelGeneratorConfigManager
+	ClassModelConfig,
+	ClassModelConfigManager,
+	classModelConfigManager
 };

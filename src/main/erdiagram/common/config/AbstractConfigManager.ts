@@ -1,8 +1,7 @@
-import ComponentConfigManager from '@/erdiagram/common/config/ComponentConfigManager';
+import ConfigManager from '@/erdiagram/common/config/ConfigManager';
 import {JsonAdapter, JsonAdapters, JsonValue} from 'true-json';
 
-export default abstract class AbstractComponentConfigManager<C, P = Partial<C>>
-		implements ComponentConfigManager<C, P> {
+export default abstract class AbstractConfigManager<C, P = Partial<C>> implements ConfigManager<C, P> {
 
 	private readonly _jsonAdapter: JsonAdapter<C>;
 

@@ -1,15 +1,15 @@
-import {JavaClassModelGeneratorConfigManager} from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelGeneratorConfigManager';
+import {JavaClassModelConfigManager} from '../../../../../../../../../main/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfigManager';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import parseJavaType from '@/erdiagram/converter/oop/source-code-generator/java/type/parseJavaType';
-import JavaClassModelGeneratorConfig
-	from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelGeneratorConfig';
+import JavaClassModelConfig
+	from '../../../../../../../../../main/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfig';
 import {JsonValue} from 'true-json';
 
-const configManager = new JavaClassModelGeneratorConfigManager();
+const configManager = new JavaClassModelConfigManager();
 
 describe('Serialization', () => {
 
-	const config: JavaClassModelGeneratorConfig = {
+	const config: JavaClassModelConfig = {
 		typeBindings: {
 			[EntityPropertyType.IDENTITY]: parseJavaType('java.lang.Long'),
 			[EntityPropertyType.TEXT]: parseJavaType('java.lang.String'),

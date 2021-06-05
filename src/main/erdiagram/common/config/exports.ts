@@ -1,7 +1,7 @@
-import ComponentConfigManager from './ComponentConfigManager';
-import AbstractComponentConfigManager from './AbstractComponentConfigManager';
+import ConfigManager from './ConfigManager';
+import AbstractConfigManager from './AbstractConfigManager';
 
 export {
-	ComponentConfigManager,
-	AbstractComponentConfigManager
+	ConfigManager,
+	AbstractConfigManager
 };

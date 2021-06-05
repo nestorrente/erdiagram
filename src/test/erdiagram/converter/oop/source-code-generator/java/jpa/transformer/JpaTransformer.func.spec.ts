@@ -10,7 +10,8 @@ import {
 	JavaAnnotatedElement,
 	JavaClass
 } from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
-import JpaTransformerConfig from '@/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaTransformerConfig';
+import JpaConfig
+	from '../../../../../../../../main/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaConfig';
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
 
 test('Simple entity', () => {
@@ -479,7 +480,7 @@ A *<->* B
 
 });
 
-function getTransformedJavaClassModel(erdiagramCode: string, config?: Partial<JpaTransformerConfig>) {
+function getTransformedJavaClassModel(erdiagramCode: string, config?: Partial<JpaConfig>) {
 
 	const entityRelationshipModel = new EntityRelationshipModelParser().parseModel(erdiagramCode);
 

@@ -1,30 +1,30 @@
 import ClassModelGenerator from '@/erdiagram/converter/oop/model/ClassModelGenerator';
-import {PartialClassModelGeneratorConfig} from '@/erdiagram/converter/oop/model/config/ClassModelGeneratorConfig';
+import {PartialClassModelConfig} from '@/erdiagram/converter/oop/model/config/ClassModelConfig';
 import TypeScriptClassModelToCodeConverter
 	from '@/erdiagram/converter/oop/source-code-generator/typescript/TypeScriptClassModelToCodeConverter';
-import {PartialTypeScriptClassModelToCodeConverterConfig} from '@/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptClassModelToCodeConverterConfig';
+import {PartialTypeScriptConfig} from '@/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptConfig';
 import TypeScriptSourceCodeGenerator
 	from '@/erdiagram/converter/oop/source-code-generator/typescript/TypeScriptSourceCodeGenerator';
 
 export default class TypeScriptSourceCodeGeneratorBuilder {
 
-	private _classModelGeneratorConfig: PartialClassModelGeneratorConfig = {};
-	private _typeScriptClassModelToCodeConverterConfig: PartialTypeScriptClassModelToCodeConverterConfig = {};
+	private _classModelConfig: PartialClassModelConfig = {};
+	private _typeScriptConfig: PartialTypeScriptConfig = {};
 
-	public configureClassModel(config: PartialClassModelGeneratorConfig) {
-		this._classModelGeneratorConfig = config;
+	public configureClassModel(config: PartialClassModelConfig) {
+		this._classModelConfig = config;
 		return this;
 	}
 
-	public configureTypeScriptCode(config: PartialTypeScriptClassModelToCodeConverterConfig) {
-		this._typeScriptClassModelToCodeConverterConfig = config;
+	public configureTypeScript(config: PartialTypeScriptConfig) {
+		this._typeScriptConfig = config;
 		return this;
 	}
 
 	public build() {
 		return new TypeScriptSourceCodeGenerator(
-				new ClassModelGenerator(this._classModelGeneratorConfig),
-				new TypeScriptClassModelToCodeConverter(this._typeScriptClassModelToCodeConverterConfig)
+				new ClassModelGenerator(this._classModelConfig),
+				new TypeScriptClassModelToCodeConverter(this._typeScriptConfig)
 		);
 	}
 

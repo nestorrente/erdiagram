@@ -1,9 +1,9 @@
-import JpaTransformerConfig, {PartialJpaTransformerConfig} from './JpaTransformerConfig';
-import jpaTransformerConfigManager, {JpaTransformerConfigManager} from './JpaTransformerConfigManager';
+import JpaConfig, {PartialJpaConfig} from './JpaConfig';
+import jpaConfigManager, {JpaConfigManager} from './JpaConfigManager';
 
 export {
-	JpaTransformerConfig,
-	PartialJpaTransformerConfig,
-	JpaTransformerConfigManager,
-	jpaTransformerConfigManager
+	JpaConfig,
+	PartialJpaConfig,
+	JpaConfigManager,
+	jpaConfigManager
 };

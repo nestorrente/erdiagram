@@ -1,8 +1,8 @@
-import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
+import AbstractConfigManager from '@/erdiagram/common/config/AbstractConfigManager';
 import EntityRelationshipModelParserConfig, {PartialEntityRelationshipModelParserConfig} from '@/erdiagram/parser/config/EntityRelationshipModelParserConfig';
 
 export class EntityRelationshipModelParserConfigManager
-		extends AbstractComponentConfigManager<EntityRelationshipModelParserConfig, PartialEntityRelationshipModelParserConfig> {
+		extends AbstractConfigManager<EntityRelationshipModelParserConfig, PartialEntityRelationshipModelParserConfig> {
 
 	getDefaultConfig(): EntityRelationshipModelParserConfig {
 		return {

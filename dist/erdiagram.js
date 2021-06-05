@@ -4,7 +4,7 @@
  *
  * Released under the MIT License.
  *
- * Build date: 2021-06-05T10:28:17.036Z
+ * Build date: 2021-06-05T10:55:49.015Z
  */
 var ERDiagram;
 /******/ (() => { // webpackBootstrap
@@ -536,21 +536,21 @@ var ERDiagram;
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts":
-/*!****************************************************************************!*\
-  !*** ./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts ***!
-  \****************************************************************************/
+/***/ "./src/main/erdiagram/common/config/AbstractConfigManager.ts":
+/*!*******************************************************************!*\
+  !*** ./src/main/erdiagram/common/config/AbstractConfigManager.ts ***!
+  \*******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ AbstractComponentConfigManager)
+/* harmony export */   "default": () => (/* binding */ AbstractConfigManager)
 /* harmony export */ });
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! true-json */ "./node_modules/true-json/dist/true-json.umd.js");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(true_json__WEBPACK_IMPORTED_MODULE_0__);
 
-class AbstractComponentConfigManager {
+class AbstractConfigManager {
     constructor() {
         this._jsonAdapter = this.getJsonAdapter();
     }
@@ -580,9 +580,9 @@ class AbstractComponentConfigManager {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "AbstractComponentConfigManager": () => (/* reexport safe */ _AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */   "AbstractConfigManager": () => (/* reexport safe */ _AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
 /* harmony export */ });
-/* harmony import */ var _AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var _AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbstractConfigManager */ "./src/main/erdiagram/common/config/AbstractConfigManager.ts");
 
 
 
@@ -598,7 +598,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "AbstractComponentConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_0__.AbstractComponentConfigManager)
+/* harmony export */   "AbstractConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_0__.AbstractConfigManager)
 /* harmony export */ });
 /* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/common/config/exports.ts");
 
@@ -981,9 +981,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "postgresqlDialectConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.postgresqlDialectConfigManager),
 /* harmony export */   "sqlServerDialectConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.sqlServerDialectConfigManager),
 /* harmony export */   "sqliteDialectConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.sqliteDialectConfigManager),
+/* harmony export */   "DatabaseModelConfigManager": () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_1__.DatabaseModelConfigManager),
 /* harmony export */   "DatabaseModelGenerator": () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_1__.DatabaseModelGenerator),
-/* harmony export */   "DatabaseModelGeneratorConfigManager": () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_1__.DatabaseModelGeneratorConfigManager),
-/* harmony export */   "databaseModelGeneratorConfigManager": () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_1__.databaseModelGeneratorConfigManager)
+/* harmony export */   "databaseModelConfigManager": () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_1__.databaseModelConfigManager)
 /* harmony export */ });
 /* harmony import */ var _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./source-code-generator/exports */ "./src/main/erdiagram/converter/database/source-code-generator/exports.ts");
 /* harmony import */ var _model_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./model/exports */ "./src/main/erdiagram/converter/database/model/exports.ts");
@@ -1007,7 +1007,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pluralize */ "./node_modules/pluralize/pluralize.js");
 /* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(pluralize__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
-/* harmony import */ var _erdiagram_converter_database_model_config_DatabaseModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfigManager */ "./src/main/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfigManager.ts");
+/* harmony import */ var _erdiagram_converter_database_model_config_DatabaseModelConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/database/model/config/DatabaseModelConfigManager */ "./src/main/erdiagram/converter/database/model/config/DatabaseModelConfigManager.ts");
 /* harmony import */ var _erdiagram_util_map_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/util/map-utils */ "./src/main/erdiagram/util/map-utils.ts");
 /* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
 /* harmony import */ var _erdiagram_converter_oop_model_source_metadata_source_metadata_types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata/source-metadata-types */ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-types.ts");
@@ -1019,7 +1019,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class DatabaseModelGenerator {
     constructor(config) {
-        this.config = _erdiagram_converter_database_model_config_DatabaseModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_2__.default.mergeWithDefaultConfig(config);
+        this.config = _erdiagram_converter_database_model_config_DatabaseModelConfigManager__WEBPACK_IMPORTED_MODULE_2__.default.mergeWithDefaultConfig(config);
     }
     generateDatabaseModel(model) {
         const entityIdentitiesMap = (0,_erdiagram_util_map_utils__WEBPACK_IMPORTED_MODULE_3__.classifyBy)(model.entities.filter(entity => entity.identityPropertyName), entity => entity.name, entity => entity.identityPropertyName);
@@ -1162,26 +1162,26 @@ class DatabaseModelGenerator {
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfigManager.ts":
-/*!***************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfigManager.ts ***!
-  \***************************************************************************************************/
+/***/ "./src/main/erdiagram/converter/database/model/config/DatabaseModelConfigManager.ts":
+/*!******************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/database/model/config/DatabaseModelConfigManager.ts ***!
+  \******************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DatabaseModelGeneratorConfigManager": () => (/* binding */ DatabaseModelGeneratorConfigManager),
+/* harmony export */   "DatabaseModelConfigManager": () => (/* binding */ DatabaseModelConfigManager),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractConfigManager */ "./src/main/erdiagram/common/config/AbstractConfigManager.ts");
 /* harmony import */ var _erdiagram_converter_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/common/id-naming-strategy/StandardIdNamingStrategies */ "./src/main/erdiagram/converter/common/id-naming-strategy/StandardIdNamingStrategies.ts");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! true-json */ "./node_modules/true-json/dist/true-json.umd.js");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(true_json__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
-class DatabaseModelGeneratorConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__.default {
+class DatabaseModelConfigManager extends _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__.default {
     getDefaultConfig() {
         return {
             usePluralTableNames: false,
@@ -1197,8 +1197,8 @@ class DatabaseModelGeneratorConfigManager extends _erdiagram_common_config_Abstr
         });
     }
 }
-const databaseModelGeneratorConfigManager = new DatabaseModelGeneratorConfigManager();
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (databaseModelGeneratorConfigManager);
+const databaseModelConfigManager = new DatabaseModelConfigManager();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (databaseModelConfigManager);
 
 
 /***/ }),
@@ -1212,10 +1212,10 @@ const databaseModelGeneratorConfigManager = new DatabaseModelGeneratorConfigMana
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DatabaseModelGeneratorConfigManager": () => (/* reexport safe */ _DatabaseModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__.DatabaseModelGeneratorConfigManager),
-/* harmony export */   "databaseModelGeneratorConfigManager": () => (/* reexport safe */ _DatabaseModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */   "DatabaseModelConfigManager": () => (/* reexport safe */ _DatabaseModelConfigManager__WEBPACK_IMPORTED_MODULE_0__.DatabaseModelConfigManager),
+/* harmony export */   "databaseModelConfigManager": () => (/* reexport safe */ _DatabaseModelConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
 /* harmony export */ });
-/* harmony import */ var _DatabaseModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DatabaseModelGeneratorConfigManager */ "./src/main/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfigManager.ts");
+/* harmony import */ var _DatabaseModelConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DatabaseModelConfigManager */ "./src/main/erdiagram/converter/database/model/config/DatabaseModelConfigManager.ts");
 
 
 
@@ -1244,8 +1244,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DatabaseModelGeneratorConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_2__.DatabaseModelGeneratorConfigManager),
-/* harmony export */   "databaseModelGeneratorConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_2__.databaseModelGeneratorConfigManager),
+/* harmony export */   "DatabaseModelConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_2__.DatabaseModelConfigManager),
+/* harmony export */   "databaseModelConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_2__.databaseModelConfigManager),
 /* harmony export */   "DatabaseModelGenerator": () => (/* reexport safe */ _DatabaseModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default)
 /* harmony export */ });
 /* harmony import */ var _DatabaseModelGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DatabaseModelGenerator */ "./src/main/erdiagram/converter/database/model/DatabaseModelGenerator.ts");
@@ -1311,10 +1311,10 @@ __webpack_require__.r(__webpack_exports__);
 
 class SqlSourceCodeGeneratorBuilder {
     constructor() {
-        this._databaseModelGeneratorConfig = {};
+        this._databaseModelConfig = {};
     }
     configureDatabaseModel(config) {
-        this._databaseModelGeneratorConfig = config;
+        this._databaseModelConfig = config;
         return this;
     }
     useDialect(sqlDialect) {
@@ -1325,7 +1325,7 @@ class SqlSourceCodeGeneratorBuilder {
         if (this._sqlDialect == null) {
             throw new Error('SqlDialect is not configured');
         }
-        return new _erdiagram_converter_database_source_code_generator_SqlSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_1__.default(new _erdiagram_converter_database_model_DatabaseModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(this._databaseModelGeneratorConfig), new _erdiagram_converter_database_source_code_generator_sql_DatabaseModelToSqlCodeConverter__WEBPACK_IMPORTED_MODULE_2__.default(this._sqlDialect));
+        return new _erdiagram_converter_database_source_code_generator_SqlSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_1__.default(new _erdiagram_converter_database_model_DatabaseModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(this._databaseModelConfig), new _erdiagram_converter_database_source_code_generator_sql_DatabaseModelToSqlCodeConverter__WEBPACK_IMPORTED_MODULE_2__.default(this._sqlDialect));
     }
 }
 
@@ -1793,14 +1793,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 /* harmony import */ var _erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/converter/common/case-format/StandardCaseFormats.ts");
-/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractConfigManager */ "./src/main/erdiagram/common/config/AbstractConfigManager.ts");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! true-json */ "./node_modules/true-json/dist/true-json.umd.js");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(true_json__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
 
-class MysqlDialectConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__.default {
+class MysqlDialectConfigManager extends _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_2__.default {
     getDefaultConfig() {
         return {
             typeBindings: {
@@ -2111,14 +2111,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 /* harmony import */ var _erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/converter/common/case-format/StandardCaseFormats.ts");
-/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractConfigManager */ "./src/main/erdiagram/common/config/AbstractConfigManager.ts");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! true-json */ "./node_modules/true-json/dist/true-json.umd.js");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(true_json__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
 
-class OracleDialectConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__.default {
+class OracleDialectConfigManager extends _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_2__.default {
     getDefaultConfig() {
         return {
             typeBindings: {
@@ -2421,14 +2421,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 /* harmony import */ var _erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/converter/common/case-format/StandardCaseFormats.ts");
-/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractConfigManager */ "./src/main/erdiagram/common/config/AbstractConfigManager.ts");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! true-json */ "./node_modules/true-json/dist/true-json.umd.js");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(true_json__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
 
-class PostgresqlDialectConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__.default {
+class PostgresqlDialectConfigManager extends _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_2__.default {
     getDefaultConfig() {
         return {
             typeBindings: {
@@ -2727,14 +2727,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 /* harmony import */ var _erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/converter/common/case-format/StandardCaseFormats.ts");
-/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractConfigManager */ "./src/main/erdiagram/common/config/AbstractConfigManager.ts");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! true-json */ "./node_modules/true-json/dist/true-json.umd.js");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(true_json__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
 
-class SqliteDialectConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__.default {
+class SqliteDialectConfigManager extends _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_2__.default {
     getDefaultConfig() {
         return {
             typeBindings: {
@@ -3037,14 +3037,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
 /* harmony import */ var _erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/converter/common/case-format/StandardCaseFormats.ts");
-/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractConfigManager */ "./src/main/erdiagram/common/config/AbstractConfigManager.ts");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! true-json */ "./node_modules/true-json/dist/true-json.umd.js");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(true_json__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
 
-class SqlServerDialectConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_2__.default {
+class SqlServerDialectConfigManager extends _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_2__.default {
     getDefaultConfig() {
         return {
             typeBindings: {
@@ -3165,9 +3165,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "NomnomlConfigManager": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__.NomnomlConfigManager),
 /* harmony export */   "NomnomlSourceCodeGenerator": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__.NomnomlSourceCodeGenerator),
-/* harmony export */   "NomnomlSourceCodeGeneratorConfigManager": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__.NomnomlSourceCodeGeneratorConfigManager),
-/* harmony export */   "nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__.nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager),
+/* harmony export */   "nomnomlConfigManager": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__.nomnomlConfigManager),
 /* harmony export */   "PlantUmlSourceCodeGenerator": () => (/* reexport safe */ _plantuml_exports__WEBPACK_IMPORTED_MODULE_1__.PlantUmlSourceCodeGenerator)
 /* harmony export */ });
 /* harmony import */ var _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nomnoml/exports */ "./src/main/erdiagram/converter/diagram/nomnoml/exports.ts");
@@ -3191,7 +3191,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_diagram_nomnoml_entity_NomnomlEntityCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/diagram/nomnoml/entity/NomnomlEntityCodeGenerator */ "./src/main/erdiagram/converter/diagram/nomnoml/entity/NomnomlEntityCodeGenerator.ts");
 /* harmony import */ var _erdiagram_converter_diagram_nomnoml_relationship_NomnomlRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/diagram/nomnoml/relationship/NomnomlRelationshipCodeGenerator */ "./src/main/erdiagram/converter/diagram/nomnoml/relationship/NomnomlRelationshipCodeGenerator.ts");
-/* harmony import */ var _erdiagram_converter_diagram_nomnoml_config_NomnomlSourceCodeGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/diagram/nomnoml/config/NomnomlSourceCodeGeneratorConfigManager */ "./src/main/erdiagram/converter/diagram/nomnoml/config/NomnomlSourceCodeGeneratorConfigManager.ts");
+/* harmony import */ var _erdiagram_converter_diagram_nomnoml_config_NomnomlConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/diagram/nomnoml/config/NomnomlConfigManager */ "./src/main/erdiagram/converter/diagram/nomnoml/config/NomnomlConfigManager.ts");
 /* harmony import */ var _erdiagram_converter_diagram_nomnoml_directive_NomnomlDirectivesCodeGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/diagram/nomnoml/directive/NomnomlDirectivesCodeGenerator */ "./src/main/erdiagram/converter/diagram/nomnoml/directive/NomnomlDirectivesCodeGenerator.ts");
 
 
@@ -3202,7 +3202,7 @@ class NomnomlSourceCodeGenerator {
         this.entityCodeGenerator = new _erdiagram_converter_diagram_nomnoml_entity_NomnomlEntityCodeGenerator__WEBPACK_IMPORTED_MODULE_0__.default();
         this.relationshipCodeGenerator = new _erdiagram_converter_diagram_nomnoml_relationship_NomnomlRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_1__.default();
         this.directivesCodeGenerator = new _erdiagram_converter_diagram_nomnoml_directive_NomnomlDirectivesCodeGenerator__WEBPACK_IMPORTED_MODULE_3__.default();
-        this.config = _erdiagram_converter_diagram_nomnoml_config_NomnomlSourceCodeGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_2__.default.mergeWithDefaultConfig(config);
+        this.config = _erdiagram_converter_diagram_nomnoml_config_NomnomlConfigManager__WEBPACK_IMPORTED_MODULE_2__.default.mergeWithDefaultConfig(config);
     }
     generateSourceCode(model) {
         return [
@@ -3216,21 +3216,21 @@ class NomnomlSourceCodeGenerator {
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/diagram/nomnoml/config/NomnomlSourceCodeGeneratorConfigManager.ts":
-/*!********************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/diagram/nomnoml/config/NomnomlSourceCodeGeneratorConfigManager.ts ***!
-  \********************************************************************************************************/
+/***/ "./src/main/erdiagram/converter/diagram/nomnoml/config/NomnomlConfigManager.ts":
+/*!*************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/diagram/nomnoml/config/NomnomlConfigManager.ts ***!
+  \*************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "NomnomlSourceCodeGeneratorConfigManager": () => (/* binding */ NomnomlSourceCodeGeneratorConfigManager),
+/* harmony export */   "NomnomlConfigManager": () => (/* binding */ NomnomlConfigManager),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractConfigManager */ "./src/main/erdiagram/common/config/AbstractConfigManager.ts");
 
-class NomnomlSourceCodeGeneratorConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__.default {
+class NomnomlConfigManager extends _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__.default {
     getDefaultConfig() {
         return {
             arrowSize: 1,
@@ -3260,8 +3260,8 @@ class NomnomlSourceCodeGeneratorConfigManager extends _erdiagram_common_config_A
         return Object.assign(Object.assign({}, fullConfig), partialConfig);
     }
 }
-const nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager = new NomnomlSourceCodeGeneratorConfigManager();
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager);
+const nomnomlConfigManager = new NomnomlConfigManager();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (nomnomlConfigManager);
 
 
 /***/ }),
@@ -3275,10 +3275,10 @@ const nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager = new No
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "NomnomlSourceCodeGeneratorConfigManager": () => (/* reexport safe */ _NomnomlSourceCodeGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__.NomnomlSourceCodeGeneratorConfigManager),
-/* harmony export */   "nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager": () => (/* reexport safe */ _NomnomlSourceCodeGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */   "NomnomlConfigManager": () => (/* reexport safe */ _NomnomlConfigManager__WEBPACK_IMPORTED_MODULE_0__.NomnomlConfigManager),
+/* harmony export */   "nomnomlConfigManager": () => (/* reexport safe */ _NomnomlConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
 /* harmony export */ });
-/* harmony import */ var _NomnomlSourceCodeGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NomnomlSourceCodeGeneratorConfigManager */ "./src/main/erdiagram/converter/diagram/nomnoml/config/NomnomlSourceCodeGeneratorConfigManager.ts");
+/* harmony import */ var _NomnomlConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NomnomlConfigManager */ "./src/main/erdiagram/converter/diagram/nomnoml/config/NomnomlConfigManager.ts");
 
 
 
@@ -3419,8 +3419,8 @@ class NomnomlEntityPropertyCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "NomnomlSourceCodeGeneratorConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_1__.NomnomlSourceCodeGeneratorConfigManager),
-/* harmony export */   "nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_1__.nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager),
+/* harmony export */   "NomnomlConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_1__.NomnomlConfigManager),
+/* harmony export */   "nomnomlConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_1__.nomnomlConfigManager),
 /* harmony export */   "NomnomlSourceCodeGenerator": () => (/* reexport safe */ _NomnomlSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_0__.default)
 /* harmony export */ });
 /* harmony import */ var _NomnomlSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NomnomlSourceCodeGenerator */ "./src/main/erdiagram/converter/diagram/nomnoml/NomnomlSourceCodeGenerator.ts");
@@ -3857,8 +3857,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CaseConverter": () => (/* reexport safe */ _common_exports__WEBPACK_IMPORTED_MODULE_1__.CaseConverter),
 /* harmony export */   "StandardCaseFormats": () => (/* reexport safe */ _common_exports__WEBPACK_IMPORTED_MODULE_1__.StandardCaseFormats),
 /* harmony export */   "StandardIdNamingStrategies": () => (/* reexport safe */ _common_exports__WEBPACK_IMPORTED_MODULE_1__.StandardIdNamingStrategies),
+/* harmony export */   "DatabaseModelConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.DatabaseModelConfigManager),
 /* harmony export */   "DatabaseModelGenerator": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.DatabaseModelGenerator),
-/* harmony export */   "DatabaseModelGeneratorConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.DatabaseModelGeneratorConfigManager),
 /* harmony export */   "DatabaseModelToSqlCodeConverter": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.DatabaseModelToSqlCodeConverter),
 /* harmony export */   "MysqlDialect": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.MysqlDialect),
 /* harmony export */   "MysqlDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.MysqlDialectConfigManager),
@@ -3872,33 +3872,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "SqlSourceCodeGeneratorBuilder": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.SqlSourceCodeGeneratorBuilder),
 /* harmony export */   "SqliteDialect": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.SqliteDialect),
 /* harmony export */   "SqliteDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.SqliteDialectConfigManager),
-/* harmony export */   "databaseModelGeneratorConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.databaseModelGeneratorConfigManager),
+/* harmony export */   "databaseModelConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.databaseModelConfigManager),
 /* harmony export */   "mysqlDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.mysqlDialectConfigManager),
 /* harmony export */   "oracleDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.oracleDialectConfigManager),
 /* harmony export */   "postgresqlDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.postgresqlDialectConfigManager),
 /* harmony export */   "sqlServerDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.sqlServerDialectConfigManager),
 /* harmony export */   "sqliteDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.sqliteDialectConfigManager),
+/* harmony export */   "BeanValidationConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.BeanValidationConfigManager),
 /* harmony export */   "BeanValidationTransformer": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.BeanValidationTransformer),
-/* harmony export */   "BeanValidationTransformerConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.BeanValidationTransformerConfigManager),
+/* harmony export */   "ClassModelConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.ClassModelConfigManager),
 /* harmony export */   "ClassModelGenerator": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.ClassModelGenerator),
-/* harmony export */   "ClassModelGeneratorConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.ClassModelGeneratorConfigManager),
 /* harmony export */   "JavaAnnotation": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JavaAnnotation),
+/* harmony export */   "JavaClassModelConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JavaClassModelConfigManager),
 /* harmony export */   "JavaClassModelGenerator": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JavaClassModelGenerator),
-/* harmony export */   "JavaClassModelGeneratorConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JavaClassModelGeneratorConfigManager),
 /* harmony export */   "JavaSourceCodeGenerator": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JavaSourceCodeGenerator),
 /* harmony export */   "JavaSourceCodeGeneratorBuilder": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JavaSourceCodeGeneratorBuilder),
 /* harmony export */   "JavaVisibility": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JavaVisibility),
+/* harmony export */   "JpaConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JpaConfigManager),
 /* harmony export */   "JpaTransformer": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JpaTransformer),
 /* harmony export */   "JpaTransformerBuilder": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JpaTransformerBuilder),
-/* harmony export */   "JpaTransformerConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JpaTransformerConfigManager),
 /* harmony export */   "NotNullBlobValidationStrategy": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.NotNullBlobValidationStrategy),
 /* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.NotNullTextValidationStrategy),
 /* harmony export */   "TypeScriptClassModelToCodeConverter": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.TypeScriptClassModelToCodeConverter),
-/* harmony export */   "TypeScriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.TypeScriptClassModelToCodeConverterConfigManager),
+/* harmony export */   "TypeScriptConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.TypeScriptConfigManager),
 /* harmony export */   "TypeScriptSourceCodeGenerator": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.TypeScriptSourceCodeGenerator),
 /* harmony export */   "TypeScriptSourceCodeGeneratorBuilder": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.TypeScriptSourceCodeGeneratorBuilder),
-/* harmony export */   "beanValidationTransformerConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.beanValidationTransformerConfigManager),
-/* harmony export */   "classModelGeneratorConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.classModelGeneratorConfigManager),
+/* harmony export */   "beanValidationConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.beanValidationConfigManager),
+/* harmony export */   "classModelConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.classModelConfigManager),
 /* harmony export */   "createJavaArrayType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.createJavaArrayType),
 /* harmony export */   "createJavaParameterizedType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.createJavaParameterizedType),
 /* harmony export */   "createJavaSimpleType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.createJavaSimpleType),
@@ -3907,15 +3907,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "createTypeScriptSimpleType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.createTypeScriptSimpleType),
 /* harmony export */   "isJavaParameterizedType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.isJavaParameterizedType),
 /* harmony export */   "isTypeScriptParameterizedType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.isTypeScriptParameterizedType),
-/* harmony export */   "javaClassModelGeneratorConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.javaClassModelGeneratorConfigManager),
-/* harmony export */   "jpaTransformerConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.jpaTransformerConfigManager),
+/* harmony export */   "javaClassModelConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.javaClassModelConfigManager),
+/* harmony export */   "jpaConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.jpaConfigManager),
 /* harmony export */   "parseJavaType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.parseJavaType),
 /* harmony export */   "parseTypeScriptType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.parseTypeScriptType),
-/* harmony export */   "typescriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.typescriptClassModelToCodeConverterConfigManager),
+/* harmony export */   "typescriptConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.typescriptConfigManager),
+/* harmony export */   "NomnomlConfigManager": () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_4__.NomnomlConfigManager),
 /* harmony export */   "NomnomlSourceCodeGenerator": () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_4__.NomnomlSourceCodeGenerator),
-/* harmony export */   "NomnomlSourceCodeGeneratorConfigManager": () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_4__.NomnomlSourceCodeGeneratorConfigManager),
 /* harmony export */   "PlantUmlSourceCodeGenerator": () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_4__.PlantUmlSourceCodeGenerator),
-/* harmony export */   "nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager": () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_4__.nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager),
+/* harmony export */   "nomnomlConfigManager": () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_4__.nomnomlConfigManager),
 /* harmony export */   "isMultipleFileSourceCodeGenerator": () => (/* reexport safe */ _erdiagram_converter_MultipleFileSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_0__.isMultipleFileSourceCodeGenerator)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_MultipleFileSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/MultipleFileSourceCodeGenerator */ "./src/main/erdiagram/converter/MultipleFileSourceCodeGenerator.ts");
@@ -3942,24 +3942,24 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "BeanValidationConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.BeanValidationConfigManager),
 /* harmony export */   "BeanValidationTransformer": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.BeanValidationTransformer),
-/* harmony export */   "BeanValidationTransformerConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.BeanValidationTransformerConfigManager),
 /* harmony export */   "JavaAnnotation": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.JavaAnnotation),
+/* harmony export */   "JavaClassModelConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.JavaClassModelConfigManager),
 /* harmony export */   "JavaClassModelGenerator": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.JavaClassModelGenerator),
-/* harmony export */   "JavaClassModelGeneratorConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.JavaClassModelGeneratorConfigManager),
 /* harmony export */   "JavaSourceCodeGenerator": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.JavaSourceCodeGenerator),
 /* harmony export */   "JavaSourceCodeGeneratorBuilder": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.JavaSourceCodeGeneratorBuilder),
 /* harmony export */   "JavaVisibility": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.JavaVisibility),
+/* harmony export */   "JpaConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.JpaConfigManager),
 /* harmony export */   "JpaTransformer": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.JpaTransformer),
 /* harmony export */   "JpaTransformerBuilder": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.JpaTransformerBuilder),
-/* harmony export */   "JpaTransformerConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.JpaTransformerConfigManager),
 /* harmony export */   "NotNullBlobValidationStrategy": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.NotNullBlobValidationStrategy),
 /* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.NotNullTextValidationStrategy),
 /* harmony export */   "TypeScriptClassModelToCodeConverter": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.TypeScriptClassModelToCodeConverter),
-/* harmony export */   "TypeScriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.TypeScriptClassModelToCodeConverterConfigManager),
+/* harmony export */   "TypeScriptConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.TypeScriptConfigManager),
 /* harmony export */   "TypeScriptSourceCodeGenerator": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.TypeScriptSourceCodeGenerator),
 /* harmony export */   "TypeScriptSourceCodeGeneratorBuilder": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.TypeScriptSourceCodeGeneratorBuilder),
-/* harmony export */   "beanValidationTransformerConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.beanValidationTransformerConfigManager),
+/* harmony export */   "beanValidationConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.beanValidationConfigManager),
 /* harmony export */   "createJavaArrayType": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.createJavaArrayType),
 /* harmony export */   "createJavaParameterizedType": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.createJavaParameterizedType),
 /* harmony export */   "createJavaSimpleType": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.createJavaSimpleType),
@@ -3968,14 +3968,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "createTypeScriptSimpleType": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.createTypeScriptSimpleType),
 /* harmony export */   "isJavaParameterizedType": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.isJavaParameterizedType),
 /* harmony export */   "isTypeScriptParameterizedType": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.isTypeScriptParameterizedType),
-/* harmony export */   "javaClassModelGeneratorConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.javaClassModelGeneratorConfigManager),
-/* harmony export */   "jpaTransformerConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.jpaTransformerConfigManager),
+/* harmony export */   "javaClassModelConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.javaClassModelConfigManager),
+/* harmony export */   "jpaConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.jpaConfigManager),
 /* harmony export */   "parseJavaType": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.parseJavaType),
 /* harmony export */   "parseTypeScriptType": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.parseTypeScriptType),
-/* harmony export */   "typescriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.typescriptClassModelToCodeConverterConfigManager),
+/* harmony export */   "typescriptConfigManager": () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.typescriptConfigManager),
+/* harmony export */   "ClassModelConfigManager": () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_1__.ClassModelConfigManager),
 /* harmony export */   "ClassModelGenerator": () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_1__.ClassModelGenerator),
-/* harmony export */   "ClassModelGeneratorConfigManager": () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_1__.ClassModelGeneratorConfigManager),
-/* harmony export */   "classModelGeneratorConfigManager": () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_1__.classModelGeneratorConfigManager)
+/* harmony export */   "classModelConfigManager": () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_1__.classModelConfigManager)
 /* harmony export */ });
 /* harmony import */ var _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./source-code-generator/exports */ "./src/main/erdiagram/converter/oop/source-code-generator/exports.ts");
 /* harmony import */ var _model_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./model/exports */ "./src/main/erdiagram/converter/oop/model/exports.ts");
@@ -3996,13 +3996,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ClassModelGenerator)
 /* harmony export */ });
-/* harmony import */ var _erdiagram_converter_oop_model_config_ClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/config/ClassModelGeneratorConfigManager */ "./src/main/erdiagram/converter/oop/model/config/ClassModelGeneratorConfigManager.ts");
+/* harmony import */ var _erdiagram_converter_oop_model_config_ClassModelConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/config/ClassModelConfigManager */ "./src/main/erdiagram/converter/oop/model/config/ClassModelConfigManager.ts");
 /* harmony import */ var _erdiagram_converter_oop_model_class_EntityToClassMapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/class/EntityToClassMapper */ "./src/main/erdiagram/converter/oop/model/class/EntityToClassMapper.ts");
 
 
 class ClassModelGenerator {
     constructor(config) {
-        this.config = _erdiagram_converter_oop_model_config_ClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__.default.mergeWithDefaultConfig(config);
+        this.config = _erdiagram_converter_oop_model_config_ClassModelConfigManager__WEBPACK_IMPORTED_MODULE_0__.default.mergeWithDefaultConfig(config);
         this.entityToClassMapper = new _erdiagram_converter_oop_model_class_EntityToClassMapper__WEBPACK_IMPORTED_MODULE_1__.default(this.config);
     }
     generateClassModel(model) {
@@ -4215,26 +4215,26 @@ class RelationshipMemberToClassFieldMapper {
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/oop/model/config/ClassModelGeneratorConfigManager.ts":
-/*!*******************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/oop/model/config/ClassModelGeneratorConfigManager.ts ***!
-  \*******************************************************************************************/
+/***/ "./src/main/erdiagram/converter/oop/model/config/ClassModelConfigManager.ts":
+/*!**********************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/model/config/ClassModelConfigManager.ts ***!
+  \**********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ClassModelGeneratorConfigManager": () => (/* binding */ ClassModelGeneratorConfigManager),
+/* harmony export */   "ClassModelConfigManager": () => (/* binding */ ClassModelConfigManager),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractConfigManager */ "./src/main/erdiagram/common/config/AbstractConfigManager.ts");
 /* harmony import */ var _erdiagram_converter_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/common/id-naming-strategy/StandardIdNamingStrategies */ "./src/main/erdiagram/converter/common/id-naming-strategy/StandardIdNamingStrategies.ts");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! true-json */ "./node_modules/true-json/dist/true-json.umd.js");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(true_json__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
-class ClassModelGeneratorConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__.default {
+class ClassModelConfigManager extends _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__.default {
     getDefaultConfig() {
         return {
             idNamingStrategy: _erdiagram_converter_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__.default.DEFAULT
@@ -4249,8 +4249,8 @@ class ClassModelGeneratorConfigManager extends _erdiagram_common_config_Abstract
         });
     }
 }
-const classModelGeneratorConfigManager = new ClassModelGeneratorConfigManager();
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (classModelGeneratorConfigManager);
+const classModelConfigManager = new ClassModelConfigManager();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (classModelConfigManager);
 
 
 /***/ }),
@@ -4264,10 +4264,10 @@ const classModelGeneratorConfigManager = new ClassModelGeneratorConfigManager();
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ClassModelGeneratorConfigManager": () => (/* reexport safe */ _ClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__.ClassModelGeneratorConfigManager),
-/* harmony export */   "classModelGeneratorConfigManager": () => (/* reexport safe */ _ClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */   "ClassModelConfigManager": () => (/* reexport safe */ _ClassModelConfigManager__WEBPACK_IMPORTED_MODULE_0__.ClassModelConfigManager),
+/* harmony export */   "classModelConfigManager": () => (/* reexport safe */ _ClassModelConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
 /* harmony export */ });
-/* harmony import */ var _ClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ClassModelGeneratorConfigManager */ "./src/main/erdiagram/converter/oop/model/config/ClassModelGeneratorConfigManager.ts");
+/* harmony import */ var _ClassModelConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ClassModelConfigManager */ "./src/main/erdiagram/converter/oop/model/config/ClassModelConfigManager.ts");
 
 
 
@@ -4283,8 +4283,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ClassModelGeneratorConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_2__.ClassModelGeneratorConfigManager),
-/* harmony export */   "classModelGeneratorConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_2__.classModelGeneratorConfigManager),
+/* harmony export */   "ClassModelConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_2__.ClassModelConfigManager),
+/* harmony export */   "classModelConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_2__.classModelConfigManager),
 /* harmony export */   "ClassModelGenerator": () => (/* reexport safe */ _ClassModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default)
 /* harmony export */ });
 /* harmony import */ var _ClassModelGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ClassModelGenerator */ "./src/main/erdiagram/converter/oop/model/ClassModelGenerator.ts");
@@ -4371,29 +4371,29 @@ function isRelationshipMemberSourceMetadata(sourceMetadata) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "BeanValidationConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.BeanValidationConfigManager),
 /* harmony export */   "BeanValidationTransformer": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.BeanValidationTransformer),
-/* harmony export */   "BeanValidationTransformerConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.BeanValidationTransformerConfigManager),
 /* harmony export */   "JavaAnnotation": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JavaAnnotation),
+/* harmony export */   "JavaClassModelConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JavaClassModelConfigManager),
 /* harmony export */   "JavaClassModelGenerator": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JavaClassModelGenerator),
-/* harmony export */   "JavaClassModelGeneratorConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JavaClassModelGeneratorConfigManager),
 /* harmony export */   "JavaSourceCodeGenerator": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JavaSourceCodeGenerator),
 /* harmony export */   "JavaSourceCodeGeneratorBuilder": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JavaSourceCodeGeneratorBuilder),
 /* harmony export */   "JavaVisibility": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JavaVisibility),
+/* harmony export */   "JpaConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JpaConfigManager),
 /* harmony export */   "JpaTransformer": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JpaTransformer),
 /* harmony export */   "JpaTransformerBuilder": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JpaTransformerBuilder),
-/* harmony export */   "JpaTransformerConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JpaTransformerConfigManager),
 /* harmony export */   "NotNullBlobValidationStrategy": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.NotNullBlobValidationStrategy),
 /* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.NotNullTextValidationStrategy),
-/* harmony export */   "beanValidationTransformerConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.beanValidationTransformerConfigManager),
+/* harmony export */   "beanValidationConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.beanValidationConfigManager),
 /* harmony export */   "createJavaArrayType": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.createJavaArrayType),
 /* harmony export */   "createJavaParameterizedType": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.createJavaParameterizedType),
 /* harmony export */   "createJavaSimpleType": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.createJavaSimpleType),
 /* harmony export */   "isJavaParameterizedType": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.isJavaParameterizedType),
-/* harmony export */   "javaClassModelGeneratorConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.javaClassModelGeneratorConfigManager),
-/* harmony export */   "jpaTransformerConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.jpaTransformerConfigManager),
+/* harmony export */   "javaClassModelConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.javaClassModelConfigManager),
+/* harmony export */   "jpaConfigManager": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.jpaConfigManager),
 /* harmony export */   "parseJavaType": () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.parseJavaType),
 /* harmony export */   "TypeScriptClassModelToCodeConverter": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.TypeScriptClassModelToCodeConverter),
-/* harmony export */   "TypeScriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.TypeScriptClassModelToCodeConverterConfigManager),
+/* harmony export */   "TypeScriptConfigManager": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.TypeScriptConfigManager),
 /* harmony export */   "TypeScriptSourceCodeGenerator": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.TypeScriptSourceCodeGenerator),
 /* harmony export */   "TypeScriptSourceCodeGeneratorBuilder": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.TypeScriptSourceCodeGeneratorBuilder),
 /* harmony export */   "createTypeScriptArrayType": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.createTypeScriptArrayType),
@@ -4401,7 +4401,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "createTypeScriptSimpleType": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.createTypeScriptSimpleType),
 /* harmony export */   "isTypeScriptParameterizedType": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.isTypeScriptParameterizedType),
 /* harmony export */   "parseTypeScriptType": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.parseTypeScriptType),
-/* harmony export */   "typescriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.typescriptClassModelToCodeConverterConfigManager)
+/* harmony export */   "typescriptConfigManager": () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.typescriptConfigManager)
 /* harmony export */ });
 /* harmony import */ var _java_exports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./java/exports */ "./src/main/erdiagram/converter/oop/source-code-generator/java/exports.ts");
 /* harmony import */ var _typescript_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./typescript/exports */ "./src/main/erdiagram/converter/oop/source-code-generator/typescript/exports.ts");
@@ -4494,16 +4494,16 @@ __webpack_require__.r(__webpack_exports__);
 
 class JavaSourceCodeGeneratorBuilder {
     constructor() {
-        this._classModelGeneratorConfig = {};
-        this._javaClassModelGeneratorConfig = {};
+        this._classModelConfig = {};
+        this._javaClassModelConfig = {};
         this._javaClassModelTransformers = [];
     }
     configureClassModel(config) {
-        this._classModelGeneratorConfig = config;
+        this._classModelConfig = config;
         return this;
     }
-    configureJavaCode(config) {
-        this._javaClassModelGeneratorConfig = config;
+    configureJavaClassModel(config) {
+        this._javaClassModelConfig = config;
         return this;
     }
     addTransformers(...javaClassModelTransformers) {
@@ -4511,8 +4511,8 @@ class JavaSourceCodeGeneratorBuilder {
         return this;
     }
     build() {
-        const classModelGenerator = new _erdiagram_converter_oop_model_ClassModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(this._classModelGeneratorConfig);
-        const javaClassModelGenerator = new _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaClassModelGenerator__WEBPACK_IMPORTED_MODULE_1__.default(this._javaClassModelGeneratorConfig);
+        const classModelGenerator = new _erdiagram_converter_oop_model_ClassModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(this._classModelConfig);
+        const javaClassModelGenerator = new _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaClassModelGenerator__WEBPACK_IMPORTED_MODULE_1__.default(this._javaClassModelConfig);
         // TODO find a better way to instantiate this stateless components
         const javaAnnotationUsedTypesCompiler = new _erdiagram_converter_oop_source_code_generator_java_type_import_JavaAnnotationUsedTypesCompiler__WEBPACK_IMPORTED_MODULE_7__.default();
         const javaClassUsedTypesCompiler = new _erdiagram_converter_oop_source_code_generator_java_type_import_JavaClassUsedTypesCompiler__WEBPACK_IMPORTED_MODULE_6__.default(javaAnnotationUsedTypesCompiler);
@@ -4860,19 +4860,19 @@ class JavaClassModelSourceFilesGenerator {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "JavaAnnotation": () => (/* reexport safe */ _annotation_exports__WEBPACK_IMPORTED_MODULE_2__.JavaAnnotation),
+/* harmony export */   "JavaClassModelConfigManager": () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_3__.JavaClassModelConfigManager),
 /* harmony export */   "JavaClassModelGenerator": () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_3__.JavaClassModelGenerator),
-/* harmony export */   "JavaClassModelGeneratorConfigManager": () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_3__.JavaClassModelGeneratorConfigManager),
 /* harmony export */   "JavaVisibility": () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_3__.JavaVisibility),
-/* harmony export */   "javaClassModelGeneratorConfigManager": () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_3__.javaClassModelGeneratorConfigManager),
+/* harmony export */   "javaClassModelConfigManager": () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_3__.javaClassModelConfigManager),
+/* harmony export */   "JpaConfigManager": () => (/* reexport safe */ _jpa_exports__WEBPACK_IMPORTED_MODULE_4__.JpaConfigManager),
 /* harmony export */   "JpaTransformer": () => (/* reexport safe */ _jpa_exports__WEBPACK_IMPORTED_MODULE_4__.JpaTransformer),
 /* harmony export */   "JpaTransformerBuilder": () => (/* reexport safe */ _jpa_exports__WEBPACK_IMPORTED_MODULE_4__.JpaTransformerBuilder),
-/* harmony export */   "JpaTransformerConfigManager": () => (/* reexport safe */ _jpa_exports__WEBPACK_IMPORTED_MODULE_4__.JpaTransformerConfigManager),
-/* harmony export */   "jpaTransformerConfigManager": () => (/* reexport safe */ _jpa_exports__WEBPACK_IMPORTED_MODULE_4__.jpaTransformerConfigManager),
+/* harmony export */   "jpaConfigManager": () => (/* reexport safe */ _jpa_exports__WEBPACK_IMPORTED_MODULE_4__.jpaConfigManager),
+/* harmony export */   "BeanValidationConfigManager": () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_5__.BeanValidationConfigManager),
 /* harmony export */   "BeanValidationTransformer": () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_5__.BeanValidationTransformer),
-/* harmony export */   "BeanValidationTransformerConfigManager": () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_5__.BeanValidationTransformerConfigManager),
 /* harmony export */   "NotNullBlobValidationStrategy": () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_5__.NotNullBlobValidationStrategy),
 /* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_5__.NotNullTextValidationStrategy),
-/* harmony export */   "beanValidationTransformerConfigManager": () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_5__.beanValidationTransformerConfigManager),
+/* harmony export */   "beanValidationConfigManager": () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_5__.beanValidationConfigManager),
 /* harmony export */   "createJavaArrayType": () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_6__.createJavaArrayType),
 /* harmony export */   "createJavaParameterizedType": () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_6__.createJavaParameterizedType),
 /* harmony export */   "createJavaSimpleType": () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_6__.createJavaSimpleType),
@@ -4900,26 +4900,26 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaTransformerConfigManager.ts":
-/*!***************************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaTransformerConfigManager.ts ***!
-  \***************************************************************************************************************/
+/***/ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaConfigManager.ts":
+/*!****************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaConfigManager.ts ***!
+  \****************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "JpaTransformerConfigManager": () => (/* binding */ JpaTransformerConfigManager),
+/* harmony export */   "JpaConfigManager": () => (/* binding */ JpaConfigManager),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractConfigManager */ "./src/main/erdiagram/common/config/AbstractConfigManager.ts");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! true-json */ "./node_modules/true-json/dist/true-json.umd.js");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(true_json__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/converter/common/case-format/StandardCaseFormats.ts");
 
 
 
-class JpaTransformerConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__.default {
+class JpaConfigManager extends _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__.default {
     getDefaultConfig() {
         return {
             tableNameCaseFormat: _erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__.default.UPPER_CAMEL,
@@ -4939,8 +4939,8 @@ class JpaTransformerConfigManager extends _erdiagram_common_config_AbstractCompo
         });
     }
 }
-const jpaTransformerConfigManager = new JpaTransformerConfigManager();
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (jpaTransformerConfigManager);
+const jpaConfigManager = new JpaConfigManager();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (jpaConfigManager);
 
 
 /***/ }),
@@ -4954,10 +4954,10 @@ const jpaTransformerConfigManager = new JpaTransformerConfigManager();
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "JpaTransformerConfigManager": () => (/* reexport safe */ _JpaTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__.JpaTransformerConfigManager),
-/* harmony export */   "jpaTransformerConfigManager": () => (/* reexport safe */ _JpaTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */   "JpaConfigManager": () => (/* reexport safe */ _JpaConfigManager__WEBPACK_IMPORTED_MODULE_0__.JpaConfigManager),
+/* harmony export */   "jpaConfigManager": () => (/* reexport safe */ _JpaConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
 /* harmony export */ });
-/* harmony import */ var _JpaTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./JpaTransformerConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaTransformerConfigManager.ts");
+/* harmony import */ var _JpaConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./JpaConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaConfigManager.ts");
 
 
 
@@ -4973,8 +4973,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "JpaTransformerConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_0__.JpaTransformerConfigManager),
-/* harmony export */   "jpaTransformerConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_0__.jpaTransformerConfigManager),
+/* harmony export */   "JpaConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_0__.JpaConfigManager),
+/* harmony export */   "jpaConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_0__.jpaConfigManager),
 /* harmony export */   "JpaTransformer": () => (/* reexport safe */ _transformer_exports__WEBPACK_IMPORTED_MODULE_1__.JpaTransformer),
 /* harmony export */   "JpaTransformerBuilder": () => (/* reexport safe */ _transformer_exports__WEBPACK_IMPORTED_MODULE_1__.JpaTransformerBuilder)
 /* harmony export */ });
@@ -5033,7 +5033,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "JpaTransformer": () => (/* binding */ JpaTransformer)
 /* harmony export */ });
-/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_config_JpaTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaTransformerConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaTransformerConfigManager.ts");
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_config_JpaConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaConfigManager.ts");
 /* harmony import */ var _erdiagram_converter_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/common/case-format/CaseConverter */ "./src/main/erdiagram/converter/common/case-format/CaseConverter.ts");
 /* harmony import */ var _erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/common/case-format/StandardCaseFormats */ "./src/main/erdiagram/converter/common/case-format/StandardCaseFormats.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_JpaTransformerFieldVisitor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/visitor/field/JpaTransformerFieldVisitor */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/visitor/field/JpaTransformerFieldVisitor.ts");
@@ -5049,7 +5049,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class JpaTransformer {
     constructor(databaseModelGenerator, config) {
-        const { tableNameCaseFormat, columnNameCaseFormat, annotateGetters, useExplicitTableName, useExplicitColumnName } = _erdiagram_converter_oop_source_code_generator_java_jpa_config_JpaTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__.default.mergeWithDefaultConfig(config);
+        const { tableNameCaseFormat, columnNameCaseFormat, annotateGetters, useExplicitTableName, useExplicitColumnName } = _erdiagram_converter_oop_source_code_generator_java_jpa_config_JpaConfigManager__WEBPACK_IMPORTED_MODULE_0__.default.mergeWithDefaultConfig(config);
         const tableNameCaseConverter = new _erdiagram_converter_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_1__.default(_erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__.default.UPPER_CAMEL, tableNameCaseFormat);
         const columnNameCaseConverter = new _erdiagram_converter_common_case_format_CaseConverter__WEBPACK_IMPORTED_MODULE_1__.default(_erdiagram_converter_common_case_format_StandardCaseFormats__WEBPACK_IMPORTED_MODULE_2__.default.UPPER_CAMEL, columnNameCaseFormat);
         this._setupDataGenerator = new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_setup_JpaTransformerSetupDataGenerator__WEBPACK_IMPORTED_MODULE_5__.default(databaseModelGenerator);
@@ -5096,11 +5096,11 @@ __webpack_require__.r(__webpack_exports__);
 
 class JpaTransformerBuilder {
     constructor() {
-        this._databaseModelGeneratorConfig = {};
+        this._databaseModelConfig = {};
         this._config = {};
     }
     configureDatabaseModel(config) {
-        this._databaseModelGeneratorConfig = config;
+        this._databaseModelConfig = config;
         return this;
     }
     configureJpa(config) {
@@ -5108,7 +5108,7 @@ class JpaTransformerBuilder {
         return this;
     }
     build() {
-        return new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_JpaTransformer__WEBPACK_IMPORTED_MODULE_1__.JpaTransformer(new _erdiagram_converter_database_model_DatabaseModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(this._databaseModelGeneratorConfig), this._config);
+        return new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_JpaTransformer__WEBPACK_IMPORTED_MODULE_1__.JpaTransformer(new _erdiagram_converter_database_model_DatabaseModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(this._databaseModelConfig), this._config);
     }
 }
 
@@ -5658,9 +5658,9 @@ class RelationshipFieldAnnotationsSupplier {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "JavaClassModelConfigManager": () => (/* reexport safe */ _generator_exports__WEBPACK_IMPORTED_MODULE_0__.JavaClassModelConfigManager),
 /* harmony export */   "JavaClassModelGenerator": () => (/* reexport safe */ _generator_exports__WEBPACK_IMPORTED_MODULE_0__.JavaClassModelGenerator),
-/* harmony export */   "JavaClassModelGeneratorConfigManager": () => (/* reexport safe */ _generator_exports__WEBPACK_IMPORTED_MODULE_0__.JavaClassModelGeneratorConfigManager),
-/* harmony export */   "javaClassModelGeneratorConfigManager": () => (/* reexport safe */ _generator_exports__WEBPACK_IMPORTED_MODULE_0__.javaClassModelGeneratorConfigManager),
+/* harmony export */   "javaClassModelConfigManager": () => (/* reexport safe */ _generator_exports__WEBPACK_IMPORTED_MODULE_0__.javaClassModelConfigManager),
 /* harmony export */   "JavaVisibility": () => (/* reexport safe */ _java_class_model_types__WEBPACK_IMPORTED_MODULE_1__.JavaVisibility)
 /* harmony export */ });
 /* harmony import */ var _generator_exports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./generator/exports */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/exports.ts");
@@ -5721,7 +5721,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ JavaClassModelGenerator)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_type_JavaFieldTypeResolver__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/type/JavaFieldTypeResolver */ "./src/main/erdiagram/converter/oop/source-code-generator/java/type/JavaFieldTypeResolver.ts");
-/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_generator_config_JavaClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelGeneratorConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelGeneratorConfigManager.ts");
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_generator_config_JavaClassModelConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfigManager.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_generator_source_JavaClassModelDescriptorsRepositoryBuilder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/generator/source/JavaClassModelDescriptorsRepositoryBuilder */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/source/JavaClassModelDescriptorsRepositoryBuilder.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaClassGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaClassGenerator */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaClassGenerator.ts");
 
@@ -5730,7 +5730,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class JavaClassModelGenerator {
     constructor(config) {
-        const fullConfig = _erdiagram_converter_oop_source_code_generator_java_model_generator_config_JavaClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_1__.default.mergeWithDefaultConfig(config);
+        const fullConfig = _erdiagram_converter_oop_source_code_generator_java_model_generator_config_JavaClassModelConfigManager__WEBPACK_IMPORTED_MODULE_1__.default.mergeWithDefaultConfig(config);
         const generatedClassesPackage = fullConfig.generatedClassesPackage;
         const typeResolver = new _erdiagram_converter_oop_source_code_generator_java_type_JavaFieldTypeResolver__WEBPACK_IMPORTED_MODULE_0__.default(fullConfig.typeBindings, generatedClassesPackage);
         this._javaClassGenerator = new _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaClassGenerator__WEBPACK_IMPORTED_MODULE_3__.default(generatedClassesPackage, typeResolver);
@@ -5811,20 +5811,20 @@ class JavaFieldGenerator {
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelGeneratorConfigManager.ts":
-/*!************************************************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelGeneratorConfigManager.ts ***!
-  \************************************************************************************************************************************/
+/***/ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfigManager.ts":
+/*!***************************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfigManager.ts ***!
+  \***************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "JavaClassModelGeneratorConfigManager": () => (/* binding */ JavaClassModelGeneratorConfigManager),
+/* harmony export */   "JavaClassModelConfigManager": () => (/* binding */ JavaClassModelConfigManager),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
-/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractConfigManager */ "./src/main/erdiagram/common/config/AbstractConfigManager.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/type/parseJavaType */ "./src/main/erdiagram/converter/oop/source-code-generator/java/type/parseJavaType.ts");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! true-json */ "./node_modules/true-json/dist/true-json.umd.js");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(true_json__WEBPACK_IMPORTED_MODULE_3__);
@@ -5832,7 +5832,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class JavaClassModelGeneratorConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_1__.default {
+class JavaClassModelConfigManager extends _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_1__.default {
     getDefaultConfig() {
         return {
             typeBindings: {
@@ -5866,8 +5866,8 @@ class JavaClassModelGeneratorConfigManager extends _erdiagram_common_config_Abst
         });
     }
 }
-const javaClassModelGeneratorConfigManager = new JavaClassModelGeneratorConfigManager();
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (javaClassModelGeneratorConfigManager);
+const javaClassModelConfigManager = new JavaClassModelConfigManager();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (javaClassModelConfigManager);
 
 
 /***/ }),
@@ -5881,10 +5881,10 @@ const javaClassModelGeneratorConfigManager = new JavaClassModelGeneratorConfigMa
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "JavaClassModelGeneratorConfigManager": () => (/* reexport safe */ _JavaClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__.JavaClassModelGeneratorConfigManager),
-/* harmony export */   "javaClassModelGeneratorConfigManager": () => (/* reexport safe */ _JavaClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */   "JavaClassModelConfigManager": () => (/* reexport safe */ _JavaClassModelConfigManager__WEBPACK_IMPORTED_MODULE_0__.JavaClassModelConfigManager),
+/* harmony export */   "javaClassModelConfigManager": () => (/* reexport safe */ _JavaClassModelConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
 /* harmony export */ });
-/* harmony import */ var _JavaClassModelGeneratorConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./JavaClassModelGeneratorConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelGeneratorConfigManager.ts");
+/* harmony import */ var _JavaClassModelConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./JavaClassModelConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfigManager.ts");
 
 
 
@@ -5900,8 +5900,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "JavaClassModelGeneratorConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_1__.JavaClassModelGeneratorConfigManager),
-/* harmony export */   "javaClassModelGeneratorConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_1__.javaClassModelGeneratorConfigManager),
+/* harmony export */   "JavaClassModelConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_1__.JavaClassModelConfigManager),
+/* harmony export */   "javaClassModelConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_1__.javaClassModelConfigManager),
 /* harmony export */   "JavaClassModelGenerator": () => (/* reexport safe */ _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaClassModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaClassModelGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaClassModelGenerator */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaClassModelGenerator.ts");
@@ -6523,14 +6523,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ BeanValidationTransformer)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_validation_visitor_BeanValidationAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/validation/visitor/BeanValidationAnnotationsSupplier */ "./src/main/erdiagram/converter/oop/source-code-generator/java/validation/visitor/BeanValidationAnnotationsSupplier.ts");
-/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_validation_config_BeanValidationTransformerConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationTransformerConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationTransformerConfigManager.ts");
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_validation_config_BeanValidationConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationConfigManager.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_validation_visitor_BeanValidationFieldVisitor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/validation/visitor/BeanValidationFieldVisitor */ "./src/main/erdiagram/converter/oop/source-code-generator/java/validation/visitor/BeanValidationFieldVisitor.ts");
 
 
 
 class BeanValidationTransformer {
     constructor(config) {
-        const { notNullTextValidationStrategy, notNullBlobValidationStrategy, annotateGetters } = _erdiagram_converter_oop_source_code_generator_java_validation_config_BeanValidationTransformerConfigManager__WEBPACK_IMPORTED_MODULE_1__.default.mergeWithDefaultConfig(config);
+        const { notNullTextValidationStrategy, notNullBlobValidationStrategy, annotateGetters } = _erdiagram_converter_oop_source_code_generator_java_validation_config_BeanValidationConfigManager__WEBPACK_IMPORTED_MODULE_1__.default.mergeWithDefaultConfig(config);
         const beanValidationAnnotationsSupplier = new _erdiagram_converter_oop_source_code_generator_java_validation_visitor_BeanValidationAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_0__.default(notNullTextValidationStrategy, notNullBlobValidationStrategy);
         this._beanValidationFieldVisitor = new _erdiagram_converter_oop_source_code_generator_java_validation_visitor_BeanValidationFieldVisitor__WEBPACK_IMPORTED_MODULE_2__.default(beanValidationAnnotationsSupplier, annotateGetters);
     }
@@ -6576,25 +6576,25 @@ const JavaValidationAnnotationTypes = {
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationTransformerConfigManager.ts":
-/*!*********************************************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationTransformerConfigManager.ts ***!
-  \*********************************************************************************************************************************/
+/***/ "./src/main/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationConfigManager.ts":
+/*!**********************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationConfigManager.ts ***!
+  \**********************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "BeanValidationTransformerConfigManager": () => (/* binding */ BeanValidationTransformerConfigManager),
+/* harmony export */   "BeanValidationConfigManager": () => (/* binding */ BeanValidationConfigManager),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractConfigManager */ "./src/main/erdiagram/common/config/AbstractConfigManager.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_validation_strategy_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/validation/strategy/NotNullTextValidationStrategy */ "./src/main/erdiagram/converter/oop/source-code-generator/java/validation/strategy/NotNullTextValidationStrategy.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_validation_strategy_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/validation/strategy/NotNullBlobValidationStrategy */ "./src/main/erdiagram/converter/oop/source-code-generator/java/validation/strategy/NotNullBlobValidationStrategy.ts");
 
 
 
-class BeanValidationTransformerConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__.default {
+class BeanValidationConfigManager extends _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__.default {
     getDefaultConfig() {
         return {
             notNullTextValidationStrategy: _erdiagram_converter_oop_source_code_generator_java_validation_strategy_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_1__.default.NOT_NULL,
@@ -6606,8 +6606,8 @@ class BeanValidationTransformerConfigManager extends _erdiagram_common_config_Ab
         return Object.assign(Object.assign({}, fullConfig), partialConfig);
     }
 }
-const beanValidationTransformerConfigManager = new BeanValidationTransformerConfigManager();
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (beanValidationTransformerConfigManager);
+const beanValidationConfigManager = new BeanValidationConfigManager();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (beanValidationConfigManager);
 
 
 /***/ }),
@@ -6621,10 +6621,10 @@ const beanValidationTransformerConfigManager = new BeanValidationTransformerConf
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "BeanValidationTransformerConfigManager": () => (/* reexport safe */ _BeanValidationTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__.BeanValidationTransformerConfigManager),
-/* harmony export */   "beanValidationTransformerConfigManager": () => (/* reexport safe */ _BeanValidationTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */   "BeanValidationConfigManager": () => (/* reexport safe */ _BeanValidationConfigManager__WEBPACK_IMPORTED_MODULE_0__.BeanValidationConfigManager),
+/* harmony export */   "beanValidationConfigManager": () => (/* reexport safe */ _BeanValidationConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
 /* harmony export */ });
-/* harmony import */ var _BeanValidationTransformerConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BeanValidationTransformerConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationTransformerConfigManager.ts");
+/* harmony import */ var _BeanValidationConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BeanValidationConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationConfigManager.ts");
 
 
 
@@ -6640,8 +6640,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "BeanValidationTransformerConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_3__.BeanValidationTransformerConfigManager),
-/* harmony export */   "beanValidationTransformerConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_3__.beanValidationTransformerConfigManager),
+/* harmony export */   "BeanValidationConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_3__.BeanValidationConfigManager),
+/* harmony export */   "beanValidationConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_3__.beanValidationConfigManager),
 /* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _erdiagram_converter_oop_source_code_generator_java_validation_strategy_NotNullTextValidationStrategy__WEBPACK_IMPORTED_MODULE_0__.default),
 /* harmony export */   "NotNullBlobValidationStrategy": () => (/* reexport safe */ _erdiagram_converter_oop_source_code_generator_java_validation_strategy_NotNullBlobValidationStrategy__WEBPACK_IMPORTED_MODULE_1__.default),
 /* harmony export */   "BeanValidationTransformer": () => (/* reexport safe */ _erdiagram_converter_oop_source_code_generator_java_validation_BeanValidationTransformer__WEBPACK_IMPORTED_MODULE_2__.default)
@@ -6838,7 +6838,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
 /* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
-/* harmony import */ var _erdiagram_converter_oop_source_code_generator_typescript_config_TypeScriptClassModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptClassModelToCodeConverterConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptClassModelToCodeConverterConfigManager.ts");
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_typescript_config_TypeScriptConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptConfigManager.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_typescript_type_TypeScriptTypeResolver__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/typescript/type/TypeScriptTypeResolver */ "./src/main/erdiagram/converter/oop/source-code-generator/typescript/type/TypeScriptTypeResolver.ts");
 
 
@@ -6846,7 +6846,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class TypeScriptClassModelToCodeConverter {
     constructor(config) {
-        this.config = _erdiagram_converter_oop_source_code_generator_typescript_config_TypeScriptClassModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_2__.default.mergeWithDefaultConfig(config);
+        this.config = _erdiagram_converter_oop_source_code_generator_typescript_config_TypeScriptConfigManager__WEBPACK_IMPORTED_MODULE_2__.default.mergeWithDefaultConfig(config);
         this.typeResolver = new _erdiagram_converter_oop_source_code_generator_typescript_type_TypeScriptTypeResolver__WEBPACK_IMPORTED_MODULE_3__.default(this.config.typeBindings);
     }
     convertToCode(classModel) {
@@ -6929,39 +6929,39 @@ __webpack_require__.r(__webpack_exports__);
 
 class TypeScriptSourceCodeGeneratorBuilder {
     constructor() {
-        this._classModelGeneratorConfig = {};
-        this._typeScriptClassModelToCodeConverterConfig = {};
+        this._classModelConfig = {};
+        this._typeScriptConfig = {};
     }
     configureClassModel(config) {
-        this._classModelGeneratorConfig = config;
+        this._classModelConfig = config;
         return this;
     }
-    configureTypeScriptCode(config) {
-        this._typeScriptClassModelToCodeConverterConfig = config;
+    configureTypeScript(config) {
+        this._typeScriptConfig = config;
         return this;
     }
     build() {
-        return new _erdiagram_converter_oop_source_code_generator_typescript_TypeScriptSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_2__.default(new _erdiagram_converter_oop_model_ClassModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(this._classModelGeneratorConfig), new _erdiagram_converter_oop_source_code_generator_typescript_TypeScriptClassModelToCodeConverter__WEBPACK_IMPORTED_MODULE_1__.default(this._typeScriptClassModelToCodeConverterConfig));
+        return new _erdiagram_converter_oop_source_code_generator_typescript_TypeScriptSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_2__.default(new _erdiagram_converter_oop_model_ClassModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(this._classModelConfig), new _erdiagram_converter_oop_source_code_generator_typescript_TypeScriptClassModelToCodeConverter__WEBPACK_IMPORTED_MODULE_1__.default(this._typeScriptConfig));
     }
 }
 
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptClassModelToCodeConverterConfigManager.ts":
-/*!**************************************************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptClassModelToCodeConverterConfigManager.ts ***!
-  \**************************************************************************************************************************************/
+/***/ "./src/main/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptConfigManager.ts":
+/*!*************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptConfigManager.ts ***!
+  \*************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "TypeScriptClassModelToCodeConverterConfigManager": () => (/* binding */ TypeScriptClassModelToCodeConverterConfigManager),
+/* harmony export */   "TypeScriptConfigManager": () => (/* binding */ TypeScriptConfigManager),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
-/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractConfigManager */ "./src/main/erdiagram/common/config/AbstractConfigManager.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_typescript_type_parseTypeScriptType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/typescript/type/parseTypeScriptType */ "./src/main/erdiagram/converter/oop/source-code-generator/typescript/type/parseTypeScriptType.ts");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! true-json */ "./node_modules/true-json/dist/true-json.umd.js");
 /* harmony import */ var true_json__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(true_json__WEBPACK_IMPORTED_MODULE_3__);
@@ -6969,7 +6969,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class TypeScriptClassModelToCodeConverterConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_1__.default {
+class TypeScriptConfigManager extends _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_1__.default {
     getDefaultConfig() {
         return {
             typeBindings: {
@@ -7003,8 +7003,8 @@ class TypeScriptClassModelToCodeConverterConfigManager extends _erdiagram_common
         });
     }
 }
-const typescriptClassModelToCodeConverterConfigManager = new TypeScriptClassModelToCodeConverterConfigManager();
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (typescriptClassModelToCodeConverterConfigManager);
+const typescriptConfigManager = new TypeScriptConfigManager();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (typescriptConfigManager);
 
 
 /***/ }),
@@ -7018,10 +7018,10 @@ const typescriptClassModelToCodeConverterConfigManager = new TypeScriptClassMode
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "TypeScriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _TypeScriptClassModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_0__.TypeScriptClassModelToCodeConverterConfigManager),
-/* harmony export */   "typescriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _TypeScriptClassModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */   "TypeScriptConfigManager": () => (/* reexport safe */ _TypeScriptConfigManager__WEBPACK_IMPORTED_MODULE_0__.TypeScriptConfigManager),
+/* harmony export */   "typescriptConfigManager": () => (/* reexport safe */ _TypeScriptConfigManager__WEBPACK_IMPORTED_MODULE_0__.default)
 /* harmony export */ });
-/* harmony import */ var _TypeScriptClassModelToCodeConverterConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TypeScriptClassModelToCodeConverterConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptClassModelToCodeConverterConfigManager.ts");
+/* harmony import */ var _TypeScriptConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TypeScriptConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptConfigManager.ts");
 
 
 
@@ -7037,8 +7037,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "TypeScriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_3__.TypeScriptClassModelToCodeConverterConfigManager),
-/* harmony export */   "typescriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_3__.typescriptClassModelToCodeConverterConfigManager),
+/* harmony export */   "TypeScriptConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_3__.TypeScriptConfigManager),
+/* harmony export */   "typescriptConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_3__.typescriptConfigManager),
 /* harmony export */   "createTypeScriptArrayType": () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_4__.createTypeScriptArrayType),
 /* harmony export */   "createTypeScriptParameterizedType": () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_4__.createTypeScriptParameterizedType),
 /* harmony export */   "createTypeScriptSimpleType": () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_4__.createTypeScriptSimpleType),
@@ -7363,28 +7363,28 @@ class TypeScriptSimpleTypeImpl {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "AbstractComponentConfigManager": () => (/* reexport safe */ _common_exports__WEBPACK_IMPORTED_MODULE_0__.AbstractComponentConfigManager),
+/* harmony export */   "AbstractConfigManager": () => (/* reexport safe */ _common_exports__WEBPACK_IMPORTED_MODULE_0__.AbstractConfigManager),
+/* harmony export */   "BeanValidationConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.BeanValidationConfigManager),
 /* harmony export */   "BeanValidationTransformer": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.BeanValidationTransformer),
-/* harmony export */   "BeanValidationTransformerConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.BeanValidationTransformerConfigManager),
 /* harmony export */   "CaseConverter": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.CaseConverter),
+/* harmony export */   "ClassModelConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.ClassModelConfigManager),
 /* harmony export */   "ClassModelGenerator": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.ClassModelGenerator),
-/* harmony export */   "ClassModelGeneratorConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.ClassModelGeneratorConfigManager),
+/* harmony export */   "DatabaseModelConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.DatabaseModelConfigManager),
 /* harmony export */   "DatabaseModelGenerator": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.DatabaseModelGenerator),
-/* harmony export */   "DatabaseModelGeneratorConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.DatabaseModelGeneratorConfigManager),
 /* harmony export */   "DatabaseModelToSqlCodeConverter": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.DatabaseModelToSqlCodeConverter),
 /* harmony export */   "JavaAnnotation": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JavaAnnotation),
+/* harmony export */   "JavaClassModelConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JavaClassModelConfigManager),
 /* harmony export */   "JavaClassModelGenerator": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JavaClassModelGenerator),
-/* harmony export */   "JavaClassModelGeneratorConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JavaClassModelGeneratorConfigManager),
 /* harmony export */   "JavaSourceCodeGenerator": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JavaSourceCodeGenerator),
 /* harmony export */   "JavaSourceCodeGeneratorBuilder": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JavaSourceCodeGeneratorBuilder),
 /* harmony export */   "JavaVisibility": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JavaVisibility),
+/* harmony export */   "JpaConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JpaConfigManager),
 /* harmony export */   "JpaTransformer": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JpaTransformer),
 /* harmony export */   "JpaTransformerBuilder": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JpaTransformerBuilder),
-/* harmony export */   "JpaTransformerConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JpaTransformerConfigManager),
 /* harmony export */   "MysqlDialect": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.MysqlDialect),
 /* harmony export */   "MysqlDialectConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.MysqlDialectConfigManager),
+/* harmony export */   "NomnomlConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.NomnomlConfigManager),
 /* harmony export */   "NomnomlSourceCodeGenerator": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.NomnomlSourceCodeGenerator),
-/* harmony export */   "NomnomlSourceCodeGeneratorConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.NomnomlSourceCodeGeneratorConfigManager),
 /* harmony export */   "NotNullBlobValidationStrategy": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.NotNullBlobValidationStrategy),
 /* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.NotNullTextValidationStrategy),
 /* harmony export */   "OracleDialect": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.OracleDialect),
@@ -7401,32 +7401,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "StandardCaseFormats": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.StandardCaseFormats),
 /* harmony export */   "StandardIdNamingStrategies": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.StandardIdNamingStrategies),
 /* harmony export */   "TypeScriptClassModelToCodeConverter": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.TypeScriptClassModelToCodeConverter),
-/* harmony export */   "TypeScriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.TypeScriptClassModelToCodeConverterConfigManager),
+/* harmony export */   "TypeScriptConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.TypeScriptConfigManager),
 /* harmony export */   "TypeScriptSourceCodeGenerator": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.TypeScriptSourceCodeGenerator),
 /* harmony export */   "TypeScriptSourceCodeGeneratorBuilder": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.TypeScriptSourceCodeGeneratorBuilder),
-/* harmony export */   "beanValidationTransformerConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.beanValidationTransformerConfigManager),
-/* harmony export */   "classModelGeneratorConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.classModelGeneratorConfigManager),
+/* harmony export */   "beanValidationConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.beanValidationConfigManager),
+/* harmony export */   "classModelConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.classModelConfigManager),
 /* harmony export */   "createJavaArrayType": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.createJavaArrayType),
 /* harmony export */   "createJavaParameterizedType": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.createJavaParameterizedType),
 /* harmony export */   "createJavaSimpleType": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.createJavaSimpleType),
 /* harmony export */   "createTypeScriptArrayType": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.createTypeScriptArrayType),
 /* harmony export */   "createTypeScriptParameterizedType": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.createTypeScriptParameterizedType),
 /* harmony export */   "createTypeScriptSimpleType": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.createTypeScriptSimpleType),
-/* harmony export */   "databaseModelGeneratorConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.databaseModelGeneratorConfigManager),
+/* harmony export */   "databaseModelConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.databaseModelConfigManager),
 /* harmony export */   "isJavaParameterizedType": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.isJavaParameterizedType),
 /* harmony export */   "isMultipleFileSourceCodeGenerator": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.isMultipleFileSourceCodeGenerator),
 /* harmony export */   "isTypeScriptParameterizedType": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.isTypeScriptParameterizedType),
-/* harmony export */   "javaClassModelGeneratorConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.javaClassModelGeneratorConfigManager),
-/* harmony export */   "jpaTransformerConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.jpaTransformerConfigManager),
+/* harmony export */   "javaClassModelConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.javaClassModelConfigManager),
+/* harmony export */   "jpaConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.jpaConfigManager),
 /* harmony export */   "mysqlDialectConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.mysqlDialectConfigManager),
-/* harmony export */   "nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager),
+/* harmony export */   "nomnomlConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.nomnomlConfigManager),
 /* harmony export */   "oracleDialectConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.oracleDialectConfigManager),
 /* harmony export */   "parseJavaType": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.parseJavaType),
 /* harmony export */   "parseTypeScriptType": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.parseTypeScriptType),
 /* harmony export */   "postgresqlDialectConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.postgresqlDialectConfigManager),
 /* harmony export */   "sqlServerDialectConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.sqlServerDialectConfigManager),
 /* harmony export */   "sqliteDialectConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.sqliteDialectConfigManager),
-/* harmony export */   "typescriptClassModelToCodeConverterConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.typescriptClassModelToCodeConverterConfigManager),
+/* harmony export */   "typescriptConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.typescriptConfigManager),
 /* harmony export */   "Cardinality": () => (/* reexport safe */ _parser_exports__WEBPACK_IMPORTED_MODULE_2__.Cardinality),
 /* harmony export */   "Direction": () => (/* reexport safe */ _parser_exports__WEBPACK_IMPORTED_MODULE_2__.Direction),
 /* harmony export */   "ERDiagramDuplicatedEntityNameError": () => (/* reexport safe */ _parser_exports__WEBPACK_IMPORTED_MODULE_2__.ERDiagramDuplicatedEntityNameError),
@@ -7590,9 +7590,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "EntityRelationshipModelParserConfigManager": () => (/* binding */ EntityRelationshipModelParserConfigManager),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractComponentConfigManager */ "./src/main/erdiagram/common/config/AbstractComponentConfigManager.ts");
+/* harmony import */ var _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractConfigManager */ "./src/main/erdiagram/common/config/AbstractConfigManager.ts");
 
-class EntityRelationshipModelParserConfigManager extends _erdiagram_common_config_AbstractComponentConfigManager__WEBPACK_IMPORTED_MODULE_0__.default {
+class EntityRelationshipModelParserConfigManager extends _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__.default {
     getDefaultConfig() {
         return {
             allowUnknownEntities: false

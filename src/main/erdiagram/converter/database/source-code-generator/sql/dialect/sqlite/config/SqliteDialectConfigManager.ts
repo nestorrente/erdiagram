@@ -1,11 +1,11 @@
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
-import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
+import AbstractConfigManager from '@/erdiagram/common/config/AbstractConfigManager';
 import SqliteDialectConfig, {PartialSqliteDialectConfig} from '@/erdiagram/converter/database/source-code-generator/sql/dialect/sqlite/config/SqliteDialectConfig';
 import {JsonAdapter, JsonAdapters} from 'true-json';
 
 export class SqliteDialectConfigManager
-		extends AbstractComponentConfigManager<SqliteDialectConfig, PartialSqliteDialectConfig> {
+		extends AbstractConfigManager<SqliteDialectConfig, PartialSqliteDialectConfig> {
 
 	getDefaultConfig(): SqliteDialectConfig {
 		return {

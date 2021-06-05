@@ -1,9 +1,8 @@
-import nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager, {NomnomlSourceCodeGeneratorConfigManager} from './NomnomlSourceCodeGeneratorConfigManager';
-import NomnomlSourceCodeGeneratorConfig
-	from '@/erdiagram/converter/diagram/nomnoml/config/NomnomlSourceCodeGeneratorConfig';
+import nomnomlConfigManager, {NomnomlConfigManager} from './NomnomlConfigManager';
+import NomnomlConfig from '@/erdiagram/converter/diagram/nomnoml/config/NomnomlConfig';
 
 export {
-	NomnomlSourceCodeGeneratorConfig,
-	NomnomlSourceCodeGeneratorConfigManager,
-	nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager
+	NomnomlConfig,
+	NomnomlConfigManager,
+	nomnomlConfigManager
 };

@@ -1,8 +1,8 @@
-import DatabaseModelGeneratorConfig from './DatabaseModelGeneratorConfig';
-import databaseModelGeneratorConfigManager, {DatabaseModelGeneratorConfigManager} from './DatabaseModelGeneratorConfigManager';
+import DatabaseModelConfig from './DatabaseModelConfig';
+import databaseModelConfigManager, {DatabaseModelConfigManager} from './DatabaseModelConfigManager';
 
 export {
-	DatabaseModelGeneratorConfig,
-	DatabaseModelGeneratorConfigManager,
-	databaseModelGeneratorConfigManager
+	DatabaseModelConfig,
+	DatabaseModelConfigManager,
+	databaseModelConfigManager
 };

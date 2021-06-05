@@ -1,19 +1,19 @@
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
 import {ClassDescriptor, ClassFieldDescriptor, ClassModel} from '@/erdiagram/converter/oop/model/class-model-types';
 import {indentLines} from '@/erdiagram/util/indent-utils';
-import ClassModelToCodeConverter from '@/erdiagram/converter/oop/source-code-generator/ClassModelToCodeConverter';
-import TypeScriptClassModelToCodeConverterConfig, {PartialTypeScriptClassModelToCodeConverterConfig} from '@/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptClassModelToCodeConverterConfig';
-import typescriptClassModelToCodeConverterConfigManager
-	from '@/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptClassModelToCodeConverterConfigManager';
-import TypeScriptTypeResolver from '@/erdiagram/converter/oop/source-code-generator/typescript/type/TypeScriptTypeResolver';
+import TypeScriptConfig, {PartialTypeScriptConfig} from '@/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptConfig';
+import typescriptConfigManager
+	from '@/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptConfigManager';
+import TypeScriptTypeResolver
+	from '@/erdiagram/converter/oop/source-code-generator/typescript/type/TypeScriptTypeResolver';
 
-export default class TypeScriptClassModelToCodeConverter implements ClassModelToCodeConverter {
+export default class TypeScriptClassModelToCodeConverter {
 
-	private readonly config: TypeScriptClassModelToCodeConverterConfig;
+	private readonly config: TypeScriptConfig;
 	private readonly typeResolver: TypeScriptTypeResolver;
 
-	constructor(config?: PartialTypeScriptClassModelToCodeConverterConfig) {
-		this.config = typescriptClassModelToCodeConverterConfigManager.mergeWithDefaultConfig(config);
+	constructor(config?: PartialTypeScriptConfig) {
+		this.config = typescriptConfigManager.mergeWithDefaultConfig(config);
 		this.typeResolver = new TypeScriptTypeResolver(this.config.typeBindings);
 	}
 

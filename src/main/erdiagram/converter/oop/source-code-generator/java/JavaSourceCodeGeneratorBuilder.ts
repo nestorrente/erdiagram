@@ -3,8 +3,8 @@ import JavaClassModelTransformer
 	from '@/erdiagram/converter/oop/source-code-generator/java/model/transformer/JavaClassModelTransformer';
 import JavaClassModelGenerator
 	from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaClassModelGenerator';
-import {PartialClassModelGeneratorConfig} from '@/erdiagram/converter/oop/model/config/ClassModelGeneratorConfig';
-import {PartialJavaClassModelGeneratorConfig} from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelGeneratorConfig';
+import {PartialClassModelConfig} from '@/erdiagram/converter/oop/model/config/ClassModelConfig';
+import {PartialJavaClassModelConfig} from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfig';
 import JavaSourceCodeGenerator from '@/erdiagram/converter/oop/source-code-generator/java/JavaSourceCodeGenerator';
 import JavaClassModelCodeGenerator
 	from '@/erdiagram/converter/oop/source-code-generator/java/code/JavaClassModelCodeGenerator';
@@ -18,17 +18,17 @@ import JavaAnnotationUsedTypesCompiler
 
 export default class JavaSourceCodeGeneratorBuilder {
 
-	private _classModelGeneratorConfig: PartialClassModelGeneratorConfig = {};
-	private _javaClassModelGeneratorConfig: PartialJavaClassModelGeneratorConfig = {};
+	private _classModelConfig: PartialClassModelConfig = {};
+	private _javaClassModelConfig: PartialJavaClassModelConfig = {};
 	private _javaClassModelTransformers: JavaClassModelTransformer[] = [];
 
-	public configureClassModel(config: PartialClassModelGeneratorConfig) {
-		this._classModelGeneratorConfig = config;
+	public configureClassModel(config: PartialClassModelConfig) {
+		this._classModelConfig = config;
 		return this;
 	}
 
-	public configureJavaCode(config: PartialJavaClassModelGeneratorConfig) {
-		this._javaClassModelGeneratorConfig = config;
+	public configureJavaClassModel(config: PartialJavaClassModelConfig) {
+		this._javaClassModelConfig = config;
 		return this;
 	}
 
@@ -39,8 +39,8 @@ export default class JavaSourceCodeGeneratorBuilder {
 
 	public build() {
 
-		const classModelGenerator = new ClassModelGenerator(this._classModelGeneratorConfig);
-		const javaClassModelGenerator = new JavaClassModelGenerator(this._javaClassModelGeneratorConfig);
+		const classModelGenerator = new ClassModelGenerator(this._classModelConfig);
+		const javaClassModelGenerator = new JavaClassModelGenerator(this._javaClassModelConfig);
 
 		// TODO find a better way to instantiate this stateless components
 		const javaAnnotationUsedTypesCompiler = new JavaAnnotationUsedTypesCompiler();

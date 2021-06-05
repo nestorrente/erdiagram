@@ -1,13 +1,12 @@
-import {NomnomlSourceCodeGeneratorConfigManager} from '../../../../../../main/erdiagram/converter/diagram/nomnoml/config/NomnomlSourceCodeGeneratorConfigManager';
-import NomnomlSourceCodeGeneratorConfig
-	from '../../../../../../main/erdiagram/converter/diagram/nomnoml/config/NomnomlSourceCodeGeneratorConfig';
+import {NomnomlConfigManager} from '../../../../../../main/erdiagram/converter/diagram/nomnoml/config/NomnomlConfigManager';
+import NomnomlConfig from '../../../../../../main/erdiagram/converter/diagram/nomnoml/config/NomnomlConfig';
 import {JsonValue} from 'true-json';
 
-const configManager = new NomnomlSourceCodeGeneratorConfigManager();
+const configManager = new NomnomlConfigManager();
 
 describe('Serialization', () => {
 
-	const config: NomnomlSourceCodeGeneratorConfig = {
+	const config: NomnomlConfig = {
 		arrowSize: 1,
 		bendSize: undefined,
 		direction: undefined,

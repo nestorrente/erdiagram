@@ -1,6 +1,6 @@
 import CaseFormat from '@/erdiagram/converter/common/case-format/CaseFormat';
 
-export default interface JpaTransformerConfig {
+export default interface JpaConfig {
 	tableNameCaseFormat: CaseFormat;
 	columnNameCaseFormat: CaseFormat;
 	annotateGetters: boolean;
@@ -8,4 +8,4 @@ export default interface JpaTransformerConfig {
 	useExplicitColumnName: boolean;
 }
 
-export type PartialJpaTransformerConfig = Partial<JpaTransformerConfig>;
+export type PartialJpaConfig = Partial<JpaConfig>;

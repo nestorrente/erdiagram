@@ -1,4 +1,4 @@
-import {PartialDatabaseModelGeneratorConfig} from '@/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfig';
+import {PartialDatabaseModelConfig} from '@/erdiagram/converter/database/model/config/DatabaseModelConfig';
 import SqlDialect from '@/erdiagram/converter/database/source-code-generator/sql/dialect/common/SqlDialect';
 import DatabaseModelGenerator from '@/erdiagram/converter/database/model/DatabaseModelGenerator';
 import SqlSourceCodeGenerator from '@/erdiagram/converter/database/source-code-generator/SqlSourceCodeGenerator';
@@ -7,11 +7,11 @@ import DatabaseModelToSqlCodeConverter
 
 export default class SqlSourceCodeGeneratorBuilder {
 
-	private _databaseModelGeneratorConfig: PartialDatabaseModelGeneratorConfig = {};
+	private _databaseModelConfig: PartialDatabaseModelConfig = {};
 	private _sqlDialect?: SqlDialect;
 
-	public configureDatabaseModel(config: PartialDatabaseModelGeneratorConfig) {
-		this._databaseModelGeneratorConfig = config;
+	public configureDatabaseModel(config: PartialDatabaseModelConfig) {
+		this._databaseModelConfig = config;
 		return this;
 	}
 
@@ -27,7 +27,7 @@ export default class SqlSourceCodeGeneratorBuilder {
 		}
 
 		return new SqlSourceCodeGenerator(
-				new DatabaseModelGenerator(this._databaseModelGeneratorConfig),
+				new DatabaseModelGenerator(this._databaseModelConfig),
 				new DatabaseModelToSqlCodeConverter(this._sqlDialect)
 		);
 

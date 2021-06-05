@@ -1,11 +1,11 @@
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
-import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
+import AbstractConfigManager from '@/erdiagram/common/config/AbstractConfigManager';
 import OracleDialectConfig, {PartialOracleDialectConfig} from '@/erdiagram/converter/database/source-code-generator/sql/dialect/oracle/config/OracleDialectConfig';
 import {JsonAdapter, JsonAdapters} from 'true-json';
 
 export class OracleDialectConfigManager
-		extends AbstractComponentConfigManager<OracleDialectConfig, PartialOracleDialectConfig> {
+		extends AbstractConfigManager<OracleDialectConfig, PartialOracleDialectConfig> {
 
 	getDefaultConfig(): OracleDialectConfig {
 		return {

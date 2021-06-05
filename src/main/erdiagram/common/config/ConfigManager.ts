@@ -1,6 +1,6 @@
 import {JsonValue} from 'true-json';
 
-export default interface ComponentConfigManager<C, P> {
+export default interface ConfigManager<C, P> {
 
 	getDefaultConfig(): C;
 

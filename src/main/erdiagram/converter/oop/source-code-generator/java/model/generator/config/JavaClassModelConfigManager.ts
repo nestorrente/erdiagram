@@ -1,14 +1,14 @@
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
-import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
+import AbstractConfigManager from '@/erdiagram/common/config/AbstractConfigManager';
 import parseJavaType from '@/erdiagram/converter/oop/source-code-generator/java/type/parseJavaType';
 import {JsonAdapter, JsonAdapters} from 'true-json';
 import JavaType from '@/erdiagram/converter/oop/source-code-generator/java/type/JavaType';
-import JavaClassModelGeneratorConfig, {PartialJavaClassModelGeneratorConfig} from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelGeneratorConfig';
+import JavaClassModelConfig, {PartialJavaClassModelConfig} from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfig';
 
-export class JavaClassModelGeneratorConfigManager
-		extends AbstractComponentConfigManager<JavaClassModelGeneratorConfig, PartialJavaClassModelGeneratorConfig> {
+export class JavaClassModelConfigManager
+		extends AbstractConfigManager<JavaClassModelConfig, PartialJavaClassModelConfig> {
 
-	getDefaultConfig(): JavaClassModelGeneratorConfig {
+	getDefaultConfig(): JavaClassModelConfig {
 		return {
 			typeBindings: {
 				[EntityPropertyType.IDENTITY]: parseJavaType('java.lang.Long'),
@@ -26,7 +26,7 @@ export class JavaClassModelGeneratorConfigManager
 		};
 	}
 
-	mergeConfigs(fullConfig: JavaClassModelGeneratorConfig, partialConfig?: PartialJavaClassModelGeneratorConfig): JavaClassModelGeneratorConfig {
+	mergeConfigs(fullConfig: JavaClassModelConfig, partialConfig?: PartialJavaClassModelConfig): JavaClassModelConfig {
 		return {
 			...fullConfig,
 			...partialConfig,
@@ -37,8 +37,8 @@ export class JavaClassModelGeneratorConfigManager
 		};
 	}
 
-	protected getJsonAdapter(): JsonAdapter<JavaClassModelGeneratorConfig> {
-		return JsonAdapters.object<JavaClassModelGeneratorConfig>({
+	protected getJsonAdapter(): JsonAdapter<JavaClassModelConfig> {
+		return JsonAdapters.object<JavaClassModelConfig>({
 			typeBindings: JsonAdapters.record(JsonAdapters.custom<JavaType, string>({
 				adaptToJson(value) {
 					return value.formatCanonical();
@@ -52,5 +52,5 @@ export class JavaClassModelGeneratorConfigManager
 
 }
 
-const javaClassModelGeneratorConfigManager = new JavaClassModelGeneratorConfigManager();
-export default javaClassModelGeneratorConfigManager;
+const javaClassModelConfigManager = new JavaClassModelConfigManager();
+export default javaClassModelConfigManager;

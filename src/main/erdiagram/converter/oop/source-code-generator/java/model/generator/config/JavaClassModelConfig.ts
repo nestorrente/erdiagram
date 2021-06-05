@@ -2,9 +2,9 @@ import JavaType from '@/erdiagram/converter/oop/source-code-generator/java/type/
 import {WithPartial} from '@/erdiagram/util/types';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 
-export default interface JavaClassModelGeneratorConfig {
+export default interface JavaClassModelConfig {
 	typeBindings: Record<EntityPropertyType, JavaType>;
 	generatedClassesPackage?: string;
 }
 
-export type PartialJavaClassModelGeneratorConfig = Partial<WithPartial<JavaClassModelGeneratorConfig, 'typeBindings'>>;
+export type PartialJavaClassModelConfig = Partial<WithPartial<JavaClassModelConfig, 'typeBindings'>>;

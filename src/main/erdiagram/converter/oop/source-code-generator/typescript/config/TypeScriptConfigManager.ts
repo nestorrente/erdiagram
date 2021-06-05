@@ -1,14 +1,13 @@
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
-import AbstractComponentConfigManager from '@/erdiagram/common/config/AbstractComponentConfigManager';
-import TypeScriptClassModelToCodeConverterConfig, {PartialTypeScriptClassModelToCodeConverterConfig} from '@/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptClassModelToCodeConverterConfig';
+import AbstractConfigManager from '@/erdiagram/common/config/AbstractConfigManager';
+import TypeScriptConfig, {PartialTypeScriptConfig} from '@/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptConfig';
 import parseTypeScriptType from '@/erdiagram/converter/oop/source-code-generator/typescript/type/parseTypeScriptType';
 import {JsonAdapter, JsonAdapters} from 'true-json';
 import TypeScriptType from '@/erdiagram/converter/oop/source-code-generator/typescript/type/TypeScriptType';
 
-export class TypeScriptClassModelToCodeConverterConfigManager
-		extends AbstractComponentConfigManager<TypeScriptClassModelToCodeConverterConfig, PartialTypeScriptClassModelToCodeConverterConfig> {
+export class TypeScriptConfigManager extends AbstractConfigManager<TypeScriptConfig, PartialTypeScriptConfig> {
 
-	getDefaultConfig(): TypeScriptClassModelToCodeConverterConfig {
+	getDefaultConfig(): TypeScriptConfig {
 		return {
 			typeBindings: {
 				[EntityPropertyType.IDENTITY]: parseTypeScriptType('number'),
@@ -26,7 +25,7 @@ export class TypeScriptClassModelToCodeConverterConfigManager
 		};
 	}
 
-	mergeConfigs(fullConfig: TypeScriptClassModelToCodeConverterConfig, partialConfig?: PartialTypeScriptClassModelToCodeConverterConfig): TypeScriptClassModelToCodeConverterConfig {
+	mergeConfigs(fullConfig: TypeScriptConfig, partialConfig?: PartialTypeScriptConfig): TypeScriptConfig {
 		return {
 			...fullConfig,
 			...partialConfig,
@@ -37,8 +36,8 @@ export class TypeScriptClassModelToCodeConverterConfigManager
 		};
 	}
 
-	protected getJsonAdapter(): JsonAdapter<TypeScriptClassModelToCodeConverterConfig> {
-		return JsonAdapters.object<TypeScriptClassModelToCodeConverterConfig>({
+	protected getJsonAdapter(): JsonAdapter<TypeScriptConfig> {
+		return JsonAdapters.object<TypeScriptConfig>({
 			typeBindings: JsonAdapters.record(JsonAdapters.custom<TypeScriptType, string>({
 				adaptToJson(value) {
 					return value.format();
@@ -52,5 +51,5 @@ export class TypeScriptClassModelToCodeConverterConfigManager
 
 }
 
-const typescriptClassModelToCodeConverterConfigManager = new TypeScriptClassModelToCodeConverterConfigManager();
-export default typescriptClassModelToCodeConverterConfigManager;
+const typescriptConfigManager = new TypeScriptConfigManager();
+export default typescriptConfigManager;

@@ -1,15 +1,15 @@
-import {TypeScriptClassModelToCodeConverterConfigManager} from '@/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptClassModelToCodeConverterConfigManager';
+import {TypeScriptConfigManager} from '../../../../../../../main/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptConfigManager';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import parseTypeScriptType from '@/erdiagram/converter/oop/source-code-generator/typescript/type/parseTypeScriptType';
-import TypeScriptClassModelToCodeConverterConfig
-	from '@/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptClassModelToCodeConverterConfig';
+import TypeScriptConfig
+	from '../../../../../../../main/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptConfig';
 import {JsonValue} from 'true-json';
 
-const configManager = new TypeScriptClassModelToCodeConverterConfigManager();
+const configManager = new TypeScriptConfigManager();
 
 describe('Serialization', () => {
 
-	const config: TypeScriptClassModelToCodeConverterConfig = {
+	const config: TypeScriptConfig = {
 		typeBindings: {
 			[EntityPropertyType.IDENTITY]: parseTypeScriptType('number'),
 			[EntityPropertyType.TEXT]: parseTypeScriptType('string'),

@@ -1,9 +1,9 @@
-import TypeScriptClassModelToCodeConverterConfig, {PartialTypeScriptClassModelToCodeConverterConfig} from './TypeScriptClassModelToCodeConverterConfig';
-import typescriptClassModelToCodeConverterConfigManager, {TypeScriptClassModelToCodeConverterConfigManager} from './TypeScriptClassModelToCodeConverterConfigManager';
+import TypeScriptConfig, {PartialTypeScriptConfig} from './TypeScriptConfig';
+import typescriptConfigManager, {TypeScriptConfigManager} from './TypeScriptConfigManager';
 
 export {
-	TypeScriptClassModelToCodeConverterConfig,
-	PartialTypeScriptClassModelToCodeConverterConfig,
-	TypeScriptClassModelToCodeConverterConfigManager,
-	typescriptClassModelToCodeConverterConfigManager
+	TypeScriptConfig,
+	PartialTypeScriptConfig,
+	TypeScriptConfigManager,
+	typescriptConfigManager
 };

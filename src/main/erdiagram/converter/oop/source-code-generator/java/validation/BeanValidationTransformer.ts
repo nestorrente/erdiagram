@@ -13,9 +13,9 @@ import {
 } from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
 import BeanValidationAnnotationsSupplier
 	from '@/erdiagram/converter/oop/source-code-generator/java/validation/visitor/BeanValidationAnnotationsSupplier';
-import {PartialBeanValidationTransformerConfig} from '@/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationTransformerConfig';
-import beanValidationTransformerConfigManager
-	from '@/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationTransformerConfigManager';
+import {PartialBeanValidationConfig} from '@/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationConfig';
+import beanValidationConfigManager
+	from '@/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationConfigManager';
 import BeanValidationFieldVisitor
 	from '@/erdiagram/converter/oop/source-code-generator/java/validation/visitor/BeanValidationFieldVisitor';
 
@@ -23,13 +23,13 @@ export default class BeanValidationTransformer implements JavaClassModelTransfor
 
 	private readonly _beanValidationFieldVisitor: BeanValidationFieldVisitor;
 
-	constructor(config?: PartialBeanValidationTransformerConfig) {
+	constructor(config?: PartialBeanValidationConfig) {
 
 		const {
 			notNullTextValidationStrategy,
 			notNullBlobValidationStrategy,
 			annotateGetters
-		} = beanValidationTransformerConfigManager.mergeWithDefaultConfig(config);
+		} = beanValidationConfigManager.mergeWithDefaultConfig(config);
 
 		const beanValidationAnnotationsSupplier = new BeanValidationAnnotationsSupplier(notNullTextValidationStrategy, notNullBlobValidationStrategy);
 

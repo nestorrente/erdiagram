@@ -1,9 +1,9 @@
-import BeanValidationTransformerConfig, {PartialBeanValidationTransformerConfig} from './BeanValidationTransformerConfig';
-import beanValidationTransformerConfigManager, {BeanValidationTransformerConfigManager} from './BeanValidationTransformerConfigManager';
+import BeanValidationConfig, {PartialBeanValidationConfig} from './BeanValidationConfig';
+import beanValidationConfigManager, {BeanValidationConfigManager} from './BeanValidationConfigManager';
 
 export {
-	BeanValidationTransformerConfig,
-	PartialBeanValidationTransformerConfig,
-	BeanValidationTransformerConfigManager,
-	beanValidationTransformerConfigManager
+	BeanValidationConfig,
+	PartialBeanValidationConfig,
+	BeanValidationConfigManager,
+	beanValidationConfigManager
 };

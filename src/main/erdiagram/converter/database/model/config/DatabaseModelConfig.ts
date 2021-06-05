@@ -1,8 +1,8 @@
 import IdNamingStrategy from '@/erdiagram/converter/common/id-naming-strategy/IdNamingStrategy';
 
-export default interface DatabaseModelGeneratorConfig {
+export default interface DatabaseModelConfig {
 	usePluralTableNames: boolean;
 	idNamingStrategy: IdNamingStrategy;
 }
 
-export type PartialDatabaseModelGeneratorConfig = Partial<DatabaseModelGeneratorConfig>;
+export type PartialDatabaseModelConfig = Partial<DatabaseModelConfig>;

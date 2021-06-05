@@ -17,7 +17,7 @@ In this page you will find information about the configuration options of the di
     + [TypeScriptClassModelToCodeConverter](#typescriptclassmodeltocodeconverter)
         + [Type bindings (TypeScript)](#type-bindings-typescript)
 * [Diagram](#diagram)
-    + [NomnomlSourceCodeGeneratorConfig](#nomnomlsourcecodegeneratorconfig)
+    + [NomnomlConfig](#nomnomlconfig)
 
 ## EntityRelationshipModelParser
 
@@ -221,7 +221,7 @@ parseJavaType('Map<number, Date[]>') // Map<number, Date[]> a.k.a. Map<number, A
 
 ## Diagram
 
-### NomnomlSourceCodeGeneratorConfig
+### NomnomlConfig
 
 _ERDiagram_ allows customizing the values of some Nomnoml directives. You can learn more about those directives in
 [Nomnoml's Github repo](https://github.com/skanaar/nomnoml).

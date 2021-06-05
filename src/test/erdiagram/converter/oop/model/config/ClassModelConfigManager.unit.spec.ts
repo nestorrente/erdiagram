@@ -1,10 +1,10 @@
-import {ClassModelGeneratorConfigManager} from '@/erdiagram/converter/oop/model/config/ClassModelGeneratorConfigManager';
-import ClassModelGeneratorConfig from '@/erdiagram/converter/oop/model/config/ClassModelGeneratorConfig';
+import {ClassModelConfigManager} from '../../../../../../main/erdiagram/converter/oop/model/config/ClassModelConfigManager';
+import ClassModelConfig from '../../../../../../main/erdiagram/converter/oop/model/config/ClassModelConfig';
 import IdNamingStrategy from '@/erdiagram/converter/common/id-naming-strategy/IdNamingStrategy';
 import StandardIdNamingStrategies from '@/erdiagram/converter/common/id-naming-strategy/StandardIdNamingStrategies';
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
 
-const configManager = new ClassModelGeneratorConfigManager();
+const configManager = new ClassModelConfigManager();
 
 describe('Serialization', () => {
 
@@ -26,7 +26,7 @@ describe('Serialization', () => {
 			idNamingStrategy: 'DEFAULT'
 		});
 
-		expect(result).toStrictEqual<ClassModelGeneratorConfig>({
+		expect(result).toStrictEqual<ClassModelConfig>({
 			idNamingStrategy: StandardIdNamingStrategies.DEFAULT
 		});
 
@@ -61,7 +61,7 @@ describe('Serialization of different ID naming strategies', () => {
 				idNamingStrategy: serializedIdNamingStrategy
 			});
 
-			expect(result).toStrictEqual<ClassModelGeneratorConfig>({
+			expect(result).toStrictEqual<ClassModelConfig>({
 				idNamingStrategy: StandardIdNamingStrategies[serializedIdNamingStrategy]
 			});
 

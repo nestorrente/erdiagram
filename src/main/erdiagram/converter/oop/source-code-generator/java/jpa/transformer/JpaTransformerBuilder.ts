@@ -1,26 +1,26 @@
 import DatabaseModelGenerator from '@/erdiagram/converter/database/model/DatabaseModelGenerator';
-import {PartialDatabaseModelGeneratorConfig} from '@/erdiagram/converter/database/model/config/DatabaseModelGeneratorConfig';
-import {PartialJpaTransformerConfig} from '@/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaTransformerConfig';
+import {PartialDatabaseModelConfig} from '@/erdiagram/converter/database/model/config/DatabaseModelConfig';
+import {PartialJpaConfig} from '@/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaConfig';
 import {JpaTransformer} from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/JpaTransformer';
 
 export default class JpaTransformerBuilder {
 
-	private _databaseModelGeneratorConfig: PartialDatabaseModelGeneratorConfig = {};
-	private _config: PartialJpaTransformerConfig = {};
+	private _databaseModelConfig: PartialDatabaseModelConfig = {};
+	private _config: PartialJpaConfig = {};
 
-	public configureDatabaseModel(config: PartialDatabaseModelGeneratorConfig) {
-		this._databaseModelGeneratorConfig = config;
+	public configureDatabaseModel(config: PartialDatabaseModelConfig) {
+		this._databaseModelConfig = config;
 		return this;
 	}
 
-	public configureJpa(config: PartialJpaTransformerConfig) {
+	public configureJpa(config: PartialJpaConfig) {
 		this._config = config;
 		return this;
 	}
 
 	public build() {
 		return new JpaTransformer(
-				new DatabaseModelGenerator(this._databaseModelGeneratorConfig),
+				new DatabaseModelGenerator(this._databaseModelConfig),
 				this._config
 		);
 	}

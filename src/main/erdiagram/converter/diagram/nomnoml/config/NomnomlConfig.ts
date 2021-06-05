@@ -1,4 +1,4 @@
-export default interface NomnomlSourceCodeGeneratorConfig {
+export default interface NomnomlConfig {
 	arrowSize?: number;
 	bendSize?: number;
 	direction?: 'down' | 'right';

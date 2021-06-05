@@ -1,9 +1,9 @@
-import JavaClassModelGeneratorConfig, {PartialJavaClassModelGeneratorConfig} from './JavaClassModelGeneratorConfig';
-import javaClassModelGeneratorConfigManager, {JavaClassModelGeneratorConfigManager} from './JavaClassModelGeneratorConfigManager';
+import JavaClassModelConfig, {PartialJavaClassModelConfig} from './JavaClassModelConfig';
+import javaClassModelConfigManager, {JavaClassModelConfigManager} from './JavaClassModelConfigManager';
 
 export {
-	JavaClassModelGeneratorConfig,
-	PartialJavaClassModelGeneratorConfig,
-	JavaClassModelGeneratorConfigManager,
-	javaClassModelGeneratorConfigManager
+	JavaClassModelConfig,
+	PartialJavaClassModelConfig,
+	JavaClassModelConfigManager,
+	javaClassModelConfigManager
 };

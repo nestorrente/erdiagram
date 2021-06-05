@@ -5,7 +5,7 @@ import {
 	EntityDescriptor,
 	RelationshipDescriptor
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
-import ClassModelGeneratorConfig from '@/erdiagram/converter/oop/model/config/ClassModelGeneratorConfig';
+import ClassModelConfig from '@/erdiagram/converter/oop/model/config/ClassModelConfig';
 import RelationshipMemberToClassFieldMapper
 	from '@/erdiagram/converter/oop/model/class/field/RelationshipMemberToClassFieldMapper';
 import EntityPropertyToClassFieldMapper
@@ -20,7 +20,7 @@ export default class EntityToClassMapper {
 	private readonly relationshipMemberToClassFieldMapper: RelationshipMemberToClassFieldMapper;
 
 	constructor(
-			private readonly config: ClassModelGeneratorConfig
+			private readonly config: ClassModelConfig
 	) {
 		this.entityToIdClassFieldMapper = new EntityToIdClassFieldMapper(this.config.idNamingStrategy);
 		this.entityPropertyToClassFieldMapper = new EntityPropertyToClassFieldMapper();

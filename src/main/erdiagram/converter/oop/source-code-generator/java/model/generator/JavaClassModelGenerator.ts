@@ -2,9 +2,9 @@ import {ClassModel} from '@/erdiagram/converter/oop/model/class-model-types';
 import JavaFieldTypeResolver from '@/erdiagram/converter/oop/source-code-generator/java/type/JavaFieldTypeResolver';
 import JavaClassModelGenerationResult
 	from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaClassModelGenerationResult';
-import {PartialJavaClassModelGeneratorConfig} from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelGeneratorConfig';
-import javaClassModelGeneratorConfigManager
-	from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelGeneratorConfigManager';
+import {PartialJavaClassModelConfig} from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfig';
+import javaClassModelConfigManager
+	from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfigManager';
 import JavaClassModelDescriptorsRepositoryBuilder
 	from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/source/JavaClassModelDescriptorsRepositoryBuilder';
 import JavaClassGenerator
@@ -14,9 +14,9 @@ export default class JavaClassModelGenerator {
 
 	private readonly _javaClassGenerator: JavaClassGenerator;
 
-	constructor(config?: PartialJavaClassModelGeneratorConfig) {
+	constructor(config?: PartialJavaClassModelConfig) {
 
-		const fullConfig = javaClassModelGeneratorConfigManager.mergeWithDefaultConfig(config);
+		const fullConfig = javaClassModelConfigManager.mergeWithDefaultConfig(config);
 
 		const generatedClassesPackage = fullConfig.generatedClassesPackage;
 		const typeResolver = new JavaFieldTypeResolver(fullConfig.typeBindings, generatedClassesPackage);

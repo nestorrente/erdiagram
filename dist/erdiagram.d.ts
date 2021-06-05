@@ -2,14 +2,14 @@
 
 import { JsonAdapter, JsonValue } from 'true-json';
 
-export interface ComponentConfigManager<C, P> {
+export interface ConfigManager<C, P> {
 	getDefaultConfig(): C;
 	mergeConfigs(fullConfig: C, partialConfig: P): C;
 	mergeWithDefaultConfig(partialConfig: P): C;
 	convertToSerializableObject(fullConfig: C): JsonValue;
 	convertFromSerializableObject(serializableConfig: JsonValue): C;
 }
-export declare abstract class AbstractComponentConfigManager<C, P = Partial<C>> implements ComponentConfigManager<C, P> {
+export declare abstract class AbstractConfigManager<C, P = Partial<C>> implements ConfigManager<C, P> {
 	private readonly _jsonAdapter;
 	constructor();
 	abstract getDefaultConfig(): C;
@@ -157,14 +157,14 @@ export interface TableReferenceDescriptor {
 	unique: boolean;
 	sourceMetadata: RelationshipMemberSourceMetadata;
 }
-export interface DatabaseModelGeneratorConfig {
+export interface DatabaseModelConfig {
 	usePluralTableNames: boolean;
 	idNamingStrategy: IdNamingStrategy;
 }
-export declare type PartialDatabaseModelGeneratorConfig = Partial<DatabaseModelGeneratorConfig>;
+export declare type PartialDatabaseModelConfig = Partial<DatabaseModelConfig>;
 export declare class DatabaseModelGenerator {
 	private readonly config;
-	constructor(config?: PartialDatabaseModelGeneratorConfig);
+	constructor(config?: PartialDatabaseModelConfig);
 	generateDatabaseModel(model: EntityRelationshipModel): DatabaseModel;
 	private generateEntityTables;
 	private generateEntityTable;
@@ -212,9 +212,9 @@ export declare class DatabaseModelToSqlCodeConverter {
 	private getAlterTableLines;
 }
 export declare class SqlSourceCodeGeneratorBuilder {
-	private _databaseModelGeneratorConfig;
+	private _databaseModelConfig;
 	private _sqlDialect?;
-	configureDatabaseModel(config: PartialDatabaseModelGeneratorConfig): this;
+	configureDatabaseModel(config: PartialDatabaseModelConfig): this;
 	useDialect(sqlDialect: SqlDialect): this;
 	build(): SqlSourceCodeGenerator;
 }
@@ -253,7 +253,7 @@ export declare class MysqlDialect implements SqlDialect {
 	getForeignColumnCode(tableName: string, reference: TableReferenceDescriptor): ForeignKeyColumnCode;
 	getAlterTableAddCode(tableName: string, constraintCode: string): string;
 }
-export declare class MysqlDialectConfigManager extends AbstractComponentConfigManager<MysqlDialectConfig, PartialMysqlDialectConfig> {
+export declare class MysqlDialectConfigManager extends AbstractConfigManager<MysqlDialectConfig, PartialMysqlDialectConfig> {
 	getDefaultConfig(): MysqlDialectConfig;
 	mergeConfigs(fullConfig: MysqlDialectConfig, partialConfig?: PartialMysqlDialectConfig): MysqlDialectConfig;
 	protected getJsonAdapter(): JsonAdapter<MysqlDialectConfig>;
@@ -278,7 +278,7 @@ export declare class OracleDialect implements SqlDialect {
 	getForeignColumnCode(tableName: string, reference: TableReferenceDescriptor): ForeignKeyColumnCode;
 	getAlterTableAddCode(tableName: string, constraintCode: string): string;
 }
-export declare class OracleDialectConfigManager extends AbstractComponentConfigManager<OracleDialectConfig, PartialOracleDialectConfig> {
+export declare class OracleDialectConfigManager extends AbstractConfigManager<OracleDialectConfig, PartialOracleDialectConfig> {
 	getDefaultConfig(): OracleDialectConfig;
 	mergeConfigs(fullConfig: OracleDialectConfig, partialConfig?: PartialOracleDialectConfig): OracleDialectConfig;
 	protected getJsonAdapter(): JsonAdapter<OracleDialectConfig>;
@@ -303,7 +303,7 @@ export declare class SqliteDialect implements SqlDialect {
 	getForeignColumnCode(tableName: string, reference: TableReferenceDescriptor): ForeignKeyColumnCode;
 	getAlterTableAddCode(tableName: string, constraintCode: string): string;
 }
-export declare class SqliteDialectConfigManager extends AbstractComponentConfigManager<SqliteDialectConfig, PartialSqliteDialectConfig> {
+export declare class SqliteDialectConfigManager extends AbstractConfigManager<SqliteDialectConfig, PartialSqliteDialectConfig> {
 	getDefaultConfig(): SqliteDialectConfig;
 	mergeConfigs(fullConfig: SqliteDialectConfig, partialConfig?: PartialSqliteDialectConfig): SqliteDialectConfig;
 	protected getJsonAdapter(): JsonAdapter<SqliteDialectConfig>;
@@ -328,7 +328,7 @@ export declare class SqlServerDialect implements SqlDialect {
 	getForeignColumnCode(tableName: string, reference: TableReferenceDescriptor): ForeignKeyColumnCode;
 	getAlterTableAddCode(tableName: string, constraintCode: string): string;
 }
-export declare class SqlServerDialectConfigManager extends AbstractComponentConfigManager<SqlServerDialectConfig, PartialSqlServerDialectConfig> {
+export declare class SqlServerDialectConfigManager extends AbstractConfigManager<SqlServerDialectConfig, PartialSqlServerDialectConfig> {
 	getDefaultConfig(): SqlServerDialectConfig;
 	mergeConfigs(fullConfig: SqlServerDialectConfig, partialConfig?: PartialSqlServerDialectConfig): SqlServerDialectConfig;
 	protected getJsonAdapter(): JsonAdapter<SqlServerDialectConfig>;
@@ -353,21 +353,18 @@ export declare class PostgresqlDialect implements SqlDialect {
 	getForeignColumnCode(tableName: string, reference: TableReferenceDescriptor): ForeignKeyColumnCode;
 	getAlterTableAddCode(tableName: string, constraintCode: string): string;
 }
-export declare class PostgresqlDialectConfigManager extends AbstractComponentConfigManager<PostgresqlDialectConfig, PartialPostgresqlDialectConfig> {
+export declare class PostgresqlDialectConfigManager extends AbstractConfigManager<PostgresqlDialectConfig, PartialPostgresqlDialectConfig> {
 	getDefaultConfig(): PostgresqlDialectConfig;
 	mergeConfigs(fullConfig: PostgresqlDialectConfig, partialConfig?: PartialPostgresqlDialectConfig): PostgresqlDialectConfig;
 	protected getJsonAdapter(): JsonAdapter<PostgresqlDialectConfig>;
 }
 export declare const postgresqlDialectConfigManager: PostgresqlDialectConfigManager;
-export declare class DatabaseModelGeneratorConfigManager extends AbstractComponentConfigManager<DatabaseModelGeneratorConfig, PartialDatabaseModelGeneratorConfig> {
-	getDefaultConfig(): DatabaseModelGeneratorConfig;
-	mergeConfigs(fullConfig: DatabaseModelGeneratorConfig, partialConfig?: PartialDatabaseModelGeneratorConfig): DatabaseModelGeneratorConfig;
-	protected getJsonAdapter(): JsonAdapter<DatabaseModelGeneratorConfig>;
+export declare class DatabaseModelConfigManager extends AbstractConfigManager<DatabaseModelConfig, PartialDatabaseModelConfig> {
+	getDefaultConfig(): DatabaseModelConfig;
+	mergeConfigs(fullConfig: DatabaseModelConfig, partialConfig?: PartialDatabaseModelConfig): DatabaseModelConfig;
+	protected getJsonAdapter(): JsonAdapter<DatabaseModelConfig>;
 }
-export declare const databaseModelGeneratorConfigManager: DatabaseModelGeneratorConfigManager;
-export interface ClassModelToCodeConverterConfig<T> {
-	typeBindings: Record<EntityPropertyType, T>;
-}
+export declare const databaseModelConfigManager: DatabaseModelConfigManager;
 export interface ClassModel {
 	classes: ClassDescriptor[];
 }
@@ -385,17 +382,14 @@ export interface ClassFieldDescriptor {
 	entityType?: string;
 	sourceMetadata: EntityIdentitySourceMetadata | EntityPropertySourceMetadata | RelationshipMemberSourceMetadata;
 }
-export interface ClassModelToCodeConverter {
-	convertToCode(classModel: ClassModel): string;
-}
-export interface ClassModelGeneratorConfig {
+export interface ClassModelConfig {
 	idNamingStrategy: IdNamingStrategy;
 }
-export declare type PartialClassModelGeneratorConfig = Partial<ClassModelGeneratorConfig>;
+export declare type PartialClassModelConfig = Partial<ClassModelConfig>;
 export declare class ClassModelGenerator {
 	private readonly config;
 	private readonly entityToClassMapper;
-	constructor(config?: PartialClassModelGeneratorConfig);
+	constructor(config?: PartialClassModelConfig);
 	generateClassModel(model: EntityRelationshipModel): ClassModel;
 }
 export interface JavaType {
@@ -492,14 +486,14 @@ export interface JavaClassModelGenerationResult {
 	javaClassModel: JavaClassModel;
 	javaClassModelDescriptorsRepository: JavaClassModelDescriptorsRepository;
 }
-export interface JavaClassModelGeneratorConfig {
+export interface JavaClassModelConfig {
 	typeBindings: Record<EntityPropertyType, JavaType>;
 	generatedClassesPackage?: string;
 }
-export declare type PartialJavaClassModelGeneratorConfig = Partial<WithPartial<JavaClassModelGeneratorConfig, "typeBindings">>;
+export declare type PartialJavaClassModelConfig = Partial<WithPartial<JavaClassModelConfig, "typeBindings">>;
 export declare class JavaClassModelGenerator {
 	private readonly _javaClassGenerator;
-	constructor(config?: PartialJavaClassModelGeneratorConfig);
+	constructor(config?: PartialJavaClassModelConfig);
 	generateJavaClassModel(classModel: ClassModel): JavaClassModelGenerationResult;
 }
 declare class JavaAnnotationUsedTypesCompiler {
@@ -532,11 +526,11 @@ declare class JavaClassModelCodeGenerator {
 	private generateClassHeaderComment;
 }
 export declare class JavaSourceCodeGeneratorBuilder {
-	private _classModelGeneratorConfig;
-	private _javaClassModelGeneratorConfig;
+	private _classModelConfig;
+	private _javaClassModelConfig;
 	private _javaClassModelTransformers;
-	configureClassModel(config: PartialClassModelGeneratorConfig): this;
-	configureJavaCode(config: PartialJavaClassModelGeneratorConfig): this;
+	configureClassModel(config: PartialClassModelConfig): this;
+	configureJavaClassModel(config: PartialJavaClassModelConfig): this;
 	addTransformers(...javaClassModelTransformers: JavaClassModelTransformer[]): this;
 	build(): JavaSourceCodeGenerator;
 }
@@ -561,41 +555,41 @@ export declare class JavaSourceCodeGenerator implements MultipleFileSourceCodeGe
 	static withDefaultConfig(): JavaSourceCodeGenerator;
 	static builder(): JavaSourceCodeGeneratorBuilder;
 }
-export declare class JavaClassModelGeneratorConfigManager extends AbstractComponentConfigManager<JavaClassModelGeneratorConfig, PartialJavaClassModelGeneratorConfig> {
-	getDefaultConfig(): JavaClassModelGeneratorConfig;
-	mergeConfigs(fullConfig: JavaClassModelGeneratorConfig, partialConfig?: PartialJavaClassModelGeneratorConfig): JavaClassModelGeneratorConfig;
-	protected getJsonAdapter(): JsonAdapter<JavaClassModelGeneratorConfig>;
+export declare class JavaClassModelConfigManager extends AbstractConfigManager<JavaClassModelConfig, PartialJavaClassModelConfig> {
+	getDefaultConfig(): JavaClassModelConfig;
+	mergeConfigs(fullConfig: JavaClassModelConfig, partialConfig?: PartialJavaClassModelConfig): JavaClassModelConfig;
+	protected getJsonAdapter(): JsonAdapter<JavaClassModelConfig>;
 }
-export declare const javaClassModelGeneratorConfigManager: JavaClassModelGeneratorConfigManager;
-export interface JpaTransformerConfig {
+export declare const javaClassModelConfigManager: JavaClassModelConfigManager;
+export interface JpaConfig {
 	tableNameCaseFormat: CaseFormat;
 	columnNameCaseFormat: CaseFormat;
 	annotateGetters: boolean;
 	useExplicitTableName: boolean;
 	useExplicitColumnName: boolean;
 }
-export declare type PartialJpaTransformerConfig = Partial<JpaTransformerConfig>;
-export declare class JpaTransformerConfigManager extends AbstractComponentConfigManager<JpaTransformerConfig, PartialJpaTransformerConfig> {
-	getDefaultConfig(): JpaTransformerConfig;
-	mergeConfigs(fullConfig: JpaTransformerConfig, partialConfig?: PartialJpaTransformerConfig): JpaTransformerConfig;
-	protected getJsonAdapter(): JsonAdapter<JpaTransformerConfig>;
+export declare type PartialJpaConfig = Partial<JpaConfig>;
+export declare class JpaConfigManager extends AbstractConfigManager<JpaConfig, PartialJpaConfig> {
+	getDefaultConfig(): JpaConfig;
+	mergeConfigs(fullConfig: JpaConfig, partialConfig?: PartialJpaConfig): JpaConfig;
+	protected getJsonAdapter(): JsonAdapter<JpaConfig>;
 }
-export declare const jpaTransformerConfigManager: JpaTransformerConfigManager;
+export declare const jpaConfigManager: JpaConfigManager;
 export interface JpaTransformerSetupData {
 	databaseModel: DatabaseModel;
 }
 export declare class JpaTransformerBuilder {
-	private _databaseModelGeneratorConfig;
+	private _databaseModelConfig;
 	private _config;
-	configureDatabaseModel(config: PartialDatabaseModelGeneratorConfig): this;
-	configureJpa(config: PartialJpaTransformerConfig): this;
+	configureDatabaseModel(config: PartialDatabaseModelConfig): this;
+	configureJpa(config: PartialJpaConfig): this;
 	build(): JpaTransformer;
 }
 export declare class JpaTransformer implements JavaClassModelTransformer<JpaTransformerSetupData> {
 	private readonly _setupDataGenerator;
 	private readonly _fieldVisitor;
 	private readonly _classVisitor;
-	constructor(databaseModelGenerator: DatabaseModelGenerator, config?: Partial<JpaTransformerConfig>);
+	constructor(databaseModelGenerator: DatabaseModelGenerator, config?: Partial<JpaConfig>);
 	setup(context: SetupContext): JpaTransformerSetupData;
 	visitField(javaField: JavaField, context: JavaFieldTransformContext<JpaTransformerSetupData>): void;
 	visitClass(javaClass: JavaClass, context: JavaClassTransformContext<JpaTransformerSetupData>): void;
@@ -612,25 +606,25 @@ export declare enum NotNullBlobValidationStrategy {
 	NOT_NULL = "not_null",
 	NOT_EMPTY = "not_empty"
 }
-export interface BeanValidationTransformerConfig {
+export interface BeanValidationConfig {
 	notNullTextValidationStrategy: NotNullTextValidationStrategy;
 	notNullBlobValidationStrategy: NotNullBlobValidationStrategy;
 	annotateGetters: boolean;
 }
-export declare type PartialBeanValidationTransformerConfig = Partial<BeanValidationTransformerConfig>;
+export declare type PartialBeanValidationConfig = Partial<BeanValidationConfig>;
 export declare class BeanValidationTransformer implements JavaClassModelTransformer {
 	private readonly _beanValidationFieldVisitor;
-	constructor(config?: PartialBeanValidationTransformerConfig);
+	constructor(config?: PartialBeanValidationConfig);
 	setup(context: SetupContext): unknown;
 	visitField(javaField: JavaField, context: JavaFieldTransformContext<unknown>): void;
 	visitClass(javaClass: JavaClass, context: JavaClassTransformContext<unknown>): void;
 	visitModel(javaClassModel: JavaClassModel, context: JavaClassModelTransformContext<unknown>): void;
 }
-export declare class BeanValidationTransformerConfigManager extends AbstractComponentConfigManager<BeanValidationTransformerConfig, PartialBeanValidationTransformerConfig> {
-	getDefaultConfig(): BeanValidationTransformerConfig;
-	mergeConfigs(fullConfig: BeanValidationTransformerConfig, partialConfig?: PartialBeanValidationTransformerConfig): BeanValidationTransformerConfig;
+export declare class BeanValidationConfigManager extends AbstractConfigManager<BeanValidationConfig, PartialBeanValidationConfig> {
+	getDefaultConfig(): BeanValidationConfig;
+	mergeConfigs(fullConfig: BeanValidationConfig, partialConfig?: PartialBeanValidationConfig): BeanValidationConfig;
 }
-export declare const beanValidationTransformerConfigManager: BeanValidationTransformerConfigManager;
+export declare const beanValidationConfigManager: BeanValidationConfigManager;
 export interface JavaParameterizedType extends JavaType {
 	readonly parameterTypes: ReadonlyArray<JavaType>;
 }
@@ -643,22 +637,23 @@ export interface TypeScriptType {
 	name: string;
 	format(): string;
 }
-export interface TypeScriptClassModelToCodeConverterConfig extends ClassModelToCodeConverterConfig<TypeScriptType> {
+export interface TypeScriptConfig {
+	typeBindings: Record<EntityPropertyType, TypeScriptType>;
 }
-export declare type PartialTypeScriptClassModelToCodeConverterConfig = Partial<WithPartial<TypeScriptClassModelToCodeConverterConfig, "typeBindings">>;
-export declare class TypeScriptClassModelToCodeConverter implements ClassModelToCodeConverter {
+export declare type PartialTypeScriptConfig = Partial<WithPartial<TypeScriptConfig, "typeBindings">>;
+export declare class TypeScriptClassModelToCodeConverter {
 	private readonly config;
 	private readonly typeResolver;
-	constructor(config?: PartialTypeScriptClassModelToCodeConverterConfig);
+	constructor(config?: PartialTypeScriptConfig);
 	convertToCode(classModel: ClassModel): string;
 	private generateClass;
 	private createField;
 }
 export declare class TypeScriptSourceCodeGeneratorBuilder {
-	private _classModelGeneratorConfig;
-	private _typeScriptClassModelToCodeConverterConfig;
-	configureClassModel(config: PartialClassModelGeneratorConfig): this;
-	configureTypeScriptCode(config: PartialTypeScriptClassModelToCodeConverterConfig): this;
+	private _classModelConfig;
+	private _typeScriptConfig;
+	configureClassModel(config: PartialClassModelConfig): this;
+	configureTypeScript(config: PartialTypeScriptConfig): this;
 	build(): TypeScriptSourceCodeGenerator;
 }
 export declare class TypeScriptSourceCodeGenerator implements SourceCodeGenerator {
@@ -669,12 +664,12 @@ export declare class TypeScriptSourceCodeGenerator implements SourceCodeGenerato
 	static withDefaultConfig(): TypeScriptSourceCodeGenerator;
 	static builder(): TypeScriptSourceCodeGeneratorBuilder;
 }
-export declare class TypeScriptClassModelToCodeConverterConfigManager extends AbstractComponentConfigManager<TypeScriptClassModelToCodeConverterConfig, PartialTypeScriptClassModelToCodeConverterConfig> {
-	getDefaultConfig(): TypeScriptClassModelToCodeConverterConfig;
-	mergeConfigs(fullConfig: TypeScriptClassModelToCodeConverterConfig, partialConfig?: PartialTypeScriptClassModelToCodeConverterConfig): TypeScriptClassModelToCodeConverterConfig;
-	protected getJsonAdapter(): JsonAdapter<TypeScriptClassModelToCodeConverterConfig>;
+export declare class TypeScriptConfigManager extends AbstractConfigManager<TypeScriptConfig, PartialTypeScriptConfig> {
+	getDefaultConfig(): TypeScriptConfig;
+	mergeConfigs(fullConfig: TypeScriptConfig, partialConfig?: PartialTypeScriptConfig): TypeScriptConfig;
+	protected getJsonAdapter(): JsonAdapter<TypeScriptConfig>;
 }
-export declare const typescriptClassModelToCodeConverterConfigManager: TypeScriptClassModelToCodeConverterConfigManager;
+export declare const typescriptConfigManager: TypeScriptConfigManager;
 export interface TypeScriptParameterizedType extends TypeScriptType {
 	parameterTypes: TypeScriptType[];
 }
@@ -683,13 +678,13 @@ export function createTypeScriptParameterizedType(name: string, parameterTypes: 
 export function createTypeScriptArrayType(parameterType: TypeScriptType): TypeScriptParameterizedType;
 export function isTypeScriptParameterizedType(javaType: TypeScriptType): javaType is TypeScriptParameterizedType;
 export function createTypeScriptSimpleType(name: string): TypeScriptType;
-export declare class ClassModelGeneratorConfigManager extends AbstractComponentConfigManager<ClassModelGeneratorConfig, PartialClassModelGeneratorConfig> {
-	getDefaultConfig(): ClassModelGeneratorConfig;
-	mergeConfigs(fullConfig: ClassModelGeneratorConfig, partialConfig?: PartialClassModelGeneratorConfig): ClassModelGeneratorConfig;
-	protected getJsonAdapter(): JsonAdapter<ClassModelGeneratorConfig>;
+export declare class ClassModelConfigManager extends AbstractConfigManager<ClassModelConfig, PartialClassModelConfig> {
+	getDefaultConfig(): ClassModelConfig;
+	mergeConfigs(fullConfig: ClassModelConfig, partialConfig?: PartialClassModelConfig): ClassModelConfig;
+	protected getJsonAdapter(): JsonAdapter<ClassModelConfig>;
 }
-export declare const classModelGeneratorConfigManager: ClassModelGeneratorConfigManager;
-export interface NomnomlSourceCodeGeneratorConfig {
+export declare const classModelConfigManager: ClassModelConfigManager;
+export interface NomnomlConfig {
 	arrowSize?: number;
 	bendSize?: number;
 	direction?: "down" | "right";
@@ -717,14 +712,14 @@ export declare class NomnomlSourceCodeGenerator implements SourceCodeGenerator {
 	private readonly entityCodeGenerator;
 	private readonly relationshipCodeGenerator;
 	private readonly directivesCodeGenerator;
-	constructor(config?: NomnomlSourceCodeGeneratorConfig);
+	constructor(config?: NomnomlConfig);
 	generateSourceCode(model: EntityRelationshipModel): string;
 }
-export declare class NomnomlSourceCodeGeneratorConfigManager extends AbstractComponentConfigManager<NomnomlSourceCodeGeneratorConfig, NomnomlSourceCodeGeneratorConfig> {
-	getDefaultConfig(): NomnomlSourceCodeGeneratorConfig;
-	mergeConfigs(fullConfig: NomnomlSourceCodeGeneratorConfig, partialConfig?: Partial<NomnomlSourceCodeGeneratorConfig>): NomnomlSourceCodeGeneratorConfig;
+export declare class NomnomlConfigManager extends AbstractConfigManager<NomnomlConfig, NomnomlConfig> {
+	getDefaultConfig(): NomnomlConfig;
+	mergeConfigs(fullConfig: NomnomlConfig, partialConfig?: Partial<NomnomlConfig>): NomnomlConfig;
 }
-export declare const nomnomlEntityRelationshipModelToDiagramCodeConverterConfigManager: NomnomlSourceCodeGeneratorConfigManager;
+export declare const nomnomlConfigManager: NomnomlConfigManager;
 export declare class PlantUmlSourceCodeGenerator implements SourceCodeGenerator {
 	private readonly entityCodeGenerator;
 	private readonly relationshipCodeGenerator;
@@ -742,7 +737,7 @@ export declare class EntityRelationshipModelParser {
 	constructor(config?: PartialEntityRelationshipModelParserConfig);
 	parseModel(code: string): EntityRelationshipModel;
 }
-export declare class EntityRelationshipModelParserConfigManager extends AbstractComponentConfigManager<EntityRelationshipModelParserConfig, PartialEntityRelationshipModelParserConfig> {
+export declare class EntityRelationshipModelParserConfigManager extends AbstractConfigManager<EntityRelationshipModelParserConfig, PartialEntityRelationshipModelParserConfig> {
 	getDefaultConfig(): EntityRelationshipModelParserConfig;
 	mergeConfigs(fullConfig: EntityRelationshipModelParserConfig, partialConfig?: PartialEntityRelationshipModelParserConfig): EntityRelationshipModelParserConfig;
 }
