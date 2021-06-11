@@ -11,7 +11,7 @@ import {
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
 
 // FIXME change this name or refactor this class, as it also retrieves field and class descriptors, not only database ones
-export default class EntityRelationshipModelSourceFinder {
+export default class DatabaseModelSourceFinder {
 
 	public findTableAndReferenceFromReferencedMember(databaseModel: DatabaseModel, referencedMember: RelationshipMember) {
 

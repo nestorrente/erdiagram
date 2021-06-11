@@ -1,8 +1,7 @@
-import {TypeScriptConfigManager} from '../../../../../../../main/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptConfigManager';
+import {TypeScriptConfigManager} from '@/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptConfigManager';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import parseTypeScriptType from '@/erdiagram/converter/oop/source-code-generator/typescript/type/parseTypeScriptType';
-import TypeScriptConfig
-	from '../../../../../../../main/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptConfig';
+import TypeScriptConfig from '@/erdiagram/converter/oop/source-code-generator/typescript/config/TypeScriptConfig';
 import {JsonValue} from 'true-json';
 
 const configManager = new TypeScriptConfigManager();

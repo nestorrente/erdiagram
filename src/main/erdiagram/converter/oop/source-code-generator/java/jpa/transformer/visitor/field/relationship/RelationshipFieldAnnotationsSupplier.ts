@@ -11,8 +11,8 @@ import {
 	RelationshipMember
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {ClassModel} from '@/erdiagram/converter/oop/model/class-model-types';
-import EntityRelationshipModelSourceFinder
-	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/EntityRelationshipModelSourceFinder';
+import DatabaseModelSourceFinder
+	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/DatabaseModelSourceFinder';
 import {JpaAnnotationTypes} from '@/erdiagram/converter/oop/source-code-generator/java/jpa/jpa-java-types';
 import JpaTransformerSetupData
 	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/setup/JpaTransformerSetupData';
@@ -31,18 +31,18 @@ enum RelationshipCardinality {
 // TODO split this class
 export default class RelationshipFieldAnnotationsSupplier implements FieldAnnotationsSupplier {
 
-	private readonly _entityRelationshipModelSourceFinder: EntityRelationshipModelSourceFinder;
+	private readonly _databaseModelSourceFinder: DatabaseModelSourceFinder;
 	private readonly _classModelSourceFinder: ClassModelSourceFinder;
 	private readonly _tableNameCaseConverter: CaseConverter;
 	private readonly _columnNameCaseConverter: CaseConverter;
 
 	constructor(
-			entityRelationshipModelSourceFinder: EntityRelationshipModelSourceFinder,
+			databaseModelSourceFinder: DatabaseModelSourceFinder,
 			classModelSourceFinder: ClassModelSourceFinder,
 			tableNameCaseConverter: CaseConverter,
 			columnNameCaseConverter: CaseConverter
 	) {
-		this._entityRelationshipModelSourceFinder = entityRelationshipModelSourceFinder;
+		this._databaseModelSourceFinder = databaseModelSourceFinder;
 		this._classModelSourceFinder = classModelSourceFinder;
 		this._tableNameCaseConverter = tableNameCaseConverter;
 		this._columnNameCaseConverter = columnNameCaseConverter;
@@ -73,63 +73,57 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 
 		const relationshipCardinality = this.getRelationshipCardinality(relationship);
 
-		if (relationshipCardinality === RelationshipCardinality.ONE_TO_ONE) {
+		switch (relationshipCardinality) {
 
-			if (fieldBelongsToLeftMember) {
-				return this.getOneToOneRelationshipAnnotations(relationship.rightMember, databaseModel);
-			}
+			case RelationshipCardinality.ONE_TO_ONE:
 
-			if (relationship.direction === Direction.BIDIRECTIONAL) {
-				return this.getMappedByOneToOneRelationshipAnnotations(relationship.rightMember, relationship.leftMember, classModel);
-			}
+				if (fieldBelongsToLeftMember) {
+					return this.getOneToOneRelationshipAnnotations(relationship.rightMember, databaseModel);
+				}
 
-			return this.getInverseOneToOneRelationshipAnnotations(relationship.rightMember, relationship.leftMember, databaseModel);
+				if (relationship.direction === Direction.BIDIRECTIONAL) {
+					return this.getMappedByOneToOneRelationshipAnnotations(relationship.rightMember, relationship.leftMember, classModel);
+				}
 
-		}
+				return this.getInverseOneToOneRelationshipAnnotations(relationship.rightMember, relationship.leftMember, databaseModel);
 
-		if (relationshipCardinality === RelationshipCardinality.MANY_TO_ONE) {
+			case RelationshipCardinality.MANY_TO_ONE:
 
-			if (fieldBelongsToLeftMember) {
-				return this.getManyToOneRelationshipAnnotations(relationship.rightMember, databaseModel);
-			}
+				if (fieldBelongsToLeftMember) {
+					return this.getManyToOneRelationshipAnnotations(relationship.rightMember, databaseModel);
+				}
 
-			if (relationship.direction === Direction.BIDIRECTIONAL) {
-				return this.getMappedByOneToManyRelationshipAnnotations(relationship.rightMember, classModel);
-			}
+				if (relationship.direction === Direction.BIDIRECTIONAL) {
+					return this.getMappedByOneToManyRelationshipAnnotations(relationship.rightMember, classModel);
+				}
 
-			return this.getInverseOneToManyRelationshipAnnotations(relationship.rightMember, databaseModel);
+				return this.getInverseOneToManyRelationshipAnnotations(relationship.rightMember, databaseModel);
 
-		}
+			case RelationshipCardinality.ONE_TO_MANY:
 
-		if (relationshipCardinality === RelationshipCardinality.ONE_TO_MANY) {
+				if (!fieldBelongsToLeftMember) {
+					return this.getManyToOneRelationshipAnnotations(relationship.leftMember, databaseModel);
+				}
 
-			if (!fieldBelongsToLeftMember) {
-				return this.getManyToOneRelationshipAnnotations(relationship.leftMember, databaseModel);
-			}
+				if (relationship.direction === Direction.BIDIRECTIONAL) {
+					return this.getMappedByOneToManyRelationshipAnnotations(relationship.leftMember, classModel);
+				}
 
-			if (relationship.direction === Direction.BIDIRECTIONAL) {
-				return this.getMappedByOneToManyRelationshipAnnotations(relationship.leftMember, classModel);
-			}
+				return this.getInverseOneToManyRelationshipAnnotations(relationship.leftMember, databaseModel);
 
-			return this.getInverseOneToManyRelationshipAnnotations(relationship.leftMember, databaseModel);
+			case RelationshipCardinality.MANY_TO_MANY:
 
-		}
+				if (fieldBelongsToLeftMember) {
+					return this.getManyToManyRelationshipAnnotations(relationship.leftMember, databaseModel);
+				}
 
-		if (relationshipCardinality === RelationshipCardinality.MANY_TO_MANY) {
+				if (relationship.direction === Direction.BIDIRECTIONAL) {
+					return this.getMappedByManyToManyRelationshipAnnotations(relationship.rightMember, classModel);
+				}
 
-			if (fieldBelongsToLeftMember) {
-				return this.getManyToManyRelationshipAnnotations(relationship.leftMember, databaseModel);
-			}
-
-			if (relationship.direction === Direction.BIDIRECTIONAL) {
-				return this.getMappedByManyToManyRelationshipAnnotations(relationship.rightMember, classModel);
-			}
-
-			return this.getManyToManyRelationshipAnnotations(relationship.rightMember, databaseModel);
+				return this.getManyToManyRelationshipAnnotations(relationship.rightMember, databaseModel);
 
 		}
-
-		return [];
 
 	}
 
@@ -150,7 +144,7 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 
 		const {
 			reference
-		} = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, foreignMember);
+		} = this._databaseModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, foreignMember);
 
 		const optionalRelationship = foreignMember.cardinality === Cardinality.ZERO_OR_ONE;
 
@@ -185,7 +179,7 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 		const {
 			table,
 			reference
-		} = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
+		} = this._databaseModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
 
 		return [
 			new JavaAnnotation(JpaAnnotationTypes.OneToOne, {
@@ -206,7 +200,7 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 
 		const {
 			reference
-		} = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, foreignMember);
+		} = this._databaseModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, foreignMember);
 
 		const optionalRelationship = foreignMember.cardinality === Cardinality.ZERO_OR_ONE;
 
@@ -240,7 +234,7 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 		const {
 			table,
 			reference
-		} = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
+		} = this._databaseModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
 
 		return [
 			new JavaAnnotation(JpaAnnotationTypes.OneToMany),
@@ -260,8 +254,9 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 		const {
 			table,
 			reference: ownReference
-		} = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
+		} = this._databaseModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
 
+		/* istanbul ignore next */
 		if (table.references.length !== 2) {
 			throw new Error('Relationship table has more than 2 references');
 		}

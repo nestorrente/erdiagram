@@ -7,30 +7,23 @@ import DatabaseModelToSqlCodeConverter
 
 export default class SqlSourceCodeGeneratorBuilder {
 
+	private readonly _sqlDialect: SqlDialect;
 	private _databaseModelConfig: PartialDatabaseModelConfig = {};
-	private _sqlDialect?: SqlDialect;
+
+	constructor(sqlDialect: SqlDialect) {
+		this._sqlDialect = sqlDialect;
+	}
 
 	public configureDatabaseModel(config: PartialDatabaseModelConfig) {
 		this._databaseModelConfig = config;
 		return this;
 	}
 
-	public useDialect(sqlDialect: SqlDialect) {
-		this._sqlDialect = sqlDialect;
-		return this;
-	}
-
 	public build() {
-
-		if (this._sqlDialect == null) {
-			throw new Error('SqlDialect is not configured');
-		}
-
 		return new SqlSourceCodeGenerator(
 				new DatabaseModelGenerator(this._databaseModelConfig),
 				new DatabaseModelToSqlCodeConverter(this._sqlDialect)
 		);
-
 	}
 
 }

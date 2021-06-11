@@ -1,6 +1,6 @@
-import SourceCodeGenerator from '../../../main/erdiagram/converter/SourceCodeGenerator';
+import SourceCodeGenerator from '@/erdiagram/converter/SourceCodeGenerator';
 import {EntityRelationshipModel} from '@/erdiagram/parser/types/entity-relationship-model-types';
-import MultipleFileSourceCodeGenerator, {isMultipleFileSourceCodeGenerator} from '../../../main/erdiagram/converter/MultipleFileSourceCodeGenerator';
+import MultipleFileSourceCodeGenerator, {isMultipleFileSourceCodeGenerator} from '@/erdiagram/converter/MultipleFileSourceCodeGenerator';
 import SourceFileInfo from '@/erdiagram/converter/common/SourceFileInfo';
 
 test('isMultipleFileSourceCodeGenerator()', () => {

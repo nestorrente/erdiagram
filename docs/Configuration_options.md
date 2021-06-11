@@ -4,22 +4,27 @@ In this page you will find information about the configuration options of the di
 
 ## Table of contents
 
-* [EntityRelationshipModelParser](#entityrelationshipmodelparser)
+* [Entity-relationship model parser](#entityrelationshipmodelparser)
 * [Database](#database)
-    + [DatabaseModelGenerator](#databasemodelgenerator)
-    + [SqlDialect (MysqlDialect, OracleDialect, PostgresqlDialect, SqliteDialect, and SqlServerDialect)](#sqldialect-mysqldialect-oracledialect-postgresqldialect-sqlitedialect-and-sqlserverdialect)
+    + [Database model](#database-model)
+    + [SQL dialects](#sql-dialects)
         + [Type bindings (SQL)](#type-bindings-sql)
         + [Case formats](#case-formats)
 * [OOP classes](#oop-classes)
-    + [ClassModelGenerator](#classmodelgenerator)
-    + [JavaClassModelToCodeConverter](#javaclassmodeltocodeconverter)
+    + [Class model](#class-model)
+    + [Java class model](#java-class-model)
         + [Type bindings (Java)](#type-bindings-java)
-    + [TypeScriptClassModelToCodeConverter](#typescriptclassmodeltocodeconverter)
+        + [JPA](#jpa)
+        + [Bean Validation](#bean-validation)
+    + [TypeScript](#typescript)
         + [Type bindings (TypeScript)](#type-bindings-typescript)
 * [Diagram](#diagram)
-    + [NomnomlConfig](#nomnomlconfig)
+    + [Nomnoml](#nomnoml)
+    + [PlantUML](#plantuml)
 
 ## EntityRelationshipModelParser
+
+These are the configuration options corresponding to the `EntityRelationshipModelParserConfig` interface:
 
 | Property               | Type      | Default value | description |
 |------------------------|-----------|---------------|-------------|
@@ -27,14 +32,24 @@ In this page you will find information about the configuration options of the di
 
 ## Database
 
-### DatabaseModelGenerator
+### Database model
+
+These are the configuration options corresponding to the `DatabaseModelConfig` interface:
 
 | Property              | Type                             | Default value                        | description |
 |-----------------------|----------------------------------|--------------------------------------|-------------|
 | `usePluralTableNames` | `boolean`                        | `false`                              | When `true`, _ERDiagram_ will name the database tables using the plural of the entities' names. For example, the entity `User` will be modelled using the `Users` table. |
 | `idNamingStrategy`    | `(entityName: string) => string` | `StandardIdNamingStrategies.DEFAULT` | Allows to customize the naming strategy for the identity column of the table. You can use any of the standard values (defined in the `StandardIdNamingStrategies` object) or write your own. |
 
-### SqlDialect (MysqlDialect, OracleDialect, PostgresqlDialect, SqliteDialect, and SqlServerDialect)
+### SQL dialects
+
+These are the configuration options corresponding to the following interfaces:
+
+* `MysqlDialectConfig`
+* `OracleDialectConfig`
+* `PostgresqlDialectConfig`
+* `SqliteDialectConfig`
+* `SqlServerDialectConfig`
 
 | Property               | Type                                         | Default value                           | description |
 |------------------------|----------------------------------------------|-----------------------------------------|-------------|
@@ -93,21 +108,22 @@ These are the default case formats for each dialect:
 
 ## OOP classes
 
-### ClassModelGenerator
+### Class model
+
+These are the configuration options corresponding to the `ClassModelConfig` interface:
 
 | Property           | Type       | Default value                        | description |
 |--------------------|------------|--------------------------------------|-------------|
 | `idNamingStrategy` | `function` | `StandardIdNamingStrategies.DEFAULT` | Allows to customize the naming strategy for the identity property of the table. You can use any of the standard values (defined in the `StandardIdNamingStrategies` object) or write your own function `(entityName: string) => string`. |
 
-### JavaClassModelToCodeConverter
+### Java class model
+
+These are the configuration options corresponding to the `JavaClassModelConfig` interface:
 
 | Property                        | Type                                   | Default value                            | description |
 |---------------------------------|----------------------------------------|------------------------------------------|-------------|
 | `typeBindings`                  | `Record<EntityPropertyType, JavaType>` | See [type bindings](#type-bindings-java) | Allows to customize the corresponding Java type for each _ERDiagram_ type |
 | `generatedClassesPackage`       | <code>string &#124; undefined</code>   | `undefined`                              | Allows to define the package name of the generated classes |
-| `useValidationAnnotations`      | `boolean`                              | `false`                                  | Uses annotations from Java Validation API (JSR-303). Only `@NotNull`, `@NotEmpty`, `@NotBlank` and `@Size` are supported so far. |
-| `notNullTextValidationStrategy` | `enum NotNullTextValidationStrategy`   | `NOT_NULL`                               | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull`, `@NotEmpty` or `@NotBlank`) to use for _not-null_ `text` fields |
-| `notNullBlobValidationStrategy` | `enum NotNullBlobValidationStrategy`   | `NOT_NULL`                               | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull` or `@NotEmpty`) to use for _not-null_ `blob` fields |
 
 #### Type bindings (Java)
 
@@ -161,7 +177,27 @@ parseJavaType('java.lang.Long') // Long
 parseJavaType('java.util.Map<java.lang.Long, java.util.List<com.example.MyClass>>') // Map<Long, List<MyClass>>
 ```
 
-### TypeScriptClassModelToCodeConverter
+#### JPA
+
+| Property                        | Type                                   | Default value                            | description |
+|---------------------------------|----------------------------------------|------------------------------------------|-------------|
+| `tableNameCaseFormat`           | `CaseFormat`                           | See [case formats](#case-formats)        | Allows to customize the case of the database tables |
+| `columnNameCaseFormat`          | `CaseFormat`                           | See [case formats](#case-formats)        | Allows to customize the case of the database columns |
+| `annotateGetters`               | `boolean`                              | `false`                                  | Move annotations from fields to its corresponding getter methods. |
+| `useExplicitTableName`          | `boolean`                              | `false`                                  | Add the name of the table using the `@Table(name = "TableName")` annotation. |
+| `useExplicitColumnName`         | `boolean`                              | `false`                                  | Add the name of the column using the `@Column(name = "columnName")` annotation. |
+
+#### Bean validation
+
+| Property                        | Type                                   | Default value                            | description |
+|---------------------------------|----------------------------------------|------------------------------------------|-------------|
+| `notNullTextValidationStrategy` | `enum NotNullTextValidationStrategy`   | `NOT_NULL`                               | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull`, `@NotEmpty` or `@NotBlank`) to use for _not-null_ `text` fields |
+| `notNullBlobValidationStrategy` | `enum NotNullBlobValidationStrategy`   | `NOT_NULL`                               | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull` or `@NotEmpty`) to use for _not-null_ `blob` fields |
+| `annotateGetters`               | `boolean`                              | `false`                                  | Move annotations from fields to its corresponding getter methods. |
+
+### TypeScript
+
+These are the configuration options corresponding to the `TypeScriptConfig` interface:
 
 | Property       | Type                                         | Default value                                  | description |
 |----------------|----------------------------------------------|------------------------------------------------|-------------|
@@ -221,7 +257,9 @@ parseJavaType('Map<number, Date[]>') // Map<number, Date[]> a.k.a. Map<number, A
 
 ## Diagram
 
-### NomnomlConfig
+### Nomnoml
+
+These are the configuration options corresponding to the `NomnomlConfig` interface:
 
 _ERDiagram_ allows customizing the values of some Nomnoml directives. You can learn more about those directives in
 [Nomnoml's Github repo](https://github.com/skanaar/nomnoml).
@@ -251,3 +289,7 @@ Here is the full list of directives that are supported by _ERDiagram_:
 | zoom              | `number`                                                                 | `undefined`                           |
 | acyclicer         | `'greedy'`                                                               | `undefined`                           |
 | ranker            | <code>'network-simplex' &#124; 'tight-tree' &#124; 'longest-path'</code> | `'longest-path'`                      |
+
+### PlantUML
+
+No configuration options are available for PlantUML.

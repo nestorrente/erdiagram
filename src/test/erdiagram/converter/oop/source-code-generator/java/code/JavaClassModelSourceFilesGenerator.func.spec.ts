@@ -16,33 +16,33 @@ const javaClassModelSourceFilesGenerator = new JavaClassModelSourceFilesGenerato
 
 test('Should invoke JavaClassCodeGenerator for all classes', () => {
 
-	const packageName = 'com.example.erdiagram';
-
-	const myClass1 = createJavaClass('MyClass1', {packageName});
-	const myClass2 = createJavaClass('MyClass2', {packageName});
+	const classWithoutPackage = createJavaClass('ClassWithoutPackage');
+	const classWithPackage = createJavaClass('ClassWithPackage', {
+		packageName: 'com.example.erdiagram'
+	});
 
 	const result = javaClassModelSourceFilesGenerator.generateSourceFiles({
 		classes: [
-			myClass1,
-			myClass2
+			classWithoutPackage,
+			classWithPackage
 		]
 	});
 
 	expect(result).toStrictEqual<SourceFileInfo[]>([
 		{
-			folder: ['com', 'example', 'erdiagram'],
-			filename: 'MyClass1.java',
-			contents: '/* code for class MyClass1 */'
+			folder: [],
+			filename: 'ClassWithoutPackage.java',
+			contents: '/* code for class ClassWithoutPackage */'
 		},
 		{
 			folder: ['com', 'example', 'erdiagram'],
-			filename: 'MyClass2.java',
-			contents: '/* code for class MyClass2 */'
+			filename: 'ClassWithPackage.java',
+			contents: '/* code for class ClassWithPackage */'
 		}
 	]);
 
 	expect(javaClassCodeGeneratorMock.generateCode).toHaveBeenCalledTimes(2);
-	expect(javaClassCodeGeneratorMock.generateCode).toHaveBeenNthCalledWith(1, myClass1);
-	expect(javaClassCodeGeneratorMock.generateCode).toHaveBeenNthCalledWith(2, myClass2);
+	expect(javaClassCodeGeneratorMock.generateCode).toHaveBeenNthCalledWith(1, classWithoutPackage);
+	expect(javaClassCodeGeneratorMock.generateCode).toHaveBeenNthCalledWith(2, classWithPackage);
 
 });

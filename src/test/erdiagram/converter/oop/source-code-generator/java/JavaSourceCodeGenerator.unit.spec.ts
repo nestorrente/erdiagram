@@ -1,6 +1,5 @@
-import JavaSourceCodeGenerator
-	from '../../../../../../main/erdiagram/converter/oop/source-code-generator/java/JavaSourceCodeGenerator';
-import {checkAllMockCalls, createMockProxy} from '../../../../util/jest-utils';
+import JavaSourceCodeGenerator from '@/erdiagram/converter/oop/source-code-generator/java/JavaSourceCodeGenerator';
+import {checkAllMockCalls, createMockProxy} from '#/erdiagram/util/jest-utils';
 import ClassModelGenerator from '@/erdiagram/converter/oop/model/ClassModelGenerator';
 import {EntityPropertyType, EntityRelationshipModel} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import {ClassModel} from '@/erdiagram/converter/oop/model/class-model-types';
@@ -15,7 +14,10 @@ import JavaClassModelCodeGenerator
 	from '@/erdiagram/converter/oop/source-code-generator/java/code/JavaClassModelCodeGenerator';
 import JavaClassModelSourceFilesGenerator
 	from '@/erdiagram/converter/oop/source-code-generator/java/code/JavaClassModelSourceFilesGenerator';
-import {createJavaClass, createJavaField} from './model/generator/source/java-class-model-mothers';
+import {
+	createJavaClass,
+	createJavaField
+} from '#/erdiagram/converter/oop/source-code-generator/java/model/generator/source/java-class-model-mothers';
 import {createClass, createPrimitiveClassField} from '#/erdiagram/converter/oop/model/class-model-mothers';
 import SourceFileInfo from '@/erdiagram/converter/common/SourceFileInfo';
 

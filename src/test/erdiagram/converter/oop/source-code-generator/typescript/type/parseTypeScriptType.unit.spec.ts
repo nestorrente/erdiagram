@@ -5,48 +5,49 @@ import isTypeScriptParameterizedType
 describe('Well formatted types', () => {
 	it.each([
 		// Primitives
-		['boolean', false],
-		['number', false],
-		['string', false],
-		['undefined', false],
-		['null', false],
+		['boolean', 'boolean', false],
+		['number', 'number', false],
+		['string', 'string', false],
+		['undefined', 'undefined', false],
+		['null', 'null', false],
 		// Classes
-		['Date', false],
-		['HTMLElement', false],
+		['Date', 'Date', false],
+		['HTMLElement', 'HTMLElement', false],
 		// Arrays of primitives
-		['boolean[]', true],
-		['number[]', true],
-		['string[]', true],
+		['boolean[]', 'Array', true],
+		['number[]', 'Array', true],
+		['string[]', 'Array', true],
 		// Arrays of classes
-		['Date[]', true],
-		['HTMLElement[]', true],
+		['Date[]', 'Array', true],
+		['HTMLElement[]', 'Array', true],
 		// Arrays of arrays
-		['boolean[][]', true],
-		['boolean[][][]', true],
-		['Date[][]', true],
-		['Date[][][]', true],
+		['boolean[][]', 'Array', true],
+		['boolean[][][]', 'Array', true],
+		['Date[][]', 'Array', true],
+		['Date[][][]', 'Array', true],
 		// Parameterized types
-		['A<B>', true],
-		['A<B, C>', true],
+		['A<B>', 'A', true],
+		['A<B, C>', 'A', true],
 		// Parameterized types with arrays
-		['A<B>[]', true],
-		['A<B[], C>', true],
-		['A<B[], C[][]>[]', true],
+		['A<B>[]', 'Array', true],
+		['A<B[], C>', 'A', true],
+		['A<B[], C[][]>[]', 'Array', true],
 		// Nested parameterized types
-		['A<B<C>>', true],
-		['A<B<C, D>>', true],
-		['A<B<C>, D>', true],
-		['A<B<C, D>, E>', true],
+		['A<B<C>>', 'A', true],
+		['A<B<C, D>>', 'A', true],
+		['A<B<C>, D>', 'A', true],
+		['A<B<C, D>, E>', 'A', true],
 		// Nested parameterized types with arrays
-		['A<B<C, D>[], E[][], F<G, H[]>>[][][]', true],
+		['A<B<C, D>[], E[][], F<G, H[]>>[][][]', 'Array', true],
 		// Allowed characters
-		['A$b<$C[]>', true]
-	] as [string, boolean][])(
+		['A$b<$C[]>', 'A$b', true]
+	] as [string, string, boolean][])(
 			'Parsing "%s"',
-			(input, isParameterizedType) => {
+			(input, typeName, isParameterizedType) => {
 
 				const result = parseTypeScriptType(input);
 
+				expect(result.name).toBe(typeName);
 				expect(result.format()).toBe(input);
 				expect(isTypeScriptParameterizedType(result)).toBe(isParameterizedType);
 
@@ -56,15 +57,16 @@ describe('Well formatted types', () => {
 
 describe('Correct types formatted differently', () => {
 	it.each([
-		['   boolean ', 'boolean', false],
-		['  A< B \t  >', 'A<B>', true],
-		['\tnumber [   \t]   ', 'number[]', true],
-	] as [string, string, boolean][])(
+		['   boolean ', 'boolean', 'boolean', false],
+		['  A< B \t  >', 'A<B>', 'A', true],
+		['\tnumber [   \t]   ', 'number[]', 'Array', true],
+	] as [string, string, string, boolean][])(
 			'Parsing "%s"',
-			(input, expectedResult, isParameterizedType) => {
+			(input, expectedResult, typeName, isParameterizedType) => {
 
 				const result = parseTypeScriptType(input);
 
+				expect(result.name).toBe(typeName);
 				expect(result.format()).toBe(expectedResult);
 				expect(isTypeScriptParameterizedType(result)).toBe(isParameterizedType);
 

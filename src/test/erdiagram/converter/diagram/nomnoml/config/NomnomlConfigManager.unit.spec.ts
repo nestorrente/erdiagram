@@ -1,5 +1,5 @@
-import {NomnomlConfigManager} from '../../../../../../main/erdiagram/converter/diagram/nomnoml/config/NomnomlConfigManager';
-import NomnomlConfig from '../../../../../../main/erdiagram/converter/diagram/nomnoml/config/NomnomlConfig';
+import {NomnomlConfigManager} from '@/erdiagram/converter/diagram/nomnoml/config/NomnomlConfigManager';
+import NomnomlConfig from '@/erdiagram/converter/diagram/nomnoml/config/NomnomlConfig';
 import {JsonValue} from 'true-json';
 
 const configManager = new NomnomlConfigManager();

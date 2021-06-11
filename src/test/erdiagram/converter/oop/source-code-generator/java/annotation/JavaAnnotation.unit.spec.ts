@@ -21,6 +21,16 @@ test('Annotation without parameters', () => {
 
 });
 
+test('Annotation with only a "value" parameter', () => {
+
+	const annotation = new JavaAnnotation(ANNOTATION_TYPE, {
+		value: 'my value'
+	});
+
+	expect(annotation.format()).toBe('@MyAnnotation("my value")');
+
+});
+
 test('Annotation with one undefined parameter', () => {
 
 	const annotation = new JavaAnnotation(ANNOTATION_TYPE, {

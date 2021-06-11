@@ -4,6 +4,8 @@ import {
 	JavaAnnotationParameterValue
 } from '@/erdiagram/converter/oop/source-code-generator/java/annotation/annotation-parameter-types';
 
+const VALUE_PARAMETER_NAME = 'value';
+
 export default function formatJavaAnnotation(annotation: JavaAnnotation): string {
 
 	const simpleName = annotation.type.formatSimple();
@@ -22,9 +24,42 @@ function formatAnnotationParameters(annotationParameters: JavaAnnotationParamete
 		return '';
 	}
 
-	const formattedParams = annotationParamsEntries.map(([paramName, paramValue]) => `${paramName} = ${(formatAnnotationParameterValue(paramValue))}`);
+	const formattedParams = formatAnnotationParametersEntries(annotationParamsEntries);
 
-	return `(${formattedParams.join(', ')})`;
+	return `(${formattedParams})`;
+
+}
+
+function formatAnnotationParametersEntries(annotationParamsEntries: [string, JavaAnnotationParameterValue][]): string {
+
+	if (hasOnlyValueParameter(annotationParamsEntries)) {
+		const [[, value]] = annotationParamsEntries;
+		return formatAnnotationParameterValue(value);
+	}
+
+	return annotationParamsEntries.map(formatAnnotationParameterEntry).join(', ');
+
+}
+
+function formatAnnotationParameterEntry(paramEntry: [string, JavaAnnotationParameterValue]) {
+
+	const [paramName, paramValue] = paramEntry;
+
+	const formattedValue = formatAnnotationParameterValue(paramValue);
+
+	return `${paramName} = ${formattedValue}`;
+
+}
+
+function hasOnlyValueParameter(annotationParamsEntries: [string, JavaAnnotationParameterValue][]) {
+
+	if (annotationParamsEntries.length !== 1) {
+		return false;
+	}
+
+	const [[key]] = annotationParamsEntries;
+
+	return key === VALUE_PARAMETER_NAME;
 
 }
 

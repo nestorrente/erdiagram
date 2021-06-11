@@ -1,9 +1,8 @@
 import BeanValidationFieldVisitor
-	from '../../../../../../../../main/erdiagram/converter/oop/source-code-generator/java/validation/visitor/BeanValidationFieldVisitor';
-import {createMockObject} from '#/erdiagram/util/jest-utils';
+	from '@/erdiagram/converter/oop/source-code-generator/java/validation/visitor/BeanValidationFieldVisitor';
+import {createMockProxy} from '#/erdiagram/util/jest-utils';
 import BeanValidationAnnotationsSupplier
-	from '../../../../../../../../main/erdiagram/converter/oop/source-code-generator/java/validation/visitor/BeanValidationAnnotationsSupplier';
-import {ClassFieldDescriptor} from '@/erdiagram/converter/oop/model/class-model-types';
+	from '@/erdiagram/converter/oop/source-code-generator/java/validation/visitor/BeanValidationAnnotationsSupplier';
 import JavaAnnotation from '@/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation';
 import {
 	createJavaClass,
@@ -13,7 +12,7 @@ import {
 import {JavaFieldTransformContext} from '@/erdiagram/converter/oop/source-code-generator/java/model/transformer/java-class-model-transformer-context-types';
 import {createClass, createPrimitiveClassField} from '#/erdiagram/converter/oop/model/class-model-mothers';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
-import {createJavaAnnotation} from '../../annotation/java-annotation-mothers';
+import {createJavaAnnotation} from '#/erdiagram/converter/oop/source-code-generator/java/annotation/java-annotation-mothers';
 
 const mockAnnotation = createJavaAnnotation('MockAnnotation');
 
@@ -45,13 +44,12 @@ const testData: TestCaseData[] = [
 	}
 ];
 
-testData.forEach(({annotateGetters, expectedFieldAnnotations, addGetterToField, expectedGetterAnnotations}) => {
+const beanValidationAnnotationsSupplierMock = createMockProxy<BeanValidationAnnotationsSupplier>();
+beanValidationAnnotationsSupplierMock.getAnnotations.mockReturnValue([mockAnnotation]);
 
-	const beanValidationAnnotationsSupplierMock = createMockObject<BeanValidationAnnotationsSupplier>({
-		getAnnotations: jest.fn((field: ClassFieldDescriptor): JavaAnnotation[] => {
-			return [mockAnnotation];
-		})
-	});
+afterEach(() => jest.clearAllMocks());
+
+testData.forEach(({annotateGetters, expectedFieldAnnotations, addGetterToField, expectedGetterAnnotations}) => {
 
 	// TODO move this to a mother function?
 	const transformContextMock: JavaFieldTransformContext<unknown> = {

@@ -4,8 +4,7 @@ import {
 	EntityPropertyType,
 	EntityRelationshipModel
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
-import PlantUmlSourceCodeGenerator
-	from '../../../../../main/erdiagram/converter/diagram/plantuml/PlantUmlSourceCodeGenerator';
+import PlantUmlSourceCodeGenerator from '@/erdiagram/converter/diagram/plantuml/PlantUmlSourceCodeGenerator';
 
 const plantumlERModelToDiagramCodeConverter = new PlantUmlSourceCodeGenerator();
 

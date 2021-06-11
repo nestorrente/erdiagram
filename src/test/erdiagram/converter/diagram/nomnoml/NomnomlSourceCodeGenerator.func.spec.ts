@@ -4,8 +4,7 @@ import {
 	EntityPropertyType,
 	EntityRelationshipModel
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
-import NomnomlSourceCodeGenerator
-	from '../../../../../main/erdiagram/converter/diagram/nomnoml/NomnomlSourceCodeGenerator';
+import NomnomlSourceCodeGenerator from '@/erdiagram/converter/diagram/nomnoml/NomnomlSourceCodeGenerator';
 import {createEntityProperty} from '#/erdiagram/parser/entity-relationship-model-mothers';
 
 const nomnomlERModelSourceCodeGenerator = new NomnomlSourceCodeGenerator();

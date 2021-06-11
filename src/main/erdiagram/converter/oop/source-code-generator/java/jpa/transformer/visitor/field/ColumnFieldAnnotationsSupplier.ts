@@ -8,8 +8,8 @@ import {
 } from '@/erdiagram/converter/oop/model/source-metadata/source-metadata-utils';
 import CaseConverter from '@/erdiagram/converter/common/case-format/CaseConverter';
 import {ClassFieldDescriptor} from '@/erdiagram/converter/oop/model/class-model-types';
-import EntityRelationshipModelSourceFinder
-	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/EntityRelationshipModelSourceFinder';
+import DatabaseModelSourceFinder
+	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/DatabaseModelSourceFinder';
 import {JpaAnnotationTypes} from '@/erdiagram/converter/oop/source-code-generator/java/jpa/jpa-java-types';
 import JpaTransformerSetupData
 	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/setup/JpaTransformerSetupData';
@@ -18,16 +18,16 @@ import FieldAnnotationsSupplier
 
 export default class ColumnFieldAnnotationsSupplier implements FieldAnnotationsSupplier {
 
-	private readonly _entityRelationshipModelSourceFinder: EntityRelationshipModelSourceFinder;
+	private readonly _databaseModelSourceFinder: DatabaseModelSourceFinder;
 	private readonly _columnNameCaseConverter: CaseConverter;
 	private readonly _useExplicitColumnName: boolean;
 
 	constructor(
-			entityRelationshipModelSourceFinder: EntityRelationshipModelSourceFinder,
+			databaseModelSourceFinder: DatabaseModelSourceFinder,
 			columnNameCaseConverter: CaseConverter,
 			useExplicitColumnName: boolean
 	) {
-		this._entityRelationshipModelSourceFinder = entityRelationshipModelSourceFinder;
+		this._databaseModelSourceFinder = databaseModelSourceFinder;
 		this._columnNameCaseConverter = columnNameCaseConverter;
 		this._useExplicitColumnName = useExplicitColumnName;
 	}
@@ -66,12 +66,12 @@ export default class ColumnFieldAnnotationsSupplier implements FieldAnnotationsS
 		const {sourceMetadata} = fieldDescriptor;
 
 		if (isEntityIdentitySourceMetadata(sourceMetadata)) {
-			const table = this._entityRelationshipModelSourceFinder.findTableFromEntity(databaseModel, sourceMetadata.entity);
+			const table = this._databaseModelSourceFinder.findTableFromEntity(databaseModel, sourceMetadata.entity);
 			return table.identityColumnName;
 		}
 
 		if (isEntityPropertySourceMetadata(sourceMetadata)) {
-			const column = this._entityRelationshipModelSourceFinder.findColumnFromProperty(databaseModel, sourceMetadata.property);
+			const column = this._databaseModelSourceFinder.findColumnFromProperty(databaseModel, sourceMetadata.property);
 			return column.name;
 
 		}

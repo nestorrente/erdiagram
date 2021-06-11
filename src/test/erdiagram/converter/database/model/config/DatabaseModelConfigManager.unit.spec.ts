@@ -1,5 +1,5 @@
-import {DatabaseModelConfigManager} from '../../../../../../main/erdiagram/converter/database/model/config/DatabaseModelConfigManager';
-import DatabaseModelConfig from '../../../../../../main/erdiagram/converter/database/model/config/DatabaseModelConfig';
+import {DatabaseModelConfigManager} from '@/erdiagram/converter/database/model/config/DatabaseModelConfigManager';
+import DatabaseModelConfig from '@/erdiagram/converter/database/model/config/DatabaseModelConfig';
 import StandardIdNamingStrategies from '@/erdiagram/converter/common/id-naming-strategy/StandardIdNamingStrategies';
 import IdNamingStrategy from '@/erdiagram/converter/common/id-naming-strategy/IdNamingStrategy';
 import {capitalizeWord} from '@/erdiagram/util/string-utils';

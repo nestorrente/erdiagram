@@ -26,11 +26,11 @@ export default class SqlSourceCodeGenerator implements SourceCodeGenerator {
 	}
 
 	static withDefaultConfig(sqlDialect: SqlDialect) {
-		return this.builder().useDialect(sqlDialect).build();
+		return this.builder(sqlDialect).build();
 	}
 
-	static builder() {
-		return new SqlSourceCodeGeneratorBuilder();
+	static builder(sqlDialect: SqlDialect) {
+		return new SqlSourceCodeGeneratorBuilder(sqlDialect);
 	}
 
 }

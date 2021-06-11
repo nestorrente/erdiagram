@@ -10,8 +10,7 @@ import {
 	JavaAnnotatedElement,
 	JavaClass
 } from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
-import JpaConfig
-	from '../../../../../../../../main/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaConfig';
+import {PartialJpaConfig} from '@/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaConfig';
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
 
 test('Simple entity', () => {
@@ -23,19 +22,22 @@ TestEntity
 
 	const testEntityClass = javaClassModel.classes[0];
 	expect(testEntityClass.name).toBe('TestEntity');
-	checkClassAnnotations(testEntityClass, ['@Entity']);
+	checkAnnotations(testEntityClass, ['@Entity']);
 	checkClassFieldsAnnotations(testEntityClass, {
 		id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
 		field: ['@Column(nullable = false)']
 	});
+	checkClassGettersAnnotations(testEntityClass, {
+		id: [],
+		field: []
+	});
 
 });
 
-test('Nullable columns', () => {
+test('Nullable column', () => {
 
 	const javaClassModel = getTransformedJavaClassModel(`
 TestEntity
-    regularField int
     nullableField? int
 `);
 
@@ -43,8 +45,34 @@ TestEntity
 	expect(testEntityClass.name).toBe('TestEntity');
 	checkClassFieldsAnnotations(testEntityClass, {
 		id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
-		regularField: ['@Column(nullable = false)'],
 		nullableField: []
+	});
+	checkClassGettersAnnotations(testEntityClass, {
+		id: [],
+		nullableField: []
+	});
+
+});
+
+test('Annotate getters', () => {
+
+	const javaClassModel = getTransformedJavaClassModel(`
+TestEntity
+    field int
+`, {
+		annotateGetters: true
+	});
+
+	const testEntityClass = javaClassModel.classes[0];
+	expect(testEntityClass.name).toBe('TestEntity');
+	checkAnnotations(testEntityClass, ['@Entity']);
+	checkClassFieldsAnnotations(testEntityClass, {
+		id: [],
+		field: []
+	});
+	checkClassGettersAnnotations(testEntityClass, {
+		id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
+		field: ['@Column(nullable = false)']
 	});
 
 });
@@ -61,7 +89,7 @@ TestEntity
 
 		const testEntityClass = javaClassModel.classes[0];
 		expect(testEntityClass.name).toBe('TestEntity');
-		checkClassAnnotations(testEntityClass, [
+		checkAnnotations(testEntityClass, [
 			'@Entity',
 			'@Table(name = "TestEntity")'
 		]);
@@ -79,7 +107,7 @@ TestEntity
 
 		const testEntityClass = javaClassModel.classes[0];
 		expect(testEntityClass.name).toBe('TestEntity');
-		checkClassAnnotations(testEntityClass, [
+		checkAnnotations(testEntityClass, [
 			'@Entity',
 			'@Table(name = "TEST_ENTITY")'
 		]);
@@ -109,11 +137,20 @@ A *-> B
 			intField: ['@Column(name = "intField")'],
 			b: ['@ManyToOne(optional = false)', '@JoinColumn(name = "bId", nullable = false)']
 		});
+		checkClassGettersAnnotations(aClass, {
+			id: [],
+			intField: [],
+			b: []
+		});
 
 		const bClass = javaClassModel.classes[1];
 		checkClassFieldsAnnotations(bClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)', '@Column(name = "id")'],
 			booleanField: ['@Column(name = "booleanField", nullable = false)']
+		});
+		checkClassGettersAnnotations(bClass, {
+			id: [],
+			booleanField: []
 		});
 
 	});
@@ -138,11 +175,20 @@ A *-> B
 			intField: ['@Column(name = "INT_FIELD")'],
 			b: ['@ManyToOne(optional = false)', '@JoinColumn(name = "B_ID", nullable = false)']
 		});
+		checkClassGettersAnnotations(aClass, {
+			id: [],
+			intField: [],
+			b: []
+		});
 
 		const bClass = javaClassModel.classes[1];
 		checkClassFieldsAnnotations(bClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)', '@Column(name = "ID")'],
 			booleanField: ['@Column(name = "BOOLEAN_FIELD", nullable = false)']
+		});
+		checkClassGettersAnnotations(bClass, {
+			id: [],
+			booleanField: []
 		});
 
 	});
@@ -171,11 +217,21 @@ A a4 ?->? B b4 (AB4)
 			b3: ['@OneToOne(optional = false)', '@JoinColumn(name = "b3Id", nullable = false)'],
 			b4: ['@OneToOne', '@JoinColumn(name = "b4Id")'],
 		});
+		checkClassGettersAnnotations(aClass, {
+			id: [],
+			b1: [],
+			b2: [],
+			b3: [],
+			b4: []
+		});
 
 		const bClass = javaClassModel.classes[1];
 		expect(bClass.name).toBe('B');
 		checkClassFieldsAnnotations(bClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
+		});
+		checkClassGettersAnnotations(bClass, {
+			id: []
 		});
 
 	});
@@ -196,6 +252,9 @@ A a4 ?<-? B b4 (AB4)
 		checkClassFieldsAnnotations(aClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
 		});
+		checkClassGettersAnnotations(aClass, {
+			id: []
+		});
 
 		const bClass = javaClassModel.classes[1];
 		expect(bClass.name).toBe('B');
@@ -205,6 +264,13 @@ A a4 ?<-? B b4 (AB4)
 			a2: ['@OneToOne(optional = false)', '@JoinTable(name = "A", inverseJoinColumns = @JoinColumn(name = "b2Id"))'],
 			a3: ['@OneToOne', '@JoinTable(name = "A", inverseJoinColumns = @JoinColumn(name = "b3Id", nullable = false))'],
 			a4: ['@OneToOne', '@JoinTable(name = "A", inverseJoinColumns = @JoinColumn(name = "b4Id"))'],
+		});
+		checkClassGettersAnnotations(bClass, {
+			id: [],
+			a1: [],
+			a2: [],
+			a3: [],
+			a4: []
 		});
 
 	});
@@ -229,6 +295,13 @@ A a4 ?<->? B b4 (AB4)
 			b3: ['@OneToOne(optional = false)', '@JoinColumn(name = "b3Id", nullable = false)'],
 			b4: ['@OneToOne', '@JoinColumn(name = "b4Id")'],
 		});
+		checkClassGettersAnnotations(aClass, {
+			id: [],
+			b1: [],
+			b2: [],
+			b3: [],
+			b4: []
+		});
 
 		const bClass = javaClassModel.classes[1];
 		expect(bClass.name).toBe('B');
@@ -238,6 +311,13 @@ A a4 ?<->? B b4 (AB4)
 			a2: ['@OneToOne(mappedBy = "b2", optional = false)'],
 			a3: ['@OneToOne(mappedBy = "b3")'],
 			a4: ['@OneToOne(mappedBy = "b4")'],
+		});
+		checkClassGettersAnnotations(bClass, {
+			id: [],
+			a1: [],
+			a2: [],
+			a3: [],
+			a4: []
 		});
 
 	});
@@ -262,11 +342,19 @@ A a2 *->? B b2 (AB2)
 			b1: ['@ManyToOne(optional = false)', '@JoinColumn(name = "b1Id", nullable = false)'],
 			b2: ['@ManyToOne', '@JoinColumn(name = "b2Id")'],
 		});
+		checkClassGettersAnnotations(aClass, {
+			id: [],
+			b1: [],
+			b2: []
+		});
 
 		const bClass = javaClassModel.classes[1];
 		expect(bClass.name).toBe('B');
 		checkClassFieldsAnnotations(bClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
+		});
+		checkClassGettersAnnotations(bClass, {
+			id: []
 		});
 
 	});
@@ -285,6 +373,9 @@ A a2 *<-? B b2 (AB2)
 		checkClassFieldsAnnotations(aClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
 		});
+		checkClassGettersAnnotations(aClass, {
+			id: []
+		});
 
 		const bClass = javaClassModel.classes[1];
 		expect(bClass.name).toBe('B');
@@ -292,6 +383,11 @@ A a2 *<-? B b2 (AB2)
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
 			a1s: ['@OneToMany', '@JoinTable(name = "A", inverseJoinColumns = @JoinColumn(name = "b1Id", nullable = false))'],
 			a2s: ['@OneToMany', '@JoinTable(name = "A", inverseJoinColumns = @JoinColumn(name = "b2Id"))'],
+		});
+		checkClassGettersAnnotations(bClass, {
+			id: [],
+			a1s: [],
+			a2s: []
 		});
 
 	});
@@ -312,6 +408,11 @@ A a2 *<->? B b2 (AB2)
 			b1: ['@ManyToOne(optional = false)', '@JoinColumn(name = "b1Id", nullable = false)'],
 			b2: ['@ManyToOne', '@JoinColumn(name = "b2Id")'],
 		});
+		checkClassGettersAnnotations(aClass, {
+			id: [],
+			b1: [],
+			b2: []
+		});
 
 		const bClass = javaClassModel.classes[1];
 		expect(bClass.name).toBe('B');
@@ -319,6 +420,11 @@ A a2 *<->? B b2 (AB2)
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
 			a1s: ['@OneToMany(mappedBy = "b1")'],
 			a2s: ['@OneToMany(mappedBy = "b2")'],
+		});
+		checkClassGettersAnnotations(bClass, {
+			id: [],
+			a1s: [],
+			a2s: []
 		});
 
 	});
@@ -343,11 +449,19 @@ A a2 ?->* B b2 (AB2)
 			b1s: ['@OneToMany', '@JoinTable(name = "B", inverseJoinColumns = @JoinColumn(name = "a1Id", nullable = false))'],
 			b2s: ['@OneToMany', '@JoinTable(name = "B", inverseJoinColumns = @JoinColumn(name = "a2Id"))'],
 		});
+		checkClassGettersAnnotations(aClass, {
+			id: [],
+			b1s: [],
+			b2s: []
+		});
 
 		const bClass = javaClassModel.classes[1];
 		expect(bClass.name).toBe('B');
 		checkClassFieldsAnnotations(bClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
+		});
+		checkClassGettersAnnotations(bClass, {
+			id: []
 		});
 
 	});
@@ -366,6 +480,9 @@ A a2 ?<-* B b2 (AB2)
 		checkClassFieldsAnnotations(aClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
 		});
+		checkClassGettersAnnotations(aClass, {
+			id: []
+		});
 
 		const bClass = javaClassModel.classes[1];
 		expect(bClass.name).toBe('B');
@@ -373,6 +490,11 @@ A a2 ?<-* B b2 (AB2)
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
 			a1: ['@ManyToOne(optional = false)', '@JoinColumn(name = "a1Id", nullable = false)'],
 			a2: ['@ManyToOne', '@JoinColumn(name = "a2Id")'],
+		});
+		checkClassGettersAnnotations(bClass, {
+			id: [],
+			a1: [],
+			a2: []
 		});
 
 	});
@@ -393,6 +515,11 @@ A a2 ?<->* B b2 (AB2)
 			b1s: ['@OneToMany(mappedBy = "a1")'],
 			b2s: ['@OneToMany(mappedBy = "a2")'],
 		});
+		checkClassGettersAnnotations(aClass, {
+			id: [],
+			b1s: [],
+			b2s: []
+		});
 
 		const bClass = javaClassModel.classes[1];
 		expect(bClass.name).toBe('B');
@@ -400,6 +527,11 @@ A a2 ?<->* B b2 (AB2)
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
 			a1: ['@ManyToOne(optional = false)', '@JoinColumn(name = "a1Id", nullable = false)'],
 			a2: ['@ManyToOne', '@JoinColumn(name = "a2Id")'],
+		});
+		checkClassGettersAnnotations(bClass, {
+			id: [],
+			a1: [],
+			a2: []
 		});
 
 	});
@@ -422,11 +554,18 @@ A *->* B
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
 			bs: ['@ManyToMany', '@JoinTable(name = "AB", joinColumns = @JoinColumn(name = "aId", nullable = false), inverseJoinColumns = @JoinColumn(name = "bId", nullable = false))'],
 		});
+		checkClassGettersAnnotations(aClass, {
+			id: [],
+			bs: []
+		});
 
 		const bClass = javaClassModel.classes[1];
 		expect(bClass.name).toBe('B');
 		checkClassFieldsAnnotations(bClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
+		});
+		checkClassGettersAnnotations(bClass, {
+			id: []
 		});
 
 	});
@@ -444,12 +583,19 @@ A *<-* B
 		checkClassFieldsAnnotations(aClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
 		});
+		checkClassGettersAnnotations(aClass, {
+			id: []
+		});
 
 		const bClass = javaClassModel.classes[1];
 		expect(bClass.name).toBe('B');
 		checkClassFieldsAnnotations(bClass, {
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
 			as: ['@ManyToMany', '@JoinTable(name = "AB", joinColumns = @JoinColumn(name = "bId", nullable = false), inverseJoinColumns = @JoinColumn(name = "aId", nullable = false))'],
+		});
+		checkClassGettersAnnotations(bClass, {
+			id: [],
+			as: []
 		});
 
 	});
@@ -468,6 +614,10 @@ A *<->* B
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
 			bs: ['@ManyToMany', '@JoinTable(name = "AB", joinColumns = @JoinColumn(name = "aId", nullable = false), inverseJoinColumns = @JoinColumn(name = "bId", nullable = false))'],
 		});
+		checkClassGettersAnnotations(aClass, {
+			id: [],
+			bs: []
+		});
 
 		const bClass = javaClassModel.classes[1];
 		expect(bClass.name).toBe('B');
@@ -475,12 +625,16 @@ A *<->* B
 			id: ['@Id', '@GeneratedValue(strategy = GenerationType.IDENTITY)'],
 			as: ['@ManyToMany(mappedBy = "bs")'],
 		});
+		checkClassGettersAnnotations(bClass, {
+			id: [],
+			as: []
+		});
 
 	});
 
 });
 
-function getTransformedJavaClassModel(erdiagramCode: string, config?: Partial<JpaConfig>) {
+function getTransformedJavaClassModel(erdiagramCode: string, config?: PartialJpaConfig) {
 
 	const entityRelationshipModel = new EntityRelationshipModelParser().parseModel(erdiagramCode);
 
@@ -509,8 +663,8 @@ function getTransformedJavaClassModel(erdiagramCode: string, config?: Partial<Jp
 
 type ClassFieldsAnnotations = Record<string, string[]>;
 
-function checkClassAnnotations(javaClass: JavaClass, annotationsCode: string[]) {
-	expect(formatAnnotations(javaClass)).toStrictEqual(annotationsCode);
+function checkAnnotations(annotatedElement: JavaAnnotatedElement, annotationsCode: string[]) {
+	expect(formatAnnotations(annotatedElement)).toStrictEqual(annotationsCode);
 }
 
 function checkClassFieldsAnnotations(javaClass: JavaClass, classFieldsAnnotations: ClassFieldsAnnotations) {
@@ -518,9 +672,34 @@ function checkClassFieldsAnnotations(javaClass: JavaClass, classFieldsAnnotation
 	const classFieldsAnnotationsEntries = Object.entries(classFieldsAnnotations);
 
 	classFieldsAnnotationsEntries.forEach(([fieldName, annotationsCode], index) => {
-		const field = javaClass.fields[index];
-		expect(field.name).toBe(fieldName);
-		expect(formatAnnotations(field)).toStrictEqual(annotationsCode);
+
+		const javaField = javaClass.fields.find(field => field.name === fieldName);
+
+		if (javaField == null) {
+			throw new Error(`Field ${fieldName} doesn't exists in class ${javaClass.name}`);
+		}
+
+		checkAnnotations(javaField, annotationsCode);
+
+	});
+
+}
+
+function checkClassGettersAnnotations(javaClass: JavaClass, classFieldsAnnotations: ClassFieldsAnnotations) {
+
+	const classFieldsAnnotationsEntries = Object.entries(classFieldsAnnotations);
+
+	classFieldsAnnotationsEntries.forEach(([fieldName, annotationsCode], index) => {
+
+		const javaField = javaClass.fields.find(field => field.name === fieldName);
+
+		if (javaField == null) {
+			throw new Error(`Field ${fieldName} doesn't exists in class ${javaClass.name}`);
+		}
+
+		expect(javaField.getter).toBeDefined();
+		checkAnnotations(javaField.getter!, annotationsCode);
+
 	});
 
 }

@@ -1,8 +1,8 @@
-import {JavaClassModelConfigManager} from '../../../../../../../../../main/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfigManager';
+import {JavaClassModelConfigManager} from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfigManager';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import parseJavaType from '@/erdiagram/converter/oop/source-code-generator/java/type/parseJavaType';
 import JavaClassModelConfig
-	from '../../../../../../../../../main/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfig';
+	from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfig';
 import {JsonValue} from 'true-json';
 
 const configManager = new JavaClassModelConfigManager();

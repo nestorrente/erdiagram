@@ -1,5 +1,5 @@
 import BeanValidationAnnotationsSupplier
-	from '../../../../../../../../main/erdiagram/converter/oop/source-code-generator/java/validation/visitor/BeanValidationAnnotationsSupplier';
+	from '@/erdiagram/converter/oop/source-code-generator/java/validation/visitor/BeanValidationAnnotationsSupplier';
 import NotNullTextValidationStrategy
 	from '@/erdiagram/converter/oop/source-code-generator/java/validation/strategy/NotNullTextValidationStrategy';
 import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';

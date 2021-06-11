@@ -4,8 +4,8 @@ import {
 	JavaField
 } from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
 import CaseConverter from '@/erdiagram/converter/common/case-format/CaseConverter';
-import EntityRelationshipModelSourceFinder
-	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/EntityRelationshipModelSourceFinder';
+import DatabaseModelSourceFinder
+	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/DatabaseModelSourceFinder';
 import JpaTransformerSetupData
 	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/setup/JpaTransformerSetupData';
 import IdentityFieldAnnotationsSupplier
@@ -33,18 +33,18 @@ export default class JpaTransformerFieldVisitor {
 
 		this._annotateGetters = annotateGetters;
 
-		const entityRelationshipModelSourceFinder = new EntityRelationshipModelSourceFinder();
+		const databaseModelSourceFinder = new DatabaseModelSourceFinder();
 		const classModelSourceFinder = new ClassModelSourceFinder();
 
 		this._fieldAnnotationsSuppliers = [
 			new IdentityFieldAnnotationsSupplier(),
 			new ColumnFieldAnnotationsSupplier(
-					entityRelationshipModelSourceFinder,
+					databaseModelSourceFinder,
 					columnNameCaseConverter,
 					useExplicitColumnName
 			),
 			new RelationshipFieldAnnotationsSupplier(
-					entityRelationshipModelSourceFinder,
+					databaseModelSourceFinder,
 					classModelSourceFinder,
 					tableNameCaseConverter,
 					columnNameCaseConverter

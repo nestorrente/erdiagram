@@ -3,9 +3,9 @@ import NotNullTextValidationStrategy
 import NotNullBlobValidationStrategy
 	from '@/erdiagram/converter/oop/source-code-generator/java/validation/strategy/NotNullBlobValidationStrategy';
 import {JsonValue} from 'true-json';
-import {BeanValidationConfigManager} from '../../../../../../../../main/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationConfigManager';
+import {BeanValidationConfigManager} from '@/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationConfigManager';
 import BeanValidationConfig
-	from '../../../../../../../../main/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationConfig';
+	from '@/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationConfig';
 
 const configManager = new BeanValidationConfigManager();
 

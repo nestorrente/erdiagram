@@ -1,5 +1,5 @@
-import {ClassModelConfigManager} from '../../../../../../main/erdiagram/converter/oop/model/config/ClassModelConfigManager';
-import ClassModelConfig from '../../../../../../main/erdiagram/converter/oop/model/config/ClassModelConfig';
+import {ClassModelConfigManager} from '@/erdiagram/converter/oop/model/config/ClassModelConfigManager';
+import ClassModelConfig from '@/erdiagram/converter/oop/model/config/ClassModelConfig';
 import IdNamingStrategy from '@/erdiagram/converter/common/id-naming-strategy/IdNamingStrategy';
 import StandardIdNamingStrategies from '@/erdiagram/converter/common/id-naming-strategy/StandardIdNamingStrategies';
 import {capitalizeWord} from '@/erdiagram/util/string-utils';
