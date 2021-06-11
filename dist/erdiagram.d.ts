@@ -212,10 +212,10 @@ export declare class DatabaseModelToSqlCodeConverter {
 	private getAlterTableLines;
 }
 export declare class SqlSourceCodeGeneratorBuilder {
+	private readonly _sqlDialect;
 	private _databaseModelConfig;
-	private _sqlDialect?;
+	constructor(sqlDialect: SqlDialect);
 	configureDatabaseModel(config: PartialDatabaseModelConfig): this;
-	useDialect(sqlDialect: SqlDialect): this;
 	build(): SqlSourceCodeGenerator;
 }
 export declare class SqlSourceCodeGenerator implements SourceCodeGenerator {
@@ -224,7 +224,7 @@ export declare class SqlSourceCodeGenerator implements SourceCodeGenerator {
 	constructor(databaseModelGenerator: DatabaseModelGenerator, databaseModelToSqlCodeConverter: DatabaseModelToSqlCodeConverter);
 	generateSourceCode(entityRelationshipModel: EntityRelationshipModel): string;
 	static withDefaultConfig(sqlDialect: SqlDialect): SqlSourceCodeGenerator;
-	static builder(): SqlSourceCodeGeneratorBuilder;
+	static builder(sqlDialect: SqlDialect): SqlSourceCodeGeneratorBuilder;
 }
 export interface SqlDialectConfig {
 	typeBindings: Record<EntityPropertyType, string>;

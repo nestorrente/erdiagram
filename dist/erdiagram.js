@@ -4,7 +4,7 @@
  *
  * Released under the MIT License.
  *
- * Build date: 2021-06-05T10:55:49.015Z
+ * Build date: 2021-06-11T17:08:53.560Z
  */
 var ERDiagram;
 /******/ (() => { // webpackBootstrap
@@ -1282,10 +1282,10 @@ class SqlSourceCodeGenerator {
         return this.databaseModelToSqlCodeConverter.convertToCode(databaseModel);
     }
     static withDefaultConfig(sqlDialect) {
-        return this.builder().useDialect(sqlDialect).build();
+        return this.builder(sqlDialect).build();
     }
-    static builder() {
-        return new _erdiagram_converter_database_source_code_generator_SqlSourceCodeGeneratorBuilder__WEBPACK_IMPORTED_MODULE_0__.default();
+    static builder(sqlDialect) {
+        return new _erdiagram_converter_database_source_code_generator_SqlSourceCodeGeneratorBuilder__WEBPACK_IMPORTED_MODULE_0__.default(sqlDialect);
     }
 }
 
@@ -1310,21 +1310,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class SqlSourceCodeGeneratorBuilder {
-    constructor() {
+    constructor(sqlDialect) {
         this._databaseModelConfig = {};
+        this._sqlDialect = sqlDialect;
     }
     configureDatabaseModel(config) {
         this._databaseModelConfig = config;
         return this;
     }
-    useDialect(sqlDialect) {
-        this._sqlDialect = sqlDialect;
-        return this;
-    }
     build() {
-        if (this._sqlDialect == null) {
-            throw new Error('SqlDialect is not configured');
-        }
         return new _erdiagram_converter_database_source_code_generator_SqlSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_1__.default(new _erdiagram_converter_database_model_DatabaseModelGenerator__WEBPACK_IMPORTED_MODULE_0__.default(this._databaseModelConfig), new _erdiagram_converter_database_source_code_generator_sql_DatabaseModelToSqlCodeConverter__WEBPACK_IMPORTED_MODULE_2__.default(this._sqlDialect));
     }
 }
@@ -4635,6 +4629,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation */ "./src/main/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation.ts");
 
+const VALUE_PARAMETER_NAME = 'value';
 function formatJavaAnnotation(annotation) {
     const simpleName = annotation.type.formatSimple();
     const formattedParams = formatAnnotationParameters(annotation.parameters);
@@ -4646,8 +4641,27 @@ function formatAnnotationParameters(annotationParameters) {
     if (annotationParamsEntries.length === 0) {
         return '';
     }
-    const formattedParams = annotationParamsEntries.map(([paramName, paramValue]) => `${paramName} = ${(formatAnnotationParameterValue(paramValue))}`);
-    return `(${formattedParams.join(', ')})`;
+    const formattedParams = formatAnnotationParametersEntries(annotationParamsEntries);
+    return `(${formattedParams})`;
+}
+function formatAnnotationParametersEntries(annotationParamsEntries) {
+    if (hasOnlyValueParameter(annotationParamsEntries)) {
+        const [[, value]] = annotationParamsEntries;
+        return formatAnnotationParameterValue(value);
+    }
+    return annotationParamsEntries.map(formatAnnotationParameterEntry).join(', ');
+}
+function formatAnnotationParameterEntry(paramEntry) {
+    const [paramName, paramValue] = paramEntry;
+    const formattedValue = formatAnnotationParameterValue(paramValue);
+    return `${paramName} = ${formattedValue}`;
+}
+function hasOnlyValueParameter(annotationParamsEntries) {
+    if (annotationParamsEntries.length !== 1) {
+        return false;
+    }
+    const [[key]] = annotationParamsEntries;
+    return key === VALUE_PARAMETER_NAME;
 }
 function formatAnnotationParameterValue(value) {
     if (!Array.isArray(value)) {
@@ -5152,37 +5166,39 @@ __webpack_require__.r(__webpack_exports__);
 class ClassModelSourceFinder {
     findClassAndFieldFromReferencedMember(classModel, referencedMember) {
         for (const classDescriptor of classModel.classes) {
-            for (const field of classDescriptor.fields) {
-                if ((0,_erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_0__.isRelationshipMemberSourceMetadata)(field.sourceMetadata) && field.sourceMetadata.referencedMember === referencedMember) {
-                    return {
-                        classDescriptor,
-                        field
-                    };
-                }
+            const foundField = classDescriptor.fields.find(field => this.isCorrespondingField(field, referencedMember));
+            if (foundField != null) {
+                return {
+                    classDescriptor,
+                    field: foundField
+                };
             }
         }
         throw new Error(`Cannot find field from target member "${referencedMember.entityAlias}"`);
+    }
+    isCorrespondingField(field, referencedMember) {
+        return (0,_erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_0__.isRelationshipMemberSourceMetadata)(field.sourceMetadata) && field.sourceMetadata.referencedMember === referencedMember;
     }
 }
 
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/EntityRelationshipModelSourceFinder.ts":
-/*!***********************************************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/EntityRelationshipModelSourceFinder.ts ***!
-  \***********************************************************************************************************************************/
+/***/ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/DatabaseModelSourceFinder.ts":
+/*!*************************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/DatabaseModelSourceFinder.ts ***!
+  \*************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ EntityRelationshipModelSourceFinder)
+/* harmony export */   "default": () => (/* binding */ DatabaseModelSourceFinder)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata/source-metadata-utils */ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-utils.ts");
 
 // FIXME change this name or refactor this class, as it also retrieves field and class descriptors, not only database ones
-class EntityRelationshipModelSourceFinder {
+class DatabaseModelSourceFinder {
     findTableAndReferenceFromReferencedMember(databaseModel, referencedMember) {
         for (const table of databaseModel.tables) {
             for (const reference of table.references) {
@@ -5258,8 +5274,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ JpaTransformerClassVisitor)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation */ "./src/main/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation.ts");
-/* harmony import */ var _erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/model/source-metadata/source-metadata-utils */ "./src/main/erdiagram/converter/oop/model/source-metadata/source-metadata-utils.ts");
-/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/jpa-java-types */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/jpa-java-types.ts");
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/jpa-java-types */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/jpa-java-types.ts");
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_finder_DatabaseModelSourceFinder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/DatabaseModelSourceFinder */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/DatabaseModelSourceFinder.ts");
 
 
 
@@ -5267,26 +5283,17 @@ class JpaTransformerClassVisitor {
     constructor(tableNameCaseConverter, useExplicitTableName) {
         this._tableNameCaseConverter = tableNameCaseConverter;
         this._useExplicitTableName = useExplicitTableName;
+        this._databaseModelSourceFinder = new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_finder_DatabaseModelSourceFinder__WEBPACK_IMPORTED_MODULE_2__.default();
     }
     visitClass(javaClass, context) {
-        const table = this.findTableFromEntity(context.classDescriptor.sourceMetadata.entity, context.setupData.databaseModel);
-        javaClass.annotations.push(new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__.JpaAnnotationTypes.Entity));
+        const table = this._databaseModelSourceFinder.findTableFromEntity(context.setupData.databaseModel, context.classDescriptor.sourceMetadata.entity);
+        javaClass.annotations.push(new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_1__.JpaAnnotationTypes.Entity));
         if (this._useExplicitTableName) {
             this.addTableAnnotation(javaClass, table);
         }
     }
-    findTableFromEntity(entity, databaseModel) {
-        const foundTable = databaseModel.tables.find(table => this.isCorrespondingTable(entity, table));
-        if (foundTable == null) {
-            throw new Error(`Cannot find the corresponding table for entity "${entity.name}"`);
-        }
-        return foundTable;
-    }
-    isCorrespondingTable(entity, tableDescriptor) {
-        return (0,_erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__.isEntitySourceMetadata)(tableDescriptor.sourceMetadata) && tableDescriptor.sourceMetadata.entity === entity;
-    }
     addTableAnnotation(javaClass, table) {
-        const tableAnnotation = new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_2__.JpaAnnotationTypes.Table, {
+        const tableAnnotation = new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_1__.JpaAnnotationTypes.Table, {
             name: this.formatTableName(table.name)
         });
         javaClass.annotations.push(tableAnnotation);
@@ -5317,8 +5324,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class ColumnFieldAnnotationsSupplier {
-    constructor(entityRelationshipModelSourceFinder, columnNameCaseConverter, useExplicitColumnName) {
-        this._entityRelationshipModelSourceFinder = entityRelationshipModelSourceFinder;
+    constructor(databaseModelSourceFinder, columnNameCaseConverter, useExplicitColumnName) {
+        this._databaseModelSourceFinder = databaseModelSourceFinder;
         this._columnNameCaseConverter = columnNameCaseConverter;
         this._useExplicitColumnName = useExplicitColumnName;
     }
@@ -5345,11 +5352,11 @@ class ColumnFieldAnnotationsSupplier {
     getColumnName(fieldDescriptor, databaseModel) {
         const { sourceMetadata } = fieldDescriptor;
         if ((0,_erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__.isEntityIdentitySourceMetadata)(sourceMetadata)) {
-            const table = this._entityRelationshipModelSourceFinder.findTableFromEntity(databaseModel, sourceMetadata.entity);
+            const table = this._databaseModelSourceFinder.findTableFromEntity(databaseModel, sourceMetadata.entity);
             return table.identityColumnName;
         }
         if ((0,_erdiagram_converter_oop_model_source_metadata_source_metadata_utils__WEBPACK_IMPORTED_MODULE_1__.isEntityPropertySourceMetadata)(sourceMetadata)) {
-            const column = this._entityRelationshipModelSourceFinder.findColumnFromProperty(databaseModel, sourceMetadata.property);
+            const column = this._databaseModelSourceFinder.findColumnFromProperty(databaseModel, sourceMetadata.property);
             return column.name;
         }
         return null;
@@ -5408,7 +5415,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ JpaTransformerFieldVisitor)
 /* harmony export */ });
-/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_finder_EntityRelationshipModelSourceFinder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/EntityRelationshipModelSourceFinder */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/EntityRelationshipModelSourceFinder.ts");
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_finder_DatabaseModelSourceFinder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/DatabaseModelSourceFinder */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/DatabaseModelSourceFinder.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_IdentityFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/visitor/field/IdentityFieldAnnotationsSupplier */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/visitor/field/IdentityFieldAnnotationsSupplier.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_ColumnFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/visitor/field/ColumnFieldAnnotationsSupplier */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/visitor/field/ColumnFieldAnnotationsSupplier.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_relationship_RelationshipFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/visitor/field/relationship/RelationshipFieldAnnotationsSupplier */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/visitor/field/relationship/RelationshipFieldAnnotationsSupplier.ts");
@@ -5421,12 +5428,12 @@ __webpack_require__.r(__webpack_exports__);
 class JpaTransformerFieldVisitor {
     constructor(tableNameCaseConverter, columnNameCaseConverter, annotateGetters, useExplicitColumnName) {
         this._annotateGetters = annotateGetters;
-        const entityRelationshipModelSourceFinder = new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_finder_EntityRelationshipModelSourceFinder__WEBPACK_IMPORTED_MODULE_0__.default();
+        const databaseModelSourceFinder = new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_finder_DatabaseModelSourceFinder__WEBPACK_IMPORTED_MODULE_0__.default();
         const classModelSourceFinder = new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_finder_ClassModelSourceFinder__WEBPACK_IMPORTED_MODULE_4__.default();
         this._fieldAnnotationsSuppliers = [
             new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_IdentityFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_1__.default(),
-            new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_ColumnFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_2__.default(entityRelationshipModelSourceFinder, columnNameCaseConverter, useExplicitColumnName),
-            new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_relationship_RelationshipFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_3__.default(entityRelationshipModelSourceFinder, classModelSourceFinder, tableNameCaseConverter, columnNameCaseConverter)
+            new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_ColumnFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_2__.default(databaseModelSourceFinder, columnNameCaseConverter, useExplicitColumnName),
+            new _erdiagram_converter_oop_source_code_generator_java_jpa_transformer_visitor_field_relationship_RelationshipFieldAnnotationsSupplier__WEBPACK_IMPORTED_MODULE_3__.default(databaseModelSourceFinder, classModelSourceFinder, tableNameCaseConverter, columnNameCaseConverter)
         ];
     }
     visitField(javaField, context) {
@@ -5476,8 +5483,8 @@ var RelationshipCardinality;
 })(RelationshipCardinality || (RelationshipCardinality = {}));
 // TODO split this class
 class RelationshipFieldAnnotationsSupplier {
-    constructor(entityRelationshipModelSourceFinder, classModelSourceFinder, tableNameCaseConverter, columnNameCaseConverter) {
-        this._entityRelationshipModelSourceFinder = entityRelationshipModelSourceFinder;
+    constructor(databaseModelSourceFinder, classModelSourceFinder, tableNameCaseConverter, columnNameCaseConverter) {
+        this._databaseModelSourceFinder = databaseModelSourceFinder;
         this._classModelSourceFinder = classModelSourceFinder;
         this._tableNameCaseConverter = tableNameCaseConverter;
         this._columnNameCaseConverter = columnNameCaseConverter;
@@ -5490,43 +5497,40 @@ class RelationshipFieldAnnotationsSupplier {
         const { relationship, referencedMember } = sourceMetadata;
         const fieldBelongsToLeftMember = referencedMember === relationship.rightMember;
         const relationshipCardinality = this.getRelationshipCardinality(relationship);
-        if (relationshipCardinality === RelationshipCardinality.ONE_TO_ONE) {
-            if (fieldBelongsToLeftMember) {
-                return this.getOneToOneRelationshipAnnotations(relationship.rightMember, databaseModel);
-            }
-            if (relationship.direction === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Direction.BIDIRECTIONAL) {
-                return this.getMappedByOneToOneRelationshipAnnotations(relationship.rightMember, relationship.leftMember, classModel);
-            }
-            return this.getInverseOneToOneRelationshipAnnotations(relationship.rightMember, relationship.leftMember, databaseModel);
+        switch (relationshipCardinality) {
+            case RelationshipCardinality.ONE_TO_ONE:
+                if (fieldBelongsToLeftMember) {
+                    return this.getOneToOneRelationshipAnnotations(relationship.rightMember, databaseModel);
+                }
+                if (relationship.direction === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Direction.BIDIRECTIONAL) {
+                    return this.getMappedByOneToOneRelationshipAnnotations(relationship.rightMember, relationship.leftMember, classModel);
+                }
+                return this.getInverseOneToOneRelationshipAnnotations(relationship.rightMember, relationship.leftMember, databaseModel);
+            case RelationshipCardinality.MANY_TO_ONE:
+                if (fieldBelongsToLeftMember) {
+                    return this.getManyToOneRelationshipAnnotations(relationship.rightMember, databaseModel);
+                }
+                if (relationship.direction === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Direction.BIDIRECTIONAL) {
+                    return this.getMappedByOneToManyRelationshipAnnotations(relationship.rightMember, classModel);
+                }
+                return this.getInverseOneToManyRelationshipAnnotations(relationship.rightMember, databaseModel);
+            case RelationshipCardinality.ONE_TO_MANY:
+                if (!fieldBelongsToLeftMember) {
+                    return this.getManyToOneRelationshipAnnotations(relationship.leftMember, databaseModel);
+                }
+                if (relationship.direction === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Direction.BIDIRECTIONAL) {
+                    return this.getMappedByOneToManyRelationshipAnnotations(relationship.leftMember, classModel);
+                }
+                return this.getInverseOneToManyRelationshipAnnotations(relationship.leftMember, databaseModel);
+            case RelationshipCardinality.MANY_TO_MANY:
+                if (fieldBelongsToLeftMember) {
+                    return this.getManyToManyRelationshipAnnotations(relationship.leftMember, databaseModel);
+                }
+                if (relationship.direction === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Direction.BIDIRECTIONAL) {
+                    return this.getMappedByManyToManyRelationshipAnnotations(relationship.rightMember, classModel);
+                }
+                return this.getManyToManyRelationshipAnnotations(relationship.rightMember, databaseModel);
         }
-        if (relationshipCardinality === RelationshipCardinality.MANY_TO_ONE) {
-            if (fieldBelongsToLeftMember) {
-                return this.getManyToOneRelationshipAnnotations(relationship.rightMember, databaseModel);
-            }
-            if (relationship.direction === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Direction.BIDIRECTIONAL) {
-                return this.getMappedByOneToManyRelationshipAnnotations(relationship.rightMember, classModel);
-            }
-            return this.getInverseOneToManyRelationshipAnnotations(relationship.rightMember, databaseModel);
-        }
-        if (relationshipCardinality === RelationshipCardinality.ONE_TO_MANY) {
-            if (!fieldBelongsToLeftMember) {
-                return this.getManyToOneRelationshipAnnotations(relationship.leftMember, databaseModel);
-            }
-            if (relationship.direction === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Direction.BIDIRECTIONAL) {
-                return this.getMappedByOneToManyRelationshipAnnotations(relationship.leftMember, classModel);
-            }
-            return this.getInverseOneToManyRelationshipAnnotations(relationship.leftMember, databaseModel);
-        }
-        if (relationshipCardinality === RelationshipCardinality.MANY_TO_MANY) {
-            if (fieldBelongsToLeftMember) {
-                return this.getManyToManyRelationshipAnnotations(relationship.leftMember, databaseModel);
-            }
-            if (relationship.direction === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Direction.BIDIRECTIONAL) {
-                return this.getMappedByManyToManyRelationshipAnnotations(relationship.rightMember, classModel);
-            }
-            return this.getManyToManyRelationshipAnnotations(relationship.rightMember, databaseModel);
-        }
-        return [];
     }
     getRelationshipCardinality(relationship) {
         const isLeftMemberMany = relationship.leftMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Cardinality.MANY;
@@ -5539,7 +5543,7 @@ class RelationshipFieldAnnotationsSupplier {
         }
     }
     getOneToOneRelationshipAnnotations(foreignMember, databaseModel) {
-        const { reference } = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, foreignMember);
+        const { reference } = this._databaseModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, foreignMember);
         const optionalRelationship = foreignMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Cardinality.ZERO_OR_ONE;
         return [
             new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.OneToOne, {
@@ -5561,7 +5565,7 @@ class RelationshipFieldAnnotationsSupplier {
         ];
     }
     getInverseOneToOneRelationshipAnnotations(ownMember, foreignMember, databaseModel) {
-        const { table, reference } = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
+        const { table, reference } = this._databaseModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
         return [
             new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.OneToOne, {
                 optional: foreignMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Cardinality.ZERO_OR_ONE ? undefined : false
@@ -5576,7 +5580,7 @@ class RelationshipFieldAnnotationsSupplier {
         ];
     }
     getManyToOneRelationshipAnnotations(foreignMember, databaseModel) {
-        const { reference } = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, foreignMember);
+        const { reference } = this._databaseModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, foreignMember);
         const optionalRelationship = foreignMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_2__.Cardinality.ZERO_OR_ONE;
         return [
             new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.ManyToOne, {
@@ -5597,7 +5601,7 @@ class RelationshipFieldAnnotationsSupplier {
         ];
     }
     getInverseOneToManyRelationshipAnnotations(ownMember, databaseModel) {
-        const { table, reference } = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
+        const { table, reference } = this._databaseModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
         return [
             new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.OneToMany),
             new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__.default(_erdiagram_converter_oop_source_code_generator_java_jpa_jpa_java_types__WEBPACK_IMPORTED_MODULE_3__.JpaAnnotationTypes.JoinTable, {
@@ -5610,7 +5614,8 @@ class RelationshipFieldAnnotationsSupplier {
         ];
     }
     getManyToManyRelationshipAnnotations(ownMember, databaseModel) {
-        const { table, reference: ownReference } = this._entityRelationshipModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
+        const { table, reference: ownReference } = this._databaseModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
+        /* istanbul ignore next */
         if (table.references.length !== 2) {
             throw new Error('Relationship table has more than 2 references');
         }
