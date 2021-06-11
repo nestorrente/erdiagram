@@ -4,7 +4,8 @@
 
 [![License](https://img.shields.io/npm/l/make-coverage-badge.svg)](https://opensource.org/licenses/MIT)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
-[![npm](https://img.shields.io/npm/dw/@nestorrente/erdiagram.svg)](https://www.npmjs.com/package/@nestorrente/erdiagram)
+
+[comment]: <> ([![npm]&#40;https://img.shields.io/npm/dw/@nestorrente/erdiagram.svg&#41;]&#40;https://www.npmjs.com/package/@nestorrente/erdiagram&#41;)
 
 ![Coverage statements](coverage/badge-statements.svg)
 ![Coverage branches](coverage/badge-branches.svg)
