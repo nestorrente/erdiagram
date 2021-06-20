@@ -4,7 +4,7 @@ In this page you will find information about the configuration options of the di
 
 ## Table of contents
 
-* [Entity-relationship model parser](#entityrelationshipmodelparser)
+* [Entity-relationship model parser](#entity-relationship-model-parser)
 * [Database](#database)
     + [Database model](#database-model)
     + [SQL dialects](#sql-dialects)
@@ -22,7 +22,7 @@ In this page you will find information about the configuration options of the di
     + [Nomnoml](#nomnoml)
     + [PlantUML](#plantuml)
 
-## EntityRelationshipModelParser
+## Entity-relationship model parser
 
 These are the configuration options corresponding to the `EntityRelationshipModelParserConfig` interface:
 

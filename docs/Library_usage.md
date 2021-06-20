@@ -12,7 +12,7 @@ DISCLAIMER: This documentation is still work in progress.
     + [DatabaseModel](#databasemodel)
     + [ClassModel](#classmodel)
 * [Configuration options](#configuration-options)
-* [Usage examples](#usage-examples)
+* [Use cases with examples](#use-cases-with-examples)
     + [Parsing the ERDiagram language into a EntityRelationshipModel object](#parsing-the-erdiagram-language-into-a-entityrelationshipmodel-object)
     + [Generate a database creation script from an EntityRelationshipModel object](#generate-a-database-creation-script-from-an-entityrelationshipmodel-object)
     + [Generate OOP classes from an EntityRelationshipModel object](#generate-oop-classes-from-an-entityrelationshipmodel-object)
@@ -85,7 +85,7 @@ You can learn more about how the class model is generated [here](Class_model.md)
 You can read the [Configuration options](Configuration_options.md) document in order to get further
 information about the configuration options of the different components of _ERDiagram_. 
 
-## Usage examples
+## Use cases with examples
 
 ### Parsing the ERDiagram language into a EntityRelationshipModel object
 
@@ -215,41 +215,19 @@ import {
   EntityRelationshipModelToDatabaseCodeConverter,
   DatabaseModelGenerator,
   DatabaseModelToSqlCodeConverter,
+  SqlSourceCodeGenerator,
   MysqlDialect
 } from '@nestorrente/erdiagram';
 
 const model = { /* the model of the parsing example */};
 
-// 1. Create a DatabaseModelGenerator
-const databaseModelGenerator = new DatabaseModelGenerator();
-
-// 2. Create a DatabaseModelToSqlCodeConverter using a SQL dialect (the one for MySQL databases in this case)
+// First, we have to choose the SQL dialect we want to use. In this case, we will use MySQL.
 const sqlDialect = new MysqlDialect();
-const databaseModelToCodeConverter = new DatabaseModelToSqlCodeConverter(sqlDialect);
 
-// 3. The code generation can be attached in 2 ways:
+// Then, we can create the SQL source code generator that will use the chosen dialect for generating the code
+const sqlSourceCodeGenerator = SqlSourceCodeGenerator.withDefaultConfig(sqlDialect);
 
-// Way 1: 2-step conversion using both the databaseModelGenerator and the databaseModelToCodeConverter.
-// First the database model is generated, then it's converted to the output code.
-// This is useful when you want to generate the same tables for different database engines,
-// so you can reuse the DatabaseModel instance.
-
-const databaseModel = databaseModelGenerator.generateDatabaseModel(model);
-
-const outputCode = databaseModelToCodeConverter.convertToCode(databaseModel);
-console.log(outputCode);
-
-// Way 2: create an EntityRelationshipModelToDatabaseCodeConverter.
-// That class implements the SourceCodeGenerator interface,
-// which allows to transform the EntityRelationshipModel to the output code directly.
-// It does the 2-step conversion under the hood.
-
-const erModelToCodeConverter = new EntityRelationshipModelToDatabaseCodeConverter(
-        databaseModelGenerator,
-        databaseModelToCodeConverter
-);
-
-const outputCode = erModelToCodeConverter.generateSourceCode(model)
+const outputCode = sqlSourceCodeGenerator.generateSourceCode(model);
 console.log(outputCode);
 ```
 
@@ -276,7 +254,7 @@ CREATE TABLE `Order` (
 ALTER TABLE `Product` ADD CONSTRAINT `Product_orderId_fk` FOREIGN KEY (`orderId`) REFERENCES `Order` (`id`);
 ```
 
-Both the `DatabaseModelGenerator` and the `MysqlDialect` could be also instantiated using custom config properties:
+Both the `MysqlDialect` and the `SqlSourceCodeGenerator` could be also instantiated using custom config properties:
 
 ```javascript
 import {
@@ -286,15 +264,17 @@ import {
     LowerCamelCaseFormat
 } from '@nestorrente/erdiagram';
 
-const databaseModelGenerator = new DatabaseModelGenerator({
-    usePluralTableNames: true,
-    // ... other config options...
-});
-
 const sqlDialect = new MysqlDialect({
     tableNameCaseFormat: LowerCamelCaseFormat.UPPER_UNDERSCORE,
     // ... other config options...
 });
+
+const sqlSourceCodeGenerator = SqlSourceCodeGenerator.builder(sqlDialect)
+        .configureDatabaseModel({
+            usePluralTableNames: true,
+          // ... other config options...
+        })
+        .build();
 ```
 
 Although we are using `MysqlDialect` in this example, there is also support for other database engines. This is the full
@@ -311,8 +291,8 @@ list of the supported engines:
 #### See also
 
 Configurable options of the mentioned components:
-* [`DatabaseModelGenerator`](Configuration_options.md#databasemodelgenerator)
-* [`SqlDialect` (`MysqlDialect`, `OracleDialect`, `PostgresqlDialect`, `SqliteDialect`, and `SqlServerDialect`)](Configuration_options.md#sqldialect-mysqldialect-oracledialect-postgresqldialect-sqlitedialect-and-sqlserverdialect)
+* [Database model config](Configuration_options.md#database-model)
+* [SQL dialects config (`MysqlDialect`, `OracleDialect`, `PostgresqlDialect`, `SqliteDialect`, and `SqlServerDialect`)](Configuration_options.md#sql-dialects)
 
 ### Generate OOP classes from an EntityRelationshipModel object
 
