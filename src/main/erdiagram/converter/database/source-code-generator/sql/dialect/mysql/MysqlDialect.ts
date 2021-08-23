@@ -21,6 +21,9 @@ import mysqlDialectConfigManager
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
 import {PartialMysqlDialectConfig} from '@/erdiagram/converter/database/source-code-generator/sql/dialect/mysql/config/MysqlDialectConfig';
 
+/**
+ * Comment for MysqlDialect.
+ */
 export default class MysqlDialect implements SqlDialect {
 
 	private readonly tableNameCaseConverter: CaseConverter;
