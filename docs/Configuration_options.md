@@ -168,7 +168,7 @@ const intArrayType = createJavaArrayType(intType); // int[]
 const listOfMyClassType = createJavaParameterizedType('List', 'java.util', [myClassType]); // List<MyClass>
 const mapFromIntegerToMyClassType = createJavaParameterizedType('Map', 'java.util', [integerType, myClassType]) // Map<Integer, MyClass>
 
-// ... or you can just write the formatted version of the Java type and let ERDiagram parse for you
+// ... or you can just write the formatted version of the Java type and let ERDiagram parse it for you
 
 // parseJavaType(text: string): JavaType
 
@@ -243,16 +243,16 @@ const numberArrayType = createTypeScriptArrayType(numberType); // number[] a.k.a
 
 // createTypeScriptParameterizedType(name: string, parameterTypes: TypeScriptType[]): TypeScriptParameterizedType
 
-const setOfMyDateType = createJavaParameterizedType('Set', [dateType]); // Set<MyDate>
-const mapFromIntegerToMyClassType = createJavaParameterizedType('Map', [numberType, myClassType]) // Map<number, MyClass>
+const setOfMyDateType = createTypeScriptParameterizedType('Set', [dateType]); // Set<MyDate>
+const mapFromIntegerToMyClassType = createTypeScriptParameterizedType('Map', [numberType, myClassType]) // Map<number, MyClass>
 
-// ... or you can just write the formatted version of the Java type and let ERDiagram parse for you
+// ... or you can just write the formatted version of the TypeScript type and let ERDiagram parse it for you
 
-// parseTypeScriptTypeInternal(text: string): TypeScriptType
+// parseTypeScriptType(text: string): TypeScriptType
 
-parseJavaType('boolean') // boolean
-parseJavaType('Array<string>') // string[] a.k.a. Array<string>
-parseJavaType('Map<number, Date[]>') // Map<number, Date[]> a.k.a. Map<number, Array<Date>>
+parseTypeScriptType('boolean') // boolean
+parseTypeScriptType('Array<string>') // string[] a.k.a. Array<string>
+parseTypeScriptType('Map<number, Date[]>') // Map<number, Date[]> a.k.a. Map<number, Array<Date>>
 ```
 
 ## Diagram
