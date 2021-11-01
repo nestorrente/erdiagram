@@ -206,17 +206,14 @@ const parser = new EntityRelationshipModelParser({
 #### See also
 
 Configurable options of the mentioned components:
-* [`EntityRelationshipModelParser`](Configuration_options.md#entityrelationshipmodelparser)
+* [`EntityRelationshipModelParserConfig`](Configuration_options.md#entity-relationship-model-parser)
 
 ### Generate a database creation script from an EntityRelationshipModel object
 
 ```javascript
 import {
-  EntityRelationshipModelToDatabaseCodeConverter,
-  DatabaseModelGenerator,
-  DatabaseModelToSqlCodeConverter,
-  SqlSourceCodeGenerator,
-  MysqlDialect
+    MysqlDialect,
+    SqlSourceCodeGenerator
 } from '@nestorrente/erdiagram';
 
 const model = { /* the model of the parsing example */};
@@ -225,9 +222,9 @@ const model = { /* the model of the parsing example */};
 const sqlDialect = new MysqlDialect();
 
 // Then, we can create the SQL source code generator that will use the chosen dialect for generating the code
-const sqlSourceCodeGenerator = SqlSourceCodeGenerator.withDefaultConfig(sqlDialect);
+const sourceCodeGenerator = SqlSourceCodeGenerator.withDefaultConfig(sqlDialect);
 
-const outputCode = sqlSourceCodeGenerator.generateSourceCode(model);
+const outputCode = sourceCodeGenerator.generateSourceCode(model);
 console.log(outputCode);
 ```
 
@@ -258,18 +255,17 @@ Both the `MysqlDialect` and the `SqlSourceCodeGenerator` could be also instantia
 
 ```javascript
 import {
-    DatabaseModelGenerator,
+    SqlSourceCodeGenerator,
     MysqlDialect,
-    StandardIdNamingStrategies,
-    LowerCamelCaseFormat
+    StandardCaseFormats
 } from '@nestorrente/erdiagram';
 
 const sqlDialect = new MysqlDialect({
-    tableNameCaseFormat: LowerCamelCaseFormat.UPPER_UNDERSCORE,
+    tableNameCaseFormat: StandardCaseFormats.UPPER_UNDERSCORE,
     // ... other config options...
 });
 
-const sqlSourceCodeGenerator = SqlSourceCodeGenerator.builder(sqlDialect)
+const sourceCodeGenerator = SqlSourceCodeGenerator.builder(sqlDialect)
         .configureDatabaseModel({
             usePluralTableNames: true,
           // ... other config options...
@@ -291,43 +287,82 @@ list of the supported engines:
 #### See also
 
 Configurable options of the mentioned components:
-* [Database model config](Configuration_options.md#database-model)
-* [SQL dialects config (`MysqlDialect`, `OracleDialect`, `PostgresqlDialect`, `SqliteDialect`, and `SqlServerDialect`)](Configuration_options.md#sql-dialects)
+* [Database model](Configuration_options.md#database-model)
+* [SQL dialects (`MysqlDialect`, `OracleDialect`, `PostgresqlDialect`, `SqliteDialect`, and `SqlServerDialect`)](Configuration_options.md#sql-dialects)
 
-### Generate OOP classes from an EntityRelationshipModel object
+### Generate TypeScript interfaces from an EntityRelationshipModel object
 
 ```javascript
 import {
-  EntityRelationshipModelToClassCodeConverter,
-  ClassModelGenerator,
-  JavaClassModelToCodeConverter
+    TypeScriptSourceCodeGenerator
 } from '@nestorrente/erdiagram';
 
 const model = { /* the model of the parsing example */};
 
-// We instantiate a ClassModelGenerator and a ClassModelToCodeConverter
-// (the one for Java classes in this case) using the default config.
-const classModelGenerator = new ClassModelGenerator();
-const classModelToCodeConverter = new JavaClassModelToCodeConverter();
+const sourceCodeGenerator = TypeScriptSourceCodeGenerator.withDefaultConfig();
 
-// Way 1: 2-step conversion using both the classModelGenerator and the classModelToCodeConverter.
-// First the class model is generated, then it's converted to the output code.
-
-const classModel = classModelGenerator.generateClassModel(model);
-const outputCode = classModelToCodeConverter.convertToCode(classModel);
+const outputCode = sourceCodeGenerator.generateSourceCode(erModel);
 console.log(outputCode);
+```
 
-// Way 2: create an EntityRelationshipModelToClassCodeConverter.
-// That class implements the SourceCodeGenerator interface,
-// which allows to transform the EntityRelationshipModel to the output code directly.
-// It does the 2-step conversion under the hood.
+Output:
 
-const erModelToCodeConverter = new EntityRelationshipModelToClassCodeConverter(
-        classModelGenerator,
-        classModelToCodeConverter
-);
+```typescript
+interface Product {
+    id?: number;
+    name: string;
+    description: string;
+    price: number;
+    active: boolean;
+}
 
-const outputCode = erModelToCodeConverter.generateSourceCode(model)
+interface Order {
+    id?: number;
+    creationDate: Date;
+    state: string;
+    products: Product[];
+}
+```
+
+You can also instantiate the `TypeScriptSourceCodeGenerator` using custom configuration options:
+
+```javascript
+import {
+    TypeScriptSourceCodeGenerator,
+    StandardIdNamingStrategies,
+    parseTypeScriptType
+} from '@nestorrente/erdiagram';
+
+const sourceCodeGenerator = TypeScriptSourceCodeGenerator.builder()
+        .configureClassModel({
+            idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX
+        })
+        .configureTypeScript({
+            typeBindings: {
+                [EntityPropertyType.BLOB]: parseTypeScriptType('Array<MyCustomByteType>')
+            }
+        })
+        .build();
+```
+
+#### See also
+
+Configurable options of the mentioned components:
+* [Class model](Configuration_options.md#class-model)
+* [TypeScript](Configuration_options.md#typescript)
+
+### Generate Java classes from an EntityRelationshipModel object
+
+```javascript
+import {
+  JavaSourceCodeGenerator
+} from '@nestorrente/erdiagram';
+
+const model = { /* the model of the parsing example */};
+
+const sourceCodeGenerator = JavaSourceCodeGenerator.withDefaultConfig();
+
+const outputCode = sourceCodeGenerator.generateSourceCode(erModel);
 console.log(outputCode);
 ```
 
@@ -350,7 +385,7 @@ public class Product {
         return id;
     }
 
-    public Long setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -358,7 +393,7 @@ public class Product {
         return name;
     }
 
-    public String setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -366,7 +401,7 @@ public class Product {
         return description;
     }
 
-    public String setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -374,7 +409,7 @@ public class Product {
         return price;
     }
 
-    public BigDecimal setPrice(BigDecimal price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -382,16 +417,16 @@ public class Product {
         return active;
     }
 
-    public Boolean setActive(Boolean active) {
+    public void setActive(Boolean active) {
         this.active = active;
     }
 
 }
 
 /* ========== Order class ========== */
-
-import java.time.LocalDateTime;
-import java.util.List;
+    
+    import java.time.LocalDateTime;
+            import java.util.List;
 
 public class Order {
 
@@ -404,7 +439,7 @@ public class Order {
         return id;
     }
 
-    public Long setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -412,7 +447,7 @@ public class Order {
         return creationDate;
     }
 
-    public LocalDateTime setCreationDate(LocalDateTime creationDate) {
+    public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -420,7 +455,7 @@ public class Order {
         return state;
     }
 
-    public String setState(String state) {
+    public void setState(String state) {
         this.state = state;
     }
 
@@ -428,44 +463,57 @@ public class Order {
         return products;
     }
 
-    public List<Product> setProducts(List<Product> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 
 }
 ```
 
-Both the `ClassModelGenerator` and the `JavaClassModelToCodeConverter` could be also instantiated using custom config
-properties:
+You can also instantiate the `JavaSourceCodeGenerator` using custom configuration options.
+This allows you to add JPA annotations and much more:
 
 ```javascript
 import {
-    ClassModelGenerator,
-    JavaClassModelToCodeConverter,
-    StandardIdNamingStrategies,
-    LowerCamelCaseFormat
+    BeanValidationTransformer,
+    JavaSourceCodeGenerator,
+    JpaTransformer,
+    NotNullTextValidationStrategy,
+    StandardIdNamingStrategies
 } from '@nestorrente/erdiagram';
 
-const classModelGenerator = new ClassModelGenerator({
-    idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX,
-    // ... other config options...
-});
-
-const classModelToCodeConverter = new JavaClassModelToCodeConverter({
-    generatedClassesPackage: 'com.example.mypackage',
-    // ... other config options...
-});
+const sourceCodeGenerator = JavaSourceCodeGenerator.builder()
+        .configureClassModel({
+            idNamingStrategy: StandardIdNamingStrategies.ENTITY_NAME_PREFIX
+        })
+        .configureJavaClassModel({
+            generatedClassesPackage: 'com.example.my_package'
+        })
+        .addTransformers(
+                new BeanValidationTransformer({
+                    notNullTextValidationStrategy: NotNullTextValidationStrategy.NOT_BLANK
+                }),
+                JpaTransformer.builder()
+                        .configureDatabaseModel({
+                            usePluralTableNames: true
+                        })
+                        .configureJpa({
+                            annotateGetters: true,
+                            useExplicitTableName: true
+                        })
+                        .build()
+        )
+        .build();
 ```
-
-Although we are using `JavaClassModelToCodeConverter` in this example, there is also support for TypeScript (using the
-`TypeScriptClassModelToCodeConverter` class).
 
 #### See also
 
 Configurable options of the mentioned components:
-* [`ClassModelGenerator`](Configuration_options.md#classmodelgenerator)
-* [`JavaClassModelToCodeConverter`](Configuration_options.md#javaclassmodeltocodeconverter)
-* [`TypeScriptClassModelToCodeConverter`](Configuration_options.md#typescriptclassmodeltocodeconverter)
+* [Class model](Configuration_options.md#class-model)
+* [Java class model](Configuration_options.md#java-class-model)
+* [Bean Validation transformer](Configuration_options.md#bean-validation)
+* [JPA transformer](Configuration_options.md#jpa)
+* [Database model](Configuration_options.md#database-model)
 
 ### Generate diagram code from an EntityRelationshipModel object
 
@@ -483,11 +531,14 @@ import {
 
 const model = { /* the model of the parsing example */};
 
-const plantUmlERModelToDiagramCodeConverter = new PlantUmlEntityRelationshipModelToDiagramCodeConverter();
-const plantUmlCode = erModelToDiagramCodeConverter.convertToCode(model);
+const plantUmlSourceCodeGenerator = new PlantUmlSourceCodeGenerator();
+const plantUmlCode = plantUmlSourceCodeGenerator.generateSourceCode(model);
 
-const nomnomlERModelToDiagramCodeConverter = new NomnomlSourceCodeGenerator({
-    // Optional config options
-});
-const nomnomlCode = nomnomlERModelToDiagramCodeConverter.generateSourceCode(model);
+const nomnomlSourceCodeGenerator = new NomnomlSourceCodeGenerator();
+const nomnomlCode = nomnomlSourceCodeGenerator.generateSourceCode(model);
 ```
+
+#### See also
+
+Configurable options of the mentioned components:
+* [`NomnomlSourceCodeGenerator`](Configuration_options.md#nomnoml)
