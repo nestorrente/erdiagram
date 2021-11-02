@@ -1,4 +1,4 @@
-export * from './common/config/exports';
+export * from './common/exports';
 
 export * from './mysql/exports';
 export * from './oracle/exports';
