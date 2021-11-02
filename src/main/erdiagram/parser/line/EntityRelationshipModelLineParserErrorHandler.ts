@@ -3,7 +3,7 @@ import ERDiagramParseLineError from '@/erdiagram/parser/types/error/ERDiagramPar
 
 export default class EntityRelationshipModelLineParserErrorHandler {
 
-	public handleLineError(error: Error, lineIndex: number): never {
+	public handleLineError(error: unknown, lineIndex: number): never {
 
 		/* istanbul ignore else */
 		if (error instanceof ERDiagramError) {

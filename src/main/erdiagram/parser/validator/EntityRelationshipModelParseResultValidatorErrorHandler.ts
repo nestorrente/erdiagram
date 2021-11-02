@@ -6,7 +6,7 @@ import ERDiagramEntityPropertyError from '@/erdiagram/parser/types/error/ERDiagr
 
 export default class EntityRelationshipModelParseResultValidatorErrorHandler {
 
-	public handleValidationError(error: Error, statementResultToLineMap: Map<ParsedStatementResult, number>): never {
+	public handleValidationError(error: unknown, statementResultToLineMap: Map<ParsedStatementResult, number>): never {
 
 		if (error instanceof ERDiagramEntityPropertyError) {
 			throw new ERDiagramParseLineError(error, statementResultToLineMap.get(error.property)!);
