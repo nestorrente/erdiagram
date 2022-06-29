@@ -3,7 +3,7 @@ import ERDiagramError from '@/erdiagram/parser/types/error/ERDiagramError';
 export default class ERDiagramParseLineError extends ERDiagramError {
 
 	constructor(
-			private readonly cause: ERDiagramError,
+			public readonly cause: ERDiagramError,
 			public readonly lineIndex: number
 	) {
 		super(cause.message);
