@@ -4,7 +4,7 @@
  *
  * Released under the MIT License.
  *
- * Build date: 2022-06-29T10:42:59.713Z
+ * Build date: 2023-01-13T19:57:10.372Z
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -3173,6 +3173,27 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/main/erdiagram/converter/diagram/common/config/DiagramLevel.ts":
+/*!****************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/diagram/common/config/DiagramLevel.ts ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var DiagramLevel;
+(function (DiagramLevel) {
+    DiagramLevel["CONCEPTUAL"] = "conceptual";
+    DiagramLevel["LOGICAL"] = "logical";
+})(DiagramLevel || (DiagramLevel = {}));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DiagramLevel);
+
+
+/***/ }),
+
 /***/ "./src/main/erdiagram/converter/diagram/exports.ts":
 /*!*********************************************************!*\
   !*** ./src/main/erdiagram/converter/diagram/exports.ts ***!
@@ -3216,16 +3237,16 @@ __webpack_require__.r(__webpack_exports__);
 
 class NomnomlSourceCodeGenerator {
     constructor(config) {
-        this.entityCodeGenerator = new _erdiagram_converter_diagram_nomnoml_entity_NomnomlEntityCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"]();
+        this.config = _erdiagram_converter_diagram_nomnoml_config_NomnomlConfigManager__WEBPACK_IMPORTED_MODULE_2__["default"].mergeWithDefaultConfig(config);
+        this.entityCodeGenerator = new _erdiagram_converter_diagram_nomnoml_entity_NomnomlEntityCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](this.config.diagramLevel);
         this.relationshipCodeGenerator = new _erdiagram_converter_diagram_nomnoml_relationship_NomnomlRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_1__["default"]();
         this.directivesCodeGenerator = new _erdiagram_converter_diagram_nomnoml_directive_NomnomlDirectivesCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"]();
-        this.config = _erdiagram_converter_diagram_nomnoml_config_NomnomlConfigManager__WEBPACK_IMPORTED_MODULE_2__["default"].mergeWithDefaultConfig(config);
     }
     generateSourceCode(model) {
         return [
             ...model.entities.map(entity => this.entityCodeGenerator.generateEntityCode(entity)),
             ...model.relationships.map(relationship => this.relationshipCodeGenerator.generateRelationshipCode(relationship)),
-            this.directivesCodeGenerator.generateDirectivesCode(this.config)
+            this.directivesCodeGenerator.generateDirectivesCode(this.config.style)
         ].join('\n\n');
     }
 }
@@ -3246,35 +3267,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractConfigManager */ "./src/main/erdiagram/common/config/AbstractConfigManager.ts");
+/* harmony import */ var _erdiagram_converter_diagram_common_config_DiagramLevel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/diagram/common/config/DiagramLevel */ "./src/main/erdiagram/converter/diagram/common/config/DiagramLevel.ts");
+
 
 class NomnomlConfigManager extends _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"] {
     getDefaultConfig() {
         return {
-            arrowSize: 1,
-            bendSize: undefined,
-            direction: undefined,
-            gutter: undefined,
-            edgeMargin: undefined,
-            gravity: 1.5,
-            edges: undefined,
-            background: 'transparent',
-            fill: '#fefece',
-            fillArrows: undefined,
-            font: undefined,
-            fontSize: undefined,
-            leading: undefined,
-            lineWidth: 1,
-            padding: undefined,
-            spacing: undefined,
-            stroke: '#333333',
-            title: undefined,
-            zoom: undefined,
-            acyclicer: undefined,
-            ranker: 'longest-path'
+            diagramLevel: _erdiagram_converter_diagram_common_config_DiagramLevel__WEBPACK_IMPORTED_MODULE_1__["default"].LOGICAL,
+            style: {
+                arrowSize: 1,
+                bendSize: undefined,
+                direction: undefined,
+                gutter: undefined,
+                edgeMargin: undefined,
+                gravity: 1.5,
+                edges: undefined,
+                background: 'transparent',
+                fill: '#fefece',
+                fillArrows: undefined,
+                font: undefined,
+                fontSize: undefined,
+                leading: undefined,
+                lineWidth: 1,
+                padding: undefined,
+                spacing: undefined,
+                stroke: '#333333',
+                title: undefined,
+                zoom: undefined,
+                acyclicer: undefined,
+                ranker: 'longest-path'
+            }
         };
     }
     mergeConfigs(fullConfig, partialConfig) {
-        return Object.assign(Object.assign({}, fullConfig), partialConfig);
+        return Object.assign(Object.assign(Object.assign({}, fullConfig), partialConfig), { style: Object.assign(Object.assign({}, fullConfig.style), partialConfig === null || partialConfig === void 0 ? void 0 : partialConfig.style) });
     }
 }
 const nomnomlConfigManager = new NomnomlConfigManager();
@@ -3314,9 +3340,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ NomnomlDirectivesCodeGenerator)
 /* harmony export */ });
 class NomnomlDirectivesCodeGenerator {
-    generateDirectivesCode(config) {
-        return Object.entries(config)
-            .filter(([key, value]) => value != null && value !== '')
+    generateDirectivesCode(styleConfig) {
+        return Object.entries(styleConfig)
+            .filter(([, value]) => value != null && value !== '')
             .map(([key, value]) => `#${key}: ${value}`)
             .join('\n');
     }
@@ -3339,13 +3365,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_diagram_nomnoml_entity_NomnomlEntityIdentityPropertyCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/diagram/nomnoml/entity/NomnomlEntityIdentityPropertyCodeGenerator */ "./src/main/erdiagram/converter/diagram/nomnoml/entity/NomnomlEntityIdentityPropertyCodeGenerator.ts");
 /* harmony import */ var _erdiagram_converter_diagram_nomnoml_entity_NomnomlEntityPropertyCodeGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/diagram/nomnoml/entity/NomnomlEntityPropertyCodeGenerator */ "./src/main/erdiagram/converter/diagram/nomnoml/entity/NomnomlEntityPropertyCodeGenerator.ts");
 /* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
+/* harmony import */ var _erdiagram_converter_diagram_common_config_DiagramLevel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/diagram/common/config/DiagramLevel */ "./src/main/erdiagram/converter/diagram/common/config/DiagramLevel.ts");
+
 
 
 
 class NomnomlEntityCodeGenerator {
-    constructor() {
+    constructor(diagramLevel) {
         this.entityIdentityPropertyCodeGenerator = new _erdiagram_converter_diagram_nomnoml_entity_NomnomlEntityIdentityPropertyCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"]();
         this.entityPropertyCodeGenerator = new _erdiagram_converter_diagram_nomnoml_entity_NomnomlEntityPropertyCodeGenerator__WEBPACK_IMPORTED_MODULE_1__["default"]();
+        this.diagramLevel = diagramLevel;
     }
     generateEntityCode(entity) {
         const propertiesCode = this.generateEntityPropertiesCode(entity);
@@ -3359,6 +3388,9 @@ class NomnomlEntityCodeGenerator {
         ].join('\n');
     }
     generateEntityPropertiesCode(entity) {
+        if (this.diagramLevel === _erdiagram_converter_diagram_common_config_DiagramLevel__WEBPACK_IMPORTED_MODULE_3__["default"].CONCEPTUAL) {
+            return '';
+        }
         const { identityPropertyName, properties } = entity;
         const propertiesCode = properties.map(property => this.entityPropertyCodeGenerator.generateEntityPropertyCode(property));
         if (identityPropertyName) {
@@ -3626,11 +3658,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_diagram_plantuml_entity_PlantUmlEntityCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/diagram/plantuml/entity/PlantUmlEntityCodeGenerator */ "./src/main/erdiagram/converter/diagram/plantuml/entity/PlantUmlEntityCodeGenerator.ts");
 /* harmony import */ var _erdiagram_converter_diagram_plantuml_relationship_PlantUmlRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/diagram/plantuml/relationship/PlantUmlRelationshipCodeGenerator */ "./src/main/erdiagram/converter/diagram/plantuml/relationship/PlantUmlRelationshipCodeGenerator.ts");
+/* harmony import */ var _erdiagram_converter_diagram_plantuml_config_PlantUmlConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/diagram/plantuml/config/PlantUmlConfigManager */ "./src/main/erdiagram/converter/diagram/plantuml/config/PlantUmlConfigManager.ts");
+
 
 
 class PlantUmlSourceCodeGenerator {
-    constructor() {
-        this.entityCodeGenerator = new _erdiagram_converter_diagram_plantuml_entity_PlantUmlEntityCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"]();
+    constructor(config) {
+        const fullConfig = _erdiagram_converter_diagram_plantuml_config_PlantUmlConfigManager__WEBPACK_IMPORTED_MODULE_2__["default"].mergeWithDefaultConfig(config);
+        this.entityCodeGenerator = new _erdiagram_converter_diagram_plantuml_entity_PlantUmlEntityCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](fullConfig.diagramLevel);
         this.relationshipCodeGenerator = new _erdiagram_converter_diagram_plantuml_relationship_PlantUmlRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_1__["default"]();
     }
     generateSourceCode(model) {
@@ -3642,6 +3677,38 @@ class PlantUmlSourceCodeGenerator {
         ].join('\n\n');
     }
 }
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/diagram/plantuml/config/PlantUmlConfigManager.ts":
+/*!***************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/diagram/plantuml/config/PlantUmlConfigManager.ts ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PlantUmlConfigManager": () => (/* binding */ PlantUmlConfigManager),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractConfigManager */ "./src/main/erdiagram/common/config/AbstractConfigManager.ts");
+/* harmony import */ var _erdiagram_converter_diagram_common_config_DiagramLevel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/diagram/common/config/DiagramLevel */ "./src/main/erdiagram/converter/diagram/common/config/DiagramLevel.ts");
+
+
+class PlantUmlConfigManager extends _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"] {
+    getDefaultConfig() {
+        return {
+            diagramLevel: _erdiagram_converter_diagram_common_config_DiagramLevel__WEBPACK_IMPORTED_MODULE_1__["default"].LOGICAL,
+        };
+    }
+    mergeConfigs(fullConfig, partialConfig) {
+        return Object.assign(Object.assign({}, fullConfig), partialConfig);
+    }
+}
+const plantUmlConfigManager = new PlantUmlConfigManager();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (plantUmlConfigManager);
 
 
 /***/ }),
@@ -3660,13 +3727,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_diagram_plantuml_entity_PlantUmlEntityIdentityPropertyCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/diagram/plantuml/entity/PlantUmlEntityIdentityPropertyCodeGenerator */ "./src/main/erdiagram/converter/diagram/plantuml/entity/PlantUmlEntityIdentityPropertyCodeGenerator.ts");
 /* harmony import */ var _erdiagram_converter_diagram_plantuml_entity_PlantUmlEntityPropertyCodeGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/diagram/plantuml/entity/PlantUmlEntityPropertyCodeGenerator */ "./src/main/erdiagram/converter/diagram/plantuml/entity/PlantUmlEntityPropertyCodeGenerator.ts");
 /* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
+/* harmony import */ var _erdiagram_converter_diagram_common_config_DiagramLevel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/diagram/common/config/DiagramLevel */ "./src/main/erdiagram/converter/diagram/common/config/DiagramLevel.ts");
+
 
 
 
 class PlantUmlEntityCodeGenerator {
-    constructor() {
+    constructor(diagramLevel) {
         this.entityIdentityPropertyCodeGenerator = new _erdiagram_converter_diagram_plantuml_entity_PlantUmlEntityIdentityPropertyCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"]();
         this.entityPropertyCodeGenerator = new _erdiagram_converter_diagram_plantuml_entity_PlantUmlEntityPropertyCodeGenerator__WEBPACK_IMPORTED_MODULE_1__["default"]();
+        this.diagramLevel = diagramLevel;
     }
     generateEntityCode(entity) {
         const propertiesCode = this.generateEntityPropertiesCode(entity);
@@ -3680,6 +3750,9 @@ class PlantUmlEntityCodeGenerator {
         ].join('\n');
     }
     generateEntityPropertiesCode(entity) {
+        if (this.diagramLevel === _erdiagram_converter_diagram_common_config_DiagramLevel__WEBPACK_IMPORTED_MODULE_3__["default"].CONCEPTUAL) {
+            return '';
+        }
         const { identityPropertyName, properties } = entity;
         const propertiesCode = properties.map(property => this.entityPropertyCodeGenerator.generateEntityPropertyCode(property));
         if (identityPropertyName) {
