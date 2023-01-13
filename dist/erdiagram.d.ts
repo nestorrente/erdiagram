@@ -740,6 +740,11 @@ export declare class PlantUmlSourceCodeGenerator implements SourceCodeGenerator 
 	constructor(config?: PartialPlantUmlConfig);
 	generateSourceCode(model: EntityRelationshipModel): string;
 }
+export declare class PlantUmlConfigManager extends AbstractConfigManager<PlantUmlConfig, PartialPlantUmlConfig> {
+	getDefaultConfig(): PlantUmlConfig;
+	mergeConfigs(fullConfig: PlantUmlConfig, partialConfig?: PartialPlantUmlConfig): PlantUmlConfig;
+}
+export declare const plantUmlConfigManager: PlantUmlConfigManager;
 export interface EntityRelationshipModelParserConfig {
 	allowUnknownEntities: boolean;
 }

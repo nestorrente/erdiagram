@@ -1,10 +1,10 @@
 /*!
- * Entity-Relationship Diagram Code Generator v1.0.0-rc5
+ * Entity-Relationship Diagram Code Generator v1.0.0-rc6
  * https://github.com/nestorrente/erdiagram
  *
  * Released under the MIT License.
  *
- * Build date: 2023-01-13T20:25:54.761Z
+ * Build date: 2023-01-13T20:57:40.456Z
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -3241,8 +3241,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "DiagramLevel": () => (/* reexport safe */ _common_exports__WEBPACK_IMPORTED_MODULE_0__.DiagramLevel),
 /* harmony export */   "NomnomlConfigManager": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_1__.NomnomlConfigManager),
 /* harmony export */   "NomnomlSourceCodeGenerator": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_1__.NomnomlSourceCodeGenerator),
+/* harmony export */   "PlantUmlConfigManager": () => (/* reexport safe */ _plantuml_exports__WEBPACK_IMPORTED_MODULE_2__.PlantUmlConfigManager),
 /* harmony export */   "PlantUmlSourceCodeGenerator": () => (/* reexport safe */ _plantuml_exports__WEBPACK_IMPORTED_MODULE_2__.PlantUmlSourceCodeGenerator),
-/* harmony export */   "nomnomlConfigManager": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_1__.nomnomlConfigManager)
+/* harmony export */   "nomnomlConfigManager": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_1__.nomnomlConfigManager),
+/* harmony export */   "plantUmlConfigManager": () => (/* reexport safe */ _plantuml_exports__WEBPACK_IMPORTED_MODULE_2__.plantUmlConfigManager)
 /* harmony export */ });
 /* harmony import */ var _common_exports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common/exports */ "./src/main/erdiagram/converter/diagram/common/exports.ts");
 /* harmony import */ var _nomnoml_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./nomnoml/exports */ "./src/main/erdiagram/converter/diagram/nomnoml/exports.ts");
@@ -3751,6 +3753,25 @@ const plantUmlConfigManager = new PlantUmlConfigManager();
 
 /***/ }),
 
+/***/ "./src/main/erdiagram/converter/diagram/plantuml/config/exports.ts":
+/*!*************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/diagram/plantuml/config/exports.ts ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PlantUmlConfigManager": () => (/* reexport safe */ _PlantUmlConfigManager__WEBPACK_IMPORTED_MODULE_0__.PlantUmlConfigManager),
+/* harmony export */   "plantUmlConfigManager": () => (/* reexport safe */ _PlantUmlConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _PlantUmlConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PlantUmlConfigManager */ "./src/main/erdiagram/converter/diagram/plantuml/config/PlantUmlConfigManager.ts");
+
+
+
+
+/***/ }),
+
 /***/ "./src/main/erdiagram/converter/diagram/plantuml/entity/PlantUmlEntityCodeGenerator.ts":
 /*!*********************************************************************************************!*\
   !*** ./src/main/erdiagram/converter/diagram/plantuml/entity/PlantUmlEntityCodeGenerator.ts ***!
@@ -3868,9 +3889,13 @@ class PlantUmlEntityPropertyCodeGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "PlantUmlSourceCodeGenerator": () => (/* reexport safe */ _PlantUmlSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */   "PlantUmlConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_1__.PlantUmlConfigManager),
+/* harmony export */   "PlantUmlSourceCodeGenerator": () => (/* reexport safe */ _PlantUmlSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"]),
+/* harmony export */   "plantUmlConfigManager": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_1__.plantUmlConfigManager)
 /* harmony export */ });
 /* harmony import */ var _PlantUmlSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PlantUmlSourceCodeGenerator */ "./src/main/erdiagram/converter/diagram/plantuml/PlantUmlSourceCodeGenerator.ts");
+/* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/converter/diagram/plantuml/config/exports.ts");
+
 
 
 
@@ -4008,6 +4033,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.NotNullTextValidationStrategy),
 /* harmony export */   "OracleDialect": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.OracleDialect),
 /* harmony export */   "OracleDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.OracleDialectConfigManager),
+/* harmony export */   "PlantUmlConfigManager": () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_4__.PlantUmlConfigManager),
 /* harmony export */   "PlantUmlSourceCodeGenerator": () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_4__.PlantUmlSourceCodeGenerator),
 /* harmony export */   "PostgresqlDialect": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.PostgresqlDialect),
 /* harmony export */   "PostgresqlDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.PostgresqlDialectConfigManager),
@@ -4042,6 +4068,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "oracleDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.oracleDialectConfigManager),
 /* harmony export */   "parseJavaType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.parseJavaType),
 /* harmony export */   "parseTypeScriptType": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.parseTypeScriptType),
+/* harmony export */   "plantUmlConfigManager": () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_4__.plantUmlConfigManager),
 /* harmony export */   "postgresqlDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.postgresqlDialectConfigManager),
 /* harmony export */   "sqlServerDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.sqlServerDialectConfigManager),
 /* harmony export */   "sqliteDialectConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.sqliteDialectConfigManager),
@@ -7547,6 +7574,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.NotNullTextValidationStrategy),
 /* harmony export */   "OracleDialect": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.OracleDialect),
 /* harmony export */   "OracleDialectConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.OracleDialectConfigManager),
+/* harmony export */   "PlantUmlConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.PlantUmlConfigManager),
 /* harmony export */   "PlantUmlSourceCodeGenerator": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.PlantUmlSourceCodeGenerator),
 /* harmony export */   "PostgresqlDialect": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.PostgresqlDialect),
 /* harmony export */   "PostgresqlDialectConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.PostgresqlDialectConfigManager),
@@ -7582,6 +7610,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "oracleDialectConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.oracleDialectConfigManager),
 /* harmony export */   "parseJavaType": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.parseJavaType),
 /* harmony export */   "parseTypeScriptType": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.parseTypeScriptType),
+/* harmony export */   "plantUmlConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.plantUmlConfigManager),
 /* harmony export */   "postgresqlDialectConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.postgresqlDialectConfigManager),
 /* harmony export */   "sqlServerDialectConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.sqlServerDialectConfigManager),
 /* harmony export */   "sqliteDialectConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.sqliteDialectConfigManager),
@@ -8877,6 +8906,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "NotNullTextValidationStrategy": () => (/* reexport safe */ _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__.NotNullTextValidationStrategy),
 /* harmony export */   "OracleDialect": () => (/* reexport safe */ _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__.OracleDialect),
 /* harmony export */   "OracleDialectConfigManager": () => (/* reexport safe */ _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__.OracleDialectConfigManager),
+/* harmony export */   "PlantUmlConfigManager": () => (/* reexport safe */ _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__.PlantUmlConfigManager),
 /* harmony export */   "PlantUmlSourceCodeGenerator": () => (/* reexport safe */ _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__.PlantUmlSourceCodeGenerator),
 /* harmony export */   "PostgresqlDialect": () => (/* reexport safe */ _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__.PostgresqlDialect),
 /* harmony export */   "PostgresqlDialectConfigManager": () => (/* reexport safe */ _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__.PostgresqlDialectConfigManager),
@@ -8912,6 +8942,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "oracleDialectConfigManager": () => (/* reexport safe */ _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__.oracleDialectConfigManager),
 /* harmony export */   "parseJavaType": () => (/* reexport safe */ _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__.parseJavaType),
 /* harmony export */   "parseTypeScriptType": () => (/* reexport safe */ _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__.parseTypeScriptType),
+/* harmony export */   "plantUmlConfigManager": () => (/* reexport safe */ _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__.plantUmlConfigManager),
 /* harmony export */   "postgresqlDialectConfigManager": () => (/* reexport safe */ _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__.postgresqlDialectConfigManager),
 /* harmony export */   "sqlServerDialectConfigManager": () => (/* reexport safe */ _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__.sqlServerDialectConfigManager),
 /* harmony export */   "sqliteDialectConfigManager": () => (/* reexport safe */ _erdiagram_exports__WEBPACK_IMPORTED_MODULE_0__.sqliteDialectConfigManager),
