@@ -4,7 +4,7 @@
  *
  * Released under the MIT License.
  *
- * Build date: 2023-01-13T20:57:40.456Z
+ * Build date: 2023-01-13T21:28:32.756Z
  */
 var ERDiagram;
 /******/ (() => { // webpackBootstrap
@@ -3690,22 +3690,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_diagram_plantuml_entity_PlantUmlEntityCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/diagram/plantuml/entity/PlantUmlEntityCodeGenerator */ "./src/main/erdiagram/converter/diagram/plantuml/entity/PlantUmlEntityCodeGenerator.ts");
 /* harmony import */ var _erdiagram_converter_diagram_plantuml_relationship_PlantUmlRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/diagram/plantuml/relationship/PlantUmlRelationshipCodeGenerator */ "./src/main/erdiagram/converter/diagram/plantuml/relationship/PlantUmlRelationshipCodeGenerator.ts");
 /* harmony import */ var _erdiagram_converter_diagram_plantuml_config_PlantUmlConfigManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/diagram/plantuml/config/PlantUmlConfigManager */ "./src/main/erdiagram/converter/diagram/plantuml/config/PlantUmlConfigManager.ts");
+/* harmony import */ var _erdiagram_converter_diagram_plantuml_entity_PlantUmlDirectivesCodeGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/diagram/plantuml/entity/PlantUmlDirectivesCodeGenerator */ "./src/main/erdiagram/converter/diagram/plantuml/entity/PlantUmlDirectivesCodeGenerator.ts");
+
 
 
 
 class PlantUmlSourceCodeGenerator {
     constructor(config) {
-        const fullConfig = _erdiagram_converter_diagram_plantuml_config_PlantUmlConfigManager__WEBPACK_IMPORTED_MODULE_2__["default"].mergeWithDefaultConfig(config);
-        this.entityCodeGenerator = new _erdiagram_converter_diagram_plantuml_entity_PlantUmlEntityCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](fullConfig.diagramLevel);
+        this.config = _erdiagram_converter_diagram_plantuml_config_PlantUmlConfigManager__WEBPACK_IMPORTED_MODULE_2__["default"].mergeWithDefaultConfig(config);
+        this.entityCodeGenerator = new _erdiagram_converter_diagram_plantuml_entity_PlantUmlEntityCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](this.config.diagramLevel);
         this.relationshipCodeGenerator = new _erdiagram_converter_diagram_plantuml_relationship_PlantUmlRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_1__["default"]();
+        this.directivesCodeGenerator = new _erdiagram_converter_diagram_plantuml_entity_PlantUmlDirectivesCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](this.config.diagramLevel);
     }
     generateSourceCode(model) {
-        return [
+        const codeBlocks = [
             '@startuml',
             ...model.entities.map(entity => this.entityCodeGenerator.generateEntityCode(entity)),
             ...model.relationships.map(relationship => this.relationshipCodeGenerator.generateRelationshipCode(relationship)),
-            '@enduml'
-        ].join('\n\n');
+        ];
+        const directivesCode = this.directivesCodeGenerator.generate();
+        if (directivesCode) {
+            codeBlocks.push(directivesCode);
+        }
+        codeBlocks.push('@enduml');
+        return codeBlocks.join('\n\n');
     }
 }
 
@@ -3759,6 +3767,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PlantUmlConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PlantUmlConfigManager */ "./src/main/erdiagram/converter/diagram/plantuml/config/PlantUmlConfigManager.ts");
 
 
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/diagram/plantuml/entity/PlantUmlDirectivesCodeGenerator.ts":
+/*!*************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/diagram/plantuml/entity/PlantUmlDirectivesCodeGenerator.ts ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ PlantUmlDirectivesCodeGenerator)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_diagram_common_config_DiagramLevel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/diagram/common/config/DiagramLevel */ "./src/main/erdiagram/converter/diagram/common/config/DiagramLevel.ts");
+
+class PlantUmlDirectivesCodeGenerator {
+    constructor(diagramLevel) {
+        this.diagramLevel = diagramLevel;
+    }
+    generate() {
+        if (this.diagramLevel !== _erdiagram_converter_diagram_common_config_DiagramLevel__WEBPACK_IMPORTED_MODULE_0__["default"].CONCEPTUAL) {
+            return '';
+        }
+        return `hide members
+hide methods`;
+    }
+}
 
 
 /***/ }),

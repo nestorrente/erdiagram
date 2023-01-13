@@ -735,8 +735,10 @@ export interface PlantUmlConfig extends DiagramSourceCodeGeneratorConfig {
 }
 export type PartialPlantUmlConfig = Partial<PlantUmlConfig>;
 export declare class PlantUmlSourceCodeGenerator implements SourceCodeGenerator {
+	private readonly config;
 	private readonly entityCodeGenerator;
 	private readonly relationshipCodeGenerator;
+	private readonly directivesCodeGenerator;
 	constructor(config?: PartialPlantUmlConfig);
 	generateSourceCode(model: EntityRelationshipModel): string;
 }

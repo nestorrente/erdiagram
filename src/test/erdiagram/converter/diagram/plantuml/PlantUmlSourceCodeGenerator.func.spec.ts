@@ -5,8 +5,8 @@ import {
 	EntityRelationshipModel
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
 import PlantUmlSourceCodeGenerator from '@/erdiagram/converter/diagram/plantuml/PlantUmlSourceCodeGenerator';
-import DiagramLevel from '../../../../../main/erdiagram/converter/diagram/common/config/DiagramLevel';
-import {createEntityProperty} from '../../../parser/entity-relationship-model-mothers';
+import DiagramLevel from '@/erdiagram/converter/diagram/common/config/DiagramLevel';
+import {createEntityProperty} from '#/erdiagram/parser/entity-relationship-model-mothers';
 
 function addHeaderAndFooter(expectedResult: string): string {
 	return [
@@ -475,7 +475,10 @@ describe('With custom config', () => {
 
 class Order {}
 
-User "1" <-- "*" Order`));
+User "1" <-- "*" Order
+
+hide members
+hide methods`));
 
 	});
 
