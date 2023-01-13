@@ -4,11 +4,18 @@ import PlantUmlEntityIdentityPropertyCodeGenerator
 import PlantUmlEntityPropertyCodeGenerator
 	from '@/erdiagram/converter/diagram/plantuml/entity/PlantUmlEntityPropertyCodeGenerator';
 import {indentLines} from '@/erdiagram/util/indent-utils';
+import DiagramLevel from '@/erdiagram/converter/diagram/common/config/DiagramLevel';
 
 export default class PlantUmlEntityCodeGenerator {
 
 	private readonly entityIdentityPropertyCodeGenerator = new PlantUmlEntityIdentityPropertyCodeGenerator();
 	private readonly entityPropertyCodeGenerator = new PlantUmlEntityPropertyCodeGenerator();
+
+	private readonly diagramLevel: DiagramLevel;
+
+	constructor(diagramLevel: DiagramLevel) {
+		this.diagramLevel = diagramLevel;
+	}
 
 	public generateEntityCode(entity: EntityDescriptor): string {
 
@@ -27,6 +34,10 @@ export default class PlantUmlEntityCodeGenerator {
 	}
 
 	private generateEntityPropertiesCode(entity: EntityDescriptor): string {
+
+		if (this.diagramLevel === DiagramLevel.CONCEPTUAL) {
+			return '';
+		}
 
 		const {
 			identityPropertyName,

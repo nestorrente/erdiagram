@@ -5,8 +5,8 @@ import {
 	EntityRelationshipModel
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
 import PlantUmlSourceCodeGenerator from '@/erdiagram/converter/diagram/plantuml/PlantUmlSourceCodeGenerator';
-
-const plantumlERModelToDiagramCodeConverter = new PlantUmlSourceCodeGenerator();
+import DiagramLevel from '../../../../../main/erdiagram/converter/diagram/common/config/DiagramLevel';
+import {createEntityProperty} from '../../../parser/entity-relationship-model-mothers';
 
 function addHeaderAndFooter(expectedResult: string): string {
 	return [
@@ -19,6 +19,8 @@ function addHeaderAndFooter(expectedResult: string): string {
 }
 
 describe('Entities', () => {
+
+	const plantumlERModelToDiagramCodeConverter = new PlantUmlSourceCodeGenerator();
 
 	test('Single entity without properties', () => {
 
@@ -68,13 +70,7 @@ describe('Entities', () => {
 					name: 'User',
 					identityPropertyName: undefined,
 					properties: [
-						{
-							name: 'active',
-							type: EntityPropertyType.BOOLEAN,
-							length: [],
-							optional: false,
-							unique: false
-						}
+						createEntityProperty('active', EntityPropertyType.BOOLEAN)
 					]
 				}
 			],
@@ -97,13 +93,7 @@ describe('Entities', () => {
 					name: 'User',
 					identityPropertyName: undefined,
 					properties: [
-						{
-							name: 'username',
-							type: EntityPropertyType.TEXT,
-							length: [20],
-							optional: false,
-							unique: false
-						}
+						createEntityProperty('username', EntityPropertyType.TEXT, {length: [20]})
 					]
 				}
 			],
@@ -126,13 +116,7 @@ describe('Entities', () => {
 					name: 'User',
 					identityPropertyName: undefined,
 					properties: [
-						{
-							name: 'score',
-							type: EntityPropertyType.DECIMAL,
-							length: [10, 5],
-							optional: false,
-							unique: false
-						}
+						createEntityProperty('score', EntityPropertyType.DECIMAL, {length: [10, 5]})
 					]
 				}
 			],
@@ -155,27 +139,12 @@ describe('Entities', () => {
 					name: 'User',
 					identityPropertyName: undefined,
 					properties: [
-						{
-							name: 'username',
-							type: EntityPropertyType.TEXT,
-							length: [20],
-							optional: false,
-							unique: true
-						},
-						{
-							name: 'realName',
-							type: EntityPropertyType.TEXT,
-							length: [50],
-							optional: true,
-							unique: false
-						},
-						{
-							name: 'order',
-							type: EntityPropertyType.INT,
-							length: [],
+						createEntityProperty('username', EntityPropertyType.TEXT, {length: [20], unique: true}),
+						createEntityProperty('realName', EntityPropertyType.TEXT, {length: [50], optional: true}),
+						createEntityProperty('order', EntityPropertyType.INT, {
 							optional: true,
 							unique: true
-						}
+						})
 					]
 				}
 			],
@@ -195,6 +164,8 @@ describe('Entities', () => {
 });
 
 describe('Relationships', () => {
+
+	const plantumlERModelToDiagramCodeConverter = new PlantUmlSourceCodeGenerator();
 
 	test('Single bidirectional one-to-one relationship', () => {
 
@@ -396,6 +367,8 @@ describe('Relationships', () => {
 
 describe('Entities and relationships', () => {
 
+	const plantumlERModelToDiagramCodeConverter = new PlantUmlSourceCodeGenerator();
+
 	test('Single bidirectional many-to-many relationship with custom name', () => {
 
 		const model: EntityRelationshipModel = {
@@ -404,33 +377,15 @@ describe('Entities and relationships', () => {
 					name: 'User',
 					identityPropertyName: 'uuid',
 					properties: [
-						{
-							name: 'username',
-							type: EntityPropertyType.TEXT,
-							length: [20],
-							optional: false,
-							unique: true
-						},
-						{
-							name: 'active',
-							type: EntityPropertyType.BOOLEAN,
-							length: [],
-							optional: false,
-							unique: false
-						}
+						createEntityProperty('username', EntityPropertyType.TEXT, {length: [20], unique: true}),
+						createEntityProperty('active', EntityPropertyType.BOOLEAN)
 					]
 				},
 				{
 					name: 'Order',
 					identityPropertyName: undefined,
 					properties: [
-						{
-							name: 'date',
-							type: EntityPropertyType.DATETIME,
-							length: [],
-							optional: false,
-							unique: false
-						}
+						createEntityProperty('date', EntityPropertyType.DATETIME)
 					]
 				}
 			],
@@ -463,6 +418,62 @@ describe('Entities and relationships', () => {
 class Order {
     {field} date: datetime
 }
+
+User "1" <-- "*" Order`));
+
+	});
+
+});
+
+describe('With custom config', () => {
+
+	test('Conceptual diagram of a single bidirectional many-to-many relationship with custom name', () => {
+
+		const nomnomlERModelSourceCodeGenerator = new PlantUmlSourceCodeGenerator({
+			diagramLevel: DiagramLevel.CONCEPTUAL
+		});
+
+		const model: EntityRelationshipModel = {
+			entities: [
+				{
+					name: 'User',
+					identityPropertyName: 'uuid',
+					properties: [
+						createEntityProperty('username', EntityPropertyType.TEXT, {length: [20], unique: true}),
+						createEntityProperty('active', EntityPropertyType.BOOLEAN)
+					]
+				},
+				{
+					name: 'Order',
+					identityPropertyName: undefined,
+					properties: [
+						createEntityProperty('date', EntityPropertyType.DATETIME)
+					]
+				}
+			],
+			relationships: [
+				{
+					leftMember: {
+						entity: 'User',
+						entityAlias: 'user',
+						cardinality: Cardinality.ONE
+					},
+					rightMember: {
+						entity: 'Order',
+						entityAlias: 'order',
+						cardinality: Cardinality.MANY
+					},
+					direction: Direction.RIGHT_TO_LEFT,
+					relationshipName: undefined
+				}
+			]
+		};
+
+		const result = nomnomlERModelSourceCodeGenerator.generateSourceCode(model);
+
+		expect(result).toBe(addHeaderAndFooter(`class User {}
+
+class Order {}
 
 User "1" <-- "*" Order`));
 
