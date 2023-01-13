@@ -6,24 +6,23 @@ import {
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
 import NomnomlSourceCodeGenerator from '@/erdiagram/converter/diagram/nomnoml/NomnomlSourceCodeGenerator';
 import {createEntityProperty} from '#/erdiagram/parser/entity-relationship-model-mothers';
-
-const nomnomlERModelSourceCodeGenerator = new NomnomlSourceCodeGenerator();
+import DiagramLevel from '@/erdiagram/converter/diagram/common/config/DiagramLevel';
 
 function addDefaultDirectives(expectedResult: string): string {
-	return [
-		expectedResult,
-		'',
-		'#arrowSize: 1',
-		'#gravity: 1.5',
-		'#background: transparent',
-		'#fill: #fefece',
-		'#lineWidth: 1',
-		'#stroke: #333333',
-		'#ranker: longest-path',
-	].join('\n');
+	return `${expectedResult}
+
+#arrowSize: 1
+#gravity: 1.5
+#background: transparent
+#fill: #fefece
+#lineWidth: 1
+#stroke: #333333
+#ranker: longest-path`;
 }
 
 describe('Entities', () => {
+
+	const nomnomlERModelSourceCodeGenerator = new NomnomlSourceCodeGenerator();
 
 	test('Single entity without properties', () => {
 
@@ -167,6 +166,8 @@ describe('Entities', () => {
 });
 
 describe('Relationships', () => {
+
+	const nomnomlERModelSourceCodeGenerator = new NomnomlSourceCodeGenerator();
 
 	test('Single bidirectional one-to-one relationship', () => {
 
@@ -374,6 +375,8 @@ describe('Relationships', () => {
 
 describe('Entities and relationships', () => {
 
+	const nomnomlERModelSourceCodeGenerator = new NomnomlSourceCodeGenerator();
+
 	test('Single bidirectional many-to-many relationship with custom name', () => {
 
 		const model: EntityRelationshipModel = {
@@ -425,6 +428,97 @@ describe('Entities and relationships', () => {
 ]
 
 [User] 1<-* [Order]`));
+
+	});
+
+});
+
+describe('With custom config', () => {
+
+	test('Conceptual diagram of a single bidirectional many-to-many relationship with custom name', () => {
+
+		const nomnomlERModelSourceCodeGenerator = new NomnomlSourceCodeGenerator({
+			diagramLevel: DiagramLevel.CONCEPTUAL
+		});
+
+		const model: EntityRelationshipModel = {
+			entities: [
+				{
+					name: 'User',
+					identityPropertyName: 'uuid',
+					properties: [
+						createEntityProperty('username', EntityPropertyType.TEXT, {length: [20], unique: true}),
+						createEntityProperty('active', EntityPropertyType.BOOLEAN)
+					]
+				},
+				{
+					name: 'Order',
+					identityPropertyName: undefined,
+					properties: [
+						createEntityProperty('date', EntityPropertyType.DATETIME)
+					]
+				}
+			],
+			relationships: [
+				{
+					leftMember: {
+						entity: 'User',
+						entityAlias: 'user',
+						cardinality: Cardinality.ONE
+					},
+					rightMember: {
+						entity: 'Order',
+						entityAlias: 'order',
+						cardinality: Cardinality.MANY
+					},
+					direction: Direction.RIGHT_TO_LEFT,
+					relationshipName: undefined
+				}
+			]
+		};
+
+		const result = nomnomlERModelSourceCodeGenerator.generateSourceCode(model);
+
+		expect(result).toBe(addDefaultDirectives(`[User]
+
+[Order]
+
+[User] 1<-* [Order]`));
+
+	});
+
+	test('Custom styles', () => {
+
+		const nomnomlERModelSourceCodeGenerator = new NomnomlSourceCodeGenerator({
+			style: {
+				arrowSize: 2,
+				edges: 'hard'
+			}
+		});
+
+		const model: EntityRelationshipModel = {
+			entities: [
+				{
+					name: 'User',
+					identityPropertyName: undefined,
+					properties: []
+				}
+			],
+			relationships: []
+		};
+
+		const result = nomnomlERModelSourceCodeGenerator.generateSourceCode(model);
+
+		expect(result).toBe(`[User]
+
+#arrowSize: 2
+#gravity: 1.5
+#edges: hard
+#background: transparent
+#fill: #fefece
+#lineWidth: 1
+#stroke: #333333
+#ranker: longest-path`);
 
 	});
 

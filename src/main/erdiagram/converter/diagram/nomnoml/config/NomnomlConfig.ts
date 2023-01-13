@@ -1,23 +1,9 @@
-export default interface NomnomlConfig {
-	arrowSize?: number;
-	bendSize?: number;
-	direction?: 'down' | 'right';
-	gutter?: number;
-	edgeMargin?: number;
-	gravity?: number;
-	edges?: 'hard' | 'rounded';
-	background?: string;
-	fill?: string;
-	fillArrows?: boolean;
-	font?: string;
-	fontSize?: number;
-	leading?: number;
-	lineWidth?: number;
-	padding?: number;
-	spacing?: number;
-	stroke?: string;
-	title?: string;
-	zoom?: number;
-	acyclicer?: 'greedy';
-	ranker?: 'network-simplex' | 'tight-tree' | 'longest-path';
+import NomnomlStyleConfig from '@/erdiagram/converter/diagram/nomnoml/config/NomnomlStyleConfig';
+import DiagramSourceCodeGeneratorConfig
+	from '@/erdiagram/converter/diagram/common/config/DiagramSourceCodeGeneratorConfig';
+
+export default interface NomnomlConfig extends DiagramSourceCodeGeneratorConfig {
+	style: NomnomlStyleConfig;
 }
+
+export type PartialNomnomlConfig = Partial<NomnomlConfig>;

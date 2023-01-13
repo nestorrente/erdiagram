@@ -4,11 +4,18 @@ import NomnomlEntityIdentityPropertyCodeGenerator
 import NomnomlEntityPropertyCodeGenerator
 	from '@/erdiagram/converter/diagram/nomnoml/entity/NomnomlEntityPropertyCodeGenerator';
 import {indentLines} from '@/erdiagram/util/indent-utils';
+import DiagramLevel from '@/erdiagram/converter/diagram/common/config/DiagramLevel';
 
 export default class NomnomlEntityCodeGenerator {
 
 	private readonly entityIdentityPropertyCodeGenerator = new NomnomlEntityIdentityPropertyCodeGenerator();
 	private readonly entityPropertyCodeGenerator = new NomnomlEntityPropertyCodeGenerator();
+
+	private readonly diagramLevel: DiagramLevel;
+
+	constructor(diagramLevel: DiagramLevel) {
+		this.diagramLevel = diagramLevel;
+	}
 
 	public generateEntityCode(entity: EntityDescriptor): string {
 
@@ -27,6 +34,10 @@ export default class NomnomlEntityCodeGenerator {
 	}
 
 	private generateEntityPropertiesCode(entity: EntityDescriptor): string {
+
+		if (this.diagramLevel === DiagramLevel.CONCEPTUAL) {
+			return '';
+		}
 
 		const {
 			identityPropertyName,
