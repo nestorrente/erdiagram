@@ -1,10 +1,10 @@
 /*!
- * Entity-Relationship Diagram Code Generator v1.0.0-rc6
+ * Entity-Relationship Diagram Code Generator v1.0.0
  * https://github.com/nestorrente/erdiagram
  *
  * Released under the MIT License.
  *
- * Build date: 2023-01-13T21:28:32.756Z
+ * Build date: 2023-01-13T21:34:13.795Z
  */
 var ERDiagram;
 /******/ (() => { // webpackBootstrap
