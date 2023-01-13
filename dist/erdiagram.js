@@ -1,10 +1,10 @@
 /*!
- * Entity-Relationship Diagram Code Generator v1.0.0-rc4
+ * Entity-Relationship Diagram Code Generator v1.0.0-rc5
  * https://github.com/nestorrente/erdiagram
  *
  * Released under the MIT License.
  *
- * Build date: 2023-01-13T20:06:49.024Z
+ * Build date: 2023-01-13T20:25:54.761Z
  */
 var ERDiagram;
 /******/ (() => { // webpackBootstrap
@@ -3185,6 +3185,41 @@ var DiagramLevel;
 
 /***/ }),
 
+/***/ "./src/main/erdiagram/converter/diagram/common/config/exports.ts":
+/*!***********************************************************************!*\
+  !*** ./src/main/erdiagram/converter/diagram/common/config/exports.ts ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DiagramLevel": () => (/* reexport safe */ _DiagramLevel__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _DiagramLevel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DiagramLevel */ "./src/main/erdiagram/converter/diagram/common/config/DiagramLevel.ts");
+
+
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/diagram/common/exports.ts":
+/*!****************************************************************!*\
+  !*** ./src/main/erdiagram/converter/diagram/common/exports.ts ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DiagramLevel": () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_0__.DiagramLevel)
+/* harmony export */ });
+/* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/converter/diagram/common/config/exports.ts");
+
+
+
+/***/ }),
+
 /***/ "./src/main/erdiagram/converter/diagram/exports.ts":
 /*!*********************************************************!*\
   !*** ./src/main/erdiagram/converter/diagram/exports.ts ***!
@@ -3194,13 +3229,16 @@ var DiagramLevel;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "NomnomlConfigManager": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__.NomnomlConfigManager),
-/* harmony export */   "NomnomlSourceCodeGenerator": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__.NomnomlSourceCodeGenerator),
-/* harmony export */   "PlantUmlSourceCodeGenerator": () => (/* reexport safe */ _plantuml_exports__WEBPACK_IMPORTED_MODULE_1__.PlantUmlSourceCodeGenerator),
-/* harmony export */   "nomnomlConfigManager": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__.nomnomlConfigManager)
+/* harmony export */   "DiagramLevel": () => (/* reexport safe */ _common_exports__WEBPACK_IMPORTED_MODULE_0__.DiagramLevel),
+/* harmony export */   "NomnomlConfigManager": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_1__.NomnomlConfigManager),
+/* harmony export */   "NomnomlSourceCodeGenerator": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_1__.NomnomlSourceCodeGenerator),
+/* harmony export */   "PlantUmlSourceCodeGenerator": () => (/* reexport safe */ _plantuml_exports__WEBPACK_IMPORTED_MODULE_2__.PlantUmlSourceCodeGenerator),
+/* harmony export */   "nomnomlConfigManager": () => (/* reexport safe */ _nomnoml_exports__WEBPACK_IMPORTED_MODULE_1__.nomnomlConfigManager)
 /* harmony export */ });
-/* harmony import */ var _nomnoml_exports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nomnoml/exports */ "./src/main/erdiagram/converter/diagram/nomnoml/exports.ts");
-/* harmony import */ var _plantuml_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./plantuml/exports */ "./src/main/erdiagram/converter/diagram/plantuml/exports.ts");
+/* harmony import */ var _common_exports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common/exports */ "./src/main/erdiagram/converter/diagram/common/exports.ts");
+/* harmony import */ var _nomnoml_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./nomnoml/exports */ "./src/main/erdiagram/converter/diagram/nomnoml/exports.ts");
+/* harmony import */ var _plantuml_exports__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./plantuml/exports */ "./src/main/erdiagram/converter/diagram/plantuml/exports.ts");
+
 
 
 
@@ -3943,6 +3981,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "DatabaseModelConfigManager": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.DatabaseModelConfigManager),
 /* harmony export */   "DatabaseModelGenerator": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.DatabaseModelGenerator),
 /* harmony export */   "DatabaseModelToSqlCodeConverter": () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.DatabaseModelToSqlCodeConverter),
+/* harmony export */   "DiagramLevel": () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_4__.DiagramLevel),
 /* harmony export */   "JavaAnnotation": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JavaAnnotation),
 /* harmony export */   "JavaClassModelConfigManager": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JavaClassModelConfigManager),
 /* harmony export */   "JavaClassModelGenerator": () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JavaClassModelGenerator),
@@ -7465,6 +7504,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "DatabaseModelConfigManager": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.DatabaseModelConfigManager),
 /* harmony export */   "DatabaseModelGenerator": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.DatabaseModelGenerator),
 /* harmony export */   "DatabaseModelToSqlCodeConverter": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.DatabaseModelToSqlCodeConverter),
+/* harmony export */   "DiagramLevel": () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.DiagramLevel),
 /* harmony export */   "Direction": () => (/* reexport safe */ _parser_exports__WEBPACK_IMPORTED_MODULE_2__.Direction),
 /* harmony export */   "ERDiagramDuplicatedEntityNameError": () => (/* reexport safe */ _parser_exports__WEBPACK_IMPORTED_MODULE_2__.ERDiagramDuplicatedEntityNameError),
 /* harmony export */   "ERDiagramDuplicatedPropertyNameError": () => (/* reexport safe */ _parser_exports__WEBPACK_IMPORTED_MODULE_2__.ERDiagramDuplicatedPropertyNameError),

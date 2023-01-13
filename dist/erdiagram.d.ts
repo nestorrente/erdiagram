@@ -684,6 +684,13 @@ export declare class ClassModelConfigManager extends AbstractConfigManager<Class
 	protected getJsonAdapter(): JsonAdapter<ClassModelConfig>;
 }
 export declare const classModelConfigManager: ClassModelConfigManager;
+export declare enum DiagramLevel {
+	CONCEPTUAL = "conceptual",
+	LOGICAL = "logical"
+}
+export interface DiagramSourceCodeGeneratorConfig {
+	diagramLevel: DiagramLevel;
+}
 export interface NomnomlStyleConfig {
 	arrowSize?: number;
 	bendSize?: number;
@@ -706,13 +713,6 @@ export interface NomnomlStyleConfig {
 	zoom?: number;
 	acyclicer?: "greedy";
 	ranker?: "network-simplex" | "tight-tree" | "longest-path";
-}
-declare enum DiagramLevel {
-	CONCEPTUAL = "conceptual",
-	LOGICAL = "logical"
-}
-export interface DiagramSourceCodeGeneratorConfig {
-	diagramLevel: DiagramLevel;
 }
 export interface NomnomlConfig extends DiagramSourceCodeGeneratorConfig {
 	style: NomnomlStyleConfig;
