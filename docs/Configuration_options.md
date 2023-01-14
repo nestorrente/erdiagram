@@ -276,25 +276,25 @@ The full list of supported directives and their default opinionated values is pr
 | Nomnoml directive | Type                                                                     | _ERDiagram_'s opinionated default value |
 |-------------------|--------------------------------------------------------------------------|-----------------------------------------|
 | arrowSize         | `number`                                                                 | `1`                                     |
-| bendSize          | `number`                                                                 | `undefined`                             |
-| direction         | <code>'down' &#124; 'right'</code>                                       | `undefined`                             |
-| gutter            | `number`                                                                 | `undefined`                             |
-| edgeMargin        | `number`                                                                 | `undefined`                             |
+| bendSize          | `number`                                                                 | _Nomnoml's default_                     |
+| direction         | <code>'down' &#124; 'right'</code>                                       | _Nomnoml's default_                     |
+| gutter            | `number`                                                                 | _Nomnoml's default_                     |
+| edgeMargin        | `number`                                                                 | _Nomnoml's default_                     |
 | gravity           | `number`                                                                 | `1.5`                                   |
-| edges             | <code>'hard' &#124; 'rounded'</code>                                     | `undefined`                             |
+| edges             | <code>'hard' &#124; 'rounded'</code>                                     | _Nomnoml's default_                     |
 | background        | `string`                                                                 | `'transparent'`                         |
 | fill              | `string`                                                                 | `'#eef6ff'`                             |
-| fillArrows        | `boolean`                                                                | `undefined`                             |
-| font              | `string`                                                                 | `undefined`                             |
-| fontSize          | `number`                                                                 | `undefined`                             |
-| leading           | `number`                                                                 | `undefined`                             |
+| fillArrows        | `boolean`                                                                | _Nomnoml's default_                     |
+| font              | `string`                                                                 | _Nomnoml's default_                     |
+| fontSize          | `number`                                                                 | _Nomnoml's default_                     |
+| leading           | `number`                                                                 | _Nomnoml's default_                     |
 | lineWidth         | `number`                                                                 | `1`                                     |
-| padding           | `number`                                                                 | `undefined`                             |
-| spacing           | `number`                                                                 | `undefined`                             |
+| padding           | `number`                                                                 | _Nomnoml's default_                     |
+| spacing           | `number`                                                                 | _Nomnoml's default_                     |
 | stroke            | `string`                                                                 | `'#333333'`                             |
-| title             | `string`                                                                 | `undefined`                             |
-| zoom              | `number`                                                                 | `undefined`                             |
-| acyclicer         | `'greedy'`                                                               | `undefined`                             |
+| title             | `string`                                                                 | _Nomnoml's default_                     |
+| zoom              | `number`                                                                 | _Nomnoml's default_                     |
+| acyclicer         | `'greedy'`                                                               | _Nomnoml's default_                     |
 | ranker            | <code>'network-simplex' &#124; 'tight-tree' &#124; 'longest-path'</code> | `'longest-path'`                        |
 
 ### PlantUML
