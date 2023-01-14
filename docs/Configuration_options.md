@@ -261,35 +261,46 @@ parseTypeScriptType('Map<number, Date[]>') // Map<number, Date[]> a.k.a. Map<num
 
 These are the configuration options corresponding to the `NomnomlConfig` interface:
 
-_ERDiagram_ allows customizing the values of some Nomnoml directives. You can learn more about those directives in
-[Nomnoml's Github repo](https://github.com/skanaar/nomnoml).
+| Property       | Type                 | Default value                 | description                                                                                     |
+|----------------|----------------------|-------------------------------|-------------------------------------------------------------------------------------------------|
+| `diagramLevel` | `enum DiagramLevel`  | `LOGICAL`                     | Allows to customize the detail level of the generated diagram                                   |
+| `style`        | `NomnomlStyleConfig` | See [directives](#directives) | Allows to customize the style of the diagram by defining custom values for Nomnoml's directives |
 
-Here is the full list of directives that are supported by _ERDiagram_:
+#### Directives
 
-| Nomnoml directive | Type                                                                     | _ERDiagram_ opinionated default value |
-|-------------------|--------------------------------------------------------------------------|---------------------------------------|
-| arrowSize         | `number`                                                                 | `1`                                   |
-| bendSize          | `number`                                                                 | `undefined`                           |
-| direction         | <code>'down' &#124; 'right'</code>                                       | `undefined`                           |
-| gutter            | `number`                                                                 | `undefined`                           |
-| edgeMargin        | `number`                                                                 | `undefined`                           |
-| gravity           | `number`                                                                 | `1.5`                                 |
-| edges             | <code>'hard' &#124; 'rounded'</code>                                     | `undefined`                           |
-| background        | `string`                                                                 | `'transparent'`                       |
-| fill              | `string`                                                                 | `'#eef6ff'`                           |
-| fillArrows        | `boolean`                                                                | `undefined`                           |
-| font              | `string`                                                                 | `undefined`                           |
-| fontSize          | `number`                                                                 | `undefined`                           |
-| leading           | `number`                                                                 | `undefined`                           |
-| lineWidth         | `number`                                                                 | `1`                                   |
-| padding           | `number`                                                                 | `undefined`                           |
-| spacing           | `number`                                                                 | `undefined`                           |
-| stroke            | `string`                                                                 | `'#333333'`                           |
-| title             | `string`                                                                 | `undefined`                           |
-| zoom              | `number`                                                                 | `undefined`                           |
-| acyclicer         | `'greedy'`                                                               | `undefined`                           |
-| ranker            | <code>'network-simplex' &#124; 'tight-tree' &#124; 'longest-path'</code> | `'longest-path'`                      |
+As mentioned above, the `style` configuration option can be used to customize the values of some Nomnoml's directives.
+You can learn more about those directives in [Nomnoml's Github repo](https://github.com/skanaar/nomnoml).
+
+The full list of supported directives and their default opinionated values is presented below:
+
+| Nomnoml directive | Type                                                                     | _ERDiagram_'s opinionated default value |
+|-------------------|--------------------------------------------------------------------------|-----------------------------------------|
+| arrowSize         | `number`                                                                 | `1`                                     |
+| bendSize          | `number`                                                                 | `undefined`                             |
+| direction         | <code>'down' &#124; 'right'</code>                                       | `undefined`                             |
+| gutter            | `number`                                                                 | `undefined`                             |
+| edgeMargin        | `number`                                                                 | `undefined`                             |
+| gravity           | `number`                                                                 | `1.5`                                   |
+| edges             | <code>'hard' &#124; 'rounded'</code>                                     | `undefined`                             |
+| background        | `string`                                                                 | `'transparent'`                         |
+| fill              | `string`                                                                 | `'#eef6ff'`                             |
+| fillArrows        | `boolean`                                                                | `undefined`                             |
+| font              | `string`                                                                 | `undefined`                             |
+| fontSize          | `number`                                                                 | `undefined`                             |
+| leading           | `number`                                                                 | `undefined`                             |
+| lineWidth         | `number`                                                                 | `1`                                     |
+| padding           | `number`                                                                 | `undefined`                             |
+| spacing           | `number`                                                                 | `undefined`                             |
+| stroke            | `string`                                                                 | `'#333333'`                             |
+| title             | `string`                                                                 | `undefined`                             |
+| zoom              | `number`                                                                 | `undefined`                             |
+| acyclicer         | `'greedy'`                                                               | `undefined`                             |
+| ranker            | <code>'network-simplex' &#124; 'tight-tree' &#124; 'longest-path'</code> | `'longest-path'`                        |
 
 ### PlantUML
 
-No configuration options are available for PlantUML.
+These are the configuration options corresponding to the `PlantUmlConfig` interface:
+
+| Property       | Type                 | Default value | description                                                                                     |
+|----------------|----------------------|---------------|-------------------------------------------------------------------------------------------------|
+| `diagramLevel` | `enum DiagramLevel`  | `LOGICAL`     | Allows to customize the detail level of the generated diagram                                   |

@@ -424,8 +424,8 @@ public class Product {
 
 /* ========== Order class ========== */
     
-    import java.time.LocalDateTime;
-            import java.util.List;
+import java.time.LocalDateTime;
+import java.util.List;
 
 public class Order {
 
@@ -524,20 +524,21 @@ of your entity-relationship model.
 
 ```javascript
 import {
-    PlantUmlEntityRelationshipModelToDiagramCodeConverter,
-    PlantUmlEntityRelationshipModelToDiagramImageConverter
+    NomnomlSourceCodeGenerator,
+    PlantUmlSourceCodeGenerator
 } from '@nestorrente/erdiagram';
 
 const model = { /* the model of the parsing example */};
 
-const plantUmlSourceCodeGenerator = new PlantUmlSourceCodeGenerator();
-const plantUmlCode = plantUmlSourceCodeGenerator.generateSourceCode(model);
-
 const nomnomlSourceCodeGenerator = new NomnomlSourceCodeGenerator();
 const nomnomlCode = nomnomlSourceCodeGenerator.generateSourceCode(model);
+
+const plantUmlSourceCodeGenerator = new PlantUmlSourceCodeGenerator();
+const plantUmlCode = plantUmlSourceCodeGenerator.generateSourceCode(model);
 ```
 
 #### See also
 
 Configurable options of the mentioned components:
-* [`NomnomlSourceCodeGenerator`](Configuration_options.md#nomnoml)
+* [Nomnoml source code generator](Configuration_options.md#nomnoml)
+* [PlantUML source code generator](Configuration_options.md#plantuml)
