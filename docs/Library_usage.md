@@ -1,7 +1,5 @@
 # ERDiagram library
 
-DISCLAIMER: This documentation is still work in progress.
-
 ## Table of contents
 
 * [Installation](#installation)
@@ -15,8 +13,9 @@ DISCLAIMER: This documentation is still work in progress.
 * [Use cases with examples](#use-cases-with-examples)
     + [Parsing the ERDiagram language into a EntityRelationshipModel object](#parsing-the-erdiagram-language-into-a-entityrelationshipmodel-object)
     + [Generate a database creation script from an EntityRelationshipModel object](#generate-a-database-creation-script-from-an-entityrelationshipmodel-object)
-    + [Generate OOP classes from an EntityRelationshipModel object](#generate-oop-classes-from-an-entityrelationshipmodel-object)
-    + [Generate a diagram image from an EntityRelationshipModel object](#generate-a-diagram-image-from-an-entityrelationshipmodel-object)
+  + [Generate TypeScript interfaces from an EntityRelationshipModel object](#generate-typescript-interfaces-from-an-entityrelationshipmodel-object)
+  + [Generate Java classes from an EntityRelationshipModel object](#generate-java-classes-from-an-entityrelationshipmodel-object)
+  + [Generate diagram code from an EntityRelationshipModel object](#generate-diagram-code-from-an-entityrelationshipmodel-object)
 
 ## Installation
 
