@@ -17,15 +17,15 @@ module.exports = {
     testPathIgnorePatterns: [
         '/node_modules/'
     ],
-    verbose: true,
+    verbose: false,
     roots: [
         '<rootDir>/src'
     ],
     moduleNameMapper: {
-        '@/(.*)': '<rootDir>/src/main/$1',
-        '#/(.*)': '<rootDir>/src/test/$1',
+        '@/(.*)?': '<rootDir>/src/main/$1',
+        '#/(.*)?': '<rootDir>/src/test/$1',
     },
     transform: {
-        '\\.sql$': 'jest-raw-loader'
+        '\\.sql$': '@glen/jest-raw-loader'
     }
 };

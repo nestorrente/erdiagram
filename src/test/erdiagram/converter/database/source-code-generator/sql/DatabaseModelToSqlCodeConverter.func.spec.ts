@@ -189,5 +189,5 @@ function executeTestCaseForDialect(expectedResultFile: string, databaseModel: Da
 }
 
 function getTestExpectedResult(expectedResultFile: string, sqlDialectId: string): string {
-	return require(`!!raw-loader!#/erdiagram/converter/database/source-code-generator/sql/DatabaseModelToSqlCodeConverter_func_spec_expected_results/${sqlDialectId}/${expectedResultFile}`);
+	return require(`#/erdiagram/converter/database/source-code-generator/sql/DatabaseModelToSqlCodeConverter_func_spec_expected_results/${sqlDialectId}/${expectedResultFile}`);
 }

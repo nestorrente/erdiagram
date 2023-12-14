@@ -22,7 +22,11 @@ const commonConfig = {
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
-        ],
+            {
+                test: /\.(sql|txt)$/,
+                type: 'asset/resource'
+            }
+        ]
     },
     resolve: {
         extensions: ['.ts', '.js'],
