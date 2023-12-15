@@ -5,7 +5,7 @@ import {
 	createJavaGetter,
 	createJavaSetter
 } from '#/erdiagram/converter/oop/source-code-generator/java/model/generator/source/java-class-model-mothers';
-import {JavaVisibility} from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
+import { JavaVisibility } from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
 import JavaAnnotation from '@/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation';
 import createJavaSimpleType
 	from '@/erdiagram/converter/oop/source-code-generator/java/type/simple/createJavaSimpleType';
@@ -13,11 +13,13 @@ import JavaClassUsedTypesCompiler
 	from '@/erdiagram/converter/oop/source-code-generator/java/type/import/JavaClassUsedTypesCompiler';
 import JavaAnnotationUsedTypesCompiler
 	from '@/erdiagram/converter/oop/source-code-generator/java/type/import/JavaAnnotationUsedTypesCompiler';
+import JavaFieldCodeGenerator from '@/erdiagram/converter/oop/source-code-generator/java/code/JavaFieldCodeGenerator';
 
 const javaClassModelToCodeConverter = new JavaClassCodeGenerator(
 		new JavaClassUsedTypesCompiler(
 				new JavaAnnotationUsedTypesCompiler()
-		)
+		),
+		new JavaFieldCodeGenerator()
 );
 
 describe('Empty class', () => {
@@ -122,7 +124,7 @@ public class MyClass {
 
 	});
 
-	test('Field with setter', () => {
+	test('Field with regular setter', () => {
 
 		const javaClassModel = createJavaClass('MyClass', {
 			fields: [
@@ -148,13 +150,42 @@ public class MyClass {
 
 	});
 
+	test('Field with fluent setter', () => {
+
+		const javaClassModel = createJavaClass('MyClass', {
+			fields: [
+				createJavaField('myField', 'int', {
+					setter: createJavaSetter('setMyField', {
+						fluent: true
+					})
+				})
+			]
+		});
+
+		const result = javaClassModelToCodeConverter.generateCode(javaClassModel);
+
+		expect(result).toBe(`
+public class MyClass {
+
+    private int myField;
+
+    public MyClass setMyField(int myField) {
+        this.myField = myField;
+        return this;
+    }
+
+}
+`.trim());
+
+	});
+
 	test('Complex field', () => {
 
 		const javaClassModel = createJavaClass('MyClass', {
 			fields: [
 				createJavaField('myField', 'Map<String[], List<Integer>>', {
 					getter: createJavaGetter('getMyField'),
-					setter: createJavaGetter('setMyField')
+					setter: createJavaSetter('setMyField')
 				})
 			]
 		});
@@ -193,7 +224,7 @@ describe('Visibility', () => {
 					getter: createJavaGetter('getMyField', {
 						visibility: JavaVisibility.PUBLIC
 					}),
-					setter: createJavaGetter('setMyField', {
+					setter: createJavaSetter('setMyField', {
 						visibility: JavaVisibility.PUBLIC
 					})
 				})
@@ -231,7 +262,7 @@ public class MyClass {
 					getter: createJavaGetter('getMyField', {
 						visibility: JavaVisibility.PROTECTED
 					}),
-					setter: createJavaGetter('setMyField', {
+					setter: createJavaSetter('setMyField', {
 						visibility: JavaVisibility.PROTECTED
 					})
 				})
@@ -268,7 +299,7 @@ public class MyClass {
 					getter: createJavaGetter('getMyField', {
 						visibility: JavaVisibility.PACKAGE_PRIVATE
 					}),
-					setter: createJavaGetter('setMyField', {
+					setter: createJavaSetter('setMyField', {
 						visibility: JavaVisibility.PACKAGE_PRIVATE
 					})
 				})
@@ -306,7 +337,7 @@ class MyClass {
 					getter: createJavaGetter('getMyField', {
 						visibility: JavaVisibility.PRIVATE
 					}),
-					setter: createJavaGetter('setMyField', {
+					setter: createJavaSetter('setMyField', {
 						visibility: JavaVisibility.PRIVATE
 					})
 				})
@@ -346,7 +377,7 @@ test('Import statements', () => {
 		],
 		fields: [
 			createJavaField('myField1', 'java.util.List<java.lang.String>'),
-			createJavaField('myField2', 'java.util.Map<java.math.BigInteger, com.example.erdiagram.MyOtherClass>'),
+			createJavaField('myField2', 'java.util.Map<java.math.BigInteger, com.example.erdiagram.MyOtherClass>')
 		]
 	});
 
@@ -394,7 +425,7 @@ test('Annotations', () => {
 						})
 					]
 				}),
-				setter: createJavaGetter('setMyField', {
+				setter: createJavaSetter('setMyField', {
 					annotations: [
 						new JavaAnnotation(createJavaSimpleType('MySetterAnnotation'), {
 							myUndefinedParam: undefined

@@ -1,15 +1,17 @@
-import {JavaClassModelConfigManager} from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfigManager';
-import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
+import { JavaClassModelConfigManager } from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfigManager';
+import { EntityPropertyType } from '@/erdiagram/parser/types/entity-relationship-model-types';
 import parseJavaType from '@/erdiagram/converter/oop/source-code-generator/java/type/parseJavaType';
 import JavaClassModelConfig
 	from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfig';
-import {JsonValue} from 'true-json';
+import { JsonValue } from 'true-json';
 
 const configManager = new JavaClassModelConfigManager();
 
 describe('Serialization', () => {
 
 	const config: JavaClassModelConfig = {
+		generatedClassesPackage: 'com.example.erdiagram',
+		fluentSetters: false,
 		typeBindings: {
 			[EntityPropertyType.IDENTITY]: parseJavaType('java.lang.Long'),
 			[EntityPropertyType.TEXT]: parseJavaType('java.lang.String'),
@@ -22,11 +24,12 @@ describe('Serialization', () => {
 			[EntityPropertyType.TIME]: parseJavaType('java.time.LocalTime'),
 			[EntityPropertyType.DATETIME]: parseJavaType('java.time.LocalDateTime'),
 			[EntityPropertyType.BLOB]: parseJavaType('byte[]')
-		},
-		generatedClassesPackage: 'com.example.erdiagram'
+		}
 	};
 
 	const serializableConfig: JsonValue = {
+		generatedClassesPackage: 'com.example.erdiagram',
+		fluentSetters: false,
 		typeBindings: {
 			[EntityPropertyType.IDENTITY]: 'java.lang.Long',
 			[EntityPropertyType.TEXT]: 'java.lang.String',
@@ -39,8 +42,7 @@ describe('Serialization', () => {
 			[EntityPropertyType.TIME]: 'java.time.LocalTime',
 			[EntityPropertyType.DATETIME]: 'java.time.LocalDateTime',
 			[EntityPropertyType.BLOB]: 'byte[]'
-		},
-		generatedClassesPackage: 'com.example.erdiagram'
+		}
 	};
 
 	test(`Convert to serializable object`, () => {

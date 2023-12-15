@@ -36,9 +36,10 @@ export type PartialJavaFieldGetter = Partial<Omit<JavaFieldGetter, 'name' | 'typ
 
 export function createJavaGetter(name: string, options?: PartialJavaFieldGetter): JavaFieldGetter {
 	return {
-		annotations: options?.annotations ?? [],
-		visibility: options?.visibility ?? JavaVisibility.PUBLIC,
-		name
+		name,
+		annotations: [],
+		visibility: JavaVisibility.PUBLIC,
+		...options
 	};
 }
 
@@ -46,8 +47,10 @@ export type PartialJavaFieldSetter = Partial<Omit<JavaFieldSetter, 'name' | 'typ
 
 export function createJavaSetter(name: string, options?: PartialJavaFieldSetter): JavaFieldSetter {
 	return {
-		annotations: options?.annotations ?? [],
-		visibility: options?.visibility ?? JavaVisibility.PUBLIC,
-		name
+		name,
+		annotations: [],
+		visibility: JavaVisibility.PUBLIC,
+		fluent: false,
+		...options
 	};
 }

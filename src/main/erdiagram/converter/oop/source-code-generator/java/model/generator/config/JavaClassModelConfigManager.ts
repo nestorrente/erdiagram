@@ -1,15 +1,19 @@
-import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-model-types';
+import { EntityPropertyType } from '@/erdiagram/parser/types/entity-relationship-model-types';
 import AbstractConfigManager from '@/erdiagram/common/config/AbstractConfigManager';
 import parseJavaType from '@/erdiagram/converter/oop/source-code-generator/java/type/parseJavaType';
-import {JsonAdapter, JsonAdapters} from 'true-json';
+import {
+	JsonAdapter,
+	JsonAdapters
+} from 'true-json';
 import JavaType from '@/erdiagram/converter/oop/source-code-generator/java/type/JavaType';
-import JavaClassModelConfig, {PartialJavaClassModelConfig} from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfig';
+import JavaClassModelConfig, { PartialJavaClassModelConfig } from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfig';
 
 export class JavaClassModelConfigManager
 		extends AbstractConfigManager<JavaClassModelConfig, PartialJavaClassModelConfig> {
 
 	getDefaultConfig(): JavaClassModelConfig {
 		return {
+			fluentSetters: false,
 			typeBindings: {
 				[EntityPropertyType.IDENTITY]: parseJavaType('java.lang.Long'),
 				[EntityPropertyType.TEXT]: parseJavaType('java.lang.String'),

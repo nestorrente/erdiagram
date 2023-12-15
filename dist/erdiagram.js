@@ -4,7 +4,7 @@
  *
  * Released under the MIT License.
  *
- * Build date: 2023-12-14T21:19:24.262Z
+ * Build date: 2023-12-15T10:25:16.787Z
  */
 var ERDiagram;
 /******/ (() => { // webpackBootstrap
@@ -4611,8 +4611,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class JavaSourceCodeGenerator {
-    // FIXME too much dependencies?
-    constructor(classModelGenerator, javaClassModelGenerator, javaClassModelTransformers, javaClassModelCodeGenerator, javaClassModelSourceFilesGenerator) {
+    // FIXME too many dependencies?
+    constructor(classModelGenerator, javaClassModelGenerator, 
+    // TODO create a Lombok transformer (supporting @Data, @Getter, @Setter, @ToString, @EqualsAndHashCode)
+    //  When @Data or @Getter/@Setter is used, remove the getters/setters
+    javaClassModelTransformers, javaClassModelCodeGenerator, javaClassModelSourceFilesGenerator) {
         this._classModelGenerator = classModelGenerator;
         this._javaClassModelGenerator = javaClassModelGenerator;
         this._javaClassModelTransformers = javaClassModelTransformers;
@@ -4668,6 +4671,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_code_JavaClassModelSourceFilesGenerator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/code/JavaClassModelSourceFilesGenerator */ "./src/main/erdiagram/converter/oop/source-code-generator/java/code/JavaClassModelSourceFilesGenerator.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_type_import_JavaClassUsedTypesCompiler__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/type/import/JavaClassUsedTypesCompiler */ "./src/main/erdiagram/converter/oop/source-code-generator/java/type/import/JavaClassUsedTypesCompiler.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_type_import_JavaAnnotationUsedTypesCompiler__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/type/import/JavaAnnotationUsedTypesCompiler */ "./src/main/erdiagram/converter/oop/source-code-generator/java/type/import/JavaAnnotationUsedTypesCompiler.ts");
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_code_JavaFieldCodeGenerator__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/code/JavaFieldCodeGenerator */ "./src/main/erdiagram/converter/oop/source-code-generator/java/code/JavaFieldCodeGenerator.ts");
+
 
 
 
@@ -4697,10 +4702,11 @@ class JavaSourceCodeGeneratorBuilder {
     build() {
         const classModelGenerator = new _erdiagram_converter_oop_model_ClassModelGenerator__WEBPACK_IMPORTED_MODULE_0__["default"](this._classModelConfig);
         const javaClassModelGenerator = new _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaClassModelGenerator__WEBPACK_IMPORTED_MODULE_1__["default"](this._javaClassModelConfig);
-        // TODO find a better way to instantiate this stateless components
+        // TODO find a better way to instantiate this stateless components --> use DI container?
         const javaAnnotationUsedTypesCompiler = new _erdiagram_converter_oop_source_code_generator_java_type_import_JavaAnnotationUsedTypesCompiler__WEBPACK_IMPORTED_MODULE_7__["default"]();
         const javaClassUsedTypesCompiler = new _erdiagram_converter_oop_source_code_generator_java_type_import_JavaClassUsedTypesCompiler__WEBPACK_IMPORTED_MODULE_6__["default"](javaAnnotationUsedTypesCompiler);
-        const javaClassCodeGenerator = new _erdiagram_converter_oop_source_code_generator_java_code_JavaClassCodeGenerator__WEBPACK_IMPORTED_MODULE_4__["default"](javaClassUsedTypesCompiler);
+        const javaFieldCodeGenerator = new _erdiagram_converter_oop_source_code_generator_java_code_JavaFieldCodeGenerator__WEBPACK_IMPORTED_MODULE_8__["default"]();
+        const javaClassCodeGenerator = new _erdiagram_converter_oop_source_code_generator_java_code_JavaClassCodeGenerator__WEBPACK_IMPORTED_MODULE_4__["default"](javaClassUsedTypesCompiler, javaFieldCodeGenerator);
         const javaClassModelCodeGenerator = new _erdiagram_converter_oop_source_code_generator_java_code_JavaClassModelCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](javaClassCodeGenerator);
         const javaClassModelSourceFilesGenerator = new _erdiagram_converter_oop_source_code_generator_java_code_JavaClassModelSourceFilesGenerator__WEBPACK_IMPORTED_MODULE_5__["default"](javaClassCodeGenerator);
         return new _erdiagram_converter_oop_source_code_generator_java_JavaSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](classModelGenerator, javaClassModelGenerator, [...this._javaClassModelTransformers], javaClassModelCodeGenerator, javaClassModelSourceFilesGenerator);
@@ -4888,38 +4894,55 @@ function formatAnnotationParameterSingleValue(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ JavaClassCodeGenerator)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_type_import_JavaImportStatementsGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/type/import/JavaImportStatementsGenerator */ "./src/main/erdiagram/converter/oop/source-code-generator/java/type/import/JavaImportStatementsGenerator.ts");
-/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types.ts");
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_code_util_prependVisibility__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/code/util/prependVisibility */ "./src/main/erdiagram/converter/oop/source-code-generator/java/code/util/prependVisibility.ts");
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_code_util_getAnnotationsLines__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/code/util/getAnnotationsLines */ "./src/main/erdiagram/converter/oop/source-code-generator/java/code/util/getAnnotationsLines.ts");
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
+var _JavaClassCodeGenerator_usedTypesCompiler, _JavaClassCodeGenerator_fieldCodeGenerator;
 
 
 
-const EMPTY_STRING = '';
+
+const EMPTY_LINE = '';
 class JavaClassCodeGenerator {
-    constructor(javaUsedTypesCompiler) {
-        this._javaUsedTypesCompiler = javaUsedTypesCompiler;
+    constructor(usedTypesCompiler, fieldCodeGenerator) {
+        _JavaClassCodeGenerator_usedTypesCompiler.set(this, void 0);
+        _JavaClassCodeGenerator_fieldCodeGenerator.set(this, void 0);
+        __classPrivateFieldSet(this, _JavaClassCodeGenerator_usedTypesCompiler, usedTypesCompiler, "f");
+        __classPrivateFieldSet(this, _JavaClassCodeGenerator_fieldCodeGenerator, fieldCodeGenerator, "f");
     }
     generateCode(javaClass) {
         const fieldsLines = [];
         const methodsLines = [];
         for (const javaField of javaClass.fields) {
-            const { fieldLines, getterLines, setterLines } = this.createField(javaField);
+            const { fieldLines, getterLines, setterLines } = __classPrivateFieldGet(this, _JavaClassCodeGenerator_fieldCodeGenerator, "f").generateCode(javaClass.name, javaField);
             fieldsLines.push(...fieldLines);
             methodsLines.push(...getterLines, ...setterLines);
         }
         const classOuterLines = [];
         if (javaClass.packageName) {
-            classOuterLines.push(`package ${javaClass.packageName};`, EMPTY_STRING);
+            classOuterLines.push(`package ${javaClass.packageName};`, EMPTY_LINE);
         }
         const importLines = this.generateImportLines(javaClass);
         if (importLines.length > 0) {
-            classOuterLines.push(...importLines, EMPTY_STRING);
+            classOuterLines.push(...importLines, EMPTY_LINE);
         }
-        classOuterLines.push(...this.getAnnotationsLines(javaClass.annotations), this.prependVisibility(`class ${javaClass.name} {`, javaClass.visibility), EMPTY_STRING);
+        classOuterLines.push(...(0,_erdiagram_converter_oop_source_code_generator_java_code_util_getAnnotationsLines__WEBPACK_IMPORTED_MODULE_3__["default"])(javaClass.annotations), (0,_erdiagram_converter_oop_source_code_generator_java_code_util_prependVisibility__WEBPACK_IMPORTED_MODULE_2__["default"])(`class ${javaClass.name} {`, javaClass.visibility), EMPTY_LINE);
         if (fieldsLines.length > 0) {
-            classOuterLines.push(...(0,_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_0__.indentLines)(fieldsLines), EMPTY_STRING);
+            classOuterLines.push(...(0,_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_0__.indentLines)(fieldsLines), EMPTY_LINE);
         }
         if (methodsLines.length > 0) {
             classOuterLines.push(...(0,_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_0__.indentLines)(methodsLines));
@@ -4927,60 +4950,14 @@ class JavaClassCodeGenerator {
         classOuterLines.push(`}`);
         return classOuterLines.join('\n');
     }
-    // TODO move the field generator to a separate class
-    createField(javaField) {
-        const fieldLines = [];
-        const fieldName = javaField.name;
-        const formattedJavaType = javaField.type.formatSimple();
-        fieldLines.push(...this.getAnnotationsLines(javaField.annotations));
-        fieldLines.push(this.prependVisibility(`${formattedJavaType} ${fieldName};`, javaField.visibility));
-        const getterLines = this.createGetterLines(fieldName, formattedJavaType, javaField.getter);
-        const setterLines = this.createSetterLines(fieldName, formattedJavaType, javaField.setter);
-        return {
-            fieldLines,
-            getterLines,
-            setterLines
-        };
-    }
-    createGetterLines(fieldName, formattedJavaType, getter) {
-        if (getter == null) {
-            return [];
-        }
-        return [
-            ...this.getAnnotationsLines(getter.annotations),
-            this.prependVisibility(`${formattedJavaType} ${getter.name}() {`, getter.visibility),
-            (0,_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_0__.indentLine)(`return ${fieldName};`),
-            '}',
-            EMPTY_STRING
-        ];
-    }
-    createSetterLines(fieldName, formattedJavaType, setter) {
-        if (setter == null) {
-            return [];
-        }
-        return [
-            ...this.getAnnotationsLines(setter.annotations),
-            this.prependVisibility(`void ${setter.name}(${formattedJavaType} ${fieldName}) {`, setter.visibility),
-            (0,_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_0__.indentLine)(`this.${fieldName} = ${fieldName};`),
-            '}',
-            EMPTY_STRING
-        ];
-    }
-    getAnnotationsLines(annotations) {
-        return annotations.map(annotation => annotation.format());
-    }
-    prependVisibility(text, visibility) {
-        if (visibility === _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_2__.JavaVisibility.PACKAGE_PRIVATE) {
-            return text;
-        }
-        return visibility + ' ' + text;
-    }
     generateImportLines(javaClass) {
-        const usedTypes = this._javaUsedTypesCompiler.getUsedTypes(javaClass);
+        const usedTypes = __classPrivateFieldGet(this, _JavaClassCodeGenerator_usedTypesCompiler, "f").getUsedTypes(javaClass);
         const javaImportStatementsGenerator = new _erdiagram_converter_oop_source_code_generator_java_type_import_JavaImportStatementsGenerator__WEBPACK_IMPORTED_MODULE_1__["default"](javaClass.packageName);
         return javaImportStatementsGenerator.generateImportStatements(usedTypes);
     }
 }
+_JavaClassCodeGenerator_usedTypesCompiler = new WeakMap(), _JavaClassCodeGenerator_fieldCodeGenerator = new WeakMap();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (JavaClassCodeGenerator);
 
 
 /***/ }),
@@ -5050,6 +5027,116 @@ class JavaClassModelSourceFilesGenerator {
     generateClassSourceFileName(javaClass) {
         return `${javaClass.name}.java`;
     }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/source-code-generator/java/code/JavaFieldCodeGenerator.ts":
+/*!****************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/source-code-generator/java/code/JavaFieldCodeGenerator.ts ***!
+  \****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ JavaFieldCodeGenerator)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_code_util_prependVisibility__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/code/util/prependVisibility */ "./src/main/erdiagram/converter/oop/source-code-generator/java/code/util/prependVisibility.ts");
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_code_util_getAnnotationsLines__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/code/util/getAnnotationsLines */ "./src/main/erdiagram/converter/oop/source-code-generator/java/code/util/getAnnotationsLines.ts");
+
+
+
+const EMPTY_LINE = '';
+class JavaFieldCodeGenerator {
+    generateCode(className, javaField) {
+        const fieldLines = [];
+        const fieldName = javaField.name;
+        const formattedJavaType = javaField.type.formatSimple();
+        fieldLines.push(...(0,_erdiagram_converter_oop_source_code_generator_java_code_util_getAnnotationsLines__WEBPACK_IMPORTED_MODULE_2__["default"])(javaField.annotations));
+        fieldLines.push((0,_erdiagram_converter_oop_source_code_generator_java_code_util_prependVisibility__WEBPACK_IMPORTED_MODULE_1__["default"])(`${formattedJavaType} ${fieldName};`, javaField.visibility));
+        const getterLines = this.createGetterLines(fieldName, formattedJavaType, javaField.getter);
+        const setterLines = this.createSetterLines(className, fieldName, formattedJavaType, javaField.setter);
+        return {
+            fieldLines,
+            getterLines,
+            setterLines
+        };
+    }
+    createGetterLines(fieldName, formattedJavaType, getter) {
+        if (getter == null) {
+            return [];
+        }
+        return [
+            ...(0,_erdiagram_converter_oop_source_code_generator_java_code_util_getAnnotationsLines__WEBPACK_IMPORTED_MODULE_2__["default"])(getter.annotations),
+            (0,_erdiagram_converter_oop_source_code_generator_java_code_util_prependVisibility__WEBPACK_IMPORTED_MODULE_1__["default"])(`${formattedJavaType} ${getter.name}() {`, getter.visibility),
+            (0,_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_0__.indentLine)(`return ${fieldName};`),
+            '}',
+            EMPTY_LINE
+        ];
+    }
+    createSetterLines(className, fieldName, formattedJavaType, setter) {
+        if (setter == null) {
+            return [];
+        }
+        const returnType = setter.fluent ? className : 'void';
+        const implementationLines = [
+            `this.${fieldName} = ${fieldName};`
+        ];
+        if (setter.fluent) {
+            implementationLines.push('return this;');
+        }
+        return [
+            ...(0,_erdiagram_converter_oop_source_code_generator_java_code_util_getAnnotationsLines__WEBPACK_IMPORTED_MODULE_2__["default"])(setter.annotations),
+            (0,_erdiagram_converter_oop_source_code_generator_java_code_util_prependVisibility__WEBPACK_IMPORTED_MODULE_1__["default"])(`${returnType} ${setter.name}(${formattedJavaType} ${fieldName}) {`, setter.visibility),
+            ...(0,_erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_0__.indentLines)(implementationLines),
+            '}',
+            EMPTY_LINE
+        ];
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/source-code-generator/java/code/util/getAnnotationsLines.ts":
+/*!******************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/source-code-generator/java/code/util/getAnnotationsLines.ts ***!
+  \******************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ getAnnotationsLines)
+/* harmony export */ });
+function getAnnotationsLines(annotations) {
+    return annotations.map(annotation => annotation.format());
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/source-code-generator/java/code/util/prependVisibility.ts":
+/*!****************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/source-code-generator/java/code/util/prependVisibility.ts ***!
+  \****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ prependVisibility)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types.ts");
+
+function prependVisibility(text, visibility) {
+    if (visibility === _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__.JavaVisibility.PACKAGE_PRIVATE) {
+        return text;
+    }
+    return visibility + ' ' + text;
 }
 
 
@@ -5876,31 +5963,45 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ JavaClassGenerator)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types.ts");
-/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaFieldGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaFieldGenerator */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaFieldGenerator.ts");
-
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
+var _JavaClassGenerator_generatedClassesPackage, _JavaClassGenerator_fieldGenerator;
 
 class JavaClassGenerator {
-    constructor(generatedClassesPackage, typeResolver) {
-        this._generatedClassesPackage = generatedClassesPackage;
-        this._javaFieldGenerator = new _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaFieldGenerator__WEBPACK_IMPORTED_MODULE_1__["default"](typeResolver);
+    constructor(generatedClassesPackage, fieldGenerator) {
+        _JavaClassGenerator_generatedClassesPackage.set(this, void 0);
+        _JavaClassGenerator_fieldGenerator.set(this, void 0);
+        __classPrivateFieldSet(this, _JavaClassGenerator_generatedClassesPackage, generatedClassesPackage, "f");
+        __classPrivateFieldSet(this, _JavaClassGenerator_fieldGenerator, fieldGenerator, "f");
     }
     generateJavaClass(classDescriptor, fieldGeneratedEventListener) {
         return {
-            packageName: this._generatedClassesPackage,
+            packageName: __classPrivateFieldGet(this, _JavaClassGenerator_generatedClassesPackage, "f"),
             visibility: _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__.JavaVisibility.PUBLIC,
             name: classDescriptor.name,
             annotations: [],
             fields: classDescriptor.fields.map(fieldDescriptor => {
-                const javaField = this._javaFieldGenerator.generateJavaField(fieldDescriptor);
+                const javaField = __classPrivateFieldGet(this, _JavaClassGenerator_fieldGenerator, "f").generateJavaField(fieldDescriptor);
                 fieldGeneratedEventListener({ javaField, fieldDescriptor });
                 return javaField;
             })
         };
     }
 }
+_JavaClassGenerator_generatedClassesPackage = new WeakMap(), _JavaClassGenerator_fieldGenerator = new WeakMap();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (JavaClassGenerator);
 
 
 /***/ }),
@@ -5920,6 +6021,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_generator_config_JavaClassModelConfigManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfigManager.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_generator_source_JavaClassModelDescriptorsRepositoryBuilder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/generator/source/JavaClassModelDescriptorsRepositoryBuilder */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/source/JavaClassModelDescriptorsRepositoryBuilder.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaClassGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaClassGenerator */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaClassGenerator.ts");
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaFieldGenerator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaFieldGenerator */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaFieldGenerator.ts");
+
 
 
 
@@ -5929,7 +6032,8 @@ class JavaClassModelGenerator {
         const fullConfig = _erdiagram_converter_oop_source_code_generator_java_model_generator_config_JavaClassModelConfigManager__WEBPACK_IMPORTED_MODULE_1__["default"].mergeWithDefaultConfig(config);
         const generatedClassesPackage = fullConfig.generatedClassesPackage;
         const typeResolver = new _erdiagram_converter_oop_source_code_generator_java_type_JavaFieldTypeResolver__WEBPACK_IMPORTED_MODULE_0__["default"](fullConfig.typeBindings, generatedClassesPackage);
-        this._javaClassGenerator = new _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaClassGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](generatedClassesPackage, typeResolver);
+        const javaFieldGenerator = new _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaFieldGenerator__WEBPACK_IMPORTED_MODULE_4__["default"](typeResolver, fullConfig.fluentSetters);
+        this._javaClassGenerator = new _erdiagram_converter_oop_source_code_generator_java_model_generator_JavaClassGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](generatedClassesPackage, javaFieldGenerator);
     }
     generateJavaClassModel(classModel) {
         const descriptorsRepositoryBuilder = new _erdiagram_converter_oop_source_code_generator_java_model_generator_source_JavaClassModelDescriptorsRepositoryBuilder__WEBPACK_IMPORTED_MODULE_2__["default"]();
@@ -5962,18 +6066,33 @@ class JavaClassModelGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ JavaFieldGenerator)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types.ts");
 /* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
+var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+};
+var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
+var _JavaFieldGenerator_typeResolver, _JavaFieldGenerator_fluentSetters;
 
 
 class JavaFieldGenerator {
-    constructor(typeResolver) {
-        this._typeResolver = typeResolver;
+    constructor(typeResolver, fluentSetters) {
+        _JavaFieldGenerator_typeResolver.set(this, void 0);
+        _JavaFieldGenerator_fluentSetters.set(this, void 0);
+        __classPrivateFieldSet(this, _JavaFieldGenerator_typeResolver, typeResolver, "f");
+        __classPrivateFieldSet(this, _JavaFieldGenerator_fluentSetters, fluentSetters, "f");
     }
     generateJavaField(fieldDescriptor) {
-        const fieldType = this._typeResolver.resolveFieldType(fieldDescriptor);
+        const fieldType = __classPrivateFieldGet(this, _JavaFieldGenerator_typeResolver, "f").resolveFieldType(fieldDescriptor);
         return {
             visibility: _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__.JavaVisibility.PRIVATE,
             name: fieldDescriptor.name,
@@ -5987,8 +6106,9 @@ class JavaFieldGenerator {
             setter: {
                 visibility: _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__.JavaVisibility.PUBLIC,
                 annotations: [],
-                name: this.getSetterName(fieldDescriptor.name)
-            },
+                name: this.getSetterName(fieldDescriptor.name),
+                fluent: __classPrivateFieldGet(this, _JavaFieldGenerator_fluentSetters, "f")
+            }
         };
     }
     getGetterName(fieldName, fieldType) {
@@ -6003,6 +6123,8 @@ class JavaFieldGenerator {
         return `set${capitalizedFieldName}`;
     }
 }
+_JavaFieldGenerator_typeResolver = new WeakMap(), _JavaFieldGenerator_fluentSetters = new WeakMap();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (JavaFieldGenerator);
 
 
 /***/ }),
@@ -6031,6 +6153,7 @@ __webpack_require__.r(__webpack_exports__);
 class JavaClassModelConfigManager extends _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_1__["default"] {
     getDefaultConfig() {
         return {
+            fluentSetters: false,
             typeBindings: {
                 [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.IDENTITY]: (0,_erdiagram_converter_oop_source_code_generator_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.Long'),
                 [_erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.EntityPropertyType.TEXT]: (0,_erdiagram_converter_oop_source_code_generator_java_type_parseJavaType__WEBPACK_IMPORTED_MODULE_2__["default"])('java.lang.String'),
@@ -8709,7 +8832,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const DEFAULT_INDENT = '    ';
 function indentLines(lines, indent) {
-    return lines.map(line => indentLineUsingIndentText(line, generateIndentText(indent)));
+    const indentText = generateIndentText(indent);
+    return lines.map(line => indentLineUsingIndentText(line, indentText));
 }
 function indentLine(line, indent) {
     return indentLineUsingIndentText(line, generateIndentText(indent));

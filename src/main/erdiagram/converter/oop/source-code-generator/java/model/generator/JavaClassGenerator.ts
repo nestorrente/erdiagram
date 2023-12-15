@@ -1,10 +1,12 @@
-import {ClassDescriptor, ClassFieldDescriptor} from '@/erdiagram/converter/oop/model/class-model-types';
+import {
+	ClassDescriptor,
+	ClassFieldDescriptor
+} from '@/erdiagram/converter/oop/model/class-model-types';
 import {
 	JavaClass,
 	JavaField,
 	JavaVisibility
 } from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
-import JavaFieldTypeResolver from '@/erdiagram/converter/oop/source-code-generator/java/type/JavaFieldTypeResolver';
 import JavaFieldGenerator
 	from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaFieldGenerator';
 
@@ -18,14 +20,14 @@ type FieldGeneratedEventListener = (event: FieldGeneratedEvent) => void;
 export default class JavaClassGenerator {
 
 	private readonly _generatedClassesPackage?: string;
-	private readonly _javaFieldGenerator: JavaFieldGenerator;
+	private readonly _fieldGenerator: JavaFieldGenerator;
 
 	constructor(
 			generatedClassesPackage: string | undefined,
-			typeResolver: JavaFieldTypeResolver
+			fieldGenerator: JavaFieldGenerator
 	) {
 		this._generatedClassesPackage = generatedClassesPackage;
-		this._javaFieldGenerator = new JavaFieldGenerator(typeResolver);
+		this._fieldGenerator = fieldGenerator;
 	}
 
 	public generateJavaClass(classDescriptor: ClassDescriptor, fieldGeneratedEventListener: FieldGeneratedEventListener): JavaClass {
@@ -35,8 +37,8 @@ export default class JavaClassGenerator {
 			name: classDescriptor.name,
 			annotations: [],
 			fields: classDescriptor.fields.map(fieldDescriptor => {
-				const javaField = this._javaFieldGenerator.generateJavaField(fieldDescriptor);
-				fieldGeneratedEventListener({javaField, fieldDescriptor});
+				const javaField = this._fieldGenerator.generateJavaField(fieldDescriptor);
+				fieldGeneratedEventListener({ javaField, fieldDescriptor });
 				return javaField;
 			})
 		};

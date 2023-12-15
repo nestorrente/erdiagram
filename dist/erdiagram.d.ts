@@ -451,6 +451,7 @@ export interface JavaFieldGetter extends JavaAnnotatedElement, JavaAccessibleEle
 }
 export interface JavaFieldSetter extends JavaAnnotatedElement, JavaAccessibleElement {
 	name: string;
+	fluent: boolean;
 }
 export interface BaseContext {
 	entityRelationshipModel: EntityRelationshipModel;
@@ -487,8 +488,9 @@ export interface JavaClassModelGenerationResult {
 	javaClassModelDescriptorsRepository: JavaClassModelDescriptorsRepository;
 }
 export interface JavaClassModelConfig {
-	typeBindings: Record<EntityPropertyType, JavaType>;
 	generatedClassesPackage?: string;
+	fluentSetters: boolean;
+	typeBindings: Record<EntityPropertyType, JavaType>;
 }
 export type PartialJavaClassModelConfig = Partial<WithPartial<JavaClassModelConfig, "typeBindings">>;
 export declare class JavaClassModelGenerator {
@@ -507,15 +509,19 @@ declare class JavaClassUsedTypesCompiler {
 	getUsedTypes(javaClass: JavaClass): JavaType[];
 	private getAnnotationsUsedTypes;
 }
-declare class JavaClassCodeGenerator {
-	private readonly _javaUsedTypesCompiler;
-	constructor(javaUsedTypesCompiler: JavaClassUsedTypesCompiler);
-	generateCode(javaClass: JavaClass): string;
-	private createField;
+declare class JavaFieldCodeGenerator {
+	generateCode(className: string, javaField: JavaField): {
+		fieldLines: string[];
+		getterLines: string[];
+		setterLines: string[];
+	};
 	private createGetterLines;
 	private createSetterLines;
-	private getAnnotationsLines;
-	private prependVisibility;
+}
+declare class JavaClassCodeGenerator {
+	#private;
+	constructor(usedTypesCompiler: JavaClassUsedTypesCompiler, fieldCodeGenerator: JavaFieldCodeGenerator);
+	generateCode(javaClass: JavaClass): string;
 	private generateImportLines;
 }
 declare class JavaClassModelCodeGenerator {

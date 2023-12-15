@@ -9,6 +9,8 @@ import JavaClassModelDescriptorsRepositoryBuilder
 	from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/source/JavaClassModelDescriptorsRepositoryBuilder';
 import JavaClassGenerator
 	from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaClassGenerator';
+import JavaFieldGenerator
+	from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaFieldGenerator';
 
 export default class JavaClassModelGenerator {
 
@@ -20,8 +22,9 @@ export default class JavaClassModelGenerator {
 
 		const generatedClassesPackage = fullConfig.generatedClassesPackage;
 		const typeResolver = new JavaFieldTypeResolver(fullConfig.typeBindings, generatedClassesPackage);
+		const javaFieldGenerator = new JavaFieldGenerator(typeResolver, fullConfig.fluentSetters)
 
-		this._javaClassGenerator = new JavaClassGenerator(generatedClassesPackage, typeResolver);
+		this._javaClassGenerator = new JavaClassGenerator(generatedClassesPackage, javaFieldGenerator);
 
 	}
 

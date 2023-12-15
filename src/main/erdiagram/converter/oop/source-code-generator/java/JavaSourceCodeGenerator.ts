@@ -25,7 +25,7 @@ export default class JavaSourceCodeGenerator implements MultipleFileSourceCodeGe
 	private readonly _javaClassModelCodeGenerator: JavaClassModelCodeGenerator;
 	private readonly _javaClassModelSourceFilesGenerator: JavaClassModelSourceFilesGenerator;
 
-	// FIXME too much dependencies?
+	// FIXME too many dependencies?
 	constructor(
 			classModelGenerator: ClassModelGenerator,
 			javaClassModelGenerator: JavaClassModelGenerator,

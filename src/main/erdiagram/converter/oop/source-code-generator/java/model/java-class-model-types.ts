@@ -39,4 +39,5 @@ export interface JavaFieldGetter extends JavaAnnotatedElement, JavaAccessibleEle
 
 export interface JavaFieldSetter extends JavaAnnotatedElement, JavaAccessibleElement {
 	name: string;
+	fluent: boolean;
 }

@@ -1,7 +1,8 @@
 const DEFAULT_INDENT = '    ';
 
 export function indentLines(lines: string[], indent?: string | number) {
-	return lines.map(line => indentLineUsingIndentText(line, generateIndentText(indent)));
+	const indentText = generateIndentText(indent);
+	return lines.map(line => indentLineUsingIndentText(line, indentText));
 }
 
 export function indentLine(line: string, indent?: string | number) {

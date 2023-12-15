@@ -3,8 +3,8 @@ import JavaClassModelTransformer
 	from '@/erdiagram/converter/oop/source-code-generator/java/model/transformer/JavaClassModelTransformer';
 import JavaClassModelGenerator
 	from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaClassModelGenerator';
-import {PartialClassModelConfig} from '@/erdiagram/converter/oop/model/config/ClassModelConfig';
-import {PartialJavaClassModelConfig} from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfig';
+import { PartialClassModelConfig } from '@/erdiagram/converter/oop/model/config/ClassModelConfig';
+import { PartialJavaClassModelConfig } from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/config/JavaClassModelConfig';
 import JavaSourceCodeGenerator from '@/erdiagram/converter/oop/source-code-generator/java/JavaSourceCodeGenerator';
 import JavaClassModelCodeGenerator
 	from '@/erdiagram/converter/oop/source-code-generator/java/code/JavaClassModelCodeGenerator';
@@ -15,6 +15,7 @@ import JavaClassUsedTypesCompiler
 	from '@/erdiagram/converter/oop/source-code-generator/java/type/import/JavaClassUsedTypesCompiler';
 import JavaAnnotationUsedTypesCompiler
 	from '@/erdiagram/converter/oop/source-code-generator/java/type/import/JavaAnnotationUsedTypesCompiler';
+import JavaFieldCodeGenerator from '@/erdiagram/converter/oop/source-code-generator/java/code/JavaFieldCodeGenerator';
 
 export default class JavaSourceCodeGeneratorBuilder {
 
@@ -42,10 +43,11 @@ export default class JavaSourceCodeGeneratorBuilder {
 		const classModelGenerator = new ClassModelGenerator(this._classModelConfig);
 		const javaClassModelGenerator = new JavaClassModelGenerator(this._javaClassModelConfig);
 
-		// TODO find a better way to instantiate this stateless components
+		// TODO find a better way to instantiate this stateless components --> use DI container?
 		const javaAnnotationUsedTypesCompiler = new JavaAnnotationUsedTypesCompiler();
 		const javaClassUsedTypesCompiler = new JavaClassUsedTypesCompiler(javaAnnotationUsedTypesCompiler);
-		const javaClassCodeGenerator = new JavaClassCodeGenerator(javaClassUsedTypesCompiler);
+		const javaFieldCodeGenerator = new JavaFieldCodeGenerator();
+		const javaClassCodeGenerator = new JavaClassCodeGenerator(javaClassUsedTypesCompiler, javaFieldCodeGenerator);
 
 		const javaClassModelCodeGenerator = new JavaClassModelCodeGenerator(javaClassCodeGenerator);
 		const javaClassModelSourceFilesGenerator = new JavaClassModelSourceFilesGenerator(javaClassCodeGenerator);

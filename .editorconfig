@@ -1,0 +1,21 @@
+# This file is for unifying the coding style for different editors and IDEs
+# editorconfig.org
+
+root = true
+
+[*]
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+indent_style = tab
+indent_size = 4
+ij_continuation_indent_size = 8
+ij_typescript_spaces_within_imports = true
+ij_typescript_spaces_within_object_literal_braces = true
+ij_typescript_enforce_trailing_comma = remove
+ij_typescript_imports_wrap = split_into_lines
+ij_typescript_force_quote_style = true
+ij_typescript_use_double_quotes = false
+ij_typescript_force_semicolon_style = true
+ij_typescript_use_semicolon_after_statement = true

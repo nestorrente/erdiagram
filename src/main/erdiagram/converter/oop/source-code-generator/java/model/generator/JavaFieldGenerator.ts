@@ -1,18 +1,23 @@
-import {ClassFieldDescriptor} from '@/erdiagram/converter/oop/model/class-model-types';
+import { ClassFieldDescriptor } from '@/erdiagram/converter/oop/model/class-model-types';
 import {
 	JavaField,
 	JavaVisibility
 } from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
 import JavaFieldTypeResolver from '@/erdiagram/converter/oop/source-code-generator/java/type/JavaFieldTypeResolver';
-import {capitalizeWord} from '@/erdiagram/util/string-utils';
+import { capitalizeWord } from '@/erdiagram/util/string-utils';
 import JavaType from '@/erdiagram/converter/oop/source-code-generator/java/type/JavaType';
 
 export default class JavaFieldGenerator {
 
 	private readonly _typeResolver: JavaFieldTypeResolver;
+	private readonly _fluentSetters: boolean;
 
-	constructor(typeResolver: JavaFieldTypeResolver) {
+	constructor(
+			typeResolver: JavaFieldTypeResolver,
+			fluentSetters: boolean
+	) {
 		this._typeResolver = typeResolver;
+		this._fluentSetters = fluentSetters;
 	}
 
 	public generateJavaField(fieldDescriptor: ClassFieldDescriptor): JavaField {
@@ -32,8 +37,9 @@ export default class JavaFieldGenerator {
 			setter: {
 				visibility: JavaVisibility.PUBLIC,
 				annotations: [],
-				name: this.getSetterName(fieldDescriptor.name)
-			},
+				name: this.getSetterName(fieldDescriptor.name),
+				fluent: this._fluentSetters
+			}
 		};
 
 	}
