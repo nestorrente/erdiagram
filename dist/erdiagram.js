@@ -1,10 +1,10 @@
 /*!
- * Entity-Relationship Diagram Code Generator v1.0.0
+ * Entity-Relationship Diagram Code Generator v1.1.0
  * https://github.com/nestorrente/erdiagram
  *
  * Released under the MIT License.
  *
- * Build date: 2023-12-15T22:34:36.955Z
+ * Build date: 2023-12-16T10:49:20.194Z
  */
 var ERDiagram;
 /******/ (() => { // webpackBootstrap
@@ -4053,6 +4053,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   JpaConfigManager: () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JpaConfigManager),
 /* harmony export */   JpaTransformer: () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JpaTransformer),
 /* harmony export */   JpaTransformerBuilder: () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.JpaTransformerBuilder),
+/* harmony export */   LombokConfigManager: () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.LombokConfigManager),
+/* harmony export */   LombokTransformer: () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.LombokTransformer),
 /* harmony export */   MysqlDialect: () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.MysqlDialect),
 /* harmony export */   MysqlDialectConfigManager: () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.MysqlDialectConfigManager),
 /* harmony export */   NomnomlConfigManager: () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_4__.NomnomlConfigManager),
@@ -4091,6 +4093,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   isTypeScriptParameterizedType: () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.isTypeScriptParameterizedType),
 /* harmony export */   javaClassModelConfigManager: () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.javaClassModelConfigManager),
 /* harmony export */   jpaConfigManager: () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.jpaConfigManager),
+/* harmony export */   lombokConfigManager: () => (/* reexport safe */ _oop_exports__WEBPACK_IMPORTED_MODULE_3__.lombokConfigManager),
 /* harmony export */   mysqlDialectConfigManager: () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.mysqlDialectConfigManager),
 /* harmony export */   nomnomlConfigManager: () => (/* reexport safe */ _diagram_exports__WEBPACK_IMPORTED_MODULE_4__.nomnomlConfigManager),
 /* harmony export */   oracleDialectConfigManager: () => (/* reexport safe */ _database_exports__WEBPACK_IMPORTED_MODULE_2__.oracleDialectConfigManager),
@@ -4139,6 +4142,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   JpaConfigManager: () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.JpaConfigManager),
 /* harmony export */   JpaTransformer: () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.JpaTransformer),
 /* harmony export */   JpaTransformerBuilder: () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.JpaTransformerBuilder),
+/* harmony export */   LombokConfigManager: () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.LombokConfigManager),
+/* harmony export */   LombokTransformer: () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.LombokTransformer),
 /* harmony export */   NotNullBlobValidationStrategy: () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.NotNullBlobValidationStrategy),
 /* harmony export */   NotNullTextValidationStrategy: () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.NotNullTextValidationStrategy),
 /* harmony export */   TypeScriptClassModelToCodeConverter: () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.TypeScriptClassModelToCodeConverter),
@@ -4157,6 +4162,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   isTypeScriptParameterizedType: () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.isTypeScriptParameterizedType),
 /* harmony export */   javaClassModelConfigManager: () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.javaClassModelConfigManager),
 /* harmony export */   jpaConfigManager: () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.jpaConfigManager),
+/* harmony export */   lombokConfigManager: () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.lombokConfigManager),
 /* harmony export */   parseJavaType: () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.parseJavaType),
 /* harmony export */   parseTypeScriptType: () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.parseTypeScriptType),
 /* harmony export */   typescriptConfigManager: () => (/* reexport safe */ _source_code_generator_exports__WEBPACK_IMPORTED_MODULE_0__.typescriptConfigManager)
@@ -4566,6 +4572,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   JpaConfigManager: () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JpaConfigManager),
 /* harmony export */   JpaTransformer: () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JpaTransformer),
 /* harmony export */   JpaTransformerBuilder: () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.JpaTransformerBuilder),
+/* harmony export */   LombokConfigManager: () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.LombokConfigManager),
+/* harmony export */   LombokTransformer: () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.LombokTransformer),
 /* harmony export */   NotNullBlobValidationStrategy: () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.NotNullBlobValidationStrategy),
 /* harmony export */   NotNullTextValidationStrategy: () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.NotNullTextValidationStrategy),
 /* harmony export */   TypeScriptClassModelToCodeConverter: () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.TypeScriptClassModelToCodeConverter),
@@ -4583,6 +4591,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   isTypeScriptParameterizedType: () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.isTypeScriptParameterizedType),
 /* harmony export */   javaClassModelConfigManager: () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.javaClassModelConfigManager),
 /* harmony export */   jpaConfigManager: () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.jpaConfigManager),
+/* harmony export */   lombokConfigManager: () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.lombokConfigManager),
 /* harmony export */   parseJavaType: () => (/* reexport safe */ _java_exports__WEBPACK_IMPORTED_MODULE_0__.parseJavaType),
 /* harmony export */   parseTypeScriptType: () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.parseTypeScriptType),
 /* harmony export */   typescriptConfigManager: () => (/* reexport safe */ _typescript_exports__WEBPACK_IMPORTED_MODULE_1__.typescriptConfigManager)
@@ -4612,10 +4621,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class JavaSourceCodeGenerator {
     // FIXME too many dependencies?
-    constructor(classModelGenerator, javaClassModelGenerator, 
-    // TODO create a Lombok transformer (supporting @Data, @Getter, @Setter, @ToString, @EqualsAndHashCode)
-    //  When @Data or @Getter/@Setter is used, remove the getters/setters
-    javaClassModelTransformers, javaClassModelCodeGenerator, javaClassModelSourceFilesGenerator) {
+    constructor(classModelGenerator, javaClassModelGenerator, javaClassModelTransformers, javaClassModelCodeGenerator, javaClassModelSourceFilesGenerator) {
         this._classModelGenerator = classModelGenerator;
         this._javaClassModelGenerator = javaClassModelGenerator;
         this._javaClassModelTransformers = javaClassModelTransformers;
@@ -5135,8 +5141,8 @@ function prependVisibility(text, visibility) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   BeanValidationConfigManager: () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_5__.BeanValidationConfigManager),
-/* harmony export */   BeanValidationTransformer: () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_5__.BeanValidationTransformer),
+/* harmony export */   BeanValidationConfigManager: () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_6__.BeanValidationConfigManager),
+/* harmony export */   BeanValidationTransformer: () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_6__.BeanValidationTransformer),
 /* harmony export */   JavaAnnotation: () => (/* reexport safe */ _annotation_exports__WEBPACK_IMPORTED_MODULE_2__.JavaAnnotation),
 /* harmony export */   JavaClassModelConfigManager: () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_3__.JavaClassModelConfigManager),
 /* harmony export */   JavaClassModelGenerator: () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_3__.JavaClassModelGenerator),
@@ -5146,24 +5152,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   JpaConfigManager: () => (/* reexport safe */ _jpa_exports__WEBPACK_IMPORTED_MODULE_4__.JpaConfigManager),
 /* harmony export */   JpaTransformer: () => (/* reexport safe */ _jpa_exports__WEBPACK_IMPORTED_MODULE_4__.JpaTransformer),
 /* harmony export */   JpaTransformerBuilder: () => (/* reexport safe */ _jpa_exports__WEBPACK_IMPORTED_MODULE_4__.JpaTransformerBuilder),
-/* harmony export */   NotNullBlobValidationStrategy: () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_5__.NotNullBlobValidationStrategy),
-/* harmony export */   NotNullTextValidationStrategy: () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_5__.NotNullTextValidationStrategy),
-/* harmony export */   beanValidationConfigManager: () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_5__.beanValidationConfigManager),
-/* harmony export */   createJavaArrayType: () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_6__.createJavaArrayType),
-/* harmony export */   createJavaParameterizedType: () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_6__.createJavaParameterizedType),
-/* harmony export */   createJavaSimpleType: () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_6__.createJavaSimpleType),
-/* harmony export */   isJavaParameterizedType: () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_6__.isJavaParameterizedType),
+/* harmony export */   LombokConfigManager: () => (/* reexport safe */ _lombok_exports__WEBPACK_IMPORTED_MODULE_5__.LombokConfigManager),
+/* harmony export */   LombokTransformer: () => (/* reexport safe */ _lombok_exports__WEBPACK_IMPORTED_MODULE_5__.LombokTransformer),
+/* harmony export */   NotNullBlobValidationStrategy: () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_6__.NotNullBlobValidationStrategy),
+/* harmony export */   NotNullTextValidationStrategy: () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_6__.NotNullTextValidationStrategy),
+/* harmony export */   beanValidationConfigManager: () => (/* reexport safe */ _validation_exports__WEBPACK_IMPORTED_MODULE_6__.beanValidationConfigManager),
+/* harmony export */   createJavaArrayType: () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_7__.createJavaArrayType),
+/* harmony export */   createJavaParameterizedType: () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_7__.createJavaParameterizedType),
+/* harmony export */   createJavaSimpleType: () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_7__.createJavaSimpleType),
+/* harmony export */   isJavaParameterizedType: () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_7__.isJavaParameterizedType),
 /* harmony export */   javaClassModelConfigManager: () => (/* reexport safe */ _model_exports__WEBPACK_IMPORTED_MODULE_3__.javaClassModelConfigManager),
 /* harmony export */   jpaConfigManager: () => (/* reexport safe */ _jpa_exports__WEBPACK_IMPORTED_MODULE_4__.jpaConfigManager),
-/* harmony export */   parseJavaType: () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_6__.parseJavaType)
+/* harmony export */   lombokConfigManager: () => (/* reexport safe */ _lombok_exports__WEBPACK_IMPORTED_MODULE_5__.lombokConfigManager),
+/* harmony export */   parseJavaType: () => (/* reexport safe */ _type_exports__WEBPACK_IMPORTED_MODULE_7__.parseJavaType)
 /* harmony export */ });
 /* harmony import */ var _JavaSourceCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./JavaSourceCodeGenerator */ "./src/main/erdiagram/converter/oop/source-code-generator/java/JavaSourceCodeGenerator.ts");
 /* harmony import */ var _JavaSourceCodeGeneratorBuilder__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./JavaSourceCodeGeneratorBuilder */ "./src/main/erdiagram/converter/oop/source-code-generator/java/JavaSourceCodeGeneratorBuilder.ts");
 /* harmony import */ var _annotation_exports__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./annotation/exports */ "./src/main/erdiagram/converter/oop/source-code-generator/java/annotation/exports.ts");
 /* harmony import */ var _model_exports__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./model/exports */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/exports.ts");
 /* harmony import */ var _jpa_exports__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./jpa/exports */ "./src/main/erdiagram/converter/oop/source-code-generator/java/jpa/exports.ts");
-/* harmony import */ var _validation_exports__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./validation/exports */ "./src/main/erdiagram/converter/oop/source-code-generator/java/validation/exports.ts");
-/* harmony import */ var _type_exports__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./type/exports */ "./src/main/erdiagram/converter/oop/source-code-generator/java/type/exports.ts");
+/* harmony import */ var _lombok_exports__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./lombok/exports */ "./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/exports.ts");
+/* harmony import */ var _validation_exports__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./validation/exports */ "./src/main/erdiagram/converter/oop/source-code-generator/java/validation/exports.ts");
+/* harmony import */ var _type_exports__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./type/exports */ "./src/main/erdiagram/converter/oop/source-code-generator/java/type/exports.ts");
+
 
 
 
@@ -5910,6 +5921,226 @@ class RelationshipFieldAnnotationsSupplier {
     }
     formatTableName(tableName) {
         return this._tableNameCaseConverter.convertCase(tableName);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/config/LombokConfigManager.ts":
+/*!**********************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/config/LombokConfigManager.ts ***!
+  \**********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   LombokConfigManager: () => (/* binding */ LombokConfigManager),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/common/config/AbstractConfigManager */ "./src/main/erdiagram/common/config/AbstractConfigManager.ts");
+
+class LombokConfigManager extends _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"] {
+    getDefaultConfig() {
+        return {
+            builderAnnotation: false,
+            dataAnnotation: false,
+            getterAnnotation: false,
+            setterAnnotation: false,
+            toStringAnnotation: false,
+            equalsAndHashCodeAnnotation: false
+        };
+    }
+    mergeConfigs(fullConfig, partialConfig) {
+        return Object.assign(Object.assign({}, fullConfig), partialConfig);
+    }
+}
+const lombokConfigManager = new LombokConfigManager();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (lombokConfigManager);
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/config/exports.ts":
+/*!**********************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/config/exports.ts ***!
+  \**********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   LombokConfigManager: () => (/* reexport safe */ _LombokConfigManager__WEBPACK_IMPORTED_MODULE_0__.LombokConfigManager),
+/* harmony export */   lombokConfigManager: () => (/* reexport safe */ _LombokConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _LombokConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LombokConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/config/LombokConfigManager.ts");
+
+
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/exports.ts":
+/*!***************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/exports.ts ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   LombokConfigManager: () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_0__.LombokConfigManager),
+/* harmony export */   LombokTransformer: () => (/* reexport safe */ _transformer_exports__WEBPACK_IMPORTED_MODULE_1__.LombokTransformer),
+/* harmony export */   lombokConfigManager: () => (/* reexport safe */ _config_exports__WEBPACK_IMPORTED_MODULE_0__.lombokConfigManager)
+/* harmony export */ });
+/* harmony import */ var _config_exports__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config/exports */ "./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/config/exports.ts");
+/* harmony import */ var _transformer_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./transformer/exports */ "./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/transformer/exports.ts");
+
+
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/lombok-java-types.ts":
+/*!*************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/lombok-java-types.ts ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   LombokAnnotationTypes: () => (/* binding */ LombokAnnotationTypes)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/type/simple/createJavaSimpleType */ "./src/main/erdiagram/converter/oop/source-code-generator/java/type/simple/createJavaSimpleType.ts");
+
+const LOMBOK_PACKAGE = 'lombok';
+const LombokAnnotationTypes = {
+    Builder: (0,_erdiagram_converter_oop_source_code_generator_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__["default"])('Builder', LOMBOK_PACKAGE),
+    Data: (0,_erdiagram_converter_oop_source_code_generator_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__["default"])('Data', LOMBOK_PACKAGE),
+    Getter: (0,_erdiagram_converter_oop_source_code_generator_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__["default"])('Getter', LOMBOK_PACKAGE),
+    Setter: (0,_erdiagram_converter_oop_source_code_generator_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__["default"])('Setter', LOMBOK_PACKAGE),
+    ToString: (0,_erdiagram_converter_oop_source_code_generator_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__["default"])('ToString', LOMBOK_PACKAGE),
+    EqualsAndHashCode: (0,_erdiagram_converter_oop_source_code_generator_java_type_simple_createJavaSimpleType__WEBPACK_IMPORTED_MODULE_0__["default"])('EqualsAndHashCode', LOMBOK_PACKAGE)
+};
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/transformer/LombokTransformer.ts":
+/*!*************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/transformer/LombokTransformer.ts ***!
+  \*************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   LombokTransformer: () => (/* binding */ LombokTransformer)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_lombok_config_LombokConfigManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/lombok/config/LombokConfigManager */ "./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/config/LombokConfigManager.ts");
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_lombok_transformer_visitor_class_LombokTransformerClassVisitor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/lombok/transformer/visitor/class/LombokTransformerClassVisitor */ "./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/transformer/visitor/class/LombokTransformerClassVisitor.ts");
+
+
+class LombokTransformer {
+    constructor(config) {
+        const fullConfig = _erdiagram_converter_oop_source_code_generator_java_lombok_config_LombokConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"].mergeWithDefaultConfig(config);
+        this._classVisitor = new _erdiagram_converter_oop_source_code_generator_java_lombok_transformer_visitor_class_LombokTransformerClassVisitor__WEBPACK_IMPORTED_MODULE_1__["default"](fullConfig);
+    }
+    setup(context) {
+        return undefined;
+    }
+    visitField(javaField, context) {
+        // Do nothing
+    }
+    visitClass(javaClass, context) {
+        this._classVisitor.visitClass(javaClass);
+    }
+    visitModel(javaClassModel, context) {
+        // Do nothing
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/transformer/exports.ts":
+/*!***************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/transformer/exports.ts ***!
+  \***************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   LombokTransformer: () => (/* reexport safe */ _LombokTransformer__WEBPACK_IMPORTED_MODULE_0__.LombokTransformer)
+/* harmony export */ });
+/* harmony import */ var _LombokTransformer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LombokTransformer */ "./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/transformer/LombokTransformer.ts");
+
+
+
+
+/***/ }),
+
+/***/ "./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/transformer/visitor/class/LombokTransformerClassVisitor.ts":
+/*!***************************************************************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/transformer/visitor/class/LombokTransformerClassVisitor.ts ***!
+  \***************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ LombokTransformerClassVisitor)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation */ "./src/main/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation.ts");
+/* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_lombok_lombok_java_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/lombok/lombok-java-types */ "./src/main/erdiagram/converter/oop/source-code-generator/java/lombok/lombok-java-types.ts");
+
+
+class LombokTransformerClassVisitor {
+    constructor(config) {
+        this._config = config;
+    }
+    visitClass(javaClass) {
+        this.annotateClass(javaClass);
+        if (this._config.dataAnnotation || this._config.getterAnnotation) {
+            for (const field of javaClass.fields) {
+                delete field.getter;
+            }
+        }
+        if (this._config.dataAnnotation || this._config.setterAnnotation) {
+            for (const field of javaClass.fields) {
+                delete field.setter;
+            }
+        }
+    }
+    annotateClass(javaClass) {
+        for (const annotationType of this.getAnnotationTypes()) {
+            javaClass.annotations.push(new _erdiagram_converter_oop_source_code_generator_java_annotation_JavaAnnotation__WEBPACK_IMPORTED_MODULE_0__["default"](annotationType));
+        }
+    }
+    getAnnotationTypes() {
+        const annotationTypes = [];
+        if (this._config.builderAnnotation) {
+            annotationTypes.push(_erdiagram_converter_oop_source_code_generator_java_lombok_lombok_java_types__WEBPACK_IMPORTED_MODULE_1__.LombokAnnotationTypes.Builder);
+        }
+        if (this._config.dataAnnotation) {
+            annotationTypes.push(_erdiagram_converter_oop_source_code_generator_java_lombok_lombok_java_types__WEBPACK_IMPORTED_MODULE_1__.LombokAnnotationTypes.Data);
+        }
+        if (this._config.getterAnnotation) {
+            annotationTypes.push(_erdiagram_converter_oop_source_code_generator_java_lombok_lombok_java_types__WEBPACK_IMPORTED_MODULE_1__.LombokAnnotationTypes.Getter);
+        }
+        if (this._config.setterAnnotation) {
+            annotationTypes.push(_erdiagram_converter_oop_source_code_generator_java_lombok_lombok_java_types__WEBPACK_IMPORTED_MODULE_1__.LombokAnnotationTypes.Setter);
+        }
+        if (this._config.toStringAnnotation) {
+            annotationTypes.push(_erdiagram_converter_oop_source_code_generator_java_lombok_lombok_java_types__WEBPACK_IMPORTED_MODULE_1__.LombokAnnotationTypes.ToString);
+        }
+        if (this._config.equalsAndHashCodeAnnotation) {
+            annotationTypes.push(_erdiagram_converter_oop_source_code_generator_java_lombok_lombok_java_types__WEBPACK_IMPORTED_MODULE_1__.LombokAnnotationTypes.EqualsAndHashCode);
+        }
+        return annotationTypes;
     }
 }
 
@@ -7670,6 +7901,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   JpaConfigManager: () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JpaConfigManager),
 /* harmony export */   JpaTransformer: () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JpaTransformer),
 /* harmony export */   JpaTransformerBuilder: () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.JpaTransformerBuilder),
+/* harmony export */   LombokConfigManager: () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.LombokConfigManager),
+/* harmony export */   LombokTransformer: () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.LombokTransformer),
 /* harmony export */   MysqlDialect: () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.MysqlDialect),
 /* harmony export */   MysqlDialectConfigManager: () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.MysqlDialectConfigManager),
 /* harmony export */   NomnomlConfigManager: () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.NomnomlConfigManager),
@@ -7709,6 +7942,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   isTypeScriptParameterizedType: () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.isTypeScriptParameterizedType),
 /* harmony export */   javaClassModelConfigManager: () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.javaClassModelConfigManager),
 /* harmony export */   jpaConfigManager: () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.jpaConfigManager),
+/* harmony export */   lombokConfigManager: () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.lombokConfigManager),
 /* harmony export */   mysqlDialectConfigManager: () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.mysqlDialectConfigManager),
 /* harmony export */   nomnomlConfigManager: () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.nomnomlConfigManager),
 /* harmony export */   oracleDialectConfigManager: () => (/* reexport safe */ _converter_exports__WEBPACK_IMPORTED_MODULE_1__.oracleDialectConfigManager),

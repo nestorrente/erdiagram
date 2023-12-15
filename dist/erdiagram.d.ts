@@ -604,6 +604,28 @@ export declare class JpaTransformer implements JavaClassModelTransformer<JpaTran
 	static withDefaultConfig(): JpaTransformer;
 	static builder(): JpaTransformerBuilder;
 }
+export interface LombokConfig {
+	builderAnnotation: boolean;
+	dataAnnotation: boolean;
+	getterAnnotation: boolean;
+	setterAnnotation: boolean;
+	toStringAnnotation: boolean;
+	equalsAndHashCodeAnnotation: boolean;
+}
+export type PartialLombokConfig = Partial<LombokConfig>;
+export declare class LombokConfigManager extends AbstractConfigManager<LombokConfig, PartialLombokConfig> {
+	getDefaultConfig(): LombokConfig;
+	mergeConfigs(fullConfig: LombokConfig, partialConfig?: PartialLombokConfig): LombokConfig;
+}
+export declare const lombokConfigManager: LombokConfigManager;
+export declare class LombokTransformer implements JavaClassModelTransformer {
+	private readonly _classVisitor;
+	constructor(config?: PartialLombokConfig);
+	setup(context: SetupContext): unknown;
+	visitField(javaField: JavaField, context: JavaFieldTransformContext<unknown>): void;
+	visitClass(javaClass: JavaClass, context: JavaClassTransformContext<unknown>): void;
+	visitModel(javaClassModel: JavaClassModel, context: JavaClassModelTransformContext<unknown>): void;
+}
 export declare enum NotNullTextValidationStrategy {
 	NOT_NULL = "not_null",
 	NOT_EMPTY = "not_empty",
