@@ -7,7 +7,7 @@ import {
 	SetupContext
 } from '@/erdiagram/converter/oop/source-code-generator/java/model/transformer/java-class-model-transformer-context-types';
 import DatabaseModelGenerator from '@/erdiagram/converter/database/model/DatabaseModelGenerator';
-import JpaConfig from '@/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaConfig';
+import { PartialJpaConfig } from '@/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaConfig';
 import jpaConfigManager from '@/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaConfigManager';
 import {
 	JavaClass,
@@ -33,7 +33,7 @@ export class JpaTransformer implements JavaClassModelTransformer<JpaTransformerS
 	private readonly _fieldVisitor: JpaTransformerFieldVisitor;
 	private readonly _classVisitor: JpaTransformerClassVisitor;
 
-	constructor(databaseModelGenerator: DatabaseModelGenerator, config?: Partial<JpaConfig>) {
+	constructor(databaseModelGenerator: DatabaseModelGenerator, config?: PartialJpaConfig) {
 
 		const {
 			tableNameCaseFormat,

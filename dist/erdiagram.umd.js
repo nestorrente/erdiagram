@@ -4,7 +4,7 @@
  *
  * Released under the MIT License.
  *
- * Build date: 2023-12-15T10:25:16.787Z
+ * Build date: 2023-12-15T22:34:36.955Z
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -4903,24 +4903,12 @@ function formatAnnotationParameterSingleValue(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ JavaClassCodeGenerator)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_util_indent_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/util/indent-utils */ "./src/main/erdiagram/util/indent-utils.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_type_import_JavaImportStatementsGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/type/import/JavaImportStatementsGenerator */ "./src/main/erdiagram/converter/oop/source-code-generator/java/type/import/JavaImportStatementsGenerator.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_code_util_prependVisibility__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/code/util/prependVisibility */ "./src/main/erdiagram/converter/oop/source-code-generator/java/code/util/prependVisibility.ts");
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_code_util_getAnnotationsLines__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/code/util/getAnnotationsLines */ "./src/main/erdiagram/converter/oop/source-code-generator/java/code/util/getAnnotationsLines.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
-    if (kind === "m") throw new TypeError("Private method is not writable");
-    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
-    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {
-    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
-    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
-};
-var _JavaClassCodeGenerator_usedTypesCompiler, _JavaClassCodeGenerator_fieldCodeGenerator;
 
 
 
@@ -4928,16 +4916,14 @@ var _JavaClassCodeGenerator_usedTypesCompiler, _JavaClassCodeGenerator_fieldCode
 const EMPTY_LINE = '';
 class JavaClassCodeGenerator {
     constructor(usedTypesCompiler, fieldCodeGenerator) {
-        _JavaClassCodeGenerator_usedTypesCompiler.set(this, void 0);
-        _JavaClassCodeGenerator_fieldCodeGenerator.set(this, void 0);
-        __classPrivateFieldSet(this, _JavaClassCodeGenerator_usedTypesCompiler, usedTypesCompiler, "f");
-        __classPrivateFieldSet(this, _JavaClassCodeGenerator_fieldCodeGenerator, fieldCodeGenerator, "f");
+        this._usedTypesCompiler = usedTypesCompiler;
+        this._fieldCodeGenerator = fieldCodeGenerator;
     }
     generateCode(javaClass) {
         const fieldsLines = [];
         const methodsLines = [];
         for (const javaField of javaClass.fields) {
-            const { fieldLines, getterLines, setterLines } = __classPrivateFieldGet(this, _JavaClassCodeGenerator_fieldCodeGenerator, "f").generateCode(javaClass.name, javaField);
+            const { fieldLines, getterLines, setterLines } = this._fieldCodeGenerator.generateCode(javaClass.name, javaField);
             fieldsLines.push(...fieldLines);
             methodsLines.push(...getterLines, ...setterLines);
         }
@@ -4960,13 +4946,11 @@ class JavaClassCodeGenerator {
         return classOuterLines.join('\n');
     }
     generateImportLines(javaClass) {
-        const usedTypes = __classPrivateFieldGet(this, _JavaClassCodeGenerator_usedTypesCompiler, "f").getUsedTypes(javaClass);
+        const usedTypes = this._usedTypesCompiler.getUsedTypes(javaClass);
         const javaImportStatementsGenerator = new _erdiagram_converter_oop_source_code_generator_java_type_import_JavaImportStatementsGenerator__WEBPACK_IMPORTED_MODULE_1__["default"](javaClass.packageName);
         return javaImportStatementsGenerator.generateImportStatements(usedTypes);
     }
 }
-_JavaClassCodeGenerator_usedTypesCompiler = new WeakMap(), _JavaClassCodeGenerator_fieldCodeGenerator = new WeakMap();
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (JavaClassCodeGenerator);
 
 
 /***/ }),
@@ -5972,45 +5956,29 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ JavaClassGenerator)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
-    if (kind === "m") throw new TypeError("Private method is not writable");
-    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
-    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {
-    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
-    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
-};
-var _JavaClassGenerator_generatedClassesPackage, _JavaClassGenerator_fieldGenerator;
 
 class JavaClassGenerator {
     constructor(generatedClassesPackage, fieldGenerator) {
-        _JavaClassGenerator_generatedClassesPackage.set(this, void 0);
-        _JavaClassGenerator_fieldGenerator.set(this, void 0);
-        __classPrivateFieldSet(this, _JavaClassGenerator_generatedClassesPackage, generatedClassesPackage, "f");
-        __classPrivateFieldSet(this, _JavaClassGenerator_fieldGenerator, fieldGenerator, "f");
+        this._generatedClassesPackage = generatedClassesPackage;
+        this._fieldGenerator = fieldGenerator;
     }
     generateJavaClass(classDescriptor, fieldGeneratedEventListener) {
         return {
-            packageName: __classPrivateFieldGet(this, _JavaClassGenerator_generatedClassesPackage, "f"),
+            packageName: this._generatedClassesPackage,
             visibility: _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__.JavaVisibility.PUBLIC,
             name: classDescriptor.name,
             annotations: [],
             fields: classDescriptor.fields.map(fieldDescriptor => {
-                const javaField = __classPrivateFieldGet(this, _JavaClassGenerator_fieldGenerator, "f").generateJavaField(fieldDescriptor);
+                const javaField = this._fieldGenerator.generateJavaField(fieldDescriptor);
                 fieldGeneratedEventListener({ javaField, fieldDescriptor });
                 return javaField;
             })
         };
     }
 }
-_JavaClassGenerator_generatedClassesPackage = new WeakMap(), _JavaClassGenerator_fieldGenerator = new WeakMap();
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (JavaClassGenerator);
 
 
 /***/ }),
@@ -6075,33 +6043,19 @@ class JavaClassModelGenerator {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ JavaFieldGenerator)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types */ "./src/main/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types.ts");
 /* harmony import */ var _erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/util/string-utils */ "./src/main/erdiagram/util/string-utils.ts");
-var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
-    if (kind === "m") throw new TypeError("Private method is not writable");
-    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
-    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
-};
-var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {
-    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
-    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
-};
-var _JavaFieldGenerator_typeResolver, _JavaFieldGenerator_fluentSetters;
 
 
 class JavaFieldGenerator {
     constructor(typeResolver, fluentSetters) {
-        _JavaFieldGenerator_typeResolver.set(this, void 0);
-        _JavaFieldGenerator_fluentSetters.set(this, void 0);
-        __classPrivateFieldSet(this, _JavaFieldGenerator_typeResolver, typeResolver, "f");
-        __classPrivateFieldSet(this, _JavaFieldGenerator_fluentSetters, fluentSetters, "f");
+        this._typeResolver = typeResolver;
+        this._fluentSetters = fluentSetters;
     }
     generateJavaField(fieldDescriptor) {
-        const fieldType = __classPrivateFieldGet(this, _JavaFieldGenerator_typeResolver, "f").resolveFieldType(fieldDescriptor);
+        const fieldType = this._typeResolver.resolveFieldType(fieldDescriptor);
         return {
             visibility: _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__.JavaVisibility.PRIVATE,
             name: fieldDescriptor.name,
@@ -6116,7 +6070,7 @@ class JavaFieldGenerator {
                 visibility: _erdiagram_converter_oop_source_code_generator_java_model_java_class_model_types__WEBPACK_IMPORTED_MODULE_0__.JavaVisibility.PUBLIC,
                 annotations: [],
                 name: this.getSetterName(fieldDescriptor.name),
-                fluent: __classPrivateFieldGet(this, _JavaFieldGenerator_fluentSetters, "f")
+                fluent: this._fluentSetters
             }
         };
     }
@@ -6132,8 +6086,6 @@ class JavaFieldGenerator {
         return `set${capitalizedFieldName}`;
     }
 }
-_JavaFieldGenerator_typeResolver = new WeakMap(), _JavaFieldGenerator_fluentSetters = new WeakMap();
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (JavaFieldGenerator);
 
 
 /***/ }),

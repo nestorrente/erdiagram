@@ -82,7 +82,7 @@ You can learn more about how the class model is generated [here](Class_model.md)
 ## Configuration options
 
 You can read the [Configuration options](Configuration_options.md) document in order to get further
-information about the configuration options of the different components of _ERDiagram_. 
+information about the configuration options of the different components of _ERDiagram_.
 
 ## Use cases with examples
 
@@ -101,7 +101,7 @@ Product
     description text(1000)
     price decimal(10, 3)
     active bool
-  
+
 Order
     creationDate datetime
     state text(10)
@@ -423,7 +423,7 @@ public class Product {
 }
 
 /* ========== Order class ========== */
-    
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -470,7 +470,7 @@ public class Order {
 ```
 
 You can also instantiate the `JavaSourceCodeGenerator` using custom configuration options.
-This allows you to add JPA annotations and much more:
+This allows you to add JPA, validation and Lombok annotations among other features:
 
 ```javascript
 import {
@@ -489,6 +489,11 @@ const sourceCodeGenerator = JavaSourceCodeGenerator.builder()
             generatedClassesPackage: 'com.example.my_package'
         })
         .addTransformers(
+                new LombokTransformer({
+					dataAnnotation: false,
+                    toStringAnnotation: true,
+					equalsAndHashCodeAnnotation: true
+                }),
                 new BeanValidationTransformer({
                     notNullTextValidationStrategy: NotNullTextValidationStrategy.NOT_BLANK
                 }),

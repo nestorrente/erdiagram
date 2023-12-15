@@ -519,7 +519,8 @@ declare class JavaFieldCodeGenerator {
 	private createSetterLines;
 }
 declare class JavaClassCodeGenerator {
-	#private;
+	private readonly _usedTypesCompiler;
+	private readonly _fieldCodeGenerator;
 	constructor(usedTypesCompiler: JavaClassUsedTypesCompiler, fieldCodeGenerator: JavaFieldCodeGenerator);
 	generateCode(javaClass: JavaClass): string;
 	private generateImportLines;
@@ -595,7 +596,7 @@ export declare class JpaTransformer implements JavaClassModelTransformer<JpaTran
 	private readonly _setupDataGenerator;
 	private readonly _fieldVisitor;
 	private readonly _classVisitor;
-	constructor(databaseModelGenerator: DatabaseModelGenerator, config?: Partial<JpaConfig>);
+	constructor(databaseModelGenerator: DatabaseModelGenerator, config?: PartialJpaConfig);
 	setup(context: SetupContext): JpaTransformerSetupData;
 	visitField(javaField: JavaField, context: JavaFieldTransformContext<JpaTransformerSetupData>): void;
 	visitClass(javaClass: JavaClass, context: JavaClassTransformContext<JpaTransformerSetupData>): void;

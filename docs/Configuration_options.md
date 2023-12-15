@@ -16,6 +16,7 @@ In this page you will find information about the configuration options of the di
         + [Type bindings (Java)](#type-bindings-java)
         + [JPA](#jpa)
         + [Bean Validation](#bean-validation)
+        + [Lombok](#lombok)
     + [TypeScript](#typescript)
         + [Type bindings (TypeScript)](#type-bindings-typescript)
 * [Diagram](#diagram)
@@ -51,11 +52,11 @@ These are the configuration options corresponding to the following interfaces:
 * `SqliteDialectConfig`
 * `SqlServerDialectConfig`
 
-| Property               | Type                                         | Default value                           | description |
-|------------------------|----------------------------------------------|-----------------------------------------|-------------|
-| `typeBindings`         | `Record<EntityPropertyType, TypeScriptType>` | See [type bindings](#type-bindings-sql) | Allows to customize the corresponding SQL type for each _ERDiagram_ type |
-| `tableNameCaseFormat`  | `CaseFormat`                                 | See [case formats](#case-formats)       | Allows to customize the case of the database tables |
-| `columnNameCaseFormat` | `CaseFormat`                                 | See [case formats](#case-formats)       | Allows to customize the case of the database columns |
+| Property               | Type                                         | Default value                           | description                                                               |
+|------------------------|----------------------------------------------|-----------------------------------------|---------------------------------------------------------------------------|
+| `typeBindings`         | `Record<EntityPropertyType, TypeScriptType>` | See [type bindings](#type-bindings-sql) | Allows to customize the corresponding SQL type for each _ERDiagram_ type. |
+| `tableNameCaseFormat`  | `CaseFormat`                                 | See [case formats](#case-formats)       | Allows to customize the case of the database tables.                      |
+| `columnNameCaseFormat` | `CaseFormat`                                 | See [case formats](#case-formats)       | Allows to customize the case of the database columns.                     |
 
 #### Type bindings (SQL)
 
@@ -120,10 +121,10 @@ These are the configuration options corresponding to the `ClassModelConfig` inte
 
 These are the configuration options corresponding to the `JavaClassModelConfig` interface:
 
-| Property                        | Type                                   | Default value                            | description |
-|---------------------------------|----------------------------------------|------------------------------------------|-------------|
-| `typeBindings`                  | `Record<EntityPropertyType, JavaType>` | See [type bindings](#type-bindings-java) | Allows to customize the corresponding Java type for each _ERDiagram_ type |
-| `generatedClassesPackage`       | <code>string &#124; undefined</code>   | `undefined`                              | Allows to define the package name of the generated classes |
+| Property                        | Type                                   | Default value                            | description                                                                |
+|---------------------------------|----------------------------------------|------------------------------------------|----------------------------------------------------------------------------|
+| `typeBindings`                  | `Record<EntityPropertyType, JavaType>` | See [type bindings](#type-bindings-java) | Allows to customize the corresponding Java type for each _ERDiagram_ type. |
+| `generatedClassesPackage`       | <code>string &#124; undefined</code>   | `undefined`                              | Allows to define the package name of the generated classes.                |
 
 #### Type bindings (Java)
 
@@ -179,29 +180,40 @@ parseJavaType('java.util.Map<java.lang.Long, java.util.List<com.example.MyClass>
 
 #### JPA
 
-| Property                        | Type                                   | Default value                            | description |
-|---------------------------------|----------------------------------------|------------------------------------------|-------------|
-| `tableNameCaseFormat`           | `CaseFormat`                           | See [case formats](#case-formats)        | Allows to customize the case of the database tables |
-| `columnNameCaseFormat`          | `CaseFormat`                           | See [case formats](#case-formats)        | Allows to customize the case of the database columns |
-| `annotateGetters`               | `boolean`                              | `false`                                  | Move annotations from fields to its corresponding getter methods. |
-| `useExplicitTableName`          | `boolean`                              | `false`                                  | Add the name of the table using the `@Table(name = "TableName")` annotation. |
+| Property                        | Type                                   | Default value                            | description                                                                     |
+|---------------------------------|----------------------------------------|------------------------------------------|---------------------------------------------------------------------------------|
+| `tableNameCaseFormat`           | `CaseFormat`                           | See [case formats](#case-formats)        | Allows to customize the case of the database tables.                            |
+| `columnNameCaseFormat`          | `CaseFormat`                           | See [case formats](#case-formats)        | Allows to customize the case of the database columns.                           |
+| `annotateGetters`               | `boolean`                              | `false`                                  | Move annotations from fields to its corresponding getter methods.               |
+| `useExplicitTableName`          | `boolean`                              | `false`                                  | Add the name of the table using the `@Table(name = "TableName")` annotation.    |
 | `useExplicitColumnName`         | `boolean`                              | `false`                                  | Add the name of the column using the `@Column(name = "columnName")` annotation. |
 
 #### Bean validation
 
-| Property                        | Type                                   | Default value                            | description |
-|---------------------------------|----------------------------------------|------------------------------------------|-------------|
-| `notNullTextValidationStrategy` | `enum NotNullTextValidationStrategy`   | `NOT_NULL`                               | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull`, `@NotEmpty` or `@NotBlank`) to use for _not-null_ `text` fields |
-| `notNullBlobValidationStrategy` | `enum NotNullBlobValidationStrategy`   | `NOT_NULL`                               | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull` or `@NotEmpty`) to use for _not-null_ `blob` fields |
-| `annotateGetters`               | `boolean`                              | `false`                                  | Move annotations from fields to its corresponding getter methods. |
+| Property                        | Type                                   | Default value                            | description                                                                                                                                                |
+|---------------------------------|----------------------------------------|------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `notNullTextValidationStrategy` | `enum NotNullTextValidationStrategy`   | `NOT_NULL`                               | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull`, `@NotEmpty` or `@NotBlank`) to use for _not-null_ `text` fields. |
+| `notNullBlobValidationStrategy` | `enum NotNullBlobValidationStrategy`   | `NOT_NULL`                               | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull` or `@NotEmpty`) to use for _not-null_ `blob` fields.              |
+| `annotateGetters`               | `boolean`                              | `false`                                  | Move annotations from fields to its corresponding getter methods.                                                                                          |
+
+#### Lombok
+
+| Property                      | Type      | Default value | description                                                                             |
+|-------------------------------|-----------|---------------|-----------------------------------------------------------------------------------------|
+| `builderAnnotation`           | `boolean` | `false`       | Annotates the class with `@Builder`.                                                    |
+| `dataAnnotation`              | `boolean` | `false`       | Annotates the class with `@Data` and removes the getters and setters of all the fields. |
+| `getterAnnotation`            | `boolean` | `false`       | Annotates the class with `@Data` and removes the getters of all the fields.             |
+| `setterAnnotation`            | `boolean` | `false`       | Annotates the class with `@Data` and removes the setters of all the fields.             |
+| `toStringAnnotation`          | `boolean` | `false`       | Annotates the class with `@ToString`.                                                   |
+| `equalsAndHashCodeAnnotation` | `boolean` | `false`       | Annotates the class with `@EqualsAndHashCode`.                                          |
 
 ### TypeScript
 
 These are the configuration options corresponding to the `TypeScriptConfig` interface:
 
-| Property       | Type                                         | Default value                                  | description |
-|----------------|----------------------------------------------|------------------------------------------------|-------------|
-| `typeBindings` | `Record<EntityPropertyType, TypeScriptType>` | See [type bindings](#type-bindings-typescript) | Allows to customize the corresponding TypeScript type for each _ERDiagram_ type |
+| Property       | Type                                         | Default value                                  | description                                                                      |
+|----------------|----------------------------------------------|------------------------------------------------|----------------------------------------------------------------------------------|
+| `typeBindings` | `Record<EntityPropertyType, TypeScriptType>` | See [type bindings](#type-bindings-typescript) | Allows to customize the corresponding TypeScript type for each _ERDiagram_ type. |
 
 #### Type bindings (TypeScript)
 
@@ -261,10 +273,10 @@ parseTypeScriptType('Map<number, Date[]>') // Map<number, Date[]> a.k.a. Map<num
 
 These are the configuration options corresponding to the `NomnomlConfig` interface:
 
-| Property       | Type                 | Default value                 | description                                                                                     |
-|----------------|----------------------|-------------------------------|-------------------------------------------------------------------------------------------------|
-| `diagramLevel` | `enum DiagramLevel`  | `LOGICAL`                     | Allows to customize the detail level of the generated diagram                                   |
-| `style`        | `NomnomlStyleConfig` | See [directives](#directives) | Allows to customize the style of the diagram by defining custom values for Nomnoml's directives |
+| Property       | Type                 | Default value                 | description                                                                                      |
+|----------------|----------------------|-------------------------------|--------------------------------------------------------------------------------------------------|
+| `diagramLevel` | `enum DiagramLevel`  | `LOGICAL`                     | Allows to customize the detail level of the generated diagram.                                   |
+| `style`        | `NomnomlStyleConfig` | See [directives](#directives) | Allows to customize the style of the diagram by defining custom values for Nomnoml's directives. |
 
 #### Directives
 
@@ -301,6 +313,6 @@ The full list of supported directives and their default opinionated values is pr
 
 These are the configuration options corresponding to the `PlantUmlConfig` interface:
 
-| Property       | Type                 | Default value | description                                                                                     |
-|----------------|----------------------|---------------|-------------------------------------------------------------------------------------------------|
-| `diagramLevel` | `enum DiagramLevel`  | `LOGICAL`     | Allows to customize the detail level of the generated diagram                                   |
+| Property       | Type                 | Default value | description                                                    |
+|----------------|----------------------|---------------|----------------------------------------------------------------|
+| `diagramLevel` | `enum DiagramLevel`  | `LOGICAL`     | Allows to customize the detail level of the generated diagram. |
