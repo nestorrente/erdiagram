@@ -1,22 +1,30 @@
 import Mock = jest.Mock;
 
-export type MockObject<T> = T & {
-	[P in keyof T]: T[P] extends (...args: infer A) => infer R ? Mock<R, A> : never;
-};
+export type MockObject<T> = T & PublicMembersMocks<T>;
 
 export type PublicMembersMocks<T> = {
-	[P in keyof T]: T[P] extends (...args: infer A) => infer R ? Mock<R, A> : never;
+	[P in keyof T]: T[P] extends (...args: infer A) => infer R ? Mock<R, A> : T[P];
 };
 
 export function createMockObject<T>(publicMembersMocks: PublicMembersMocks<T>): MockObject<T> {
-	return publicMembersMocks as MockObject<T>;
+	return new Proxy<PublicMembersMocks<T>>(publicMembersMocks, {
+		get(target, property): any {
+
+			if (!target.hasOwnProperty(property)) {
+				throw new Error(`Accessing a non-mocked property "${property.toString()}"`);
+			}
+
+			return target[property as keyof T];
+
+		}
+	}) as MockObject<T>;
 }
 
 type ProxyTarget = Record<string, Mock>;
 
 export function createMockProxy<T>(): MockObject<T> {
 	return new Proxy<ProxyTarget>({}, {
-		get(target: ProxyTarget, property: keyof ProxyTarget, receiver: any): any {
+		get(target, property: keyof ProxyTarget): any {
 
 			if (!target.hasOwnProperty(property)) {
 				target[property] = jest.fn();

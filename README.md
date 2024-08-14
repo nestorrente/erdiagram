@@ -28,7 +28,7 @@ You can try _ERDiagram_ online using the [ERDiagram playground](http://erdiagram
 you will find some code examples that are very useful for learning the _ERDiagram_ language.
 
 There is also a _work-in-progress_ [CLI version of _ERDiagram_](https://github.com/nestorrente/erdiagram-cli). Check it
-out! :slightly_smiling_face:
+out! 🙂
 
 ## Installation
 
@@ -100,7 +100,7 @@ npm run build
 
 ## Contributing
 
-This is a side project I'm working on during my spare time, so I'd be very happy if you want to contribute :grinning:
+This is a side project I'm working on during my spare time, so I'd be very happy if you want to contribute 😀
 bug report, suggestions, pull requests, or any other kind of feedback are really appreciated.
 
 Please contribute using [GitHub Flow](https://guides.github.com/introduction/flow). Create a branch from the `develop`
@@ -117,7 +117,7 @@ This is a small list of features/tools that I'll be very happy to have:
 
 * More database engines support.
 * More OOP languages support.
-* Syntax highlight for some text editors or IDEs (Sublime Text, Atom, IntelliJ IDEA, VS Code, ...).
+* ERDiagram language syntax highlight support for popular text editors or IDEs (Sublime Text, Jetbrains, VS Code, ...).
 * XSD / JSON schema generation.
 * Liquibase files generation.
-* Any other cool stuff :stuck_out_tongue:
+* Any other cool stuff 😛
