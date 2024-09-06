@@ -22,11 +22,11 @@ module.exports = {
         '@typescript-eslint/naming-convention': [
             'error',
             {
-                'selector': 'memberLike',
-                'modifier': [
+                selector: 'memberLike',
+                modifiers: [
                     'private'
                 ],
-                'format': [
+                format: [
                     'camelCase'
                 ],
                 'leadingUnderscore': 'require'

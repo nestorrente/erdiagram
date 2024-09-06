@@ -4,17 +4,7 @@ import {createEntityWithoutProperties} from '#/erdiagram/parser/entity-relations
 import StandardIdNamingStrategies from '@/erdiagram/converter/common/id-naming-strategy/StandardIdNamingStrategies';
 import JavaClassModelTransformer
 	from '@/erdiagram/converter/oop/source-code-generator/java/model/transformer/JavaClassModelTransformer';
-import {
-	JavaClassModelTransformContext,
-	JavaClassTransformContext,
-	JavaFieldTransformContext,
-	SetupContext
-} from '@/erdiagram/converter/oop/source-code-generator/java/model/transformer/java-class-model-transformer-context-types';
-import {
-	JavaClass,
-	JavaClassModel,
-	JavaField
-} from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
+import {JavaClass} from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
 import JavaAnnotation from '@/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation';
 import parseJavaType from '@/erdiagram/converter/oop/source-code-generator/java/type/parseJavaType';
 
@@ -93,15 +83,12 @@ public class MyEntity {
 
 });
 
+const noop = () => {};
+
 const generatedAnnotationTransformer: JavaClassModelTransformer = {
-	setup(context: SetupContext): unknown {
-		// Do nothing
-		return;
-	},
-	visitField(javaField: JavaField, context: JavaFieldTransformContext<unknown>) {
-		// Do nothing
-	},
-	visitClass(javaClass: JavaClass, context: JavaClassTransformContext<unknown>) {
+	setup: noop,
+	visitField: noop,
+	visitClass(javaClass: JavaClass) {
 
 		const generatedAnnotationType = parseJavaType('javax.annotation.Generated');
 
@@ -112,7 +99,5 @@ const generatedAnnotationTransformer: JavaClassModelTransformer = {
 		javaClass.annotations.push(generatedAnnotation);
 
 	},
-	visitModel(javaClassModel: JavaClassModel, context: JavaClassModelTransformContext<unknown>) {
-		// Do nothing
-	}
+	visitModel: noop
 };
