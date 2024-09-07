@@ -7,7 +7,7 @@ import {
 	getTransformedJavaClassModel
 } from '#/erdiagram/converter/oop/source-code-generator/java/util/transformer-test-utils';
 import { LombokTransformer } from '@/erdiagram/converter/oop/source-code-generator/java/lombok/transformer/LombokTransformer';
-import { PartialLombokConfig } from '../../../../../../../../main/erdiagram/converter/oop/source-code-generator/java/lombok/config/LombokConfig';
+import { PartialLombokConfig } from '@/erdiagram/converter/oop/source-code-generator/java/lombok/config/LombokConfig';
 
 describe('Simple annotations', () => {
 

@@ -3,18 +3,19 @@ import {EntityPropertyType} from '@/erdiagram/parser/types/entity-relationship-m
 import NotNullTextValidationStrategy
 	from '@/erdiagram/converter/oop/source-code-generator/java/validation/strategy/NotNullTextValidationStrategy';
 import {removeNullableValues} from '@/erdiagram/util/array-utils';
-import JavaValidationAnnotationTypes
-	from '@/erdiagram/converter/oop/source-code-generator/java/validation/JavaValidationAnnotationTypes';
 import NotNullBlobValidationStrategy
 	from '@/erdiagram/converter/oop/source-code-generator/java/validation/strategy/NotNullBlobValidationStrategy';
 import JavaAnnotation from '@/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation';
 import ERDiagramSyntaxError from '@/erdiagram/parser/types/error/ERDiagramSyntaxError';
+import JavaValidationAnnotationTypesProvider
+	from '@/erdiagram/converter/oop/source-code-generator/java/validation/JavaValidationAnnotationTypesProvider';
 
 export default class BeanValidationAnnotationsSupplier {
 
 	constructor(
-			private readonly notNullTextValidationStrategy: NotNullTextValidationStrategy,
-			private readonly notNullBlobValidationStrategy: NotNullBlobValidationStrategy,
+			private readonly _notNullTextValidationStrategy: NotNullTextValidationStrategy,
+			private readonly _notNullBlobValidationStrategy: NotNullBlobValidationStrategy,
+			private readonly _annotationTypesProvider: JavaValidationAnnotationTypesProvider,
 	) {
 
 	}
@@ -47,7 +48,7 @@ export default class BeanValidationAnnotationsSupplier {
 		}
 
 		return new JavaAnnotation(
-				JavaValidationAnnotationTypes.Size,
+				this._annotationTypesProvider.size(),
 				{max: maxSize}
 		);
 
@@ -60,18 +61,18 @@ export default class BeanValidationAnnotationsSupplier {
 			case EntityPropertyType.BLOB:
 				return this.getNotNullAnnotationForBlobType();
 			default:
-				return JavaValidationAnnotationTypes.NotNull;
+				return this._annotationTypesProvider.notNull();
 		}
 	}
 
 	private getNotNullAnnotationForTextType() {
-		switch (this.notNullTextValidationStrategy) {
+		switch (this._notNullTextValidationStrategy) {
 			case NotNullTextValidationStrategy.NOT_NULL:
-				return JavaValidationAnnotationTypes.NotNull;
+				return this._annotationTypesProvider.notNull();
 			case NotNullTextValidationStrategy.NOT_EMPTY:
-				return JavaValidationAnnotationTypes.NotEmpty;
+				return this._annotationTypesProvider.notEmpty();
 			case NotNullTextValidationStrategy.NOT_BLANK:
-				return JavaValidationAnnotationTypes.NotBlank;
+				return this._annotationTypesProvider.notBlank();
 				/* istanbul ignore next */
 			default:
 				/* istanbul ignore next */
@@ -80,11 +81,11 @@ export default class BeanValidationAnnotationsSupplier {
 	}
 
 	private getNotNullAnnotationForBlobType() {
-		switch (this.notNullBlobValidationStrategy) {
+		switch (this._notNullBlobValidationStrategy) {
 			case NotNullBlobValidationStrategy.NOT_NULL:
-				return JavaValidationAnnotationTypes.NotNull;
+				return this._annotationTypesProvider.notNull();
 			case NotNullBlobValidationStrategy.NOT_EMPTY:
-				return JavaValidationAnnotationTypes.NotEmpty;
+				return this._annotationTypesProvider.notEmpty();
 				/* istanbul ignore next */
 			default:
 				/* istanbul ignore next */

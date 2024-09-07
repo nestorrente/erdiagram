@@ -6,7 +6,7 @@ import JavaClassModelGenerator
 	from '@/erdiagram/converter/oop/source-code-generator/java/model/generator/JavaClassModelGenerator';
 import ApplyTransformersCommand
 	from '@/erdiagram/converter/oop/source-code-generator/java/model/transformer/ApplyTransformersCommand';
-import { JavaClass } from '../../../../../../../main/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
+import { JavaClass } from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
 
 export function getTransformedJavaClassModel(
 		erdiagramCode: string,

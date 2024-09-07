@@ -18,6 +18,8 @@ import beanValidationConfigManager
 	from '@/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationConfigManager';
 import BeanValidationFieldVisitor
 	from '@/erdiagram/converter/oop/source-code-generator/java/validation/visitor/BeanValidationFieldVisitor';
+import JavaValidationAnnotationTypesProvider
+	from '@/erdiagram/converter/oop/source-code-generator/java/validation/JavaValidationAnnotationTypesProvider';
 
 export default class BeanValidationTransformer implements JavaClassModelTransformer {
 
@@ -28,10 +30,15 @@ export default class BeanValidationTransformer implements JavaClassModelTransfor
 		const {
 			notNullTextValidationStrategy,
 			notNullBlobValidationStrategy,
+			javaExtendedPackage,
 			annotateGetters
 		} = beanValidationConfigManager.mergeWithDefaultConfig(config);
 
-		const beanValidationAnnotationsSupplier = new BeanValidationAnnotationsSupplier(notNullTextValidationStrategy, notNullBlobValidationStrategy);
+		const beanValidationAnnotationsSupplier = new BeanValidationAnnotationsSupplier(
+				notNullTextValidationStrategy,
+				notNullBlobValidationStrategy,
+				new JavaValidationAnnotationTypesProvider(javaExtendedPackage)
+		);
 
 		this._beanValidationFieldVisitor = new BeanValidationFieldVisitor(
 				beanValidationAnnotationsSupplier,
