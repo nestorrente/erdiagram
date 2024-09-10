@@ -141,12 +141,12 @@ describe('Dependencies are called as expected', () => {
 	}
 
 	function setupCommonMocks({
-								  classModel,
-								  classDescriptor,
-								  fieldDescriptor,
-								  javaClassModel,
-								  setupData
-							  }: CommonTestData) {
+			classModel,
+			classDescriptor,
+			fieldDescriptor,
+			javaClassModel,
+			setupData
+		}: CommonTestData) {
 
 		classModelGeneratorMock.generateClassModel.mockReturnValue(classModel);
 
@@ -163,15 +163,15 @@ describe('Dependencies are called as expected', () => {
 	}
 
 	function checkCommonMocksCalls({
-									   entityRelationshipModel,
-									   classModel,
-									   javaClassModel,
-									   setupData,
-									   javaClass,
-									   classDescriptor,
-									   javaField,
-									   fieldDescriptor
-								   }: CommonTestData) {
+			entityRelationshipModel,
+			classModel,
+			javaClassModel,
+			setupData,
+			javaClass,
+			classDescriptor,
+			javaField,
+			fieldDescriptor
+		}: CommonTestData) {
 
 		checkAllMockCalls(classModelGeneratorMock.generateClassModel, [
 			[entityRelationshipModel]

@@ -1,19 +1,9 @@
 import JavaClassModelTransformer
 	from '@/erdiagram/converter/oop/source-code-generator/java/model/transformer/JavaClassModelTransformer';
-import {
-	JavaClassModelTransformContext,
-	JavaClassTransformContext,
-	JavaFieldTransformContext,
-	SetupContext
-} from '@/erdiagram/converter/oop/source-code-generator/java/model/transformer/java-class-model-transformer-context-types';
 import { PartialLombokConfig } from '@/erdiagram/converter/oop/source-code-generator/java/lombok/config/LombokConfig';
 import lombokConfigManager
 	from '@/erdiagram/converter/oop/source-code-generator/java/lombok/config/LombokConfigManager';
-import {
-	JavaClass,
-	JavaClassModel,
-	JavaField
-} from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
+import { JavaClass } from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
 import LombokTransformerClassVisitor
 	from '@/erdiagram/converter/oop/source-code-generator/java/lombok/transformer/visitor/class/LombokTransformerClassVisitor';
 
@@ -26,19 +16,19 @@ export class LombokTransformer implements JavaClassModelTransformer {
 		this._classVisitor = new LombokTransformerClassVisitor(fullConfig);
 	}
 
-	setup(context: SetupContext): unknown {
+	setup(): unknown {
 		return undefined;
 	}
 
-	visitField(javaField: JavaField, context: JavaFieldTransformContext<unknown>): void {
+	visitField(): void {
 		// Do nothing
 	}
 
-	visitClass(javaClass: JavaClass, context: JavaClassTransformContext<unknown>): void {
+	visitClass(javaClass: JavaClass): void {
 		this._classVisitor.visitClass(javaClass);
 	}
 
-	visitModel(javaClassModel: JavaClassModel, context: JavaClassModelTransformContext<unknown>): void {
+	visitModel(): void {
 		// Do nothing
 	}
 

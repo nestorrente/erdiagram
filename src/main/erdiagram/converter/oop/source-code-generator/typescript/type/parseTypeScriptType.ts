@@ -22,7 +22,7 @@ function parseTypeScriptTypeInternal(text: string): TypeScriptType {
 	const trimmedText = text.trim();
 
 	if (ARRAY_TYPE_REGEX.test(trimmedText)) {
-		const [fullMatch, rawTypeText] = ARRAY_TYPE_REGEX.exec(trimmedText)!;
+		const [, rawTypeText] = ARRAY_TYPE_REGEX.exec(trimmedText)!;
 		return createTypeScriptArrayType(parseTypeScriptTypeInternal(rawTypeText));
 	}
 

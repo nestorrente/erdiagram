@@ -1,21 +1,19 @@
 import SourceCodeGenerator from '@/erdiagram/converter/SourceCodeGenerator';
-import {EntityRelationshipModel} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import MultipleFileSourceCodeGenerator, {isMultipleFileSourceCodeGenerator} from '@/erdiagram/converter/MultipleFileSourceCodeGenerator';
-import SourceFileInfo from '@/erdiagram/converter/common/SourceFileInfo';
 
 test('isMultipleFileSourceCodeGenerator()', () => {
 
 	const nonMultipleGenerator: SourceCodeGenerator = {
-		generateSourceCode(model: EntityRelationshipModel): string {
+		generateSourceCode() {
 			return '';
 		}
 	};
 
 	const multipleGenerator: MultipleFileSourceCodeGenerator = {
-		generateSourceCode(model: EntityRelationshipModel): string {
+		generateSourceCode() {
 			return '';
 		},
-		generateSourceFiles(model: EntityRelationshipModel): SourceFileInfo[] {
+		generateSourceFiles() {
 			return [];
 		}
 	};

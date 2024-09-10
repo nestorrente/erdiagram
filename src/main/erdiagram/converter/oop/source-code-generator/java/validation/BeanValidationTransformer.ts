@@ -1,16 +1,7 @@
 import JavaClassModelTransformer
 	from '@/erdiagram/converter/oop/source-code-generator/java/model/transformer/JavaClassModelTransformer';
-import {
-	JavaClassModelTransformContext,
-	JavaClassTransformContext,
-	JavaFieldTransformContext,
-	SetupContext
-} from '@/erdiagram/converter/oop/source-code-generator/java/model/transformer/java-class-model-transformer-context-types';
-import {
-	JavaClass,
-	JavaClassModel,
-	JavaField
-} from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
+import { JavaFieldTransformContext } from '@/erdiagram/converter/oop/source-code-generator/java/model/transformer/java-class-model-transformer-context-types';
+import { JavaField } from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
 import BeanValidationAnnotationsSupplier
 	from '@/erdiagram/converter/oop/source-code-generator/java/validation/visitor/BeanValidationAnnotationsSupplier';
 import {PartialBeanValidationConfig} from '@/erdiagram/converter/oop/source-code-generator/java/validation/config/BeanValidationConfig';
@@ -47,7 +38,7 @@ export default class BeanValidationTransformer implements JavaClassModelTransfor
 
 	}
 
-	setup(context: SetupContext): unknown {
+	setup(): unknown {
 		return undefined;
 	}
 
@@ -55,11 +46,11 @@ export default class BeanValidationTransformer implements JavaClassModelTransfor
 		this._beanValidationFieldVisitor.visitField(javaField, context);
 	}
 
-	visitClass(javaClass: JavaClass, context: JavaClassTransformContext<unknown>): void {
+	visitClass(): void {
 		// Do nothing
 	}
 
-	visitModel(javaClassModel: JavaClassModel, context: JavaClassModelTransformContext<unknown>): void {
+	visitModel(): void {
 		// Do nothing
 	}
 

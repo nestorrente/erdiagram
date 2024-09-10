@@ -20,10 +20,7 @@ export function parseEntityNameStatement(line: string): string {
 		throw new ERDiagramSyntaxError('Syntax error');
 	}
 
-	const [
-		fullMatch,
-		entityName
-	] = result;
+	const [, entityName] = result;
 
 	return capitalizeWord(entityName);
 
@@ -38,6 +35,7 @@ export function parseEntityPropertyStatement(line: string): ParsedEntityProperty
 	}
 
 	const [
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		fullMatch,
 		name,
 		modifiers,
@@ -81,6 +79,7 @@ export function parseRelationshipStatement(line: string): ParsedRelationshipDesc
 	}
 
 	const [
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		fullMatch,
 		leftEntity,
 		leftEntityAlias = leftEntity,

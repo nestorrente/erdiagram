@@ -55,7 +55,7 @@ export default class JavaFieldTypeResolver implements FieldTypeResolver<JavaType
 		}
 
 		/* istanbul ignore next */
-		if (!this.typeBindings.hasOwnProperty(primitiveType)) {
+		if (!Object.hasOwn(this.typeBindings, primitiveType)) {
 			throw new Error('Unsupported type: ' + primitiveType);
 		}
 

@@ -21,7 +21,7 @@ function parseJavaTypeInternal(text: string): JavaType {
 	const trimmedText = text.trim();
 
 	if (ARRAY_TYPE_REGEX.test(trimmedText)) {
-		const [fullMatch, rawTypeText] = ARRAY_TYPE_REGEX.exec(trimmedText)!;
+		const [, rawTypeText] = ARRAY_TYPE_REGEX.exec(trimmedText)!;
 		return createJavaArrayType(parseJavaTypeInternal(rawTypeText));
 	}
 

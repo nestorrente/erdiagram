@@ -11,7 +11,7 @@ export default class SqlTypeResolver {
 	public resolveSqlType(type: EntityPropertyType): string {
 
 		/* istanbul ignore next */
-		if (!this.typeBindings.hasOwnProperty(type)) {
+		if (!Object.hasOwn(this.typeBindings, type)) {
 			throw new Error('Unsupported type: ' + type);
 		}
 

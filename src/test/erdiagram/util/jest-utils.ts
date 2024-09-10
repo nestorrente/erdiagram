@@ -8,9 +8,9 @@ export type PublicMembersMocks<T> = {
 
 export function createMockObject<T>(publicMembersMocks: PublicMembersMocks<T>): MockObject<T> {
 	return new Proxy<PublicMembersMocks<T>>(publicMembersMocks, {
-		get(target, property): any {
+		get(target, property) {
 
-			if (!target.hasOwnProperty(property)) {
+			if (!Object.hasOwn(target, property)) {
 				throw new Error(`Accessing a non-mocked property "${property.toString()}"`);
 			}
 
@@ -24,9 +24,9 @@ type ProxyTarget = Record<string, Mock>;
 
 export function createMockProxy<T>(): MockObject<T> {
 	return new Proxy<ProxyTarget>({}, {
-		get(target, property: keyof ProxyTarget): any {
+		get(target, property: keyof ProxyTarget) {
 
-			if (!target.hasOwnProperty(property)) {
+			if (!Object.hasOwn(target, property)) {
 				target[property] = jest.fn();
 			}
 
@@ -36,7 +36,7 @@ export function createMockProxy<T>(): MockObject<T> {
 	}) as MockObject<T>;
 }
 
-export function checkAllMockCalls<A extends any[], R>(mockFn: Mock<R, A>, callsArgs: A[]) {
+export function checkAllMockCalls<A extends unknown[], R>(mockFn: Mock<R, A>, callsArgs: A[]) {
 
 	expect(mockFn).toHaveBeenCalledTimes(callsArgs.length);
 

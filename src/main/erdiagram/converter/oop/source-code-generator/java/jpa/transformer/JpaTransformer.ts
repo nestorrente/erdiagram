@@ -1,7 +1,6 @@
 import JavaClassModelTransformer
 	from '@/erdiagram/converter/oop/source-code-generator/java/model/transformer/JavaClassModelTransformer';
 import {
-	JavaClassModelTransformContext,
 	JavaClassTransformContext,
 	JavaFieldTransformContext,
 	SetupContext
@@ -11,7 +10,6 @@ import { PartialJpaConfig } from '@/erdiagram/converter/oop/source-code-generato
 import jpaConfigManager from '@/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaConfigManager';
 import {
 	JavaClass,
-	JavaClassModel,
 	JavaField
 } from '@/erdiagram/converter/oop/source-code-generator/java/model/java-class-model-types';
 import CaseConverter from '@/erdiagram/converter/common/case-format/CaseConverter';

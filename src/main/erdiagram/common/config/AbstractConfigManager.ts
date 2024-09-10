@@ -26,6 +26,7 @@ export default abstract class AbstractConfigManager<C, P = Partial<C>> implement
 	}
 
 	protected getJsonAdapter(): JsonAdapter<C> {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		return JsonAdapters.identity<any>();
 	}
 

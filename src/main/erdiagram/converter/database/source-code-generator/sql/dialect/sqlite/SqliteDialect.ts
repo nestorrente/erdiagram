@@ -100,7 +100,7 @@ export default class SqliteDialect implements SqlDialect {
 	}
 
 	/* istanbul ignore next */
-	getAlterTableAddCode(tableName: string, constraintCode: string): string {
+	getAlterTableAddCode(): string {
 		throw new Error('Unsupported feature');
 	}
 

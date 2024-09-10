@@ -51,7 +51,7 @@ export default class TypeScriptTypeResolver implements FieldTypeResolver<TypeScr
 		}
 
 		/* istanbul ignore next */
-		if (!this.typeBindings.hasOwnProperty(primitiveType)) {
+		if (!Object.hasOwn(this.typeBindings, primitiveType)) {
 			throw new Error('Unsupported type: ' + primitiveType);
 		}
 
