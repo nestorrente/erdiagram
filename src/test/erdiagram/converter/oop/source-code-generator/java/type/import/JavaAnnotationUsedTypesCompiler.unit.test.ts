@@ -4,13 +4,18 @@ import JavaAnnotation from '@/erdiagram/converter/oop/source-code-generator/java
 import createJavaSimpleType
 	from '@/erdiagram/converter/oop/source-code-generator/java/type/simple/createJavaSimpleType';
 import JavaType from '@/erdiagram/converter/oop/source-code-generator/java/type/JavaType';
-import {JpaAnnotationTypes} from '@/erdiagram/converter/oop/source-code-generator/java/jpa/jpa-java-types';
+
+export const TestAnnotationTypes = {
+	Column: createJavaSimpleType('Column', 'jakarta.persistence'),
+	JoinTable: createJavaSimpleType('JoinTable', 'jakarta.persistence'),
+	JoinColumn: createJavaSimpleType('JoinColumn', 'jakarta.persistence'),
+};
 
 const javaAnnotationUsedTypesCompiler = new JavaAnnotationUsedTypesCompiler();
 
 test('Annotation with simple parameters', () => {
 
-	const annotation = new JavaAnnotation(JpaAnnotationTypes.JoinColumn, {
+	const annotation = new JavaAnnotation(TestAnnotationTypes.JoinColumn, {
 		name: 'user_id',
 		nullable: false
 	});
@@ -18,20 +23,20 @@ test('Annotation with simple parameters', () => {
 	const result = javaAnnotationUsedTypesCompiler.getUsedTypes(annotation);
 
 	expect(result).toStrictEqual<JavaType[]>([
-		JpaAnnotationTypes.JoinColumn
+		TestAnnotationTypes.JoinColumn
 	]);
 
 });
 
 test('Annotation with annotation parameters', () => {
 
-	const annotation = new JavaAnnotation(JpaAnnotationTypes.JoinTable, {
+	const annotation = new JavaAnnotation(TestAnnotationTypes.JoinTable, {
 		name: 'UserRole',
-		joinColumns: new JavaAnnotation(JpaAnnotationTypes.JoinColumn, {
+		joinColumns: new JavaAnnotation(TestAnnotationTypes.JoinColumn, {
 			name: 'user_id',
 			nullable: false
 		}),
-		inverseJoinColumns: new JavaAnnotation(JpaAnnotationTypes.JoinColumn, {
+		inverseJoinColumns: new JavaAnnotation(TestAnnotationTypes.JoinColumn, {
 			name: 'role_id',
 			nullable: false
 		})
@@ -40,9 +45,9 @@ test('Annotation with annotation parameters', () => {
 	const result = javaAnnotationUsedTypesCompiler.getUsedTypes(annotation);
 
 	expect(result).toStrictEqual<JavaType[]>([
-		JpaAnnotationTypes.JoinTable,
-		JpaAnnotationTypes.JoinColumn,
-		JpaAnnotationTypes.JoinColumn
+		TestAnnotationTypes.JoinTable,
+		TestAnnotationTypes.JoinColumn,
+		TestAnnotationTypes.JoinColumn
 	]);
 
 });
@@ -51,7 +56,7 @@ test('Annotation with raw parameter', () => {
 
 	const constantsClassType = createJavaSimpleType('UserColumnNames', 'com.example.erdiagram.domain');
 
-	const annotation = new JavaAnnotation(JpaAnnotationTypes.Column, {
+	const annotation = new JavaAnnotation(TestAnnotationTypes.Column, {
 		name: JavaAnnotation.createRawParameterValue(
 				'UserColumnNames.USERNAME_COLUMN',
 				constantsClassType
@@ -61,7 +66,7 @@ test('Annotation with raw parameter', () => {
 	const result = javaAnnotationUsedTypesCompiler.getUsedTypes(annotation);
 
 	expect(result).toStrictEqual<JavaType[]>([
-		JpaAnnotationTypes.Column,
+		TestAnnotationTypes.Column,
 		constantsClassType
 	]);
 
@@ -69,18 +74,18 @@ test('Annotation with raw parameter', () => {
 
 test('Annotation with annotation array parameters', () => {
 
-	const annotation = new JavaAnnotation(JpaAnnotationTypes.JoinTable, {
+	const annotation = new JavaAnnotation(TestAnnotationTypes.JoinTable, {
 		name: 'StudentSubjectScore',
-		joinColumns: new JavaAnnotation(JpaAnnotationTypes.JoinColumn, {
+		joinColumns: new JavaAnnotation(TestAnnotationTypes.JoinColumn, {
 			name: 'score_id',
 			nullable: false
 		}),
 		inverseJoinColumns: [
-			new JavaAnnotation(JpaAnnotationTypes.JoinColumn, {
+			new JavaAnnotation(TestAnnotationTypes.JoinColumn, {
 				name: 'student_id',
 				nullable: false
 			}),
-			new JavaAnnotation(JpaAnnotationTypes.JoinColumn, {
+			new JavaAnnotation(TestAnnotationTypes.JoinColumn, {
 				name: 'subject_id',
 				nullable: false
 			})
@@ -90,10 +95,10 @@ test('Annotation with annotation array parameters', () => {
 	const result = javaAnnotationUsedTypesCompiler.getUsedTypes(annotation);
 
 	expect(result).toStrictEqual<JavaType[]>([
-		JpaAnnotationTypes.JoinTable,
-		JpaAnnotationTypes.JoinColumn,
-		JpaAnnotationTypes.JoinColumn,
-		JpaAnnotationTypes.JoinColumn
+		TestAnnotationTypes.JoinTable,
+		TestAnnotationTypes.JoinColumn,
+		TestAnnotationTypes.JoinColumn,
+		TestAnnotationTypes.JoinColumn
 	]);
 
 });

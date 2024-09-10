@@ -26,6 +26,9 @@ import JpaTransformerSetupDataGenerator
 	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/setup/JpaTransformerSetupDataGenerator';
 import JpaTransformerBuilder
 	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/JpaTransformerBuilder';
+import JpaAnnotationTypesProvider
+	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/JpaAnnotationTypesProvider';
+import JpaEnumTypesProvider from '@/erdiagram/converter/oop/source-code-generator/java/jpa/JpaEnumTypesProvider';
 
 export class JpaTransformer implements JavaClassModelTransformer<JpaTransformerSetupData> {
 
@@ -40,11 +43,15 @@ export class JpaTransformer implements JavaClassModelTransformer<JpaTransformerS
 			columnNameCaseFormat,
 			annotateGetters,
 			useExplicitTableName,
-			useExplicitColumnName
+			useExplicitColumnName,
+			javaExtendedPackage
 		} = jpaConfigManager.mergeWithDefaultConfig(config);
 
 		const tableNameCaseConverter = new CaseConverter(StandardCaseFormats.UPPER_CAMEL, tableNameCaseFormat);
 		const columnNameCaseConverter = new CaseConverter(StandardCaseFormats.UPPER_CAMEL, columnNameCaseFormat);
+
+		const annotationTypesProvider = new JpaAnnotationTypesProvider(javaExtendedPackage);
+		const enumTypesProvider = new JpaEnumTypesProvider(javaExtendedPackage);
 
 		this._setupDataGenerator = new JpaTransformerSetupDataGenerator(databaseModelGenerator);
 
@@ -52,12 +59,15 @@ export class JpaTransformer implements JavaClassModelTransformer<JpaTransformerS
 				tableNameCaseConverter,
 				columnNameCaseConverter,
 				annotateGetters,
-				useExplicitColumnName
+				useExplicitColumnName,
+				annotationTypesProvider,
+				enumTypesProvider
 		);
 
 		this._classVisitor = new JpaTransformerClassVisitor(
 				tableNameCaseConverter,
-				useExplicitTableName
+				useExplicitTableName,
+				annotationTypesProvider
 		);
 
 	}
@@ -74,7 +84,7 @@ export class JpaTransformer implements JavaClassModelTransformer<JpaTransformerS
 		this._classVisitor.visitClass(javaClass, context);
 	}
 
-	visitModel(javaClassModel: JavaClassModel, context: JavaClassModelTransformContext<JpaTransformerSetupData>): void {
+	visitModel(): void {
 		// Do nothing
 	}
 

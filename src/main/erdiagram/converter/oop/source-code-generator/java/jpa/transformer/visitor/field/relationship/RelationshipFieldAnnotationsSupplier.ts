@@ -13,13 +13,14 @@ import {
 import {ClassModel} from '@/erdiagram/converter/oop/model/class-model-types';
 import DatabaseModelSourceFinder
 	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/DatabaseModelSourceFinder';
-import {JpaAnnotationTypes} from '@/erdiagram/converter/oop/source-code-generator/java/jpa/jpa-java-types';
 import JpaTransformerSetupData
 	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/setup/JpaTransformerSetupData';
 import FieldAnnotationsSupplier
 	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/visitor/field/FieldAnnotationsSupplier';
 import ClassModelSourceFinder
 	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/ClassModelSourceFinder';
+import JpaAnnotationTypesProvider
+	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/JpaAnnotationTypesProvider';
 
 enum RelationshipCardinality {
 	ONE_TO_ONE = 'one_to_one',
@@ -31,22 +32,13 @@ enum RelationshipCardinality {
 // TODO split this class
 export default class RelationshipFieldAnnotationsSupplier implements FieldAnnotationsSupplier {
 
-	private readonly _databaseModelSourceFinder: DatabaseModelSourceFinder;
-	private readonly _classModelSourceFinder: ClassModelSourceFinder;
-	private readonly _tableNameCaseConverter: CaseConverter;
-	private readonly _columnNameCaseConverter: CaseConverter;
-
 	constructor(
-			databaseModelSourceFinder: DatabaseModelSourceFinder,
-			classModelSourceFinder: ClassModelSourceFinder,
-			tableNameCaseConverter: CaseConverter,
-			columnNameCaseConverter: CaseConverter
-	) {
-		this._databaseModelSourceFinder = databaseModelSourceFinder;
-		this._classModelSourceFinder = classModelSourceFinder;
-		this._tableNameCaseConverter = tableNameCaseConverter;
-		this._columnNameCaseConverter = columnNameCaseConverter;
-	}
+			private readonly _databaseModelSourceFinder: DatabaseModelSourceFinder,
+			private readonly _classModelSourceFinder: ClassModelSourceFinder,
+			private readonly _tableNameCaseConverter: CaseConverter,
+			private readonly _columnNameCaseConverter: CaseConverter,
+			private readonly _annotationTypesProvider: JpaAnnotationTypesProvider,
+	) {}
 
 	public getAnnotations(javaField: JavaField, context: JavaFieldTransformContext<JpaTransformerSetupData>): JavaAnnotation[] {
 
@@ -149,10 +141,10 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 		const optionalRelationship = foreignMember.cardinality === Cardinality.ZERO_OR_ONE;
 
 		return [
-			new JavaAnnotation(JpaAnnotationTypes.OneToOne, {
+			new JavaAnnotation(this._annotationTypesProvider.oneToOne(), {
 				optional: optionalRelationship ? undefined : false
 			}),
-			new JavaAnnotation(JpaAnnotationTypes.JoinColumn, {
+			new JavaAnnotation(this._annotationTypesProvider.joinColumn(), {
 				name: this.formatColumnName(reference.columnName),
 				nullable: optionalRelationship ? undefined : false
 			}),
@@ -167,7 +159,7 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 		} = this._classModelSourceFinder.findClassAndFieldFromReferencedMember(classModel, ownMember);
 
 		return [
-			new JavaAnnotation(JpaAnnotationTypes.OneToOne, {
+			new JavaAnnotation(this._annotationTypesProvider.oneToOne(), {
 				mappedBy: field.name,
 				optional: foreignMember.cardinality === Cardinality.ZERO_OR_ONE ? undefined : false
 			}),
@@ -182,12 +174,12 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 		} = this._databaseModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
 
 		return [
-			new JavaAnnotation(JpaAnnotationTypes.OneToOne, {
+			new JavaAnnotation(this._annotationTypesProvider.oneToOne(), {
 				optional: foreignMember.cardinality === Cardinality.ZERO_OR_ONE ? undefined : false
 			}),
-			new JavaAnnotation(JpaAnnotationTypes.JoinTable, {
+			new JavaAnnotation(this._annotationTypesProvider.joinTable(), {
 				name: this.formatTableName(table.name),
-				inverseJoinColumns: new JavaAnnotation(JpaAnnotationTypes.JoinColumn, {
+				inverseJoinColumns: new JavaAnnotation(this._annotationTypesProvider.joinColumn(), {
 					name: this.formatColumnName(reference.columnName),
 					nullable: ownMember.cardinality === Cardinality.ZERO_OR_ONE ? undefined : false
 				}),
@@ -205,10 +197,10 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 		const optionalRelationship = foreignMember.cardinality === Cardinality.ZERO_OR_ONE;
 
 		return [
-			new JavaAnnotation(JpaAnnotationTypes.ManyToOne, {
+			new JavaAnnotation(this._annotationTypesProvider.manyToOne(), {
 				optional: optionalRelationship ? undefined : false
 			}),
-			new JavaAnnotation(JpaAnnotationTypes.JoinColumn, {
+			new JavaAnnotation(this._annotationTypesProvider.joinColumn(), {
 				name: this.formatColumnName(reference.columnName),
 				nullable: optionalRelationship ? undefined : false
 			}),
@@ -223,7 +215,7 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 		} = this._classModelSourceFinder.findClassAndFieldFromReferencedMember(classModel, ownMember);
 
 		return [
-			new JavaAnnotation(JpaAnnotationTypes.OneToMany, {
+			new JavaAnnotation(this._annotationTypesProvider.oneToMany(), {
 				mappedBy: field.name
 			}),
 		];
@@ -237,10 +229,10 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 		} = this._databaseModelSourceFinder.findTableAndReferenceFromReferencedMember(databaseModel, ownMember);
 
 		return [
-			new JavaAnnotation(JpaAnnotationTypes.OneToMany),
-			new JavaAnnotation(JpaAnnotationTypes.JoinTable, {
+			new JavaAnnotation(this._annotationTypesProvider.oneToMany()),
+			new JavaAnnotation(this._annotationTypesProvider.joinTable(), {
 				name: this.formatTableName(table.name),
-				inverseJoinColumns: new JavaAnnotation(JpaAnnotationTypes.JoinColumn, {
+				inverseJoinColumns: new JavaAnnotation(this._annotationTypesProvider.joinColumn(), {
 					name: this.formatColumnName(reference.columnName),
 					nullable: ownMember.cardinality === Cardinality.ZERO_OR_ONE ? undefined : false
 				}),
@@ -264,14 +256,14 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 		const foreignReference = table.references.find(reference => reference !== ownReference)!;
 
 		return [
-			new JavaAnnotation(JpaAnnotationTypes.ManyToMany),
-			new JavaAnnotation(JpaAnnotationTypes.JoinTable, {
+			new JavaAnnotation(this._annotationTypesProvider.manyToMany()),
+			new JavaAnnotation(this._annotationTypesProvider.joinTable(), {
 				name: this.formatTableName(table.name),
-				joinColumns: new JavaAnnotation(JpaAnnotationTypes.JoinColumn, {
+				joinColumns: new JavaAnnotation(this._annotationTypesProvider.joinColumn(), {
 					name: this.formatColumnName(ownReference.columnName),
 					nullable: false
 				}),
-				inverseJoinColumns: new JavaAnnotation(JpaAnnotationTypes.JoinColumn, {
+				inverseJoinColumns: new JavaAnnotation(this._annotationTypesProvider.joinColumn(), {
 					name: this.formatColumnName(foreignReference.columnName),
 					nullable: false
 				}),
@@ -287,7 +279,7 @@ export default class RelationshipFieldAnnotationsSupplier implements FieldAnnota
 		} = this._classModelSourceFinder.findClassAndFieldFromReferencedMember(classModel, sourceMember);
 
 		return [
-			new JavaAnnotation(JpaAnnotationTypes.ManyToMany, {
+			new JavaAnnotation(this._annotationTypesProvider.manyToMany(), {
 				mappedBy: referencedField.name
 			}),
 		];

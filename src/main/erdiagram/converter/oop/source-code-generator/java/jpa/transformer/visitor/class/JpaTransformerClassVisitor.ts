@@ -3,21 +3,22 @@ import {JavaClass} from '@/erdiagram/converter/oop/source-code-generator/java/mo
 import {TableDescriptor} from '@/erdiagram/converter/database/model/database-model-types';
 import JavaAnnotation from '@/erdiagram/converter/oop/source-code-generator/java/annotation/JavaAnnotation';
 import CaseConverter from '@/erdiagram/converter/common/case-format/CaseConverter';
-import {JpaAnnotationTypes} from '@/erdiagram/converter/oop/source-code-generator/java/jpa/jpa-java-types';
 import JpaTransformerSetupData
 	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/setup/JpaTransformerSetupData';
 import DatabaseModelSourceFinder
 	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/DatabaseModelSourceFinder';
+import JpaAnnotationTypesProvider
+	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/JpaAnnotationTypesProvider';
 
 export default class JpaTransformerClassVisitor {
 
-	private readonly _tableNameCaseConverter: CaseConverter;
-	private readonly _useExplicitTableName: boolean;
 	private readonly _databaseModelSourceFinder: DatabaseModelSourceFinder;
 
-	constructor(tableNameCaseConverter: CaseConverter, useExplicitTableName: boolean) {
-		this._tableNameCaseConverter = tableNameCaseConverter;
-		this._useExplicitTableName = useExplicitTableName;
+	constructor(
+			private readonly _tableNameCaseConverter: CaseConverter,
+			private readonly _useExplicitTableName: boolean,
+			private readonly _annotationTypesProvider: JpaAnnotationTypesProvider
+	) {
 		this._databaseModelSourceFinder = new DatabaseModelSourceFinder();
 	}
 
@@ -28,7 +29,7 @@ export default class JpaTransformerClassVisitor {
 				context.classDescriptor.sourceMetadata.entity
 		);
 
-		javaClass.annotations.push(new JavaAnnotation(JpaAnnotationTypes.Entity));
+		javaClass.annotations.push(new JavaAnnotation(this._annotationTypesProvider.entity()));
 
 		if (this._useExplicitTableName) {
 			this.addTableAnnotation(javaClass, table);
@@ -38,7 +39,7 @@ export default class JpaTransformerClassVisitor {
 
 	private addTableAnnotation(javaClass: JavaClass, table: TableDescriptor) {
 
-		const tableAnnotation = new JavaAnnotation(JpaAnnotationTypes.Table, {
+		const tableAnnotation = new JavaAnnotation(this._annotationTypesProvider.table(), {
 			name: this.formatTableName(table.name)
 		});
 

@@ -10,27 +10,21 @@ import CaseConverter from '@/erdiagram/converter/common/case-format/CaseConverte
 import {ClassFieldDescriptor} from '@/erdiagram/converter/oop/model/class-model-types';
 import DatabaseModelSourceFinder
 	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/DatabaseModelSourceFinder';
-import {JpaAnnotationTypes} from '@/erdiagram/converter/oop/source-code-generator/java/jpa/jpa-java-types';
 import JpaTransformerSetupData
 	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/setup/JpaTransformerSetupData';
 import FieldAnnotationsSupplier
 	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/visitor/field/FieldAnnotationsSupplier';
+import JpaAnnotationTypesProvider
+	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/JpaAnnotationTypesProvider';
 
 export default class ColumnFieldAnnotationsSupplier implements FieldAnnotationsSupplier {
 
-	private readonly _databaseModelSourceFinder: DatabaseModelSourceFinder;
-	private readonly _columnNameCaseConverter: CaseConverter;
-	private readonly _useExplicitColumnName: boolean;
-
 	constructor(
-			databaseModelSourceFinder: DatabaseModelSourceFinder,
-			columnNameCaseConverter: CaseConverter,
-			useExplicitColumnName: boolean
-	) {
-		this._databaseModelSourceFinder = databaseModelSourceFinder;
-		this._columnNameCaseConverter = columnNameCaseConverter;
-		this._useExplicitColumnName = useExplicitColumnName;
-	}
+			private readonly _databaseModelSourceFinder: DatabaseModelSourceFinder,
+			private readonly _columnNameCaseConverter: CaseConverter,
+			private readonly _useExplicitColumnName: boolean,
+			private readonly _annotationTypesProvider: JpaAnnotationTypesProvider,
+	) {}
 
 	public getAnnotations(javaField: JavaField, context: JavaFieldTransformContext<JpaTransformerSetupData>): JavaAnnotation[] {
 		const columnAnnotation = this.getColumnAnnotation(context.fieldDescriptor, context.setupData.databaseModel);
@@ -57,7 +51,7 @@ export default class ColumnFieldAnnotationsSupplier implements FieldAnnotationsS
 			return null;
 		}
 
-		return new JavaAnnotation(JpaAnnotationTypes.Column, columnAnnotationParameters);
+		return new JavaAnnotation(this._annotationTypesProvider.column(), columnAnnotationParameters);
 
 	}
 

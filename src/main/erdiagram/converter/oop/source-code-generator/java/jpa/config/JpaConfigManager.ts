@@ -1,7 +1,11 @@
 import AbstractConfigManager from '@/erdiagram/common/config/AbstractConfigManager';
-import JpaConfig, {PartialJpaConfig} from '@/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaConfig';
-import {JsonAdapter, JsonAdapters} from 'true-json';
+import JpaConfig, { PartialJpaConfig } from '@/erdiagram/converter/oop/source-code-generator/java/jpa/config/JpaConfig';
+import {
+	JsonAdapter,
+	JsonAdapters
+} from 'true-json';
 import StandardCaseFormats from '@/erdiagram/converter/common/case-format/StandardCaseFormats';
+import JavaExtendedPackage from '@/erdiagram/converter/oop/source-code-generator/java/type/JavaExtendedPackage';
 
 export class JpaConfigManager extends AbstractConfigManager<JpaConfig, PartialJpaConfig> {
 
@@ -11,7 +15,8 @@ export class JpaConfigManager extends AbstractConfigManager<JpaConfig, PartialJp
 			columnNameCaseFormat: StandardCaseFormats.LOWER_CAMEL,
 			annotateGetters: false,
 			useExplicitTableName: false,
-			useExplicitColumnName: false
+			useExplicitColumnName: false,
+			javaExtendedPackage: JavaExtendedPackage.JAKARTA
 		};
 	}
 

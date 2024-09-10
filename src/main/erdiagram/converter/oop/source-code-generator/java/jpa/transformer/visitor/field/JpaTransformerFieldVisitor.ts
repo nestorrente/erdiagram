@@ -18,6 +18,10 @@ import RelationshipFieldAnnotationsSupplier
 	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/visitor/field/relationship/RelationshipFieldAnnotationsSupplier';
 import ClassModelSourceFinder
 	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/transformer/finder/ClassModelSourceFinder';
+import JavaExtendedPackage from '@/erdiagram/converter/oop/source-code-generator/java/type/JavaExtendedPackage';
+import JpaAnnotationTypesProvider
+	from '@/erdiagram/converter/oop/source-code-generator/java/jpa/JpaAnnotationTypesProvider';
+import JpaEnumTypesProvider from '@/erdiagram/converter/oop/source-code-generator/java/jpa/JpaEnumTypesProvider';
 
 export default class JpaTransformerFieldVisitor {
 
@@ -28,7 +32,9 @@ export default class JpaTransformerFieldVisitor {
 			tableNameCaseConverter: CaseConverter,
 			columnNameCaseConverter: CaseConverter,
 			annotateGetters: boolean,
-			useExplicitColumnName: boolean
+			useExplicitColumnName: boolean,
+			annotationTypesProvider: JpaAnnotationTypesProvider,
+			enumTypesProvider: JpaEnumTypesProvider
 	) {
 
 		this._annotateGetters = annotateGetters;
@@ -37,17 +43,22 @@ export default class JpaTransformerFieldVisitor {
 		const classModelSourceFinder = new ClassModelSourceFinder();
 
 		this._fieldAnnotationsSuppliers = [
-			new IdentityFieldAnnotationsSupplier(),
+			new IdentityFieldAnnotationsSupplier(
+					annotationTypesProvider,
+					enumTypesProvider
+			),
 			new ColumnFieldAnnotationsSupplier(
 					databaseModelSourceFinder,
 					columnNameCaseConverter,
-					useExplicitColumnName
+					useExplicitColumnName,
+					annotationTypesProvider
 			),
 			new RelationshipFieldAnnotationsSupplier(
 					databaseModelSourceFinder,
 					classModelSourceFinder,
 					tableNameCaseConverter,
-					columnNameCaseConverter
+					columnNameCaseConverter,
+					annotationTypesProvider
 			)
 		];
 	}
