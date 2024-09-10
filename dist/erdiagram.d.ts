@@ -301,7 +301,7 @@ export declare class SqliteDialect implements SqlDialect {
 	getIdColumnCode(tableName: string, identityColumnName: string): IdColumnCode;
 	getColumnCode(tableName: string, column: TableColumnDescriptor): RegularColumnCode;
 	getForeignColumnCode(tableName: string, reference: TableReferenceDescriptor): ForeignKeyColumnCode;
-	getAlterTableAddCode(tableName: string, constraintCode: string): string;
+	getAlterTableAddCode(): string;
 }
 export declare class SqliteDialectConfigManager extends AbstractConfigManager<SqliteDialectConfig, PartialSqliteDialectConfig> {
 	getDefaultConfig(): SqliteDialectConfig;
@@ -568,12 +568,17 @@ export declare class JavaClassModelConfigManager extends AbstractConfigManager<J
 	protected getJsonAdapter(): JsonAdapter<JavaClassModelConfig>;
 }
 export declare const javaClassModelConfigManager: JavaClassModelConfigManager;
+export declare enum JavaExtendedPackage {
+	JAVAX = "javax",
+	JAKARTA = "jakarta"
+}
 export interface JpaConfig {
 	tableNameCaseFormat: CaseFormat;
 	columnNameCaseFormat: CaseFormat;
 	annotateGetters: boolean;
 	useExplicitTableName: boolean;
 	useExplicitColumnName: boolean;
+	javaExtendedPackage: JavaExtendedPackage;
 }
 export type PartialJpaConfig = Partial<JpaConfig>;
 export declare class JpaConfigManager extends AbstractConfigManager<JpaConfig, PartialJpaConfig> {
@@ -600,7 +605,7 @@ export declare class JpaTransformer implements JavaClassModelTransformer<JpaTran
 	setup(context: SetupContext): JpaTransformerSetupData;
 	visitField(javaField: JavaField, context: JavaFieldTransformContext<JpaTransformerSetupData>): void;
 	visitClass(javaClass: JavaClass, context: JavaClassTransformContext<JpaTransformerSetupData>): void;
-	visitModel(javaClassModel: JavaClassModel, context: JavaClassModelTransformContext<JpaTransformerSetupData>): void;
+	visitModel(): void;
 	static withDefaultConfig(): JpaTransformer;
 	static builder(): JpaTransformerBuilder;
 }
@@ -621,10 +626,10 @@ export declare const lombokConfigManager: LombokConfigManager;
 export declare class LombokTransformer implements JavaClassModelTransformer {
 	private readonly _classVisitor;
 	constructor(config?: PartialLombokConfig);
-	setup(context: SetupContext): unknown;
-	visitField(javaField: JavaField, context: JavaFieldTransformContext<unknown>): void;
-	visitClass(javaClass: JavaClass, context: JavaClassTransformContext<unknown>): void;
-	visitModel(javaClassModel: JavaClassModel, context: JavaClassModelTransformContext<unknown>): void;
+	setup(): unknown;
+	visitField(): void;
+	visitClass(javaClass: JavaClass): void;
+	visitModel(): void;
 }
 export declare enum NotNullTextValidationStrategy {
 	NOT_NULL = "not_null",
@@ -638,16 +643,17 @@ export declare enum NotNullBlobValidationStrategy {
 export interface BeanValidationConfig {
 	notNullTextValidationStrategy: NotNullTextValidationStrategy;
 	notNullBlobValidationStrategy: NotNullBlobValidationStrategy;
+	javaExtendedPackage: JavaExtendedPackage;
 	annotateGetters: boolean;
 }
 export type PartialBeanValidationConfig = Partial<BeanValidationConfig>;
 export declare class BeanValidationTransformer implements JavaClassModelTransformer {
 	private readonly _beanValidationFieldVisitor;
 	constructor(config?: PartialBeanValidationConfig);
-	setup(context: SetupContext): unknown;
+	setup(): unknown;
 	visitField(javaField: JavaField, context: JavaFieldTransformContext<unknown>): void;
-	visitClass(javaClass: JavaClass, context: JavaClassTransformContext<unknown>): void;
-	visitModel(javaClassModel: JavaClassModel, context: JavaClassModelTransformContext<unknown>): void;
+	visitClass(): void;
+	visitModel(): void;
 }
 export declare class BeanValidationConfigManager extends AbstractConfigManager<BeanValidationConfig, PartialBeanValidationConfig> {
 	getDefaultConfig(): BeanValidationConfig;

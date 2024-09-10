@@ -180,21 +180,23 @@ parseJavaType('java.util.Map<java.lang.Long, java.util.List<com.example.MyClass>
 
 #### JPA
 
-| Property                        | Type                                   | Default value                            | description                                                                     |
-|---------------------------------|----------------------------------------|------------------------------------------|---------------------------------------------------------------------------------|
-| `tableNameCaseFormat`           | `CaseFormat`                           | See [case formats](#case-formats)        | Allows to customize the case of the database tables.                            |
-| `columnNameCaseFormat`          | `CaseFormat`                           | See [case formats](#case-formats)        | Allows to customize the case of the database columns.                           |
-| `annotateGetters`               | `boolean`                              | `false`                                  | Move annotations from fields to its corresponding getter methods.               |
-| `useExplicitTableName`          | `boolean`                              | `false`                                  | Add the name of the table using the `@Table(name = "TableName")` annotation.    |
-| `useExplicitColumnName`         | `boolean`                              | `false`                                  | Add the name of the column using the `@Column(name = "columnName")` annotation. |
+| Property                | Type                  | Default value                     | description                                                                                         |
+|-------------------------|-----------------------|-----------------------------------|-----------------------------------------------------------------------------------------------------|
+| `tableNameCaseFormat`   | `CaseFormat`          | See [case formats](#case-formats) | Allows to customize the case of the database tables.                                                |
+| `columnNameCaseFormat`  | `CaseFormat`          | See [case formats](#case-formats) | Allows to customize the case of the database columns.                                               |
+| `annotateGetters`       | `boolean`             | `false`                           | Move annotations from fields to its corresponding getter methods.                                   |
+| `useExplicitTableName`  | `boolean`             | `false`                           | Add the name of the table using the `@Table(name = "TableName")` annotation.                        |
+| `useExplicitColumnName` | `boolean`             | `false`                           | Add the name of the column using the `@Column(name = "columnName")` annotation.                     |
+| `javaExtendedPackage`   | `JavaExtendedPackage` | `JavaExtendedPackage.JAKARTA`     | Indicates which Java package must be used for importing the persistence classes (jakarta or javax). |
 
 #### Bean validation
 
-| Property                        | Type                                   | Default value                            | description                                                                                                                                                |
-|---------------------------------|----------------------------------------|------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `notNullTextValidationStrategy` | `enum NotNullTextValidationStrategy`   | `NOT_NULL`                               | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull`, `@NotEmpty` or `@NotBlank`) to use for _not-null_ `text` fields. |
-| `notNullBlobValidationStrategy` | `enum NotNullBlobValidationStrategy`   | `NOT_NULL`                               | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull` or `@NotEmpty`) to use for _not-null_ `blob` fields.              |
-| `annotateGetters`               | `boolean`                              | `false`                                  | Move annotations from fields to its corresponding getter methods.                                                                                          |
+| Property                        | Type                                 | Default value                     | description                                                                                                                                                |
+|---------------------------------|--------------------------------------|-----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `notNullTextValidationStrategy` | `enum NotNullTextValidationStrategy` | `NOT_NULL`                        | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull`, `@NotEmpty` or `@NotBlank`) to use for _not-null_ `text` fields. |
+| `notNullBlobValidationStrategy` | `enum NotNullBlobValidationStrategy` | `NOT_NULL`                        | Defines which validation strategy (and thus, which JSR-303 annotation &ndash; `@NotNull` or `@NotEmpty`) to use for _not-null_ `blob` fields.              |
+| `annotateGetters`               | `boolean`                            | `false`                           | Move annotations from fields to its corresponding getter methods.                                                                                          |
+| `javaExtendedPackage`           | `JavaExtendedPackage`                | `JavaExtendedPackage.JAKARTA`     | Indicates which Java package must be used for importing the validation annotations (jakarta or javax).                                                     |
 
 #### Lombok
 
