@@ -211,206 +211,190 @@ describe('Parse entity property statement', () => {
 
 describe('Parse relationship statement', () => {
 
-	test('Many-to-one relationship to the right', () => {
+	interface RecursivePartialRelationshipDescriptor {
+		testCase: string;
+		line: string;
+		expected: {
+			direction: Direction;
+			relationshipName?: string;
+			leftMember: {
+				entity?: string;
+				entityAlias?: string;
+				cardinality: Cardinality;
+			};
+			rightMember: {
+				entity?: string;
+				entityAlias?: string;
+				cardinality: Cardinality;
+			};
+		}
+	}
 
-		const result = parseRelationshipStatement('Entity1 *-> Entity2');
+	test.each<RecursivePartialRelationshipDescriptor>([
+		{
+			testCase: 'Many-to-one relationship to the right',
+			line: 'Entity1 *-> Entity2',
+			expected: {
+				direction: Direction.LEFT_TO_RIGHT,
+				leftMember: {
+					cardinality: Cardinality.MANY
+				},
+				rightMember: {
+					cardinality: Cardinality.ONE
+				}
+			}
+		},
+		{
+			testCase: 'Many-to-many relationship to the left',
+			line: 'Entity1 *<-* Entity2',
+			expected: {
+				direction: Direction.RIGHT_TO_LEFT,
+				leftMember: {
+					cardinality: Cardinality.MANY
+				},
+				rightMember: {
+					cardinality: Cardinality.MANY
+				}
+			}
+		},
+		{
+			testCase: 'Explicit one-to-one bidirectional relationship',
+			line: 'Entity1 1<->1 Entity2',
+			expected: {
+				direction: Direction.BIDIRECTIONAL,
+				leftMember: {
+					cardinality: Cardinality.ONE
+				},
+				rightMember: {
+					cardinality: Cardinality.ONE
+				}
+			}
+		},
+		{
+			testCase: 'One-to-one bidirectional relationship with optional right side',
+			line: 'Entity1 <->? Entity2',
+			expected: {
+				direction: Direction.BIDIRECTIONAL,
+				leftMember: {
+					cardinality: Cardinality.ONE
+				},
+				rightMember: {
+					cardinality: Cardinality.ZERO_OR_ONE
+				}
+			}
+		},
+		{
+			testCase: 'One-to-one bidirectional relationship with optional left side',
+			line: 'Entity1 ?<-> Entity2',
+			expected: {
+				direction: Direction.BIDIRECTIONAL,
+				leftMember: {
+					cardinality: Cardinality.ZERO_OR_ONE
+				},
+				rightMember: {
+					cardinality: Cardinality.ONE
+				}
+			}
+		},
+		{
+			testCase: 'One-to-one bidirectional relationship with optional left and right sides',
+			line: 'Entity1 ?<->? Entity2',
+			expected: {
+				direction: Direction.BIDIRECTIONAL,
+				leftMember: {
+					cardinality: Cardinality.ZERO_OR_ONE
+				},
+				rightMember: {
+					cardinality: Cardinality.ZERO_OR_ONE
+				}
+			}
+		},
+		{
+			testCase: 'Many-to-one relationship with alias on the left',
+			line: 'Entity1 e1 *-> Entity2',
+			expected: {
+				direction: Direction.LEFT_TO_RIGHT,
+				leftMember: {
+					entityAlias: 'e1',
+					cardinality: Cardinality.MANY
+				},
+				rightMember: {
+					cardinality: Cardinality.ONE
+				}
+			}
+		},
+		{
+			testCase: 'Many-to-one relationship with alias on the right',
+			line: 'Entity1 *-> Entity2 e2',
+			expected: {
+				direction: Direction.LEFT_TO_RIGHT,
+				leftMember: {
+					cardinality: Cardinality.MANY
+				},
+				rightMember: {
+					entityAlias: 'e2',
+					cardinality: Cardinality.ONE
+				}
+			}
+		},
+		{
+			testCase: 'Many-to-many relationship with custom name',
+			line: 'Entity1 *-> Entity2 (Rel)',
+			expected: {
+				relationshipName: 'Rel',
+				direction: Direction.LEFT_TO_RIGHT,
+				leftMember: {
+					cardinality: Cardinality.MANY
+				},
+				rightMember: {
+					cardinality: Cardinality.ONE
+				}
+			}
+		},
+		{
+			testCase: 'Relationship with middle and trailing spaces should be trimmed',
+			line: 'Entity1  \t   *->      \tEntity2   \t  (\tRel  )      \t   ',
+			expected: {
+				relationshipName: 'Rel',
+				direction: Direction.LEFT_TO_RIGHT,
+				leftMember: {
+					cardinality: Cardinality.MANY
+				},
+				rightMember: {
+					cardinality: Cardinality.ONE
+				}
+			}
+		},
+		{
+			testCase: 'Trailing comments in relationship line should be ignored',
+			line: 'Entity1  *-> Entity2 (Rel) # this is a comment',
+			expected: {
+				relationshipName: 'Rel',
+				direction: Direction.LEFT_TO_RIGHT,
+				leftMember: {
+					cardinality: Cardinality.MANY
+				},
+				rightMember: {
+					cardinality: Cardinality.ONE
+				}
+			}
+		}
+	])('$testCase', ({ line, expected: partialExpected }) => {
+
+		const result = parseRelationshipStatement(line);
 
 		const expected: RelationshipDescriptor = {
 			relationshipName: undefined,
-			direction: Direction.LEFT_TO_RIGHT,
+			...partialExpected,
 			leftMember: {
 				entity: 'Entity1',
 				entityAlias: 'entity1',
-				cardinality: Cardinality.MANY
+				...partialExpected.leftMember
 			},
 			rightMember: {
 				entity: 'Entity2',
 				entityAlias: 'entity2',
-				cardinality: Cardinality.ONE
-			}
-		};
-
-		expect(result).toStrictEqual(expected);
-
-	});
-
-	test('Many-to-many relationship to the left', () => {
-
-		const result = parseRelationshipStatement('Entity1 *<-* Entity2');
-
-		const expected: RelationshipDescriptor = {
-			relationshipName: undefined,
-			direction: Direction.RIGHT_TO_LEFT,
-			leftMember: {
-				entity: 'Entity1',
-				entityAlias: 'entity1',
-				cardinality: Cardinality.MANY
-			},
-			rightMember: {
-				entity: 'Entity2',
-				entityAlias: 'entity2',
-				cardinality: Cardinality.MANY
-			}
-		};
-
-		expect(result).toStrictEqual(expected);
-
-	});
-
-	test('Explicit one-to-one bidirectional relationship', () => {
-
-		const result = parseRelationshipStatement('Entity1 1<->1 Entity2');
-
-		const expected: RelationshipDescriptor = {
-			relationshipName: undefined,
-			direction: Direction.BIDIRECTIONAL,
-			leftMember: {
-				entity: 'Entity1',
-				entityAlias: 'entity1',
-				cardinality: Cardinality.ONE
-			},
-			rightMember: {
-				entity: 'Entity2',
-				entityAlias: 'entity2',
-				cardinality: Cardinality.ONE
-			}
-		};
-
-		expect(result).toStrictEqual(expected);
-
-	});
-
-	test('One-to-one bidirectional relationship with optional right side', () => {
-
-		const result = parseRelationshipStatement('Entity1 <->? Entity2');
-
-		const expected: RelationshipDescriptor = {
-			relationshipName: undefined,
-			direction: Direction.BIDIRECTIONAL,
-			leftMember: {
-				entity: 'Entity1',
-				entityAlias: 'entity1',
-				cardinality: Cardinality.ONE
-			},
-			rightMember: {
-				entity: 'Entity2',
-				entityAlias: 'entity2',
-				cardinality: Cardinality.ZERO_OR_ONE
-			}
-		};
-
-		expect(result).toStrictEqual(expected);
-
-	});
-
-	test('One-to-one bidirectional relationship with optional left side', () => {
-
-		const result = parseRelationshipStatement('Entity1 ?<-> Entity2');
-
-		const expected: RelationshipDescriptor = {
-			relationshipName: undefined,
-			direction: Direction.BIDIRECTIONAL,
-			leftMember: {
-				entity: 'Entity1',
-				entityAlias: 'entity1',
-				cardinality: Cardinality.ZERO_OR_ONE
-			},
-			rightMember: {
-				entity: 'Entity2',
-				entityAlias: 'entity2',
-				cardinality: Cardinality.ONE
-			}
-		};
-
-		expect(result).toStrictEqual(expected);
-
-	});
-
-	test('One-to-one bidirectional relationship with optional left and right sides', () => {
-
-		const result = parseRelationshipStatement('Entity1 ?<->? Entity2');
-
-		const expected: RelationshipDescriptor = {
-			relationshipName: undefined,
-			direction: Direction.BIDIRECTIONAL,
-			leftMember: {
-				entity: 'Entity1',
-				entityAlias: 'entity1',
-				cardinality: Cardinality.ZERO_OR_ONE
-			},
-			rightMember: {
-				entity: 'Entity2',
-				entityAlias: 'entity2',
-				cardinality: Cardinality.ZERO_OR_ONE
-			}
-		};
-
-		expect(result).toStrictEqual(expected);
-
-	});
-
-	test('Many-to-one relationship with alias on the left', () => {
-
-		const result = parseRelationshipStatement('Entity1 e1 *-> Entity2');
-
-		const expected: RelationshipDescriptor = {
-			relationshipName: undefined,
-			direction: Direction.LEFT_TO_RIGHT,
-			leftMember: {
-				entity: 'Entity1',
-				entityAlias: 'e1',
-				cardinality: Cardinality.MANY
-			},
-			rightMember: {
-				entity: 'Entity2',
-				entityAlias: 'entity2',
-				cardinality: Cardinality.ONE
-			}
-		};
-
-		expect(result).toStrictEqual(expected);
-
-	});
-
-	test('Many-to-one relationship with alias on the right', () => {
-
-		const result = parseRelationshipStatement('Entity1 *-> Entity2 e2');
-
-		const expected: RelationshipDescriptor = {
-			relationshipName: undefined,
-			direction: Direction.LEFT_TO_RIGHT,
-			leftMember: {
-				entity: 'Entity1',
-				entityAlias: 'entity1',
-				cardinality: Cardinality.MANY
-			},
-			rightMember: {
-				entity: 'Entity2',
-				entityAlias: 'e2',
-				cardinality: Cardinality.ONE
-			}
-		};
-
-		expect(result).toStrictEqual(expected);
-
-	});
-
-	test('Many-to-many relationship with custom name', () => {
-
-		const result = parseRelationshipStatement('Entity1 *-> Entity2 (Rel)');
-
-		const expected: RelationshipDescriptor = {
-			relationshipName: 'Rel',
-			direction: Direction.LEFT_TO_RIGHT,
-			leftMember: {
-				entity: 'Entity1',
-				entityAlias: 'entity1',
-				cardinality: Cardinality.MANY
-			},
-			rightMember: {
-				entity: 'Entity2',
-				entityAlias: 'entity2',
-				cardinality: Cardinality.ONE
+				...partialExpected.rightMember
 			}
 		};
 
@@ -425,52 +409,6 @@ describe('Parse relationship statement', () => {
 		};
 
 		expect(callback).toThrow(Error);
-
-	});
-
-	test('Relationship with middle and trailing spaces should be trimmed', () => {
-
-		const result = parseRelationshipStatement('Entity1  \t   *->      \tEntity2   \t  (\tRel  )      \t   ');
-
-		const expected: RelationshipDescriptor = {
-			relationshipName: 'Rel',
-			direction: Direction.LEFT_TO_RIGHT,
-			leftMember: {
-				entity: 'Entity1',
-				entityAlias: 'entity1',
-				cardinality: Cardinality.MANY
-			},
-			rightMember: {
-				entity: 'Entity2',
-				entityAlias: 'entity2',
-				cardinality: Cardinality.ONE
-			}
-		};
-
-		expect(result).toStrictEqual(expected);
-
-	});
-
-	test('Trailing comments in relationship line should be ignored', () => {
-
-		const result = parseRelationshipStatement('Entity1  *-> Entity2 (Rel) # this is a comment');
-
-		const expected: RelationshipDescriptor = {
-			relationshipName: 'Rel',
-			direction: Direction.LEFT_TO_RIGHT,
-			leftMember: {
-				entity: 'Entity1',
-				entityAlias: 'entity1',
-				cardinality: Cardinality.MANY
-			},
-			rightMember: {
-				entity: 'Entity2',
-				entityAlias: 'entity2',
-				cardinality: Cardinality.ONE
-			}
-		};
-
-		expect(result).toStrictEqual(expected);
 
 	});
 

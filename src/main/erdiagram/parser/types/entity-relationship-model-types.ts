@@ -32,10 +32,10 @@ export enum EntityPropertyType {
 }
 
 export interface RelationshipDescriptor {
+	relationshipName?: string;
+	direction: Direction;
 	leftMember: RelationshipMember;
 	rightMember: RelationshipMember;
-	direction: Direction;
-	relationshipName?: string;
 }
 
 export interface RelationshipMember {
