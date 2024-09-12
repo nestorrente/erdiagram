@@ -113,9 +113,10 @@ These are the default case formats for each dialect:
 
 These are the configuration options corresponding to the `ClassModelConfig` interface:
 
-| Property           | Type       | Default value                        | description |
-|--------------------|------------|--------------------------------------|-------------|
-| `idNamingStrategy` | `function` | `StandardIdNamingStrategies.DEFAULT` | Allows to customize the naming strategy for the identity property of the table. You can use any of the standard values (defined in the `StandardIdNamingStrategies` object) or write your own function `(entityName: string) => string`. |
+| Property              | Type       | Default value                        | description                                                                                                                                                                                                                              |
+|-----------------------|------------|--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `idNamingStrategy`    | `function` | `StandardIdNamingStrategies.DEFAULT` | Allows to customize the naming strategy for the identity property of the table. You can use any of the standard values (defined in the `StandardIdNamingStrategies` object) or write your own function `(entityName: string) => string`. |
+| `enforceNotNullLists` | `boolean`  | `false`                              | Allows to customize whether lists must accept nullable values or not.                                                                                                                                                                    |
 
 ### Java class model
 

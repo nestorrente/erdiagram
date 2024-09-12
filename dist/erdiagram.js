@@ -1,10 +1,10 @@
 /*!
- * Entity-Relationship Diagram Code Generator v1.2.0
+ * Entity-Relationship Diagram Code Generator v1.3.0
  * https://github.com/nestorrente/erdiagram
  *
  * Released under the MIT License.
  *
- * Build date: 2024-09-10T22:20:58.938Z
+ * Build date: 2024-09-12T08:57:11.995Z
  */
 var ERDiagram;
 /******/ (() => { // webpackBootstrap
@@ -1055,6 +1055,7 @@ class DatabaseModelGenerator {
             }
             else if (relationship.leftMember.cardinality !== _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_1__.Cardinality.MANY) {
                 if (relationship.rightMember.entity === entity.name) {
+                    // It's never a 1-1 relationship (otherwise, we would have entered the previous if block)
                     references.push(this.createTableReference(relationship, relationship.leftMember, entityIdentitiesMap));
                 }
             }
@@ -3267,6 +3268,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/main/erdiagram/converter/diagram/common/DiagramCardinalityFormatter.ts":
+/*!************************************************************************************!*\
+  !*** ./src/main/erdiagram/converter/diagram/common/DiagramCardinalityFormatter.ts ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ DiagramCardinalityFormatter)
+/* harmony export */ });
+/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
+
+class DiagramCardinalityFormatter {
+    format(cardinality) {
+        switch (cardinality) {
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.Cardinality.ZERO_OR_ONE:
+                return '0..1';
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.Cardinality.ONE:
+                return '1';
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.Cardinality.MANY:
+                return '*';
+        }
+    }
+}
+
+
+/***/ }),
+
 /***/ "./src/main/erdiagram/converter/diagram/common/config/DiagramLevel.ts":
 /*!****************************************************************************!*\
   !*** ./src/main/erdiagram/converter/diagram/common/config/DiagramLevel.ts ***!
@@ -3640,15 +3670,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 class NomnomlNamedRelationshipCodeGenerator {
     relationshipDirectionCodeGenerator;
-    relationshipCardinalityCodeGenerator;
-    constructor(relationshipDirectionCodeGenerator, relationshipCardinalityCodeGenerator) {
+    cardinalityFormatter;
+    constructor(relationshipDirectionCodeGenerator, cardinalityFormatter) {
         this.relationshipDirectionCodeGenerator = relationshipDirectionCodeGenerator;
-        this.relationshipCardinalityCodeGenerator = relationshipCardinalityCodeGenerator;
+        this.cardinalityFormatter = cardinalityFormatter;
     }
     generateNamedRelationshipCode(relationship) {
         const { leftMember, rightMember, direction, relationshipName } = relationship;
-        const leftMemberCardinalityCode = this.relationshipCardinalityCodeGenerator.generateCardinalityCode(leftMember.cardinality);
-        const rightMemberCardinalityCode = this.relationshipCardinalityCodeGenerator.generateCardinalityCode(rightMember.cardinality);
+        const leftMemberCardinalityCode = this.cardinalityFormatter.format(leftMember.cardinality);
+        const rightMemberCardinalityCode = this.cardinalityFormatter.format(rightMember.cardinality);
         const leftSideDirectionCode = this.relationshipDirectionCodeGenerator.generateLeftSideDirectionCode(direction);
         const rightSideDirectionCode = this.relationshipDirectionCodeGenerator.generateRightSideDirectionCode(direction);
         return [
@@ -3656,35 +3686,6 @@ class NomnomlNamedRelationshipCodeGenerator {
             `[${leftMember.entity}] ${leftMemberCardinalityCode}${leftSideDirectionCode} [${relationshipName}]`,
             `[${relationshipName}] ${rightSideDirectionCode}${rightMemberCardinalityCode} [${rightMember.entity}]`
         ].join('\n');
-    }
-}
-
-
-/***/ }),
-
-/***/ "./src/main/erdiagram/converter/diagram/nomnoml/relationship/NomnomlRelationshipCardinalityCodeGenerator.ts":
-/*!******************************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/diagram/nomnoml/relationship/NomnomlRelationshipCardinalityCodeGenerator.ts ***!
-  \******************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ NomnomlRelationshipCardinalityCodeGenerator)
-/* harmony export */ });
-/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
-
-class NomnomlRelationshipCardinalityCodeGenerator {
-    generateCardinalityCode(cardinality) {
-        switch (cardinality) {
-            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.Cardinality.ZERO_OR_ONE:
-                return '0..1';
-            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.Cardinality.ONE:
-                return '1';
-            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.Cardinality.MANY:
-                return '*';
-        }
     }
 }
 
@@ -3703,18 +3704,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ NomnomlRelationshipCodeGenerator)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_diagram_nomnoml_relationship_NomnomlRelationshipDirectionCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/diagram/nomnoml/relationship/NomnomlRelationshipDirectionCodeGenerator */ "./src/main/erdiagram/converter/diagram/nomnoml/relationship/NomnomlRelationshipDirectionCodeGenerator.ts");
-/* harmony import */ var _erdiagram_converter_diagram_nomnoml_relationship_NomnomlRelationshipCardinalityCodeGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/diagram/nomnoml/relationship/NomnomlRelationshipCardinalityCodeGenerator */ "./src/main/erdiagram/converter/diagram/nomnoml/relationship/NomnomlRelationshipCardinalityCodeGenerator.ts");
-/* harmony import */ var _erdiagram_converter_diagram_nomnoml_relationship_NomnomlUnnamedRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/diagram/nomnoml/relationship/NomnomlUnnamedRelationshipCodeGenerator */ "./src/main/erdiagram/converter/diagram/nomnoml/relationship/NomnomlUnnamedRelationshipCodeGenerator.ts");
-/* harmony import */ var _erdiagram_converter_diagram_nomnoml_relationship_NomnomlNamedRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/diagram/nomnoml/relationship/NomnomlNamedRelationshipCodeGenerator */ "./src/main/erdiagram/converter/diagram/nomnoml/relationship/NomnomlNamedRelationshipCodeGenerator.ts");
+/* harmony import */ var _erdiagram_converter_diagram_nomnoml_relationship_NomnomlUnnamedRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/diagram/nomnoml/relationship/NomnomlUnnamedRelationshipCodeGenerator */ "./src/main/erdiagram/converter/diagram/nomnoml/relationship/NomnomlUnnamedRelationshipCodeGenerator.ts");
+/* harmony import */ var _erdiagram_converter_diagram_nomnoml_relationship_NomnomlNamedRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/erdiagram/converter/diagram/nomnoml/relationship/NomnomlNamedRelationshipCodeGenerator */ "./src/main/erdiagram/converter/diagram/nomnoml/relationship/NomnomlNamedRelationshipCodeGenerator.ts");
+/* harmony import */ var _erdiagram_converter_diagram_common_DiagramCardinalityFormatter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/erdiagram/converter/diagram/common/DiagramCardinalityFormatter */ "./src/main/erdiagram/converter/diagram/common/DiagramCardinalityFormatter.ts");
 
 
 
 
 class NomnomlRelationshipCodeGenerator {
     relationshipDirectionCodeGenerator = new _erdiagram_converter_diagram_nomnoml_relationship_NomnomlRelationshipDirectionCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"]();
-    relationshipCardinalityCodeGenerator = new _erdiagram_converter_diagram_nomnoml_relationship_NomnomlRelationshipCardinalityCodeGenerator__WEBPACK_IMPORTED_MODULE_1__["default"]();
-    namedRelationshipCodeGenerator = new _erdiagram_converter_diagram_nomnoml_relationship_NomnomlNamedRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_3__["default"](this.relationshipDirectionCodeGenerator, this.relationshipCardinalityCodeGenerator);
-    unnamedRelationshipCodeGenerator = new _erdiagram_converter_diagram_nomnoml_relationship_NomnomlUnnamedRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.relationshipDirectionCodeGenerator, this.relationshipCardinalityCodeGenerator);
+    cardinalityFormatter = new _erdiagram_converter_diagram_common_DiagramCardinalityFormatter__WEBPACK_IMPORTED_MODULE_3__["default"]();
+    namedRelationshipCodeGenerator = new _erdiagram_converter_diagram_nomnoml_relationship_NomnomlNamedRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_2__["default"](this.relationshipDirectionCodeGenerator, this.cardinalityFormatter);
+    unnamedRelationshipCodeGenerator = new _erdiagram_converter_diagram_nomnoml_relationship_NomnomlUnnamedRelationshipCodeGenerator__WEBPACK_IMPORTED_MODULE_1__["default"](this.relationshipDirectionCodeGenerator, this.cardinalityFormatter);
     generateRelationshipCode(relationship) {
         if (relationship.relationshipName) {
             return this.namedRelationshipCodeGenerator.generateNamedRelationshipCode(relationship);
@@ -3776,15 +3777,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 class NomnomlUnnamedRelationshipCodeGenerator {
     relationshipDirectionCodeGenerator;
-    relationshipCardinalityCodeGenerator;
-    constructor(relationshipDirectionCodeGenerator, relationshipCardinalityCodeGenerator) {
+    cardinalityFormatter;
+    constructor(relationshipDirectionCodeGenerator, cardinalityFormatter) {
         this.relationshipDirectionCodeGenerator = relationshipDirectionCodeGenerator;
-        this.relationshipCardinalityCodeGenerator = relationshipCardinalityCodeGenerator;
+        this.cardinalityFormatter = cardinalityFormatter;
     }
     generateUnnamedRelationshipCode(relationship) {
         const { leftMember, rightMember, direction } = relationship;
-        const leftMemberCardinalityCode = this.relationshipCardinalityCodeGenerator.generateCardinalityCode(leftMember.cardinality);
-        const rightMemberCardinalityCode = this.relationshipCardinalityCodeGenerator.generateCardinalityCode(rightMember.cardinality);
+        const leftMemberCardinalityCode = this.cardinalityFormatter.format(leftMember.cardinality);
+        const rightMemberCardinalityCode = this.cardinalityFormatter.format(rightMember.cardinality);
         const directionCode = this.relationshipDirectionCodeGenerator.generateDirectionCode(direction);
         return `[${leftMember.entity}] ${leftMemberCardinalityCode}${directionCode}${rightMemberCardinalityCode} [${rightMember.entity}]`;
     }
@@ -4056,35 +4057,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/main/erdiagram/converter/diagram/plantuml/relationship/PlantUmlRelationshipCardinalityCodeGenerator.ts":
-/*!********************************************************************************************************************!*\
-  !*** ./src/main/erdiagram/converter/diagram/plantuml/relationship/PlantUmlRelationshipCardinalityCodeGenerator.ts ***!
-  \********************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ PlantUmlRelationshipCardinalityCodeGenerator)
-/* harmony export */ });
-/* harmony import */ var _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/parser/types/entity-relationship-model-types */ "./src/main/erdiagram/parser/types/entity-relationship-model-types.ts");
-
-class PlantUmlRelationshipCardinalityCodeGenerator {
-    generateCardinalityCode(cardinality) {
-        switch (cardinality) {
-            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.Cardinality.ZERO_OR_ONE:
-                return '0..1';
-            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.Cardinality.ONE:
-                return '1';
-            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.Cardinality.MANY:
-                return '*';
-        }
-    }
-}
-
-
-/***/ }),
-
 /***/ "./src/main/erdiagram/converter/diagram/plantuml/relationship/PlantUmlRelationshipCodeGenerator.ts":
 /*!*********************************************************************************************************!*\
   !*** ./src/main/erdiagram/converter/diagram/plantuml/relationship/PlantUmlRelationshipCodeGenerator.ts ***!
@@ -4097,16 +4069,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ PlantUmlRelationshipCodeGenerator)
 /* harmony export */ });
 /* harmony import */ var _erdiagram_converter_diagram_plantuml_relationship_PlantUmlRelationshipDirectionCodeGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/erdiagram/converter/diagram/plantuml/relationship/PlantUmlRelationshipDirectionCodeGenerator */ "./src/main/erdiagram/converter/diagram/plantuml/relationship/PlantUmlRelationshipDirectionCodeGenerator.ts");
-/* harmony import */ var _erdiagram_converter_diagram_plantuml_relationship_PlantUmlRelationshipCardinalityCodeGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/diagram/plantuml/relationship/PlantUmlRelationshipCardinalityCodeGenerator */ "./src/main/erdiagram/converter/diagram/plantuml/relationship/PlantUmlRelationshipCardinalityCodeGenerator.ts");
+/* harmony import */ var _erdiagram_converter_diagram_common_DiagramCardinalityFormatter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/erdiagram/converter/diagram/common/DiagramCardinalityFormatter */ "./src/main/erdiagram/converter/diagram/common/DiagramCardinalityFormatter.ts");
 
 
 class PlantUmlRelationshipCodeGenerator {
     relationshipDirectionCodeGenerator = new _erdiagram_converter_diagram_plantuml_relationship_PlantUmlRelationshipDirectionCodeGenerator__WEBPACK_IMPORTED_MODULE_0__["default"]();
-    relationshipCardinalityCodeGenerator = new _erdiagram_converter_diagram_plantuml_relationship_PlantUmlRelationshipCardinalityCodeGenerator__WEBPACK_IMPORTED_MODULE_1__["default"]();
+    cardinalityFormatter = new _erdiagram_converter_diagram_common_DiagramCardinalityFormatter__WEBPACK_IMPORTED_MODULE_1__["default"]();
     generateRelationshipCode(relationship) {
         const { leftMember, rightMember, direction } = relationship;
-        const leftMemberCardinalityCode = this.relationshipCardinalityCodeGenerator.generateCardinalityCode(leftMember.cardinality);
-        const rightMemberCardinalityCode = this.relationshipCardinalityCodeGenerator.generateCardinalityCode(rightMember.cardinality);
+        const leftMemberCardinalityCode = this.cardinalityFormatter.format(leftMember.cardinality);
+        const rightMemberCardinalityCode = this.cardinalityFormatter.format(rightMember.cardinality);
         const directionCode = this.relationshipDirectionCodeGenerator.generateDirectionCode(direction);
         const relationshipCode = `${leftMember.entity} "${leftMemberCardinalityCode}" ${directionCode} "${rightMemberCardinalityCode}" ${rightMember.entity}`;
         if (relationship.relationshipName) {
@@ -4380,7 +4352,7 @@ class EntityToClassMapper {
         this.config = config;
         this.entityToIdClassFieldMapper = new _erdiagram_converter_oop_model_class_field_EntityToIdClassFieldMapper__WEBPACK_IMPORTED_MODULE_4__["default"](this.config.idNamingStrategy);
         this.entityPropertyToClassFieldMapper = new _erdiagram_converter_oop_model_class_field_EntityPropertyToClassFieldMapper__WEBPACK_IMPORTED_MODULE_3__["default"]();
-        this.relationshipMemberToClassFieldMapper = new _erdiagram_converter_oop_model_class_field_RelationshipMemberToClassFieldMapper__WEBPACK_IMPORTED_MODULE_2__["default"]();
+        this.relationshipMemberToClassFieldMapper = new _erdiagram_converter_oop_model_class_field_RelationshipMemberToClassFieldMapper__WEBPACK_IMPORTED_MODULE_2__["default"](this.config.enforceNotNullLists);
     }
     mapEntityToClass(entity, relationships) {
         const name = (0,_erdiagram_util_string_utils__WEBPACK_IMPORTED_MODULE_0__.capitalizeWord)(entity.name);
@@ -4514,12 +4486,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class RelationshipMemberToClassFieldMapper {
+    _enforceNotNullLists;
+    constructor(_enforceNotNullLists) {
+        this._enforceNotNullLists = _enforceNotNullLists;
+    }
     mapRelationshipMemberToField(relationship, toMember) {
         const list = toMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.Cardinality.MANY;
         const name = list ? pluralize__WEBPACK_IMPORTED_MODULE_1___default()(toMember.entityAlias) : toMember.entityAlias;
         return {
             name,
-            nullable: toMember.cardinality === _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.Cardinality.ZERO_OR_ONE,
+            nullable: this.computeNullable(toMember.cardinality),
             entityType: toMember.entity,
             list,
             sourceMetadata: {
@@ -4528,6 +4504,16 @@ class RelationshipMemberToClassFieldMapper {
                 referencedMember: toMember
             }
         };
+    }
+    computeNullable(cardinality) {
+        switch (cardinality) {
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.Cardinality.ZERO_OR_ONE:
+                return true;
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.Cardinality.ONE:
+                return false;
+            case _erdiagram_parser_types_entity_relationship_model_types__WEBPACK_IMPORTED_MODULE_0__.Cardinality.MANY:
+                return !this._enforceNotNullLists;
+        }
     }
 }
 
@@ -4556,7 +4542,8 @@ __webpack_require__.r(__webpack_exports__);
 class ClassModelConfigManager extends _erdiagram_common_config_AbstractConfigManager__WEBPACK_IMPORTED_MODULE_0__["default"] {
     getDefaultConfig() {
         return {
-            idNamingStrategy: _erdiagram_converter_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"].DEFAULT
+            idNamingStrategy: _erdiagram_converter_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"].DEFAULT,
+            enforceNotNullLists: false
         };
     }
     mergeConfigs(fullConfig, partialConfig) {
@@ -4567,7 +4554,8 @@ class ClassModelConfigManager extends _erdiagram_common_config_AbstractConfigMan
     }
     getJsonAdapter() {
         return true_json__WEBPACK_IMPORTED_MODULE_2__.JsonAdapters.object({
-            idNamingStrategy: true_json__WEBPACK_IMPORTED_MODULE_2__.JsonAdapters.byKeyLenient(_erdiagram_converter_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"], 'DEFAULT')
+            idNamingStrategy: true_json__WEBPACK_IMPORTED_MODULE_2__.JsonAdapters.byKeyLenient(_erdiagram_converter_common_id_naming_strategy_StandardIdNamingStrategies__WEBPACK_IMPORTED_MODULE_1__["default"], 'DEFAULT'),
+            enforceNotNullLists: true_json__WEBPACK_IMPORTED_MODULE_2__.JsonAdapters.identity()
         });
     }
 }

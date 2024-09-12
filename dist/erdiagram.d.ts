@@ -49,10 +49,10 @@ export declare enum EntityPropertyType {
 	BLOB = "blob"
 }
 export interface RelationshipDescriptor {
+	relationshipName?: string;
+	direction: Direction;
 	leftMember: RelationshipMember;
 	rightMember: RelationshipMember;
-	direction: Direction;
-	relationshipName?: string;
 }
 export interface RelationshipMember {
 	entity: string;
@@ -384,6 +384,7 @@ export interface ClassFieldDescriptor {
 }
 export interface ClassModelConfig {
 	idNamingStrategy: IdNamingStrategy;
+	enforceNotNullLists: boolean;
 }
 export type PartialClassModelConfig = Partial<ClassModelConfig>;
 export declare class ClassModelGenerator {
