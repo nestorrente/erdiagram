@@ -2,6 +2,7 @@ import IdNamingStrategy from '@/erdiagram/converter/common/id-naming-strategy/Id
 
 export default interface ClassModelConfig {
 	idNamingStrategy: IdNamingStrategy;
+	enforceNotNullLists: boolean;
 }
 
 export type PartialClassModelConfig = Partial<ClassModelConfig>;

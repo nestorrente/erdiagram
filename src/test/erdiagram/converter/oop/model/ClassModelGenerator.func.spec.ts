@@ -485,13 +485,13 @@ describe('Relationship', () => {
 								[
 									['B', 'b', false, true],
 									['C', 'c', false, false],
-									['D', 'ds', true, false],
+									['D', 'ds', true, true],
 									['E', 'e', false, true],
 									['F', 'f', false, false],
-									['G', 'gs', true, false],
+									['G', 'gs', true, true],
 									['H', 'h', false, true],
 									['I', 'i', false, false],
-									['J', 'js', true, false],
+									['J', 'js', true, true],
 								] satisfies [string, string, boolean, boolean][]
 						).map(([entityName, fieldName, list, nullable], index): ClassFieldDescriptor => {
 							return createEntityClassField(fieldName, entityName, {
@@ -515,9 +515,9 @@ describe('Relationship', () => {
 							['E', false, false],
 							['F', false, false],
 							['G', false, false],
-							['H', true, false],
-							['I', true, false],
-							['J', true, false],
+							['H', true, true],
+							['I', true, true],
+							['J', true, true],
 						] satisfies [string, boolean, boolean][]
 				).map(([entityName, list, nullable], index): ClassDescriptor => ({
 					name: entityName,
@@ -632,6 +632,7 @@ describe('Relationship', () => {
 						}),
 						createEntityClassField('eAliases', 'E', {
 							list: true,
+							nullable: true,
 							sourceRelationship: relationships[3],
 							sourceTargetMember: relationships[3].rightMember
 						})
@@ -697,6 +698,7 @@ describe('Relationship', () => {
 						}),
 						createEntityClassField('aAliases', 'A', {
 							list: true,
+							nullable: true,
 							sourceRelationship: relationships[3],
 							sourceTargetMember: relationships[3].leftMember
 						})
@@ -704,6 +706,76 @@ describe('Relationship', () => {
 					sourceMetadata: {
 						sourceType: SourceType.ENTITY,
 						entity: entities[4]
+					}
+				}
+			]
+		});
+
+	});
+
+	test('Enforce not-null lists', () => {
+
+		const customClassModelGenerator = new ClassModelGenerator({
+			enforceNotNullLists: true
+		});
+
+		const entities = [
+			createEntityWithoutProperties('A'),
+			createEntityWithoutProperties('B')
+		];
+
+		const relationships: RelationshipDescriptor[] = [
+			{
+				relationshipName: undefined,
+				direction: Direction.LEFT_TO_RIGHT,
+				leftMember: {
+					entity: 'A',
+					entityAlias: 'a',
+					cardinality: Cardinality.ONE
+				},
+				rightMember: {
+					entity: 'B',
+					entityAlias: 'b',
+					cardinality: Cardinality.MANY
+				}
+			}
+		];
+
+		const classModel = customClassModelGenerator.generateClassModel({
+			entities,
+			relationships
+		});
+
+		expect(classModel).toStrictEqual<ClassModel>({
+			classes: [
+				{
+					name: 'A',
+					fields: [
+						createIdClassField({
+							sourceEntity: entities[0]
+						}),
+						createEntityClassField('bs', 'B', {
+							list: true,
+							nullable: false,
+							sourceRelationship: relationships[0],
+							sourceTargetMember: relationships[0].rightMember
+						})
+					],
+					sourceMetadata: {
+						sourceType: SourceType.ENTITY,
+						entity: entities[0]
+					}
+				},
+				{
+					name: 'B',
+					fields: [
+						createIdClassField({
+							sourceEntity: entities[1]
+						})
+					],
+					sourceMetadata: {
+						sourceType: SourceType.ENTITY,
+						entity: entities[1]
 					}
 				}
 			]

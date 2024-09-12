@@ -7,7 +7,8 @@ export class ClassModelConfigManager extends AbstractConfigManager<ClassModelCon
 
 	getDefaultConfig(): ClassModelConfig {
 		return {
-			idNamingStrategy: StandardIdNamingStrategies.DEFAULT
+			idNamingStrategy: StandardIdNamingStrategies.DEFAULT,
+			enforceNotNullLists: false
 		};
 	}
 
@@ -20,7 +21,8 @@ export class ClassModelConfigManager extends AbstractConfigManager<ClassModelCon
 
 	protected getJsonAdapter(): JsonAdapter<ClassModelConfig> {
 		return JsonAdapters.object<ClassModelConfig>({
-			idNamingStrategy: JsonAdapters.byKeyLenient(StandardIdNamingStrategies, 'DEFAULT')
+			idNamingStrategy: JsonAdapters.byKeyLenient(StandardIdNamingStrategies, 'DEFAULT'),
+			enforceNotNullLists: JsonAdapters.identity<boolean>()
 		});
 	}
 

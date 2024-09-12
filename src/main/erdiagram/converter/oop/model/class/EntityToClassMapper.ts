@@ -24,7 +24,7 @@ export default class EntityToClassMapper {
 	) {
 		this.entityToIdClassFieldMapper = new EntityToIdClassFieldMapper(this.config.idNamingStrategy);
 		this.entityPropertyToClassFieldMapper = new EntityPropertyToClassFieldMapper();
-		this.relationshipMemberToClassFieldMapper = new RelationshipMemberToClassFieldMapper();
+		this.relationshipMemberToClassFieldMapper = new RelationshipMemberToClassFieldMapper(this.config.enforceNotNullLists);
 	}
 
 	public mapEntityToClass(entity: EntityDescriptor, relationships: RelationshipDescriptor[]): ClassDescriptor {

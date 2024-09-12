@@ -9,6 +9,10 @@ import {SourceType} from '@/erdiagram/converter/oop/model/source-metadata/source
 
 export default class RelationshipMemberToClassFieldMapper {
 
+	constructor(
+			private readonly _enforceNotNullLists: boolean
+	) {}
+
 	public mapRelationshipMemberToField(relationship: RelationshipDescriptor, toMember: RelationshipMember): ClassFieldDescriptor {
 
 		const list = toMember.cardinality === Cardinality.MANY;
@@ -16,7 +20,7 @@ export default class RelationshipMemberToClassFieldMapper {
 
 		return {
 			name,
-			nullable: toMember.cardinality === Cardinality.ZERO_OR_ONE,
+			nullable: this.computeNullable(toMember.cardinality),
 			entityType: toMember.entity,
 			list,
 			sourceMetadata: {
@@ -26,6 +30,17 @@ export default class RelationshipMemberToClassFieldMapper {
 			}
 		};
 
+	}
+
+	private computeNullable(cardinality: Cardinality): boolean {
+		switch (cardinality) {
+			case Cardinality.ZERO_OR_ONE:
+				return true;
+			case Cardinality.ONE:
+				return false;
+			case Cardinality.MANY:
+				return !this._enforceNotNullLists;
+		}
 	}
 
 }

@@ -11,11 +11,13 @@ describe('Serialization', () => {
 	test(`Convert to serializable object`, () => {
 
 		const result = configManager.convertToSerializableObject({
-			idNamingStrategy: StandardIdNamingStrategies.DEFAULT
+			idNamingStrategy: StandardIdNamingStrategies.DEFAULT,
+			enforceNotNullLists: false
 		});
 
 		expect(result).toStrictEqual({
-			idNamingStrategy: 'DEFAULT'
+			idNamingStrategy: 'DEFAULT',
+			enforceNotNullLists: false
 		});
 
 	});
@@ -23,11 +25,13 @@ describe('Serialization', () => {
 	test(`Convert from serializable object`, () => {
 
 		const result = configManager.convertFromSerializableObject({
-			idNamingStrategy: 'DEFAULT'
+			idNamingStrategy: 'DEFAULT',
+			enforceNotNullLists: false
 		});
 
 		expect(result).toStrictEqual<ClassModelConfig>({
-			idNamingStrategy: StandardIdNamingStrategies.DEFAULT
+			idNamingStrategy: StandardIdNamingStrategies.DEFAULT,
+			enforceNotNullLists: false
 		});
 
 	});
@@ -46,11 +50,13 @@ describe('Serialization of different ID naming strategies', () => {
 		test(`Convert to serializable object (${testCaseDescription})`, () => {
 
 			const result = configManager.convertToSerializableObject({
-				idNamingStrategy
+				idNamingStrategy,
+				enforceNotNullLists: false
 			});
 
 			expect(result).toStrictEqual({
-				idNamingStrategy: serializedIdNamingStrategy
+				idNamingStrategy: serializedIdNamingStrategy,
+				enforceNotNullLists: false
 			});
 
 		});
@@ -58,11 +64,13 @@ describe('Serialization of different ID naming strategies', () => {
 		test(`Convert from serializable object (${testCaseDescription})`, () => {
 
 			const result = configManager.convertFromSerializableObject({
-				idNamingStrategy: serializedIdNamingStrategy
+				idNamingStrategy: serializedIdNamingStrategy,
+				enforceNotNullLists: false
 			});
 
 			expect(result).toStrictEqual<ClassModelConfig>({
-				idNamingStrategy: StandardIdNamingStrategies[serializedIdNamingStrategy]
+				idNamingStrategy: StandardIdNamingStrategies[serializedIdNamingStrategy],
+				enforceNotNullLists: false
 			});
 
 		});
