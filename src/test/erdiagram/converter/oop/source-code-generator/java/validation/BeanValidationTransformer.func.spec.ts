@@ -1,6 +1,6 @@
 import BeanValidationTransformer
 	from '@/erdiagram/converter/oop/source-code-generator/java/validation/BeanValidationTransformer';
-import { getTransformedJavaClassModel } from '../util/transformer-test-utils';
+import { getTransformedJavaClassModel } from '#/erdiagram/converter/oop/source-code-generator/java/util/transformer-test-utils';
 import {
 	checkAnnotations,
 	checkClassFieldsAnnotations

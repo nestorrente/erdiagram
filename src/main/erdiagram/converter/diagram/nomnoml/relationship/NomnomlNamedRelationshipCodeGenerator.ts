@@ -1,14 +1,13 @@
 import {RelationshipDescriptor} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import NomnomlRelationshipDirectionCodeGenerator
 	from '@/erdiagram/converter/diagram/nomnoml/relationship/NomnomlRelationshipDirectionCodeGenerator';
-import NomnomlRelationshipCardinalityCodeGenerator
-	from '@/erdiagram/converter/diagram/nomnoml/relationship/NomnomlRelationshipCardinalityCodeGenerator';
+import DiagramCardinalityFormatter from '@/erdiagram/converter/diagram/common/DiagramCardinalityFormatter';
 
 export default class NomnomlNamedRelationshipCodeGenerator {
 
 	constructor(
 			private readonly relationshipDirectionCodeGenerator: NomnomlRelationshipDirectionCodeGenerator,
-			private readonly relationshipCardinalityCodeGenerator: NomnomlRelationshipCardinalityCodeGenerator
+			private readonly cardinalityFormatter: DiagramCardinalityFormatter
 	) {
 
 	}
@@ -22,8 +21,8 @@ export default class NomnomlNamedRelationshipCodeGenerator {
 			relationshipName
 		} = relationship;
 
-		const leftMemberCardinalityCode = this.relationshipCardinalityCodeGenerator.generateCardinalityCode(leftMember.cardinality);
-		const rightMemberCardinalityCode = this.relationshipCardinalityCodeGenerator.generateCardinalityCode(rightMember.cardinality);
+		const leftMemberCardinalityCode = this.cardinalityFormatter.format(leftMember.cardinality);
+		const rightMemberCardinalityCode = this.cardinalityFormatter.format(rightMember.cardinality);
 
 		const leftSideDirectionCode = this.relationshipDirectionCodeGenerator.generateLeftSideDirectionCode(direction);
 		const rightSideDirectionCode = this.relationshipDirectionCodeGenerator.generateRightSideDirectionCode(direction);

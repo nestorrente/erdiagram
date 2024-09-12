@@ -7,6 +7,8 @@ import {
 import PlantUmlSourceCodeGenerator from '@/erdiagram/converter/diagram/plantuml/PlantUmlSourceCodeGenerator';
 import DiagramLevel from '@/erdiagram/converter/diagram/common/config/DiagramLevel';
 import {createEntityProperty} from '#/erdiagram/parser/entity-relationship-model-mothers';
+import RelationshipDescriptorMother from '#/erdiagram/util/mother/RelationshipDescriptorMother';
+import RelationshipMemberMother from '#/erdiagram/util/mother/RelationshipMemberMother';
 
 function addHeaderAndFooter(expectedResult: string): string {
 	return [
@@ -172,20 +174,19 @@ describe('Relationships', () => {
 		const model: EntityRelationshipModel = {
 			entities: [],
 			relationships: [
-				{
-					leftMember: {
+				RelationshipDescriptorMother.create({
+					direction: Direction.BIDIRECTIONAL,
+					leftMember: RelationshipMemberMother.create({
 						entity: 'A',
 						entityAlias: 'a',
 						cardinality: Cardinality.ONE
-					},
-					rightMember: {
+					}),
+					rightMember: RelationshipMemberMother.create({
 						entity: 'B',
 						entityAlias: 'b',
 						cardinality: Cardinality.ONE
-					},
-					direction: Direction.BIDIRECTIONAL,
-					relationshipName: undefined
-				}
+					})
+				})
 			]
 		};
 
@@ -200,20 +201,19 @@ describe('Relationships', () => {
 		const model: EntityRelationshipModel = {
 			entities: [],
 			relationships: [
-				{
-					leftMember: {
+				RelationshipDescriptorMother.create({
+					direction: Direction.LEFT_TO_RIGHT,
+					leftMember: RelationshipMemberMother.create({
 						entity: 'A',
 						entityAlias: 'a',
 						cardinality: Cardinality.ONE
-					},
-					rightMember: {
+					}),
+					rightMember: RelationshipMemberMother.create({
 						entity: 'B',
 						entityAlias: 'b',
 						cardinality: Cardinality.MANY
-					},
-					direction: Direction.LEFT_TO_RIGHT,
-					relationshipName: undefined
-				}
+					})
+				})
 			]
 		};
 
@@ -228,20 +228,19 @@ describe('Relationships', () => {
 		const model: EntityRelationshipModel = {
 			entities: [],
 			relationships: [
-				{
-					leftMember: {
+				RelationshipDescriptorMother.create({
+					direction: Direction.RIGHT_TO_LEFT,
+					leftMember: RelationshipMemberMother.create({
 						entity: 'A',
 						entityAlias: 'a',
 						cardinality: Cardinality.MANY
-					},
-					rightMember: {
+					}),
+					rightMember: RelationshipMemberMother.create({
 						entity: 'B',
 						entityAlias: 'b',
 						cardinality: Cardinality.MANY
-					},
-					direction: Direction.RIGHT_TO_LEFT,
-					relationshipName: undefined
-				}
+					})
+				})
 			]
 		};
 
@@ -256,20 +255,19 @@ describe('Relationships', () => {
 		const model: EntityRelationshipModel = {
 			entities: [],
 			relationships: [
-				{
-					leftMember: {
+				RelationshipDescriptorMother.create({
+					direction: Direction.BIDIRECTIONAL,
+					leftMember: RelationshipMemberMother.create({
 						entity: 'A',
 						entityAlias: 'a',
 						cardinality: Cardinality.MANY
-					},
-					rightMember: {
+					}),
+					rightMember: RelationshipMemberMother.create({
 						entity: 'B',
 						entityAlias: 'b',
 						cardinality: Cardinality.ONE
-					},
-					direction: Direction.BIDIRECTIONAL,
-					relationshipName: undefined
-				}
+					})
+				})
 			]
 		};
 
@@ -284,20 +282,20 @@ describe('Relationships', () => {
 		const model: EntityRelationshipModel = {
 			entities: [],
 			relationships: [
-				{
-					leftMember: {
+				RelationshipDescriptorMother.create({
+					relationshipName: 'Rel',
+					direction: Direction.RIGHT_TO_LEFT,
+					leftMember: RelationshipMemberMother.create({
 						entity: 'A',
 						entityAlias: 'a',
 						cardinality: Cardinality.MANY
-					},
-					rightMember: {
+					}),
+					rightMember: RelationshipMemberMother.create({
 						entity: 'B',
 						entityAlias: 'b',
 						cardinality: Cardinality.ZERO_OR_ONE
-					},
-					direction: Direction.RIGHT_TO_LEFT,
-					relationshipName: 'Rel'
-				}
+					})
+				})
 			]
 		};
 
@@ -312,20 +310,20 @@ describe('Relationships', () => {
 		const model: EntityRelationshipModel = {
 			entities: [],
 			relationships: [
-				{
-					leftMember: {
+				RelationshipDescriptorMother.create({
+					relationshipName: 'Rel',
+					direction: Direction.LEFT_TO_RIGHT,
+					leftMember: RelationshipMemberMother.create({
 						entity: 'A',
 						entityAlias: 'a',
 						cardinality: Cardinality.MANY
-					},
-					rightMember: {
+					}),
+					rightMember: RelationshipMemberMother.create({
 						entity: 'B',
 						entityAlias: 'b',
 						cardinality: Cardinality.ONE
-					},
-					direction: Direction.LEFT_TO_RIGHT,
-					relationshipName: 'Rel'
-				}
+					})
+				})
 			]
 		};
 
@@ -340,20 +338,20 @@ describe('Relationships', () => {
 		const model: EntityRelationshipModel = {
 			entities: [],
 			relationships: [
-				{
-					leftMember: {
+				RelationshipDescriptorMother.create({
+					relationshipName: 'Rel',
+					direction: Direction.BIDIRECTIONAL,
+					leftMember: RelationshipMemberMother.create({
 						entity: 'A',
 						entityAlias: 'a',
 						cardinality: Cardinality.MANY
-					},
-					rightMember: {
+					}),
+					rightMember: RelationshipMemberMother.create({
 						entity: 'B',
 						entityAlias: 'b',
 						cardinality: Cardinality.MANY
-					},
-					direction: Direction.BIDIRECTIONAL,
-					relationshipName: 'Rel'
-				}
+					})
+				})
 			]
 		};
 
@@ -390,20 +388,19 @@ describe('Entities and relationships', () => {
 				}
 			],
 			relationships: [
-				{
-					leftMember: {
+				RelationshipDescriptorMother.create({
+					direction: Direction.RIGHT_TO_LEFT,
+					leftMember: RelationshipMemberMother.create({
 						entity: 'User',
 						entityAlias: 'user',
 						cardinality: Cardinality.ONE
-					},
-					rightMember: {
+					}),
+					rightMember: RelationshipMemberMother.create({
 						entity: 'Order',
 						entityAlias: 'order',
 						cardinality: Cardinality.MANY
-					},
-					direction: Direction.RIGHT_TO_LEFT,
-					relationshipName: undefined
-				}
+					})
+				})
 			]
 		};
 
@@ -452,20 +449,19 @@ describe('With custom config', () => {
 				}
 			],
 			relationships: [
-				{
-					leftMember: {
+				RelationshipDescriptorMother.create({
+					direction: Direction.RIGHT_TO_LEFT,
+					leftMember: RelationshipMemberMother.create({
 						entity: 'User',
 						entityAlias: 'user',
 						cardinality: Cardinality.ONE
-					},
-					rightMember: {
+					}),
+					rightMember: RelationshipMemberMother.create({
 						entity: 'Order',
 						entityAlias: 'order',
 						cardinality: Cardinality.MANY
-					},
-					direction: Direction.RIGHT_TO_LEFT,
-					relationshipName: undefined
-				}
+					})
+				})
 			]
 		};
 

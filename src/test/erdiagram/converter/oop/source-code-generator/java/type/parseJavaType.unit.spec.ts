@@ -1,7 +1,7 @@
 import parseJavaType from '@/erdiagram/converter/oop/source-code-generator/java/type/parseJavaType';
 
 describe('Well formatted types', () => {
-	it.each([
+	test.each<[input: string, simpleFormat: string]>([
 		// Primitives
 		['boolean', 'boolean'],
 		['byte', 'byte'],
@@ -65,7 +65,7 @@ describe('Well formatted types', () => {
 });
 
 describe('Correct types formatted differently', () => {
-	it.each([
+	test.each<[input: string, canonicalFormat: string, simpleFormat: string]>([
 		['   boolean ', 'boolean', 'boolean'],
 		['java\t.  lang.String   ', 'java.lang.String', 'String'],
 		['  a.A< B \t  >', 'a.A<B>', 'A<B>'],
@@ -84,7 +84,7 @@ describe('Correct types formatted differently', () => {
 });
 
 describe('Type equality', () => {
-	it.each([
+	test.each<[wellFormatted: string, badFormatted: string]>([
 		['boolean', '   boolean '],
 		['java.lang.String', 'java\t.  lang.String   '],
 		['a.A<B>', '  a.A< B \t  >'],
@@ -103,7 +103,7 @@ describe('Type equality', () => {
 });
 
 describe('Incorrect types', () => {
-	it.each([
+	test.each<[input: string]>([
 		['java..lang.String'],
 		['java.lang..String'],
 		['java.lang...String'],

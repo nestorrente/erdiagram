@@ -3,7 +3,7 @@ import isTypeScriptParameterizedType
 	from '@/erdiagram/converter/oop/source-code-generator/typescript/type/parameterized/isTypeScriptParameterizedType';
 
 describe('Well formatted types', () => {
-	it.each([
+	test.each<[input: string, typeName: string, isParameterizedType: boolean]>([
 		// Primitives
 		['boolean', 'boolean', false],
 		['number', 'number', false],
@@ -41,7 +41,7 @@ describe('Well formatted types', () => {
 		['A<B<C, D>[], E[][], F<G, H[]>>[][][]', 'Array', true],
 		// Allowed characters
 		['A$b<$C[]>', 'A$b', true]
-	] as [string, string, boolean][])(
+	])(
 			'Parsing "%s"',
 			(input, typeName, isParameterizedType) => {
 
@@ -56,11 +56,11 @@ describe('Well formatted types', () => {
 });
 
 describe('Correct types formatted differently', () => {
-	it.each([
+	test.each<[input: string, expectedResult: string, typeName: string, isParameterizedType: boolean]>([
 		['   boolean ', 'boolean', 'boolean', false],
 		['  A< B \t  >', 'A<B>', 'A', true],
 		['\tnumber [   \t]   ', 'number[]', 'Array', true],
-	] as [string, string, string, boolean][])(
+	])(
 			'Parsing "%s"',
 			(input, expectedResult, typeName, isParameterizedType) => {
 
@@ -75,13 +75,13 @@ describe('Correct types formatted differently', () => {
 });
 
 describe('Type equality', () => {
-	it.each([
+	test.each<[wellFormatted: string, badFormatted: string]>([
 		['boolean', '   boolean '],
 		['A<B>', '  A< B \t  >'],
 		['number[]', '\tnumber [   \t]   '],
 	])(
 			'Parsing "%s"',
-			(badFormatted, wellFormatted) => {
+			(wellFormatted, badFormatted) => {
 
 				const resultFromWellFormatted = parseTypeScriptType(wellFormatted);
 				const resultFromBadFormatted = parseTypeScriptType(badFormatted);
@@ -93,7 +93,7 @@ describe('Type equality', () => {
 });
 
 describe('Incorrect types', () => {
-	it.each([
+	test.each<[input: string]>([
 		['.boolean'],
 		['bool ean'],
 		['Array<num ber>'],

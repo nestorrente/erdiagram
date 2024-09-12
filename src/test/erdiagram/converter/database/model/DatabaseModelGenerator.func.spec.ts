@@ -2,8 +2,7 @@ import {
 	Cardinality,
 	Direction,
 	EntityDescriptor,
-	EntityPropertyType,
-	RelationshipDescriptor
+	EntityPropertyType
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
 import DatabaseModelGenerator from '@/erdiagram/converter/database/model/DatabaseModelGenerator';
 import {
@@ -19,6 +18,8 @@ import {
 	createTableColumn,
 	createTableReference
 } from './database-model-mothers';
+import RelationshipDescriptorMother from '#/erdiagram/util/mother/RelationshipDescriptorMother';
+import RelationshipMemberMother from '#/erdiagram/util/mother/RelationshipMemberMother';
 
 const databaseModelGenerator = new DatabaseModelGenerator();
 
@@ -275,49 +276,46 @@ describe('Relationship', () => {
 
 		const entities = [...'ABCD'].map(createEntityWithoutProperties);
 
-		const relationships: RelationshipDescriptor[] = [
-			{
-				relationshipName: undefined,
+		const relationships = [
+			RelationshipDescriptorMother.create({
 				direction: Direction.LEFT_TO_RIGHT,
-				leftMember: {
+				leftMember: RelationshipMemberMother.create({
 					entity: 'A',
 					entityAlias: 'a',
 					cardinality: Cardinality.ONE
-				},
-				rightMember: {
+				}),
+				rightMember: RelationshipMemberMother.create({
 					entity: 'B',
 					entityAlias: 'b',
 					cardinality: Cardinality.ONE
-				}
-			},
-			{
-				relationshipName: undefined,
+				})
+			}),
+			RelationshipDescriptorMother.create({
 				direction: Direction.RIGHT_TO_LEFT,
-				leftMember: {
+				leftMember: RelationshipMemberMother.create({
 					entity: 'A',
 					entityAlias: 'a',
 					cardinality: Cardinality.ONE
-				},
-				rightMember: {
+				}),
+				rightMember: RelationshipMemberMother.create({
 					entity: 'C',
 					entityAlias: 'c',
 					cardinality: Cardinality.ONE
-				}
-			},
-			{
-				relationshipName: undefined,
+				})
+			}),
+			RelationshipDescriptorMother.create({
 				direction: Direction.BIDIRECTIONAL,
-				leftMember: {
+				leftMember: RelationshipMemberMother.create({
 					entity: 'A',
 					entityAlias: 'a',
 					cardinality: Cardinality.ONE
-				},
-				rightMember: {
+				}),
+				rightMember: RelationshipMemberMother.create({
 					entity: 'D',
 					entityAlias: 'd',
 					cardinality: Cardinality.ONE
-				}
-			}
+				})
+			})
 		];
 
 		const databaseModel = databaseModelGenerator.generateDatabaseModel({
@@ -361,7 +359,7 @@ describe('Relationship', () => {
 
 	});
 
-	test('Cardinalities', () => {
+	describe('Cardinalities and optionality', () => {
 
 		const entities = [...'ABCDEFGHIJ'].map(createEntityWithoutProperties);
 
@@ -376,22 +374,21 @@ describe('Relationship', () => {
 					[Cardinality.MANY, Cardinality.ZERO_OR_ONE, 'H'],
 					[Cardinality.MANY, Cardinality.ONE, 'I'],
 					[Cardinality.MANY, Cardinality.MANY, 'J'],
-				] as [Cardinality, Cardinality, string][]
-		).map(([leftCardinality, rightCardinality, rightEntity]): RelationshipDescriptor => {
-			return {
-				relationshipName: undefined,
+				] satisfies [Cardinality, Cardinality, string][]
+		).map(([leftCardinality, rightCardinality, rightEntity]) => {
+			return RelationshipDescriptorMother.create({
 				direction: Direction.BIDIRECTIONAL,
-				leftMember: {
+				leftMember: RelationshipMemberMother.create({
 					entity: 'A',
 					entityAlias: 'a',
 					cardinality: leftCardinality
-				},
-				rightMember: {
+				}),
+				rightMember: RelationshipMemberMother.create({
 					entity: rightEntity,
 					entityAlias: rightEntity.toLowerCase(),
 					cardinality: rightCardinality
-				}
-			};
+				})
+			});
 		});
 
 		const databaseModel = databaseModelGenerator.generateDatabaseModel({
@@ -500,63 +497,61 @@ describe('Relationship', () => {
 
 		const entities = [...'ABCDE'].map(createEntityWithoutProperties);
 
-		const relationships: RelationshipDescriptor[] = [
-			{
-				relationshipName: undefined,
+		const relationships = [
+			RelationshipDescriptorMother.create({
 				direction: Direction.BIDIRECTIONAL,
-				leftMember: {
+				leftMember: RelationshipMemberMother.create({
 					entity: 'A',
 					entityAlias: 'aAlias',
 					cardinality: Cardinality.ONE
-				},
-				rightMember: {
+				}),
+				rightMember: RelationshipMemberMother.create({
 					entity: 'B',
 					entityAlias: 'b',
 					cardinality: Cardinality.ONE
-				}
-			},
-			{
-				relationshipName: undefined,
+				})
+			}),
+			RelationshipDescriptorMother.create({
 				direction: Direction.BIDIRECTIONAL,
-				leftMember: {
+				leftMember: RelationshipMemberMother.create({
 					entity: 'A',
 					entityAlias: 'a',
 					cardinality: Cardinality.ONE
-				},
-				rightMember: {
+				}),
+				rightMember: RelationshipMemberMother.create({
 					entity: 'C',
 					entityAlias: 'cAlias',
 					cardinality: Cardinality.ONE
-				}
-			},
-			{
+				})
+			}),
+			RelationshipDescriptorMother.create({
 				relationshipName: 'AToD',
 				direction: Direction.BIDIRECTIONAL,
-				leftMember: {
+				leftMember: RelationshipMemberMother.create({
 					entity: 'A',
 					entityAlias: 'a',
 					cardinality: Cardinality.ONE
-				},
-				rightMember: {
+				}),
+				rightMember: RelationshipMemberMother.create({
 					entity: 'D',
 					entityAlias: 'd',
 					cardinality: Cardinality.ONE
-				}
-			},
-			{
+				})
+			}),
+			RelationshipDescriptorMother.create({
 				relationshipName: 'AToE',
 				direction: Direction.BIDIRECTIONAL,
-				leftMember: {
+				leftMember: RelationshipMemberMother.create({
 					entity: 'A',
 					entityAlias: 'aAlias',
 					cardinality: Cardinality.MANY
-				},
-				rightMember: {
+				}),
+				rightMember: RelationshipMemberMother.create({
 					entity: 'E',
 					entityAlias: 'eAlias',
 					cardinality: Cardinality.MANY
-				}
-			}
+				})
+			})
 		];
 
 		const databaseModel = databaseModelGenerator.generateDatabaseModel({
@@ -631,35 +626,34 @@ describe('Config', () => {
 			createEntityWithoutProperties('B'),
 		];
 
-		const relationships: RelationshipDescriptor[] = [
-			{
-				relationshipName: undefined,
+		const relationships = [
+			RelationshipDescriptorMother.create({
 				direction: Direction.BIDIRECTIONAL,
-				leftMember: {
+				leftMember: RelationshipMemberMother.create({
 					entity: 'A',
 					entityAlias: 'aAlias',
 					cardinality: Cardinality.ONE
-				},
-				rightMember: {
+				}),
+				rightMember: RelationshipMemberMother.create({
 					entity: 'B',
 					entityAlias: 'b',
 					cardinality: Cardinality.ONE
-				}
-			},
-			{
+				})
+			}),
+			RelationshipDescriptorMother.create({
 				relationshipName: 'AsToBs',
 				direction: Direction.BIDIRECTIONAL,
-				leftMember: {
+				leftMember: RelationshipMemberMother.create({
 					entity: 'A',
 					entityAlias: 'a',
 					cardinality: Cardinality.MANY
-				},
-				rightMember: {
+				}),
+				rightMember: RelationshipMemberMother.create({
 					entity: 'B',
 					entityAlias: 'b',
 					cardinality: Cardinality.MANY
-				}
-			}
+				})
+			})
 		];
 
 		const databaseModel = customDatabaseModelGenerator.generateDatabaseModel({
@@ -711,21 +705,21 @@ describe('Config', () => {
 			createEntityWithoutProperties('B'),
 		];
 
-		const relationships: RelationshipDescriptor[] = [
-			{
+		const relationships = [
+			RelationshipDescriptorMother.create({
 				relationshipName: 'AToB',
 				direction: Direction.BIDIRECTIONAL,
-				leftMember: {
+				leftMember: RelationshipMemberMother.create({
 					entity: 'A',
 					entityAlias: 'a',
 					cardinality: Cardinality.MANY
-				},
-				rightMember: {
+				}),
+				rightMember: RelationshipMemberMother.create({
 					entity: 'B',
 					entityAlias: 'b',
 					cardinality: Cardinality.MANY
-				}
-			}
+				})
+			})
 		];
 
 		const databaseModel = customDatabaseModelGenerator.generateDatabaseModel({
@@ -775,21 +769,21 @@ describe('Config', () => {
 			createEntityWithoutProperties('B'),
 		];
 
-		const relationships: RelationshipDescriptor[] = [
-			{
+		const relationships = [
+			RelationshipDescriptorMother.create({
 				relationshipName: 'AToB',
 				direction: Direction.BIDIRECTIONAL,
-				leftMember: {
+				leftMember: RelationshipMemberMother.create({
 					entity: 'A',
 					entityAlias: 'a',
 					cardinality: Cardinality.MANY
-				},
-				rightMember: {
+				}),
+				rightMember: RelationshipMemberMother.create({
 					entity: 'B',
 					entityAlias: 'b',
 					cardinality: Cardinality.MANY
-				}
-			}
+				})
+			})
 		];
 
 		const databaseModel = customDatabaseModelGenerator.generateDatabaseModel({
@@ -840,21 +834,21 @@ describe('Config', () => {
 			createEntityWithoutProperties('B'),
 		];
 
-		const relationships: RelationshipDescriptor[] = [
-			{
+		const relationships = [
+			RelationshipDescriptorMother.create({
 				relationshipName: 'AsToBs',
 				direction: Direction.BIDIRECTIONAL,
-				leftMember: {
+				leftMember: RelationshipMemberMother.create({
 					entity: 'A',
 					entityAlias: 'a',
 					cardinality: Cardinality.MANY
-				},
-				rightMember: {
+				}),
+				rightMember: RelationshipMemberMother.create({
 					entity: 'B',
 					entityAlias: 'b',
 					cardinality: Cardinality.MANY
-				}
-			}
+				})
+			})
 		];
 
 		const databaseModel = customDatabaseModelGenerator.generateDatabaseModel({

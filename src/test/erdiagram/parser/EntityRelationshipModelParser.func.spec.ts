@@ -318,7 +318,7 @@ A *<->* Q
 						[Cardinality.MANY, Cardinality.ONE, 'O'],
 						[Cardinality.MANY, Cardinality.ONE, 'P'],
 						[Cardinality.MANY, Cardinality.MANY, 'Q'],
-					] as [Cardinality, Cardinality, string][]
+					] satisfies [Cardinality, Cardinality, string][]
 			).map(([leftCardinality, rightCardinality, rightEntity]): RelationshipDescriptor => {
 				return {
 					relationshipName: undefined,

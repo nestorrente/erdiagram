@@ -7,9 +7,10 @@ import {
 	Cardinality,
 	Direction,
 	EntityPropertyDescriptor,
-	EntityPropertyType,
-	RelationshipDescriptor
+	EntityPropertyType
 } from '@/erdiagram/parser/types/entity-relationship-model-types';
+import RelationshipDescriptorMother from '#/erdiagram/util/mother/RelationshipDescriptorMother';
+import RelationshipMemberMother from '#/erdiagram/util/mother/RelationshipMemberMother';
 
 describe('Parse entity name statement', () => {
 
@@ -211,7 +212,7 @@ describe('Parse entity property statement', () => {
 
 describe('Parse relationship statement', () => {
 
-	interface RecursivePartialRelationshipDescriptor {
+	test.each<{
 		testCase: string;
 		line: string;
 		expected: {
@@ -228,9 +229,7 @@ describe('Parse relationship statement', () => {
 				cardinality: Cardinality;
 			};
 		}
-	}
-
-	test.each<RecursivePartialRelationshipDescriptor>([
+	}>([
 		{
 			testCase: 'Many-to-one relationship to the right',
 			line: 'Entity1 *-> Entity2',
@@ -383,20 +382,19 @@ describe('Parse relationship statement', () => {
 
 		const result = parseRelationshipStatement(line);
 
-		const expected: RelationshipDescriptor = {
-			relationshipName: undefined,
+		const expected = RelationshipDescriptorMother.create({
 			...partialExpected,
-			leftMember: {
+			leftMember: RelationshipMemberMother.create({
 				entity: 'Entity1',
 				entityAlias: 'entity1',
 				...partialExpected.leftMember
-			},
-			rightMember: {
+			}),
+			rightMember: RelationshipMemberMother.create({
 				entity: 'Entity2',
 				entityAlias: 'entity2',
 				...partialExpected.rightMember
-			}
-		};
+			})
+		});
 
 		expect(result).toStrictEqual(expected);
 

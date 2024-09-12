@@ -1,13 +1,12 @@
 import {RelationshipDescriptor} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import PlantUmlRelationshipDirectionCodeGenerator
 	from '@/erdiagram/converter/diagram/plantuml/relationship/PlantUmlRelationshipDirectionCodeGenerator';
-import PlantUmlRelationshipCardinalityCodeGenerator
-	from '@/erdiagram/converter/diagram/plantuml/relationship/PlantUmlRelationshipCardinalityCodeGenerator';
+import DiagramCardinalityFormatter from '@/erdiagram/converter/diagram/common/DiagramCardinalityFormatter';
 
 export default class PlantUmlRelationshipCodeGenerator {
 
 	private readonly relationshipDirectionCodeGenerator = new PlantUmlRelationshipDirectionCodeGenerator();
-	private readonly relationshipCardinalityCodeGenerator = new PlantUmlRelationshipCardinalityCodeGenerator();
+	private readonly cardinalityFormatter = new DiagramCardinalityFormatter();
 
 	public generateRelationshipCode(relationship: RelationshipDescriptor): string {
 
@@ -17,8 +16,8 @@ export default class PlantUmlRelationshipCodeGenerator {
 			direction
 		} = relationship;
 
-		const leftMemberCardinalityCode = this.relationshipCardinalityCodeGenerator.generateCardinalityCode(leftMember.cardinality);
-		const rightMemberCardinalityCode = this.relationshipCardinalityCodeGenerator.generateCardinalityCode(rightMember.cardinality);
+		const leftMemberCardinalityCode = this.cardinalityFormatter.format(leftMember.cardinality);
+		const rightMemberCardinalityCode = this.cardinalityFormatter.format(rightMember.cardinality);
 
 		const directionCode = this.relationshipDirectionCodeGenerator.generateDirectionCode(direction);
 

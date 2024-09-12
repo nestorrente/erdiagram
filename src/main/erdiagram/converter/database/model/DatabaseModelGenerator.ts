@@ -70,6 +70,7 @@ export default class DatabaseModelGenerator {
 				}
 			} else if (relationship.leftMember.cardinality !== Cardinality.MANY) {
 				if (relationship.rightMember.entity === entity.name) {
+					// It's never a 1-1 relationship (otherwise, we would have entered the previous if block)
 					references.push(this.createTableReference(relationship, relationship.leftMember, entityIdentitiesMap));
 				}
 			}

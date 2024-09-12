@@ -450,7 +450,7 @@ describe('Relationship', () => {
 					[Cardinality.MANY, Cardinality.ZERO_OR_ONE, 'H'],
 					[Cardinality.MANY, Cardinality.ONE, 'I'],
 					[Cardinality.MANY, Cardinality.MANY, 'J'],
-				] as [Cardinality, Cardinality, string][]
+				] satisfies [Cardinality, Cardinality, string][]
 		).map(([leftCardinality, rightCardinality, rightEntity]): RelationshipDescriptor => {
 			return {
 				relationshipName: undefined,
@@ -492,7 +492,7 @@ describe('Relationship', () => {
 									['H', 'h', false, true],
 									['I', 'i', false, false],
 									['J', 'js', true, false],
-								] as [string, string, boolean, boolean][]
+								] satisfies [string, string, boolean, boolean][]
 						).map(([entityName, fieldName, list, nullable], index): ClassFieldDescriptor => {
 							return createEntityClassField(fieldName, entityName, {
 								list,
@@ -518,7 +518,7 @@ describe('Relationship', () => {
 							['H', true, false],
 							['I', true, false],
 							['J', true, false],
-						] as [string, boolean, boolean][]
+						] satisfies [string, boolean, boolean][]
 				).map(([entityName, list, nullable], index): ClassDescriptor => ({
 					name: entityName,
 					fields: [

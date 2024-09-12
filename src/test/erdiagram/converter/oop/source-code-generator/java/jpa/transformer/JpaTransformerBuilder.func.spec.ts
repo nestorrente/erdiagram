@@ -2,8 +2,8 @@ import { JpaTransformer } from '@/erdiagram/converter/oop/source-code-generator/
 import {
 	checkAnnotations,
 	checkClassFieldsAnnotations
-} from '../../util/annotation-test-utils';
-import { getTransformedJavaClassModel } from '../../util/transformer-test-utils';
+} from '#/erdiagram/converter/oop/source-code-generator/java/util/annotation-test-utils';
+import { getTransformedJavaClassModel } from '#/erdiagram/converter/oop/source-code-generator/java/util/transformer-test-utils';
 
 test('With default config', () => {
 

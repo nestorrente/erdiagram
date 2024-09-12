@@ -1,26 +1,25 @@
 import {RelationshipDescriptor} from '@/erdiagram/parser/types/entity-relationship-model-types';
 import NomnomlRelationshipDirectionCodeGenerator
 	from '@/erdiagram/converter/diagram/nomnoml/relationship/NomnomlRelationshipDirectionCodeGenerator';
-import NomnomlRelationshipCardinalityCodeGenerator
-	from '@/erdiagram/converter/diagram/nomnoml/relationship/NomnomlRelationshipCardinalityCodeGenerator';
 import NomnomlUnnamedRelationshipCodeGenerator
 	from '@/erdiagram/converter/diagram/nomnoml/relationship/NomnomlUnnamedRelationshipCodeGenerator';
 import NomnomlNamedRelationshipCodeGenerator
 	from '@/erdiagram/converter/diagram/nomnoml/relationship/NomnomlNamedRelationshipCodeGenerator';
+import DiagramCardinalityFormatter from '@/erdiagram/converter/diagram/common/DiagramCardinalityFormatter';
 
 export default class NomnomlRelationshipCodeGenerator {
 
 	private readonly relationshipDirectionCodeGenerator = new NomnomlRelationshipDirectionCodeGenerator();
-	private readonly relationshipCardinalityCodeGenerator = new NomnomlRelationshipCardinalityCodeGenerator();
+	private readonly cardinalityFormatter = new DiagramCardinalityFormatter();
 
 	private readonly namedRelationshipCodeGenerator = new NomnomlNamedRelationshipCodeGenerator(
 			this.relationshipDirectionCodeGenerator,
-			this.relationshipCardinalityCodeGenerator
+			this.cardinalityFormatter
 	);
 
 	private readonly unnamedRelationshipCodeGenerator = new NomnomlUnnamedRelationshipCodeGenerator(
 			this.relationshipDirectionCodeGenerator,
-			this.relationshipCardinalityCodeGenerator
+			this.cardinalityFormatter
 	);
 
 	public generateRelationshipCode(relationship: RelationshipDescriptor): string {
