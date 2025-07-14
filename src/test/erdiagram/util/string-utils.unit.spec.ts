@@ -26,13 +26,21 @@ describe('Capitalize word', () => {
 
 	});
 
-	test('Capitalize text should capitalize first word only', () => {
+        test('Capitalize text should capitalize first word only', () => {
 
-		const result = capitalizeWord('hello world');
+                const result = capitalizeWord('hello world');
 
-		expect(result).toBe('Hello world');
+                expect(result).toBe('Hello world');
 
-	});
+        });
+
+        test('Capitalize empty string should return empty string', () => {
+
+                const result = capitalizeWord('');
+
+                expect(result).toBe('');
+
+        });
 
 });
 
@@ -62,12 +70,20 @@ describe('Uncapitalize word', () => {
 
 	});
 
-	test('Uncapitalize text should uncapitalize first word only', () => {
+        test('Uncapitalize text should uncapitalize first word only', () => {
 
-		const result = uncapitalizeWord('HELLO WORLD');
+                const result = uncapitalizeWord('HELLO WORLD');
 
-		expect(result).toBe('hELLO WORLD');
+                expect(result).toBe('hELLO WORLD');
 
-	});
+        });
+
+        test('Uncapitalize empty string should return empty string', () => {
+
+                const result = uncapitalizeWord('');
+
+                expect(result).toBe('');
+
+        });
 
 });
